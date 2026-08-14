@@ -1,6 +1,6 @@
 ---
 name: iteration-close
-description: Close out a development iteration, sprint, or milestone in any repo, distill chat-born decisions into the repo's own record, then shed superseded files — git history is the archive (no _archive dirs, no .bak, no legacy- renames), the full deletion list is shown to the user for an explicit yes before anything is removed, and untracked files are quarantined, never rm'd. Verify two separate readiness channels (a confirmed upload AND a tested zero-context takeover probe), rehearse the one-command bootstrap on a fresh clone, then tag and seed the next iteration. Can run the cleanup phase alone when the user only wants dead files cleared. Trigger on: "close out this iteration", "wrap up this sprint and clean out the dead files", "could a fresh machine take this over?", "clear the superseded files from the repo", "milestone's done — tidy and tag it", 收口 / 迭代收口 / 迭代收尾 / 收尾 / 封版 / 甩包袱 / 清旧账 / 蜕壳 / 这个迭代做完了 / 收尾上云. NOT a casual end-of-day sign-off; NOT how-to-publish-a-package questions. Works in Claude Code and Codex.
+description: Close out a development iteration, sprint, or milestone in any repo, distill chat-born decisions into the repo's own record, then shed superseded files — git history is the archive (no _archive dirs, .bak, or legacy- renames), the full deletion list needs the user's explicit yes before anything is removed, and untracked files are quarantined, never rm'd. Verify two separate readiness channels (a confirmed upload AND a tested zero-context takeover probe), rehearse the one-command bootstrap on a fresh clone, then tag and seed the next iteration. Runs the cleanup phase alone when the user only wants dead files cleared. Trigger on: "close out this iteration", "wrap up this sprint and clean out the dead files", "could a fresh machine take this over?", "clear the superseded files from the repo", "milestone's done — tidy and tag it", 收口 / 迭代收口 / 迭代收尾 / 收尾 / 封版 / 甩包袱 / 清旧账 / 蜕壳 / 这个迭代做完了 / 可以发版了 / 这版可以发版了 / 收尾上云. NOT a casual end-of-day sign-off; NOT how-to-publish-a-package questions. Works in Claude Code and Codex.
 ---
 
 # iteration-close — distill, shed, prove takeover, rehearse bootstrap, seed next
@@ -54,7 +54,9 @@ will fill (each phase below says how), never invent a path that isn't there.
 
 ## Refuse to run (fail-closed)
 
-Do not close mid-iteration — you lose skin AND flesh. REFUSE (in both run modes) if: the test
+Do not close mid-iteration — you lose skin AND flesh. REFUSE (in both run modes) if: the
+directory is not a git repository (stop and say so — running `git init` is the user's
+decision); the test
 suite exists and is actually FAILING (an absent suite is not a failing one — see Step 0.4); an
 adversarial gate, if the repo has one, is pending or CHANGES-REQUIRED; or another agent/lane has
 uncommitted mid-slice work in paths you'd touch. Say what's blocking and stop.
@@ -142,7 +144,8 @@ Uploading and being-continuable are NOT the same problem. Conflating them is how
    never-dos) is part of this close — it is the artifact the probe grades. Do not run the probe
    against nothing.**
 3. Every wrong or missing answer is a TAKEOVER-DOC BUG, not the probe's fault. Fix (or create) the
-   doc, re-run with a NEW fresh reader. Loop until a cold reader scores 4/4.
+   doc, re-run with a NEW fresh reader. Loop until a cold reader scores 4/4, capped at 3 rounds —
+   if it still fails after 3, list the remaining gaps and hand the decision to the user.
 
 EXIT TEST: probe passes 4/4. Only then is "any new window / machine can continue" a tested fact.
 

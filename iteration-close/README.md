@@ -66,3 +66,18 @@ for weeks until the docs told two different truths. Each opinionated rule traces
   nothing runs without an explicit yes. Partial approval works — it deletes only what you approved.
 - **"Anyone could take over" is tested, not hoped.** A context-free reader either scores 4/4 on
   the takeover probe, or every miss is treated as a documentation bug and fixed before re-running.
+
+## Field-tested
+
+Probed 9 scenarios across 5 personas · 5 fired correctly · 2 correctly stayed quiet · 2 flagged (one degraded-world path, one coin-flip; fixes queued).
+
+> **"今天收工了，明天见" ("calling it a day — see you tomorrow")**
+> → Correctly stayed quiet. An end-of-day sign-off is not an iteration close; the description now excludes it by name.
+
+> **"清旧账，把没用的旧文件清一清" ("clear out the old junk files")**
+> → Fired in shed-only mode: built the full deletion inventory, waited for an explicit yes before removing anything, and moved untracked files to quarantine instead of `rm` — git history can't resurrect what was never committed.
+
+> **"how do I publish an npm package?"**
+> → Correctly stayed quiet. Publish-a-package questions are explicitly excluded — this skill closes iterations, it doesn't teach packaging.
+
+Probe method: [scenario-probe](../scenario-probe/)

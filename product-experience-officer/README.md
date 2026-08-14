@@ -43,3 +43,15 @@ The methodology is opinionated on purpose, and each rule comes from real reviews
 - **One recommended fix per finding.** Listing three options without a pick pushes the decision cost back onto the person who asked for help. The skill always recommends, with a reason, and labels taste as taste.
 - **Treat the developer's data as production.** Live runs happen on the builder's own machine, next to their real files. The skill refuses writes that touch pre-existing user data and records the attempt as a finding — a rule written after runs where the product cheerfully offered to overwrite the builder's real archive.
 - **Degrade honestly.** No browser? Copy and flow get reviewed; every visual claim moves to a to-verify checklist instead of being guessed from HTML. A smaller honest report beats a complete fabricated one.
+
+## Field-tested
+
+Probed 7 scenarios across 5 personas · 5 fired correctly · 2 correctly stayed quiet.
+
+> **"Does this onboarding make sense? Here are three screenshots."** → Fired in Mode A — and an English-speaking user gets an English report. (An earlier probe caught this skill answering English builders in Chinese; that fix is now verified green.)
+
+> **"Here's a screenshot of the error my app throws on login — what's wrong?"** → Correctly stayed quiet. A screenshot is not automatically a UX review: the description's NOT-clause sends debugging elsewhere, a boundary added after a real false-fire.
+
+> **"Run my web app and review it as a first-time user"** — in an environment with no browser or screenshots → Fired, and degraded honestly: copy and flow reviewed from text, every visual dimension moved to an explicit To-verify checklist, and inferring "the spacing is probably fine" from CSS is banned as fabricated evidence.
+
+Probe method: [scenario-probe](../scenario-probe/)

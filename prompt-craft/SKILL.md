@@ -1,6 +1,6 @@
 ---
 name: prompt-craft
-description: Marketing prompt workshop — turns rough ideas, dictated voice notes, and feedback into AI-ready prompts for marketing and content work (social posts, ad copy, video scripts, campaign briefs, brand voice), grounded in the user's brand-context file and a marketing knowledge base. Trigger ONLY when the user asks for a prompt to be built or improved for a marketing/content task, or invokes prompt-craft by name — e.g. "write me a prompt for a TikTok ad", "turn these voice notes into a prompt for the launch thread", "I need a prompt that gets better ad copy out of the model", "make this campaign brief AI-ready", 帮我写个营销 prompt, 把这段语音整理成投放 prompt. Handles dictated, messy, mixed-language input. NOT for general prompt polishing, system prompts, or coding prompts — route those to prompt-distill (if installed). Writing the marketing copy itself, or answering a marketing question directly, is normal work, not this skill.
+description: Marketing prompt workshop — turns rough ideas, dictated voice notes, and feedback into AI-ready prompts for marketing and content work (social posts, ad copy, video scripts, campaign briefs, brand voice), grounded in the user's brand-context file and a marketing knowledge base. Trigger ONLY when the user asks for a prompt to be built or improved for a marketing/content task, or invokes prompt-craft by name — e.g. "write me a prompt for a TikTok ad", "turn these voice notes into a prompt for the launch thread", "I need a prompt that gets better ad copy out of the model", "make this campaign brief AI-ready", 帮我写个营销 prompt, 把这段语音整理成投放 prompt. Handles dictated, messy, mixed-language input. NOT for general prompt polishing, system prompts, or coding prompts — route those to prompt-distill (if installed). Writing the marketing copy itself, or answering a marketing question directly, is normal work, not this skill. LLM-judge prompts — even for marketing outputs — go to write-judge-prompt (if installed).
 ---
 
 # ⚡ ACTIVATION DIRECTIVE
@@ -146,7 +146,7 @@ Extract silently:
 - Agent tag — ONLY if the brand context defines a downstream agent roster (e.g., `[MKTG]` / `[CREATIVE]` / `[RESEARCH]` / `[LEAD]`); otherwise omit tags entirely
 - Multi-layer creative? → see routing section
 - Auto-escalation to DEEP? → check triggers
-- Out of scope? → a general/coding/system prompt with no marketing dimension gets a one-line handoff ("this is prompt-distill territory") instead of the full flow
+- Out of scope? → a general/coding/system prompt with no marketing dimension gets a one-line handoff ("this is prompt-distill territory") instead of the full flow (if prompt-distill is not installed, exit mode and handle as a normal request)
 
 **Apply Voice-Input Parsing Patterns P1-P8 during parsing.**
 
@@ -170,7 +170,7 @@ Split input into atomic units. Classify each:
    1. `~/.prompt-craft/user-context.md` (recommended location — survives package updates)
    2. `knowledge/user-context.md` (in-package, legacy)
    3. Neither exists → read `knowledge/user-context.example.md`, run in **generic mode**, and tell the user once: "No brand context found — running generic. Copy `knowledge/user-context.example.md` to `~/.prompt-craft/user-context.md` and fill it in to get brand-grounded prompts."
-2. **Staleness gate**: parse the context file's `Status` date. If it is **more than 60 days old**, still use stable facts (brand, voice, personas, banned words) but do NOT inject time-scoped facts (current sprint, quarterly KPIs, follower targets, hot/dead topics). On the first output of the session, add one line: "Brand context dated <date> — time-sensitive facts skipped; refresh the file to re-enable them."
+2. **Staleness gate**: parse the context file's `Status` date. If it is **more than 60 days old** — or the `Status` line has no parseable date, which counts as stale — still use stable facts (brand, voice, personas, banned words) but do NOT inject time-scoped facts (current sprint, quarterly KPIs, follower targets, hot/dead topics). On the first output of the session, add one line: "Brand context dated <date> — time-sensitive facts skipped; refresh the file to re-enable them."
 3. **ALWAYS** `knowledge/asr-corrections.md` (+ user dictionary) when input looks voice-dictated
 4. Detect marketing sub-domain → 1-2 topic files:
    - Copy / tweet / headline → `copywriting.md`
@@ -422,7 +422,7 @@ Try reading `knowledge/_index.md`. **Direct file access** → full mode: load kn
 ## Troubleshooting
 
 - **"Just the prompt"** → code block only. No advisory, no notes.
-- **Existing prompt to polish** (marketing) → straight to L3. (Non-marketing → prompt-distill.)
+- **Existing prompt to polish** (marketing) → straight to L3. (Non-marketing → prompt-distill; if prompt-distill is not installed, exit mode and handle as a normal request.)
 - **Specific target model named** → note it in `<role>` and adapt markup per L3.
 - **"写中文" / "in Chinese"** → downstream prompt in Chinese, same structure.
 - **Brand context still a template** → warn, proceed generic.

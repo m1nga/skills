@@ -66,3 +66,15 @@ recoverable), because every optimistic "this one's probably fine" was how
 contamination got back in. The binding rules — recording as a gate on done,
 declared bootstrap imports, a mandatory backup channel for gitignored ledgers
 — each trace to an incident an adopter project actually hit.
+
+## Field-tested
+
+Probed 8 scenarios across 5 personas · 6 fired correctly · 1 correctly stayed quiet · 1 logged as a follow-up note.
+
+> **"复盘一下刚才这几轮对话" ("recap the last few rounds of this chat")** → stays quiet. Conversation recaps belong to `conclude-rounds`; this skill only claims post-mortems that outlive the conversation.
+
+> **"That refactor ate two days — write down what we learned before we forget."** → fires. Appends a dated ledger entry — what happened, the response, the cost — with a `Portable?` flag for the next distillation pass.
+
+> **"记录经验" (dictated from the Desktop, no project open)** → fires, then refuses to drop an `EXPERIENCE.md` on your Desktop — it asks which project the lesson belongs to, and if no project can be established it hands you the formatted entry instead of silently losing it.
+
+Probe method: [scenario-probe](../scenario-probe/)

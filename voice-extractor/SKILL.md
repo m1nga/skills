@@ -1,6 +1,6 @@
 ---
 name: voice-extractor
-description: "Extract a user's real writing voice from 5-20 samples into a measurable fingerprint (voice.yaml), then check and enforce drafts against it so AI tells disappear. Measures voice with named stylometry lenses (Burrows's Delta function words, MATTR lexical diversity, sentence-length burstiness, Biber register, opener profile, punctuation rates) and gates drafts as numeric bands, not vibes. Use when the user wants writing to sound like themselves or flags AI-sounding output: \"make it sound like me\", \"my drafts sound AI-written\", \"capture my writing voice\", \"this doesn't sound like something I'd write\", \"set up / refresh / check my voice fingerprint\", \"像不像我\", \"太 AI 腔了\", \"这不像我写的\". Also use when a co-installed drafting skill needs sender-voice constraints before returning copy. Do not use for generic proofreading, grammar fixes, or tone rewrites unrelated to a personal voice. Not a humanizer or bot-detector evasion tool."
+description: "Extract a user's real writing voice from 5-20 samples into a measurable fingerprint (voice.yaml), then check and enforce drafts against it so AI tells disappear. Measures voice with named stylometry lenses (Burrows's Delta function words, MATTR lexical diversity, sentence-length burstiness, Biber register, opener profile, punctuation rates) and gates drafts as numeric bands, not vibes. Use when the user wants writing to sound like themselves or flags AI-sounding output: \"make it sound like me\", \"my drafts sound AI-written\", \"capture my writing voice\", \"this doesn't sound like something I'd write\", \"set up / refresh / check my voice fingerprint\", \"像不像我\", \"(文案/草稿)太 AI 腔了\", \"这不像我写的\". Also use when a co-installed drafting skill needs sender-voice constraints before returning copy. Do not use for generic proofreading, grammar fixes, or tone rewrites unrelated to a personal voice. Not a humanizer or bot-detector evasion tool."
 ---
 
 # Voice Extractor
@@ -141,7 +141,7 @@ If `~/.voice/` cannot be written (read-only environment, sandbox), output the co
 
 Inputs: draft text plus the active fingerprint. Recompute each lens on the draft, diff against the stored bands, and emit one violation per fired rule.
 
-**No-fingerprint branch:** if `~/.voice/active.yaml` does not exist (or points to a missing profile), do not invent a fingerprint and do not compute drift against imagined numbers. Degrade to a **generic check**: run only the fingerprint-independent hard rules — the six AI-tell blocks `banned-word-global`, `not-just-x-its-y`, `imagine-if-opener`, `in-todays-adjective-world`, `now-more-than-ever`, `ever-evolving-landscape`, plus `stray-placeholder` hygiene. Label the output `no-fingerprint`, report `drift_score: n/a`, and recommend running extract first for the voice-level gates.
+**No-fingerprint branch:** if `~/.voice/active.yaml` does not exist (or points to a missing profile), ask whether a fingerprint exists at a legacy location from an earlier setup — if the user names one, offer to migrate that profile into `~/.voice/` and then run the check against it. Otherwise do not invent a fingerprint and do not compute drift against imagined numbers. Degrade to a **generic check**: run only the fingerprint-independent hard rules — the six AI-tell blocks `banned-word-global`, `not-just-x-its-y`, `imagine-if-opener`, `in-todays-adjective-world`, `now-more-than-ever`, `ever-evolving-landscape`, plus `stray-placeholder` hygiene. Label the output `no-fingerprint`, report `drift_score: n/a`, and recommend running extract first for the voice-level gates.
 
 With a fingerprint loaded, run in order:
 
@@ -362,7 +362,7 @@ These always block unless a rule explicitly says fingerprint confidence changes 
 | `in-todays-adjective-world` (generic) | `(?i)\bin today'?s [a-z-]+ world\b` | block |
 | `now-more-than-ever` (generic) | `(?i)\bnow more than ever\b` | block |
 | `ever-evolving-landscape` (generic) | `(?i)\bever[- ](evolving|changing) (landscape|world|industry)\b` | block |
-| `sentence-starts-with-however` | `(?<=[.!?]\s)However[,\s]` when absent from fingerprint | block |
+| `sentence-starts-with-however` | `(^|[.!?]\s)However[,\s]` when absent from fingerprint | block |
 | `furthermore-moreover-additionally` | `\b(Furthermore|Moreover|Additionally)\b` when absent from fingerprint | block |
 
 ## Warn Rules

@@ -1,6 +1,6 @@
 ---
 name: conclude-rounds
-description: Recap the last N rounds of the CURRENT conversation plus up to 5 evidence-based insights for working faster with your coding agent. Separates done-and-verified from done-but-unproven from merely-proposed — a proposal never reads as a completion. N defaults to 4. In-conversation, read-only — not a cross-session digest, never edits files. Trigger on "recap the last few rounds", "what did we just do?", "catch me up on this thread", "what actually got done vs just discussed?", or Chinese 总结前面N轮 / 小结一下 / 回顾前面几轮 / 这几轮做了啥 — even without naming the skill. Replies in the language of the user's recent messages.
+description: Recap the last N rounds of the CURRENT conversation plus up to 5 evidence-based insights for working faster with your coding agent. Separates done-and-verified from done-but-unproven from merely-proposed — a proposal never reads as a completion. N defaults to 4. In-conversation, read-only — not a cross-session digest, never edits files. Trigger on "recap the last few rounds", "what did we just do?", "summarize what we just did", "catch me up on this thread", "what actually got done vs just discussed?", or Chinese 总结前面N轮 / 总结一下前面 / 结论一下 / 前4轮 / 小结一下 / 回顾前面几轮 / 这几轮做了啥 — even without naming the skill. Replies in the language of the user's recent messages.
 ---
 
 # conclude-rounds — conclude the last N rounds of this conversation

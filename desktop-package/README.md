@@ -60,3 +60,15 @@ never see — hence the five delivery checks (manifest↔files both directions,
 broken-link scan, empty-shell scan, byte-compare on copies, and an explicit "is
 this actually the user's Desktop?" confirmation that falls back to a tarball with
 retrieval instructions). "Done" is demonstrated, not asserted.
+
+## Field-tested
+
+Probed 7 scenarios across 6 personas · 5 fired correctly · 2 correctly stayed quiet.
+
+> **"……行，就这样定了，整理到桌面，我晚上查收"** — the real ask buried in the last sentence after three paragraphs of setup → Fired on the exact phrase, distilled the session into one folder with a `📖 先看这个.md` entry file, and ran all five delivery checks before saying "done."
+
+> **"打包到桌面给我"** — but the session was running inside a remote container, where `~/Desktop` is not the user's desktop → It said so explicitly, packaged a tarball instead, and handed over retrieval instructions rather than claiming a delivery that never landed.
+
+> **"Clean up my desktop, it's a mess"** → Stayed quiet. One character separates 整理**到**桌面 (package to desktop — fires) from 整理桌面 (tidy my desktop — never fires); the skill only ever *adds* one folder and never reorganizes what's already there.
+
+Probe method: [scenario-probe](../scenario-probe/)

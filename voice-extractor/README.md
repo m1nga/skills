@@ -44,3 +44,15 @@ Later, a drafting skill produces: *"Hope this finds you well. We're excited to a
 - **The em-dash rule is relative.** The em-dash became shorthand for "AI wrote this," so editing tools started stripping it everywhere. But it's only a tell against *your* baseline — a lifelong em-dash writer who suddenly stops is drifting too. The fingerprint records the rate and defends it in both directions.
 - **It refuses thin input.** Fewer than 5 samples is a hard no; AI-edited samples get triaged out before extraction, because a fingerprint learned from AI prose teaches drafts to sound like AI. This came out of a solo builder sending outreach under their own name and watching reply rates drop as the drafts got smoother — the fix was measurement, not more prompting.
 - **Fingerprints decay.** Every profile is stamped for refresh at 90 days. Voice drifts; the skill says so instead of pretending a 2024 corpus still describes you.
+
+## Field-tested
+
+Probed 8 scenarios across 6 personas · 5 fired correctly · 2 correctly stayed quiet · 1 trigger coin-flip flagged for a fix.
+
+> **"你帮我看看这段回复，像不像我？感觉有点太 AI 腔了"** → Fired on the owner's exact dictated phrasing, ran a full fingerprint check, and answered in the user's language with English rule ids intact.
+
+> **"Check this draft against my voice"** — on a fresh machine with no fingerprint on disk → Instead of inventing numbers, it degraded to a clearly-labelled generic check (the seven fingerprint-free AI-tell rules), reported `drift_score: n/a`, and told the user to run extract first. No fabricated stats, no silent pass.
+
+> **"Fix the grammar in this paragraph"** → Stayed quiet. Generic proofreading is explicitly out of scope — the skill only wakes up when a *personal voice* is at stake.
+
+Probe method: [scenario-probe](../scenario-probe/)

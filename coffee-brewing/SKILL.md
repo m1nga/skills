@@ -1,6 +1,6 @@
 ---
 name: coffee-brewing
-description: A dial-in coach for home coffee. Reads photos of beans, bags, grounds, or espresso shots to judge roast level and process; gives ONE concrete grind / water temp / ratio / time recommendation; recipes for espresso, iced/hot americano, latte/flat white, and V60 pour-over; converges shot by shot on time + taste feedback, diagnosing under- vs over-extraction. Remembers every dialed-in bean (in ~/.coffee/, outside the package) so a repeat bag gets its proven parameters instantly. Trigger when the user shares coffee photos, asks how to brew, grind, or dial in, wants a recipe, or reports a shot tasting sour, bitter, weak, or "off" — e.g. "my espresso tastes sour", "how should I grind these beans?", "V60 recipe for a light roast" — or mentions 冰美式 / 热美式 / 浓缩 / 手冲 / 磨豆 / 研磨度 / 养豆 / 萃取 / 拉花 / 奶卡 / V60. Adapts to any grinder/machine via one-time hardware setup; covers moka pot and French press via roast baselines. Do NOT trigger on metaphorical coffee or extraction ("data extraction", "wake up and smell the coffee").
+description: A dial-in coach for home coffee. Reads photos of beans, bags, grounds, or espresso shots to judge roast level and process; gives ONE concrete grind / water temp / ratio / time recommendation; recipes for espresso, iced/hot americano, latte/flat white, and V60 pour-over; converges shot by shot on time + taste feedback, diagnosing under- vs over-extraction. Remembers every dialed-in bean (in ~/.coffee/, outside the package) so a repeat bag gets its proven parameters instantly. Trigger when the user shares coffee photos, asks how to brew, grind, or dial in, wants a recipe, or reports a shot tasting sour, bitter, weak, or "off" — e.g. "my espresso tastes sour", "how to grind these beans?", "V60 recipe for a light roast" — or mentions 冰美式 / 热美式 / 浓缩 / 手冲 / 磨豆 / 研磨度 / 调豆 / 养豆 / 萃取 / 拉花 / 奶卡 / V60. Adapts to any grinder/machine via one-time hardware setup; covers moka pot and French press via roast baselines. Do NOT trigger on metaphorical coffee or extraction ("data extraction", "wake up and smell the coffee").
 ---
 
 # ☕ Coffee Brewing & Dial-in Coach
@@ -76,6 +76,11 @@ Surface color decides roast level — **don't presume, don't force a guess**:
 Grind is expressed two ways: absolute dial numbers when the user's grinder is registered
 in `hardware.md` (use its espresso / pour-over ranges), otherwise plain language
 (fine / medium / coarse). "Steps" below mean steps on the registered grinder.
+
+If the grinder is registered but its range for the requested brew method is empty, use
+the generic fine / medium / coarse language first; you may cite the manufacturer's
+documented range but mark it **unverified**, and write a range into `hardware.md` only
+after the user confirms it by taste.
 
 ### Pour-over / universal baseline
 | Roast | Water temp | Grind tendency | Ratio |

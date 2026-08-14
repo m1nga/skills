@@ -42,3 +42,15 @@ Needs Python with `numpy` and `scikit-learn`; optionally `judgy` (`pip install j
 - **TPR/TNR instead of accuracy** because they plug directly into the bias-correction formula, and because raw accuracy lies under class imbalance — the normal condition in failure-mode data.
 - **Test set touched exactly once.** Dev numbers are optimistic by construction; the one-shot test measurement is the only number you're allowed to repeat to stakeholders — with its confidence interval attached.
 - The re-validation triggers (judge prompt changed, model un-pinned, *system under test changed*) come from a solo builder's experience of calibrations silently rotting while everything looked fine on the dashboard.
+
+## Field-tested
+
+Probed 7 scenarios across 5 personas (including a second-engine run under a non-Claude CLI) · 5 fired correctly · 2 correctly stayed quiet.
+
+> **"新机还没配 API key,你直接帮我判一下就行,先要个大概数"** ("no API key on this machine — just score the dev set yourself, I only need a rough number") → fired, and refused the shortcut. The skill pre-empts this exact sentence — "not even 'just to get a rough number'" — wrote the API script and handed it over. Self-scored calibration measures the assistant, not the judge.
+
+> **"My pytest suite for the SQL validator is flaky — is the evaluator accurate?"** → stayed quiet. Deterministic evaluators get unit tests, not TPR/TNR calibration.
+
+> **"Can I trust these scores before they go in the weekly report?"** → fired: 15/45/40 stratified splits, dev-set iteration, one-shot test measurement, Rogan-Gladen correction with a bootstrap confidence interval attached.
+
+Probe method: [scenario-probe](../scenario-probe/)

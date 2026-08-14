@@ -62,3 +62,21 @@ give menu-style answers ("you could try A, B, or C…") — you get one recommen
 and a feedback loop, because that's what converges. Your hardware profile and bean
 history live outside the package in `~/.coffee/`, so updating the skill never
 touches your data.
+
+## Field-tested
+
+Probed 7 scenarios across 6 personas · 5 fired correctly · 2 correctly stayed quiet.
+
+> **"First shot ran 20 seconds and tastes sharp — over-extracted, right?"**
+> → Fired, and pushed back: 20s on a coarse grind is the classic *under*-extraction trap. Numbers overruled the tongue; the fix was 3 steps finer, not coarser.
+
+> **"I have a DF64 grinder and a Breville — help me dial in this medium roast."**
+> → Fired, ran the one-time hardware interview, and never quoted a dial number from someone else's grinder. Every number it gives is anchored to *your* registered gear in `~/.coffee/hardware.md`.
+
+> **"帮我写篇增长帖子，把用户留存比作咖啡萃取"** *(write a growth post using coffee extraction as a metaphor)*
+> → Correctly stayed quiet. Metaphorical coffee doesn't wake the barista.
+
+> **"Save this bean to memory"** *(in a sandbox with no writable home directory)*
+> → No fake "saved!": it says so once, keeps the profile in-conversation, and hands you the finished entry as a copyable block.
+
+Probe method: [scenario-probe](../scenario-probe/)

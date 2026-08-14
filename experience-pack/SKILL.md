@@ -7,11 +7,12 @@ description: >
   lessons that other projects can safely reuse — experience inherits, decisions
   die. Ships a reference pack distilled from a real five-rebuild contamination
   saga plus five prevention advices. Use for project-level retrospectives and
-  incident recording — "let's do a post-mortem on this project", "write down
+  incident recording, or right after an incident that cost real time or money —
+  "let's do a post-mortem on this project", "write down
   what we learned before we forget", "record this incident so we don't repeat
   it", "what lessons from the last project apply here", "start an experience
-  log for this repo"; Chinese triggers: 经验包 / 记录经验 / 项目复盘 / 沉淀经验 /
-  经验文件 / 这次的教训. Fires on project post-mortems, NOT on reviewing the
+  log for this repo"; Chinese: 经验包 / 记录经验 / 项目复盘 / 沉淀经验 /
+  经验文件 / 这次的教训. NOT on reviewing the
   current conversation's rounds (use conclude-rounds), NOT on closing an
   iteration (use iteration-close), and NOT a decision register — decisions
   stay in the project's own truth files.

@@ -47,3 +47,15 @@ Nothing added. The corrected thought ("only ones from this week") replaced the e
 The quality bar is subtractive: the result must be shorter or clearer than the input, and every addition must be traceable to something the user said. This comes from a solo builder repeatedly watching "prompt optimization" produce longer prompts that execute worse. The four-item quality check at the end of the skill — objective survived, nothing lost, shorter or clearer, nothing added for looks — exists because each item has failed in practice at least once.
 
 The interpretation rules are explicit about dictation reality: later corrections override earlier wording, "or should I…?" means compare-and-decide rather than transcribe-both, and "make the call" grants choice within the stated scope, never scope expansion.
+
+## Field-tested
+
+Probed 8 scenarios across 7 personas · 4 fired correctly · 3 correctly stayed quiet · 1 boundary flagged for tightening.
+
+> **"把这段整理成 prompt,我要发给另一个 session"** (dictated, messy, mixed-language) → fired, returned a shorter prompt with the corrected thought winning over the abandoned one — nothing added.
+>
+> **"Just check if the exports folder exists, move this week's PNGs in, and count them."** → stayed quiet. A long, messy request is the agent's normal job, not a reason to interrupt you with a rewritten prompt.
+>
+> **"Polish this grader prompt I use to score my model outputs."** → deferred to write-judge-prompt. Judge prompts have their own failure modes; this skill knows what it isn't for.
+
+Probe method: [scenario-probe](../scenario-probe/)

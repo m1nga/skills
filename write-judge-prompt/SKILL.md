@@ -12,7 +12,8 @@ description: >
   validation, execution tests) — write that check instead. Do NOT use for
   one-off manual review of a single output; this skill builds a reusable
   evaluator. For validating or calibrating a finished judge, use its companion
-  skill validate-evaluator, if installed.
+  skill validate-evaluator, if installed; for enforcing a personal voice
+  fingerprint ("does this sound like me"), use voice-extractor, if installed.
 ---
 
 # Write LLM-as-Judge Prompt
@@ -29,7 +30,7 @@ Respond in the user's language. The judge prompt itself is normally written in E
 
 ### Cold start: no labeled traces yet
 
-If labeled traces do not exist: STOP. Collect and label 10-20 real traces with the user first (its companion skill validate-evaluator, if installed, includes a minimal labeling flow for this). Never fabricate few-shot examples — fabricated examples violate the training-split rule and produce an ungrounded judge: it will agree with your invented notion of the failure mode, not with how the failure actually appears in production.
+If labeled traces do not exist: STOP. Collect and label 10-20 real traces with the user first (its companion skill validate-evaluator, if installed, includes a minimal labeling flow for this); full calibration later needs ~100 labeled traces (see validate-evaluator). Never fabricate few-shot examples — fabricated examples violate the training-split rule and produce an ungrounded judge: it will agree with your invented notion of the failure mode, not with how the failure actually appears in production.
 
 ## The Four Components
 

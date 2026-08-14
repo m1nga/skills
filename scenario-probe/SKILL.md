@@ -1,6 +1,6 @@
 ---
 name: scenario-probe
-description: Wind-tunnel any instruction text that configures AI behavior — a SKILL.md, system prompt, CLAUDE.md rule, agent definition, or plugin command — by projecting it into persona × scenario simulations before it ships. Derives personas from the owner's real contexts, predicts trigger decisions from the trigger surface alone (description/frontmatter — the body never influences triggering), walks the body line-by-line per scenario, and reports false-fires, missed triggers, sibling-skill collisions, stale-world failures, silent-failure paths, and stranger-usability gaps, each with line-anchored fixes. Use for "probe this skill", "wind-tunnel this prompt", "will this description misfire?", "stress-test these instructions before I publish", 风洞 / 场景推演 / 会不会误触, or after writing/editing any SKILL.md or long-lived prompt. NOT for experiencing a runnable product with a UI (use product-experience-officer), NOT for interrogating a plan (use grilling), NOT for evaluating model outputs (use write-judge-prompt).
+description: Wind-tunnel any instruction text that configures AI behavior — a SKILL.md, system prompt, CLAUDE.md rule, agent definition, or plugin command — by projecting it into persona × scenario simulations before it ships. Derives personas from the owner's real contexts, predicts trigger decisions from the trigger surface alone (description/frontmatter — the body never influences triggering), walks the body line-by-line per scenario, and reports false-fires, missed triggers, sibling-skill collisions, stale-world failures, silent-failure paths, and stranger-usability gaps, each with line-anchored fixes. Use for "probe / wind-tunnel / stress-test this skill, prompt, or instruction", "will this description misfire?", 风洞 / 场景推演 / 会不会误触, or after writing/editing any SKILL.md or long-lived prompt. NOT for experiencing a runnable product with a UI (use product-experience-officer), NOT for interrogating a plan (use grilling), NOT for evaluating model outputs (use write-judge-prompt).
 ---
 
 # Scenario Probe（场景风洞）
@@ -94,7 +94,8 @@ Verdict per scenario: ✅ helps / ⚠️ degraded / ❌ harms — one honest sen
 
 Write the report in the user's language. The skeleton below shows English section names
 with the canonical Chinese branch in parentheses — keep the structure and the
-verdict-first order either way:
+verdict-first order either way; omit the Chinese parentheticals when the user's
+language is not Chinese:
 
 ```
 # Wind-tunnel report（风洞报告）: <artifact> — <date>
@@ -132,7 +133,8 @@ choose — never inside the audited artifact's directory. If a chosen path is un
 fall back to in-chat copyable text.
 
 Optionally emit `traces.jsonl` (persona, utterance, predicted_trigger, predicted_behavior,
-verdict, evidence_lines, synthetic:true) — failure clusters become judge criteria for
+verdict, evidence_lines, synthetic:true) — written to a path the user specifies, never
+inside the audited artifact's directory. Failure clusters become judge criteria for
 write-judge-prompt, calibrated by validate-evaluator. The probe is the trace supply for
 products that don't have production traffic yet.
 

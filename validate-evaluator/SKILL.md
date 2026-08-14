@@ -10,7 +10,8 @@ description: >
   alignment with human labels". 中文触发：裁判准不准 / 这些分数可信吗 /
   校准评估器 / 验证 LLM 评审. Do NOT use for code-based evaluators — those are
   deterministic; test them with standard unit tests. Requires human-labeled
-  traces and a Python environment (numpy, scikit-learn; optionally judgy).
+  traces (or raw traces to label — a minimal labeling walkthrough is included)
+  and a Python environment (numpy, scikit-learn; optionally judgy).
 ---
 
 # Validate Evaluator

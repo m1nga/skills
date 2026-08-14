@@ -11,16 +11,15 @@ Fix silently, flag in the verification summary under "I guessed" (中文核对 �
 | claude design, claude cold, clock cold | Claude Code | Common dictation error |
 | ex, twitter ex, the X | X (Twitter) | Platform |
 | tick talk, tick-tock, TicToc | TikTok | Platform |
-| far caster, forecaster (in web3 context) | Farcaster | Web3 social protocol — only in web3 context |
 | chrome extension, chrome plug-in | Chrome extension | Normalize casing |
 
 ## Domain Terms *(apply only when the audience/domain matches)*
 
+*(Empty by design — your own domain shorthand goes here or in your personal dictionary. The previous owner's trading/web3 entries are kept only as commented-out examples of the format, e.g. `| see tee, CT | CT (Crypto Twitter) | trading context only |`, `| front running | front-running | hyphenate — trading context |`, `| cents, sense (in pricing context) | ¢ (cents) | prediction-market pricing: 58¢ → 67¢ |`, `| far caster, forecaster | Farcaster | web3 context only |`.)*
+
 | ASR output | Correct | Notes |
 |---|---|---|
-| see tee, CT | CT (Crypto Twitter) | Trading-community shorthand — trading context only |
-| front running | front-running | Hyphenate — trading context |
-| cents, sense (in pricing context) | ¢ (cents) | Prediction-market pricing convention: 58¢ → 67¢ — only when the audience uses cents format |
+| | | |
 
 ## Chinese Homophone Confusions
 

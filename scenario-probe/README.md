@@ -83,3 +83,17 @@ Three opinionated choices follow from that audit:
 - **Zero findings triggers a recast, not a pass.** Every artifact that came back clean
   on the first run turned out to have been audited from the author's seat. A spotless
   report is treated as evidence about the auditor, not the artifact.
+
+## Field-tested
+
+Probed 7 scenarios across 4 personas · 3 fired correctly · 3 correctly stayed quiet · the 7th run was the probe auditing itself.
+
+> **"帮我 stress-test 一下这个上线计划"** ("stress-test my launch plan") → stayed quiet. Plans are grilling's seat; this skill only takes instruction text — and the exclusion lives in the description, where triggering actually happens.
+
+> **"I just rewrote my CLAUDE.md commit rules — stress-test them before I rely on it."** → fired: cast four personas, predicted triggers from the description alone, then walked the rule body line-by-line per scenario.
+
+> **"测一下这个产品"** ("test this product for me") → stayed quiet. Runnable products belong to product-experience-officer; the probe practices the boundary it preaches.
+
+Run on its own SKILL.md, it flagged that its description sits 17 characters under the 1024 loader cap — with the NOT-clauses last in line to be truncated. It got the same treatment as everything else.
+
+Probe method: [scenario-probe](../scenario-probe/)

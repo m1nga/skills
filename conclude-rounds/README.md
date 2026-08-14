@@ -47,3 +47,18 @@ npx skills add ming4uk/skills@conclude-rounds
 This skill comes from a solo builder's recurring failure mode: after 20 rounds of agent-assisted work, the transcript said everything was done — and half of it wasn't. Code had been written but never run; decisions had been "agreed" that were actually still open. The three-state sort (verified / unproven / proposed) exists because the cost of a false "done" is a rebuild days later.
 
 The insights section is deliberately strict: every insight must cite evidence from the rounds just recapped, name a mechanism you can actually configure, and end with a first step. Generic advice ("consider using subagents") is banned by the skill text itself, and it is told to deliver fewer than 5 rather than pad — and never to repeat an insight it already gave earlier in the session.
+
+## Field-tested
+
+Probed 7 scenarios across 5 personas · 4 fired correctly · 2 correctly stayed quiet · 1 flagged as a coin-flip (fix queued).
+
+> **"wait, catch me up — what did we actually finish vs just talk about?"**
+> → Fired. Recap sorted every item into verified / unproven / proposed — the rate-limiter that was written but never run stayed ⚠️, not ✅.
+
+> **"recap what we did across yesterday's session and today"**
+> → Correctly stayed quiet. Cross-session digests are explicitly out of scope; this skill only re-reads the conversation you're in.
+
+> **"这个迭代做完了，总结一下"**
+> → Correctly yielded to `iteration-close`. Closing a whole iteration is its sibling's job; this skill recaps a stretch of conversation, nothing more.
+
+Probe method: [scenario-probe](../scenario-probe/)

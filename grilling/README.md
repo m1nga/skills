@@ -65,3 +65,15 @@ This skill comes out of a solo builder's post-mortems, where the recurring failu
 - **"What we are NOT doing" is mandatory, not optional.** Scope creep doesn't announce itself; the only working defense is a list of tempting-but-excluded items agreed on before the first line of code.
 - **Drift triggers are named in advance.** "We've gone off-scope" is easy to wave away mid-flow — unless the plan itself already says what off-scope looks like.
 - **The exit valve is part of the protocol.** Willingness to be grilled is a mood, not a contract. The moment you say "just decide", the interview folds into recommendations and you still get the full plan structure — the protocol never punishes you for wanting out.
+
+## Field-tested
+
+Probed 7 scenarios across 6 personas · 4 fired correctly · 2 correctly stayed quiet · 1 edge flagged for a description patch.
+
+> **"开工前把我问透,这个切片方案"** → Fired. One question per turn, each arriving with a recommended answer to veto — and「别问了」collapses the rest into recommendations without losing the plan.
+
+> **"方案就按你说的来吧,你看着办,直接开工"** → Stayed quiet. Delegation grants execution, not an interview — the exclusion this clause was written for, verified working.
+
+> **"Ask me everything you need before writing code — a CLI to dedupe my photo library."** (stranger, only this skill installed) → Full walkthrough with no dead ends: interview → one-sentence reframe → locked plan whose "What we are NOT doing" section exists before the first line of code.
+
+Probe method: [scenario-probe](../scenario-probe/)

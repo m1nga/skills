@@ -57,3 +57,15 @@ rhyme-as-reason caveat — rhythm makes a line feel truer than it is, so the ski
 treats rhythm as persuasion, never as proof. The delivery contract (one sentence,
 no scaffolding, "tell me more" earned rather than assumed) is the point: the
 skill exists because models default to paragraphs and humans remember sentences.
+
+## Field-tested
+
+Probed 7 scenarios across 6 personas · 3 fired correctly · 2 correctly stayed quiet · 2 edges flagged for description patches.
+
+> **"一句话讲清这个方案该不该做"** → Stayed quiet. A decision compressed to one line is a guess in a suit — the NOT clause hands it to a thinking skill, exactly as written.
+
+> **"Introduce me in 20 words for this panel — I build fraud detection pipelines at a fintech."** → Fired. Okamoto form, about-you beats about-me: the line leads with who gets protected, not with the speaker's résumé.
+
+> **"帮我把这份 10 页的产品 spec 总结一下,tl;dr 就行"** → Stayed quiet. A tl;dr can be several lines; forcing it into one sentence would delete load-bearing content — the skill says so and steps aside.
+
+Probe method: [scenario-probe](../scenario-probe/)

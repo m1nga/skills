@@ -123,7 +123,7 @@ If `experience-pack` is available:
 - **On entry:** read portable lessons only, bootstrap this project's own `EXPERIENCE.md`, and record which lessons were adopted or rejected.
 - **During work:** record costly incidents, effective methods, reviewer catches, and user course corrections as part of done.
 - **At a turning point:** distill candidates through the experience-vs-decision boundary test before any lesson travels.
-- **At closure:** let `iteration-close` own the closure ritual and invoke experience distillation within it.
+- **At closure:** let `iteration-close` (if installed) own the closure ritual and invoke experience distillation within it.
 
 Experience may improve how the project is investigated, verified, handed off, and learned from. It
 may not define the receiving project's purpose, customer, strategy, pricing, channels, or product

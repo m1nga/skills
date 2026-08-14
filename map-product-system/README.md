@@ -64,3 +64,15 @@ npx skills add ming4uk/skills@map-product-system
 - **Verdict before options.** The skill recommends and states the tradeoff
   instead of listing unranked alternatives. For a solo builder, an unranked
   option list is just deferred work handed back to the person who asked.
+
+## Field-tested
+
+Probed 7 scenarios across 5 personas · 5 fired correctly · 1 correctly stayed quiet · 1 boundary noted.
+
+> **"How does this all hang together? I've got half a spec and a Django repo."** → Fired. Read the repo as evidence (not intent), returned a journey-to-capability-to-owner trace with every claim labeled Known / Inferred / Proposed / Unknown.
+
+> **"把这个流程变成自动循环，每天自动跑"** *("turn this into an automated daily loop")* → Correctly stayed quiet. Runtime automation is explicitly ceded to loop-system-architect in the description itself — the handoff is a design decision, not a coin flip.
+
+> **"看一下产品结构"** *(a five-word "take a look at the product structure")* → Fired, and stayed proportionate: the body's depth-matching rule returns a scoped look, not a nine-lens architecture report nobody asked for.
+
+Probe method: [scenario-probe](../scenario-probe/)

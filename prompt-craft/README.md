@@ -46,3 +46,17 @@ Then copy `knowledge/user-context.example.md` to `~/.prompt-craft/user-context.m
 Built by a solo builder running content production through AI agents with no human reviewer at any step — which is why the output format is verification-heavy: an execution-discipline block in every prompt, a mandatory "you said → I wrote / I added / I guessed" accounting in every delivery. When nobody proofreads downstream, the prompt has to carry its own checks.
 
 Two deliberate asymmetries. Input handling defaults to preservation over invention: when in doubt, every specific you said survives into the prompt, because dropping a number is a worse failure than keeping a redundant one. And the skill is split into an engine (this package: methodology + generic marketing knowledge) and a brand payload (your private context file, which lives outside the package and survives updates). Brand context also carries a staleness date — a 90-day-old sprint goal silently injected into fresh copy is a bug, so time-scoped facts expire after 60 days.
+
+## Field-tested
+
+Probed 9 scenarios across 7 personas · 5 fired correctly · 2 correctly stayed quiet · 1 clean mode exit · 1 sibling boundary flagged.
+
+> **"Write me a prompt for a TikTok ad for our sleep app"** (fresh install, no brand file) → fired, ran in generic mode with a one-line setup notice — no dead end, no invented brand facts.
+>
+> **"Write a TikTok ad script for our sleep app."** → stayed quiet. You asked for the copy, not a prompt; that's normal work, and this skill knows the difference.
+>
+> **Brand context file dated 5 months ago** → stable facts (voice, banned words) still injected; stale sprint KPIs and "hot topics" skipped, with a one-line notice to refresh — a 90-day-old goal never leaks into fresh copy.
+>
+> **"先别优化了,帮我看下这个报错"** (mid-session pivot) → exited workshop mode immediately and just helped. No format ceremony, no mode trap.
+
+Probe method: [scenario-probe](../scenario-probe/)

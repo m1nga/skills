@@ -51,6 +51,8 @@ unless requested.
 - Treat a corrected thought as replacing the earlier version.
 - Treat "or should I…?" alternatives (in Chinese: "还是…？") as a request to
   compare and make or support a decision.
+- A quick either/or inside a distill request is handled inline; an open-ended
+  dilemma the user wants to explore belongs to thinking-partner.
 - Treat examples as evidence of preference unless the user says they are
   exhaustive requirements.
 - Treat "make the call" (in Chinese: "你看着来") as permission to choose within
