@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conclude Rounds"
+  short_description: "Recap the last N rounds of this conversation, separating verified work from claims"
+  default_prompt: "Use $conclude-rounds to recap the last N exchanges of this conversation — what was asked, what was actually done and verified vs merely claimed or proposed, current state, open decisions — then surface up to 5 evidence-based workflow insights tied to mechanisms available in this engine (AGENTS.md rules, config.toml, reusable prompts, CLI profiles)."

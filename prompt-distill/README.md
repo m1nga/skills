@@ -1,0 +1,49 @@
+# prompt-distill
+
+Turns a rambling, self-correcting, mixed-language draft into a prompt that says the same thing — shorter, not fancier.
+
+## What it does
+
+- Strips transcription noise, repetition, abandoned thoughts, and contradictions you already corrected.
+- Preserves your framing, priorities, examples, and directness — it edits, it does not redesign.
+- Keeps genuine ambiguity visible instead of silently inventing details to fill it.
+- Refuses cargo-cult additions: no personas, no "think step by step", no motivational padding.
+- If the original is already clear, it says so and returns it nearly unchanged.
+
+## When it fires
+
+Explicit asks only:
+
+- "Clean up this prompt."
+- "Make this reusable."
+- "Turn my ramble into a prompt."
+- 「把这段整理成 prompt」
+- 「优化这个 prompt」
+
+It does not activate just because a request is long or conversational — that is the agent's normal job.
+
+## Install
+
+```
+npx skills add ming4uk/skills@prompt-distill
+```
+
+## Example
+
+**Input (dictated):** "ok so I want a script that, no wait, first check if the folder exists, 就是那个 exports 文件夹, if not create it, then move all the PNGs — actually only ones from this week — move them in and print how many. Make this reusable."
+
+**Output:** "Check whether ./exports exists; create it if not. Move all PNG files modified in the last 7 days into it. Print the count of files moved."
+
+Nothing added. The corrected thought ("only ones from this week") replaced the earlier one; the code-switched folder reference resolved to its referent.
+
+## Works well with
+
+- **thinking-partner** — when the ramble contains an unresolved decision rather than a task: think first, distill after.
+- **prompt-craft** — for marketing and brand-context prompts.
+- **write-judge-prompt** — for LLM-judge prompts, which have their own failure modes.
+
+## Design notes
+
+The quality bar is subtractive: the result must be shorter or clearer than the input, and every addition must be traceable to something the user said. This comes from a solo builder repeatedly watching "prompt optimization" produce longer prompts that execute worse. The four-item quality check at the end of the skill — objective survived, nothing lost, shorter or clearer, nothing added for looks — exists because each item has failed in practice at least once.
+
+The interpretation rules are explicit about dictation reality: later corrections override earlier wording, "or should I…?" means compare-and-decide rather than transcribe-both, and "make the call" grants choice within the stated scope, never scope expansion.

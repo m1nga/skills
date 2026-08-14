@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Experience Officer"
+  short_description: "First-time-user product walkthroughs with severity-ranked, fix-ready findings"
+  default_prompt: "Use $product-experience-officer to experience the product as a zero-context first-time user (screenshots or live run), then report a verdict, a first-person experience log, severity-ranked findings with one recommended fix each, and a to-verify checklist. Keep the two phases separated: raw experience first, expert diagnosis second."

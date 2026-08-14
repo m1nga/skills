@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0",
+  "loop_id": "nightly-link-check",
+  "mode": "recurring",
+  "status": "active",
+  "objective": {
+    "statement": "Keep the docs site free of broken external links by detecting and recording them nightly.",
+    "owner": "the user",
+    "per_run_success": "link scan completed and every newly broken link is recorded in issues/broken-links.md, or a recorded no-op when nothing changed",
+    "non_goals": ["fixing the links automatically"]
+  },
+  "source_policy": {
+    "authoritative_sources": ["docs/ directory of the project repository"],
+    "reference_sources": [],
+    "prohibited_context": [],
+    "provenance_required": true,
+    "freeze": {
+      "enabled": false,
+      "manifest": "not used: sources are read live each run",
+      "hash_algorithm": "sha256"
+    }
+  },
+  "control": {
+    "sensor": {
+      "name": "link-checker",
+      "signal": "list of external URLs returning HTTP errors",
+      "collection": "scripts/check-links.sh writes reports/links.json",
+      "freshness": "collected fresh each run"
+    },
+    "comparator": {
+      "rule": "diff the current broken set against state.known_broken",
+      "window": "single run"
+    },
+    "controller": {
+      "decision_space": [
+        "no-op when the diff is empty",
+        "record newly broken links",
+        "clear recovered links from state",
+        "stop and report when the scan tool fails"
+      ]
+    },
+    "actuator": {
+      "actions": [
+        "append entries to issues/broken-links.md",
+        "update state.known_broken"
+      ],
+      "feedback_path": "the next run's comparator reads the updated known_broken set"
+    }
+  },
+  "triggers": [
+    {
+      "type": "schedule",
+      "condition": "daily at 03:00 local via host cron",
+      "preflight": "skip when docs/ is unchanged since last run (git tree hash compare)",
+      "dedupe_key": "run date (YYYY-MM-DD)"
+    }
+  ],
+  "state": {
+    "path": "loop/RUN-STATE.json",
+    "cursor_fields": ["run_id", "last_docs_hash", "known_broken"],
+    "event_log": "loop/events/events.jsonl",
+    "evidence_store": "loop/evidence/",
+    "atomic_write": "temp-file-and-rename",
+    "recovery": "re-run the scan; entries are keyed by URL, so replays cannot duplicate records"
+  },
+  "roles": [
+    {
+      "name": "orchestrator",
+      "responsibility": "run the scan, compute the diff, route the result",
+      "may_write": ["state"],
+      "may_not": ["verify own writes"]
+    },
+    {
+      "name": "executor",
+      "responsibility": "write issue entries for newly broken links",
+      "may_write": ["issues/broken-links.md"],
+      "may_not": ["certify own work"]
+    },
+    {
+      "name": "verifier",
+      "responsibility": "re-read reports/links.json and confirm every broken URL has an entry",
+      "may_write": ["verdict and evidence"],
+      "may_not": ["work product"]
+    }
+  ],
+  "capabilities": {
+    "discovery": "none",
+    "reason": "single fixed script; this loop never needs to discover or create new capabilities"
+  },
+  "authority": {
+    "autonomous_actions": [
+      "append to issues/broken-links.md",
+      "update loop/RUN-STATE.json"
+    ],
+    "approval_required": ["deleting or rewriting issue history"],
+    "protected_fields": [
+      "objective",
+      "source_policy",
+      "authority",
+      "tenant_scope",
+      "privacy",
+      "verification.acceptance_checks"
+    ]
+  },
+  "verification": {
+    "independent": true,
+    "verifier_cannot_write_work_product": true,
+    "acceptance_checks": [
+      "every URL in reports/links.json with status >= 400 appears in issues/broken-links.md"
+    ],
+    "failure_path_checks": [
+      "a non-zero exit from the scan tool stops the run without writing state"
+    ],
+    "evidence_required": [
+      "reports/links.json",
+      "diff of issues/broken-links.md"
+    ],
+    "pass_rule": "all required checks pass"
+  },
+  "failure_policy": {
+    "max_attempts": 2,
+    "same_failure_limit": 2,
+    "timeout_seconds": 600,
+    "backoff_seconds": [0, 60],
+    "classification": "network failure vs scan-tool failure vs content change",
+    "on_exhaustion": "stop-and-report",
+    "rollback": "state is written last, so a failed run leaves the prior state intact",
+    "kill": "remove the cron entry and delete loop/LOCK"
+  },
+  "budgets": {
+    "max_turns": 5,
+    "max_tokens": 20000,
+    "max_cost": 1,
+    "max_wall_time_seconds": 900
+  },
+  "runtime_safety": {
+    "idempotency_key": "URL plus first-seen date",
+    "dedupe_store": "state.known_broken",
+    "concurrency_lock": "loop/LOCK file containing the holder pid",
+    "side_effect_choke_point": "single append function in scripts/record-entry.sh",
+    "tenant_scope": "single user, local repository only",
+    "secrets": "named references only",
+    "fail_closed": true
+  },
+  "observability": {
+    "status_view": "loop/RUN-STATE.json plus the tail of loop/events/events.jsonl",
+    "metrics": ["pass", "fail", "no_op", "retries"],
+    "alerts": ["two consecutive failed runs write loop/ALERT.md"]
+  },
+  "replacement": {
+    "single_active_version": true,
+    "impact_scan": true,
+    "contradiction_scan": true,
+    "zero_context_probe": true,
+    "atomic_promotion": "contract edits land as one commit",
+    "inactive_history": "git history, excluded from active retrieval"
+  },
+  "learning": {
+    "enabled": false
+  },
+  "retirement": {
+    "conditions": ["docs site retired or link checking moves into CI"],
+    "cleanup": ["disable triggers", "release locks", "close side effects"],
+    "history_visibility": "inactive and excluded from normal retrieval"
+  }
+}

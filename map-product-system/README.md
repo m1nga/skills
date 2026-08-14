@@ -1,0 +1,66 @@
+# map-product-system
+
+One traceable map from user intent to system outcome — built from whatever you actually have: a rough idea, a doc pile, or a codebase.
+
+## What it does
+
+Builds a product system model that connects journeys, capabilities, decisions,
+data, actors, states, and failure handling end to end, in three jobs: Discover
+(first coherent model from an early idea), Audit (find the gaps and accidental
+architecture in what already exists), Evolve (place a new feature and trace its
+downstream effects). Every claim carries an evidence label — Known, Inferred,
+Proposed, Unknown — so you can tell what was observed from what was invented.
+It ends with ranked decisions and sequenced delivery slices, not an
+architecture poster.
+
+## When it fires
+
+- "How does this all hang together?"
+- "Help me see the big picture of my app."
+- "What's missing in my product?"
+- "Map the whole product before we commit to this feature."
+- 「梳理一下产品架构」
+- 「检查用户旅程和功能分支」
+
+It does not design the runtime control loop of an autonomous workflow — that is
+[`loop-system-architect`](../loop-system-architect/). This skill covers static
+architecture and responsibility contracts.
+
+## Install
+
+```
+npx skills add ming4uk/skills@map-product-system
+```
+
+## Example
+
+> **User:** I have half a spec and a Django repo. What's actually missing
+> before we onboard a second customer?
+>
+> **Agent:** Reads the repo and spec as evidence, not as intent. Traces each
+> actor's journey against the coverage lenses and returns: the product spine,
+> a journey-to-capability-to-owner trace, and a ranked gap register — e.g.
+> "customer data has no deletion propagation path (Unknown consumer)" and
+> "tenant scoping exists in the ORM but nothing enforces it at the export
+> endpoint (Known, file cited)". Then it splits the gaps into what blocks
+> customer two versus what can wait, with the tradeoff stated for each call.
+
+## Works well with
+
+- [`loop-system-architect`](../loop-system-architect/) — once the map names an
+  autonomous capability, that skill designs the loop that runs it.
+- `diagnose-project-rebuild` — when the audit finds the architecture is
+  accidental rather than incomplete, that skill decides whether to rebuild.
+
+## Design notes
+
+- **Evidence labels are mandatory, not decorative.** The expensive failures
+  this skill was built against came from a model presenting an invention as an
+  existing fact. So Known claims must trace to a source, and anything recalled
+  from model memory — however plausible — is at best Inferred.
+- **The mandate stack is conditional.** Platform/customer/runtime mandate
+  layering only applies when the product makes governed or customer-specific
+  decisions. A note-taking app does not get a governance layer bolted on.
+- **Verdict before options.** The skill recommends and states the tradeoff
+  instead of listing unranked alternatives. For a solo builder, an unranked
+  option list is just deferred work handed back to the person who asked.

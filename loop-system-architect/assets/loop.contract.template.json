@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "loop_id": "replace-me",
+  "mode": "terminal",
+  "status": "draft",
+  "objective": {
+    "statement": "replace-me",
+    "owner": "replace-me",
+    "completion_condition": "replace-me",
+    "per_run_success": "replace-me",
+    "non_goals": []
+  },
+  "source_policy": {
+    "authoritative_sources": ["replace-me"],
+    "reference_sources": [],
+    "prohibited_context": [],
+    "provenance_required": true,
+    "freeze": {
+      "enabled": true,
+      "manifest": "replace-me",
+      "hash_algorithm": "sha256"
+    }
+  },
+  "control": {
+    "sensor": {"name": "replace-me", "signal": "replace-me", "collection": "replace-me", "freshness": "replace-me"},
+    "comparator": {"rule": "replace-me", "window": "replace-me"},
+    "controller": {"decision_space": ["replace-me"]},
+    "actuator": {"actions": ["replace-me"], "feedback_path": "replace-me"}
+  },
+  "triggers": [
+    {"type": "manual", "condition": "replace-me", "preflight": "replace-me", "dedupe_key": "replace-me"}
+  ],
+  "state": {
+    "path": "RUN-STATE.json",
+    "cursor_fields": ["run_id", "step", "attempt"],
+    "event_log": "events/events.jsonl",
+    "evidence_store": "evidence/",
+    "atomic_write": "temp-file-and-rename",
+    "recovery": "replace-me"
+  },
+  "roles": [
+    {"name": "orchestrator", "responsibility": "replace-me", "may_write": ["state"], "may_not": ["verify own writes"]},
+    {"name": "executor", "responsibility": "replace-me", "may_write": ["work product"], "may_not": ["certify own work"]},
+    {"name": "verifier", "responsibility": "replace-me", "may_write": ["verdict and evidence"], "may_not": ["work product"]}
+  ],
+  "capabilities": {
+    "discovery": "open",
+    "search_order": ["installed skills", "project capabilities"],
+    "candidate_creation": true,
+    "sandbox_required": true,
+    "promotion_requires": ["security pass", "privacy pass", "functional eval pass", "regression pass"],
+    "registration": "local-by-default",
+    "rollback": "replace-me"
+  },
+  "authority": {
+    "autonomous_actions": ["replace-me"],
+    "approval_required": ["materially irreversible action without prior authority"],
+    "protected_fields": ["objective", "source_policy", "authority", "tenant_scope", "privacy", "verification.acceptance_checks"]
+  },
+  "verification": {
+    "independent": true,
+    "verifier_cannot_write_work_product": true,
+    "acceptance_checks": ["replace-me"],
+    "failure_path_checks": ["replace-me"],
+    "evidence_required": ["replace-me"],
+    "pass_rule": "all required checks pass"
+  },
+  "failure_policy": {
+    "max_attempts": 3,
+    "same_failure_limit": 2,
+    "timeout_seconds": 3600,
+    "backoff_seconds": [0, 10, 60],
+    "classification": "replace-me",
+    "on_exhaustion": "stop-and-report",
+    "rollback": "replace-me",
+    "kill": "replace-me"
+  },
+  "budgets": {"max_turns": 30, "max_tokens": 100000, "max_cost": 0, "max_wall_time_seconds": 3600},
+  "runtime_safety": {
+    "idempotency_key": "replace-me",
+    "dedupe_store": "replace-me",
+    "concurrency_lock": "replace-me",
+    "side_effect_choke_point": "replace-me",
+    "tenant_scope": "replace-me",
+    "secrets": "named references only",
+    "fail_closed": true
+  },
+  "observability": {
+    "status_view": "replace-me",
+    "metrics": ["pass", "fail", "no_op", "cost", "latency", "retries"],
+    "alerts": ["replace-me"]
+  },
+  "replacement": {
+    "single_active_version": true,
+    "impact_scan": true,
+    "contradiction_scan": true,
+    "zero_context_probe": true,
+    "atomic_promotion": "replace-me",
+    "inactive_history": "version control or event store, excluded from active retrieval"
+  },
+  "learning": {
+    "enabled": true,
+    "triggers": ["repeated failure", "repeated manual step", "drift", "cost regression", "sufficient outcome evidence"],
+    "stores": ["raw evidence", "episodes", "candidates", "canonical knowledge", "skills", "evals"],
+    "validation": ["deduplicate", "conflict check", "replay", "counterexamples", "shadow", "canary"],
+    "promotion_authority": "replace-me",
+    "monitoring_window": "replace-me",
+    "rollback": "replace-me",
+    "protected_fields": ["objective", "source_policy", "authority", "tenant_scope", "privacy", "verification.acceptance_checks"]
+  },
+  "retirement": {
+    "conditions": ["replace-me"],
+    "cleanup": ["disable triggers", "release locks", "revoke credentials", "close side effects"],
+    "history_visibility": "inactive and excluded from normal retrieval"
+  }
+}

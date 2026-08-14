@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thinking Partner"
+  short_description: "Automatic open-ended thinking for ambiguous decisions"
+  default_prompt: "Use $thinking-partner to clarify the unresolved decision, preserve meaningful alternatives, select only consequential perspectives, and continue into research or execution when authorized."
