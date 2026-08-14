@@ -20,7 +20,7 @@ It does not fire for debugging a specific error from a screenshot, or for code r
 ## Install
 
 ```
-npx skills add ming4uk/skills@product-experience-officer
+npx skills add m1nga/skills@product-experience-officer
 ```
 
 ## Example

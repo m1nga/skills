@@ -30,7 +30,7 @@ those loses load-bearing content, and it says so in one line.
 ## Install
 
 ```bash
-npx skills add ming4uk/skills@one-sentence
+npx skills add m1nga/skills@one-sentence
 ```
 
 ## Example

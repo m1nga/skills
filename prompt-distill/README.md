@@ -25,7 +25,7 @@ It does not activate just because a request is long or conversational — that i
 ## Install
 
 ```
-npx skills add ming4uk/skills@prompt-distill
+npx skills add m1nga/skills@prompt-distill
 ```
 
 ## Example

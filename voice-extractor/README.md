@@ -22,7 +22,7 @@ It stays out of the way for generic proofreading, grammar fixes, and tone rewrit
 ## Install
 
 ```
-npx skills add ming4uk/skills@voice-extractor
+npx skills add m1nga/skills@voice-extractor
 ```
 
 ## Example

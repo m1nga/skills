@@ -27,7 +27,7 @@ coffee" won't trigger it.
 ## Install
 
 ```
-npx skills add ming4uk/skills@coffee-brewing
+npx skills add m1nga/skills@coffee-brewing
 ```
 
 First run, it asks what grinder/machine/brewers you have and saves that to

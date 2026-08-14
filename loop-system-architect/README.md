@@ -31,7 +31,7 @@ knowledge distillation as its own workflow is
 ## Install
 
 ```
-npx skills add ming4uk/skills@loop-system-architect
+npx skills add m1nga/skills@loop-system-architect
 ```
 
 ## Example

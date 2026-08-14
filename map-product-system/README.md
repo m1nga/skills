@@ -29,7 +29,7 @@ architecture and responsibility contracts.
 ## Install
 
 ```
-npx skills add ming4uk/skills@map-product-system
+npx skills add m1nga/skills@map-product-system
 ```
 
 ## Example

@@ -24,7 +24,7 @@ No magic words — it triggers on meaning. It stays out of the way for research,
 ## Install
 
 ```
-npx skills add ming4uk/skills@thinking-partner
+npx skills add m1nga/skills@thinking-partner
 ```
 
 ## Example

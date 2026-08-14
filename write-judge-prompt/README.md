@@ -20,7 +20,7 @@ It stays quiet when the check is code-shaped (regex, schema validation, executio
 ## Install
 
 ```
-npx skills add ming4uk/skills@write-judge-prompt
+npx skills add m1nga/skills@write-judge-prompt
 ```
 
 ## Example

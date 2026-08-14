@@ -32,7 +32,7 @@ anchored to a line number; description problems come with a paste-ready rewrite.
 ## Install
 
 ```
-npx skills add ming4uk/skills@scenario-probe
+npx skills add m1nga/skills@scenario-probe
 ```
 
 ## Example

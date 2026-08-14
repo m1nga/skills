@@ -25,7 +25,7 @@ It does not activate for general prompt polishing, system prompts, or coding pro
 ## Install
 
 ```
-npx skills add ming4uk/skills@prompt-craft
+npx skills add m1nga/skills@prompt-craft
 ```
 
 Then copy `knowledge/user-context.example.md` to `~/.prompt-craft/user-context.md` and fill in your brand. Until you do, it runs in generic mode and tells you so.

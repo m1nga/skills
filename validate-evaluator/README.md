@@ -20,7 +20,7 @@ It stays quiet for code-based evaluators — those are deterministic, so ordinar
 ## Install
 
 ```
-npx skills add ming4uk/skills@validate-evaluator
+npx skills add m1nga/skills@validate-evaluator
 ```
 
 Needs Python with `numpy` and `scikit-learn`; optionally `judgy` (`pip install judgy`).

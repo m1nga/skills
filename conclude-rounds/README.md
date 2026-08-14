@@ -20,7 +20,7 @@ It runs entirely in-context and is read-only: no files edited, no transcripts pu
 ## Install
 
 ```
-npx skills add ming4uk/skills@conclude-rounds
+npx skills add m1nga/skills@conclude-rounds
 ```
 
 ## Example

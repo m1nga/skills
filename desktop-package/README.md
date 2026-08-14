@@ -27,7 +27,7 @@ touches your existing Desktop items.
 ## Install
 
 ```
-npx skills add ming4uk/skills@desktop-package
+npx skills add m1nga/skills@desktop-package
 ```
 
 ## Example

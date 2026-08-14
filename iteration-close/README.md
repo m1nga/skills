@@ -29,7 +29,7 @@ those aren't iteration closes.
 ## Install
 
 ```
-npx skills add ming4uk/skills@iteration-close
+npx skills add m1nga/skills@iteration-close
 ```
 
 ## Example

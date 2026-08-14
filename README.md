@@ -6,7 +6,7 @@ that went wrong. Every skill is its own product: one directory, one page, one
 install command.
 
 ```bash
-npx skills add ming4uk/skills@<skill-name>
+npx skills add m1nga/skills@<skill-name>
 ```
 
 Each skill was wind-tunnel tested before release: simulated against six user

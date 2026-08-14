@@ -29,7 +29,7 @@ truth files.
 ## Install
 
 ```
-npx skills add ming4uk/skills@experience-pack
+npx skills add m1nga/skills@experience-pack
 ```
 
 ## Example

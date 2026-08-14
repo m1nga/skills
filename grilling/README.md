@@ -20,7 +20,7 @@ It deliberately does not fire on "just do it" / "you decide" / 「你看着办�
 ## Install
 
 ```
-npx skills add ming4uk/skills@grilling
+npx skills add m1nga/skills@grilling
 ```
 
 ## Example

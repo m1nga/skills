@@ -29,7 +29,7 @@ belongs to `map-product-system`.
 ## Install
 
 ```
-npx skills add ming4uk/skills@diagnose-project-rebuild
+npx skills add m1nga/skills@diagnose-project-rebuild
 ```
 
 ## Example
