@@ -167,9 +167,10 @@ Split input into atomic units. Classify each:
 ### Step L2 — Load context silently
 
 1. **ALWAYS** load the brand context, in this lookup order:
-   1. `~/.prompt-craft/user-context.md` (recommended location — survives package updates)
-   2. `knowledge/user-context.md` (in-package, legacy)
-   3. Neither exists → read `knowledge/user-context.example.md`, run in **generic mode**, and tell the user once: "No brand context found — running generic. Copy `knowledge/user-context.example.md` to `~/.prompt-craft/user-context.md` and fill it in to get brand-grounded prompts."
+   1. `./user-context.md` or `./.claude/user-context.md` (**project-level** — a project carries its own brand context, so working in project A automatically loads A's brand, never another project's)
+   2. `~/.prompt-craft/user-context.md` (global fallback — survives package updates)
+   3. `knowledge/user-context.md` (in-package, legacy)
+   4. None exists → read `knowledge/user-context.example.md`, run in **generic mode**, and tell the user once: "No brand context found — running generic. Copy `knowledge/user-context.example.md` to `./user-context.md` (this project) or `~/.prompt-craft/user-context.md` (everywhere) and fill it in to get brand-grounded prompts."
 2. **Staleness gate**: parse the context file's `Status` date. If it is **more than 60 days old** — or the `Status` line has no parseable date, which counts as stale — still use stable facts (brand, voice, personas, banned words) but do NOT inject time-scoped facts (current sprint, quarterly KPIs, follower targets, hot/dead topics). On the first output of the session, add one line: "Brand context dated <date> — time-sensitive facts skipped; refresh the file to re-enable them."
 3. **ALWAYS** `knowledge/asr-corrections.md` (+ user dictionary) when input looks voice-dictated
 4. Detect marketing sub-domain → 1-2 topic files:

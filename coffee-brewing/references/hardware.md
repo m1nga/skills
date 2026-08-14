@@ -26,20 +26,21 @@ and refine later.
 ```
 
 <!--
-Filled-in example — one real home setup, kept here so you know what good answers
-look like. Do NOT copy these values for a different user; ask for theirs.
+Filled-in example — a fictional but realistic home setup, kept here so you know
+what good answers look like. Never copy these values for a real user; ask for
+theirs and record what they say.
 
 ## Grinder
-- Model: Mazzer Philos (I200D burrs)
-- Adjustment system: dial 0–~100, ~6 microns per step
+- Model: 64mm flat-burr single-doser (numbered dial)
+- Adjustment system: dial 0–90, stepless
 - Direction: lower numbers = finer (yes)
-- Espresso range: 16–22
-- Pour-over range: 58–72
+- Espresso range: 12–20
+- Pour-over range: 55–70
 
 ## Espresso machine
-- Model: La Marzocco Linea Micra (single boiler, 9 bar)
+- Model: 58mm single-boiler home machine (9 bar)
 - Basket: 58mm double, 17–19g, usually 18g
-- Milk: steam wand handles lattes/flat whites directly — no downgrade needed
+- Milk: steam wand handles lattes/flat whites directly
 - Notes: single boiler — when pulling shots back to back, pause 20–30s every
   2 shots to let it recover
 
