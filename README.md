@@ -1,6 +1,6 @@
 # ming-skills
 
-**Agent skills for people who ship alone.** Eighteen skills for Claude Code and
+**Agent skills for people who ship alone.** Nineteen skills for Claude Code and
 Codex, distilled from a solo builder's real workflow — including the rebuilds
 that went wrong. Every skill is its own product: one directory, one page, one
 install command.
@@ -20,6 +20,12 @@ ship in every description), and every skill carries an `agents/openai.yaml`
 interface for Codex.
 
 ---
+
+## 🎯 Protect the flow
+
+| Skill | One line |
+|---|---|
+| [side-quest](side-quest/) | Park a mid-flow thought in one line — a background agent works it, results land outside the chat, and a parked thought can never be silently lost |
 
 ## 🧠 Think before you build
 

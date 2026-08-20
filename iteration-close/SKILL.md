@@ -1,6 +1,17 @@
 ---
 name: iteration-close
-description: Close out a development iteration, sprint, or milestone in any repo, distill chat-born decisions into the repo's own record, then shed superseded files — git history is the archive (no _archive dirs, .bak, or legacy- renames), the full deletion list needs the user's explicit yes before anything is removed, and untracked files are quarantined, never rm'd. Verify two separate readiness channels (a confirmed upload AND a tested zero-context takeover probe), rehearse the one-command bootstrap on a fresh clone, then tag and seed the next iteration. Runs the cleanup phase alone when the user only wants dead files cleared. Trigger on: "close out this iteration", "wrap up this sprint and clean out the dead files", "could a fresh machine take this over?", "clear the superseded files from the repo", "milestone's done — tidy and tag it", 收口 / 迭代收口 / 迭代收尾 / 收尾 / 封版 / 甩包袱 / 清旧账 / 蜕壳 / 这个迭代做完了 / 可以发版了 / 这版可以发版了 / 收尾上云. NOT a casual end-of-day sign-off; NOT how-to-publish-a-package questions. Works in Claude Code and Codex.
+description: >-
+  Close out a development iteration, sprint, or milestone in any repo, distill chat-born decisions
+  into the repo's own record, then shed superseded files — git history is the archive (no _archive
+  dirs, .bak, or legacy- renames), the full deletion list needs the user's explicit yes before
+  anything is removed, and untracked files are quarantined, never rm'd. Verify two separate readiness
+  channels (a confirmed upload AND a tested zero-context takeover probe), rehearse the one-command
+  bootstrap on a fresh clone, then tag and seed the next iteration. Runs the cleanup phase alone when
+  the user only wants dead files cleared. Trigger on: "close out this iteration", "wrap up this sprint
+  and clean out the dead files", "could a fresh machine take this over?", "clear the superseded files
+  from the repo", "milestone's done — tidy and tag it", 收口 / 迭代收口 / 迭代收尾 / 收尾 / 封版 / 甩包袱 / 清旧账 / 蜕壳 /
+  这个迭代做完了 / 可以发版了 / 这版可以发版了 / 收尾上云. NOT a casual end-of-day sign-off; NOT how-to-publish-a-package
+  questions. Works in Claude Code and Codex.
 ---
 
 # iteration-close — distill, shed, prove takeover, rehearse bootstrap, seed next

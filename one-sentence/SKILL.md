@@ -1,6 +1,16 @@
 ---
 name: one-sentence
-description: Answer with ONE crafted sentence instead of a paragraph — for explaining concepts, defining terms, and writing self-intros, taglines, loglines, or positioning lines. Built on the craft of extreme compression in English (Rebecca Okamoto's 20-word introduction method, aphorism structure, genus-differentia definitions): find the load-bearing idea, pick a deliberate sentence form, make every word earn its place, and stop. Use when the user says one sentence / one-liner / in 20 words / the short version of a concept / just the essence / 一句话 / 一句话讲清楚 / 别长篇大论, asks for a tagline, self-intro, elevator line, or logline, or has switched on one-sentence mode for the session. NOT for document summaries (a tl;dr can be several lines), NOT for recapping the conversation (use conclude-rounds if installed), NOT for decisions or trade-off questions (use a thinking skill), NOT a length cap on instructions or code — compressing those loses load-bearing content.
+description: >-
+  Answer with ONE crafted sentence instead of a paragraph — for explaining concepts, defining terms,
+  and writing self-intros, taglines, loglines, or positioning lines. Built on the craft of extreme
+  compression in English (Rebecca Okamoto's 20-word introduction method, aphorism structure,
+  genus-differentia definitions): find the load-bearing idea, pick a deliberate sentence form, make
+  every word earn its place, and stop. Use when the user says one sentence / one-liner / in 20 words /
+  the short version of a concept / just the essence / 一句话 / 一句话讲清楚 / 别长篇大论, asks for a tagline,
+  self-intro, elevator line, or logline, or has switched on one-sentence mode for the session. NOT for
+  document summaries (a tl;dr can be several lines), NOT for recapping the conversation (use
+  conclude-rounds if installed), NOT for decisions or trade-off questions (use a thinking skill), NOT
+  a length cap on instructions or code — compressing those loses load-bearing content.
 ---
 
 # One Sentence
