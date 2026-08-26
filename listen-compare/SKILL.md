@@ -8,10 +8,11 @@ description: >-
   conclusions first, no tables, bullets, or markdown) and delivered both as plain text — so any
   read-aloud feature can speak it — and, where HTML artifacts are available, as a tap-to-play
   player using the phone's built-in Chinese voice. Use whenever the user wants to HEAR content
-  instead of reading it: 念给我听 / 读给我听 / 听一下这两份文档 / 我没时间看,帮我讲讲 / 开车路上听 /
-  这两份报告有什么异同,说给我听 / listen to these docs / read this to me / audio briefing /
-  compare these out loud. NOT for written summaries the user will read with their eyes (just
-  summarize normally), podcast production, voice cloning, or transcribing audio to text.
+  instead of reading it: 念给我听 / 读给我听 / 听一下这两份文档 / 我没时间看,讲给我听 / 开车路上听 /
+  这两份报告有什么异同,说给我听 / listen to these docs / read this to me / audio briefing.
+  NOT for written summaries the user will read with their eyes (just summarize normally),
+  conversation recaps (use conclude-rounds if installed), podcast production, voice cloning,
+  or transcribing audio to text.
 ---
 
 # Listen-Compare
@@ -41,6 +42,13 @@ make the answer trustworthy.
 
 ## Step 2 — Write the 听稿 (the script)
 
+**Before writing a word, read `references/spoken-chinese.md`.** It defines the
+spoken register — 冒号句改"是"字句、每句有动词、自问自答带路、判词说白话 — with
+before/after pairs. This skill's #1 field-observed failure is a script that is
+structurally correct but written in report register (PPT 腔/公文腔/翻译腔); the
+user hears it instantly and hates it. The reference ends with a mandatory
+read-aloud self-check — do it before delivering.
+
 ### Structure — conclusions first, because listeners quit early
 
 Use these section labels in this order. Each label becomes a tappable section in the
@@ -57,6 +65,7 @@ player, so keep them short.
 ### Ear rules — what makes this different from a summary
 
 - **每句话都要能读出来。** 没有表格、列表符号、markdown、括号堆叠、斜杠选项。写完在脑子里读一遍,读不顺就重写。
+- **标点用全角**(,。;:),不用半角。半角标点落在英文语音手里会被念成 comma、semicolon。
 - **路标句开路。** 段落之间用口语路标:"先说第一份"、"接下来是两份一致的地方"、"最大的分歧来了"。耳朵没有滚动条,路标就是滚动条。
 - **数字口语化。** "31.4%" 默认说"大概三成";只有当精确值本身是重点时才读作"百分之三十一点四",而且一份听稿里这样的精确数字不超过三个。年份、金额同理取整。
 - **英文术语先给中文。** 第一次出现时用"中文说法,也就是英文的 XXX",之后一律用中文。文档里的产品名、人名保留原文读音。
@@ -67,7 +76,7 @@ player, so keep them short.
 ### Length and language
 
 - 默认长度 **4–6 分钟**,约 1000–1400 字。用户说"短版"给 90 秒(~350 字);说"长版"或"每份展开讲"给 8–10 分钟。
-- **默认中文输出**,哪怕文档全是英文——这是这个 skill 存在的一半理由。用户明确要求其他语言时照办,ear rules 不变。
+- **默认中文输出**——当用户的请求本身是中文,或用户主动要求中文时(哪怕文档全是英文——这是这个 skill 存在的一半理由)。**用户的请求不是中文且未要求中文时,听稿与全部交付物跟随用户语言**,ear rules 不变;全角标点规则仅适用于中文稿,估时按非 CJK 语速调整。非中文听稿不走 device-TTS 播放器模板(其 UI 文案与选声逻辑为中文硬编码)——改走录音路线(用对应语言的系统人声)或纯文本;两者都做不到就明说,绝不把一份用户听不懂的稿子当成功交付。
 
 ### Honesty rules
 
@@ -86,15 +95,31 @@ and no player is possible, add one line: iOS 自带"朗读屏幕"(设置 → 辅
 **If HTML artifacts are available** (Claude app, Claude Code with the Artifact
 tool): also build the tap-to-play player. Read `references/player-template.html`,
 replace `__TITLE__` with a short title and `__SECTIONS_JSON__` with a JSON array of
-`{"label": "...", "text": "..."}` in script order, and publish it. The player uses
-the phone's own Chinese voice (speechSynthesis), has per-section play, 连播, and
-speed control, and shows the full transcript — it needs no network and no account.
-Hand the user the link: 手机点开,按▶就能听。
+`{"label": "...", "text": "...", "audio": "..."}` in script order, and publish it.
+Hand the user the link: 手机点开,按▶就能听。The `audio` field decides which of the
+player's two routes runs, and they are not equals:
 
-**If the user asks for an audio file** (要 mp3 / 音频文件 / 存下来听) and you are on
-macOS with shell access: generate real audio —
-`say -v Tingting -o out.aiff 听稿.txt && afconvert out.aiff out.m4a -f m4af -d aac`
-— and send the .m4a. Offer this only when asked; the player covers the default case.
+- **Recording route (default whenever you can synthesize NATURAL audio — e.g. macOS
+  with shell access; robotic synths like espeak/festival do NOT count as "can
+  synthesize" and fall through to device-TTS or plain text).** Generate one m4a per section and embed it as a `data:` URI in
+  `audio`: `say -v Tingting -o s.aiff s.txt && afconvert s.aiff s.m4a -f m4af -d aac
+  -b 48000` (prefer an Enhanced/Premium zh_CN voice over plain Tingting if
+  `say -v '?'` lists one; never the novelty voices — Eddy, Flo, Grandma…). Base64
+  adds ~33%; a 6-minute briefing lands around 4 MB, well under the 16 MB artifact
+  cap — if you somehow exceed ~12 MB, lower the bitrate before dropping audio.
+  Embedded recordings sound identical on every device, which is why this route
+  wins whenever it's available.
+- **Device-TTS route (fallback — no way to synthesize, e.g. running on the phone
+  itself).** Omit `audio`; the player uses the phone's own Chinese voice. The
+  template already guards the known failure: it waits for the async voice list,
+  refuses to play with a clear message when the device has no Chinese voice
+  (instead of letting an English voice read punctuation aloud), and flags
+  suspiciously instant playback. Mention to the user that this version depends on
+  their phone having a Chinese voice installed.
+
+**If the user asks for a standalone audio file** (要 mp3 / 音频文件 / 存下来听):
+concatenate the section m4a files (or synthesize once from the full script) and
+send the .m4a itself in addition to the player.
 
 ## Not this skill's job
 

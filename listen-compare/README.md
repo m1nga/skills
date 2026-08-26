@@ -18,9 +18,11 @@ not "31.4%"), English terms glossed in Chinese on first use, every paragraph und
 
 Delivery is deliberately low-tech so it works anywhere: the full script lands as
 plain text (any read-aloud feature can speak it), and where HTML artifacts are
-available you also get a tap-to-play player that uses your phone's own Chinese
-voice — per-section play, 连播, speed control, no network, no account. On a Mac it
-can also render a real .m4a file on request.
+available you also get a tap-to-play player — per-section play, 连播, speed
+control, no network, no account. When the briefing is generated on a Mac, the
+player ships with real embedded recordings (identical on every device); generated
+on the phone itself, it falls back to the phone's own Chinese voice, and refuses
+with a clear message if no Chinese voice is installed.
 
 ## When it fires
 
@@ -57,6 +59,31 @@ A 乐观 B 保守" is a comparison; "A 说了这些,B 说了那些" is two summa
 together. Honesty rules are load-bearing: if the two documents don't actually
 disagree, the skill says so instead of manufacturing differences, and when their
 scopes aren't comparable (one covers 2025, one covers only Q1) it reports that
-before comparing anything. The player is a single self-contained HTML file driving
-the phone's built-in speechSynthesis voice — chosen over generated audio because it
-needs no server, no file transfer, and no cloud TTS account.
+before comparing anything. The player is a single self-contained HTML file with two
+routes: embedded m4a recordings when the briefing was made somewhere that can
+synthesize speech (the default — device-independent), and the phone's built-in
+speechSynthesis voice otherwise. The fallback fails loudly, not weirdly: an absent
+Chinese voice produces an explanation and a fix, never an English voice reading
+punctuation aloud.
+
+## Field-tested
+
+Wind-tunneled before release: 7 scenarios across 6 personas (dictated-Chinese
+commuter, English requests, a written-summary decoy, a sibling-skill boundary,
+an English-only stranger with a single-skill install, and a no-artifact host).
+Score: 3 clean passes · 1 correct refusal · 2 degraded · 1 failure — the failure
+(Chinese-default output reaching an English-only user invited in by the English
+trigger phrases) was caught by the probe and fixed before this release: delivery
+language now follows the requester's language.
+
+> "呃把这两份就是那个市场报告哦,我下午开车去机场,路上听一下,重点是哪不一样"
+> — dictated, noisy, goal buried at the end. Fired correctly; full recording-route
+> player delivered.
+
+> "这两份文档给我个书面 tl;dr,列成 bullet,我待会儿自己看" — correctly stayed
+> silent. Written summaries belong to normal summarization; the NOT-clause held.
+
+The plain-text degradation path (no HTML artifacts available) passed without
+notes: the script is a first-class deliverable, not a fallback.
+
+Probe method: [scenario-probe](../scenario-probe/)
