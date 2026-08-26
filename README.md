@@ -1,6 +1,6 @@
 # ming-skills
 
-**Agent skills for people who ship alone.** Nineteen skills for Claude Code and
+**Agent skills for people who ship alone.** Twenty-one skills for Claude Code and
 Codex, distilled from a solo builder's real workflow — including the rebuilds
 that went wrong. Every skill is its own product: one directory, one page, one
 install command.
@@ -56,7 +56,9 @@ interface for Codex.
 
 | Skill | One line |
 |---|---|
+| [idea-probe](idea-probe/) | Wind-tunnel an unbuilt idea: simulate first contact across a forced-diversity persona matrix, rank the problems, ship a stronger one-pager |
 | [scenario-probe](scenario-probe/) | Wind-tunnel any skill, prompt, or standing rule: persona × scenario simulation that finds misfires before real sessions pay for them |
+| [extend-first](extend-first/) | Before building a new skill, a librarian's gate checks what you already own — verdict: extend, compose, or genuinely build new |
 | [write-judge-prompt](write-judge-prompt/) | Design a binary LLM judge for one failure mode — after checking a code-based check couldn't do it cheaper |
 | [validate-evaluator](validate-evaluator/) | Calibrate that judge against human labels (TPR/TNR, bias correction) — and never let the model grade its own homework |
 

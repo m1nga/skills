@@ -1,0 +1,4 @@
+interface:
+  display_name: "Listen-Compare"
+  short_description: "Turn documents you have no time to read into a Chinese audio briefing — key points per document, then similarities and differences"
+  default_prompt: "Use $listen-compare to turn these documents into a Chinese listening briefing: key points per document, then what they agree on and where they differ."

@@ -1,0 +1,173 @@
+<meta charset="utf-8">
+<title>__TITLE__</title>
+<style>
+  :root {
+    --bg: #f4f6f3;
+    --card: #ffffff;
+    --text: #20261f;
+    --muted: #67705f;
+    --accent: #1f6f54;
+    --accent-soft: #ddeee2;
+    --border: #dde3d8;
+    --playing-bg: #ecf5ec;
+    --on-accent: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #171b17; --card: #21281f; --text: #e7ece2; --muted: #9aa78f;
+      --accent: #6cc397; --accent-soft: #24402f; --border: #333d2e;
+      --playing-bg: #223528; --on-accent: #10201a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #171b17; --card: #21281f; --text: #e7ece2; --muted: #9aa78f;
+    --accent: #6cc397; --accent-soft: #24402f; --border: #333d2e;
+    --playing-bg: #223528; --on-accent: #10201a;
+  }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; margin: 0; padding: 16px; line-height: 1.7; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 1.25rem; margin: 8px 0 2px; }
+  .sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 14px; }
+  .bar { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 8px 0 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+  button { font: inherit; border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600; }
+  button:active { transform: scale(0.97); }
+  select { font: inherit; border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 8px; padding: 6px 8px; }
+  .status { font-size: 0.8rem; color: var(--muted); width: 100%; }
+  .sec { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; margin: 12px 0; }
+  .sec.playing { background: var(--playing-bg); border-color: var(--accent); }
+  .sec-head { display: flex; align-items: center; gap: 10px; }
+  .sec-head .play { flex: 0 0 auto; width: 40px; height: 40px; padding: 0; border-radius: 50%; font-size: 0.9rem; }
+  .sec.playing .play { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .sec-label { font-weight: 600; }
+  .sec-est { color: var(--muted); font-size: 0.78rem; margin-left: auto; flex: 0 0 auto; }
+  .sec-text { color: var(--text); font-size: 0.95rem; margin-top: 8px; white-space: pre-wrap; }
+  .warn { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; font-size: 0.85rem; display: none; margin-top: 10px; }
+</style>
+<div class="wrap">
+  <h1 id="title"></h1>
+  <div class="sub">点 ▶ 听单段,或从头连播。用的是这台手机自带的中文语音,不联网。</div>
+  <div class="bar">
+    <button class="primary" id="playAll">▶ 从头连播</button>
+    <button id="stop">⏹ 停</button>
+    <select id="rate" aria-label="语速">
+      <option value="0.9">慢速</option>
+      <option value="1" selected>正常语速</option>
+      <option value="1.2">1.2 倍速</option>
+      <option value="1.5">1.5 倍速</option>
+    </select>
+    <div class="status" id="status">准备好了</div>
+  </div>
+  <div class="warn" id="warn">这个浏览器不支持语音朗读。文字都在下面,可以直接看;iPhone 也可以用「朗读屏幕」(设置 → 辅助功能 → 朗读内容),两指从屏幕顶端下滑即可朗读本页。</div>
+  <div id="list"></div>
+</div>
+<script>
+  const TITLE = "__TITLE__";
+  const SECTIONS = __SECTIONS_JSON__;
+
+  document.getElementById('title').textContent = TITLE;
+  const list = document.getElementById('list');
+  const statusEl = document.getElementById('status');
+  const rateEl = document.getElementById('rate');
+  const supported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  if (!supported) document.getElementById('warn').style.display = 'block';
+
+  function estimate(text) {
+    const sec = Math.round(text.length / 4.5);
+    return sec < 60 ? '约 ' + sec + ' 秒' : '约 ' + Math.round(sec / 60) + ' 分钟';
+  }
+
+  SECTIONS.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'sec';
+    div.id = 'sec-' + i;
+    div.innerHTML =
+      '<div class="sec-head">' +
+      '<button class="play" data-i="' + i + '" aria-label="播放本段">▶</button>' +
+      '<span class="sec-label"></span><span class="sec-est">' + estimate(s.text) + '</span></div>' +
+      '<div class="sec-text"></div>';
+    div.querySelector('.sec-label').textContent = s.label;
+    div.querySelector('.sec-text').textContent = s.text;
+    list.appendChild(div);
+  });
+
+  // iOS cuts off long utterances — speak sentence-sized chunks, queued by onend.
+  function chunks(text) {
+    const parts = text.match(/[^。！？!?；;\n]+[。！？!?；;]?/g) || [text];
+    const out = [];
+    for (const p of parts) {
+      const t = p.trim();
+      if (!t) continue;
+      if (out.length && (out[out.length - 1] + t).length < 60) out[out.length - 1] += t;
+      else out.push(t);
+    }
+    return out;
+  }
+
+  let voice = null;
+  function pickVoice() {
+    try {
+      const vs = speechSynthesis.getVoices();
+      const novelty = /Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley|Albert|Bahh|Bells|Boing|Bubbles|Cellos|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Good News|Bad News/i;
+      const zh = v => /^zh[-_]?(CN|Hans)/i.test(v.lang);
+      voice = vs.find(v => zh(v) && /Ting|婷|Siri|Meijia|美嘉|Huihui|Yaoyao|Xiaoxiao|Lili/i.test(v.name))
+        || vs.find(v => zh(v) && !novelty.test(v.name))
+        || vs.find(v => v.lang.toLowerCase().indexOf('zh') === 0 && !novelty.test(v.name))
+        || vs.find(zh) || null;
+    } catch (e) { voice = null; }
+  }
+  if (supported) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+
+  let session = 0; // bump to invalidate stale onend callbacks after a stop
+  function setPlaying(i) {
+    document.querySelectorAll('.sec').forEach(el => el.classList.remove('playing'));
+    if (i >= 0) {
+      const el = document.getElementById('sec-' + i);
+      el.classList.add('playing');
+      statusEl.textContent = '正在播:' + SECTIONS[i].label;
+    }
+  }
+
+  function speakSection(i, thenNext) {
+    if (!supported) return;
+    if (!voice) pickVoice();
+    setPlaying(i);
+    const parts = chunks(SECTIONS[i].text);
+    const mySession = session;
+    let idx = 0;
+    function next() {
+      if (mySession !== session) return;
+      if (idx >= parts.length) {
+        if (thenNext && i + 1 < SECTIONS.length) speakSection(i + 1, true);
+        else { setPlaying(-1); statusEl.textContent = '播完了'; }
+        return;
+      }
+      const u = new SpeechSynthesisUtterance(parts[idx++]);
+      if (voice) u.voice = voice;
+      u.lang = (voice && voice.lang) || 'zh-CN';
+      u.rate = parseFloat(rateEl.value);
+      u.onend = next;
+      u.onerror = next;
+      speechSynthesis.speak(u);
+    }
+    next();
+  }
+
+  function stop() {
+    session++;
+    if (supported) speechSynthesis.cancel();
+    setPlaying(-1);
+    statusEl.textContent = '已停止';
+  }
+
+  document.getElementById('playAll').addEventListener('click', () => { stop(); session++; speakSection(0, true); });
+  document.getElementById('stop').addEventListener('click', stop);
+  list.addEventListener('click', e => {
+    const btn = e.target.closest('.play');
+    if (!btn) return;
+    stop(); session++;
+    speakSection(parseInt(btn.dataset.i, 10), false);
+  });
+  // Some desktop browsers pause long queues; nudge them along.
+  if (supported) setInterval(() => { try { if (speechSynthesis.speaking && speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 4000);
+</script>
