@@ -1,6 +1,6 @@
 # ming-skills
 
-**Agent skills for people who ship alone.** Twenty-one skills for Claude Code and
+**Agent skills for people who ship alone.** Twenty-two skills for Claude Code and
 Codex, distilled from a solo builder's real workflow — including the rebuilds
 that went wrong. Every skill is its own product: one directory, one page, one
 install command.
@@ -75,6 +75,7 @@ interface for Codex.
 | Skill | One line |
 |---|---|
 | [desktop-package](desktop-package/) | Packages a work session into one reviewable desktop folder with a start-here file — verified with five integrity checks before it says "done" |
+| [listen-compare](listen-compare/) | Turn documents you have no time to read into one Chinese briefing you can listen to on a phone — per-document key points plus a topic-by-topic comparison |
 | [coffee-brewing](coffee-brewing/) | Espresso and pour-over dial-in that trusts shot numbers over taste adjectives, remembers every bean you've dialed, and adapts to your gear |
 
 ---
