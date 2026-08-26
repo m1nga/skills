@@ -32,7 +32,8 @@ git -C "$repo_root" archive HEAD "$skill" | tar -x -C "$temp_root/source"
 if gh repo view "$target" >/dev/null 2>&1; then
   gh repo clone "$target" "$temp_root/repo" -- --quiet
 else
-  gh repo create "$target" --public --description "$description" --disable-wiki
+  gh repo create "$target" --public --description "$description" --disable-wiki \
+    || gh repo view "$target" >/dev/null
   git clone --quiet "https://github.com/$target.git" "$temp_root/repo"
 fi
 
