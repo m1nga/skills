@@ -42,7 +42,7 @@ rsync -a --delete --exclude='.git' "$temp_root/source/$skill/" "$temp_root/repo/
 readme="$temp_root/repo/README.md"
 PRODUCT_TITLE="$title" perl -0pi -e 's/\A#[^\n]*/# $ENV{PRODUCT_TITLE}/' "$readme"
 while IFS= read -r sibling; do
-  perl -0pi -e "s#\.\./${sibling}/#https://github.com/${owner}/${sibling}#g" "$readme"
+  perl -0pi -e "s#\.\./${sibling}(?=[/)])#https://github.com/${owner}/${sibling}#g" "$readme"
 done < <(jq -r '.products[].name' "$manifest")
 
 perl -0pi -e "s#npx skills add m1nga/skills\@${skill}#npx skills add ${owner}/${skill}#g" "$readme"
