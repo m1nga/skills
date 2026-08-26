@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+manifest="$repo_root/products.json"
+skill="${1:-}"
+
+if [[ -z "$skill" ]]; then
+  echo "Usage: scripts/publish-skill <skill-name>" >&2
+  exit 2
+fi
+
+"$repo_root/scripts/verify-products" >/dev/null
+
+product="$(jq -c --arg name "$skill" '.products[] | select(.name == $name)' "$manifest")"
+if [[ -z "$product" ]]; then
+  echo "Unknown skill: $skill" >&2
+  exit 2
+fi
+
+owner="${SKILL_PUBLISH_OWNER:-$(jq -r '.owner' "$manifest")}"
+target="$owner/$skill"
+description="$(jq -r '.description' <<<"$product")"
+source_commit="$(git -C "$repo_root" rev-parse --short=12 HEAD)"
+temp_root="$(mktemp -d "${TMPDIR:-/tmp}/publish-${skill}.XXXXXX")"
+trap 'rm -rf "$temp_root"' EXIT
+
+mkdir -p "$temp_root/source"
+git -C "$repo_root" archive HEAD "$skill" | tar -x -C "$temp_root/source"
+
+if gh repo view "$target" >/dev/null 2>&1; then
+  gh repo clone "$target" "$temp_root/repo" -- --quiet
+else
+  gh repo create "$target" --public --description "$description" --disable-wiki
+  git clone --quiet "https://github.com/$target.git" "$temp_root/repo"
+fi
+
+rsync -a --delete --exclude='.git' "$temp_root/source/$skill/" "$temp_root/repo/"
+
+readme="$temp_root/repo/README.md"
+while IFS= read -r sibling; do
+  perl -0pi -e "s#\.\./${sibling}/#https://github.com/${owner}/${sibling}#g" "$readme"
+done < <(jq -r '.products[].name' "$manifest")
+
+perl -0pi -e "s#npx skills add m1nga/skills\@${skill}#npx skills add ${owner}/${skill}#g" "$readme"
+
+if ! grep -q '^## Author$' "$readme"; then
+  printf '\n## Author\n\nBuilt by [Ming](https://github.com/m1nga). The design notes above explain the real problem and tradeoffs that shaped this skill.\n' >> "$readme"
+fi
+
+git -C "$temp_root/repo" checkout -B main >/dev/null 2>&1
+git -C "$temp_root/repo" add -A
+
+if ! git -C "$temp_root/repo" diff --cached --quiet; then
+  git -C "$temp_root/repo" -c user.name="Ming" -c user.email="m1nga@users.noreply.github.com" \
+    commit -m "Publish $skill from m1nga/skills@$source_commit" >/dev/null
+  git -C "$temp_root/repo" push --set-upstream origin main >/dev/null
+fi
+
+gh repo edit "$target" --description "$description" --enable-issues --disable-wiki
+jq -n --argjson names "$(jq '.topics' <<<"$product")" '{names: $names}' \
+  | gh api --method PUT "repos/$target/topics" --input - >/dev/null
+
+echo "Published https://github.com/$target"

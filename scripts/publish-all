@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+while IFS= read -r skill; do
+  "$repo_root/scripts/publish-skill" "$skill"
+done < <(jq -r '.products[].name' "$repo_root/products.json")

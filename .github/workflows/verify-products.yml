@@ -1,0 +1,14 @@
+name: Verify standalone products
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify every skill has standalone product metadata
+        run: scripts/verify-products

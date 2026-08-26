@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+manifest="$repo_root/products.json"
+
+command -v jq >/dev/null || { echo "jq is required" >&2; exit 1; }
+jq -e '.owner | type == "string" and length > 0' "$manifest" >/dev/null
+jq -e '.products | type == "array" and length > 0' "$manifest" >/dev/null
+
+status=0
+
+while IFS= read -r skill; do
+  if ! jq -e --arg name "$skill" '.products[] | select(.name == $name)' "$manifest" >/dev/null; then
+    echo "Missing products.json entry: $skill" >&2
+    status=1
+  fi
+done < <(find "$repo_root" -mindepth 2 -maxdepth 2 -name SKILL.md -print | sed 's#/SKILL.md$##' | xargs -n1 basename | sort)
+
+while IFS= read -r skill; do
+  if [[ ! -f "$repo_root/$skill/SKILL.md" || ! -f "$repo_root/$skill/README.md" ]]; then
+    echo "Manifest product has no complete skill directory: $skill" >&2
+    status=1
+  fi
+done < <(jq -r '.products[].name' "$manifest" | sort)
+
+duplicates="$(jq -r '.products[].name' "$manifest" | sort | uniq -d)"
+if [[ -n "$duplicates" ]]; then
+  echo "Duplicate product names:" >&2
+  echo "$duplicates" >&2
+  status=1
+fi
+
+while IFS=$'\t' read -r skill description topic_count; do
+  if (( ${#description} < 50 || ${#description} > 200 )); then
+    echo "$skill description must be 50-200 characters (found ${#description})" >&2
+    status=1
+  fi
+  if (( topic_count < 3 || topic_count > 20 )); then
+    echo "$skill must have 3-20 GitHub topics (found $topic_count)" >&2
+    status=1
+  fi
+done < <(jq -r '.products[] | [.name, .description, (.topics | length)] | @tsv' "$manifest")
+
+if (( status != 0 )); then
+  exit "$status"
+fi
+
+echo "Verified $(jq '.products | length' "$manifest") standalone skill products."
