@@ -20,6 +20,7 @@ fi
 
 owner="${SKILL_PUBLISH_OWNER:-$(jq -r '.owner' "$manifest")}"
 target="$owner/$skill"
+title="$(jq -r '.title' <<<"$product")"
 description="$(jq -r '.description' <<<"$product")"
 source_commit="$(git -C "$repo_root" rev-parse --short=12 HEAD)"
 temp_root="$(mktemp -d "${TMPDIR:-/tmp}/publish-${skill}.XXXXXX")"
@@ -38,6 +39,7 @@ fi
 rsync -a --delete --exclude='.git' "$temp_root/source/$skill/" "$temp_root/repo/"
 
 readme="$temp_root/repo/README.md"
+PRODUCT_TITLE="$title" perl -0pi -e 's/\A#[^\n]*/# $ENV{PRODUCT_TITLE}/' "$readme"
 while IFS= read -r sibling; do
   perl -0pi -e "s#\.\./${sibling}/#https://github.com/${owner}/${sibling}#g" "$readme"
 done < <(jq -r '.products[].name' "$manifest")
