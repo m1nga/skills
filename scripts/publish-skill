@@ -57,7 +57,10 @@ if ! git -C "$temp_root/repo" diff --cached --quiet; then
   git -C "$temp_root/repo" push --set-upstream origin main >/dev/null
 fi
 
-gh repo edit "$target" --description "$description" --enable-issues --disable-wiki
+gh api --method PATCH "repos/$target" \
+  -f description="$description" \
+  -F has_issues=true \
+  -F has_wiki=false >/dev/null
 jq -n --argjson names "$(jq '.topics' <<<"$product")" '{names: $names}' \
   | gh api --method PUT "repos/$target/topics" --input - >/dev/null
 
