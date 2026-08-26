@@ -27,7 +27,7 @@ temp_root="$(mktemp -d "${TMPDIR:-/tmp}/publish-${skill}.XXXXXX")"
 trap 'rm -rf "$temp_root"' EXIT
 
 mkdir -p "$temp_root/source"
-git -C "$repo_root" archive HEAD "$skill" | tar -x -C "$temp_root/source"
+git -C "$repo_root" archive HEAD "$skill" LICENSE | tar -x -C "$temp_root/source"
 
 if gh repo view "$target" >/dev/null 2>&1; then
   gh repo clone "$target" "$temp_root/repo" -- --quiet
@@ -37,7 +37,11 @@ else
   git clone --quiet "https://github.com/$target.git" "$temp_root/repo"
 fi
 
-rsync -a --delete --exclude='.git' "$temp_root/source/$skill/" "$temp_root/repo/"
+mkdir -p "$temp_root/product/skills/$skill"
+rsync -a --exclude='README.md' "$temp_root/source/$skill/" "$temp_root/product/skills/$skill/"
+rsync -a "$temp_root/source/$skill/README.md" "$temp_root/product/README.md"
+rsync -a "$temp_root/source/LICENSE" "$temp_root/product/LICENSE"
+rsync -a --delete --exclude='.git' "$temp_root/product/" "$temp_root/repo/"
 
 readme="$temp_root/repo/README.md"
 PRODUCT_TITLE="$title" perl -0pi -e 's/\A#[^\n]*/# $ENV{PRODUCT_TITLE}/' "$readme"
