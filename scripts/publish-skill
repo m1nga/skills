@@ -49,7 +49,7 @@ jq -n \
   --arg source_tree "$source_tree" \
   '{skill: $skill, source_repository: $source_repository, source_commit: $source_commit, source_tree: $source_tree}' \
   > "$temp_root/product/SOURCE.json"
-rsync -a --delete --exclude='.git' "$temp_root/product/" "$temp_root/repo/"
+rsync -a --checksum --delete --exclude='.git' "$temp_root/product/" "$temp_root/repo/"
 
 readme="$temp_root/repo/README.md"
 PRODUCT_TITLE="$title" perl -0pi -e 's/\A#[^\n]*/# $ENV{PRODUCT_TITLE}/' "$readme"
