@@ -59,6 +59,7 @@ last mile an explicit, testable product contract.
 
 ## Field-tested
 
-The release workflow has already published and remotely verified 22 standalone skill repositories.
-The monitor and expanded SEO/GEO audit added with this skill are validated separately before this
-page claims they are operational.
+The release workflow has published and remotely verified 23 standalone skill repositories. The
+deterministic monitor completed a full 23/23 source, metadata, README, and package audit, and its
+daily local Codex automation is active. Search indexing remains a separately observed status, not a
+release claim.
