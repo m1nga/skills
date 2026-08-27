@@ -1,0 +1,217 @@
+#!/usr/bin/env python3
+"""Detect source/standalone skill-product drift and persist the last verified cursor."""
+
+from __future__ import annotations
+
+import argparse
+import fcntl
+import json
+import os
+import subprocess
+import sys
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parent.parent
+MANIFEST = ROOT / "products.json"
+
+
+def run(*args: str, check: bool = True) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(args, cwd=ROOT, text=True, capture_output=True, check=check)
+
+
+def remote_snapshots(owner: str, names: list[str]) -> dict[str, dict[str, Any]]:
+    listed = run(
+        "gh", "repo", "list", owner, "--limit", "1000",
+        "--json", "name,description,repositoryTopics,url,isPrivate",
+    )
+    repositories = {item["name"]: item for item in json.loads(listed.stdout)}
+    present = [name for name in names if name in repositories]
+    if not present:
+        return {}
+
+    fields: list[str] = []
+    for name in present:
+        alias = name.replace("-", "_")
+        fields.append(
+            f'{alias}:repository(owner:{json.dumps(owner)},name:{json.dumps(name)}){{'
+            f'source:object(expression:"main:SOURCE.json"){{... on Blob{{text}}}} '
+            f'readme:object(expression:"main:README.md"){{... on Blob{{text}}}} '
+            f'package:object(expression:"main:skills/{name}/SKILL.md"){{... on Blob{{oid}}}}'
+            "}"
+        )
+    query = "query{" + " ".join(fields) + "}"
+    response = run("gh", "api", "graphql", "-f", f"query={query}")
+    objects = json.loads(response.stdout)["data"]
+
+    snapshots: dict[str, dict[str, Any]] = {}
+    for name in present:
+        repo = repositories[name]
+        blobs = objects[name.replace("-", "_")] or {}
+        snapshots[name] = {
+            "description": repo.get("description"),
+            "topics": sorted(item["name"] for item in repo.get("repositoryTopics", [])),
+            "url": repo.get("url"),
+            "private": repo.get("isPrivate"),
+            "source": (blobs.get("source") or {}).get("text"),
+            "readme": (blobs.get("readme") or {}).get("text", ""),
+            "package": bool(blobs.get("package")),
+        }
+    return snapshots
+
+
+def atomic_json(path: Path, data: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temp_name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump(data, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_name, path)
+    finally:
+        if os.path.exists(temp_name):
+            os.unlink(temp_name)
+
+
+def append_event(path: Path, event: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(event, ensure_ascii=False, separators=(",", ":")) + "\n")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", dest="json_output")
+    parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--state-dir", type=Path, default=ROOT / ".skill-product-monitor")
+    args = parser.parse_args()
+
+    state_dir = args.state_dir.resolve()
+    state_path = state_dir / "RUN-STATE.json"
+    event_path = state_dir / "events.jsonl"
+    lock_path = state_dir / "LOCK"
+    state_dir.mkdir(parents=True, exist_ok=True)
+
+    lock_handle = lock_path.open("w", encoding="utf-8")
+    try:
+        fcntl.flock(lock_handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        print("Another skill-product monitor run holds the lock.", file=sys.stderr)
+        return 2
+
+    now = datetime.now(timezone.utc).isoformat()
+    try:
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        owner = manifest["owner"]
+        products = manifest["products"]
+        remotes = remote_snapshots(owner, [product["name"] for product in products])
+        head = run("git", "rev-parse", "HEAD").stdout.strip()
+        upstream = run("git", "rev-parse", "@{upstream}", check=False).stdout.strip()
+        previous = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
+        findings: list[dict[str, str]] = []
+        verified: dict[str, dict[str, str]] = {}
+
+        verify = run(str(ROOT / "scripts/verify-products"), check=False)
+        if verify.returncode:
+            findings.append({
+                "skill": "registry",
+                "classification": "blocked",
+                "detail": (verify.stderr or verify.stdout).strip(),
+            })
+        if not upstream or upstream != head:
+            findings.append({
+                "skill": "registry",
+                "classification": "blocked",
+                "detail": "local HEAD is not the pushed upstream default-branch commit",
+            })
+
+        for product in products:
+            name = product["name"]
+            target = f"{owner}/{name}"
+            tree = run("git", "rev-parse", f"HEAD:{name}", check=False).stdout.strip()
+            dirty = bool(run("git", "status", "--porcelain", "--untracked-files=all", "--", name).stdout.strip())
+            repo = remotes.get(name)
+            if repo is None:
+                classification = "source-dirty" if dirty else "new-ready"
+                findings.append({"skill": name, "classification": classification, "detail": "standalone repository is missing"})
+                continue
+
+            source_text = repo.get("source")
+            try:
+                remote_source = json.loads(source_text) if source_text else {}
+            except json.JSONDecodeError:
+                remote_source = {}
+            if remote_source.get("source_tree") != tree:
+                classification = "source-dirty" if dirty else "remote-drift"
+                findings.append({
+                    "skill": name,
+                    "classification": classification,
+                    "detail": f"published source tree {remote_source.get('source_tree', 'missing')} != {tree}",
+                })
+
+            remote_topics = repo.get("topics", [])
+            expected_topics = sorted(product["topics"])
+            if repo.get("description") != product["description"] or remote_topics != expected_topics:
+                findings.append({"skill": name, "classification": "metadata-drift", "detail": "repository description or topics differ from products.json"})
+
+            readme = repo.get("readme", "")
+            package = repo.get("package")
+            install = f"npx skills add {owner}/{name}"
+            if not package or install not in readme or "## Author" not in readme:
+                findings.append({"skill": name, "classification": "install-broken", "detail": "README, install command, Author section, or packaged SKILL.md is missing"})
+
+            if not any(item["skill"] == name for item in findings):
+                verified[name] = {"source_tree": tree, "repository": f"https://github.com/{target}"}
+
+        verdict = "PASS" if not findings else "ATTENTION"
+        result = {
+            "verdict": verdict,
+            "checked_at": now,
+            "source_commit": head,
+            "last_good_commit": previous.get("last_good_commit"),
+            "product_count": len(products),
+            "verified_count": len(verified),
+            "findings": findings,
+        }
+
+        event = {"checked_at": now, "verdict": verdict, "source_commit": head, "finding_count": len(findings)}
+        if not args.check_only:
+            append_event(event_path, event)
+            if not findings:
+                atomic_json(state_path, {
+                    "schema_version": "1.0",
+                    "last_good_commit": head,
+                    "last_success_at": now,
+                    "last_result": "no-op" if previous.get("last_good_commit") == head else "verified",
+                    "products": verified,
+                })
+
+        if args.json_output:
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+        else:
+            print(f"{verdict}: {len(verified)}/{len(products)} products verified; {len(findings)} finding(s).")
+            for finding in findings:
+                print(f"- {finding['skill']}: {finding['classification']} — {finding['detail']}")
+        return 0 if not findings else 3
+    except (OSError, KeyError, json.JSONDecodeError, subprocess.CalledProcessError) as exc:
+        event = {"checked_at": now, "verdict": "FAIL", "error": str(exc)}
+        if not args.check_only:
+            append_event(event_path, event)
+        print(f"Monitor failed closed: {exc}", file=sys.stderr)
+        return 1
+    finally:
+        fcntl.flock(lock_handle.fileno(), fcntl.LOCK_UN)
+        lock_handle.close()
+        try:
+            lock_path.unlink()
+        except FileNotFoundError:
+            pass
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

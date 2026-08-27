@@ -33,3 +33,15 @@ were updated.
 - Keep the reason for the design in the individual README's design notes.
 - Use `npx skills add m1nga/<skill-name>` as the canonical install command.
 - Related-skill links must point to the related standalone repository.
+
+## Monitor contract
+
+- A committed `products.json` entry plus the matching committed skill directory is the explicit
+  release marker used by the automated monitor.
+- Run `scripts/monitor-products` for deterministic drift detection. Runtime state is local and
+  ignored under `.skill-product-monitor/`; the canonical contract is
+  `ops/skill-product-monitor/loop.contract.json`.
+- The monitor may republish a release-marked product through `scripts/publish-skill`, but it must
+  report and skip dirty, unregistered, private, third-party, or ambiguous skills.
+- The monitor cannot alter a product's purpose, owner story, evidence, or release policy without
+  explicit approval.

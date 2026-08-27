@@ -34,6 +34,11 @@ scripts/publish-skill diagnose-project-rebuild
 New skills are not considered released until both the source registry and the
 standalone product repository have been updated and verified.
 
+[`publish-skill-product`](https://github.com/m1nga/publish-skill-product) owns the human release
+workflow: product story, metadata, package, source provenance, install check, and discovery audit.
+The daily monitor runs `scripts/monitor-products`; its persisted cursor and event log stay local in
+`.skill-product-monitor/` and never turn an unregistered draft into a public product.
+
 ## Author and method
 
 Built by [Ming](https://github.com/m1nga) from real solo-builder workflows. The

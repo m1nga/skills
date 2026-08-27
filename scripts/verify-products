@@ -15,7 +15,7 @@ while IFS= read -r skill; do
     echo "Missing products.json entry: $skill" >&2
     status=1
   fi
-done < <(find "$repo_root" -mindepth 2 -maxdepth 2 -name SKILL.md -print | sed 's#/SKILL.md$##' | xargs -n1 basename | sort)
+done < <(git -C "$repo_root" ls-files '*/SKILL.md' | sed 's#/SKILL.md$##' | xargs -n1 basename | sort)
 
 while IFS= read -r skill; do
   if [[ ! -f "$repo_root/$skill/SKILL.md" || ! -f "$repo_root/$skill/README.md" ]]; then
@@ -41,6 +41,15 @@ while IFS=$'\t' read -r skill description topic_count; do
     status=1
   fi
 done < <(jq -r '.products[] | [.name, .description, (.topics | length)] | @tsv' "$manifest")
+
+product_auditor="$repo_root/publish-skill-product/scripts/audit_product_page.py"
+if [[ -x "$product_auditor" ]]; then
+  while IFS= read -r skill; do
+    if ! "$product_auditor" "$repo_root/$skill" --product-manifest "$manifest"; then
+      status=1
+    fi
+  done < <(jq -r '.products[].name' "$manifest" | sort)
+fi
 
 if (( status != 0 )); then
   exit "$status"

@@ -98,6 +98,12 @@
       "topics": ["m1nga-skill", "agent-skill", "prompt-engineering", "prompt-writing", "writing", "codex", "claude-code"]
     },
     {
+      "name": "publish-skill-product",
+      "title": "Publish a Finished Skill as Its Own Searchable Product",
+      "description": "Agent skill that publishes a finished skill as an independent GitHub product with its own story, install path, SEO/GEO metadata, and verification.",
+      "topics": ["m1nga-skill", "agent-skill", "skill-publishing", "github", "seo", "generative-engine-optimization", "codex", "claude-code"]
+    },
+    {
       "name": "scenario-probe",
       "title": "Find How an AI Skill or Prompt Will Fail Before It Ships",
       "description": "Agent skill that stress-tests SKILL.md files, system prompts, and agent rules across persona and scenario simulations before release.",

@@ -23,6 +23,7 @@ target="$owner/$skill"
 title="$(jq -r '.title' <<<"$product")"
 description="$(jq -r '.description' <<<"$product")"
 source_commit="$(git -C "$repo_root" rev-parse --short=12 HEAD)"
+source_tree="$(git -C "$repo_root" rev-parse "HEAD:$skill")"
 temp_root="$(mktemp -d "${TMPDIR:-/tmp}/publish-${skill}.XXXXXX")"
 trap 'rm -rf "$temp_root"' EXIT
 
@@ -41,6 +42,13 @@ mkdir -p "$temp_root/product/skills/$skill"
 rsync -a --exclude='README.md' "$temp_root/source/$skill/" "$temp_root/product/skills/$skill/"
 rsync -a "$temp_root/source/$skill/README.md" "$temp_root/product/README.md"
 rsync -a "$temp_root/source/LICENSE" "$temp_root/product/LICENSE"
+jq -n \
+  --arg skill "$skill" \
+  --arg source_repository "https://github.com/${owner}/skills" \
+  --arg source_commit "$source_commit" \
+  --arg source_tree "$source_tree" \
+  '{skill: $skill, source_repository: $source_repository, source_commit: $source_commit, source_tree: $source_tree}' \
+  > "$temp_root/product/SOURCE.json"
 rsync -a --delete --exclude='.git' "$temp_root/product/" "$temp_root/repo/"
 
 readme="$temp_root/repo/README.md"

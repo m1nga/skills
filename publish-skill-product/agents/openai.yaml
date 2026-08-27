@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Skill Product"
+  short_description: "Publish skills as searchable standalone products"
+  default_prompt: "Use $publish-skill-product to release this finished skill as an independent GitHub product and verify its SEO/GEO discovery surface."
