@@ -176,6 +176,23 @@
       ]
     },
     {
+      "name": "mixtape",
+      "title": "Make a Personal Playlist That Actually Imports",
+      "description": "AI playlist skill that turns moods, seed songs, or listening history into a sequenced mix, verifies every track against Apple Music, and delivers a one-click Soundiiz import link.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "playlist-maker",
+        "music-recommendation",
+        "apple-music",
+        "soundiiz",
+        "spotify",
+        "youtube-music",
+        "codex",
+        "claude-code"
+      ]
+    },
+    {
       "name": "one-sentence",
       "title": "Explain a Concept in One Memorable Sentence",
       "description": "Agent skill that turns a concept, introduction, tagline, or positioning idea into one sentence a stranger can repeat tomorrow.",
