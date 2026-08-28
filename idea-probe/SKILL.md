@@ -67,7 +67,8 @@ The author's lookalikes may hold at most one seat.
 
 **Size the run to the summons.** A quiet trigger — the idea arrived in passing,
 the trigger phrases merely matched — gets a quick probe: 3 personas, the
-stations compressed, the verdict and top problems only. An explicit invocation
+stations compressed, the report cut to the verdict, top problems, and the
+gate's mandatory lines — compressed, not skipped. An explicit invocation
 ("run idea-probe on this", "full probe") gets the full 4–7 matrix. The
 diversity slots bind in both sizes; only the seat count and report length
 change. Don't dump a full wind tunnel on someone who mentioned an idea over
@@ -168,6 +169,10 @@ attach an executable real-human test:
   have this behavior, the assumption is dead and the fix is NARROW or
   RETHINK." Setting the threshold up front is what stops the result from
   being rationalized after.
+
+Recruit where the behavior lives — the forum, community, or thread where
+they paid or complained. N stays small: five is enough to hit a kill
+criterion.
 
 The bridge is the honest answer to the strongest critique of simulated
 users — that a simulated customer can only tell you what you already believe.

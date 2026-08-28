@@ -4,3 +4,6 @@ __pycache__/
 *.local.md
 user-context.md
 .skill-product-monitor/
+.agents/
+.claude/
+skills-lock.json

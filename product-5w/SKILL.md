@@ -12,7 +12,7 @@ description: >-
   this", "who is my product actually for", "survey my product before launch", 给我的产品做个调研 /
   这个产品的 who what why 帮我过一遍 / 上线前做个基本盘调研 / 产品定义审计. NOT persona simulation (idea-probe), NOT
   architecture mapping (map-product-system), NOT hands-on audit
-  (product-experience-officer), NOT feasibility research.
+  (product-experience-officer), NOT technical feasibility.
 ---
 
 # Product 5W（产品五问）
@@ -32,8 +32,8 @@ the mode:
   simulation afterwards.
 - **After build — definition audit.** Answer the five questions from what the
   product *is today*, then compare against the founding answers (ask for them if
-  they exist). If none exist, audit today's answers alone and say the divergence
-  check had nothing to compare against. Divergence has exactly two readings — the product drifted from a
+  they exist); if none exist, audit today's product alone and record the missing
+  founding record as a finding. Divergence has exactly two readings — the product drifted from a
   right definition, or faithfully executed a wrong one — and the brief must say
   which it believes, with evidence.
 
@@ -62,6 +62,9 @@ memory — a fact recalled from training data is at best *inferred*, never
 *verified*. And never invent market numbers: no TAM, market size, or
 conversion rate without a source. A professional-looking fake number is the
 worst artifact this skill can produce; "unknown" is the honest one.
+
+Cold start with zero material: ask by W, in rounds of at most three
+questions — never pour the full sub-probe set at once.
 
 The order stands — drain first, then ask — but the author's answers get no
 diplomatic immunity: a future-tense answer ("users would love this") or an
@@ -221,9 +224,9 @@ Every answer — every sub-answer — carries exactly one tag:
 Where nothing is known, write **unknown** — it is a value, not a failure.
 
 Cross-skill note: these tags correspond one-to-one to map-product-system's
-ledger — verified ≈ Known, inferred ≈ Inferred, assumed ≈ Proposed, unknown ≈
-Unknown — so a 5W brief and a system map read side by side without
-translation.
+ledger (if installed) — verified ≈ Known, inferred ≈ Inferred, assumed ≈
+Proposed, unknown ≈ Unknown — so a 5W brief and a system map read side by
+side without translation.
 
 The ledger is the brief's instrument panel: report assumed+unknown density per
 question and overall. Assumed density IS risk density — a brief that is 80%

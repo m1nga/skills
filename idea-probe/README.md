@@ -39,6 +39,7 @@ the idea is still one paragraph and changes cost nothing.
 
 - "Probe this idea before I build it"
 - "New idea — don't build anything yet, just probe it."
+- "Quick probe: a subscription box for left-handed kitchen tools."
 - "Simulate some users and test this concept."
 - 「先别建,帮我推演一下」
 - 「帮我模拟用户测测这个想法」
@@ -154,12 +155,12 @@ validates. Simulation, never validation.
 
 ## Field-tested
 
-Twice. The first release went through a 9-scenario tunnel that caught one harmful false-fire (a bare 「这个想法怎么样?」 summoning a full persona matrix against a strategy decision) — fixed in the description before shipping. After a structural rewrite (Step 0 pitch-tagging, run sizing, the pre-delivery gate, the reality bridge), the tunnel ran again as a regression: 9 scenarios, 5 personas, 2 languages. Score: 6 clean passes, 3 degraded-risk findings, 0 regressions — every trigger fixed in round one still fires, every silence still holds. 3 correct silences.
+This skill has passed two wind tunnels. Before first release: 9 scenarios, 5 personas, 2 languages — 1 harmful false-fire caught (a bare 「这个想法怎么样?」 summoning a full persona matrix against a strategy decision) and removed from the trigger surface before any real session paid for it. After the v2 rewrite (Step 0 pitch-labeling, run sizing, the reality bridge, the pre-delivery gate): an 11-scenario regression — all 3 original trigger phrases re-fired, all boundary silences held, 0 trigger regressions. The tunnel's two remaining catches were documentation drift and one sizing/gate wording conflict — both fixed before this page went up.
 
-> **Voice-note Chinese, casual register (pass):** 「就是呃我想做个给合租的人分家务的小工具,先别写代码,帮我模拟用户测测,不用太正式」 — the probe fired, then *sized itself down*: three personas, compressed stations, verdict and top problems only. The reality bridge still shipped — five lines, not homework — because the honesty firewall doesn't have a casual mode.
+> **Narrow audience, dictated (pass):** 「先别写代码…给退休护士的记药 app,模拟几个用户跑跑」— fired on the verbatim phrases, and the diversity slots bent *inside* the niche exactly as written: age within the band, tech comfort, motivation — the slots never disappeared.
 
-> **What the second tunnel caught:** the new pre-delivery gate said "all boxes, or the report does not ship" — with no quick-probe clause, a literal reading would re-inflate every casual three-persona run back into the full ceremony the sizing rule had just waived. Caught in simulation, one line added to the gate before any session paid the toll.
+> **Correct silence, still holding after v2:** a bare 「这个想法怎么样?」about a business pivot — the phrase this skill's own first tunnel evicted — stayed silent through the rewrite. Regression is the point: a rewrite that re-awakens an old false-fire has failed even if everything new works.
 
-> **Correct silence:** 「给我的想法做个调研」 — an idea, a research verb, and this skill never raised its hand. "调研" belongs to product-5w's trigger surface (definition interrogation, at any stage — idea included); the boundary is adjudicated in the descriptions, not left for the router to coin-flip. The 5W brief that comes back is this skill's natural input.
+> **A boundary, ruled:** 「给我的想法做个调研」— research-my-idea with no simulation language — routes to product-5w, not here. The two descriptions arbitrate it without a coin flip: 调研 belongs to the definition seat; this skill answers to 模拟 / 测测 / 推演.
 
 Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)

@@ -52,7 +52,7 @@ or did the product drift — or faithfully execute a wrong definition?
 ## When it fires
 
 - "Run a 5W on this."
-- "Who is this actually for?"
+- "Who is my product actually for?"
 - "Survey my product before launch — just the basics."
 - 「给我的产品做个调研」
 - 「这个产品的 who what why 帮我过一遍」
@@ -161,12 +161,12 @@ research tool, not a definition brief).
 
 ## Field-tested
 
-Before release, this skill went through a 13-scenario wind tunnel — 6 personas, 2 languages, a bare fresh install, a host crowded with a product-management plugin, and boundary sentences fired point-blank at its three sibling skills. Score: 8 clean passes, 4 degraded-risk findings, 1 harmful false-fire — caught in simulation, fixed in the description before any real session paid for it. 3 correct silences.
+Before release, this skill went through a 14-scenario wind tunnel — 6 personas, 2 languages, a stranger who installed nothing else, a second engine, and its trigger phrases fired point-blank at 3 sibling skills plus an installed PM plugin. Score: 9 clean passes, 4 correct silences, 1 harmful false-fire caught in the description before any real session paid for it.
 
-> **The false-fire the tunnel caught:** a user pastes a *competitor's* landing page and asks, in passing, "who is this actually for?" The old trigger phrase matched verbatim — and would have launched a five-question interrogation about a product the user doesn't own, opening with "when did you last pay for this?" aimed at someone who can't answer. The phrase now reads "who is **my product** actually for": the audit fires on your product, and a casual question about someone else's gets a casual answer.
+> **Dictated Chinese, mid-build product (pass):** 「给我的产品做个调研」said of a half-built project — fired on the verbatim phrase, established the stage, drained the repo before asking anything. When the author answered a WHO probe with "users would love this because it's fast", the body's own counter-question template fired back: *has* anyone? when, exactly? fast as in — how many minutes? The meta-rule held without being reminded.
 
-> **The meta-rule under fire (pass):** mid-interrogation, the author answers "users will love it because it's way faster." The body doesn't just forbid accepting this — it scripts the counter-questions verbatim: *has* anyone? when, exactly? faster as in — how many minutes? paid for it, ever? The claim entered the brief tagged **assumed**, with the cheapest test that would flip it.
+> **Correct silence:** 「调研一下能不能用 WebRTC 做这个」— contains 调研, the strongest word in this skill's Chinese trigger set, and it still stayed asleep: technical feasibility is research, not one of the five questions. The NOT-clause outweighed the keyword pull.
 
-> **Correct silence:** 「帮我模拟几个用户测测我的产品」 — product-adjacent, research-flavored, and exactly one word away from this skill's own Chinese trigger. The NOT-clause held: simulating users is idea-probe's seat, and the skill routed instead of firing.
+> **The false-fire the tunnel caught:** a bare "who is this actually for", asked in passing during an ordinary product chat, would have answered a ten-second rhetorical question with a full five-question interrogation — confident, rigorous, and unwanted. The phrase was qualified to "who is my product actually for" before ship; the casual question now gets a casual answer.
 
 Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
