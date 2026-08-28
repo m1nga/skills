@@ -178,11 +178,12 @@
     {
       "name": "mixtape",
       "title": "Make a Personal Playlist That Actually Imports",
-      "description": "AI playlist skill that turns moods, seed songs, or listening history into a sequenced mix, verifies every track against Apple Music, and delivers a one-click Soundiiz import link.",
+      "description": "AI playlist skill that turns moods, seed songs, or listening history into a verified Apple Music/Soundiiz import, then iterates one stable playlist without broken matches or duplicate versions.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "playlist-maker",
+        "playlist-management",
         "music-recommendation",
         "apple-music",
         "soundiiz",
