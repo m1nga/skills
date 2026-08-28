@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product 5W"
+  short_description: "Interrogate a product's definition — who/what/when/how/why, every answer tagged by how it's known"
+  default_prompt: "Use $product-5w on this product: ask the five questions with their anti-vagueness sub-probes (past behavior, never future opinion), tag every answer verified / inferred / assumed (unknown where nothing is known, never an invented number), split each answer into desk-says vs only-the-field-can-prove, name contradictions, and end with a DEFINED/NARROW/REDEFINE verdict carrying its validation debt plus the cheapest-next-verification list."

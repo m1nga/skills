@@ -1,4 +1,4 @@
 interface:
-  display_name: "Listen-Compare"
-  short_description: "Turn documents you have no time to read into a Chinese audio briefing — key points per document, then similarities and differences"
-  default_prompt: "Use $listen-compare to turn these documents into a Chinese listening briefing: key points per document, then what they agree on and where they differ."
+  display_name: "Listen-Compare · Work Radio"
+  short_description: "Turn work content into Chinese audio briefings — compare docs, summarize, add perspectives, or scan risks — published to a fixed radio link; mid-task windows park material to an inbox instead of producing audio"
+  default_prompt: "Use $listen-compare to turn this into a Chinese listening briefing — or, if I'm mid-task, park the material into the radio inbox and let me get back to work."

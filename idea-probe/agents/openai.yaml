@@ -1,4 +1,4 @@
 interface:
   display_name: "Idea Probe"
   short_description: "Wind-tunnel an unbuilt idea: diverse personas simulate first contact and report what breaks"
-  default_prompt: "Use $idea-probe on this idea before anything is built: cast 4–7 diverse personas from its claimed audience, run honest first-contact simulations (misreads recorded verbatim), rank problems by breadth × fatality, and deliver fixes, a revised one-pager, and the list of what only real users can prove."
+  default_prompt: "Use $idea-probe on this idea before anything is built: cast 4–7 diverse personas from its claimed audience, run honest first-contact simulations (misreads recorded verbatim, start decisions anchored in past behavior), rank problems by breadth × fatality, and deliver a BUILD/NARROW/RETHINK verdict with its assumption debt, fixes, a revised one-pager, and a reality bridge — real-user tests with kill criteria — for what only real users can prove."

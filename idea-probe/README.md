@@ -24,18 +24,23 @@ the idea is still one paragraph and changes cost nothing.
   stuck → whether they come back. A run is allowed to end at "she never finds
   out it exists."
 - Ranks every surfaced problem by breadth (how many personas hit it) times
-  fatality (do they leave when they hit it).
-- Ships a fix per problem and a revised one-pager — the stronger version of
-  the idea, honestly re-scoped.
-- Ends, mandatorily, with "what only real users can prove": the explicit
-  boundary between this simulation and actual market evidence.
+  fatality (do they leave when they hit it), with consensus escalation: a
+  problem two personas hit independently is promoted a tier.
+- Ships a fix per problem, a revised one-pager — the stronger version of the
+  idea, honestly re-scoped — and a three-valued verdict: BUILD (to
+  validation) / NARROW / RETHINK, always with its unverified-assumption debt
+  line attached.
+- Ends, mandatorily, with "what only real users can prove", and attaches a
+  reality bridge to the deadliest findings: who to recruit (by behavior, not
+  demographics), three past-tense questions, and a kill criterion stated
+  before the test.
 
 ## When it fires
 
-- "What do you think of this idea?"
+- "Probe this idea before I build it"
 - "New idea — don't build anything yet, just probe it."
 - "Simulate some users and test this concept."
-- 「这个想法怎么样?」
+- 「先别建,帮我推演一下」
 - 「帮我模拟用户测测这个想法」
 - 「新想法:xxx。先别建,推演一下」
 
@@ -46,7 +51,7 @@ this technically feasible" is a research question, not a persona simulation.
 ## Install
 
 ```bash
-npx skills add m1nga/skills@idea-probe
+npx skills add m1nga/idea-probe
 ```
 
 ## Example
@@ -69,20 +74,21 @@ npx skills add m1nga/skills@idea-probe
 
 The three probe seats, in build order:
 
-1. **[idea-probe](../idea-probe/)** — before anything is built: the idea
-   itself, tested against simulated first contact.
-2. **[scenario-probe](../scenario-probe/)** — once instruction text exists: a
-   SKILL.md, a system prompt, a standing rule, tested against persona ×
-   scenario trigger simulation.
-3. **[product-experience-officer](../product-experience-officer/)** — once the
-   product runs: experienced as a zero-context stranger, reported as an expert.
+1. **idea-probe** — before anything is built: the idea itself, tested against
+   simulated first contact.
+2. **[scenario-probe](https://github.com/m1nga/scenario-probe)** — once
+   instruction text exists: a SKILL.md, a system prompt, a standing rule,
+   tested against persona × scenario trigger simulation.
+3. **[product-experience-officer](https://github.com/m1nga/product-experience-officer)**
+   — once the product runs: experienced as a zero-context stranger, reported
+   as an expert.
 
 Same honesty contract across all three: a report with zero findings means the
 auditor sat in the author's chair.
 
-Also pairs with [extend-first](../extend-first/) — if the idea that survives
-the probe is a *skill*, that gate checks the shelf for overlap before you
-write it.
+Also pairs with [extend-first](https://github.com/m1nga/extend-first) — if
+the idea that survives the probe is a *skill*, that gate checks the shelf for
+overlap before you write it.
 
 ## Design notes
 
@@ -105,14 +111,55 @@ real users can prove. A persona simulation that gets mistaken for market
 validation is worse than no simulation — so the boundary ships inside every
 report, not in a footnote here.
 
+### Benchmarked
+
+After first release, this skill was benchmarked against the closest prior art
+on GitHub:
+[cookiy-ai/user-research-skill](https://github.com/cookiy-ai/user-research-skill),
+[RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills),
+[zamesin/Next-Move-Theory](https://github.com/zamesin/Next-Move-Theory),
+[machinesoul11/anti-sycophant](https://github.com/machinesoul11/anti-sycophant),
+and [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills).
+None of them wind-tunnels an unbuilt idea with simulated personas — the seat
+had no incumbent — but several of their disciplines were plainly better than
+ours, so we took them:
+
+- From **zamesin/Next-Move-Theory**: the three-valued verdict that is never
+  bare (a GO is always "GO — to validation"), the unverified-assumption debt
+  line, and the kill criterion stated *before* the test so the result can't
+  be rationalized after.
+- From **machinesoul11/anti-sycophant**: past expenditure as the filter at
+  the start-or-not station — a persona with no history of spending money,
+  time, or effort on the problem holds a fake job, and their "I'd try it" is
+  weighted near zero.
+- From **alirezarezvani/claude-skills** (named-persona-adversarial-review):
+  the zero-finding burden of proof, consensus escalation, and the
+  homogeneity check — its integrity question "all NOTE-level? Then I'm
+  narrating one perspective in different voices" became this skill's
+  recast-and-rerun rule.
+- From **cookiy-ai/user-research-skill**: recruiting by behavior, never
+  demographics ("switched tools in the last 6 months", not "ages 25–40") —
+  the shape of the reality bridge's "who to find" — and the pre-delivery
+  checklist gate.
+
+One criticism we took seriously instead of borrowing around:
+machinesoul11/anti-sycophant refuses simulated users flatly — "a simulated
+customer can only tell you what you already believe." As a critique of
+simulation *presented as validation*, that is simply correct. Our answer is
+structural, not rhetorical: every report ends with "what only real users can
+prove", and the deadliest findings now carry a reality bridge — behavioral
+recruiting, past-tense questions, a pre-stated kill criterion — that walks
+the hypotheses into the real world. Simulation generates; only reality
+validates. Simulation, never validation.
+
 ## Field-tested
 
-Before release, this skill went through a 9-scenario wind tunnel — 5 personas, 2 languages, a stranger who installed nothing else, and boundary sentences fired point-blank at its three sibling skills. Score: 5 clean passes, 3 degraded-risk findings, 1 harmful false-fire — caught in simulation, fixed in the description before any real session paid for it. 3 correct silences.
+Twice. The first release went through a 9-scenario tunnel that caught one harmful false-fire (a bare 「这个想法怎么样?」 summoning a full persona matrix against a strategy decision) — fixed in the description before shipping. After a structural rewrite (Step 0 pitch-tagging, run sizing, the pre-delivery gate, the reality bridge), the tunnel ran again as a regression: 9 scenarios, 5 personas, 2 languages. Score: 6 clean passes, 3 degraded-risk findings, 0 regressions — every trigger fixed in round one still fires, every silence still holds. 3 correct silences.
 
-> **Voice-note Chinese, no trigger phrase at all (pass):** "就是我早上想到一个东西啊,呃,给楼下咖啡店做个小程序让熟客提前点单,你帮我看看靠不靠谱,别急着写代码" — no verbatim keyword matched, and the probe still fired on semantics: an unbuilt idea plus an explicit don't-build-yet. The five-station simulation ran end to end, including a persona who honestly never discovers the product.
+> **Voice-note Chinese, casual register (pass):** 「就是呃我想做个给合租的人分家务的小工具,先别写代码,帮我模拟用户测测,不用太正式」 — the probe fired, then *sized itself down*: three personas, compressed stations, verdict and top problems only. The reality bridge still shipped — five lines, not homework — because the honesty firewall doesn't have a casual mode.
 
-> **Correct silence:** "Here's my SKILL.md draft — what do you think?" — contains a phrase that once sat in this skill's own trigger list, yet the NOT-clause held: existing instruction text is scenario-probe's seat. The probe routed instead of firing.
+> **What the second tunnel caught:** the new pre-delivery gate said "all boxes, or the report does not ship" — with no quick-probe clause, a literal reading would re-inflate every casual three-persona run back into the full ceremony the sizing rule had just waived. Caught in simulation, one line added to the gate before any session paid the toll.
 
-> **The false-fire the tunnel caught:** a bare "这个想法怎么样?" about a business pivot — no audience, nothing to build — would have summoned a full persona matrix against a strategy decision: a confident, complete, wrong-instrument report. The casual-opinion phrases were removed from the trigger surface; a bare "what do you think" now gets a direct answer (or thinking-partner), and this skill fires only when a pre-build test is actually asked for.
+> **Correct silence:** 「给我的想法做个调研」 — an idea, a research verb, and this skill never raised its hand. "调研" belongs to product-5w's trigger surface (definition interrogation, at any stage — idea included); the boundary is adjudicated in the descriptions, not left for the router to coin-flip. The 5W brief that comes back is this skill's natural input.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)

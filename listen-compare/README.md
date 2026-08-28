@@ -1,35 +1,44 @@
 # listen-compare
 
-**Turn documents you have no time to read into a Chinese briefing you can listen to — with the disagreements surfaced first.**
+**A personal work radio: turn work content into Chinese audio you listen to while cooking, driving, or doing chores — comparisons, summaries, second opinions, risk scans.**
 
 ## What it does
 
-Someone who asks to *listen* to two documents is really asking one question: where
-do these disagree, and does it matter? This skill answers that question in a form
-built for ears, not eyes. It reads your documents (PDF, Word, pasted text — any
-mix), then writes a spoken-style Chinese script: conclusions first, then each
-document's key points, then what they agree on, then the differences organized by
-topic — each one tagged 要紧 or 不要紧.
+Your ears are free when your hands are busy. This skill turns work content into
+programs for that time, in four types: 对比 (2+ documents — key points, then
+agreements, then differences organized by topic), 总结 (one document or a piece of
+work), 观点 (more perspectives on the work at hand, always including the strongest
+counter-case), and 潜在问题 (a risk scan that separates evidence from guesses).
+
+It also solves the delivery problem with two conventions. A **fixed radio link**:
+every program publishes to the same URL, so the phone bookmark always opens the
+latest episode. And a **parking protocol**: any mid-task Claude window can drop a
+self-contained material file into the 收件箱 folder and go straight back to work —
+audio is never produced inside a task window; the radio window picks material up
+later with one phrase (出音频).
 
 The script obeys ear rules a written summary ignores: no tables or bullets, spoken
 signposts between sections, numbers rounded to what a listener can hold ("大概三成"
 not "31.4%"), English terms glossed in Chinese on first use, every paragraph under
-45 seconds.
+~35 seconds (≤150 characters).
 
-Delivery is deliberately low-tech so it works anywhere: the full script lands as
-plain text (any read-aloud feature can speak it), and where HTML artifacts are
-available you also get a tap-to-play player — per-section play, 连播, speed
-control, no network, no account. When the briefing is generated on a Mac, the
-player ships with real embedded recordings (identical on every device); generated
-on the phone itself, it falls back to the phone's own Chinese voice, and refuses
-with a clear message if no Chinese voice is installed.
+Delivery is deliberately low-tech: the full script lands as plain text (any
+read-aloud feature can speak it), and where HTML artifacts are available you also
+get a tap-to-play player — tap any section to play on from there, pause, speed
+control; playback needs no network and no account. Wherever the producer can run
+edge-tts (free neural voices, network required at production time), the player
+ships with embedded recordings that sound identical on every device; produced on
+the phone itself, it falls back to the phone's own Chinese voice, and refuses with
+a clear message if no Chinese voice is installed.
 
 ## When it fires
 
-- "这两份分析我没时间看,念给我听,告诉我异同。"
-- "开车路上想听一下这两份报告的区别。"
+- "这两份分析我没时间看,念给我听,告诉我异同。" (produce: 对比)
+- "出音频。" / "收件箱里有什么,播了。" (produce: whatever is parked)
+- "给我做个15分钟的音频,要更多观点和思考,回头我做饭的时候听。" — said mid-task
+  in another window (park: writes the material file, replies one line, returns to
+  the task)
 - "Read these two PDFs to me and tell me where they disagree."
-- "我只能听不能看,把这份文档讲给我听。" (single doc — skips the comparison)
 
 It stays quiet for written summaries you'll read with your eyes, podcast
 production, and audio transcription.
@@ -60,11 +69,10 @@ together. Honesty rules are load-bearing: if the two documents don't actually
 disagree, the skill says so instead of manufacturing differences, and when their
 scopes aren't comparable (one covers 2025, one covers only Q1) it reports that
 before comparing anything. The player is a single self-contained HTML file with two
-routes: embedded m4a recordings when the briefing was made somewhere that can
-synthesize speech (the default — device-independent), and the phone's built-in
-speechSynthesis voice otherwise. The fallback fails loudly, not weirdly: an absent
-Chinese voice produces an explanation and a fix, never an English voice reading
-punctuation aloud.
+routes: embedded neural-voice recordings (edge-tts mp3 — the default, identical on
+every device) and the phone's built-in speechSynthesis voice as the fallback. The
+fallback fails loudly, not weirdly: an absent Chinese voice produces an explanation
+and a fix, never an English voice reading punctuation aloud.
 
 ## Field-tested
 

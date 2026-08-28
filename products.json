@@ -5,139 +5,352 @@
       "name": "coffee-brewing",
       "title": "Dial In Espresso and Pour-Over Coffee",
       "description": "AI coffee dial-in skill for espresso and V60: tune grind, ratio, temperature, and time from photos, shot data, and taste feedback.",
-      "topics": ["m1nga-skill", "agent-skill", "coffee", "espresso", "v60", "coffee-brewing", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "coffee",
+        "espresso",
+        "v60",
+        "coffee-brewing",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "conclude-rounds",
       "title": "Know What Your Coding Agent Actually Finished",
       "description": "Agent skill that recaps recent work and separates verified results, unproven claims, and proposals so project progress stays explicit.",
-      "topics": ["m1nga-skill", "agent-skill", "project-progress", "coding-agent", "work-summary", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "project-progress",
+        "coding-agent",
+        "work-summary",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "desktop-package",
       "title": "Package a Finished AI Work Session for Review",
       "description": "Agent skill that turns a finished work session into one verified, reviewable Desktop folder a cold reader can understand.",
-      "topics": ["m1nga-skill", "agent-skill", "workflow", "documentation", "handoff", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "workflow",
+        "documentation",
+        "handoff",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "diagnose-project-rebuild",
       "title": "Diagnose a Confused Project Before Rebuilding",
       "description": "Agent skill for diagnosing confused, inherited, or repeatedly rebuilt projects before deciding to recover, repair, continue, or rebuild.",
-      "topics": ["m1nga-skill", "agent-skill", "project-recovery", "project-management", "software-rebuild", "decision-making", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "project-recovery",
+        "project-management",
+        "software-rebuild",
+        "decision-making",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "experience-pack",
       "title": "Carry Project Lessons Forward Without Carrying Dead Decisions",
       "description": "Agent skill that preserves reusable project lessons across rebuilds while preventing stale decisions and context from contaminating new work.",
-      "topics": ["m1nga-skill", "agent-skill", "project-memory", "knowledge-management", "project-rebuild", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "project-memory",
+        "knowledge-management",
+        "project-rebuild",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "extend-first",
       "title": "Check Existing Skills Before Building Another One",
       "description": "Agent skill that searches what you already have before a new skill is built, then decides whether to extend, compose, or create.",
-      "topics": ["m1nga-skill", "agent-skill", "skill-discovery", "reuse", "ai-agents", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "skill-discovery",
+        "reuse",
+        "ai-agents",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "grilling",
       "title": "Pressure-Test a Plan Before Building",
       "description": "Agent skill that interviews you one question at a time until a build plan is explicit, scoped, and clear about what it will not do.",
-      "topics": ["m1nga-skill", "agent-skill", "planning", "product-planning", "requirements", "scope", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "planning",
+        "product-planning",
+        "requirements",
+        "scope",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "idea-probe",
       "title": "Test a Product Idea Before You Build It",
       "description": "Agent skill that wind-tunnels an unbuilt product idea across diverse user scenarios, ranks the risks, and produces a stronger one-pager.",
-      "topics": ["m1nga-skill", "agent-skill", "product-ideas", "product-validation", "user-research", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "product-ideas",
+        "product-validation",
+        "user-research",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "iteration-close",
       "title": "Close a Development Iteration Without Losing the Truth",
       "description": "Agent skill that records decisions, removes superseded artifacts safely, and proves a cold reader can continue the project.",
-      "topics": ["m1nga-skill", "agent-skill", "software-development", "project-handoff", "documentation", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "software-development",
+        "project-handoff",
+        "documentation",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "listen-compare",
       "title": "Turn Work Documents Into a Chinese Audio Briefing",
       "description": "Agent skill that turns documents into one phone-friendly Chinese audio briefing with key points, comparisons, risks, and second opinions.",
-      "topics": ["m1nga-skill", "agent-skill", "document-summary", "audio-briefing", "chinese", "text-to-speech", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "document-summary",
+        "audio-briefing",
+        "chinese",
+        "text-to-speech",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "loop-system-architect",
       "title": "Turn Repeated Agent Work Into a Reliable Closed Loop",
       "description": "Agent skill for designing autonomous workflows with explicit goals, persistent state, verification, recovery, and controlled improvement.",
-      "topics": ["m1nga-skill", "agent-skill", "agent-workflow", "automation", "multi-agent", "reliability", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "agent-workflow",
+        "automation",
+        "multi-agent",
+        "reliability",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "map-product-system",
       "title": "Map a Product End to End",
       "description": "Agent skill that maps user journeys, capabilities, data, responsibilities, failure paths, gaps, and delivery slices across a whole product.",
-      "topics": ["m1nga-skill", "agent-skill", "product-architecture", "product-management", "user-journey", "system-design", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "product-architecture",
+        "product-management",
+        "user-journey",
+        "system-design",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "one-sentence",
       "title": "Explain a Concept in One Memorable Sentence",
       "description": "Agent skill that turns a concept, introduction, tagline, or positioning idea into one sentence a stranger can repeat tomorrow.",
-      "topics": ["m1nga-skill", "agent-skill", "writing", "plain-language", "positioning", "tagline", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "writing",
+        "plain-language",
+        "positioning",
+        "tagline",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "product-experience-officer",
       "title": "Experience Your Product as a First-Time User",
       "description": "Agent skill that tests an unreleased product as a zero-context user, then reports the experience with prioritized fixes.",
-      "topics": ["m1nga-skill", "agent-skill", "user-experience", "ux-audit", "product-testing", "usability", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "user-experience",
+        "ux-audit",
+        "product-testing",
+        "usability",
+        "codex",
+        "claude-code"
+      ]
+    },
+    {
+      "name": "product-5w",
+      "title": "Answer Who, What, When, How, Why Before You Ship",
+      "description": "Agent skill that interrogates a product's definition with five questions — asking past behavior, never future opinion — and returns a verdict with its validation debt.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "product-research",
+        "product-definition",
+        "5w",
+        "user-research",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "prompt-craft",
       "title": "Build Better Prompts for Marketing Work",
       "description": "Agent skill that turns rough marketing ideas into reusable AI prompts grounded in brand voice, channel constraints, and source intent.",
-      "topics": ["m1nga-skill", "agent-skill", "prompt-engineering", "marketing", "brand-voice", "content-marketing", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "prompt-engineering",
+        "marketing",
+        "brand-voice",
+        "content-marketing",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "prompt-distill",
       "title": "Turn a Rambling Draft Into a Clear Reusable Prompt",
       "description": "Agent skill that cleans up dictated, mixed-language, or self-correcting input while preserving the user's meaning and directness.",
-      "topics": ["m1nga-skill", "agent-skill", "prompt-engineering", "prompt-writing", "writing", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "prompt-engineering",
+        "prompt-writing",
+        "writing",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "publish-skill-product",
       "title": "Publish a Finished Skill as Its Own Searchable Product",
       "description": "Agent skill that publishes a finished skill as an independent GitHub product with its own story, install path, SEO/GEO metadata, and verification.",
-      "topics": ["m1nga-skill", "agent-skill", "skill-publishing", "github", "seo", "generative-engine-optimization", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "skill-publishing",
+        "github",
+        "seo",
+        "generative-engine-optimization",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "scenario-probe",
       "title": "Find How an AI Skill or Prompt Will Fail Before It Ships",
       "description": "Agent skill that stress-tests SKILL.md files, system prompts, and agent rules across persona and scenario simulations before release.",
-      "topics": ["m1nga-skill", "agent-skill", "prompt-testing", "llm-evaluation", "quality-assurance", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "prompt-testing",
+        "llm-evaluation",
+        "quality-assurance",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "side-quest",
       "title": "Park a Side Thought Without Breaking Your Work Flow",
       "description": "Agent skill that captures a mid-task thought, sends bounded background work to a sub-agent, and returns the result without losing the main thread.",
-      "topics": ["m1nga-skill", "agent-skill", "productivity", "multi-agent", "workflow", "focus", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "productivity",
+        "multi-agent",
+        "workflow",
+        "focus",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "thinking-partner",
       "title": "Think Through Ambiguous Decisions Without Fake Certainty",
       "description": "Agent skill for framing ambiguous questions, keeping real alternatives open, and converging only when evidence or values support a decision.",
-      "topics": ["m1nga-skill", "agent-skill", "decision-making", "critical-thinking", "product-thinking", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "decision-making",
+        "critical-thinking",
+        "product-thinking",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "validate-evaluator",
       "title": "Validate an LLM Judge Against Human Labels",
       "description": "Agent skill that measures TPR, TNR, bias, and uncertainty so an LLM evaluator can be trusted before it scores production outputs.",
-      "topics": ["m1nga-skill", "agent-skill", "llm-evaluation", "evaluation", "statistics", "quality-assurance", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "llm-evaluation",
+        "evaluation",
+        "statistics",
+        "quality-assurance",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "voice-extractor",
       "title": "Measure and Preserve Your Real Writing Voice",
       "description": "Agent skill that extracts a measurable writing fingerprint from real samples and checks drafts against it so AI tells do not take over.",
-      "topics": ["m1nga-skill", "agent-skill", "writing-style", "stylometry", "brand-voice", "writing", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "writing-style",
+        "stylometry",
+        "brand-voice",
+        "writing",
+        "codex",
+        "claude-code"
+      ]
     },
     {
       "name": "write-judge-prompt",
       "title": "Build a Reliable Pass-Fail LLM Judge Prompt",
       "description": "Agent skill that turns one subjective failure mode and real labeled traces into a binary Pass-Fail LLM evaluator prompt.",
-      "topics": ["m1nga-skill", "agent-skill", "llm-evaluation", "llm-as-judge", "prompt-engineering", "quality-assurance", "codex", "claude-code"]
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "llm-evaluation",
+        "llm-as-judge",
+        "prompt-engineering",
+        "quality-assurance",
+        "codex",
+        "claude-code"
+      ]
     }
   ]
 }

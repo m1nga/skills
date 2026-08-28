@@ -35,6 +35,7 @@
   button:active { transform: scale(0.97); }
   select { font: inherit; border: 1px solid var(--border); background: var(--card); color: var(--text); border-radius: 8px; padding: 6px 8px; }
   .status { font-size: 0.8rem; color: var(--muted); width: 100%; }
+  .item-head { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; border-top: 1px solid var(--border); margin: 20px 0 4px; padding-top: 14px; }
   .sec { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; margin: 12px 0; }
   .sec.playing { background: var(--playing-bg); border-color: var(--accent); }
   .sec-head { display: flex; align-items: center; gap: 10px; }
@@ -50,6 +51,7 @@
   <div class="sub" id="sub"></div>
   <div class="bar">
     <button class="primary" id="playAll">▶ 从头连播</button>
+    <button id="pause">⏸ 暂停</button>
     <button id="stop">⏹ 停</button>
     <select id="rate" aria-label="语速">
       <option value="0.9">慢速</option>
@@ -64,71 +66,84 @@
 </div>
 <script>
   const TITLE = "__TITLE__";
-  // Each section: {label, text, audio?} — audio is an optional data: URI (m4a).
-  // With audio the player just plays the recording (identical on every device);
-  // without it, it falls back to the device's own Chinese TTS voice.
+  // Each section: {label, text, audio?, item?} — audio is an optional data: URI
+  // (mp3 from edge-tts, or m4a from the macOS `say` fallback). With audio the
+  // player just plays recordings (identical on every device); without it, it
+  // falls back to the device's own Chinese TTS voice. `item` (optional) marks
+  // the start of a new 合集 item and renders a group heading.
   const SECTIONS = __SECTIONS_JSON__;
 
   const HAS_AUDIO = SECTIONS.every(s => s.audio);
   document.getElementById('title').textContent = TITLE;
   document.getElementById('sub').textContent = HAS_AUDIO
-    ? '点 ▶ 听单段,或从头连播。内嵌录音,任何手机效果一致,不联网。'
-    : '点 ▶ 听单段,或从头连播。用这台手机自带的中文语音,不联网。';
+    ? '点某段的 ▶ 从那里连播。内嵌录音,任何手机效果一致,不联网。'
+    : '点某段的 ▶ 从那里连播。用这台手机自带的中文语音,不联网。';
   const list = document.getElementById('list');
   const statusEl = document.getElementById('status');
   const rateEl = document.getElementById('rate');
   const warnEl = document.getElementById('warn');
+  const pauseBtn = document.getElementById('pause');
   function warn(msg) { warnEl.textContent = msg; warnEl.style.display = 'block'; }
 
   function estimate(text) {
-    const sec = Math.round(text.length / 4.5);
+    const sec = Math.round(text.length / 4.3);
     return sec < 60 ? '约 ' + sec + ' 秒' : '约 ' + Math.round(sec / 60) + ' 分钟';
   }
 
+  let lastItem = null;
   SECTIONS.forEach((s, i) => {
+    if (s.item && s.item !== lastItem) {
+      const h = document.createElement('div');
+      h.className = 'item-head';
+      h.textContent = s.item;
+      list.appendChild(h);
+      lastItem = s.item;
+    }
     const div = document.createElement('div');
     div.className = 'sec';
     div.id = 'sec-' + i;
     div.innerHTML =
       '<div class="sec-head">' +
-      '<button class="play" data-i="' + i + '" aria-label="播放本段">▶</button>' +
-      '<span class="sec-label"></span><span class="sec-est" id="est-' + i + '">' + estimate(s.text) + '</span></div>' +
+      '<button class="play" data-i="' + i + '" aria-label="从本段连播">▶</button>' +
+      '<span class="sec-label"></span><span class="sec-est">' + estimate(s.text) + '</span></div>' +
       '<div class="sec-text"></div>';
     div.querySelector('.sec-label').textContent = s.label;
     div.querySelector('.sec-text').textContent = s.text;
     list.appendChild(div);
   });
 
-  let session = 0; // bump to invalidate stale callbacks after a stop
+  let session = 0;      // bump to invalidate stale callbacks after a stop
+  let current = -1;     // section now playing
+  let userPaused = false;
   function setPlaying(i) {
     document.querySelectorAll('.sec').forEach(el => el.classList.remove('playing'));
     if (i >= 0) {
-      document.getElementById('sec-' + i).classList.add('playing');
+      const el = document.getElementById('sec-' + i);
+      el.classList.add('playing');
       statusEl.textContent = '正在播:' + SECTIONS[i].label;
+      try {
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({ title: SECTIONS[i].label, artist: TITLE });
+        }
+      } catch (e) {}
     }
   }
-  function donePlaying() { setPlaying(-1); statusEl.textContent = '播完了'; }
+  function donePlaying() { current = -1; setPlaying(-1); statusEl.textContent = '播完了'; }
 
   // ---------- Route A: embedded recordings ----------
-  const players = [];
-  if (HAS_AUDIO) {
-    SECTIONS.forEach((s, i) => {
-      const a = new Audio(s.audio);
-      a.preload = 'metadata';
-      a.addEventListener('loadedmetadata', () => {
-        if (isFinite(a.duration)) {
-          const sec = Math.round(a.duration);
-          document.getElementById('est-' + i).textContent =
-            sec < 60 ? sec + ' 秒' : Math.round(sec / 60) + ' 分 ' + (sec % 60) + ' 秒';
-        }
-      });
-      players.push(a);
-    });
+  // ONE persistent Audio element, src swapped per section: the element keeps its
+  // user-gesture activation across src changes, so 连播 survives a locked screen
+  // on iOS (N separate elements would not).
+  let audioEl = null;
+  function ensureAudioEl() {
+    if (!audioEl) { audioEl = new Audio(); audioEl.preload = 'auto'; }
+    return audioEl;
   }
-  function stopAudio() { players.forEach(a => { a.pause(); a.currentTime = 0; }); }
   function playAudioFrom(i, thenNext) {
+    const a = ensureAudioEl();
     const mySession = session;
-    const a = players[i];
+    current = i;
+    a.src = SECTIONS[i].audio;
     a.playbackRate = parseFloat(rateEl.value);
     setPlaying(i);
     a.onended = () => {
@@ -136,14 +151,15 @@
       if (thenNext && i + 1 < SECTIONS.length) playAudioFrom(i + 1, true);
       else donePlaying();
     };
-    a.play().catch(() => warn('播放没启动。再点一次 ▶ 试试;还不行的话,文字都在下面,可以直接看。'));
+    a.play().then(() => { a.playbackRate = parseFloat(rateEl.value); })
+      .catch(() => warn('播放没启动。再点一次 ▶ 试试;还不行的话,文字都在下面,可以直接看。'));
   }
 
   // ---------- Route B: device TTS fallback ----------
   const ttsSupported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
 
   function chunks(text) { // iOS cuts off long utterances — speak sentence-sized pieces
-    const parts = text.match(/[^。！？!?；;\n]+[。！？!?；;]?/g) || [text];
+    const parts = text.match(/[^。！？!?;；\n]+[。！？!?;；]?/g) || [text];
     const out = [];
     for (const p of parts) {
       const t = p.trim();
@@ -191,6 +207,7 @@
       return;
     }
     const mySession = session;
+    current = i;
     setPlaying(i);
     const parts = chunks(SECTIONS[i].text);
     const startAt = Date.now();
@@ -198,11 +215,9 @@
     function next() {
       if (mySession !== session) return;
       if (idx >= parts.length) {
-        // A voice that skips CJK burns the queue near-instantly — call that out
-        // instead of pretending it played.
         if (Date.now() - startAt < SECTIONS[i].text.length * 12) {
           warn('刚才的朗读不正常(几乎瞬间结束),这台设备的中文语音可能坏了或没装全。文字都在下面可以直接看,或回对话里让 Claude 改发"录音版"。');
-          setPlaying(-1); statusEl.textContent = '朗读异常';
+          setPlaying(-1); statusEl.textContent = '朗读异常'; current = -1;
           return;
         }
         if (thenNext && i + 1 < SECTIONS.length) playTtsFrom(i + 1, true);
@@ -222,25 +237,49 @@
 
   // ---------- shared controls ----------
   function playFrom(i, thenNext) {
+    userPaused = false; pauseBtn.textContent = '⏸ 暂停';
     if (HAS_AUDIO) playAudioFrom(i, thenNext);
     else if (ttsSupported) playTtsFrom(i, thenNext);
     else warn('这个浏览器不能出声。文字都在下面,可以直接看;iPhone 也可以用「朗读屏幕」(设置 → 辅助功能 → 朗读内容),两指从屏幕顶端下滑朗读本页。');
   }
   function stopAll() {
     session++;
-    if (HAS_AUDIO) stopAudio();
+    userPaused = false; pauseBtn.textContent = '⏸ 暂停';
+    if (audioEl) { try { audioEl.pause(); audioEl.currentTime = 0; } catch (e) {} }
     if (ttsSupported) { try { speechSynthesis.cancel(); } catch (e) {} }
+    current = -1;
     setPlaying(-1);
     statusEl.textContent = '已停止';
   }
+  function togglePause() {
+    if (current < 0) return;
+    if (HAS_AUDIO && audioEl) {
+      if (audioEl.paused) { userPaused = false; audioEl.play().catch(() => {}); pauseBtn.textContent = '⏸ 暂停'; statusEl.textContent = '正在播:' + SECTIONS[current].label; }
+      else { userPaused = true; audioEl.pause(); pauseBtn.textContent = '▶ 继续'; statusEl.textContent = '已暂停'; }
+    } else if (ttsSupported) {
+      try {
+        if (speechSynthesis.paused) { userPaused = false; speechSynthesis.resume(); pauseBtn.textContent = '⏸ 暂停'; }
+        else { userPaused = true; speechSynthesis.pause(); pauseBtn.textContent = '▶ 继续'; statusEl.textContent = '已暂停'; }
+      } catch (e) {}
+    }
+  }
+  try {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', togglePause);
+      navigator.mediaSession.setActionHandler('pause', togglePause);
+    }
+  } catch (e) {}
   document.getElementById('playAll').addEventListener('click', () => { stopAll(); session++; playFrom(0, true); });
+  document.getElementById('pause').addEventListener('click', togglePause);
   document.getElementById('stop').addEventListener('click', stopAll);
   list.addEventListener('click', e => {
     const btn = e.target.closest('.play');
     if (!btn) return;
     stopAll(); session++;
-    playFrom(parseInt(btn.dataset.i, 10), false);
+    playFrom(parseInt(btn.dataset.i, 10), true); // continue through following sections
   });
-  rateEl.addEventListener('change', () => { players.forEach(a => { a.playbackRate = parseFloat(rateEl.value); }); });
-  if (!HAS_AUDIO && ttsSupported) setInterval(() => { try { if (speechSynthesis.speaking && speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 4000);
+  rateEl.addEventListener('change', () => { if (audioEl) { try { audioEl.playbackRate = parseFloat(rateEl.value); } catch (e) {} } });
+  // Some desktop browsers stall long TTS queues; nudge them along — but never
+  // fight a pause the user asked for.
+  if (!HAS_AUDIO && ttsSupported) setInterval(() => { try { if (!userPaused && speechSynthesis.speaking && speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 4000);
 </script>
