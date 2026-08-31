@@ -36,8 +36,11 @@ standalone product repository have been updated and verified.
 
 [`publish-skill-product`](https://github.com/m1nga/publish-skill-product) owns the human release
 workflow: product story, metadata, package, source provenance, install check, and discovery audit.
-The daily monitor runs `scripts/monitor-products`; its persisted cursor and event log stay local in
-`.skill-product-monitor/` and never turn an unregistered draft into a public product.
+Every `scripts/publish-skill` run finishes with a scoped `scripts/monitor-products --skill <name>`
+remote comparison and a direct Skills CLI discovery check for the named product. Full-registry
+audits remain available on demand. Runtime state stays local in `.skill-product-monitor/`; there is
+no scheduled polling job, and an unregistered draft can never become a public product through
+monitoring.
 
 ## Author and method
 

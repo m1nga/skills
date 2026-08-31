@@ -6,7 +6,7 @@
   "objective": {
     "statement": "Keep every committed, release-marked Ming skill synchronized with its own public GitHub product repository.",
     "owner": "Ming",
-    "per_run_success": "all products pass source, metadata, package, README, and provenance checks, or unsafe findings are recorded without publication",
+    "per_run_success": "the named release product passes source, metadata, package, README, provenance, and direct install checks, or unsafe findings are recorded without further publication",
     "non_goals": ["publishing drafts or third-party skills", "guaranteeing search rankings", "rewriting a skill's product purpose without approval"]
   },
   "source_policy": {
@@ -17,12 +17,12 @@
     "freeze": {"enabled": true, "manifest": "products.json plus per-skill git tree hash", "hash_algorithm": "git sha1/sha256 as configured by the repository"}
   },
   "control": {
-    "sensor": {"name": "monitor-products", "signal": "registry and standalone repository drift findings", "collection": "scripts/monitor-products reads committed git trees and GitHub API state", "freshness": "collected fresh each scheduled run"},
-    "comparator": {"rule": "compare each committed skill tree and products.json metadata with SOURCE.json, repository metadata, README, and packaged SKILL.md", "window": "current source commit and live GitHub state"},
+    "sensor": {"name": "monitor-products", "signal": "named source and standalone repository drift findings", "collection": "scripts/monitor-products --skill <name> reads the committed git tree and GitHub API state after each publication", "freshness": "collected fresh before scripts/publish-skill may report success"},
+    "comparator": {"rule": "compare the named committed skill tree and products.json metadata with SOURCE.json, repository metadata, README, and packaged SKILL.md", "window": "current source commit and live GitHub state"},
     "controller": {"decision_space": ["clean no-op", "new-ready", "source-dirty", "remote-drift", "metadata-drift", "install-broken", "blocked"]},
-    "actuator": {"actions": ["run scripts/publish-skill for a ready named skill", "update ignored runtime state after independent verification"], "feedback_path": "rerun scripts/monitor-products and advance the last-good cursor only on a full pass"}
+    "actuator": {"actions": ["run scripts/publish-skill for a ready named skill", "emit a scoped verification receipt"], "feedback_path": "scripts/publish-skill runs scripts/monitor-products --skill <name> and direct Skills CLI discovery before success; full audits alone advance the last-good cursor"}
   },
-  "triggers": [{"type": "schedule", "condition": "daily through a local Codex automation", "preflight": "run scripts/monitor-products before semantic repair", "dedupe_key": "skill name plus committed source tree hash"}],
+  "triggers": [{"type": "event", "condition": "a finished self-authored skill and products.json entry are committed and pushed, then scripts/publish-skill <skill-name> is invoked", "preflight": "scripts/verify-products --skill <name> before the remote write; named monitor and direct install discovery after it", "dedupe_key": "skill name plus committed source tree hash"}],
   "state": {
     "path": ".skill-product-monitor/RUN-STATE.json",
     "cursor_fields": ["last_good_commit", "last_success_at", "last_result", "products.source_tree"],
@@ -32,7 +32,7 @@
     "recovery": "failed runs preserve the last-good cursor; rerun the deterministic audit after repair"
   },
   "roles": [
-    {"name": "orchestrator", "responsibility": "run preflight and route only confirmed findings", "may_write": ["runtime state and events"], "may_not": ["certify its own remote writes"]},
+    {"name": "orchestrator", "responsibility": "route a ready release through the repository publisher and surface its verification receipt", "may_write": ["runtime state and events"], "may_not": ["certify its own remote writes"]},
     {"name": "executor", "responsibility": "repair a ready product through publish-skill-product and scripts/publish-skill", "may_write": ["named source product and standalone repository"], "may_not": ["change protected policy or unrelated dirty files"]},
     {"name": "verifier", "responsibility": "re-read source and live remote surfaces after execution", "may_write": ["verification evidence and cursor"], "may_not": ["work product"]}
   ],
@@ -45,10 +45,10 @@
   "verification": {
     "independent": true,
     "verifier_cannot_write_work_product": true,
-    "acceptance_checks": ["scripts/verify-products passes", "remote SOURCE.json tree equals the committed source tree", "description and topics equal products.json", "root README contains canonical install command and Author", "packaged SKILL.md exists"],
+    "acceptance_checks": ["scripts/verify-products --skill <name> passes", "remote SOURCE.json tree equals the committed source tree", "description and topics equal products.json", "root README contains canonical install command and Author", "packaged SKILL.md exists", "npx skills add m1nga/<name> --list finds exactly the named skill"],
     "failure_path_checks": ["dirty skills are not published", "missing GitHub or git commands fail closed", "state cursor does not advance when any finding remains"],
     "evidence_required": ["monitor JSON result", "live GitHub API response", "standalone install discovery for repaired products"],
-    "pass_rule": "all deterministic checks pass and repaired products pass independent install verification"
+    "pass_rule": "all named-product deterministic checks and direct install discovery pass"
   },
   "failure_policy": {
     "max_attempts": 2,
@@ -58,7 +58,7 @@
     "classification": "source-dirty vs source-validation vs authentication vs network vs remote-drift vs install failure",
     "on_exhaustion": "stop-and-report without advancing the cursor",
     "rollback": "publisher changes are additive git commits; revert the named product commit and keep the previous state cursor",
-    "kill": "disable the Codex automation and remove .skill-product-monitor/LOCK if no process holds it"
+    "kill": "stop invoking scripts/publish-skill and remove .skill-product-monitor/LOCK if no process holds it"
   },
   "budgets": {"max_turns": 10, "max_tokens": 30000, "max_cost": 5, "max_wall_time_seconds": 1200},
   "runtime_safety": {
@@ -71,11 +71,11 @@
     "fail_closed": true
   },
   "observability": {
-    "status_view": ".skill-product-monitor/RUN-STATE.json and events.jsonl plus Codex automation run status",
+    "status_view": ".skill-product-monitor/RUN-STATE.json and events.jsonl plus scripts/publish-skill command output",
     "metrics": ["pass", "fail", "no-op", "findings by classification", "verified product count", "retry count", "run latency"],
     "alerts": ["report source-dirty immediately", "report authentication or network failure", "report two consecutive same-class failures"]
   },
-  "replacement": {"single_active_version": true, "impact_scan": true, "contradiction_scan": true, "zero_context_probe": true, "atomic_promotion": "contract and automation prompt update in one reviewed registry commit", "inactive_history": "git history and disabled automation history"},
+  "replacement": {"single_active_version": true, "impact_scan": true, "contradiction_scan": true, "zero_context_probe": true, "atomic_promotion": "contract, publisher, and release documentation update in one reviewed registry commit", "inactive_history": "git history and archived automation history"},
   "learning": {"enabled": false},
-  "retirement": {"conditions": ["registry retired", "standalone-product policy replaced", "monitor moved to another verified system"], "cleanup": ["disable schedule", "release lock", "remove secrets references", "mark state inactive", "finish or report outstanding publication work"], "history_visibility": "inactive contract remains in git history and is excluded from active automation"}
+  "retirement": {"conditions": ["registry retired", "standalone-product policy replaced", "monitor moved to another verified system"], "cleanup": ["stop invoking the publisher", "release lock", "remove secrets references", "mark state inactive", "finish or report outstanding publication work"], "history_visibility": "inactive contract remains in git history and is excluded from active release retrieval"}
 }

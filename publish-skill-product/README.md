@@ -59,7 +59,8 @@ last mile an explicit, testable product contract.
 
 ## Field-tested
 
-The release workflow has published and remotely verified 23 standalone skill repositories. The
-deterministic monitor completed a full 23/23 source, metadata, README, and package audit, and its
-daily local Codex automation is active. Search indexing remains a separately observed status, not a
-release claim.
+The release workflow has published 25 standalone skill repositories. In the latest live audit, all
+25 public repositories passed direct Skills CLI discovery; the deterministic monitor verified 24
+and correctly blocked one product with ambiguous local source changes instead of republishing it.
+Publication now triggers the named product's remote verification directly, with no daily polling
+automation. Search indexing remains a separately observed status, not a release claim.

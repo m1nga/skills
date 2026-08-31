@@ -22,7 +22,7 @@ third-party material, or an uncommitted draft.
 1. Read repository instructions, status, remote, default branch, product manifest, and documented
    release commands.
 2. Prefer the repository's existing publisher over reimplementing GitHub operations. For Ming's
-   registry, use `/Users/m1nga/Desktop/ming-skills`, `products.json`,
+   registry, use `/Users/m1nga/Desktop/🛠️ Skills工坊/ming-skills`, `products.json`,
    `scripts/verify-products`, and `scripts/publish-skill`.
    Outside Ming's registry, if no publisher exists, first confirm the repository owner, public
    target, and standing release policy; then build the smallest equivalent committed-source
@@ -79,13 +79,16 @@ public product page. Treat discoverability as an evidence problem:
    scripts/publish-skill <skill-name>
    ```
 
+   The publisher must not report success until its post-publish named-product monitor and direct
+   Skills CLI discovery check both pass.
+
 7. Verify the standalone repository is public and contains:
    - the product `README.md` at the repository root;
    - `skills/<skill-name>/SKILL.md` and every required bundled resource;
    - `LICENSE` and accurate repository metadata;
    - the canonical direct install command.
-8. Run `npx skills add <owner>/<skill-name> --list` in a temporary directory and require exactly
-   the intended skill to be discovered.
+8. Confirm the publisher's `npx skills add <owner>/<skill-name> --list` check found exactly the
+   intended skill. Rerun it manually only when diagnosing a failed release receipt.
 9. Check the repository's exact-name search result and skills directory presence. Record
    `not indexed yet` as a valid observation, not a release failure. Do not open third-party issues,
    request indexing, or create promotional posts without owner authority.

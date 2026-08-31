@@ -10,7 +10,7 @@ if [[ -z "$skill" ]]; then
   exit 2
 fi
 
-"$repo_root/scripts/verify-products" >/dev/null
+"$repo_root/scripts/verify-products" --skill "$skill" >/dev/null
 
 product="$(jq -c --arg name "$skill" '.products[] | select(.name == $name)' "$manifest")"
 if [[ -z "$product" ]]; then
@@ -79,4 +79,6 @@ gh api --method PATCH "repos/$target" \
 jq -n --argjson names "$(jq '.topics' <<<"$product")" '{names: $names}' \
   | gh api --method PUT "repos/$target/topics" --input - >/dev/null
 
-echo "Published https://github.com/$target"
+"$repo_root/scripts/verify-published-skill" "$skill"
+
+echo "Published and verified https://github.com/$target"

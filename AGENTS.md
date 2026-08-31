@@ -15,8 +15,9 @@ has indicated that it is finished, ready, approved, or should be published:
 3. Run `scripts/verify-products`.
 4. Commit and push the relevant source-registry changes.
 5. Run `scripts/publish-skill <skill-name>`.
-6. Verify both the source commit and the standalone repository URL before saying
-   the release is complete.
+6. Let `scripts/publish-skill` run the post-publish named-product monitor and the
+   named skill's direct Skills CLI discovery check before saying the release is
+   complete.
 
 Do not silently publish an idea that is still exploratory, unvalidated, or not
 ready for public representation. A chat ending is not itself a release signal.
@@ -34,14 +35,16 @@ were updated.
 - Use `npx skills add m1nga/<skill-name>` as the canonical install command.
 - Related-skill links must point to the related standalone repository.
 
-## Monitor contract
+## Publish-time monitor contract
 
 - A committed `products.json` entry plus the matching committed skill directory is the explicit
   release marker used by the automated monitor.
-- Run `scripts/monitor-products` for deterministic drift detection. Runtime state is local and
-  ignored under `.skill-product-monitor/`; the canonical contract is
+- `scripts/publish-skill` runs `scripts/monitor-products --skill <skill-name>` after every
+  publication for deterministic drift detection, then checks the named standalone repository
+  through the Skills CLI. Runtime state is local and ignored under `.skill-product-monitor/`; the
+  canonical contract is
   `ops/skill-product-monitor/loop.contract.json`.
-- The monitor may republish a release-marked product through `scripts/publish-skill`, but it must
-  report and skip dirty, unregistered, private, third-party, or ambiguous skills.
+- There is no scheduled polling job. A release must report and skip dirty, unregistered, private,
+  third-party, or ambiguous skills.
 - The monitor cannot alter a product's purpose, owner story, evidence, or release policy without
   explicit approval.

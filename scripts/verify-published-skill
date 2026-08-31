@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+manifest="$repo_root/products.json"
+skill="${1:-}"
+
+if [[ -z "$skill" ]]; then
+  echo "Usage: scripts/verify-published-skill <skill-name>" >&2
+  exit 2
+fi
+
+if ! jq -e --arg name "$skill" '.products[] | select(.name == $name)' "$manifest" >/dev/null; then
+  echo "Unknown skill: $skill" >&2
+  exit 2
+fi
+
+owner="${SKILL_PUBLISH_OWNER:-$(jq -r '.owner' "$manifest")}"
+target="$owner/$skill"
+
+set +e
+monitor_output="$("$repo_root/scripts/monitor-products" --json --check-only --skill "$skill" 2>&1)"
+monitor_status=$?
+set -e
+printf '%s\n' "$monitor_output"
+if (( monitor_status != 0 )); then
+  echo "Post-publish source and remote verification failed for $target." >&2
+  exit "$monitor_status"
+fi
+
+install_root="$(mktemp -d "${TMPDIR:-/tmp}/verify-${skill}.XXXXXX")"
+trap 'rm -rf "$install_root"' EXIT
+
+set +e
+install_output="$(cd "$install_root" && NO_COLOR=1 npx skills add "$target" --list </dev/null 2>&1)"
+install_status=$?
+set -e
+if (( install_status != 0 )); then
+  printf '%s\n' "$install_output" >&2
+  echo "Direct Skills CLI discovery failed for $target." >&2
+  exit "$install_status"
+fi
+
+plain_output="$(printf '%s\n' "$install_output" | perl -pe 's/\e\[[0-9;?]*[[:alpha:]]//g; s/\r//g')"
+if ! grep -q 'Found 1 skill' <<<"$plain_output" \
+  || ! grep -Eq "^[[:space:]│]*${skill}[[:space:]]*$" <<<"$plain_output"; then
+  printf '%s\n' "$plain_output" >&2
+  echo "Direct Skills CLI discovery did not return exactly $skill." >&2
+  exit 1
+fi
+
+echo "Verified remote product and direct install discovery for $target."

@@ -88,6 +88,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--json", action="store_true", dest="json_output")
     parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--skill", help="verify one named release product")
     parser.add_argument("--state-dir", type=Path, default=ROOT / ".skill-product-monitor")
     args = parser.parse_args()
 
@@ -109,6 +110,10 @@ def main() -> int:
         manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
         owner = manifest["owner"]
         products = manifest["products"]
+        if args.skill:
+            products = [product for product in products if product["name"] == args.skill]
+            if not products:
+                raise KeyError(f"unknown product: {args.skill}")
         remotes = remote_snapshots(owner, [product["name"] for product in products])
         head = run("git", "rev-parse", "HEAD").stdout.strip()
         upstream = run("git", "rev-parse", "@{upstream}", check=False).stdout.strip()
@@ -116,7 +121,10 @@ def main() -> int:
         findings: list[dict[str, str]] = []
         verified: dict[str, dict[str, str]] = {}
 
-        verify = run(str(ROOT / "scripts/verify-products"), check=False)
+        verify_args = [str(ROOT / "scripts/verify-products")]
+        if args.skill:
+            verify_args.extend(["--skill", args.skill])
+        verify = run(*verify_args, check=False)
         if verify.returncode:
             findings.append({
                 "skill": "registry",
@@ -171,6 +179,7 @@ def main() -> int:
         verdict = "PASS" if not findings else "ATTENTION"
         result = {
             "verdict": verdict,
+            "scope": args.skill or "all",
             "checked_at": now,
             "source_commit": head,
             "last_good_commit": previous.get("last_good_commit"),

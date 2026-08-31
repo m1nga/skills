@@ -3,6 +3,21 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 manifest="$repo_root/products.json"
+skill_filter=""
+
+while (( $# > 0 )); do
+  case "$1" in
+    --skill)
+      skill_filter="${2:-}"
+      [[ -n "$skill_filter" ]] || { echo "--skill requires a name" >&2; exit 2; }
+      shift 2
+      ;;
+    *)
+      echo "Usage: scripts/verify-products [--skill <skill-name>]" >&2
+      exit 2
+      ;;
+  esac
+done
 
 command -v jq >/dev/null || { echo "jq is required" >&2; exit 1; }
 jq -e '.owner | type == "string" and length > 0' "$manifest" >/dev/null
@@ -10,19 +25,24 @@ jq -e '.products | type == "array" and length > 0' "$manifest" >/dev/null
 
 status=0
 
-while IFS= read -r skill; do
-  if ! jq -e --arg name "$skill" '.products[] | select(.name == $name)' "$manifest" >/dev/null; then
-    echo "Missing products.json entry: $skill" >&2
-    status=1
-  fi
-done < <(git -C "$repo_root" ls-files '*/SKILL.md' | sed 's#/SKILL.md$##' | xargs -n1 basename | sort)
+if [[ -z "$skill_filter" ]]; then
+  while IFS= read -r skill; do
+    if ! jq -e --arg name "$skill" '.products[] | select(.name == $name)' "$manifest" >/dev/null; then
+      echo "Missing products.json entry: $skill" >&2
+      status=1
+    fi
+  done < <(git -C "$repo_root" ls-files '*/SKILL.md' | sed 's#/SKILL.md$##' | xargs -n1 basename | sort)
+elif ! jq -e --arg name "$skill_filter" '.products[] | select(.name == $name)' "$manifest" >/dev/null; then
+  echo "Missing products.json entry: $skill_filter" >&2
+  exit 1
+fi
 
 while IFS= read -r skill; do
   if [[ ! -f "$repo_root/$skill/SKILL.md" || ! -f "$repo_root/$skill/README.md" ]]; then
     echo "Manifest product has no complete skill directory: $skill" >&2
     status=1
   fi
-done < <(jq -r '.products[].name' "$manifest" | sort)
+done < <(jq -r --arg name "$skill_filter" '.products[] | select($name == "" or .name == $name) | .name' "$manifest" | sort)
 
 duplicates="$(jq -r '.products[].name' "$manifest" | sort | uniq -d)"
 if [[ -n "$duplicates" ]]; then
@@ -40,7 +60,7 @@ while IFS=$'\t' read -r skill description topic_count; do
     echo "$skill must have 3-20 GitHub topics (found $topic_count)" >&2
     status=1
   fi
-done < <(jq -r '.products[] | [.name, .description, (.topics | length)] | @tsv' "$manifest")
+done < <(jq -r --arg name "$skill_filter" '.products[] | select($name == "" or .name == $name) | [.name, .description, (.topics | length)] | @tsv' "$manifest")
 
 product_auditor="$repo_root/publish-skill-product/scripts/audit_product_page.py"
 if [[ -x "$product_auditor" ]]; then
@@ -48,11 +68,15 @@ if [[ -x "$product_auditor" ]]; then
     if ! "$product_auditor" "$repo_root/$skill" --product-manifest "$manifest"; then
       status=1
     fi
-  done < <(jq -r '.products[].name' "$manifest" | sort)
+  done < <(jq -r --arg name "$skill_filter" '.products[] | select($name == "" or .name == $name) | .name' "$manifest" | sort)
 fi
 
 if (( status != 0 )); then
   exit "$status"
 fi
 
-echo "Verified $(jq '.products | length' "$manifest") standalone skill products."
+if [[ -n "$skill_filter" ]]; then
+  echo "Verified standalone skill product: $skill_filter."
+else
+  echo "Verified $(jq '.products | length' "$manifest") standalone skill products."
+fi

@@ -10,10 +10,11 @@ source-provenance checks, or when it records actionable findings without making 
 
 ## Trigger and readiness
 
-The scheduled agent runs daily. `scripts/monitor-products` performs the cheap deterministic pass
-before any semantic repair. A skill is ready only when its directory and `products.json` entry are
-both committed on the registry's upstream default branch. Dirty or ambiguous skills are reported
-and left untouched.
+There is no scheduled agent. A committed source-registry release invokes `scripts/publish-skill`,
+which performs the remote write and then runs `scripts/monitor-products --skill <name>` plus the
+named product's direct Skills CLI discovery check before it may report success. A skill is ready only when its
+directory and `products.json` entry are both committed on the registry's upstream default branch.
+Dirty or ambiguous skills are reported and left untouched.
 
 ## State and idempotency
 
@@ -25,17 +26,19 @@ is the skill name plus committed source tree hash.
 ## Decisions and actions
 
 The deterministic controller emits only: clean/no-op, new-ready, source-dirty, remote-drift,
-metadata-drift, install-broken, or blocked. A Codex run may use `publish-skill-product` to repair a
-ready product, but must use `scripts/publish-skill` as the only remote publishing choke point.
+metadata-drift, install-broken, or blocked. A release may use `publish-skill-product` to prepare or
+repair a ready product, but must use `scripts/publish-skill` as the only remote publishing choke
+point and verification trigger.
 
 It may not rewrite a skill's purpose, owner story, evidence, readiness policy, or protected loop
 contract without Ming's approval. It may not publish third-party or uncommitted work.
 
 ## Verification and recovery
 
-After a repair, a fresh verifier run must re-read GitHub repository metadata, `SOURCE.json`, the
-root README, and `skills/<name>/SKILL.md`. The cursor advances only if every product passes. Failed
-runs preserve the last good cursor, write an event, and stop after two same-class attempts.
+After a release, a fresh scoped verifier run must re-read GitHub repository metadata, `SOURCE.json`,
+the root README, and `skills/<name>/SKILL.md`, then prove direct Skills CLI discovery. Scoped release
+checks do not advance the full-registry cursor. Full audits advance it only when every product passes;
+failed runs preserve the last good cursor and report the exact blocker.
 
-Disable the scheduled automation and remove a stale runtime lock to kill the loop. Retire the loop
-when the registry or standalone-product policy is replaced.
+Stop invoking `scripts/publish-skill` and remove a stale runtime lock to kill an in-flight loop.
+Retire the loop when the registry or standalone-product policy is replaced.
