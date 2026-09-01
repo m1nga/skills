@@ -1,6 +1,6 @@
-# coffee-brewing
+# Dial In Espresso and V60 Pour-Over Coffee
 
-**A dial-in coach that reads your shot's numbers before it believes your tongue.**
+**An AI home-barista skill that reads your shot's numbers before it believes your tongue.**
 
 ## What it does
 
@@ -24,10 +24,36 @@ French press when you're away from your gear.
 It stays quiet on metaphorical coffee — "data extraction" or "wake up and smell the
 coffee" won't trigger it.
 
+## Quick answers
+
+### Can AI help me dial in espresso?
+
+Yes. Give the skill your dose, yield, shot time, taste, and grinder setting. It checks
+the numbers before interpreting words like “sour” or “bitter,” then recommends one
+change at a time so the next shot produces useful evidence instead of a new guess.
+
+### Why does a fast espresso shot taste sour?
+
+A shot that runs in under 25 seconds on a coarse setting is usually under-extracted,
+especially with a light roast. The skill starts by grinding finer, then uses the next
+shot’s time and taste to decide whether ratio or temperature needs attention.
+
+### Can it make a V60 recipe from a coffee-bag photo?
+
+Yes. It reads the visible roast level, origin, processing method, roast date, and
+roaster guidance, cross-checks those clues against photos of the beans when available,
+and returns one grind, water temperature, ratio, bloom, and pour schedule.
+
+### Does it remember my grinder and beans?
+
+Yes. Your grinder and brewer ranges live in `~/.coffee/hardware.md`; proven recipes live
+in `~/.coffee/beans.md`. Both stay outside the installed skill, so an update cannot
+overwrite your setup or dial-in history.
+
 ## Install
 
 ```
-npx skills add m1nga/skills@coffee-brewing
+npx skills add m1nga/coffee-brewing
 ```
 
 First run, it asks what grinder/machine/brewers you have and saves that to

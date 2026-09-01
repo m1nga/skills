@@ -3,14 +3,17 @@
   "products": [
     {
       "name": "coffee-brewing",
-      "title": "Dial In Espresso and Pour-Over Coffee",
-      "description": "AI coffee dial-in skill for espresso and V60: tune grind, ratio, temperature, and time from photos, shot data, and taste feedback.",
+      "title": "Dial In Espresso and V60 Pour-Over Coffee",
+      "description": "AI home coffee dial-in skill that reads bean photos, espresso shot data, and taste feedback to tune grind, ratio, temperature, and time for espresso and V60.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "coffee",
         "espresso",
         "v60",
+        "pour-over",
+        "home-barista",
+        "espresso-dial-in",
         "coffee-brewing",
         "codex",
         "claude-code"
