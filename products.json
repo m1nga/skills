@@ -37,7 +37,7 @@
     {
       "name": "desktop-package",
       "title": "Package an AI Work Session into a Reviewable Desktop Folder",
-      "description": "AI work session packaging skill that copies produced files and distills decisions into one Desktop folder for human review, then verifies files, links, copy integrity, and delivery.",
+      "description": "Agent skill for AI work session packaging that copies produced files and distills decisions into one Desktop folder for human review, then verifies files, links, copy integrity, and delivery.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
