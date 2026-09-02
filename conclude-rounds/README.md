@@ -1,6 +1,14 @@
-# conclude-rounds
+# Recap a Coding Agent Session Without False Done Claims
 
-Recap the last N rounds of your current agent session — and refuse to let "I wrote the code" pass as "the code works".
+A read-only AI coding agent session recap skill that reviews the current conversation and refuses to let "I wrote the code" pass as "the code works".
+
+## Quick answers
+
+- **What does `conclude-rounds` do?** It recaps the most recent conversation rounds and labels each result as done-and-verified, done-but-unproven, or proposed.
+- **How many rounds does it recap?** You can request any count; the default is 4 user-and-agent exchanges.
+- **Does it run tests or prove new claims?** No. It reports evidence already shown in the conversation and may briefly inspect the workspace when a claim's state is unclear.
+- **Does it read old session transcripts?** No. It works only from the current conversation context, including any visible compaction summary.
+- **Does it change files?** No. The skill is read-only.
 
 ## What it does
 
@@ -20,7 +28,7 @@ It runs entirely in-context and is read-only: no files edited, no transcripts pu
 ## Install
 
 ```
-npx skills add m1nga/skills@conclude-rounds
+npx skills add m1nga/conclude-rounds
 ```
 
 ## Example

@@ -21,13 +21,14 @@
     },
     {
       "name": "conclude-rounds",
-      "title": "Know What Your Coding Agent Actually Finished",
-      "description": "Agent skill that recaps recent work and separates verified results, unproven claims, and proposals so project progress stays explicit.",
+      "title": "Recap a Coding Agent Session Without False Done Claims",
+      "description": "AI coding agent session recap skill that reviews recent conversation rounds and separates verified work, unproven claims, and proposals without reading stored transcripts.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "project-progress",
         "coding-agent",
+        "session-recap",
         "work-summary",
         "codex",
         "claude-code"
