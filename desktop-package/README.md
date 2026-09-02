@@ -1,6 +1,14 @@
-# desktop-package
+# Package an AI Work Session into a Reviewable Desktop Folder
 
-**Turns a finished chat into one reviewable folder on your Desktop — and runs five checks to prove every file actually landed.**
+**Turns an AI work session into one reviewable folder on your Desktop — and runs five checks to prove every file actually landed.**
+
+## Quick answers
+
+- **What is desktop-package?** An AI work session packaging skill for human review: it turns the session's useful outputs into one standalone Desktop folder a cold reader can understand without the chat.
+- **What goes into the folder?** Copies of files produced during the session, distilled decisions and findings that existed only in the conversation, and a `START-HERE.md` or `📖 先看这个.md` manifest.
+- **Does it move or reorganize existing files?** No. It adds one folder and copies by default; it only moves loose Desktop files when the user explicitly asks, and asks before merging into a same-topic folder.
+- **How does it verify delivery?** It checks manifest-to-file agreement, broken links, empty files, byte-for-byte copy integrity, and whether the destination is the user's real Desktop rather than a sandbox.
+- **Is this an AI-session handoff?** No. The package is for people to review; use `conversation-package` when a future AI session must resume the work.
 
 ## What it does
 
@@ -27,7 +35,7 @@ touches your existing Desktop items.
 ## Install
 
 ```
-npx skills add m1nga/skills@desktop-package
+npx skills add m1nga/desktop-package
 ```
 
 ## Example

@@ -36,14 +36,16 @@
     },
     {
       "name": "desktop-package",
-      "title": "Package a Finished AI Work Session for Review",
-      "description": "Agent skill that turns a finished work session into one verified, reviewable Desktop folder a cold reader can understand.",
+      "title": "Package an AI Work Session into a Reviewable Desktop Folder",
+      "description": "AI work session packaging skill that copies produced files and distills decisions into one Desktop folder for human review, then verifies files, links, copy integrity, and delivery.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
-        "workflow",
-        "documentation",
-        "handoff",
+        "ai-workflow",
+        "session-documentation",
+        "artifact-management",
+        "desktop-folder",
+        "human-review",
         "codex",
         "claude-code"
       ]
