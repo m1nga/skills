@@ -52,15 +52,16 @@
     },
     {
       "name": "diagnose-project-rebuild",
-      "title": "Diagnose a Confused Project Before Rebuilding",
-      "description": "Agent skill for diagnosing confused, inherited, or repeatedly rebuilt projects before deciding to recover, repair, continue, or rebuild.",
+      "title": "Decide Whether to Repair or Rebuild a Confused Project",
+      "description": "Agent skill for an evidence-based project rebuild decision: diagnose confused, inherited, or repeatedly rebuilt work before choosing recovery, repair, or a clean rebuild.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "project-recovery",
-        "project-management",
-        "software-rebuild",
-        "decision-making",
+        "project-diagnosis",
+        "project-rebuild",
+        "software-rewrite",
+        "decision-support",
         "codex",
         "claude-code"
       ]

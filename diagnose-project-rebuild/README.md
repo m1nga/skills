@@ -1,6 +1,18 @@
-# diagnose-project-rebuild
+# Decide Whether to Repair or Rebuild a Confused Project
 
-Before you rewrite the project, get a diagnosis: six routes, one bottleneck, and a stated confidence with the evidence that would flip it.
+Make an evidence-based project rebuild decision before touching the project: diagnose what is
+actually broken, then recover, clarify, repair, rebuild, continue, or hold.
+
+## The rebuild decision in 30 seconds
+
+- **Should you rewrite a confused project from scratch?** Not by default. Rebuild only when the
+  direction has been replaced or active context is too contaminated to repair safely.
+- **What does the diagnosis return?** One primary route, one current bottleneck, one bounded
+  intervention, a rough confidence percentage, and the evidence most likely to overturn the call.
+- **What stays protected?** Fragile evidence is preserved before interpretation, and no ambiguous
+  file, repository, or product is deleted or broadly migrated without target-specific authority.
+- **How is a clean rebuild verified?** A fresh reviewer checks the new foundation; the author does
+  not certify the files or decisions it just created.
 
 ## What it does
 
@@ -29,7 +41,7 @@ belongs to `map-product-system`.
 ## Install
 
 ```
-npx skills add m1nga/skills@diagnose-project-rebuild
+npx skills add m1nga/diagnose-project-rebuild
 ```
 
 ## Example
