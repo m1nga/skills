@@ -68,13 +68,16 @@
     },
     {
       "name": "experience-pack",
-      "title": "Carry Project Lessons Forward Without Carrying Dead Decisions",
-      "description": "Agent skill that preserves reusable project lessons across rebuilds while preventing stale decisions and context from contaminating new work.",
+      "title": "Build a Project Lessons-Learned Log Without Carrying Dead Decisions",
+      "description": "Agent skill for project lessons learned: records incidents in an EXPERIENCE.md ledger, distills reusable lessons, and prevents stale decisions from contaminating project memory.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "project-memory",
-        "knowledge-management",
+        "project-lessons",
+        "lessons-learned",
+        "project-retrospective",
+        "incident-learning",
         "project-rebuild",
         "codex",
         "claude-code"
