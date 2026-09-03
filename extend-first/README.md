@@ -1,7 +1,20 @@
-# extend-first
+# Avoid Duplicate Agent Skills Before Building Another One
 
-**The librarian at the door: before you build skill #24, find out that skill #11
-already does it.**
+Before you build another agent skill, check the skills you already own and get
+one evidence-based verdict: **EXTEND**, **COMPOSE**, or **BUILD NEW**.
+
+## Quick answers
+
+- **What problem does it solve?** It exposes forgotten overlap before duplicate
+  agent skills are built with competing trigger surfaces.
+- **What does it return?** Exactly one short verdict: extend one existing skill,
+  compose two existing skills, or build a genuinely separate skill.
+- **How does it compare candidates?** By the problem solved, input/output shape,
+  and judgment-versus-execution nature — never by names or keyword similarity.
+- **Does it create or edit skills?** No. It inventories and recommends; the
+  actual authoring remains a separate, user-controlled step.
+- **Can the check be overridden?** Yes. “Build it anyway” ends the gate in the
+  same turn without relitigating the decision.
 
 ## The problem it actually solves
 
@@ -47,7 +60,7 @@ back.
 ## Install
 
 ```bash
-npx skills add m1nga/skills@extend-first
+npx skills add m1nga/extend-first
 ```
 
 ## Example
@@ -66,11 +79,11 @@ npx skills add m1nga/skills@extend-first
 
 ## Works well with
 
-- [idea-probe](../idea-probe/) — the sibling gate for everything that *isn't* a
+- [idea-probe](https://github.com/m1nga/idea-probe/) — the sibling gate for everything that *isn't* a
   skill: product, site, and feature ideas get persona wind-tunneling there. If
   your idea is a skill, extend-first checks the shelf first; if it survives as
   BUILD NEW and you want the concept itself tested, idea-probe is next.
-- [scenario-probe](../scenario-probe/) — after a BUILD NEW verdict, the drafted
+- [scenario-probe](https://github.com/m1nga/scenario-probe/) — after a BUILD NEW verdict, the drafted
   boundary clause and the eventual description should be wind-tunneled before
   release. extend-first prevents overlap at birth; scenario-probe catches what
   slipped through.
@@ -104,4 +117,9 @@ Before release, this skill went through an 8-scenario wind tunnel — 5 personas
 
 > **Caught in the tunnel:** on "make me a skill…", the stock skill-creator claims the same sentence — and a model that jumps straight to authoring skips the duplicate check entirely, which is this skill's whole reason to exist. The description now states its position explicitly: *runs BEFORE skill-authoring tools — verdict first, then build.* The probe also caught the empty-shelf edge: a reachable-but-bare shelf is now an instant one-line BUILD NEW, never a nag for directory paths.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
+
+## Author
+
+Built and maintained by [Ming](https://github.com/m1nga). The design notes
+above explain the real problem and tradeoffs that shaped this skill.

@@ -85,14 +85,15 @@
     },
     {
       "name": "extend-first",
-      "title": "Check Existing Skills Before Building Another One",
-      "description": "Agent skill that searches what you already have before a new skill is built, then decides whether to extend, compose, or create.",
+      "title": "Avoid Duplicate Agent Skills Before Building Another One",
+      "description": "Agent skill that checks existing skills before creation, then returns an evidence-based EXTEND, COMPOSE, or BUILD NEW verdict to avoid duplicate agent skills.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "skill-discovery",
-        "reuse",
-        "ai-agents",
+        "skill-reuse",
+        "skill-authoring",
+        "duplicate-prevention",
         "codex",
         "claude-code"
       ]
