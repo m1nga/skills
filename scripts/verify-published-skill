@@ -32,7 +32,11 @@ install_root="$(mktemp -d "${TMPDIR:-/tmp}/verify-${skill}.XXXXXX")"
 trap 'rm -rf "$install_root"' EXIT
 
 set +e
-install_output="$(cd "$install_root" && NO_COLOR=1 npx skills add "$target" --list </dev/null 2>&1)"
+install_output="$(
+  cd "$install_root" \
+    && DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 NO_COLOR=1 \
+      npx skills add "$target" --list </dev/null 2>&1
+)"
 install_status=$?
 set -e
 if (( install_status != 0 )); then

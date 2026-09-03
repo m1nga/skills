@@ -105,7 +105,9 @@ public product page. Treat discoverability as an evidence problem:
    - `LICENSE` and accurate repository metadata;
    - the canonical direct install command.
 8. Confirm the publisher's `npx skills add <owner>/<skill-name> --list` check found exactly the
-   intended skill. Rerun it manually only when diagnosing a failed release receipt.
+   intended skill. Internal verification must set `DISABLE_TELEMETRY=1` or `DO_NOT_TRACK=1` so it
+   does not inflate the public skills.sh install count. Rerun it manually only when diagnosing a
+   failed release receipt, with the same telemetry guard.
 9. Check the repository's exact-name search result and skills directory presence. Record
    `not indexed yet` as a valid observation, not a release failure. Do not open third-party issues,
    request indexing, or create promotional posts without owner authority.
@@ -132,6 +134,11 @@ Use the monitor's persisted source cursor and remote evidence. For every detecte
 
 The monitoring loop may repair publication drift. It may not silently rewrite the product's
 purpose, author story, claims, protected release policy, or the tests that define readiness.
+
+Treat GitHub clone counts as operational diagnostics, not audience counts: release scripts,
+GitHub Actions checkout, Skills CLI discovery, and other automated fetches can all increase clones
+and apparent unique cloners. Use stars, forks, page views, referrers, and telemetry-clean external
+install deltas as growth evidence, while still stating what each signal cannot identify.
 
 ## Report completion
 
