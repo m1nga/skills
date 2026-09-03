@@ -3,8 +3,8 @@
   "products": [
     {
       "name": "coffee-brewing",
-      "title": "Dial In Espresso and V60 Pour-Over Coffee",
-      "description": "AI home coffee dial-in skill that reads bean photos, espresso shot data, and taste feedback to tune grind, ratio, temperature, and time for espresso and V60.",
+      "title": "Coffee Brewing Coach — Get Exact Brew Parameters",
+      "description": "Coffee brewing coach that reads bean or espresso photos and taste feedback, then gives exact grind, ratio, temperature, and time settings for the next brew.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -21,8 +21,8 @@
     },
     {
       "name": "conclude-rounds",
-      "title": "Recap a Coding Agent Session Without False Done Claims",
-      "description": "AI coding agent session recap skill that reviews recent conversation rounds and separates verified work, unproven claims, and proposals without reading stored transcripts.",
+      "title": "Coding Session Recap — See What Is Done, Unverified, and Next",
+      "description": "Coding session recap that reviews the current conversation and separates completed work, unverified claims, open decisions, and the next useful action.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -36,8 +36,8 @@
     },
     {
       "name": "desktop-package",
-      "title": "Package an AI Work Session into a Reviewable Desktop Folder",
-      "description": "Agent skill for AI work session packaging that copies produced files and distills decisions into one Desktop folder for human review, then verifies files, links, copy integrity, and delivery.",
+      "title": "AI Work Review Pack — Collect Files and Decisions in One Folder",
+      "description": "AI work review pack that collects session files and decisions into one Desktop folder, then verifies the package is complete, linked, and ready for human review.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -52,8 +52,8 @@
     },
     {
       "name": "diagnose-project-rebuild",
-      "title": "Decide Whether to Repair or Rebuild a Confused Project",
-      "description": "Agent skill for an evidence-based project rebuild decision: diagnose confused, inherited, or repeatedly rebuilt work before choosing recovery, repair, or a clean rebuild.",
+      "title": "Project Rebuild Advisor — Know Whether to Repair, Recover, or Start Over",
+      "description": "Project rebuild advisor that inspects a confused or inherited project and tells you whether to recover, clarify, repair, rebuild, continue, or stop.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -68,8 +68,8 @@
     },
     {
       "name": "experience-pack",
-      "title": "Build a Project Lessons-Learned Log Without Carrying Dead Decisions",
-      "description": "Agent skill for project lessons learned: records incidents in an EXPERIENCE.md ledger, distills reusable lessons, and prevents stale decisions from contaminating project memory.",
+      "title": "Project Lessons Log — Reuse Lessons Without Carrying Old Decisions",
+      "description": "Project lessons log that records costly incidents, distills reusable lessons, and prevents expired decisions from contaminating the next project.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -85,8 +85,8 @@
     },
     {
       "name": "extend-first",
-      "title": "Avoid Duplicate Agent Skills Before Building Another One",
-      "description": "Agent skill that checks existing skills before creation, then returns an evidence-based EXTEND, COMPOSE, or BUILD NEW verdict to avoid duplicate agent skills.",
+      "title": "Skill Reuse Checker — Find What to Reuse Before Building a Duplicate",
+      "description": "Skill reuse checker that searches your existing capabilities and tells you what to extend, combine, or build so you do not create a duplicate.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -100,8 +100,8 @@
     },
     {
       "name": "grilling",
-      "title": "Pressure-Test a Plan Before Building",
-      "description": "Agent skill that interviews you one question at a time until a build plan is explicit, scoped, and clear about what it will not do.",
+      "title": "Build Plan Interviewer — Turn a Vague Idea into a Build-Ready Plan",
+      "description": "Build plan interviewer that asks one focused question at a time and turns a vague idea into a scoped, build-ready plan with explicit non-goals.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -115,8 +115,8 @@
     },
     {
       "name": "idea-probe",
-      "title": "Test a Product Idea Before You Build It",
-      "description": "Agent skill that wind-tunnels an unbuilt product idea across diverse user scenarios, ranks the risks, and produces a stronger one-pager.",
+      "title": "Product Idea Stress Test — Find What Will Break Before You Build",
+      "description": "Product idea stress test that simulates first contact across varied users, exposes the biggest risks, and returns a stronger one-page concept before you build.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -129,8 +129,8 @@
     },
     {
       "name": "iteration-close",
-      "title": "Close a Development Iteration Without Losing the Truth",
-      "description": "Agent skill that records decisions, removes superseded artifacts safely, and proves a cold reader can continue the project.",
+      "title": "Iteration Cleanup & Handoff — Preserve Decisions and Remove Dead Work",
+      "description": "Iteration cleanup and handoff that preserves current decisions, removes superseded work safely, verifies a cold takeover, and prepares the next milestone.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -158,8 +158,8 @@
     },
     {
       "name": "loop-system-architect",
-      "title": "Turn Repeated Agent Work Into a Reliable Closed Loop",
-      "description": "Agent skill for designing autonomous workflows with explicit goals, persistent state, verification, recovery, and controlled improvement.",
+      "title": "Agent Loop Builder — Turn Repeated Work into a Reliable Self-Checking System",
+      "description": "Agent loop builder that turns repeated work into an autonomous workflow with persistent state, failure recovery, and independent verification.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -173,8 +173,8 @@
     },
     {
       "name": "map-product-system",
-      "title": "Map a Product End to End",
-      "description": "Agent skill that maps user journeys, capabilities, data, responsibilities, failure paths, gaps, and delivery slices across a whole product.",
+      "title": "Product System Mapper — See Journeys, Capabilities, Gaps, and Ownership",
+      "description": "Product system mapper that turns ideas, documents, or code into an end-to-end map of journeys, capabilities, data, ownership, gaps, and delivery slices.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -188,8 +188,8 @@
     },
     {
       "name": "mixtape",
-      "title": "Make a Personal Playlist That Actually Imports",
-      "description": "AI playlist skill that turns moods, seed songs, or listening history into a verified Apple Music/Soundiiz import, then iterates one stable playlist without broken matches or duplicate versions.",
+      "title": "Playlist Builder — Get a Verified Playlist You Can Actually Import",
+      "description": "Playlist builder that turns a mood, scene, or seed songs into a verified playlist you can import to Apple Music, Spotify, YouTube Music, or other services.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -206,8 +206,8 @@
     },
     {
       "name": "one-sentence",
-      "title": "Explain a Concept in One Memorable Sentence",
-      "description": "Agent skill that turns a concept, introduction, tagline, or positioning idea into one sentence a stranger can repeat tomorrow.",
+      "title": "One-Sentence Explainer — Make Any Idea Clear and Memorable",
+      "description": "One-sentence explainer that turns a concept, introduction, tagline, or position into one clear line a stranger can understand and remember.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -221,8 +221,8 @@
     },
     {
       "name": "product-experience-officer",
-      "title": "Experience Your Product as a First-Time User",
-      "description": "Agent skill that tests an unreleased product as a zero-context user, then reports the experience with prioritized fixes.",
+      "title": "First-Time User Tester — See Where Your Product Confuses New Users",
+      "description": "First-time user tester that experiences your product with no prior context and returns a severity-ranked report showing what confuses users and what to fix.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -236,8 +236,8 @@
     },
     {
       "name": "product-5w",
-      "title": "Answer Who, What, When, How, Why Before You Ship",
-      "description": "Agent skill that interrogates a product's definition with five questions — asking past behavior, never future opinion — and returns a verdict with its validation debt.",
+      "title": "Product Definition Interview — Clarify Who It Is For and Why It Matters",
+      "description": "Product definition interviewer that clarifies who the product serves, what job it does, when and how it is used, why it matters, and what remains unproven.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -251,8 +251,8 @@
     },
     {
       "name": "prompt-craft",
-      "title": "Build Better Prompts for Marketing Work",
-      "description": "Agent skill that turns rough marketing ideas into reusable AI prompts grounded in brand voice, channel constraints, and source intent.",
+      "title": "Marketing Prompt Builder — Turn Rough Ideas into Brand-Ready AI Instructions",
+      "description": "Marketing prompt builder that turns rough ideas or dictated notes into reusable AI instructions grounded in your brand voice, channel, audience, and source material.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -266,8 +266,8 @@
     },
     {
       "name": "prompt-distill",
-      "title": "Turn a Rambling Draft Into a Clear Reusable Prompt",
-      "description": "Agent skill that cleans up dictated, mixed-language, or self-correcting input while preserving the user's meaning and directness.",
+      "title": "Prompt Cleaner — Turn Rambling Input into a Clear Reusable Prompt",
+      "description": "Prompt cleaner that turns rambling, dictated, or mixed-language input into a clear reusable prompt while preserving your intent, priorities, and voice.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -280,8 +280,8 @@
     },
     {
       "name": "publish-skill-product",
-      "title": "Publish a Finished Skill as Its Own Searchable Product",
-      "description": "Agent skill that publishes a finished skill as an independent GitHub product with its own story, install path, SEO/GEO metadata, and verification.",
+      "title": "Skill Publisher — Turn a Finished Skill into a Searchable GitHub Product",
+      "description": "Skill publisher that turns one finished skill into a searchable GitHub product with a direct install path, clear UI metadata, truthful evidence, and release verification.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -295,8 +295,8 @@
     },
     {
       "name": "scenario-probe",
-      "title": "Find How an AI Skill or Prompt Will Fail Before It Ships",
-      "description": "Agent skill that stress-tests SKILL.md files, system prompts, and agent rules across persona and scenario simulations before release.",
+      "title": "AI Instruction Stress Test — Find Trigger and Behavior Failures Before Release",
+      "description": "AI instruction stress test that simulates users and environments to expose trigger misses, skill collisions, stale assumptions, and silent behavior failures before release.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -309,8 +309,8 @@
     },
     {
       "name": "side-quest",
-      "title": "Park a Side Thought Without Breaking Your Work Flow",
-      "description": "Agent skill that captures a mid-task thought, sends bounded background work to a sub-agent, and returns the result without losing the main thread.",
+      "title": "Side Task Assistant — Capture Side Work Without Losing Your Main Thread",
+      "description": "Side task assistant that captures bounded background work without interrupting the main conversation, then returns a result or an honest queued status.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -324,8 +324,8 @@
     },
     {
       "name": "thinking-partner",
-      "title": "Think Through Ambiguous Decisions Without Fake Certainty",
-      "description": "Agent skill for framing ambiguous questions, keeping real alternatives open, and converging only when evidence or values support a decision.",
+      "title": "Decision Thinking Partner — Clarify Ambiguous Choices Without Fake Certainty",
+      "description": "Decision thinking partner that clarifies ambiguous choices, preserves real alternatives, and recommends a direction only when evidence or values support it.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -338,8 +338,8 @@
     },
     {
       "name": "validate-evaluator",
-      "title": "Validate an LLM Judge Against Human Labels",
-      "description": "Agent skill that measures TPR, TNR, bias, and uncertainty so an LLM evaluator can be trusted before it scores production outputs.",
+      "title": "LLM Judge Validator — Measure Whether AI Scores Match Human Labels",
+      "description": "LLM judge validator that compares AI ratings with human labels, measures TPR and TNR, corrects bias, and reports whether production scores can be trusted.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -353,8 +353,8 @@
     },
     {
       "name": "voice-extractor",
-      "title": "Measure and Preserve Your Real Writing Voice",
-      "description": "Agent skill that extracts a measurable writing fingerprint from real samples and checks drafts against it so AI tells do not take over.",
+      "title": "Writing Voice Matcher — Make AI Drafts Sound Like You",
+      "description": "Writing voice matcher that extracts a measurable fingerprint from your own samples and checks AI drafts so they sound like you instead of generic model prose.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -368,8 +368,8 @@
     },
     {
       "name": "write-judge-prompt",
-      "title": "Build a Reliable Pass-Fail LLM Judge Prompt",
-      "description": "Agent skill that turns one subjective failure mode and real labeled traces into a binary Pass-Fail LLM evaluator prompt.",
+      "title": "LLM Judge Prompt Builder — Turn One Quality Rule into a Pass/Fail Evaluator",
+      "description": "LLM judge prompt builder that turns one subjective quality standard and labeled examples into a reliable binary Pass/Fail evaluator prompt.",
       "topics": [
         "m1nga-skill",
         "agent-skill",

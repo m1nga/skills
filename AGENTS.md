@@ -27,6 +27,13 @@ were updated.
 ## Product-page rules
 
 - One skill equals one standalone repository and one primary search intent.
+- Treat the skill name, directory, and repository slug as stable machine identifiers. Keep them
+  unchanged unless the user explicitly approves a migration.
+- Use `Functional identity — Concrete outcome` for the product title and README H1.
+- Give every skill a two-to-five-word plain-language `agents/openai.yaml` display name and a
+  25–64 character short description that says what it does or produces.
+- A stranger who sees only the display name and short description should understand the use case
+  and expected result within three seconds; internal metaphors alone do not pass.
 - Lead with the user's problem and outcome, not with Ming's collection or skill
   taxonomy.
 - The repository owner and a short author section establish who made it; the

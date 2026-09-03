@@ -1,4 +1,4 @@
-# iteration-close
+# Iteration Cleanup & Handoff — Preserve Decisions and Remove Dead Work
 
 Close an iteration so nothing is lost and nothing dead survives — and prove, with an actual test, that a stranger could take the repo over.
 

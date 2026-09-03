@@ -1,4 +1,4 @@
 interface:
-  display_name: "Grilling"
-  short_description: "Relentless plan interview that ends in a locked, scoped plan"
+  display_name: "Build Plan Interviewer"
+  short_description: "Turn a vague build idea into a locked, build-ready plan"
   default_prompt: "Use $grilling to interview the user one question at a time (each with a recommended answer), reframe the problem in a fresh sentence, and produce a locked plan with explicit non-goals, checkpoints, and drift triggers before any execution begins."

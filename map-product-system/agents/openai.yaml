@@ -1,4 +1,4 @@
 interface:
-  display_name: "Product System Architect"
-  short_description: "Map the whole product from journeys to responsibilities, with evidence labels"
+  display_name: "Product System Mapper"
+  short_description: "Map journeys, capabilities, gaps, data, and ownership"
   default_prompt: "Use $map-product-system to turn this product idea, document set, or codebase into an evidence-labeled end-to-end system map with gaps, decisions, and delivery slices."

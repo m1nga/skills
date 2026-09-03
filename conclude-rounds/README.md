@@ -1,4 +1,4 @@
-# Recap a Coding Agent Session Without False Done Claims
+# Coding Session Recap — See What Is Done, Unverified, and Next
 
 A read-only AI coding agent session recap skill that reviews the current conversation and refuses to let "I wrote the code" pass as "the code works".
 

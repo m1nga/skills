@@ -1,4 +1,4 @@
-# Avoid Duplicate Agent Skills Before Building Another One
+# Skill Reuse Checker — Find What to Reuse Before Building a Duplicate
 
 Before you build another agent skill, check the skills you already own and get
 one evidence-based verdict: **EXTEND**, **COMPOSE**, or **BUILD NEW**.

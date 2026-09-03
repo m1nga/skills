@@ -1,4 +1,4 @@
-# Decide Whether to Repair or Rebuild a Confused Project
+# Project Rebuild Advisor — Know Whether to Repair, Recover, or Start Over
 
 Make an evidence-based project rebuild decision before touching the project: diagnose what is
 actually broken, then recover, clarify, repair, rebuild, continue, or hold.

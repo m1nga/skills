@@ -1,4 +1,4 @@
-# Package an AI Work Session into a Reviewable Desktop Folder
+# AI Work Review Pack — Collect Files and Decisions in One Folder
 
 **Turns an AI work session into one reviewable folder on your Desktop — and runs five checks to prove every file actually landed.**
 

@@ -1,4 +1,4 @@
-# grilling
+# Build Plan Interviewer — Turn a Vague Idea into a Build-Ready Plan
 
 An interview protocol that refuses to start building until your plan survives questioning — one question at a time, each arriving with a recommended answer, ending in a plan that states what you are NOT doing.
 

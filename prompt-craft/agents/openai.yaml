@@ -1,4 +1,4 @@
 interface:
-  display_name: "Prompt Craft"
-  short_description: "Marketing prompt workshop grounded in your brand context"
+  display_name: "Marketing Prompt Builder"
+  short_description: "Turn rough ideas into brand-ready marketing prompts"
   default_prompt: "Use $prompt-craft to turn my rough marketing idea, dictated notes, or feedback into an AI-ready prompt grounded in my brand context, with a verification summary of what was preserved, added, and guessed."

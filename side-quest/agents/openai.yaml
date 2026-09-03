@@ -1,4 +1,4 @@
 interface:
-  display_name: "Side Quest"
-  short_description: "Park a mid-flow thought; it gets worked in the background — or queued honestly when the engine can't background."
+  display_name: "Side Task Assistant"
+  short_description: "Capture side work without losing your main thread"
   default_prompt: "Use $side-quest to capture this side thought and keep my main thread going."

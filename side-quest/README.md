@@ -1,4 +1,4 @@
-# side-quest
+# Side Task Assistant — Capture Side Work Without Losing Your Main Thread
 
 **Park the thought, keep your flow — a background agent does the side quest
 while your main thread never notices.**

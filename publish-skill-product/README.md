@@ -1,4 +1,4 @@
-# Publish a Finished Skill as Its Own Searchable Product
+# Skill Publisher — Turn a Finished Skill into a Searchable GitHub Product
 
 Turn one finished agent skill into one independent GitHub product: its own repository, problem-led
 page, real origin story, direct install command, SEO/GEO metadata, and verified release evidence.

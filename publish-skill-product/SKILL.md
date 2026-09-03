@@ -52,6 +52,22 @@ Lead with the problem, not the author's collection, taxonomy, or biography. Keep
 but secondary. Do not invent a founder story, usage numbers, quotations, statistics, testimonials,
 search rankings, or test results.
 
+Keep the machine identity stable and make every human-facing surface direct:
+
+- `name`, the directory, and the repository slug are stable install identifiers. Do not rename
+  them merely for SEO; an explicit migration plan is required.
+- Use `Functional identity — Concrete outcome` for the product title and README H1. The identity
+  says what the skill is; the outcome says what becomes easier or finished.
+- Set `agents/openai.yaml` `display_name` to two to five plain-language words. Do not rely on an
+  internal metaphor, project codename, or bare slug to explain the skill.
+- Set `short_description` to 25–64 characters and state the input, action, or result plainly.
+- Set the repository description to a factual 50–200 character input-to-result explanation.
+- Keep the manifest title and description, README H1, and `agents/openai.yaml` aligned.
+
+Apply a three-second stranger test before release: after seeing only the display name and short
+description, can someone say what this does, when they would use it, and what result they receive?
+If not, the naming is not ready even when the internal slug is accurate.
+
 Read [SEO/GEO criteria](references/seo-geo-criteria.md) before writing or materially changing a
 public product page. Treat discoverability as an evidence problem:
 
@@ -64,7 +80,8 @@ public product page. Treat discoverability as an evidence problem:
 
 ## Release the product
 
-1. Validate `SKILL.md`, bundled resources, and `agents/openai.yaml`.
+1. Validate `SKILL.md`, bundled resources, and `agents/openai.yaml`, including the direct naming
+   contract and the 25–64 character UI description limit.
 2. Run the repository's product-page audit. If none exists, run
    `scripts/audit_product_page.py <skill-dir> --product-manifest <manifest>` from this skill.
 3. For a new public skill, run a trigger/body probe when `scenario-probe` is available. Fix release

@@ -1,4 +1,4 @@
-# one-sentence
+# One-Sentence Explainer — Make Any Idea Clear and Memorable
 
 **Ask about a concept, get one sentence a stranger could repeat tomorrow.**
 

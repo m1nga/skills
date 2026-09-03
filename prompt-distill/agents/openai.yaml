@@ -1,4 +1,4 @@
 interface:
-  display_name: "Prompt Distill"
-  short_description: "Clean rough input into a reusable prompt without overengineering"
+  display_name: "Prompt Cleaner"
+  short_description: "Turn rambling input into a clear reusable prompt"
   default_prompt: "Use $prompt-distill to turn this rough input into a clear, reusable prompt while preserving my meaning and voice."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "One Sentence"
-  short_description: "Explain a concept or pitch anything in one crafted sentence"
+  display_name: "One-Sentence Explainer"
+  short_description: "Explain or pitch anything in one memorable sentence"
   default_prompt: "Use $one-sentence to answer my question with one crafted sentence — no paragraph."

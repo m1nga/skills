@@ -1,4 +1,4 @@
-# loop-system-architect
+# Agent Loop Builder — Turn Repeated Work into a Reliable Self-Checking System
 
 Turns "I keep running this prompt by hand" into a loop that executes, proves its result, and recovers after interruption — with a linter that fails contracts that only look complete.
 

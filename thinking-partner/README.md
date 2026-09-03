@@ -1,4 +1,4 @@
-# thinking-partner
+# Decision Thinking Partner — Clarify Ambiguous Choices Without Fake Certainty
 
 Routes ambiguous requests to the question actually being decided — and refuses to fake convergence when the evidence isn't there.
 

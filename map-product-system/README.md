@@ -1,4 +1,4 @@
-# map-product-system
+# Product System Mapper — See Journeys, Capabilities, Gaps, and Ownership
 
 One traceable map from user intent to system outcome — built from whatever you actually have: a rough idea, a doc pile, or a codebase.
 

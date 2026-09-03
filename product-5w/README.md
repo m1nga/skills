@@ -1,4 +1,4 @@
-# product-5w
+# Product Definition Interview — Clarify Who It Is For and Why It Matters
 
 **Five questions your product must answer — who, what, when, how, why — with
 every answer tagged by how you actually know it.**

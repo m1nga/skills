@@ -1,4 +1,4 @@
 interface:
-  display_name: "Desktop Package"
-  short_description: "Package this session into one reviewable Desktop folder, delivery verified"
+  display_name: "AI Work Review Pack"
+  short_description: "Collect session files and decisions in one review-ready folder"
   default_prompt: "Use $desktop-package to distill this session into one new Desktop folder — standalone documents plus copies of produced files, a fixed entry file a cold reader can start from — then run the five delivery checks (manifest match, broken links, empty shells, copy integrity, real-desktop confirmation) before reporting done."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Loop System Architect"
-  short_description: "Design, audit, and operationalize reliable agent loops with independent verification"
+  display_name: "Agent Loop Builder"
+  short_description: "Turn repeated agent work into a reliable self-checking loop"
   default_prompt: "Use $loop-system-architect to turn this workflow into an executable, verifiable loop with a machine-readable contract, persistent state, and an independent verifier."

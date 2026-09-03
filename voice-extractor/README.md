@@ -1,4 +1,4 @@
-# voice-extractor
+# Writing Voice Matcher — Make AI Drafts Sound Like You
 
 **Measures your writing habits from 5-20 real samples, stores them as numbers with tolerance bands, and blocks drafts that leave the bands.**
 

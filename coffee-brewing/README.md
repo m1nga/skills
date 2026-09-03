@@ -1,4 +1,4 @@
-# Dial In Espresso and V60 Pour-Over Coffee
+# Coffee Brewing Coach — Get Exact Brew Parameters
 
 **An AI home-barista skill that reads your shot's numbers before it believes your tongue.**
 

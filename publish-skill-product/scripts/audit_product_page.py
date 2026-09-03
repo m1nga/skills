@@ -28,6 +28,16 @@ def frontmatter_name(text: str) -> str | None:
     return match.group(1).strip().strip('"\'') if match else None
 
 
+def yaml_interface_field(text: str, field: str) -> str | None:
+    match = re.search(rf"^\s{{2}}{re.escape(field)}:\s*(.+?)\s*$", text, flags=re.MULTILINE)
+    return match.group(1).strip().strip('"\'') if match else None
+
+
+def readme_h1(text: str) -> str | None:
+    match = re.search(r"^#\s+(.+?)\s*$", text, flags=re.MULTILINE)
+    return match.group(1) if match else None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("skill_dir", type=Path)
@@ -48,6 +58,7 @@ def main() -> int:
 
     skill_text = (skill_dir / "SKILL.md").read_text(encoding="utf-8") if required[0].is_file() else ""
     readme = (skill_dir / "README.md").read_text(encoding="utf-8") if required[1].is_file() else ""
+    openai_yaml = required[2].read_text(encoding="utf-8") if required[2].is_file() else ""
 
     if frontmatter_name(skill_text) != name:
         errors.append(f"SKILL.md name must equal directory name: {name}")
@@ -76,6 +87,21 @@ def main() -> int:
         errors.append(f"product description must be 50-200 characters (found {len(description)})")
     if not isinstance(topics, list) or not 3 <= len(topics) <= 20:
         errors.append("product must have 3-20 focused topics")
+    if title and readme_h1(readme) != title:
+        errors.append("README H1 must exactly match the product manifest title")
+
+    display_name = yaml_interface_field(openai_yaml, "display_name")
+    short_description = yaml_interface_field(openai_yaml, "short_description")
+    if not display_name:
+        errors.append("agents/openai.yaml must define interface.display_name")
+    elif not 2 <= len(re.findall(r"[\w&]+", display_name)) <= 5:
+        errors.append("display_name must use 2-5 plain-language words")
+    if not short_description:
+        errors.append("agents/openai.yaml must define interface.short_description")
+    elif not 25 <= len(short_description) <= 64:
+        errors.append(
+            f"short_description must be 25-64 characters (found {len(short_description)})"
+        )
 
     sections = section_names(readme)
     for label, alternatives in SECTION_GROUPS.items():

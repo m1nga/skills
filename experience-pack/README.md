@@ -1,4 +1,4 @@
-# Build a Project Lessons-Learned Log Without Carrying Dead Decisions
+# Project Lessons Log — Reuse Lessons Without Carrying Old Decisions
 
 Record project lessons while they are fresh, then distill only what another
 project can safely reuse.

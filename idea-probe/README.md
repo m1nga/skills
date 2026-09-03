@@ -1,4 +1,4 @@
-# idea-probe
+# Product Idea Stress Test — Find What Will Break Before You Build
 
 **Wind-tunnel the idea before you build it — simulated by the users who are
 least like you.**

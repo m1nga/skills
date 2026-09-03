@@ -1,4 +1,4 @@
 interface:
-  display_name: "Coffee Dial-in Coach"
-  short_description: "Photo-to-parameters coffee brewing with shot-by-shot dial-in"
+  display_name: "Coffee Brewing Coach"
+  short_description: "Get exact grind, ratio, temperature, and time from photos"
   default_prompt: "Use $coffee-brewing to read the coffee photos or taste report, check ~/.coffee/ for registered hardware and known beans, give one concrete grind/temperature/ratio/time recommendation, and converge one variable per shot using time-plus-taste diagnosis."

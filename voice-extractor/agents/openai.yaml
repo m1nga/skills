@@ -1,4 +1,4 @@
 interface:
-  display_name: "Voice Extractor"
-  short_description: "Fingerprint the user's real writing voice and gate drafts against it"
+  display_name: "Writing Voice Matcher"
+  short_description: "Match AI drafts to your real writing voice"
   default_prompt: "Use $voice-extractor to extract a voice fingerprint from the user's writing samples into ~/.voice/, or check/enforce the current draft against the active fingerprint, returning rule-level violations with spans and fix hints; with no fingerprint present, run the labelled generic AI-tell check and recommend extraction."
