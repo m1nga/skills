@@ -20,7 +20,7 @@ It deliberately does not fire on "just do it" / "you decide" / 「你看着办�
 ## Install
 
 ```
-npx skills add m1nga/skills@grilling
+npx skills add m1nga/grilling
 ```
 
 ## Example
@@ -39,7 +39,7 @@ At any point, say "just decide" (or 「别问了」) and it collapses every rema
 
 ## Works well with
 
-- `thinking-partner` — for the stage before you have a build: deciding what is worth building at all. `grilling` takes over once there's a concrete thing to scope.
+- [`thinking-partner`](https://github.com/m1nga/thinking-partner) — for the stage before you have a build: deciding what is worth building at all. `grilling` takes over once there's a concrete thing to scope.
 
 ## Want a `/grill-me` alias?
 
@@ -76,4 +76,4 @@ Probed 7 scenarios across 6 personas · 4 fired correctly · 2 correctly stayed 
 
 > **"Ask me everything you need before writing code — a CLI to dedupe my photo library."** (stranger, only this skill installed) → Full walkthrough with no dead ends: interview → one-sentence reframe → locked plan whose "What we are NOT doing" section exists before the first line of code.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
