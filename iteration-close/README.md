@@ -29,7 +29,7 @@ those aren't iteration closes.
 ## Install
 
 ```
-npx skills add m1nga/skills@iteration-close
+npx skills add m1nga/iteration-close
 ```
 
 ## Example
@@ -46,9 +46,9 @@ npx skills add m1nga/skills@iteration-close
 
 ## Works well with
 
-- [`conclude-rounds`](../conclude-rounds) — recap the recent conversation first, so Phase 1 has a clean list of decisions to bank.
-- [`diagnose-project-rebuild`](../diagnose-project-rebuild) — when the repo is too tangled to close, diagnose it first; close later.
-- [`map-product-system`](../map-product-system) — the architecture note Phase 1 keeps current pairs naturally with a full product-system map.
+- [`conclude-rounds`](https://github.com/m1nga/conclude-rounds) — recap the recent conversation first, so Phase 1 has a clean list of decisions to bank.
+- [`diagnose-project-rebuild`](https://github.com/m1nga/diagnose-project-rebuild) — when the repo is too tangled to close, diagnose it first; close later.
+- [`map-product-system`](https://github.com/m1nga/map-product-system) — the architecture note Phase 1 keeps current pairs naturally with a full product-system map.
 
 ## Design notes
 
@@ -80,4 +80,4 @@ Probed 9 scenarios across 5 personas · 5 fired correctly · 2 correctly stayed 
 > **"how do I publish an npm package?"**
 > → Correctly stayed quiet. Publish-a-package questions are explicitly excluded — this skill closes iterations, it doesn't teach packaging.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
