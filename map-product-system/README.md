@@ -23,13 +23,13 @@ architecture poster.
 - 「检查用户旅程和功能分支」
 
 It does not design the runtime control loop of an autonomous workflow — that is
-[`loop-system-architect`](../loop-system-architect/). This skill covers static
+[`loop-system-architect`](https://github.com/m1nga/loop-system-architect/). This skill covers static
 architecture and responsibility contracts.
 
 ## Install
 
 ```
-npx skills add m1nga/skills@map-product-system
+npx skills add m1nga/map-product-system
 ```
 
 ## Example
@@ -47,9 +47,9 @@ npx skills add m1nga/skills@map-product-system
 
 ## Works well with
 
-- [`loop-system-architect`](../loop-system-architect/) — once the map names an
+- [`loop-system-architect`](https://github.com/m1nga/loop-system-architect/) — once the map names an
   autonomous capability, that skill designs the loop that runs it.
-- `diagnose-project-rebuild` — when the audit finds the architecture is
+- [`diagnose-project-rebuild`](https://github.com/m1nga/diagnose-project-rebuild/) — when the audit finds the architecture is
   accidental rather than incomplete, that skill decides whether to rebuild.
 
 ## Design notes
@@ -75,4 +75,4 @@ Probed 7 scenarios across 5 personas · 5 fired correctly · 1 correctly stayed 
 
 > **"看一下产品结构"** *(a five-word "take a look at the product structure")* → Fired, and stayed proportionate: the body's depth-matching rule returns a scoped look, not a nine-lens architecture report nobody asked for.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
