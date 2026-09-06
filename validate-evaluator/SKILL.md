@@ -106,12 +106,21 @@ TNR = (judge says Fail AND human says Fail) / (human says Fail)
 ```
 
 ```python
-from sklearn.metrics import confusion_matrix
+def judge_rates(human_labels, evaluator_labels):
+    human, predicted = list(human_labels), list(evaluator_labels)
+    if not human or len(human) != len(predicted):
+        raise ValueError("Need nonempty, paired human labels and API predictions")
+    if any(x not in ("Pass", "Fail") for x in human + predicted):
+        raise ValueError("Invalid/missing verdict: resolve API errors before calibration")
+    positives = human.count("Pass")
+    negatives = human.count("Fail")
+    if not positives or not negatives:
+        raise ValueError("Both human classes are required; missing rates are unknown")
+    tp = sum(h == "Pass" and e == "Pass" for h, e in zip(human, predicted))
+    tn = sum(h == "Fail" and e == "Fail" for h, e in zip(human, predicted))
+    return tp / positives, tn / negatives
 
-tn, fp, fn, tp = confusion_matrix(human_labels, evaluator_labels,
-                                   labels=['Fail', 'Pass']).ravel()
-tpr = tp / (tp + fn)
-tnr = tn / (tn + fp)
+tpr, tnr = judge_rates(human_labels, evaluator_labels)
 ```
 
 Use TPR/TNR, not Precision/Recall or raw accuracy. These two metrics directly map to the bias correction formula. Use Cohen's Kappa only for measuring agreement between two human annotators, not for judge-vs-ground-truth.
@@ -135,6 +144,9 @@ For each disagreement, determine whether to:
 
 Refine the judge prompt and re-run on the dev set. Repeat until TPR and TNR stabilize.
 
+Choose an iteration budget and acceptance threshold for the intended use before
+tuning. The targets below are starting heuristics, not universal guarantees.
+
 **Stopping criteria:**
 - **Target:** TPR > 90% AND TNR > 90%
 - **Minimum acceptable:** TPR > 80% AND TNR > 80%
@@ -153,7 +165,9 @@ Refine the judge prompt and re-run on the dev set. Repeat until TPR and TNR stab
 
 Run the judge **exactly once** on the held-out test set. Record final TPR and TNR.
 
-Do not iterate after seeing test set results. Go back to step 4 with new dev data if needed.
+If the test reveals problems, return to development; that exposed test set is no
+longer an untouched final holdout. Obtain a fresh real test set before the next
+final claim, and preserve the earlier failed measurement.
 
 ### Step 7 (Optional): Estimate True Success Rate (Rogan-Gladen Correction)
 
@@ -168,65 +182,62 @@ Where:
 - `TPR`, `TNR` = from test set measurement
 - `theta_hat` = corrected estimate of true success rate
 
-Clip to [0, 1]. Invalid when TPR + TNR - 1 is near 0 (judge is no better than random).
+Retain the raw estimate before clipping to [0, 1], and report any clipping.
+Do not apply this workflow when the denominator is non-positive or unstable near
+zero. Error rates must transfer to the production population: changes in task mix,
+language, or model require fresh validation. A balanced test set alone does not
+establish that transfer, and correction is an estimate, not known truth.
 
 **Example:**
 - Judge TPR = 0.92, TNR = 0.88
 - 500 production traces: 400 scored Pass -> p_obs = 0.80
 - theta_hat = (0.80 + 0.88 - 1) / (0.92 + 0.88 - 1) = 0.68 / 0.80 = **0.85**
-- True success rate is ~85%, not the raw 80%
+- Corrected point estimate is 85% under the stated assumptions; this is illustrative
+  arithmetic, not a measured production result.
 
 ### Step 8: Confidence Interval
 
-Compute a bootstrap confidence interval. A point estimate alone is not enough.
+Report uncertainty for the quantity actually estimated. The simple bootstrap in
+`judgy` currently resamples paired held-out labels/predictions while keeping the
+observed production pass fraction fixed. Its interval is **conditional on that
+observed production sample**, not a full interval for future production prevalence.
+The implementation was inspected in [judgy/core.py](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py).
 
-```python
-import numpy as np
+Before calling it, use `judge_rates` above, reject empty or malformed production
+predictions, and preserve sample counts. Do not coerce an API timeout, unknown
+label, or skipped trace into Fail. Resolve missing predictions or report the run
+incomplete with its error count; dropping them silently changes the measured set.
 
-def bootstrap_ci(human_labels, eval_labels, p_obs, n_bootstrap=2000):
-    """Bootstrap 95% CI for corrected success rate."""
-    n = len(human_labels)
-    estimates = []
-    for _ in range(n_bootstrap):
-        idx = np.random.choice(n, size=n, replace=True)
-        h = np.array(human_labels)[idx]
-        e = np.array(eval_labels)[idx]
+For an interval targeting population prevalence, also propagate uncertainty from
+the production sample. For independent traces this can use separate resampling of
+production predictions plus paired test observations (stratified by human class
+when that matches test sampling). Clustered/repeated conversations need a matching
+cluster design. Record the resampling design, seed, number of draws, invalid-draw
+fraction and clipping. If correction is unstable, report it as unavailable and
+collect more representative labels; do not conceal instability by silently
+discarding most draws. Even a zero-width empirical interval does not prove a
+perfect judge. This skill does not bundle a general population-CI implementation.
 
-        tp = ((h == 'Pass') & (e == 'Pass')).sum()
-        fn = ((h == 'Pass') & (e == 'Fail')).sum()
-        tn = ((h == 'Fail') & (e == 'Fail')).sum()
-        fp = ((h == 'Fail') & (e == 'Pass')).sum()
-
-        tpr_b = tp / (tp + fn) if (tp + fn) > 0 else 0
-        tnr_b = tn / (tn + fp) if (tn + fp) > 0 else 0
-        denom = tpr_b + tnr_b - 1
-
-        if abs(denom) < 1e-6:
-            continue
-        theta = (p_obs + tnr_b - 1) / denom
-        estimates.append(np.clip(theta, 0, 1))
-
-    return np.percentile(estimates, 2.5), np.percentile(estimates, 97.5)
-
-lower, upper = bootstrap_ci(test_human, test_eval, p_obs=0.80)
-print(f"95% CI: [{lower:.2f}, {upper:.2f}]")
-```
-
-Or use `judgy` (`pip install judgy`, source: https://github.com/ai-evals-course/judgy):
+For the conditional interval, use `judgy` (`pip install judgy`, source: https://github.com/ai-evals-course/judgy):
 
 ```python
 from judgy import estimate_success_rate
 
-# judgy expects 0/1 integer labels (1 = Pass, 0 = Fail)
-test_labels = [1 if l == 'Pass' else 0 for l in test_human_labels]
-test_preds = [1 if l == 'Pass' else 0 for l in test_eval_labels]
-unlabeled_preds = [1 if l == 'Pass' else 0 for l in prod_eval_labels]
+# Validate before conversion; unknown values must never become Fail.
+judge_rates(test_human_labels, test_eval_labels)
+prod_eval_labels = list(prod_eval_labels)
+if not prod_eval_labels or any(x not in ("Pass", "Fail") for x in prod_eval_labels):
+    raise ValueError("Need nonempty, complete production predictions")
+binary = {"Pass": 1, "Fail": 0}
+test_labels = [binary[x] for x in test_human_labels]
+test_preds = [binary[x] for x in test_eval_labels]
+unlabeled_preds = [binary[x] for x in prod_eval_labels]
 
 theta_hat, lower, upper = estimate_success_rate(
     test_labels, test_preds, unlabeled_preds
 )
 print(f"Corrected rate: {theta_hat:.2f}")
-print(f"95% CI: [{lower:.2f}, {upper:.2f}]")
+print(f"95% conditional bootstrap interval (production fraction fixed): [{lower:.2f}, {upper:.2f}]")
 ```
 
 ## Where Results Live
@@ -243,7 +254,9 @@ Write labels, splits, per-example predictions, and the calibration report into t
   - Production confidence intervals widen unexpectedly
 - Use ~100 labeled examples (50 Pass, 50 Fail). Below 60, confidence intervals become wide.
 - **One trusted domain expert** is the most efficient labeling path. If not feasible, have two annotators label 20-50 traces independently and resolve disagreements before proceeding.
-- **Improving TPR narrows the confidence interval more than improving TNR.** The correction divides by `(TPR + TNR - 1)`, so a low TPR shrinks the denominator and amplifies estimation errors into wide CIs.
+- **Both error rates affect uncertainty.** The denominator contains both TPR and
+  TNR. Their relative contribution also depends on prevalence and class sample
+  sizes; neither universally dominates.
 
 ## Anti-Patterns
 

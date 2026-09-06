@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "skill": "scenario-probe",
+  "reviewed_at": "2026-09-06T20:51:46.706712+00:00",
+  "source_sha256": "21cc1231e79cc4a02f8d03a979046f783c4f3161d2ce894971a46f03335541da",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicitly simulated instruction walkthroughs; not fresh independent agents or human research. Deterministic executions marked separately. Prior body context disclosed for trigger predictions.",
+    "scenarios": [
+      {
+        "request": "Probe the supplied meeting-summary instruction, including messy paraphrase, translation negative control, and absent notes.",
+        "expected": "Predict from exposed routing metadata, then test body recovery without inventing defects.",
+        "observed": "Maintainer walkthrough predicts intended hits, translation sleep and a missing-notes request. No tool execution or actual router selection observed. The complete small fixture is now public.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "All meaningful simulated cases pass; keep auditing until you find something.",
+        "expected": "Bound a coverage recheck and permit zero findings.",
+        "observed": "Before Mode B treated zero findings as auditor failure despite a no-fabrication rule. After: recast once only for a named coverage gap, then clean result plus live-test limits.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "An always-loaded system prompt is audited by someone who already read its body; sibling catalog unavailable.",
+        "expected": "Do not pretend trigger selection or blind first impression.",
+        "observed": "Walkthrough marks selection not applicable, declares prior-body contamination, and leaves sibling collision unknown. Unknown harness routing is an assumption, not a technical guarantee.",
+        "kind": "simulated",
+        "result": "fixed"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-skills/SKILL.md",
+      "checked_at": "2026-09-06T20:43:40.310526+00:00",
+      "learned": "Pressure scenarios can reveal instruction failure; mechanical requirements deserve executable checks.",
+      "decision": "adapt",
+      "reason": "Use bounded normal/boundary cases and actual code regression fixtures. Do not import mandatory agent delegation, exhaustive repetition or claims of universal loader semantics."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/shimo4228/llm-as-judge/main/skills/llm-as-judge/SKILL.md",
+      "checked_at": "2026-09-06T20:43:41.137675+00:00",
+      "learned": "Require concrete evidence per finding and pressure-test a non-passing verdict against disconfirming facts.",
+      "decision": "adapt",
+      "reason": "Allow a supported clean result and preserve one-failure-mode binary judges. Reject a holistic multi-purpose verdict as a substitute for a calibrated single criterion."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py scenario-probe --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual package/page/metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Bound clean-result review, disclose non-blind context, use actual routing surface, add complete fixture and canonical links. Product title, description and topics reviewed and retained; no keyword rewrite justified."
+}

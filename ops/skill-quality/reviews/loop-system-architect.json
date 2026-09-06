@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "skill": "loop-system-architect",
+  "reviewed_at": "2026-09-06T20:51:46.706712+00:00",
+  "source_sha256": "3e736623dc63b7d9137d8a80d693a0acf8f6578429c5f35653389de8ac34e7f0",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicitly simulated instruction walkthroughs; not fresh independent agents or human research. Deterministic executions marked separately. Prior body context disclosed for trigger predictions.",
+    "scenarios": [
+      {
+        "request": "Run the minimal contract linter from a different working directory.",
+        "expected": "Passing structural example and explicit boundary between lint and operational execution.",
+        "observed": "Actual absolute-path invocation from task workspace returns PASS; README now supplies a standalone-checkout command. No live controller or scheduler was created.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Set turn/retry budgets to true, cost to NaN or infinity, or roles to null.",
+        "expected": "Named FAIL without falsely accepting values or a traceback; restoring valid values recovers.",
+        "observed": "Before bool-budget, bool-retry and NaN passed; null roles crashed. After sixteen CLI fixtures PASS including invalid JSON/root, role errors, absent verifier, zero cost, and ordinary valid control.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Docs are unchanged overnight but an external linked endpoint stops responding.",
+        "expected": "Scheduled external scan still happens.",
+        "observed": "Before example preflight skipped solely on local docs hash. Simulated replay after correction scans remote links every scheduled run; this is a logical contract review, not a live HTTP outage experiment.",
+        "kind": "simulated",
+        "result": "fixed"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/DenisSergeevitch/repo-task-proof-loop/main/SKILL.md",
+      "checked_at": "2026-09-06T20:43:41.151222+00:00",
+      "learned": "Persist evidence and use fresh verification, with initialization serialized before dependent operations.",
+      "decision": "adapt",
+      "reason": "Keep explicit evidence and completion boundaries. Reject default project guidance/subagent installation and unbounded repeat-until-PASS as requirements for this smaller contract linter."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Shadow-linux/agent-loop/main/SKILL.md",
+      "checked_at": "2026-09-06T20:43:41.361687+00:00",
+      "learned": "Classify stale project memory before reliance and match workflow complexity to the task intent.",
+      "decision": "adapt",
+      "reason": "Keep live-source inspection and explicit dormant-versus-executed reporting. Do not import extensive human gates or project-local layout assumptions into an authorized personal loop."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py loop-system-architect --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual package/page/metadata audit returned VERDICT: PASS."
+    },
+    {
+      "command": "python3 scripts/round4_fixture_check.py (task-owned regression harness)",
+      "result": "pass",
+      "observed": "Executed 16 linter and 10 documented rate/conversion fixtures; all PASS. Full API judge calibration and operational loop execution were not tested."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Reject boolean/nonfinite budgets, handle malformed roles, correct remote-sensor freshness and provide usable linter entry. Contract lint does not certify runtime recovery. Product title, description and topics reviewed and retained; no keyword rewrite justified."
+}

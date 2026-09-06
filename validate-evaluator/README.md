@@ -1,10 +1,10 @@
 # LLM Judge Validator — Measure Whether AI Scores Match Human Labels
 
-Measures whether your LLM judge actually agrees with human labels — TPR/TNR on proper data splits, plus a bias-corrected success rate with a confidence interval.
+Measures whether your LLM judge actually agrees with human labels — TPR/TNR on proper data splits, plus a bias-corrected estimate with its uncertainty assumptions stated.
 
 ## What it does
 
-Takes a judge prompt and ~100 human-labeled traces, splits them into train/dev/test, runs the judge via API on the dev set, and reports True Positive Rate and True Negative Rate. You iterate on the judge until both clear 90%, measure once on the held-out test set, then use the Rogan-Gladen correction to turn raw judge scores on production data into an honest success-rate estimate with a bootstrap CI. If you have traces but no labels yet, it includes a one-trace-at-a-time labeling flow to build the label set with you.
+Takes a judge prompt and ~100 human-labeled traces, splits them into train/dev/test, runs the judge via API on the dev set, and reports True Positive Rate and True Negative Rate. You iterate on the judge until both clear 90%, measure once on the held-out test set, then use the Rogan-Gladen correction to turn raw judge scores on production data into a corrected estimate; the shown bootstrap interval holds the production fraction fixed. If you have traces but no labels yet, it includes a one-trace-at-a-time labeling flow to build the label set with you.
 
 ## When it fires
 
@@ -20,20 +20,35 @@ It stays quiet for code-based evaluators — those are deterministic, so ordinar
 ## Install
 
 ```
-npx skills add m1nga/skills@validate-evaluator
+npx skills add m1nga/validate-evaluator
 ```
 
 Needs Python with `numpy` and `scikit-learn`; optionally `judgy` (`pip install judgy`).
 
-## Example
+## First-use example (illustrative)
 
 > **You:** I built the faithfulness judge. Here are my 96 labeled traces — is it any good?
 >
-> **Claude:** Splitting 15/45/40 stratified by label. I'll write a script that runs the judge (your pinned model, via API — I won't score these myself, that would calibrate me instead of your judge) over the 43 dev examples… TPR 0.94, TNR 0.81. TNR misses cluster on traces where the answer is *partially* grounded — let's look at those six disagreements before touching the prompt.
+> **Agent:** I will inspect class counts and trace provenance, freeze disjoint
+> splits, then run your pinned judge through its API. No scores are available
+> until those predictions exist. With no API access I can prepare the runner,
+> but calibration remains pending.
+
+## Reproducible arithmetic and recovery
+
+Illustrative counts: 50 human Pass traces with 46 judge Pass, and 50 human Fail
+traces with 44 judge Fail, give TPR 0.92 and TNR 0.88. If 400 of 500 production
+predictions are Pass, the correction is `(0.80 + 0.88 - 1) / (0.92 + 0.88 - 1) = 0.85`.
+These numbers are a fixture, not measured judge performance.
+
+With no human Fail examples, TNR is unknown and calibration stops for more labels.
+Missing API predictions also leave the run incomplete. The shown `judgy` interval
+holds the production pass fraction fixed; a population estimate needs production
+sampling uncertainty and representative error rates too.
 
 ## Works well with
 
-- [`write-judge-prompt`](../write-judge-prompt/) — builds the judge this skill calibrates. Together they form a loop: construct → validate → fix disagreements → re-validate → trust (conditionally, with a CI).
+- [`write-judge-prompt`](https://github.com/m1nga/write-judge-prompt/) — builds the judge this skill calibrates. Together they form a loop: construct → validate → fix disagreements → re-validate → trust (conditionally, with a CI).
 
 ## Design notes
 
@@ -43,7 +58,9 @@ Needs Python with `numpy` and `scikit-learn`; optionally `judgy` (`pip install j
 - **Test set touched exactly once.** Dev numbers are optimistic by construction; the one-shot test measurement is the only number you're allowed to repeat to stakeholders — with its confidence interval attached.
 - The re-validation triggers (judge prompt changed, model un-pinned, *system under test changed*) come from a solo builder's experience of calibrations silently rotting while everything looked fine on the dashboard.
 
-## Field-tested
+## Evidence
+
+### Historical scenario probes (simulated)
 
 Probed 7 scenarios across 5 personas (including a second-engine run under a non-Claude CLI) · 5 fired correctly · 2 correctly stayed quiet.
 
@@ -53,4 +70,8 @@ Probed 7 scenarios across 5 personas (including a second-engine run under a non-
 
 > **"Can I trust these scores before they go in the weekly report?"** → fired: 15/45/40 stratified splits, dev-set iteration, one-shot test measurement, Rogan-Gladen correction with a bootstrap confidence interval attached.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
+
+## Author
+
+Built and maintained by [Ming](https://github.com/m1nga).

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "extend-first",
+  "reviewed_at": "2026-09-06T20:51:46.706712+00:00",
+  "source_sha256": "763c0f005d226580de63bcac8c746b4ef02cc9af6f74d506a0f3a92fac703467",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicitly simulated instruction walkthroughs; not fresh independent agents or human research. Deterministic executions marked separately. Prior body context disclosed for trigger predictions.",
+    "scenarios": [
+      {
+        "request": "Make one skill for long PDF to one-page decision brief; two available catalog skills cover extraction and rendering.",
+        "expected": "COMPOSE then continue the already-authorized entry-point authoring.",
+        "observed": "Before product example stopped for another build-it-anyway message. After complete illustrative catalog fixture says COMPOSE and continues authoring with a dependency handoff. No actual wrapper was requested or built in this review.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "No catalog is reachable, or user just asks to summarize a PDF.",
+        "expected": "Scope missing-catalog conclusion; ordinary usage bypasses creation check.",
+        "observed": "Walkthrough states inspected scope and BUILD NEW only within it; ordinary summarization does not invoke reuse gate. User skip-check instruction remains effective.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/vercel-labs/skills/main/skills/find-skills/SKILL.md",
+      "checked_at": "2026-09-06T20:43:40.207821+00:00",
+      "learned": "Search specific tasks and present useful install paths; inspect more than a result name.",
+      "decision": "adapt",
+      "reason": "Keep functional comparison and scoped unknowns. Reject star/install-count cutoffs as quality proof and repeated permission after already-authorized creation."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-skills/SKILL.md",
+      "checked_at": "2026-09-06T20:43:40.310526+00:00",
+      "learned": "Pressure scenarios can reveal instruction failure; mechanical requirements deserve executable checks.",
+      "decision": "adapt",
+      "reason": "Use bounded normal/boundary cases and actual code regression fixtures. Do not import mandatory agent delegation, exhaustive repetition or claims of universal loader semantics."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py extend-first --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual package/page/metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Replace contradictory approval example with complete input, composition and continuation; retain existing compact behavior and metadata. Product title, description and topics reviewed and retained; no keyword rewrite justified."
+}

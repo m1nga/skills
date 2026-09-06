@@ -51,7 +51,7 @@
     {
       "type": "schedule",
       "condition": "daily at 03:00 local via host cron",
-      "preflight": "skip when docs/ is unchanged since last run (git tree hash compare)",
+      "preflight": "confirm docs/ and the scanner are readable; scan external URLs every scheduled run because remote availability can change without a local docs edit",
       "dedupe_key": "run date (YYYY-MM-DD)"
     }
   ],

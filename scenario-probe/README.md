@@ -10,8 +10,9 @@ anchored to a line number; description problems come with a paste-ready rewrite.
 
 ## What it does
 
-- Predicts trigger decisions from the description/frontmatter only — because that is
-  all the loader reads. A body-level "do NOT use this for X" cannot prevent a mis-fire.
+- Predicts selection from the target harness's pre-load metadata, commonly the
+  name and description. Always-loaded prompts have no selection step; unknown
+  loader behavior is stated as an assumption.
 - Hunts named failure classes: false-fires, missed triggers, sibling-skill collisions,
   stale-world assumptions, silent failures (flows that "succeed" and deliver a wrong
   result), and stranger-usability gaps.
@@ -32,10 +33,27 @@ anchored to a line number; description problems come with a paste-ready rewrite.
 ## Install
 
 ```
-npx skills add m1nga/skills@scenario-probe
+npx skills add m1nga/scenario-probe
 ```
 
-## Example
+## Reproducible simulation fixture
+
+Authored illustration, not an independent agent run. Give the probe this complete
+miniature instruction:
+
+```text
+description: Use when asked to summarize the provided meeting notes.
+body: Summarize only the notes in three bullets. If notes are absent, request them.
+      Do not invent owners, dates, or decisions.
+```
+
+Try “summarize these notes”, “uh, recap these meeting notes in three points”,
+“translate this sentence”, and “summarize my meeting” with no notes. Expected
+predictions: hit, hit, sleep, then request the missing input. Add any actual
+co-installed sibling to check overlap; without its metadata, collision status is
+unknown. If nothing else fails, zero findings is a valid bounded result.
+
+## Longer example (illustrative)
 
 > **You:** I rewrote the description of my `deploy-checklist` skill. Wind-tunnel it
 > before I push.
@@ -50,14 +68,13 @@ npx skills add m1nga/skills@scenario-probe
 
 ## Works well with
 
-- [`write-judge-prompt`](../write-judge-prompt/) + [`validate-evaluator`](../validate-evaluator/)
+- [`write-judge-prompt`](https://github.com/m1nga/write-judge-prompt/) + [`validate-evaluator`](https://github.com/m1nga/validate-evaluator/)
   — the probe's `traces.jsonl` is trace supply for products with no production traffic
   yet: failure clusters become judge criteria, then the judge gets calibrated.
   Wind-tunnel → judge → calibration is a pipeline.
-- [`product-experience-officer`](../product-experience-officer/) — the cousin seat.
-  A runnable product with a UI gets PEO; instruction text gets scenario-probe. They
-  share the same honesty contract: a report with zero findings means the auditor sat
-  in the author's chair.
+- [`product-experience-officer`](https://github.com/m1nga/product-experience-officer/) — the cousin seat.
+  A runnable product with a UI gets PEO; instruction text gets scenario-probe. Both distinguish simulated predictions from observed execution; a supported
+  zero-finding result is allowed.
 
 ## Design notes
 
@@ -80,11 +97,13 @@ Three opinionated choices follow from that audit:
   dictated input, goal buried in the last sentence. A generic cast would not have
   included it. The stranger persona is mandatory only when publishing, because that is
   the moment it can change the verdict.
-- **Zero findings triggers a recast, not a pass.** Every artifact that came back clean
-  on the first run turned out to have been audited from the author's seat. A spotless
-  report is treated as evidence about the auditor, not the artifact.
+- **Check coverage without forcing defects.** If a clean simulation missed a
+  meaningful boundary, recast once. Otherwise report zero findings, with real
+  trigger selection and tool execution still unverified.
 
-## Field-tested
+## Evidence
+
+### Historical scenario probes (simulated)
 
 Probed 7 scenarios across 4 personas · 3 fired correctly · 3 correctly stayed quiet · the 7th run was the probe auditing itself.
 
@@ -96,4 +115,8 @@ Probed 7 scenarios across 4 personas · 3 fired correctly · 3 correctly stayed 
 
 Run on its own SKILL.md, it flagged that its description sits 17 characters under the 1024 loader cap — with the NOT-clauses last in line to be truncated. It got the same treatment as everything else.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
+
+## Author
+
+Built and maintained by [Ming](https://github.com/m1nga).

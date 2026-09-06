@@ -63,17 +63,21 @@ npx skills add m1nga/extend-first
 
 ## Example
 
-> **You:** Make me a skill that summarizes long PDFs into a one-page brief.
->
-> **Claude** scans the shelf and answers in one screen: "COMPOSE — you already
-> own this in two pieces. `doc-digest` claims 'extract and condense the
-> load-bearing content of long documents' and `brief-format` claims 'render any
-> summary into a one-page decision brief'. Run doc-digest on the PDF, pipe its
-> output through brief-format. If you'd still rather have a single command, say
-> 'build it anyway' and I'll draft it — with a NOT-clause so it doesn't collide
-> with doc-digest."
+Authored fixture: suppose the reachable catalog contains `doc-digest`, which
+extracts and condenses PDFs, and `brief-format`, which formats supplied summaries
+as one-page briefs. These names and capabilities are illustrative.
 
-(Skill names in the example are illustrative.)
+> **You:** Make me one skill that turns a long PDF into a one-page decision brief.
+>
+> **Agent:** COMPOSE — reuse doc-digest for extraction and brief-format for the
+> final page. I will continue building the requested single entry point using
+> those two capabilities, with a clear input/output handoff and missing-dependency
+> recovery, through the authoring workflow.
+
+If neither candidate is installed or reachable, the verdict is BUILD NEW **within
+the inspected scope**, with the catalog limitation disclosed. It does not claim
+that no alternative exists anywhere. An ordinary request to summarize a PDF does
+not activate this creation check.
 
 ## Works well with
 

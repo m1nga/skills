@@ -1,6 +1,6 @@
 ---
 name: scenario-probe
-description: Wind-tunnel any instruction text that configures AI behavior — a SKILL.md, system prompt, CLAUDE.md rule, agent definition, or plugin command — by projecting it into persona × scenario simulations before it ships. Derives personas from the owner's real contexts, predicts trigger decisions from the trigger surface alone (description/frontmatter — the body never influences triggering), walks the body line-by-line per scenario, and reports false-fires, missed triggers, sibling-skill collisions, stale-world failures, silent-failure paths, and stranger-usability gaps, each with line-anchored fixes. Use for "probe / wind-tunnel / stress-test this skill, prompt, or instruction", "will this description misfire?", 风洞 / 场景推演 / 会不会误触, or after writing/editing any SKILL.md or long-lived prompt. NOT for experiencing a runnable product with a UI (use product-experience-officer), NOT for interrogating a plan (use grilling), NOT for evaluating model outputs (use write-judge-prompt), NOT for unbuilt ideas (idea-probe).
+description: Wind-tunnel any instruction text that configures AI behavior — a SKILL.md, system prompt, CLAUDE.md rule, agent definition, or plugin command — by projecting it into persona × scenario simulations before it ships. Derives personas from the owner's real contexts, predicts trigger decisions from the target harness’s pre-load routing metadata, walks the body line-by-line per scenario, and reports false-fires, missed triggers, sibling-skill collisions, stale-world failures, silent-failure paths, and stranger-usability gaps, each with line-anchored fixes. Use for "probe / wind-tunnel / stress-test this skill, prompt, or instruction", "will this description misfire?", 风洞 / 场景推演 / 会不会误触, or after writing/editing any SKILL.md or long-lived prompt. NOT for experiencing a runnable product with a UI (use product-experience-officer), NOT for interrogating a plan (use grilling), NOT for evaluating model outputs (use write-judge-prompt), NOT for unbuilt ideas (idea-probe).
 ---
 
 # Scenario Probe（场景风洞）
@@ -15,15 +15,14 @@ CLAUDE.md standing rule, an agent definition, a plugin command. Never a running 
 (that is product-experience-officer's seat) and never the model's outputs (that is the
 evals pair's seat).
 
-## The two technical facts everything rests on
+## The two working rules
 
-1. **Triggering reads ONLY the trigger surface.** For a skill that is the frontmatter
-   `description`; for an agent it is the routing metadata (different harnesses expose
-   different fields — identify the one the target engine actually reads). The body
-   loads after the trigger fires. Therefore: body-level boundary clauses cannot prevent
-   a mis-fire, and trigger predictions in Phase 1 must be made from the trigger surface
-   alone. Fields the loader ignores (e.g. `when_to_use`) are keys locked inside the
-   house — flag them.
+1. **Predict from the actual pre-load routing surface.** Identify the metadata the
+   target harness exposes before loading the body (often the name and description).
+   Base Phase 1 on that surface alone; do not use body exclusions to repair a
+   metadata-only prediction. If the harness is unspecified, state that assumption.
+   A system prompt that is always loaded may have no selection step: mark triggering
+   not applicable and test its behavior. Do not assume every engine routes alike.
 2. **Simulate the model, not the author.** Predict what a model *reading this text*
    would actually do — including obeying a bad hard constraint, padding a mandated
    output format with invented numbers, or "helpfully" improvising when a referenced
@@ -54,6 +53,10 @@ their place:
 
 ## Phase 1 — Trigger audit (before reading the body)
 
+If the auditor already read the body, disclose that contamination. Restrict the
+prediction to the trigger surface but do not call it a blind or first-impression
+test. Real harness selection remains unverified until a fresh live run.
+
 For each persona, write 1–3 realistic utterances (dictated ones must read like real
 transcription, noise included) and judge from the trigger surface ALONE:
 
@@ -70,7 +73,7 @@ scenarios whenever the artifact touches data files, sibling skills, or named too
 
 ## Phase 2 — Behavior walk (now read the body)
 
-For each scenario that fires, walk the body line-by-line and narrate what actually
+For each scenario that fires (or applies to an always-loaded prompt), walk the body line-by-line and narrate what actually
 happens, citing line numbers. Hunt specifically for:
 
 - **Silent failures** — the worst class: flows that complete "successfully" and deliver
@@ -143,9 +146,10 @@ products that don't have production traffic yet.
 Static prediction cannot prove real trigger selection. When the harness allows: install
 the artifact, replay the highest-stakes utterances in fresh sessions, record which skill
 actually fired and what it did. Every divergence from Phase 1 predictions is a finding
-about the simulation, not just the artifact. Same honesty contract as
-product-experience-officer: a probe with zero ⚠️/❌ findings means you audited as the
-author — recast the personas and rerun.
+about the simulation, not just the artifact. If no actionable findings emerge, check whether the scenarios covered a meaningful
+boundary or recovery case. Recast once only if a concrete coverage gap exists. If
+that check is also clean, report zero findings and the limits of the simulation;
+a clean result is not evidence of auditor failure.
 
 ## Boundaries
 

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "skill": "validate-evaluator",
+  "reviewed_at": "2026-09-06T20:51:46.706712+00:00",
+  "source_sha256": "0d971866aa7a06985d57b178676b4bba9d92d013f8a60b01dde0f5ffc91c760f",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicitly simulated instruction walkthroughs; not fresh independent agents or human research. Deterministic executions marked separately. Prior body context disclosed for trigger predictions.",
+    "scenarios": [
+      {
+        "request": "50 human Pass with 46 judge Pass; 50 human Fail with 44 judge Fail; production pass fraction .80.",
+        "expected": "TPR .92, TNR .88, illustrative corrected point .85.",
+        "observed": "Exact updated rate helper extracted from SKILL.md and executed: .92, .88 and .85 within floating precision. Arithmetic fixture is not observed judge performance.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Only Pass labels, missing predictions, unequal arrays, or unknown verdict text.",
+        "expected": "Refuse unavailable calibration rather than emit zero or silently drop failures.",
+        "observed": "Five invalid-input fixtures raise actionable ValueError; perfect-control fixture returns (1,1). Seven rate fixtures and three production-conversion fixtures PASS.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "No API key; score the judge in this conversation.",
+        "expected": "Prepare an API runner, leave calibration pending.",
+        "observed": "Instruction walkthrough preserves the existing no-self-judging rule; no real model predictions or calibrated metrics were produced.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Show full population uncertainty using the shown fixed-production-fraction bootstrap; tune again after seeing test failures.",
+        "expected": "Disclose interval scope and retire the exposed test set.",
+        "observed": "After source inspection, walkthrough reports conditional uncertainty only, requires additional production-sampling design for population claims, and reserves a new real holdout after further tuning. No CI implementation or coverage experiment was run.",
+        "kind": "simulated",
+        "result": "fixed"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/ai-evals-course/evals-skills/main/skills/validate-evaluator/SKILL.md",
+      "checked_at": "2026-09-06T20:43:40.208077+00:00",
+      "learned": "Hold out test data and calculate class-conditional TPR/TNR before correction.",
+      "decision": "adapt",
+      "reason": "Preserve splits and API execution; fix missing-class handling and exposed-test reuse. Do not repeat the unsupported universal TPR-versus-TNR uncertainty claim."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ai-evals-course/judgy/main/src/judgy/core.py",
+      "checked_at": "2026-09-06T20:44:08.172999+00:00",
+      "learned": "Current code resamples paired held-out observations but fixes observed production prevalence; it rejects empty or missing-class inputs and a non-positive correction denominator.",
+      "decision": "adapt",
+      "reason": "Describe the interval as conditional, validate verdicts before conversion, and disclose production-sampling uncertainty. Remove the unguarded duplicate bootstrap tutorial; no upstream code copied or installed."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py validate-evaluator --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual package/page/metadata audit returned VERDICT: PASS."
+    },
+    {
+      "command": "python3 scripts/round4_fixture_check.py (task-owned regression harness)",
+      "result": "pass",
+      "observed": "Executed 16 linter and 10 documented rate/conversion fixtures; all PASS. Full API judge calibration and operational loop execution were not tested."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Validated rate input handling; corrected CI scope, error-rate transfer, test reuse, numerical example and unsupported universal TPR priority. General population-CI engine remains outside package. Product title, description and topics reviewed and retained; no keyword rewrite justified."
+}

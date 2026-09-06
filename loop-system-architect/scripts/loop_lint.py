@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -118,8 +119,13 @@ def main() -> int:
                 if is_blank(trigger.get(key)):
                     errors.append(f"triggers[{index}].{key} is missing or placeholder")
 
+    roles = data.get("roles")
+    if not isinstance(roles, list):
+        errors.append("roles must be a list")
+        roles = []
     role_names = {
-        role.get("name") for role in data.get("roles", []) if isinstance(role, dict)
+        role.get("name") for role in roles
+        if isinstance(role, dict) and isinstance(role.get("name"), str)
     }
     for required in ("orchestrator", "executor", "verifier"):
         if required not in role_names:
@@ -135,20 +141,20 @@ def main() -> int:
     max_attempts = get(data, "failure_policy.max_attempts")
     same_limit = get(data, "failure_policy.same_failure_limit")
     timeout = get(data, "failure_policy.timeout_seconds")
-    if not isinstance(max_attempts, int) or max_attempts < 1:
+    if type(max_attempts) is not int or max_attempts < 1:
         errors.append("failure_policy.max_attempts must be a positive integer")
-    if not isinstance(same_limit, int) or same_limit < 1:
+    if type(same_limit) is not int or same_limit < 1:
         errors.append("failure_policy.same_failure_limit must be a positive integer")
-    if not isinstance(timeout, int) or timeout < 1:
+    if type(timeout) is not int or timeout < 1:
         errors.append("failure_policy.timeout_seconds must be a positive integer")
 
     for key in ("max_turns", "max_tokens", "max_wall_time_seconds"):
         value = get(data, f"budgets.{key}")
-        if not isinstance(value, int) or value < 1:
+        if type(value) is not int or value < 1:
             errors.append(f"budgets.{key} must be a positive integer")
     cost = get(data, "budgets.max_cost")
-    if not isinstance(cost, (int, float)) or cost < 0:
-        errors.append("budgets.max_cost must be a non-negative number")
+    if type(cost) not in (int, float) or not math.isfinite(cost) or cost < 0:
+        errors.append("budgets.max_cost must be a finite non-negative number")
     elif cost == 0:
         warnings.append("budgets.max_cost is 0; confirm this means local/unmetered, not unlimited")
 

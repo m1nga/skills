@@ -47,6 +47,21 @@ npx skills add m1nga/loop-system-architect
 > trusting the executor's summary. A night with no changes terminates as a
 > cheap recorded no-op — not a silent skip.
 
+## Try the bundled contract check
+
+From a standalone checkout, run:
+
+```bash
+python3 skills/loop-system-architect/scripts/loop_lint.py skills/loop-system-architect/assets/loop.contract.minimal-example.json --json
+```
+
+The example passes structural checks. In a task-owned copy, change
+`budgets.max_turns` to JSON `true`: the linter reports FAIL because a boolean is
+not a turn budget. It also rejects a non-finite cost. Restore a positive integer
+and a finite cost to recover. This checks the contract only; no scheduler or
+controller runs. External links must still be scanned on schedule even when local
+docs are unchanged.
+
 ## Works well with
 
 - [`map-product-system`](https://github.com/m1nga/map-product-system/) — draws the static

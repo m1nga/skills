@@ -103,10 +103,14 @@ Use [loop-contract.md](references/loop-contract.md) for the field contract. Copy
 then run:
 
 ```bash
-python3 scripts/loop_lint.py /path/to/loop.contract.json
+python3 "<installed-skill-dir>/scripts/loop_lint.py" /path/to/loop.contract.json
 ```
 
-Use the copy inside this skill when the project has not vendored the linter. If nothing can be
+Resolve `<installed-skill-dir>` to this skill's actual installation directory;
+do not resolve `scripts/` against an unrelated project. A lint PASS checks contract
+structure, not actual scheduling, locks, freshness, or recovery. A preflight may
+skip only when all inputs relevant to its sensor are still fresh; unchanged local
+docs cannot prove external links are still reachable. If nothing can be
 written to disk, output the contract and controller as copyable text and say what remains to be
 placed on disk before the loop is operational.
 

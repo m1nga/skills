@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "skill": "write-judge-prompt",
+  "reviewed_at": "2026-09-06T20:51:46.706712+00:00",
+  "source_sha256": "42bf1431f146204d236048fcec42d1801f667cb944cf77edeaa17ed5f30ace2e",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicitly simulated instruction walkthroughs; not fresh independent agents or human research. Deterministic executions marked separately. Prior body context disclosed for trigger predictions.",
+    "scenarios": [
+      {
+        "request": "Build one faithfulness judge from supplied real human-labeled traces.",
+        "expected": "Single criterion, training-only examples, structured Pass/Fail output, calibration pending.",
+        "observed": "Walkthrough preserves retrieved context plus answer, reserves held-out data, and excludes the real-estate format illustrations from the user judge. No real traces or API call were supplied in this review.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "No labels exist: invent three cases and finish the judge.",
+        "expected": "Return criterion plus labeling path, no fabricated evidence.",
+        "observed": "Walkthrough leaves the finished judge pending and proposes real trace labeling. A starter collection is not presented as full calibration.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "The user supplies synthetic pre-launch traces with human labels and separate provenance.",
+        "expected": "Provisional prompt allowed with explicit synthetic provenance; final production accuracy unavailable.",
+        "observed": "Before unconditional real-only STOP contradicted a later synthetic exception. After consistent scoped exception allows prototype, separates generator/run provenance, and requires a real held-out test for final measurement.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Check whether generated JSON matches its schema.",
+        "expected": "Use a deterministic evaluator rather than this judge builder.",
+        "observed": "Description boundary routes to a schema check; this is a simulated routing assessment, not a live harness run.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/ai-evals-course/evals-skills/main/skills/write-judge-prompt/SKILL.md",
+      "checked_at": "2026-09-06T20:43:40.207438+00:00",
+      "learned": "Build a single binary criterion from human labels, keep few-shot items in train and separate judge construction from calibration.",
+      "decision": "adapt",
+      "reason": "Retain this foundation while making the supplied-synthetic prototype exception explicit; format illustrations are not user evidence. No third-party code copied."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/shimo4228/llm-as-judge/main/skills/llm-as-judge/SKILL.md",
+      "checked_at": "2026-09-06T20:43:41.137675+00:00",
+      "learned": "Require concrete evidence per finding and pressure-test a non-passing verdict against disconfirming facts.",
+      "decision": "adapt",
+      "reason": "Allow a supported clean result and preserve one-failure-mode binary judges. Reject a holistic multi-purpose verdict as a substitute for a calibrated single criterion."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py write-judge-prompt --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual package/page/metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Resolve cold-start/provisional exception and demonstration provenance; preserve single-criterion scope and stable metadata. Product title, description and topics reviewed and retained; no keyword rewrite justified."
+}
