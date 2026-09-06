@@ -266,7 +266,7 @@
     {
       "name": "publish-skill-product",
       "title": "GitHub Skill Publisher — Publish Skills and Track Discovery",
-      "description": "Publish a finished skill as a GitHub product, verify its install package, and record search experiments without mistaking maintenance or traffic for user growth.",
+      "description": "Review a skill from the user’s perspective, learn from comparable skills, test improvements, and publish a verified GitHub product and install package.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -362,6 +362,20 @@
         "llm-as-judge",
         "prompt-engineering",
         "quality-assurance",
+        "codex",
+        "claude-code"
+      ]
+    },
+    {
+      "name": "taskdock",
+      "title": "TaskDock — Keep Complex Tasks Organized and Ready to Resume",
+      "description": "TaskDock plans and maintains portable Desktop task folders with durable identity, current progress, decisions, and file checks so work can resume after a move.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "task-management",
+        "file-based-planning",
+        "context-management",
         "codex",
         "claude-code"
       ]

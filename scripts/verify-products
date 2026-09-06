@@ -71,6 +71,12 @@ if [[ -x "$product_auditor" ]]; then
   done < <(jq -r --arg name "$skill_filter" '.products[] | select($name == "" or .name == $name) | .name' "$manifest" | sort)
 fi
 
+while IFS= read -r skill; do
+  if ! python3 "$repo_root/publish-skill-product/scripts/review_gate.py" "$repo_root" "$skill"; then
+    status=1
+  fi
+done < <(jq -r --arg name "$skill_filter" '.products[] | select($name == "" or .name == $name) | .name' "$manifest" | sort)
+
 if (( status != 0 )); then
   exit "$status"
 fi

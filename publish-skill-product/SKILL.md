@@ -1,12 +1,25 @@
 ---
 name: publish-skill-product
-description: "Publish or repair a finished self-authored skill’s GitHub product page and install package. Use for skill releases and skill SEO/GEO experiments; preserve drafts, private context, and stable install names."
+description: "Finish self-authored skills through user-perspective review, comparable-skill research, tested improvements, and verified GitHub publication. Use when creating, materially updating, or releasing an owned skill, and for skill discovery experiments."
 ---
 
 # Publish Skill Product
 
 Make a finished skill easy to understand, install, and verify. Separate a working
 release from evidence that people discovered or used it.
+
+## Finish the whole skill
+
+For new or materially updated self-authored skills, read
+[lifecycle.md](references/lifecycle.md). Review the skill from a new user's seat,
+inspect the nearest comparable skills, apply useful improvements, and validate the
+result before release. Scale the review to the change; do not invent findings or
+copy another skill's constraints just because it is popular.
+
+Ming's request to create or finish a usable self-authored skill includes this complete
+workflow and publication by default. Only an explicit draft/private/do-not-publish
+instruction or a real unresolved blocker pauses release. The agent saying "done"
+is not evidence that the lifecycle ran. Preserve unrelated drafts.
 
 ## Choose the relevant work
 
@@ -24,7 +37,7 @@ release from evidence that people discovered or used it.
 
 The live registry instructions and repository remote establish the source path.
 For Ming, the current registry is `/Users/m1nga/Desktop/🛠️ Skills工坊/ming-skills`.
-Preserve dirty or ambiguous work. A conversation ending does not approve a release.
+Preserve unrelated dirty or ambiguous work. An authorized skill-building request supplies release authority; a conversation ending by itself does not.
 Never publish private task notes, invented results, or third-party source material.
 
 Keep `name`, directory, and repository slug stable. Make display names and product
@@ -33,6 +46,12 @@ editorial starting point, not proof of clarity or search performance. Align READ
 manifest, UI metadata, and implemented behavior. Retain existing install links.
 
 ## Evidence tools
+
+- `scripts/review_gate.py <registry> <skill>` checks that user review, comparable-skill
+  research and validation evidence match the exact current skill and product metadata.
+  `--committed` checks the committed release; `--fingerprint` prints its content digest.
+  The gate verifies evidence structure and freshness, not human truth or market demand.
+
 
 - `scripts/audit_product_page.py <skill-dir> --product-manifest <path>` checks the
   package and product metadata. It cannot judge market demand or writing quality.

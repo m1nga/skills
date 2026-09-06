@@ -1,0 +1,4 @@
+interface:
+  display_name: "TaskDock 任务坞"
+  short_description: "Plan and resume work in a portable Desktop task folder"
+  default_prompt: "Use $taskdock to give this task a Desktop workspace, plan its structure, and keep its files and next steps ready to resume."

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "skill": "publish-skill-product",
+  "reviewed_at": "2026-09-06T16:09:50+00:00",
+  "source_sha256": "a1d7bf37907446d0524db979c0349a611ca2bd718bcf39a44fc038640f011196",
+  "user_review": {
+    "method": "Maintainer walkthrough of user-facing routing and release instructions, plus executed temporary-repository tests of missing, stale, committed and unrelated evidence. Walkthroughs are explicitly simulated; no human study or independent review is claimed.",
+    "scenarios": [
+      {
+        "request": "Make my self-authored skill usable, without separately saying publish.",
+        "expected": "Complete user review, comparable research, refinement, source and standalone release under the owner standing policy.",
+        "observed": "Instruction walkthrough follows Finish the whole skill and lifecycle.md; global and registry policy supply release authority and final receipt requirements.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Explore a private draft skill only.",
+        "expected": "Keep the work unpublished.",
+        "observed": "Instruction walkthrough takes the explicit draft/private exception; a read-only audit likewise does not run the full release sequence.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Publish a changed skill with no review, an old hash, or failed validation.",
+        "expected": "Reject release until current evidence and successful validation exist.",
+        "observed": "Fixture tests rejected missing, source-stale, metadata-stale and incomplete/failed evidence; committed checks also rejected a receipt that existed only locally.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Publish a reviewed skill while another skill has an unrelated review draft.",
+        "expected": "Allow the reviewed target while preserving unrelated work.",
+        "observed": "Fixture test accepted the clean target; unrelated review draft stayed outside its release boundary.",
+        "kind": "executed",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/obra/superpowers/blob/d238a48f5d6b8f51f822fea17d646cfe177747ee/skills/writing-skills/SKILL.md",
+      "checked_at": "2026-09-06T16:09:50+00:00",
+      "learned": "Skill quality requires behavioral scenarios and observing failure/retest, beyond Markdown or YAML validity.",
+      "decision": "adapt",
+      "reason": "The lifecycle records normal and boundary outcomes honestly and uses executable checks for release mechanics."
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/b0cbd3df1533b396d281a6886d5132f623393a9c/skills/skill-creator/SKILL.md",
+      "checked_at": "2026-09-06T16:09:50+00:00",
+      "learned": "Inspect outputs against user intent and iterate on usefulness; keep detailed evaluation guidance separate from core routing.",
+      "decision": "adapt",
+      "reason": "The compact core loads lifecycle guidance on demand and asks for evidence that outcomes helped, rather than equating a score with user value."
+    },
+    {
+      "url": "https://github.com/obra/superpowers/blob/d238a48f5d6b8f51f822fea17d646cfe177747ee/skills/writing-skills/SKILL.md",
+      "checked_at": "2026-09-06T16:09:50+00:00",
+      "learned": "A universal strict test-first or multi-agent procedure adds ceremony to every edit.",
+      "decision": "reject",
+      "reason": "Review depth scales to the material change, and simulated versus executed results remain explicit; trivial wording does not require a new agent team."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/test_release_tools.py",
+      "result": "pass",
+      "observed": "21 tests passed, including evidence freshness, committed source boundaries, unrelated draft preservation, and discovery snapshot integrity."
+    },
+    {
+      "command": "quick_validate.py publish-skill-product",
+      "result": "pass",
+      "observed": "Skill frontmatter and structure passed the installed authoring validator."
+    }
+  ],
+  "unresolved_blockers": []
+}

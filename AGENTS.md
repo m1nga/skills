@@ -6,8 +6,17 @@ skill must also exist as its own public repository at
 
 ## Release contract
 
-When a conversation produces a new skill or a material skill update and the user
-has indicated that it is finished, ready, approved, or should be published:
+A request from Ming to create or materially improve a usable self-authored skill
+includes full review, validation and public release. No second release reminder is
+required. Explicit draft/private/do-not-publish requests remain unpublished.
+
+Before the release steps, follow publish-skill-product/references/lifecycle.md:
+review from a new user's perspective, inspect comparable public skills, apply justified
+improvements, and save a current content-bound receipt under ops/skill-quality/reviews/.
+A missing or stale receipt blocks release. Do not modify the legacy baseline to bypass
+review. Existing unchanged legacy releases are not claimed to have passed these stages.
+
+For the authorized release:
 
 1. Finish and validate the skill in its directory in this repository.
 2. Add or update its entry in `products.json` with a problem-led title,

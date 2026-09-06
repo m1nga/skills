@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "skill": "taskdock",
+  "reviewed_at": "2026-09-06T16:09:50+00:00",
+  "source_sha256": "9b15373ea0fc34ad7233b6155d60655f2520f92273abd8e82c855f10a3ede927",
+  "user_review": {
+    "method": "Independent agent acting as a zero-context new user executed the public instructions in an isolated filesystem workspace using a fictional product brief. This is agent review, not human user research. Maintainer separately checked the bilingual index fix.",
+    "scenarios": [
+      {
+        "request": "Organize an English product-launch task around existing material.",
+        "expected": "Keep original material, create meaningful plan and state in English, and verify task files.",
+        "observed": "English task controls were generated; the reviewer wrote a scoped plan and missing-input decisions; original brief remained byte-identical and task checks passed.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Move and rename the task, then continue from the new working directory.",
+        "expected": "Find the same UUID within supplied roots, repair its index, and resume the current next action.",
+        "observed": "The relocated task was found with its original UUID, index repaired, and bounded resume returned current state; reviewer continued by recording missing launch inputs.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Adopt a folder containing an existing README and notes.",
+        "expected": "Refuse to overwrite occupied task control files.",
+        "observed": "Command exited with the occupied-control-file message; original names and bytes remained unchanged, with no partial control files.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Read the index after creating an English-language task.",
+        "expected": "Index instructions should be understandable without Chinese.",
+        "observed": "The reviewer found Chinese-only index instructions. Generated indexes now contain English and Chinese; a fresh isolated initialization verified both.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Answer a simple one-sentence question without asking for a task folder.",
+        "expected": "Skip TaskDock setup.",
+        "observed": "Instruction walkthrough: the opening scope rule skips simple answers and tiny edits unless a folder is requested.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/8dd1e3fa415f6a2e805ca95c573e20a4ce293016/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-09-06T16:09:50+00:00",
+      "learned": "Restore context and reconcile relevant live changes before consequential work; give shared progress files one writer.",
+      "decision": "adapt",
+      "reason": "These rules make portable task state useful while reducing stale-plan and concurrent-write confusion."
+    },
+    {
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/8dd1e3fa415f6a2e805ca95c573e20a4ce293016/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-09-06T16:09:50+00:00",
+      "learned": "Use installed-skill-relative helper paths rather than assuming the task working directory.",
+      "decision": "adopt",
+      "reason": "A new user can invoke helpers from the moved task directory; this was exercised in the independent scenario."
+    },
+    {
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/8dd1e3fa415f6a2e805ca95c573e20a4ce293016/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-09-06T16:09:50+00:00",
+      "learned": "A fixed two-action update counter and engine-specific hooks are part of the alternative workflow.",
+      "decision": "reject",
+      "reason": "Milestone-based updates fit this small personal workflow; installing a plain skill cannot claim to configure engine hooks or background work."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 taskdock/scripts/test_taskdock.py",
+      "result": "pass",
+      "observed": "13 tests passed, including relocation, ambiguity, preservation, bounds, English initialization and bounded resume."
+    },
+    {
+      "command": "quick_validate.py taskdock",
+      "result": "pass",
+      "observed": "Skill frontmatter and structure passed the installed authoring validator."
+    },
+    {
+      "command": "taskdock.py init/locate/resume/check in isolated reviewer workspace",
+      "result": "pass",
+      "observed": "Executed normal use, move-and-resume, continuation, and occupied-control-file boundary; raw private evidence retained outside public source."
+    }
+  ],
+  "unresolved_blockers": []
+}

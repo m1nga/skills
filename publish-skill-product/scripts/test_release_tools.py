@@ -1,6 +1,7 @@
 """Offline regression checks using temporary repositories and API fixtures."""
 import importlib.util
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import tempfile
@@ -11,7 +12,7 @@ def module(name):
     spec=importlib.util.spec_from_file_location(name, Path(__file__).with_name(name+'.py'))
     obj=importlib.util.module_from_spec(spec); spec.loader.exec_module(obj); return obj
 
-release=module('check_release_source'); discovery=module('discovery_snapshot')
+release=module('check_release_source'); discovery=module('discovery_snapshot'); quality=module('review_gate')
 
 class ReleaseTests(unittest.TestCase):
     def setUp(self):
@@ -23,11 +24,21 @@ class ReleaseTests(unittest.TestCase):
                 (self.root/name/path).write_text('fixture\n')
         (self.root/'products.json').write_text(json.dumps({'products':[{'name':'sample'},{'name':'other'}]}))
         (self.root/'LICENSE').write_text('fixture license\n');self.git('add','.');self.git('commit','-qm','fixture')
+        folder=self.root/'publish-skill-product/scripts';folder.mkdir(parents=True)
+        shutil.copy2(Path(__file__).with_name('review_gate.py'),folder/'review_gate.py')
+        policy=self.root/'ops/skill-quality';policy.mkdir(parents=True)
+        (policy/'baseline.json').write_text(json.dumps({'legacy_unchanged':{name:quality.fingerprint(self.root,name,True) for name in ('sample','other')}}))
+        self.git('add','.');self.git('commit','-qm','adopt quality policy')
+
     def tearDown(self): self.tmp.cleanup()
     def git(self,*args): return subprocess.check_output(['git','-C',str(self.root),*args],text=True)
     def test_clean_source(self): self.assertEqual(release.check(self.root,'sample'),[])
     def test_unrelated_dirty_allowed(self):
         (self.root/'other/SKILL.md').write_text('user draft');self.assertEqual(release.check(self.root,'sample'),[])
+    def test_unrelated_review_draft_allowed(self):
+        folder=self.root/'ops/skill-quality/reviews';folder.mkdir()
+        (folder/'other.json').write_text('unfinished unrelated review')
+        self.assertEqual(release.check(self.root,'sample'),[])
     def test_dirty_target_blocked(self):
         (self.root/'sample/SKILL.md').write_text('user draft');self.assertTrue(release.check(self.root,'sample'))
     def test_staged_target_blocked(self):
@@ -38,6 +49,40 @@ class ReleaseTests(unittest.TestCase):
         (self.root/'products.json').write_text('{}');self.assertTrue(release.check(self.root,'sample'))
     def test_path_traversal_blocked(self): self.assertTrue(release.check(self.root,'../sample'))
     def test_unregistered_blocked(self): self.assertTrue(release.check(self.root,'new'))
+
+class QualityTests(unittest.TestCase):
+    setUp = ReleaseTests.setUp
+    tearDown = ReleaseTests.tearDown
+    git = ReleaseTests.git
+    def require_review(self):
+        (self.root/'sample/SKILL.md').write_text('changed behavior')
+
+    def receipt(self):
+        case={'request':'Fixture request','expected':'Fixture result','observed':'Fixture observed','kind':'simulated','result':'pass'}
+        receipt={'schema_version':1,'skill':'sample','source_sha256':quality.fingerprint(self.root,'sample'),'reviewed_at':'2026-09-06',
+                 'user_review':{'method':'Test fixture only','scenarios':[case,case]},
+                 'similar_skills':[{'url':'https://example.invalid/skill','checked_at':'2026-09-06','learned':'Fixture idea','decision':'reject','reason':'Fixture boundary'}],
+                 'validation':[{'command':'fixture','result':'pass','observed':'fixture passed'}],'unresolved_blockers':[]}
+        folder=self.root/'ops/skill-quality/reviews';folder.mkdir(exist_ok=True)
+        path=folder/'sample.json';path.write_text(json.dumps(receipt));return path,receipt
+
+    def test_new_version_requires_review(self):
+        self.require_review();self.assertTrue(quality.check(self.root,'sample')[0])
+    def test_complete_current_review_passes(self):
+        self.require_review();self.receipt();self.assertEqual(quality.check(self.root,'sample')[0],[])
+    def test_source_change_invalidates_review(self):
+        self.require_review();self.receipt();(self.root/'sample/README.md').write_text('new claim')
+        self.assertIn('review is stale', '\n'.join(quality.check(self.root,'sample')[0]))
+    def test_product_metadata_change_invalidates_review(self):
+        self.require_review();self.receipt();manifest=json.loads((self.root/'products.json').read_text());manifest['products'][0]['title']='new title'
+        (self.root/'products.json').write_text(json.dumps(manifest));self.assertTrue(quality.check(self.root,'sample')[0])
+    def test_missing_comparison_and_failed_validation_block(self):
+        self.require_review();path,data=self.receipt();data['similar_skills']=[];data['validation'][0]['result']='fail';path.write_text(json.dumps(data))
+        errors=quality.check(self.root,'sample')[0];self.assertGreaterEqual(len(errors),2)
+    def test_committed_inputs_not_local_receipt_control_release(self):
+        self.require_review();self.git('add','sample');self.git('commit','-qm','new source without review');self.receipt()
+        self.assertTrue(quality.check(self.root,'sample',True)[0]);self.assertFalse(quality.check(self.root,'sample')[0])
+
 
 class DiscoveryTests(unittest.TestCase):
     def test_failed_api_is_unknown(self):

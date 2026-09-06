@@ -29,12 +29,16 @@ def check(root: Path, skill: str) -> list[str]:
             errors.append(f"missing committed file: {path}")
     paths = [skill, "products.json", "LICENSE", "scripts/publish-skill",
              "scripts/verify-products", "scripts/verify-published-skill", "scripts/monitor-products",
-             "publish-skill-product/scripts"]
+             "publish-skill-product/scripts", "ops/skill-quality/baseline.json",
+             f"ops/skill-quality/reviews/{skill}.json"]
     status = git("status", "--porcelain", "--untracked-files=all", "--", *paths)
     if status.returncode:
         errors.append("cannot inspect release source status")
     elif status.stdout.strip():
         errors.append("uncommitted release inputs:\n" + status.stdout.rstrip())
+    review = subprocess.run(["python3", str(root / "publish-skill-product/scripts/review_gate.py"), str(root), skill, "--committed"], capture_output=True, text=True)
+    if review.returncode:
+        errors.append("quality review gate failed:\n" + review.stdout.strip())
     return errors
 
 

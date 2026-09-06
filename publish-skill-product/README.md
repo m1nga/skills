@@ -22,6 +22,16 @@ sync without touching drafts or unrelated work.
 It does not create the skill itself — use `skill-creator` for that. It does not publish exploratory
 ideas, private context, third-party skills, ordinary code packages, or arbitrary git changes.
 
+## Review before release
+
+For a new or materially changed skill, the workflow first tests it from a new user's
+perspective and inspects comparable public skills. It records which ideas were adopted,
+adapted or rejected, fixes the useful findings, then validates and publishes.
+
+A content-bound review receipt makes missing or stale reviews a release failure.
+This verifies that evidence is present and matches the source, not that simulated
+users are real customers. Unchanged legacy releases retain their existing status.
+
 ## Install
 
 ```bash

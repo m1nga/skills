@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "adopted_at": "2026-09-06",
+  "note": "Existing unchanged releases are grandfathered, not claimed reviewed. Every new or changed release requires fresh evidence; do not rebaseline to bypass review.",
+  "legacy_unchanged": {
+    "coffee-brewing": "c1f0fdddcb06bb36d9d7cf6d2bcdd719bf7cbdcfa46ebca58d89c8d82e323dc5",
+    "conclude-rounds": "70097cfaa3d3e87c42821083b16744de3b25e01feb6fbcb8bac7ef01988cdad2",
+    "desktop-package": "6d8bc218a418527563d0505698ad7dd45816c1b446ec898bb06212c92d17bcdb",
+    "diagnose-project-rebuild": "ed97bed6812f2640c08906add760cef45a93c8a3e463a8b0a0ac04e7c8a61778",
+    "experience-pack": "aac2d0fa7b61a76cebfb9ae1375f0f60f818d006c39f74f732aad666ece1d943",
+    "extend-first": "38f66cbd413a7833ab206bbbfeb0f89c41601c5385c096348ed4d47458bf351d",
+    "grilling": "55bc74683fb7804da19669928162cc36787be35849dc80ff5955cf5e7a22879c",
+    "idea-probe": "dcf81752ee293f596480e704a1dd446ebb15ae2b545faa81a6529c0398bef0c2",
+    "iteration-close": "f11103892025743615f95863592328acb682e485312c9715086f6eb30a1d2176",
+    "loop-system-architect": "d774f2ced7d34729a02117393762ce7be68a43ebbc615aff055615a26850f04b",
+    "map-product-system": "95cc7204fd76099c0584606454c88bb2b1d535bc106d8dd625f2351fcb00e643",
+    "mixtape": "13b8614aad0fa4c464bddc7ca36e7419b0c46d4ef48d63e74dd03f6b415aeadd",
+    "one-sentence": "829e6dcfcfc591fc1500072a827bf886001bfe055d00a68658cec8183a201c88",
+    "product-experience-officer": "8bed8a8734c2992150fedf18c303b9d805f863f5cb38862eb26889f4d11a945f",
+    "product-5w": "1d86c42801ef13888a708c7828f5504edf4f93564f8f7008b096f70a3915c19e",
+    "prompt-craft": "33a21e3286da364297a122e56f15bc5a332f5e80be6d89bfb09e16e81de5ce10",
+    "prompt-distill": "e5a53e25a11c5b6c776fbfa240d8ed17a4857b3782822b609f88135f7c6302d0",
+    "publish-skill-product": "81a95b33e17608af338d62eaed5ebe95dc8a2e81f23c0beb5328ac98d68125f3",
+    "scenario-probe": "c3434df34919e5b8593239ffc2eb2dcbe7c5fc02dd3fe4ad48075e95b6be57ef",
+    "side-quest": "96bffcc84196829d16dac8ddb9ad8e297b4f74f4665832c964d978256b247ef2",
+    "thinking-partner": "36644477b65ce5b8626f1c5ad2496476baf9229ed428914f38e5e3924eb333cb",
+    "validate-evaluator": "ad1725b944fe095ee21f473ee066da7ed84190830e5e56129dd579aab355afa0",
+    "voice-extractor": "99287ebf668cce132be25bc7672e9622075ba6d7d3c0537cec2425d14153c196",
+    "write-judge-prompt": "044fbf0882cb177aa5243d0cd5fae537109f1b28c4f8cf467755421c7a68209d"
+  }
+}

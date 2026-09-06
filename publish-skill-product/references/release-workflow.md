@@ -1,5 +1,10 @@
 # Release and repair workflow
 
+Before this release sequence, complete the user-perspective and comparable-skill
+review in [lifecycle.md](lifecycle.md), including a current content-bound receipt.
+For Ming, a request to build or finish a usable owned skill includes publication;
+explicit draft/private restrictions still take precedence.
+
 ## Start from the live release contract
 
 1. Read repository instructions, status, remote, default branch, product manifest, and documented

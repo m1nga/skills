@@ -4,7 +4,7 @@
 [![skills.sh](https://skills.sh/b/m1nga/skills)](https://skills.sh/m1nga/skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-24 installable agent skills for turning ambiguous work into concrete, checkable results: plan a
+25 installable agent skills for turning ambiguous work into concrete, checkable results: plan a
 product, recover a confused project, stress-test AI instructions, preserve your writing voice,
 close an iteration, or make a playlist that actually imports.
 
@@ -27,10 +27,10 @@ npx skills add m1nga/prompt-distill
 
 Then ask your agent: `Use $prompt-distill to turn these notes into a reusable prompt.`
 Choose another skill from the task tables below when you need it. You do not need
-all 24 skills loaded for an ordinary task.
+all 25 skills loaded for an ordinary task.
 
 If one of these skills saves you time, [star this collection](https://github.com/m1nga/skills).
-It helps other builders find the useful ones without promoting 24 separate repositories.
+It helps other builders find the useful ones without promoting 25 separate repositories.
 
 ## Pick the result you need
 
@@ -51,6 +51,7 @@ It helps other builders find the useful ones without promoting 24 separate repos
 |---|---|---|
 | check what to reuse before creating another skill | [Skill Reuse Checker](https://github.com/m1nga/extend-first) | an extend, combine, or build-new verdict |
 | turn repeated work into a closed loop | [Agent Loop Builder](https://github.com/m1nga/loop-system-architect) | persistent state, recovery, and independent verification |
+| keep a complex task organized and ready to resume | [TaskDock](https://github.com/m1nga/taskdock) | a portable Desktop workspace with identity, plan, progress, and file checks |
 | capture side work without losing the main thread | [Side Task Assistant](https://github.com/m1nga/side-quest) | bounded background work or an honest queued status |
 | see what a coding session really finished | [Coding Session Recap](https://github.com/m1nga/conclude-rounds) | completed, unverified, open, and next separated clearly |
 | close a milestone cleanly | [Iteration Cleanup & Handoff](https://github.com/m1nga/iteration-close) | preserved decisions, safe cleanup, and a tested takeover |
