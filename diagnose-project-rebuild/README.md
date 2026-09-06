@@ -44,6 +44,22 @@ belongs to `map-product-system`.
 npx skills add m1nga/diagnose-project-rebuild
 ```
 
+## Try a repair decision
+
+After installation, ask your agent to use `diagnose-project-rebuild`:
+
+> Diagnose only. My current decision says exports remain free. An old proposal
+> says paid-only exports, and the active setup document copied that proposal.
+> The export implementation still follows the current free decision. There is
+> no evidence that other documents are contaminated.
+
+Expected result (an authored reasoning example): **Repair** the conflicting setup
+document and inspect its direct dependents. Preserve the working implementation
+and label the old pricing proposal as superseded. Widespread contamination is
+unknown, so this fixture does not justify a clean rebuild. If the current decision
+cannot be located, clarify authority before choosing which document to change.
+No files are changed by this diagnosis-only request.
+
 ## Example
 
 > **User:** third rewrite of this app and the old pricing model showed up in
@@ -60,7 +76,7 @@ npx skills add m1nga/diagnose-project-rebuild
 
 ## Works well with
 
-- [`experience-pack`](../experience-pack/) — the only thing a rebuild imports
+- [`experience-pack`](https://github.com/m1nga/experience-pack/) — the only thing a rebuild imports
   from history is that skill's boundary-tested portable layer; on entry, this
   skill bootstraps the project's own experience ledger.
 - `map-product-system` — for projects that are healthy and just need their
@@ -90,4 +106,4 @@ Probed 8 scenarios across 5 personas · 6 fired correctly · 1 correctly stayed 
 
 > **"Context is polluted — delete the old files and start over."** → fires, but refuses the blind purge: every target resolved by exact path, recovery source proven, new foundation verified first, and the user — never the agent — executes the deletion.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)

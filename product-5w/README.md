@@ -71,6 +71,26 @@ actually operating the product as a stranger is
 npx skills add m1nga/product-5w
 ```
 
+## Try a free-product boundary case
+
+After installation, ask your agent to use `product-5w` with this input:
+
+> Evaluate whether to add a paid tier to my free export tool. In this synthetic
+> fixture, a cited usage log records three volunteers completing weekly exports
+> on three dates; nobody has received a paid offer. No interviews are provided.
+
+Expected reasoning (an authored illustration, not real user research):
+
+| Claim | Evidence status | What follows |
+|---|---|---|
+| These three volunteers repeatedly exported | Verified within the supplied fixture | Name that behavior as the observed WHO |
+| They represent a wider audience | Assumed | Recruit beyond the three volunteers |
+| They would pay | Unknown | Test an offer with relevant users before pricing conclusions |
+
+A free user need not have paid to be an observed user. A usage log does not prove
+willingness to pay. If the log is missing, keep repeat use unknown rather than
+inventing it or treating the author's forecast as evidence.
+
 ## Example
 
 > **You:** 上线前帮我做个基本盘调研 — it's a CLI that turns meeting recordings

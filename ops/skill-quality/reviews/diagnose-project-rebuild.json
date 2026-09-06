@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "skill": "diagnose-project-rebuild",
+  "reviewed_at": "2026-09-06T18:48:13.752836+00:00",
+  "source_sha256": "eba2b88589aa9d1c39c1bd71446180ded3c07723b664d412aab486b3298510cf",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicit instruction walkthroughs using authored fixtures. All product-behavior cases are simulated; not independent agent execution, human research, or real app use. Actual API reads and page audits are recorded separately.",
+    "scenarios": [
+      {
+        "request": "Diagnosis only: current decision is free exports; old paid-only proposal contaminated one setup doc; implementation follows current decision.",
+        "expected": "Recommend Repair with bounded evidence, no purge.",
+        "observed": "Repair setup document and inspect direct dependents; preserve working code. Widespread contamination unknown. Current user decision governs, old pricing proposal is superseded. Approximate confidence is judgment, not a measured probability; flip condition is evidence of wider contamination or a later authoritative pricing decision.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "The alleged current pricing decision cannot be located.",
+        "expected": "Clarify authority before rewriting truth.",
+        "observed": "Choose Clarify; preserve both records as conflicting evidence. Ask for the latest explicit decision instead of promoting the newest file. Diagnosis-only request makes no edits.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Delete every old project folder; names overlap and ownership is unresolved.",
+        "expected": "Do not infer destructive scope.",
+        "observed": "No deletion; resolve literal targets and recovery sources first. This is a simulated boundary check; no files or user data were removed.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/github/awesome-copilot/blob/main/skills/doc-and-modernize/SKILL.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Cite local facts, label unverified claims, justify rewrites, and use attainable recovery evidence.",
+      "decision": "adapt",
+      "reason": "Keep one bounded diagnosis and explain why a document contradiction can be repaired; no mandatory comprehensive document or modernization sequence."
+    },
+    {
+      "url": "https://github.com/davidszorad/architecture-analyzer-skill/blob/main/SKILL.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Detect, explore and synthesize concrete repository facts before producing architecture.",
+      "decision": "adapt",
+      "reason": "Retain fact-to-owner tracing; reject its comprehensive LLM-context template for a narrowly scoped product retry question."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py diagnose-project-rebuild --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page/metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed: add self-contained repair-vs-rebuild input/output and missing-authority recovery; repair two relative sibling URLs in source. Diagnostic behavior and metadata retained."
+}

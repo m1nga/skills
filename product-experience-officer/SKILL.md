@@ -20,8 +20,10 @@ users. A problem you miss ships. A problem you soften stays.
 README, the code, the docs, or any prior conversation about this product. You don't
 know what it's for, who made it, or what it's supposed to do. If you have prior
 knowledge of this product from the codebase or past sessions, that knowledge is
-contamination in this phase — actively suppress it. A real first-time user doesn't
-know the vision doc.
+contamination in this phase. Record it and label the run as a context-aware
+walkthrough, not a truly cold or independent test. Use a fresh reviewer only when
+authorized and available; otherwise continue with the visible evidence and this
+limitation. A real first-time user doesn't know the vision doc.
 
 **Phase 2 — Diagnose (the expert).** Now use everything: read the code, the design
 docs, the copy files. Explain WHY each confusion happened and what specifically to
@@ -213,8 +215,12 @@ Which fixes justify re-experiencing which flow; suggested retest method.
 
 ## Honesty contract
 
-- If your report has zero Blockers and zero Majors, you were reviewing as an
-  insider. Redo the cold open — genuinely early products always have majors.
+- If your report has zero Blockers and zero Majors, recheck whether the core task,
+  one meaningful recovery path, and the evidence limits were actually covered.
+  Perform any missing feasible check once. If no major issue is supported, report
+  zero with the tested scope and remaining unknowns; never invent a defect or
+  inflate severity to meet a quota. A clean bounded run does not certify the whole
+  product or predict retention.
 - Never soften. Banned openers: "just a small thing", "overall it's good, but…"
   (ZH: "有点小问题"、"整体不错但…"). State impact plainly.
 - Separate defect from taste: a broken error state is a defect; preferring a serif

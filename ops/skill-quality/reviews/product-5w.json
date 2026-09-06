@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "skill": "product-5w",
+  "reviewed_at": "2026-09-06T18:48:13.752836+00:00",
+  "source_sha256": "9caa230b4f4962602bc90c6d29e03479c034ff8dc4ee554dd91347e932ae4eb4",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicit instruction walkthroughs using authored fixtures. All product-behavior cases are simulated; not independent agent execution, human research, or real app use. Actual API reads and page audits are recorded separately.",
+    "scenarios": [
+      {
+        "request": "Assess a paid tier for a free export tool. Fixture usage-log records three volunteers completing weekly exports on three dated sessions; no paid offer exists.",
+        "expected": "Evidence of repeat use survives; payment and audience generality remain unverified.",
+        "observed": "Before: WHO rule rejected nonpaying volunteers despite the usage-log. After: verified-within-fixture repeated exports for the named three; broad WHO assumed; willingness to pay unknown. NARROW to observed users for research, not launch; next action is an offer test, not a claim of demand. No actual volunteer data collected.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Same claim, but there is no log and the author only predicts that volunteers would love it.",
+        "expected": "Do not manufacture user evidence.",
+        "observed": "WHO and repeat use unknown/assumed; ask for a recent concrete instance or observe task completion. A proposed offer is a future test, not payment evidence.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "A buyer paid once, but there is no use log.",
+        "expected": "Avoid converting purchase to retention or completed use.",
+        "observed": "Payment verified only if its receipt is supplied; repeated use and target task completion remain unknown. No claim that one buyer validates the market.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/cookiy-ai/user-research-skill/blob/main/references/qualitative-research-planner/qualitative-research-planner.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Recruit for actual behavior and domain knowledge; tie the study to a decision.",
+      "decision": "adapt",
+      "reason": "Use observed behavior to establish the claimed user group; do not require payment for free products or import fixed sample-size/speed claims."
+    },
+    {
+      "url": "https://github.com/RefoundAI/lenny-skills/blob/main/skills/customer-interviews/SKILL.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Continuing to use a prototype and committing time can matter alongside payment; seek disconfirming observations.",
+      "decision": "adapt",
+      "reason": "Keep use evidence distinct from willingness to pay; real-human counterexamples improve a simulation bridge. Reject universal interview-count thresholds."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py product-5w --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page/metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed: separate observed use from willingness to pay; add free-product input/output and missing-evidence recovery. Existing products.json title/description/topics remain accurate and are retained."
+}

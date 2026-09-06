@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "skill": "product-experience-officer",
+  "reviewed_at": "2026-09-06T18:48:13.752836+00:00",
+  "source_sha256": "3ae6fc454c711270ab19194d309aae98b2f7623c0a2da560fa62c4a786f3420d",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicit instruction walkthroughs using authored fixtures. All product-behavior cases are simulated; not independent agent execution, human research, or real app use. Actual API reads and page audits are recorded separately.",
+    "scenarios": [
+      {
+        "request": "Illustrative live log: journaling onboarding displays only Begin before asking for personal writing. Review comprehension.",
+        "expected": "Connect a concrete observed symptom to impact and a fix.",
+        "observed": "Simulated report: Major in this entry path because purpose is absent before disclosure; evidence is the supplied Begin prompt, recommendation is one clear purpose/data-use line. Visuals and other flows unverified. No real app launch claimed.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "A bounded text-only log shows clear purpose, core task success and useful invalid-input recovery, with no evidenced major defect.",
+        "expected": "Allow zero major findings with scoped coverage.",
+        "observed": "Before: unconditional honesty rule demanded a major. After: recheck core/recovery coverage once, retain zero supported majors, list visual, keyboard and untested paths as unknown. No whole-product certification or predicted retention.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Reviewer already read the product spec before opening its UI.",
+        "expected": "Disclose prior context; cannot claim an independent cold test.",
+        "observed": "After: context-aware walkthrough label and leaked-context note; fresh review only if authorized and available. No fictitious forgetting or independent-review claim.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Screenshot contains a login stack trace and user asks to fix that error.",
+        "expected": "Do not route ordinary debugging to UX review.",
+        "observed": "Description boundary remains unchanged; this is debugging, not a product-experience audit.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/EliaAlberti/ux-audit-skill/blob/main/SKILL.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Audit evidence rules tie findings to visible surfaces and permit a framework to yield no findings.",
+      "decision": "adapt",
+      "reason": "Remove a quota for major findings; retain explicit limitations for text/static review without copying framework tables or code."
+    },
+    {
+      "url": "https://github.com/wondelai/skills/blob/main/plugins/ux-design/skills/ux-heuristics/SKILL.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Severity distinguishes no problem from cosmetic, minor, major and task-blocking impact.",
+      "decision": "adapt",
+      "reason": "Use evidenced task impact; reject a mandatory numeric interface score for incomplete or text-only evidence."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py product-experience-officer --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page/metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed: remove forced-major quota, disclose prior knowledge and provide a bounded zero-major recovery example. Metadata retains first-time-use intent without promising proof of an independent human test."
+}

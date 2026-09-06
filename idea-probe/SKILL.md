@@ -108,7 +108,10 @@ a vibe:
   background that explain the smooth pass — the commute that fits the use
   moment, the tool they already pay for that this replaces, the motivation
   slot they occupy. If the three facts can't be produced, the run is invalid:
-  rerun it, honestly.
+  recast once with explicit hypothetical background details. Those details explain
+  the simulation; they do not become facts about real people. If a smooth path
+  remains plausible, report it with its assumptions and the real-user test that
+  could overturn it.
 - **Homogeneity detection.** If every persona stalls — or passes — at the
   same station in near-identical words, that is one perspective narrated in
   different voices, not several people. Swap at least two personas for
@@ -233,9 +236,10 @@ checklist in the report):
 - **Simulation, never validation.** The probe's outputs are hypotheses with
   reasoning attached. Never present persona reactions as evidence of market
   demand, and never let the report's confidence exceed a thought experiment's.
-- A probe where every persona sails through means the cast was drawn in the
-  author's image — recast with stranger strangers and rerun. Zero findings is
-  evidence about the probe, not the idea.
+- If every persona sails through, check whether the cast and paths were varied
+  enough and recast once if needed. Report any remaining zero-finding outcome as
+  a limited simulation with unverified assumptions, not validation. Do not invent
+  friction, keep recasting until something fails, or raise severity to fill a quota.
 - The probe does not build. After the revised one-pager, construction belongs
   to the user's build workflow. If the idea is itself a skill and extend-first
   is installed, let it check the shelf first — an EXTEND verdict ends the probe

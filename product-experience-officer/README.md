@@ -4,7 +4,7 @@ A reviewer that experiences your unreleased product as a total stranger first â€
 
 ## What it does
 
-Runs your product (or reads your screenshots) in two strictly separated phases. Phase 1: a zero-context first-time user who hasn't read your README, doesn't know your vision, and writes down every confusion the moment it happens â€” because confusion evaporates once understood and can't be re-felt. Phase 2: a product/UX expert who reads the code and docs to explain each confusion and prescribe a fix. The output is a single report: a one-paragraph verdict up top ("would a stranger come back tomorrow?"), a first-person experience log, severity-ranked findings with evidence, one recommended fix each, and effort estimates, plus an honest list of what this round couldn't verify.
+Runs your product (or reads your screenshots) in two phases. Phase 1: follow the public entry path and record confusion before consulting internal specifications or code. A README or help screen that users naturally encounter is part of that experience. If the reviewer already knows the product, disclose that context; the run cannot honestly be called a fresh independent test. Phase 2: a product/UX expert who reads the code and docs to explain each confusion and prescribe a fix. The output is a single report: a one-paragraph verdict up top ("would a stranger come back tomorrow?"), a first-person experience log, severity-ranked findings with evidence, one recommended fix each, and effort estimates, plus an honest list of what this round couldn't verify.
 
 ## When it fires
 
@@ -22,6 +22,22 @@ It does not fire for debugging a specific error from a screenshot, or for code r
 ```
 npx skills add m1nga/product-experience-officer
 ```
+
+## Try an evidence-bound review
+
+After installation, ask your agent to use `product-experience-officer` on your
+product's public entry point and one core task. Supply a disposable profile for
+any action that writes data.
+
+Illustrative recovery case: a text-only walkthrough shows the task completing
+and invalid input returning a useful error. No major defect is observed. The
+report should say **zero evidenced major findings in this tested path**, record
+the actions and outputs, and leave visuals and untested paths under To verify.
+It must not manufacture a blocker to sound rigorous or claim retention from one
+session. If the reviewer read the spec earlier, the report must disclose that.
+
+This example describes expected behavior; it is not a user study or a claim that
+an application was tested here.
 
 ## Example
 

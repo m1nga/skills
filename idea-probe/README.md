@@ -55,6 +55,25 @@ this technically feasible" is a research question, not a persona simulation.
 npx skills add m1nga/idea-probe
 ```
 
+## Try a narrow idea
+
+After installation, ask your agent to use `idea-probe`:
+
+> Full probe, no building: a free offline checklist for volunteers who close a
+> community workshop. I assume they already follow a paper checklist and would
+> discover this through the coordinator; I have not interviewed anyone.
+
+Expected output is a simulated cast with different devices, habits and motivation,
+a ranked set of plausible risks, a revised one-pager, and a real-user test. A
+phone-only volunteer may lack a usable device; a paper-preferring volunteer may
+see no reason to switch. Those are hypotheses, not observed people or conversion
+rates. If a varied cast still reveals no defensible friction, report that limited
+result and keep the demand and return-use questions open.
+
+Recovery: if the checklist already runs and the request is to test its interface,
+switch to a hands-on product review. Do not manufacture persona failures to fill
+a report. This is an authored example, not a market study.
+
 ## Example
 
 > **You:** New idea: a flashcard app for learning wine pairings. Don't build —
@@ -64,7 +83,7 @@ npx skills add m1nga/idea-probe
 > phone, a 51-year-old restaurant owner who delegates anything with an app
 > store, a 33-year-old gifting it to her partner, among others — and runs first
 > contact. The restaurant owner misreads the name as a wine *inventory* tool
-> and leaves in eight seconds; three of six never encounter a plausible
+> and leaves at first glance; three of six never encounter a plausible
 > discovery channel; the gift recipient opens it once. The report ranks
 > "no discovery path for the majority of the claimed audience" above every
 > in-app issue, ships a one-pager re-scoped to sommelier students, and closes
@@ -84,8 +103,8 @@ The three probe seats, in build order:
    — once the product runs: experienced as a zero-context stranger, reported
    as an expert.
 
-Same honesty contract across all three: a report with zero findings means the
-auditor sat in the author's chair.
+Across these reviews, findings need evidence and limitations stay visible. A
+zero-finding run warrants a coverage check; it never licenses invented problems.
 
 Also pairs with [extend-first](https://github.com/m1nga/extend-first) — if
 the idea that survives the probe is a *skill*, that gate checks the shelf for

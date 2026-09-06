@@ -105,7 +105,11 @@ answer impossible.
   user without ever having been one.
 - The sharpest qualifying question, for the field list: *"When did you last
   pay for X? What did you pay? What did you do as a result?"* No past
-  payment, no verified WHO.
+  payment means willingness to pay remains unverified; it does not invalidate
+  evidence of use. For a free tool, cite observed task completion, repeat use,
+  switching effort, or a documented workaround to establish the specific
+  behavior claimed. Keep user identity, use, and willingness to pay as separate
+  claims; verify only what the source supports.
 - Is the person who *uses* it the person who *pays or decides*? If not, both get
   an answer, because they need different WHYs.
 - In B2B, the unit of WHO is the decision-maker — and behind every business

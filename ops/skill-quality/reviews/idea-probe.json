@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "skill": "idea-probe",
+  "reviewed_at": "2026-09-06T18:48:13.752836+00:00",
+  "source_sha256": "071ef28a3d587e25dd0c2cb2abf3c5b221793fedf6585a5a31ae94127e90e841",
+  "user_review": {
+    "method": "Maintainer public-entry review and explicit instruction walkthroughs using authored fixtures. All product-behavior cases are simulated; not independent agent execution, human research, or real app use. Actual API reads and page audits are recorded separately.",
+    "scenarios": [
+      {
+        "request": "Full prebuild probe: free offline workshop-closing checklist; paper habit and coordinator channel are author assumptions.",
+        "expected": "Generate diverse hypothetical paths and an honest reality bridge without building.",
+        "observed": "Simulated cast: older coordinator on a shared laptop can reach the file but needs printing; young phone-only volunteer hits format friction; price-sensitive casual closer stays with paper; experienced desktop closer has a plausible smooth path. Age, resources, fluency, context and motivation vary. All histories are hypothetical. NARROW to coordinator printing pending real observation; next test recruits actual recent closers and asks when they last closed, what checklist they used, and what failed. Predeclare a task-specific decision rule with the owner; no market size or conversion claimed.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "After one cast review, varied personas have plausible smooth paths and no defensible major friction.",
+        "expected": "Avoid indefinite recasting or invented failure.",
+        "observed": "Before: zero findings necessarily meant faulty casting. After: record limited zero-finding simulation, hypothetical backgrounds and unresolved demand/return-use; real observation may contradict it. No launch approval.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "The checklist is a runnable interface, and user asks to test its buttons.",
+        "expected": "Do not simulate an unbuilt idea.",
+        "observed": "Routes to hands-on product review; retains existing trigger boundary. No persona matrix or app changes.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/cookiy-ai/user-research-skill/blob/main/references/qualitative-research-planner/qualitative-research-planner.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Recruit for actual behavior and domain knowledge; tie the study to a decision.",
+      "decision": "adapt",
+      "reason": "Use observed behavior to establish the claimed user group; do not require payment for free products or import fixed sample-size/speed claims."
+    },
+    {
+      "url": "https://github.com/RefoundAI/lenny-skills/blob/main/skills/customer-interviews/SKILL.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Continuing to use a prototype and committing time can matter alongside payment; seek disconfirming observations.",
+      "decision": "adapt",
+      "reason": "Keep use evidence distinct from willingness to pay; real-human counterexamples improve a simulation bridge. Reject universal interview-count thresholds."
+    },
+    {
+      "url": "https://github.com/EliaAlberti/ux-audit-skill/blob/main/SKILL.md",
+      "checked_at": "2026-09-06T18:48:13.752836+00:00",
+      "learned": "Audit evidence rules tie findings to visible surfaces and permit a framework to yield no findings.",
+      "decision": "adapt",
+      "reason": "Remove a quota for major findings; retain explicit limitations for text/static review without copying framework tables or code."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py idea-probe --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page/metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed: bounded diversity recheck, explicit hypothetical backgrounds, no manufactured failures, reproducible narrow-idea example; remove false zero-findings claim about sibling skills and an unmeasured eight-second precision cue."
+}
