@@ -34,14 +34,15 @@ shower screen, gaps at the basket edge.
 ## Extraction taste diagnosis (full version)
 | | Under-extracted | Over-extracted |
 |--|--|--|
-| Taste | sour, sharp, astringent, salty, hollow, not sweet, dry finish | bitter, burnt, woody, acrid, ashy, dry-bitter aftertaste |
+| Taste | sour, salty, hollow, not sweet | bitter, burnt, woody, acrid, ashy, dry-bitter aftertaste |
 | Usual causes | too coarse, too fast, too short, water too cool, dense light roast not fully extracted | too fine, too slow, too long, water too hot |
 | Rescue | grind finer, longer ratio/time, temp up | grind coarser, shorter ratio/time, temp down |
 
 **Key reminder**: both taste "unpleasant" on first sip and are easily confused.
-**Mainly sour → under-extracted; mainly bitter → over-extracted.** A light roast's
-under-extracted sharpness is routinely mistaken for over-extraction — check the two
-objective numbers (**time + grind setting**) before ruling.
+Taste and time suggest hypotheses, not a certain diagnosis. Sour plus drying or
+spraying can indicate uneven extraction; check distribution before going finer.
+Choose ONE item from the rescue directions per shot, keeping other inputs fixed.
+Compare timing consistently, including or excluding preinfusion the same way.
 
 ## Fresh-bean degassing (rested <7 days)
 Very fresh beans hold a lot of CO₂: espresso channels easily, pour-over blooms erupt.

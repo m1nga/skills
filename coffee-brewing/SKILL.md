@@ -45,7 +45,7 @@ Read as many as given — bag / beans / grounds / the shot itself. More photos, 
   pour-over needs a longer bloom)
 - ⚠️ The bag's "roast level" is a label — cross-check against the beans themselves
 
-### ② The beans (the gold standard for roast level)
+### ② The beans (a visual estimate of roast level)
 Surface color decides roast level — **don't presume, don't force a guess**:
 - Light yellow-brown, dry → light roast
 - Brown, dry surface → light-medium to medium
@@ -53,7 +53,7 @@ Surface color decides roast level — **don't presume, don't force a guess**:
 - Oily and shiny → dark roast
 - Check evenness: mottled color or clearly pale beans (quakers) → uneven roast, expect
   messy extraction
-- **When beans and bag disagree, trust the beans** — and tell the user
+- **When beans and bag disagree, flag the uncertainty** — lighting and camera processing can distort color. Keep the roaster label as reported evidence; do not override it from a photo alone. Processing method needs a readable label or source, not a visual guess.
 - Bag only, no beans visible: say plainly "I can only see the bag; going by its label"
   and state your confidence
 
@@ -144,20 +144,22 @@ ordered. Quick anchors:
 
 The user reports **time + taste**; you diagnose and give the next single move.
 
-**Numbers before taste** (people routinely misread sharp-sour as "bitter/over-extracted"):
-- Shot ran **<25s and the grind is on the coarse side** → almost certainly
-  **under-extracted**, whatever the mouth says
-- Shot ran **>35s and the grind is on the fine side** → leaning **over-extracted**
-- Taste mainly **sour / sharp / astringent / hollow / not sweet** = under-extracted;
-  mainly **bitter / burnt / woody / acrid** = over-extracted
-- ⚠️ **Light roasts under-extract most easily** (dense beans, hard to extract), and their
-  sharp sourness is the classic misdiagnosis as over-extraction — this is the number one
-  trap
+**Interpret time and taste together.** Record dose, yield, grind, temperature and
+whether timing includes preinfusion. Time is a clue, not an extraction measurement
+or a reason to dismiss taste. Fast recipes can be intentional. Mixed sour, bitter
+and drying sensations or spraying can indicate uneven flow; inspect puck preparation
+before prescribing finer grinding.
 
-| Symptom | Verdict | Move |
+| Symptom with context | Working hypothesis | Next single move |
 |---------|---------|------|
-| Sour / sharp / astringent / not sweet / runs fast | Under-extracted | **Grind finer** + longer ratio & time + temp up 1–2°C |
-| Bitter / burnt / woody / acrid / runs slow | Over-extracted | **Grind coarser** + shorter ratio & time + temp down 1–2°C |
+| Sour and fast relative to the intended recipe; even flow | Insufficient extraction is plausible | Grind slightly finer; hold dose, yield and temperature fixed |
+| Bitter and slow relative to the intended recipe; even flow | Excess extraction is plausible | Grind slightly coarser; hold dose, yield and temperature fixed |
+| Sour and drying with spraying or inconsistent flow | Uneven extraction may be involved | Improve distribution only, then compare at the same recipe |
+
+Treat these as starting hypotheses. If flow is already even and timing fits the
+intended recipe, consider changing yield alone based on taste instead of always
+grinding finer. See [the Espresso Compass](https://www.baristahustle.com/the-espresso-compass/)
+for the relationship between yield, extraction and evenness.
 
 Principles:
 - **Change ONE variable per shot.** Grind is the biggest lever. Get grind and time into

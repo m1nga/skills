@@ -70,7 +70,7 @@ Google rankings or AI-answer citations.
 ## Works well with
 
 - [`skill-creator`](https://github.com/openai/skills/tree/main/skills/.system/skill-creator) — builds
-  the skill; this skill owns the public product release after approval.
+  the skill; this skill owns the public product release within the owner’s existing authorization.
 - [`scenario-probe`](https://github.com/m1nga/scenario-probe) — stress-tests the public trigger and
   body before release.
 - [`loop-system-architect`](https://github.com/m1nga/loop-system-architect) — defines the persistent
@@ -99,10 +99,21 @@ automation. Search indexing remains a separately observed status, not a release 
 An independent agent simulation checked a scoped usage scenario after the instruction
 cleanup. This checks instruction behavior, not human adoption or measured time savings.
 
-The bundled release/data tools also have 14 offline regression tests, covering dirty
+The bundled release/data tools also have 21 offline regression tests (run on 2026-09-07, Asia/Shanghai), covering dirty
 source rejection, unrelated-change preservation, missing API data, fixed-query
 comparison, and snapshot overwrite protection. Run from the installed skill directory:
 
 ```bash
 python3 scripts/test_release_tools.py
 ```
+
+## Failure and recovery example
+
+Input: `Publish my finished skill; another skill has uncommitted work.`
+Expected: validate and publish only the finished skill from committed source,
+preserving the unrelated draft. If the target itself changes after review, stop
+at that boundary, re-review the new content and commit it before retrying.
+
+The offline regression suite exercises dirty-target rejection, unrelated-draft
+preservation and stale review detection using temporary repositories. These checks
+verify release mechanics; they cannot certify review honesty or audience demand.

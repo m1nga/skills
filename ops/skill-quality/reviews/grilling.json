@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "skill": "grilling",
+  "reviewed_at": "2026-09-06T21:47:42.982841+00:00",
+  "source_sha256": "9367bd6a54e060b6cae9ac858febe1d520c73a69a2951b9fbe9cce59ffe2fbeb",
+  "user_review": {
+    "method": "Maintainer public-entry reading and explicitly simulated normal/boundary walkthroughs; existing body knowledge disclosed. Not independent agent runs or human research. Actual offline executions individually marked.",
+    "scenarios": [
+      {
+        "request": "Grill me on offline sync for my notes app.",
+        "expected": "Ask one question; recommendations conditional on unprovided facts.",
+        "observed": "Before: example asserts single-user scope without evidence. After walkthrough: one collision question, conditional single-user/default-overwrite recommendation, await confirmation.",
+        "result": "fixed",
+        "kind": "simulated"
+      },
+      {
+        "request": "Stop asking; decide the rest.",
+        "expected": "Produce scoped plan using labeled assumptions; preserve plan approval boundary.",
+        "observed": "Walkthrough exits interview to P2; unconfirmed defaults stay assumptions, no implementation begins.",
+        "result": "pass",
+        "kind": "simulated"
+      },
+      {
+        "request": "Just implement the approved notes plan; or quiz me on React interview questions.",
+        "expected": "Do not route either to a build-scoping interview.",
+        "observed": "Both negative controls remain excluded by existing description; this is predicted routing, not a live harness selection.",
+        "result": "pass",
+        "kind": "simulated"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/satya-janghu/agent-skills/blob/HEAD/skills/grill-me/SKILL.md",
+      "checked_at": "2026-09-06T21:43:33.798675+00:00",
+      "learned": "Distinguish surfaced assumptions from key decisions in a durable scoping record.",
+      "decision": "adapt",
+      "reason": "Label proposed defaults and fix the unsupported assumption in the public example; retain the explicitly requested interview boundary."
+    },
+    {
+      "url": "https://github.com/mattpocock/skills/blob/HEAD/skills/productivity/grilling/SKILL.md",
+      "checked_at": "2026-09-06T21:44:20.848193+00:00",
+      "learned": "Questions can depend on unresolved prerequisites.",
+      "decision": "adapt",
+      "reason": "Use dependency awareness but retain one question at a time; reject full-frontier batches and mandatory subagent dispatch for this compact interviewer."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py grilling --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual product page/package/metadata audit PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Conditional recommendations replace invented user facts; historical probe labeled simulated. Title, description and topics retained because they match the scoped interview."
+}

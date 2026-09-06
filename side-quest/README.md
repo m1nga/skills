@@ -1,17 +1,14 @@
 # Side Task Assistant — Capture Side Work Without Losing Your Main Thread
 
 **Park the thought, keep your flow — a background agent does the side quest
-while your main thread never notices.**
+when the host supports delegation; otherwise it stays visibly queued.**
 
 ## The problem it actually solves
 
-A thought that arrives mid-flow has two exits, both bad: chase it and lose your
-thread (refocusing after an interruption takes ~23 minutes), or suppress it and
-let it knock every ninety seconds — psychologists call that the Zeigarnik
-effect: unfinished loops occupy working memory until the mind trusts they're
-handled. Research (Masicampo & Baumeister, 2011) shows the loop releases the
-moment a *credible plan* exists — the task doesn't have to be done, you just
-have to believe it will be.
+A thought that arrives mid-flow can interrupt current work or disappear into a
+forgotten note. The useful promise is concrete: retain the request, report whether
+it actually ran, and make its result easy to find. No fixed refocusing-time or
+psychological benefit is promised.
 
 side-quest builds that credible plan in one line — then actually does the work:
 
@@ -75,16 +72,16 @@ becoming fake work; "email the team" comes back as a draft, not a sent email.
 ## Install
 
 ```bash
-npx skills add m1nga/skills@side-quest
+npx skills add m1nga/side-quest
 ```
 
 ## Works well with
 
-- [thinking-partner](../thinking-partner/) — a side quest that turns out to be
+- [thinking-partner](https://github.com/m1nga/thinking-partner) — a side quest that turns out to be
   a real decision gets handed here
-- [conclude-rounds](../conclude-rounds/) — session recaps naturally list what
+- [conclude-rounds](https://github.com/m1nga/conclude-rounds) — session recaps naturally list what
   your side quests shipped
-- [desktop-package](../desktop-package/) — same delivery philosophy: work you
+- [desktop-package](https://github.com/m1nga/desktop-package) — same delivery philosophy: work you
   can review cold, outside the chat
 
 ## Design notes
@@ -100,7 +97,7 @@ spec: "a single silent drop is not negotiable."
 
 ## Field-tested
 
-Wind-tunneled with [scenario-probe](../scenario-probe/) before release: 21 scenarios across two probe passes — 11 birth utterances from the five design personas, plus 10 contract-stress scenarios (session crash mid-dispatch, an English-only stranger, a Codex engine with no background capability). Score: 17 clean passes · 4 degraded-with-notes · 0 harmful behaviors · 2 blockers fixed before publish (a YAML validity bug and one promise the mechanism couldn't keep).
+Wind-tunneled with [scenario-probe](https://github.com/m1nga/scenario-probe) before release: 21 scenarios across two probe passes — 11 birth utterances from the five design personas, plus 10 contract-stress scenarios (session crash mid-dispatch, an English-only stranger, a Codex engine with no background capability). Score: 17 clean passes · 4 degraded-with-notes · 0 harmful behaviors · 2 blockers fixed before publish (a YAML validity bug and one promise the mechanism couldn't keep).
 
 > **"sq: remind me to tag the release at 5pm"** — the fake-work trap. No agent spawned, no file created: the reminder routed to the scheduler with the receipt "reminder set, not a task."
 
@@ -108,4 +105,13 @@ Wind-tunneled with [scenario-probe](../scenario-probe/) before release: 21 scena
 
 > **Session killed right after dispatch** — the parked words survived on disk (the write-ahead ledger runs before any agent spawns), and the probe caught that the original "announced at session start" promise couldn't actually be kept by a skill that only loads when triggered. The wording was fixed before release; nothing is ever silently lost.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
+
+## Recovery example (maintainer simulation)
+
+Input: `sq list` after a crash; the draft contains only its title.
+Expected result: keep the original words and the draft, mark it `partial`, check
+whether the original agent is still running, and retry only after reconciliation.
+A file existing is insufficient evidence of completion. With no agent tools, new
+work stays `queued`; with no disk, return a copyable ledger and disclose that it
+has not been saved.

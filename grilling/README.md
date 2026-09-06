@@ -27,13 +27,13 @@ npx skills add m1nga/grilling
 
 > **You:** Grill me on this: I want to add offline sync to my notes app.
 >
-> **Claude:** Q1 — When the same note is edited offline on two devices, what wins? **My recommendation:** last-writer-wins per field — your notes are single-user, and field-level merging covers most collisions without a CRDT. Confirm or redirect?
+> **Claude:** Q1 — When the same note is edited offline on two devices, what wins? **My recommendation:** last-writer-wins per field — if these are single-user notes and occasional same-field overwrites are acceptable, this keeps v1 simpler than a CRDT. Are those assumptions right?
 >
 > **You:** Confirmed.
 >
 > **Claude:** Q2 — ...
 
-Eight questions later you get a plan whose "What we are NOT doing" section reads: no CRDT, no multi-user sharing, no conflict-resolution UI in v1.
+This authored illustration assumes the user confirms single-user scope and accepts that overwrite tradeoff. After the relevant decisions are settled, the plan’s "What we are NOT doing" section reads: no CRDT, no multi-user sharing, no conflict-resolution UI in v1.
 
 At any point, say "just decide" (or 「别问了」) and it collapses every remaining question into its own recommended answer and hands you the full plan anyway.
 
@@ -66,9 +66,9 @@ This skill comes out of a solo builder's post-mortems, where the recurring failu
 - **Drift triggers are named in advance.** "We've gone off-scope" is easy to wave away mid-flow — unless the plan itself already says what off-scope looks like.
 - **The exit valve is part of the protocol.** Willingness to be grilled is a mood, not a contract. The moment you say "just decide", the interview folds into recommendations and you still get the full plan structure — the protocol never punishes you for wanting out.
 
-## Field-tested
+## Evidence
 
-Probed 7 scenarios across 6 personas · 4 fired correctly · 2 correctly stayed quiet · 1 edge flagged for a description patch.
+Historical simulated probe: 7 scenarios across 6 personas · 4 fired correctly · 2 correctly stayed quiet · 1 edge flagged for a description patch.
 
 > **"开工前把我问透,这个切片方案"** → Fired. One question per turn, each arriving with a recommended answer to veto — and「别问了」collapses the rest into recommendations without losing the plan.
 

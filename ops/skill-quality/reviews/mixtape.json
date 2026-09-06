@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "skill": "mixtape",
+  "reviewed_at": "2026-09-06T21:47:42.982841+00:00",
+  "source_sha256": "851be6c396b4413f4d1dc94abed3d7cf8534ef63ed9b7925ae85611966ef7f1f",
+  "user_review": {
+    "method": "Maintainer public-entry reading and explicitly simulated normal/boundary walkthroughs; existing body knowledge disclosed. Not independent agent runs or human research. Actual offline executions individually marked.",
+    "scenarios": [
+      {
+        "request": "Canonicalize a normal track and reject a same-title wrong artist; build exact-ID reconciliation plan.",
+        "expected": "Correct matches pass; wrong recording and stale library identity fail.",
+        "observed": "Actual bundled offline suite: 15 tests PASS, including canonical artist matching and reconciliation valid/stale/collision controls. No live Soundiiz request or Music library mutation.",
+        "result": "pass",
+        "kind": "executed"
+      },
+      {
+        "request": "Apple catalog confirms a song; does that guarantee all Spotify imports or a signed trusted payload?",
+        "expected": "Separate catalog identity, fingerprint integrity and destination matching.",
+        "observed": "Before README called it a signed handoff and implied destination verification. After walkthrough: catalog identity only, unkeyed edit detection only, destination matching and library read-back remain unverified.",
+        "result": "fixed",
+        "kind": "simulated"
+      },
+      {
+        "request": "User asks what the helper sends outside the machine.",
+        "expected": "Describe actual request fields and distinguish local taste files from agent conversation processing.",
+        "observed": "Inspected poster sends non-internal playlist metadata and title/artists; README now identifies Apple lookups, Soundiiz fields and agent-provider processing. No packet capture performed.",
+        "result": "fixed",
+        "kind": "simulated"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/rachel-howell/spotify-playlist-curator/blob/HEAD/skills/spotify-playlist-curator/SKILL.md",
+      "checked_at": "2026-09-06T21:44:21.953676+00:00",
+      "learned": "Ground selection in taste data and explicitly describe platform/API fallbacks.",
+      "decision": "adapt",
+      "reason": "Keep honest destination coverage; reject versioned playlist copies because this product intentionally maintains one stable identity."
+    },
+    {
+      "url": "https://github.com/epheterson/applemusic-mcp/blob/HEAD/SKILL.md",
+      "checked_at": "2026-09-06T21:43:37.278290+00:00",
+      "learned": "Catalog identities and library identities serve different operations.",
+      "decision": "adapt",
+      "reason": "Retain exact platform-ID preflight and read-back; no direct Apple integration is added and third-party API claims are not treated as verified by reading alone."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py mixtape --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual product page/package/metadata audit PASS."
+    },
+    {
+      "command": "python3 -m unittest discover -s mixtape/tests -v",
+      "result": "pass",
+      "observed": "15 actual offline tests passed; no live playlist operation."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Clarify catalog-versus-destination verification, fingerprint-versus-signature and actual data transmission. Retain tested code, title and metadata; no new live import claim."
+}

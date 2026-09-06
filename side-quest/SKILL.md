@@ -16,8 +16,7 @@ description: >-
 # Side Quest
 
 A thought that arrives mid-flow has two bad exits: chase it (lose the thread) or
-suppress it (it re-intrudes every ninety seconds — the Zeigarnik effect keeps
-unfinished loops knocking until the mind trusts they are handled). This skill
+suppress it (and risk losing it or returning to it repeatedly). This skill
 builds the third exit: park it in one line, keep working, and collect the
 finished work at your next natural break.
 
@@ -65,9 +64,11 @@ BEFORE spawning anything, append to the inbox's `_INBOX.md`:
 States: `captured → dispatched → done | failed | partial | queued`. Every
 terminal state produces a receipt. If a session dies, orphaned `dispatched`
 entries are announced the next time this skill loads (any sq marker, "sq list",
-or an inbox mention) — after reconciling with the inbox first: if the
-deliverable file already exists, mark it done, not failed; announcing a false
-failure breaks the same contract as silence. A quest may never end without a
+or an inbox mention) — after reconciling with the inbox first: inspect any deliverable against the stored brief and check available agent status.
+A file alone may be a partial write: mark done only when its content and completion
+evidence satisfy the brief; otherwise preserve it as partial or keep a live dispatch
+running. If agent status is unavailable, record that uncertainty before retrying.
+Announcing a false failure breaks the same contract as silence. A quest may never end without a
 durable trace. The verbatim words are sacred: never retitle the
 user's thought; they find it by their own words, not by your summary.
 

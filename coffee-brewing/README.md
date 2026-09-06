@@ -1,6 +1,6 @@
 # Coffee Brewing Coach — Get Exact Brew Parameters
 
-**An AI home-barista skill that reads your shot's numbers before it believes your tongue.**
+**Use your shot recipe and taste together to choose one change for the next brew.**
 
 ## What it does
 
@@ -28,15 +28,15 @@ coffee" won't trigger it.
 
 ### Can AI help me dial in espresso?
 
-Yes. Give the skill your dose, yield, shot time, taste, and grinder setting. It checks
-the numbers before interpreting words like “sour” or “bitter,” then recommends one
+Yes. Give the skill your dose, yield, shot time, taste, and grinder setting. It interprets
+the numbers alongside words like “sour” or “bitter,” then recommends one
 change at a time so the next shot produces useful evidence instead of a new guess.
 
 ### Why does a fast espresso shot taste sour?
 
-A shot that runs in under 25 seconds on a coarse setting is usually under-extracted,
-especially with a light roast. The skill starts by grinding finer, then uses the next
-shot’s time and taste to decide whether ratio or temperature needs attention.
+A fast, sour shot may need more extraction, but time alone cannot diagnose it.
+Give dose, yield, timing convention and flow observations too. If it sprays and
+tastes drying as well as sour, check uneven extraction before grinding finer.
 
 ### Can it make a V60 recipe from a coffee-bag photo?
 
@@ -106,3 +106,14 @@ Probed 7 scenarios across 6 personas · 5 fired correctly · 2 correctly stayed 
 > → No fake "saved!": it says so once, keeps the profile in-conversation, and hands you the finished entry as a copyable block.
 
 Probe method: [scenario-probe](../scenario-probe/)
+
+## Try one controlled change (maintainer simulation)
+
+Input: `18 g in, 36 g out, 20 s including preinfusion, 93°C; sour, even flow;
+my usual recipe takes 28 s. What next?`
+Expected: grind slightly finer on the same grinder, keep 18 g / 36 g / 93°C,
+and report the next time and taste. No arbitrary dial number is invented.
+
+Recovery input: `Same recipe, but sour and drying, with spraying.`
+Expected: improve distribution for the next shot while keeping recipe inputs fixed.
+These are instruction walkthroughs; no physical brew or tasting was performed.

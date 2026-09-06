@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "side-quest",
+  "reviewed_at": "2026-09-06T21:47:42.982841+00:00",
+  "source_sha256": "9b4d6613c9eaac7317d0c2a08163debd0941d62446a87bb085dfa70358ee4a9b",
+  "user_review": {
+    "method": "Maintainer public-entry reading and explicitly simulated normal/boundary walkthroughs; existing body knowledge disclosed. Not independent agent runs or human research. Actual offline executions individually marked.",
+    "scenarios": [
+      {
+        "request": "sq: draft three CLI names while we continue editing.",
+        "expected": "Persist original request before dispatch; no external sends or shared-tree changes.",
+        "observed": "Walkthrough captures original words, resolves the CLI reference, prepares draft-only brief; with available delegation can dispatch. No actual side agent ran in this review.",
+        "result": "pass",
+        "kind": "simulated"
+      },
+      {
+        "request": "sq list after a crash; only a title has been written in the draft.",
+        "expected": "Preserve partial work; do not infer done from existence; reconcile live worker before retry.",
+        "observed": "Before: file existence implies done. After walkthrough: draft fails the brief, stays partial; check worker state before any retry.",
+        "result": "fixed",
+        "kind": "simulated"
+      },
+      {
+        "request": "No agent tools; then no filesystem.",
+        "expected": "Queued status with tools absent, copyable unsaved ledger when disk absent.",
+        "observed": "Both degraded walkthroughs disclose actual capability and avoid claiming background execution or disk persistence.",
+        "result": "pass",
+        "kind": "simulated"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/sharkusk/side-quest/blob/HEAD/skills/side-quest/SKILL.md",
+      "checked_at": "2026-09-06T21:43:34.914065+00:00",
+      "learned": "Track partial, done and pending confirmation separately; capture does not itself complete work.",
+      "decision": "adapt",
+      "reason": "Require content and completion evidence before done. Reject git hooks, commit trailers and automatic configuration because this skill keeps side work draft-only."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py side-quest --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual product page/package/metadata audit PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Reconcile content and worker state after crashes, expose queued fallback, remove unsupported timing claims, repair source direct install and sibling URLs. Stable purpose/topics retained."
+}

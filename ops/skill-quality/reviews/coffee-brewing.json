@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "coffee-brewing",
+  "reviewed_at": "2026-09-06T21:47:42.982841+00:00",
+  "source_sha256": "bf955b7f88bebfb1e06170779e153ef808b493bd351b8f0c2884dbfdd7e4e307",
+  "user_review": {
+    "method": "Maintainer public-entry reading and explicitly simulated normal/boundary walkthroughs; existing body knowledge disclosed. Not independent agent runs or human research. Actual offline executions individually marked.",
+    "scenarios": [
+      {
+        "request": "18 g in, 36 g out, 20 seconds including preinfusion, 93 C, sour but even flow; usual recipe 28 seconds.",
+        "expected": "One controlled next step, no invented grinder dial.",
+        "observed": "Walkthrough recommends slightly finer with dose/yield/temp fixed and requests new time/taste. Before table combined three changes; after one-input change only.",
+        "result": "fixed",
+        "kind": "simulated"
+      },
+      {
+        "request": "Same recipe, sour and drying, spraying; photo color disagrees with bag label.",
+        "expected": "Consider uneven extraction and visual uncertainty.",
+        "observed": "Before fast timing overrode taste and photo overrode label. After walkthrough prioritizes distribution as one change, flags photo uncertainty, records label as supplied evidence, does not infer processing from image.",
+        "result": "fixed",
+        "kind": "simulated"
+      },
+      {
+        "request": "Hotel grinder unknown; home memory unavailable.",
+        "expected": "Generic grind guidance and copyable profile; no home dial or persistence claim.",
+        "observed": "Existing fallback remains usable in walkthrough; no physical coffee was brewed or tasted.",
+        "result": "pass",
+        "kind": "simulated"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/carloshrdezc/bean-whisperer/blob/HEAD/SKILL.md",
+      "checked_at": "2026-09-06T21:43:38.386255+00:00",
+      "learned": "Taste feedback and mixed sour/bitter channeling deserve a separate branch; machine-specific recipes include fast intentional shots.",
+      "decision": "adapt",
+      "reason": "Add contextual timing, evenness and one-variable recovery. Reject fixed GaggiMate host, automatic machine deployment and mandatory community-profile edits; no code copied."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py coffee-brewing --product-manifest products.json",
+      "result": "pass",
+      "observed": "Actual product page/package/metadata audit PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Fix conflicting multi-variable diagnosis, context-free timing certainty and photo certainty. Preserve home setup memory and canonical stable identity. Comparable coffee-skill name was unrelated security tooling and excluded."
+}

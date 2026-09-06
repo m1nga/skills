@@ -26,7 +26,7 @@ Before planning, restate the problem in ONE fresh sentence the user did not use.
 Produce a plan with these exact sections:
 
 - **Goal** — one sentence, locked.
-- **Decisions locked** — what the grill settled.
+- **Decisions locked** — what the grill settled. Label your recommended defaults as assumptions until confirmed; do not present them as facts supplied by the user.
 - **Decisions open** — what's still unresolved, and why.
 - **What we are NOT doing** — mandatory scope control. List the tempting-but-excluded explicitly.
 - **Steps** — each independently completable in one sitting.
