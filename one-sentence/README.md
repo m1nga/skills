@@ -33,14 +33,21 @@ those loses load-bearing content, and it says so in one line.
 npx skills add m1nga/one-sentence
 ```
 
-## Example
+## Example: keep the condition that makes the claim true
 
-> **You:** one sentence — what is a scenario probe?
->
-> **Claude:** A wind-tunnel test for instruction text: it simulates real users
-> against your skill's trigger surface before real sessions pay for the misfires.
+Authored demonstration.
 
-No preamble, no follow-up paragraph. Say "more" when you want the depth back.
+**Input:** “One sentence: this backup tool copies selected folders nightly, but
+only while my laptop is awake.”
+
+**Output:** “This backup tool copies your selected folders each night while your
+laptop is awake.”
+
+The awake condition survives compression; no recovery guarantee or time saving is
+added. Say “more” to get a fuller explanation.
+
+**Boundary:** “Summarize this ten-page spec” is a document-summary task. The skill
+steps aside so required decisions and instructions are not lost to a sentence cap.
 
 ## Works well with
 

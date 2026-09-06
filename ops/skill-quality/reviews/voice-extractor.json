@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "skill": "voice-extractor",
+  "reviewed_at": "2026-09-06T19:49:46.584628+00:00",
+  "source_sha256": "a16043bbd78ac092a50971189cfeb3a9114f332625a07351f8bbec0e14634386",
+  "user_review": {
+    "method": "Maintainer public-entry assessment and explicitly simulated instruction walkthroughs; not independent agent execution, human research or real customer results. Executed regex fixture is identified separately.",
+    "scenarios": [
+      {
+        "request": "No profile: check draft Quick one: meet [INSERT NAME].",
+        "expected": "Generic check only; exact placeholder span; no personal similarity score.",
+        "observed": "Maintainer walkthrough returns no-fingerprint, one placeholder violation [16,29), six of seven generic rules pass; drift n/a. Generic pass is not personal-voice validation.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "40-token draft, 100-token MATTR profile, no reference corpus or aggregate formula.",
+        "expected": "Skip unavailable comparisons rather than score imagined values.",
+        "observed": "Before required an aggregate and claimed 40-word MATTR comparability. After MATTR null, Delta skipped, aggregate n/a; existing explicit rules still apply. Recovery is compatible baseline/text, not shrinking just one window.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Five user-authored short samples; user explicitly accepts low confidence and confirms profile; dates unknown.",
+        "expected": "Partial profile with provenance and unknown dates; do not infer AI origin from punctuation.",
+        "observed": "Walkthrough records known sample counts, leaves unknown ages and unsupported metrics null, confirms available voice preferences; no actual user profile written. Four samples instead requests a fifth. Conflicting registers prompt a targeted choice.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Check documented placeholder regex with bracket, mixed-case brace, angle and clean-name fixtures.",
+        "expected": "Correct match spans including Company Name; clean control has no match.",
+        "observed": "Executed task fixture checker extracted the actual regex from SKILL.md; four checks passed. Does not validate a full host-agent extraction or enforcement run.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Enforce with a partial profile and then with no profile.",
+        "expected": "Apply only measured/confirmed fields; missing profile cannot silently enforce.",
+        "observed": "Walkthrough omits null template constraints and discloses skipped rules; missing-profile branch stops enforcement and requests extraction. User-approved profiles are not overwritten.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/naomimetzger/brand-voice/main/SKILL.md",
+      "checked_at": "2026-09-06T19:44:08.465553+00:00",
+      "learned": "Require real claims and lived product details; do not invent results when a voice guide is missing.",
+      "decision": "adapt",
+      "reason": "Put evidence boundary at the prompt translation step and give a generic no-proof example; keep existing nonblocking generic mode instead of importing a mandatory interview."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/charlie947/social-media-skills/main/skills/voice-builder/SKILL.md",
+      "checked_at": "2026-09-06T19:44:09.582914+00:00",
+      "learned": "Separate user/audience context from a sample-derived voice profile; source samples before drafting.",
+      "decision": "adapt",
+      "reason": "Retain sample-based extraction and personal-vs-company distinction. Reject automatic interviews on load, fixed tool dependence and assumed file authority; no external code copied."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py voice-extractor --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page and product metadata audit returned VERDICT: PASS."
+    },
+    {
+      "command": "python3 scripts/round3_fixture_check.py (private campaign fixture checker)",
+      "result": "pass",
+      "observed": "Actual documented regex: bracket, mixed-case brace, angle and no-placeholder control passed; fixture offsets verified. Not a bundled statistical engine or end-to-end model test."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed: compatible measurement provenance, missing-data and short-text rules, no inference of AI authorship from style, no unsupported aggregate score, reproducible example, mixed-case placeholder fix and canonical links. This remains an instruction package; statistical calibration and full agent execution are unverified."
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "skill": "one-sentence",
+  "reviewed_at": "2026-09-06T19:49:46.584628+00:00",
+  "source_sha256": "84303870e45ca98336040eb7051158f798a68231f39b647871f1f59cd17b25c8",
+  "user_review": {
+    "method": "Maintainer public-entry assessment and explicitly simulated instruction walkthroughs; not independent agent execution, human research or real customer results. Executed regex fixture is identified separately.",
+    "scenarios": [
+      {
+        "request": "One sentence: backup selected folders nightly only while the laptop is awake.",
+        "expected": "Keep necessary condition without invented guarantee.",
+        "observed": "After walkthrough: This backup tool copies your selected folders each night while your laptop is awake. No uptime, restore guarantee or savings invented.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Write one line about our monitoring tool; no source count or interval provided.",
+        "expected": "Do not fill specificity with attractive numbers.",
+        "observed": "Before craft advice privileged a numerical example without provenance. After explicitly requires verified/supplied numbers; output describes only the stated monitoring function.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Summarize this ten-page spec, tl;dr.",
+        "expected": "Step aside from sentence cap.",
+        "observed": "Document-summary boundary preserved; no compressed loss of required decisions or instructions.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/jagreehal/jagreehal-claude-skills/main/skills/concise-output/SKILL.md",
+      "checked_at": "2026-09-06T19:44:08.440516+00:00",
+      "learned": "Every word needs a function; completeness can outrank compression for complex work.",
+      "decision": "adapt",
+      "reason": "Preserve useful qualifiers and keep decisions/code outside the sentence contract. Reject automatic lists or universal brevity activation for this focused product."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Apeironics/prompt-refine-skill/main/SKILL.md",
+      "checked_at": "2026-09-06T19:44:08.442082+00:00",
+      "learned": "Preserve intent and language, use no edit for already clear input, and disclose assumptions.",
+      "decision": "adapt",
+      "reason": "Retain minimal intervention; reject persistent silent rewrite mode and host-model assumptions because this product returns an explicitly requested reusable prompt."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py one-sentence --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page and product metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed: provenance for concrete numbers plus complete input/output showing a load-bearing condition. Metadata and routing retained."
+}

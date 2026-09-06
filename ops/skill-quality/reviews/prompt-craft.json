@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "skill": "prompt-craft",
+  "reviewed_at": "2026-09-06T19:49:46.584628+00:00",
+  "source_sha256": "817556c78759933a02df415deef85ecedb0b9ca0b01d1dd646746cf67f1d6d93",
+  "user_review": {
+    "method": "Maintainer public-entry assessment and explicitly simulated instruction walkthroughs; not independent agent execution, human research or real customer results. Executed regex fixture is identified separately.",
+    "scenarios": [
+      {
+        "request": "Use prompt-craft: create a short launch-post prompt for an offline notes app exporting Markdown; calm voice, invite a try, no customer numbers or brand file.",
+        "expected": "Return reusable prompt and verification, generic mode, no fabricated marketing facts.",
+        "observed": "After walkthrough: downstream prompt preserves offline, Markdown, short, calm, invitation and no customer numbers. Verification maps all specifics; added proof boundary disclosed. No named customer, savings, URL or company imported from knowledge examples.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Use the usual format; there is no brand file; only knowledge examples name fictional venues.",
+        "expected": "Keep absent facts unresolved.",
+        "observed": "Before README example resolved unnamed venues and format from absent context. After: label proposed plain post format as assumption; omit unnamed venues and block fictional proof. Recovery is real context or verified sources, not guessed brand identity.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "A five-month-old brand file contains stable calm voice and a quarterly launch target.",
+        "expected": "Use stable voice only; time-scoped claim stays excluded.",
+        "observed": "Walkthrough uses calm voice and emits stale-context notice; quarterly target not copied. Later direct request to write the post exits the prompt task and follows normal work.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/naomimetzger/brand-voice/main/SKILL.md",
+      "checked_at": "2026-09-06T19:44:08.465553+00:00",
+      "learned": "Require real claims and lived product details; do not invent results when a voice guide is missing.",
+      "decision": "adapt",
+      "reason": "Put evidence boundary at the prompt translation step and give a generic no-proof example; keep existing nonblocking generic mode instead of importing a mandatory interview."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Apeironics/prompt-refine-skill/main/SKILL.md",
+      "checked_at": "2026-09-06T19:44:08.442082+00:00",
+      "learned": "Preserve intent and language, use no edit for already clear input, and disclose assumptions.",
+      "decision": "adapt",
+      "reason": "Retain minimal intervention; reject persistent silent rewrite mode and host-model assumptions because this product returns an explicitly requested reusable prompt."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py prompt-craft --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page and product metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed: enforce source-vs-example boundary in advice and translation, replace unsupported public fixture, align source direct install and sibling URL. Product title/description/topics retained after review."
+}

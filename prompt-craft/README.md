@@ -25,16 +25,35 @@ It does not activate for general prompt polishing, system prompts, or coding pro
 ## Install
 
 ```
-npx skills add m1nga/skills@prompt-craft
+npx skills add m1nga/prompt-craft
 ```
 
 Then copy `knowledge/user-context.example.md` to `~/.prompt-craft/user-context.md` and fill in your brand. Until you do, it runs in generic mode and tells you so.
 
-## Example
+## Example: launch notes without invented proof
 
-**Input (dictated):** "ok tweet about the arb we caught this morning, the 6 cent gap, um it was 71 on one venue 65 on the other, don't explain the math just show it, you know the format"
+Authored demonstration; no campaign performance is claimed.
 
-**Output:** a structured prompt containing the exact numbers (71¢ / 65¢, both venues named), your brand's banned-phrase block, the platform's receipt-format conventions, an execution-discipline block — and a verification summary mapping "don't explain the math" to the injected rule "give raw numbers, let the reader compute the implication," flagging "you know the format" as resolved from your context file's reference library.
+**Input:** “Use prompt-craft. Build a prompt for a short launch post for our offline
+notes app. It exports Markdown. No customer numbers yet. Calm voice; invite people
+to try it. No brand file.”
+
+**Downstream prompt:**
+
+```text
+Write one short launch post for an offline notes app that exports Markdown.
+Use a calm, direct voice and end with one invitation to try it.
+Use only these supplied product facts; do not add customer counts, testimonials,
+time savings, pricing, or a download URL. Ask for a verified URL if one is needed.
+```
+
+**Verification excerpt:** offline notes + Markdown preserved; no customer numbers
+preserved as a claim boundary; calm voice and one invitation preserved. Generic
+mode is disclosed. The prohibition on unsupported claims is added evidence hygiene.
+
+**Recovery:** “Use the usual format” with no context file stays unresolved; the
+prompt can propose a plain short post, labelled as an assumption, without inventing
+a brand format or importing a fictional knowledge-base company.
 
 ## Works well with
 
@@ -59,4 +78,4 @@ Probed 9 scenarios across 7 personas · 5 fired correctly · 2 correctly stayed 
 >
 > **"先别优化了,帮我看下这个报错"** (mid-session pivot) → exited workshop mode immediately and just helped. No format ceremony, no mode trap.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)

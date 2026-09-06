@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "skill": "thinking-partner",
+  "reviewed_at": "2026-09-06T19:49:46.584628+00:00",
+  "source_sha256": "4a39cf83cfa36bc5f5fe892356655b1703d965c543d8b92eb3f83daf4ae966a5",
+  "user_review": {
+    "method": "Maintainer public-entry assessment and explicitly simulated instruction walkthroughs; not independent agent execution, human research or real customer results. Executed regex fixture is identified separately.",
+    "scenarios": [
+      {
+        "request": "Solo sync maintainer needs no downtime; patch or rewrite? No regression history. Diagnosis only.",
+        "expected": "Constraint-based recommendation with a distinguishing next inspection.",
+        "observed": "After walkthrough gives bounded diagnosis, conditional patch vs rewrite criteria, absent regression evidence, and no edit under diagnosis-only scope.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Patch or rewrite sync module? No constraints supplied.",
+        "expected": "Do not invent solo-maintainer or downtime requirements.",
+        "observed": "Before README treated unstated constraints as given. New fixture includes them in input and explicitly keeps omitted constraints unknown. No conclusion from borrowed context.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Defect is now isolated; patch it and check it.",
+        "expected": "Continue authorized execution without reopening debate.",
+        "observed": "Walkthrough routes to patch/check work. No autonomous rewrite or additional planning approval; simulated only.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://raw.githubusercontent.com/mattnowdev/thinking-partner/main/skills/thinking-partner/SKILL.md",
+      "checked_at": "2026-09-06T19:44:08.523039+00:00",
+      "learned": "Understand time horizon, constraints and reversible alternatives before selecting a reasoning model.",
+      "decision": "adapt",
+      "reason": "Make constraints explicit in the public fixture; do not import fixed model counts or speculative diagnoses of user motivation."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/prrao87/agent-skills/main/skills/brainstorming/SKILL.md",
+      "checked_at": "2026-09-06T19:44:09.471784+00:00",
+      "learned": "Make load-bearing assumptions and branch losses visible while preserving user-owned values.",
+      "decision": "adapt",
+      "reason": "Keep explicit assumption provenance; reject mandatory phase approval for already authorized reversible execution."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py thinking-partner --product-manifest products.json",
+      "result": "pass",
+      "observed": "Executed page and product metadata audit returned VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Changed README fixture to explicit constraint provenance and continuation/recovery. Existing compact body and metadata retained."
+}

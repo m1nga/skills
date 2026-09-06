@@ -27,11 +27,25 @@ No magic words — it triggers on meaning. It stays out of the way for research,
 npx skills add m1nga/thinking-partner
 ```
 
-## Example
+## Example: choose a next step with missing evidence
 
-> **User:** I'm torn between rewriting the sync module or patching it again. Help me think this through.
+Authored demonstration, not a real project diagnosis.
 
-The skill separates the open decision (rewrite vs. patch) from the stated constraints (no downtime, solo maintainer), names what makes each path plausible, and identifies the distinguishing test — "how often has a patch here caused a regression in the last three months?" — before recommending. If that record is unavailable, it can recommend a reversible patch experiment with rollback and a clear observation, while stating what remains unknown.
+**Input:** “I maintain the sync module alone and need to avoid downtime. Should I
+rewrite it or patch it? I have no regression history to share. Diagnosis only.”
+
+**Possible output:** “Start with a bounded diagnosis of the failing path. A patch
+is preferable if the defect can be isolated and checked; a rewrite becomes plausible
+if failures cross the module boundary and a safe cutover can be demonstrated.
+The regression record is missing, so neither path has earned a reliability claim.
+Inspect the recent failure and its direct dependencies before committing.”
+
+The solo-maintainer and downtime constraints come from the input. No files change
+because the request is diagnosis only. If the same request omits those constraints,
+they remain unknown; the skill cannot borrow them from this example.
+
+**Recovery:** If the user later confirms a local defect and authorizes a patch,
+continue into the patch and its checks rather than reopening the rewrite debate.
 
 ## Works well with
 

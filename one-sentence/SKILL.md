@@ -66,8 +66,9 @@ published faster" beats "I'm an award-winning, bestselling author").
 ## Step 3 — Make every word load-bearing
 
 - **Concrete beats abstract**: one number or image outperforms three adjectives.
-  "Scans 71 sources every 2 minutes" survives; "highly efficient monitoring" dies
-  in the air.
+  “Scans 71 sources every 2 minutes” is concrete only if those numbers are
+  supplied or verified. Without them, describe the actual action; never invent a
+  number, customer outcome, or guarantee to make a line memorable.
 - **The verb carries the sentence.** Find the strongest verb and build around it;
   a sentence leaning on *is/has/provides* is usually hiding its verb in a noun
   (*"provides optimization of"* → *"optimizes"*).

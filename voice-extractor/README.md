@@ -1,10 +1,10 @@
 # Writing Voice Matcher — Make AI Drafts Sound Like You
 
-**Measures your writing habits from 5-20 real samples, stores them as numbers with tolerance bands, and blocks drafts that leave the bands.**
+**Build a writing profile from 5–20 samples, check drafts against explicit rules, and see which measurements are unavailable.**
 
 ## What it does
 
-- Extracts a local voice fingerprint (`~/.voice/<profile>.yaml`) from your actual writing: sentence-length distribution, function-word signature, punctuation rates, sentence openers, register, signature phrases. Every field is computed from samples, never guessed from your job title.
+- Extracts a local voice fingerprint (`~/.voice/<profile>.yaml`) from your actual writing: sentence-length distribution, function-word signature, punctuation rates, sentence openers, register, signature phrases. Computed fields carry their method; unavailable statistics stay null. This is an instruction skill, not a bundled calibrated measurement engine.
 - Checks any draft against the fingerprint and returns rule-level violations — rule id, the exact matched text, character span, severity, fix hint — instead of "this sounds off."
 - Acts as a constraint layer for other drafting skills: inject the fingerprint, check the output, retry hard failures twice, and never let a failing draft through silently.
 - Works with no fingerprint at all, in a degraded mode: a generic check for placeholders, stock AI scaffolds ("in today's fast-paced world", "it's not just X, it's Y"), and buzzword slop — clearly labelled as fingerprint-free.
@@ -22,14 +22,23 @@ It stays out of the way for generic proofreading, grammar fixes, and tone rewrit
 ## Install
 
 ```
-npx skills add m1nga/skills@voice-extractor
+npx skills add m1nga/voice-extractor
 ```
 
-## Example
+## Example: a useful check on a fresh install
 
-You hand it 8 samples — 3 tweets, 2 Slack messages, 2 old emails, 1 LinkedIn post. It extracts: mean sentence 11 words with high variance, contractions heavy, em-dashes never, opens with "Quick one:" and "But/And/So", signature words *fwiw, ship, actually*. You confirm the summary; it saves the fingerprint locally.
+Authored fixture; no user samples or measured client results.
 
-Later, a drafting skill produces: *"Hope this finds you well. We're excited to announce our revolutionary new platform..."* The check fails at pass rate 0.11 with 9 named violations (banned opener, `revolutionary`, `leverages`, the "not just X, it's Y" reframe, an em-dash your fingerprint says you never use), each with a span and a fix hint. The redraft opens with the news, keeps your short-burst rhythm, and closes with a concrete ask.
+**Input:** “Check my voice: Quick one: meet [INSERT NAME].” No profile exists.
+
+**Result:** `no-fingerprint`; fail on `stray-placeholder`, match `[INSERT NAME]`,
+span `[16, 29)` in the draft “Quick one: meet [INSERT NAME].” (zero-based Unicode
+code points). Six of seven generic rules pass. Remove the sentence or supply a
+verified name. `drift_score: n/a`: this checks generic rules, not personal similarity.
+
+**Recovery:** Supply 5–20 of your own samples to extract a profile. A 40-token
+draft cannot be compared to a 100-token MATTR baseline; that check is skipped and
+reported. Missing reference statistics cannot produce a Delta or aggregate score.
 
 ## Works well with
 
@@ -40,9 +49,9 @@ Later, a drafting skill produces: *"Hope this finds you well. We're excited to a
 ## Design notes
 
 - **Bands, not vibes.** Adjective style guides ("warm, concise, professional") don't survive contact with a drafting model — the model nods and writes model-prose anyway. A number with a tolerance band either passes or fires a rule at a specific span. That's the whole design.
-- **The lenses are named on purpose.** Burrows's Delta, MATTR, Biber Dimension-1, Provost's burstiness — these are published stylometry, not invented heuristics. If a rule fires, you can look up why it exists.
+- **The measurement limits are explicit.** Delta and MATTR have specific data requirements; register proxies and default thresholds here are heuristics. Missing baselines produce skipped checks, not invented numbers. Style rules do not identify AI authorship.
 - **The em-dash rule is relative.** The em-dash became shorthand for "AI wrote this," so editing tools started stripping it everywhere. But it's only a tell against *your* baseline — a lifelong em-dash writer who suddenly stops is drifting too. The fingerprint records the rate and defends it in both directions.
-- **It refuses thin input.** Fewer than 5 samples is a hard no; AI-edited samples get triaged out before extraction, because a fingerprint learned from AI prose teaches drafts to sound like AI. This came out of a solo builder sending outreach under their own name and watching reply rates drop as the drafts got smoother — the fix was measurement, not more prompting.
+- **It refuses thin input.** Fewer than 5 samples is a hard no; user-identified AI-edited samples are reviewed before extraction, because a fingerprint learned from AI prose teaches drafts to sound like AI. This came out of a solo builder sending outreach under their own name and watching reply rates drop as the drafts got smoother — the fix was measurement, not more prompting.
 - **Fingerprints decay.** Every profile is stamped for refresh at 90 days. Voice drifts; the skill says so instead of pretending a 2024 corpus still describes you.
 
 ## Field-tested
@@ -55,4 +64,4 @@ Probed 8 scenarios across 6 personas · 5 fired correctly · 2 correctly stayed 
 
 > **"Fix the grammar in this paragraph"** → Stayed quiet. Generic proofreading is explicitly out of scope — the skill only wakes up when a *personal voice* is at stake.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
