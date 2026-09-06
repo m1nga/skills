@@ -1,4 +1,0 @@
-interface:
-  display_name: "Listen-Compare · Work Radio"
-  short_description: "Turn work content into Chinese audio briefings — compare docs, summarize, add perspectives, or scan risks — published to a fixed radio link; mid-task windows park material to an inbox instead of producing audio"
-  default_prompt: "Use $listen-compare to turn this into a Chinese listening briefing — or, if I'm mid-task, park the material into the radio inbox and let me get back to work."

@@ -142,21 +142,6 @@
       ]
     },
     {
-      "name": "listen-compare",
-      "title": "Turn Work Documents Into a Chinese Audio Briefing",
-      "description": "Agent skill that turns documents into one phone-friendly Chinese audio briefing with key points, comparisons, risks, and second opinions.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "document-summary",
-        "audio-briefing",
-        "chinese",
-        "text-to-speech",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
       "name": "loop-system-architect",
       "title": "Agent Loop Builder — Turn Repeated Work into a Reliable Self-Checking System",
       "description": "Agent loop builder that turns repeated work into an autonomous workflow with persistent state, failure recovery, and independent verification.",

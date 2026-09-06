@@ -4,7 +4,7 @@
 [![skills.sh](https://skills.sh/b/m1nga/skills)](https://skills.sh/m1nga/skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-25 installable agent skills for turning ambiguous work into concrete, checkable results: plan a
+24 installable agent skills for turning ambiguous work into concrete, checkable results: plan a
 product, recover a confused project, stress-test AI instructions, preserve your writing voice,
 close an iteration, or make a playlist that actually imports.
 
@@ -27,10 +27,10 @@ npx skills add m1nga/prompt-distill
 
 Then ask your agent: `Use $prompt-distill to turn these notes into a reusable prompt.`
 Choose another skill from the task tables below when you need it. You do not need
-all 25 skills loaded for an ordinary task.
+all 24 skills loaded for an ordinary task.
 
 If one of these skills saves you time, [star this collection](https://github.com/m1nga/skills).
-It helps other builders find the useful ones without promoting 25 separate repositories.
+It helps other builders find the useful ones without promoting 24 separate repositories.
 
 ## Pick the result you need
 
@@ -77,7 +77,14 @@ It helps other builders find the useful ones without promoting 25 separate repos
 |---|---|---|
 | dial in espresso or V60 | [Coffee Brewing Coach](https://github.com/m1nga/coffee-brewing) | exact grind, ratio, temperature, and time for the next brew |
 | build a playlist that imports correctly | [Playlist Builder](https://github.com/m1nga/mixtape) | a verified playlist for your streaming service |
-| listen to work documents in Chinese | [Chinese Audio Briefing](https://github.com/m1nga/listen-compare) | one phone-friendly briefing with comparisons, risks, and second opinions |
+
+## Standalone applications
+
+[EarBrief — Turn Work Documents into Audio](https://github.com/m1nga/earbrief-app)
+turns text and PDF reports into Chinese or English programs in a persistent mobile
+station. It replaces the retired listen-compare skill and runs independently of
+Claude or Codex. Install it using its own deployment guide; it is not a Skills CLI
+package. The current application has public listening and manual self-hosting setup.
 
 ## Why these skills are different
 
