@@ -30,7 +30,7 @@ those loses load-bearing content, and it says so in one line.
 ## Install
 
 ```bash
-npx skills add m1nga/skills@one-sentence
+npx skills add m1nga/one-sentence
 ```
 
 ## Example
@@ -44,9 +44,9 @@ No preamble, no follow-up paragraph. Say "more" when you want the depth back.
 
 ## Works well with
 
-- [scenario-probe](../scenario-probe/) — probe reports need one-line verdicts
-- [prompt-distill](../prompt-distill/) — distill the prompt, then compress the pitch
-- [product-experience-officer](../product-experience-officer/) — its 判词 (opening verdict) is a one-sentence discipline
+- [scenario-probe](https://github.com/m1nga/scenario-probe/) — probe reports need one-line verdicts
+- [prompt-distill](https://github.com/m1nga/prompt-distill/) — distill the prompt, then compress the pitch
+- [product-experience-officer](https://github.com/m1nga/product-experience-officer/) — its 判词 (opening verdict) is a one-sentence discipline
 
 ## Design notes
 
@@ -68,4 +68,4 @@ Probed 7 scenarios across 6 personas · 3 fired correctly · 2 correctly stayed 
 
 > **"帮我把这份 10 页的产品 spec 总结一下,tl;dr 就行"** → Stayed quiet. A tl;dr can be several lines; forcing it into one sentence would delete load-bearing content — the skill says so and steps aside.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
