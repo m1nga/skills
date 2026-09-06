@@ -20,7 +20,7 @@ It does not fire for debugging a specific error from a screenshot, or for code r
 ## Install
 
 ```
-npx skills add m1nga/skills@product-experience-officer
+npx skills add m1nga/product-experience-officer
 ```
 
 ## Example
@@ -31,8 +31,8 @@ npx skills add m1nga/skills@product-experience-officer
 
 ## Works well with
 
-- [`map-product-system`](../map-product-system/) — map what the product actually is before or after an experience run.
-- [`diagnose-project-rebuild`](../diagnose-project-rebuild/) — when the report's Blockers point at structural rot rather than surface fixes.
+- [`map-product-system`](https://github.com/m1nga/map-product-system/) — map what the product actually is before or after an experience run.
+- [`diagnose-project-rebuild`](https://github.com/m1nga/diagnose-project-rebuild/) — when the report's Blockers point at structural rot rather than surface fixes.
 
 ## Design notes
 
@@ -54,4 +54,4 @@ Probed 7 scenarios across 5 personas · 5 fired correctly · 2 correctly stayed 
 
 > **"Run my web app and review it as a first-time user"** — in an environment with no browser or screenshots → Fired, and degraded honestly: copy and flow reviewed from text, every visual dimension moved to an explicit To-verify checklist, and inferring "the spacing is probably fine" from CSS is banned as fabricated evidence.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
