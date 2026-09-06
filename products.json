@@ -174,7 +174,7 @@
     {
       "name": "map-product-system",
       "title": "Product System Map — Connect User Journeys to What You Need to Build",
-      "description": "Map a product idea or codebase into user journeys, capabilities, responsibilities, missing paths, and buildable delivery slices. Scale detail to the actual product.",
+      "description": "Product system map for ideas and codebases: connect user journeys, capabilities, responsibilities, missing paths, and buildable delivery slices at the scope you need.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -267,7 +267,7 @@
     {
       "name": "prompt-distill",
       "title": "Prompt Cleaner — Turn Dictated Notes into Reusable Prompts",
-      "description": "Turn rambling or dictated notes into a reusable AI prompt while preserving corrections, examples, scope, and time boundaries. Works with mixed Chinese and English.",
+      "description": "Prompt cleaner for dictated or mixed-language notes. Produce a reusable AI prompt while preserving corrections, examples, scope, and calendar-week boundaries.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
