@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "conclude-rounds",
+  "reviewed_at": "2026-09-06T17:45:33.793635+00:00",
+  "source_sha256": "cd79d0a9408aa3ad5b6ed3761f2ed2d03ed6dd0cec6f65b6f0d545336c6b5ebd",
+  "user_review": {
+    "method": "Maintainer review from public description and isolated synthetic fixtures or explicitly simulated instruction walkthroughs. Not independent review, external user research, or production usage.",
+    "scenarios": [
+      {
+        "request": "Recap test-backed refactor, untested limiter and two proposed migrations.",
+        "expected": "Three distinct evidence states.",
+        "observed": "Simulated output: auth refactor verified by visible test output; limiter behavior unverified; migration undecided. New table supplies all evidence needed; no invented test count.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Ask for 3 rounds when only 2 user exchanges plus tool notices are visible.",
+        "expected": "Say only two exchanges exist and exclude tool notices.",
+        "observed": "Walkthrough recaps two, states the limit, adds no invented third round or unsupported insight. No file writes in the simulated response.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-09-06T17:45:33.793635+00:00",
+      "learned": "Task selection precedes recovery; installed helpers are resolved independently of task cwd.",
+      "decision": "adapt",
+      "reason": "Retain selected task identity and milestone updates; no need to import engine hooks or fixed action counters."
+    },
+    {
+      "url": "https://github.com/buhaistrikalo/skills/blob/main/.agents/skills/handoff/SKILL.md",
+      "checked_at": "2026-09-06T17:45:33.793635+00:00",
+      "learned": "A compact handoff names goal, state, validation and next actions and references existing artifacts.",
+      "decision": "adapt",
+      "reason": "Use explicit evidence and next action; temporary storage and AI handoff scope are not appropriate for every workflow."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py conclude-rounds --product-manifest products.json",
+      "result": "pass",
+      "observed": "Product page and manifest audit returned VERDICT: PASS; source/metadata identities retained."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Replaced incomplete narrative with reproducible evidence/status table, explicit invoke and short-context recovery; canonicalized two sibling URLs. Metadata already aligned; retained."
+}

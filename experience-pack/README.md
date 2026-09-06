@@ -49,18 +49,38 @@ truth files.
 npx skills add m1nga/experience-pack
 ```
 
-## Example
+## Try it on one incident
 
-> **User:** that migration ate the whole afternoon because staging pointed at
-> the old bucket. write it down.
->
-> **Agent:** Confirms the project root (won't drop a ledger on your Desktop),
-> appends a dated entry — what happened, the response, the cost (4 hours),
-> marked `Portable? not yet` — and reminds you the fix isn't "done" until the
-> entry exists. Weeks later, "distill the ledger" turns it into one noun-free
-> line: *"Verify every environment's external endpoints against the current
-> truth file before a migration; stale endpoints fail silently."* The bucket
-> name dies; the lesson travels.
+After installing, ask: `Use $experience-pack to record this incident in this
+project, then show which lesson can travel to another project.`
+
+Illustrative input, not a measured incident:
+
+> The migration took the whole afternoon because staging used the old bucket.
+> We corrected the endpoint and reran the migration successfully. Record it.
+
+Expected ledger excerpt:
+
+```text
+What happened: Staging used a stale bucket endpoint during migration.
+What we did: Corrected the endpoint and reran the migration successfully.
+What worked / what failed: The corrected endpoint worked; the stale one delayed the migration.
+Cost: One afternoon, as reported; exact duration unknown.
+Portable? not yet
+```
+
+On a later distillation pass, the portable lesson can be: *Verify each
+environment's external endpoints before migrating; stale endpoints can survive
+configuration changes.* The bucket identity and this project's endpoint choice
+stay in the private ledger. This example illustrates the boundary, not a claim
+that the check prevents every migration failure.
+
+If no project is open, the agent asks where the incident belongs and can return
+a copyable entry. It does not create a ledger at the Desktop root. In a public
+repo, the private ledger needs an explicit backup or sync destination; gitignore
+alone is not a backup.
+
+If this helps you preserve a useful lesson, a star on this repository is welcome.
 
 ## Works well with
 

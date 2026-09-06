@@ -32,17 +32,31 @@ those aren't iteration closes.
 npx skills add m1nga/iteration-close
 ```
 
-## Example
+## Try a scoped cleanup
 
-> **You:** slice 3 is approved — close the iteration.
->
-> **Claude:** reads the repo's entry doc, banks four chat decisions into `DECISIONS.md`, then
-> shows a 12-line deletion inventory (`path | why dead | what supersedes it`) and waits. You
-> strike two lines and approve the rest. Ten tracked files go via `git rm` in themed commits; one
-> untracked scratch dir moves to `.iteration-quarantine/`. A fresh subagent reads the repo cold
-> and scores 4/4 on the takeover probe — after one doc fix and a re-run. A scratch clone
-> bootstraps green with zero manual steps. `iter-3-payments` gets tagged, and you get a kickoff
-> prompt for slice 4.
+After installing, ask: `Use $iteration-close in shed-only mode. List the
+superseded files and what replaces each one; keep everything until I approve
+the exact list.`
+
+Illustrative fixture, not a recorded production cleanup:
+
+| Candidate | Evidence | User decision | Expected action |
+|---|---|---|---|
+| Tracked `docs/old-flow.md` | Replaced by current `docs/flow.md`; no remaining references | Approve | Remove with `git rm` after banking any unique decision |
+| Untracked `scratch-notes/` | Contains notes worth retaining | Approve quarantine | Move to the declared, gitignored quarantine directory |
+| Tracked `legacy-parser.ts` | Replacement is not yet verified | Keep | Leave untouched |
+
+The result is one tracked removal, one recoverable quarantine, and one retained
+file. The agent checks references and runs the repo's test suite if present.
+Shed-only mode ends there; a full close separately checks upload, a context-free
+takeover, bootstrap, tagging, and the next-iteration seed.
+
+If the test suite is failing or another worker owns unfinished changes in a
+candidate path, the skill reports that blocker before cleanup. A missing test
+suite is recorded as missing, never reported as passing.
+
+If this helps you close an iteration with a clear handoff, a star on this
+repository is welcome.
 
 ## Works well with
 

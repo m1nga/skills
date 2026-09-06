@@ -31,24 +31,30 @@ It runs entirely in-context and is read-only: no files edited, no transcripts pu
 npx skills add m1nga/conclude-rounds
 ```
 
-## Example
+## Try it on a mixed-status conversation
 
-> **You:** catch me up on the last 3 rounds
->
-> **Agent:**
-> **Bottom line:** auth middleware refactored and tested; rate-limiter written but never run; DB migration still awaiting your choice of strategy.
->
-> - Round 1: you asked to refactor auth middleware → done, 14 tests pass (✅ verified)
-> - Round 2: rate-limiter added to `api/limits.ts` → written, never executed (⚠️ unverified)
-> - Round 3: two migration strategies proposed → waiting on you (💡 proposed)
->
-> **Workflow insights:**
-> 1. You manually re-ran the test suite after each edit (rounds 1–2) → a PostToolUse hook can do that automatically → first step: add a hook running `npm test` on Edit.
-> 2. ...
+After installing, ask: `Use $conclude-rounds to recap the last 3 rounds. Keep
+verified work, untested work, and proposals separate.`
+
+Illustrative fixture: assume the visible conversation contains these facts.
+
+| Visible evidence | Expected recap |
+|---|---|
+| Auth refactor followed by a test command that exited successfully | Refactored and verified by the shown test run |
+| Rate limiter written; no execution or test output shown | Written, behavior unverified |
+| Two migration approaches discussed; neither selected | Proposed, decision still open |
+
+The skill summarizes this evidence; it does not run tests to fill the gap. If
+only two real user exchanges remain visible, it says it can recap two instead
+of inventing a third. Tool notifications are not extra conversation rounds.
+If the history supports no useful workflow insight, none needs to be added.
+
+If this helps you distinguish finished work from a confident claim, a star on
+this repository is welcome.
 
 ## Works well with
 
-- [`iteration-close`](../iteration-close/) — this skill closes a stretch of conversation; that one closes a whole product iteration.
+- [`iteration-close`](https://github.com/m1nga/iteration-close) — this skill closes a stretch of conversation; that one closes a whole product iteration.
 
 ## Design notes
 
@@ -69,4 +75,4 @@ Probed 7 scenarios across 5 personas · 4 fired correctly · 2 correctly stayed 
 > **"这个迭代做完了，总结一下"**
 > → Correctly yielded to `iteration-close`. Closing a whole iteration is its sibling's job; this skill recaps a stretch of conversation, nothing more.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "iteration-close",
+  "reviewed_at": "2026-09-06T17:45:33.793635+00:00",
+  "source_sha256": "5b94961e2545421590ba59123b560370c252d275171c6590a1e30f2c660e36ee",
+  "user_review": {
+    "method": "Maintainer review from public description and isolated synthetic fixtures or explicitly simulated instruction walkthroughs. Not independent review, external user research, or production usage.",
+    "scenarios": [
+      {
+        "request": "Approve one tracked removal and one untracked quarantine; keep unverified parser.",
+        "expected": "Exactly approved actions occur; no full-close claim.",
+        "observed": "Old example approved 10 candidates but described 11 actions; new table yields one removal, one quarantine, one retained file. Walkthrough ends shed-only after checks.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Tests fail, or another worker has uncommitted changes in the target path.",
+        "expected": "Report blocker before cleanup.",
+        "observed": "Instruction walkthrough stops before destructive action; README states failure/ownership blocker and distinguishes absent tests. No actual production cleanup, upload, cold-reader test or tagging performed.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/aplaceforallmystuff/claude-lessons-learned/blob/main/skills/lessons-learned/SKILL.md",
+      "checked_at": "2026-09-06T17:45:33.793635+00:00",
+      "learned": "Incident facts, contributing factors, implemented fixes and verification remain distinct.",
+      "decision": "adapt",
+      "reason": "Preserve reported facts and uncertainty; do not import automatic global-skill edits or require a fixed five-whys structure for one small incident."
+    },
+    {
+      "url": "https://github.com/buhaistrikalo/skills/blob/main/.agents/skills/handoff/SKILL.md",
+      "checked_at": "2026-09-06T17:45:33.793635+00:00",
+      "learned": "A compact handoff names goal, state, validation and next actions and references existing artifacts.",
+      "decision": "adapt",
+      "reason": "Use explicit evidence and next action; temporary storage and AI handoff scope are not appropriate for every workflow."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py iteration-close --product-manifest products.json",
+      "result": "pass",
+      "observed": "Product page and manifest audit returned VERDICT: PASS; source/metadata identities retained."
+    }
+  ],
+  "unresolved_blockers": [],
+  "decision": "Replaced inconsistent numeric narrative with an auditable approval/action table and shed-only recovery. Metadata already aligned; retained."
+}
