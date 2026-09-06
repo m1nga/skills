@@ -110,10 +110,7 @@ def main() -> int:
 
     if not re.search(r"npx\s+skills\s+add\s+[^\s`]+", readme):
         errors.append("README has no direct skills CLI install command")
-    if not re.search(r"[一-龥]", readme):
-        warnings.append("no Chinese discovery phrasing found")
-    if len(readme.split()) < 250:
-        warnings.append("product page is unusually short; confirm it carries real problem and evidence context")
+    # Page length and language are editorial choices, not evidence of discoverability.
 
     result = {
         "skill": name,

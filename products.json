@@ -85,8 +85,8 @@
     },
     {
       "name": "extend-first",
-      "title": "Skill Reuse Checker — Find What to Reuse Before Building a Duplicate",
-      "description": "Skill reuse checker that searches your existing capabilities and tells you what to extend, combine, or build so you do not create a duplicate.",
+      "title": "Skill Reuse Checker — Find an Existing Skill Before Building Another",
+      "description": "Check existing skills, agents, and automations for a functional match, then extend, combine, or build within the task you authorized.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -173,8 +173,8 @@
     },
     {
       "name": "map-product-system",
-      "title": "Product System Mapper — See Journeys, Capabilities, Gaps, and Ownership",
-      "description": "Product system mapper that turns ideas, documents, or code into an end-to-end map of journeys, capabilities, data, ownership, gaps, and delivery slices.",
+      "title": "Product System Map — Connect User Journeys to What You Need to Build",
+      "description": "Map a product idea or codebase into user journeys, capabilities, responsibilities, missing paths, and buildable delivery slices. Scale detail to the actual product.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -266,8 +266,8 @@
     },
     {
       "name": "prompt-distill",
-      "title": "Prompt Cleaner — Turn Rambling Input into a Clear Reusable Prompt",
-      "description": "Prompt cleaner that turns rambling, dictated, or mixed-language input into a clear reusable prompt while preserving your intent, priorities, and voice.",
+      "title": "Prompt Cleaner — Turn Dictated Notes into Reusable Prompts",
+      "description": "Turn rambling or dictated notes into a reusable AI prompt while preserving corrections, examples, scope, and time boundaries. Works with mixed Chinese and English.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -280,8 +280,8 @@
     },
     {
       "name": "publish-skill-product",
-      "title": "Skill Publisher — Turn a Finished Skill into a Searchable GitHub Product",
-      "description": "Skill publisher that turns one finished skill into a searchable GitHub product with a direct install path, clear UI metadata, truthful evidence, and release verification.",
+      "title": "GitHub Skill Publisher — Publish Skills and Track Discovery",
+      "description": "Publish a finished skill as a GitHub product, verify its install package, and record search experiments without mistaking maintenance or traffic for user growth.",
       "topics": [
         "m1nga-skill",
         "agent-skill",

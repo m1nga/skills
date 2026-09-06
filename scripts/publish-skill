@@ -10,6 +10,7 @@ if [[ -z "$skill" ]]; then
   exit 2
 fi
 
+python3 "$repo_root/publish-skill-product/scripts/check_release_source.py" "$repo_root" "$skill"
 "$repo_root/scripts/verify-products" --skill "$skill" >/dev/null
 
 product="$(jq -c --arg name "$skill" '.products[] | select(.name == $name)' "$manifest")"

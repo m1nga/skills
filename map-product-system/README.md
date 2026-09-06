@@ -1,4 +1,4 @@
-# Product System Mapper — See Journeys, Capabilities, Gaps, and Ownership
+# Product System Map — Connect User Journeys to What You Need to Build
 
 One traceable map from user intent to system outcome — built from whatever you actually have: a rough idea, a doc pile, or a codebase.
 
@@ -25,6 +25,8 @@ architecture poster.
 It does not design the runtime control loop of an autonomous workflow — that is
 [`loop-system-architect`](https://github.com/m1nga/loop-system-architect/). This skill covers static
 architecture and responsibility contracts.
+
+Follow [a complete input/output example](https://github.com/m1nga/map-product-system/blob/main/skills/map-product-system/examples/import-retry.md) to see what this preserves and what it leaves open.
 
 ## Install
 
@@ -76,3 +78,8 @@ Probed 7 scenarios across 5 personas · 5 fired correctly · 1 correctly stayed 
 > **"看一下产品结构"** *(a five-word "take a look at the product structure")* → Fired, and stayed proportionate: the body's depth-matching rule returns a scoped look, not a nine-lens architecture report nobody asked for.
 
 Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
+
+## September 2026 behavior check
+
+An independent agent simulation checked a scoped usage scenario after the instruction
+cleanup. This checks instruction behavior, not human adoption or measured time savings.

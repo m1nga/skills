@@ -1,6 +1,6 @@
 ---
 name: prompt-distill
-description: Distill rough, dictated, or mixed-language input into a clear prompt while preserving the user's meaning, priorities, examples, and directness. Use only when the user explicitly asks to optimize, clean up, clarify, or turn their words into a reusable prompt — e.g. "clean up this prompt", "make this reusable", "turn my ramble into a prompt", 把这段整理成 prompt, 优化这个 prompt. Handles dictated, messy, self-correcting, mixed-language input (including Chinese-English code-switching). Do not invoke merely because a request is conversational or long — resolving ambiguity for a task the agent will itself execute is normal work, not this skill; when the ramble contains an unresolved decision the user wants help thinking through, defer to thinking-partner. Marketing or brand-context prompts → prompt-craft (if installed); LLM-judge prompts → write-judge-prompt (if installed).
+description: "Turn rough or dictated input into a reusable prompt when explicitly asked. Preserve corrections, intent, examples, and constraints. Do not intercept a task the user wants executed."
 ---
 
 # Prompt Distill
@@ -62,6 +62,10 @@ unless requested.
   flag them only when they matter.
 - Use available conversation or workspace context when the user refers to earlier
   work. Do not manufacture missing history.
+
+Preserve temporal meaning: "this week" is a calendar period, while "the last
+7 days" is a rolling interval. Do not substitute one for the other. Keep an
+unspecified time zone or week boundary visible when it affects execution.
 
 ## Quality check
 

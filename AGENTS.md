@@ -29,7 +29,8 @@ were updated.
 - One skill equals one standalone repository and one primary search intent.
 - Treat the skill name, directory, and repository slug as stable machine identifiers. Keep them
   unchanged unless the user explicitly approves a migration.
-- Use `Functional identity — Concrete outcome` for the product title and README H1.
+- Use a plain task-and-outcome title for the product and README H1. `Functional
+  identity — Concrete outcome` is a useful example, not a required formula.
 - Give every skill a two-to-five-word plain-language `agents/openai.yaml` display name and a
   25–64 character short description that says what it does or produces.
 - A stranger who sees only the display name and short description should understand the use case
@@ -55,3 +56,13 @@ were updated.
   third-party, or ambiguous skills.
 - The monitor cannot alter a product's purpose, owner story, evidence, or release policy without
   explicit approval.
+
+## Scoped work and evidence
+
+Load the target skill and relevant references for a focused edit. Portfolio audits
+may inventory all skills, but reading or auditing a skill does not prove active use.
+Keep private task state, traffic snapshots, and promotion drafts outside this public
+registry. Improve a small selected set based on user need or demonstrated failures.
+Run affected script tests and named product checks once; broaden when a failure or
+shared release-system change warrants it. Reuse the publisher's verified receipt.
+Do not convert install-counter deltas, clones, or maintenance commits into user growth.

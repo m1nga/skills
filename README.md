@@ -19,17 +19,15 @@ See every available skill before installing anything:
 npx skills add m1nga/skills --list
 ```
 
-Install the complete collection for Codex:
+Start with one skill for the task you have now:
 
 ```bash
-npx skills add m1nga/skills --skill '*' --agent codex -g -y
+npx skills add m1nga/prompt-distill
 ```
 
-Install just one skill from its standalone repository:
-
-```bash
-npx skills add m1nga/diagnose-project-rebuild
-```
+Then ask your agent: `Use $prompt-distill to turn these notes into a reusable prompt.`
+Choose another skill from the task tables below when you need it. You do not need
+all 25 skills loaded for an ordinary task.
 
 If one of these skills saves you time, [star this collection](https://github.com/m1nga/skills).
 It helps other builders find the useful ones without promoting 25 separate repositories.

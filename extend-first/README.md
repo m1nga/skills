@@ -1,4 +1,4 @@
-# Skill Reuse Checker — Find What to Reuse Before Building a Duplicate
+# Skill Reuse Checker — Find an Existing Skill Before Building Another
 
 Before you build another agent skill, check the skills you already own and get
 one evidence-based verdict: **EXTEND**, **COMPOSE**, or **BUILD NEW**.
@@ -11,8 +11,7 @@ one evidence-based verdict: **EXTEND**, **COMPOSE**, or **BUILD NEW**.
   compose two existing skills, or build a genuinely separate skill.
 - **How does it compare candidates?** By the problem solved, input/output shape,
   and judgment-versus-execution nature — never by names or keyword similarity.
-- **Does it create or edit skills?** No. It inventories and recommends; the
-  actual authoring remains a separate, user-controlled step.
+- **Does it create or edit skills?** It checks reuse first, then hands off to the authoring workflow and continues the creation or update already authorized. No extra approval is needed for a routine reuse choice.
 - **Can the check be overridden?** Yes. “Build it anyway” ends the gate in the
   same turn without relitigating the decision.
 
@@ -39,8 +38,7 @@ what it is called, and hands back a one-screen verdict.
   - **BUILD NEW** — overlap ruled out, plus a drafted description boundary
     clause against the nearest neighbor, so the *next* collision is prevented
     too.
-- Quotes the compared descriptions verbatim, so you can check the evidence
-  without opening anything.
+- Quotes only the description fragment needed to show functional overlap, keeping the check short.
 - Steps aside instantly when overridden: "build it anyway" ends the check, no
   relitigating.
 
@@ -53,7 +51,7 @@ what it is called, and hands back a one-screen verdict.
 - 「帮我建个 agent 做数据清洗」
 
 And when it doesn't: requests to *use* an existing skill just get routed;
-product or feature ideas that aren't skills go to idea-probe; and "直接新建别查了" /
+ordinary product or feature ideas are handled by the relevant task workflow; and "直接新建别查了" /
 "skip the check" is respected silently — the inventory doesn't run behind your
 back.
 
@@ -115,7 +113,7 @@ Before release, this skill went through an 8-scenario wind tunnel — 5 personas
 
 > **Correct silence:** "Probe this idea for a skill that auto-files my receipts" — three skills could have raised a hand here. extend-first stayed down: the verb is *probe*, not *create*, so the request belongs to idea-probe. A gate that fires on everything teaches you to stop consulting it.
 
-> **Caught in the tunnel:** on "make me a skill…", the stock skill-creator claims the same sentence — and a model that jumps straight to authoring skips the duplicate check entirely, which is this skill's whole reason to exist. The description now states its position explicitly: *runs BEFORE skill-authoring tools — verdict first, then build.* The probe also caught the empty-shelf edge: a reachable-but-bare shelf is now an instant one-line BUILD NEW, never a nag for directory paths.
+> **Caught in the tunnel:** on "make me a skill…", the stock skill-creator claims the same sentence — and a model that jumps straight to authoring skips the duplicate check entirely, which is this skill's whole reason to exist. The earlier description stated its position explicitly: *runs BEFORE skill-authoring tools — verdict first, then build.* The probe also caught the empty-shelf edge: a reachable-but-bare shelf is now an instant one-line BUILD NEW, never a nag for directory paths.
 
 Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
 
@@ -123,3 +121,8 @@ Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe/)
 
 Built and maintained by [Ming](https://github.com/m1nga). The design notes
 above explain the real problem and tradeoffs that shaped this skill.
+
+## September 2026 behavior check
+
+An independent agent simulation checked a scoped usage scenario after the instruction
+cleanup. This checks instruction behavior, not human adoption or measured time savings.

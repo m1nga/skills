@@ -1,4 +1,4 @@
-# Prompt Cleaner — Turn Rambling Input into a Clear Reusable Prompt
+# Prompt Cleaner — Turn Dictated Notes into Reusable Prompts
 
 Turns a rambling, self-correcting, mixed-language draft into a prompt that says the same thing — shorter, not fancier.
 
@@ -22,19 +22,21 @@ Explicit asks only:
 
 It does not activate just because a request is long or conversational — that is the agent's normal job.
 
+Follow [a complete input/output example](https://github.com/m1nga/prompt-distill/blob/main/skills/prompt-distill/examples/prompt-cleanup.md) to see what this preserves and what it leaves open.
+
 ## Install
 
 ```
-npx skills add m1nga/skills@prompt-distill
+npx skills add m1nga/prompt-distill
 ```
 
 ## Example
 
 **Input (dictated):** "ok so I want a script that, no wait, first check if the folder exists, 就是那个 exports 文件夹, if not create it, then move all the PNGs — actually only ones from this week — move them in and print how many. Make this reusable."
 
-**Output:** "Check whether ./exports exists; create it if not. Move all PNG files modified in the last 7 days into it. Print the count of files moved."
+**Output:** "Check whether ./exports exists; create it if not. Move PNG files modified this week into it. Print the count of files moved."
 
-Nothing added. The corrected thought ("only ones from this week") replaced the earlier one; the code-switched folder reference resolved to its referent.
+“This week” stays a calendar period; it is not silently changed to a rolling seven-day window. The corrected thought ("only ones from this week") replaced the earlier one; the code-switched folder reference resolved to its referent.
 
 ## Works well with
 
@@ -58,4 +60,9 @@ Probed 8 scenarios across 7 personas · 4 fired correctly · 3 correctly stayed 
 >
 > **"Polish this grader prompt I use to score my model outputs."** → deferred to write-judge-prompt. Judge prompts have their own failure modes; this skill knows what it isn't for.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Historical probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
+
+## September 2026 behavior check
+
+An independent agent simulation checked a scoped usage scenario after the instruction
+cleanup. This checks instruction behavior, not human adoption or measured time savings.

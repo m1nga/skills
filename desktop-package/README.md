@@ -6,7 +6,7 @@
 
 - **What is desktop-package?** An agent skill for AI work session packaging and human review: it turns the session's useful outputs into one standalone Desktop folder a cold reader can understand without the chat.
 - **What goes into the folder?** Copies of files produced during the session, distilled decisions and findings that existed only in the conversation, and a `START-HERE.md` or `📖 先看这个.md` manifest.
-- **Does it move or reorganize existing files?** No. It adds one folder and copies by default; it only moves loose Desktop files when the user explicitly asks, and asks before merging into a same-topic folder.
+- **Does it move or reorganize existing files?** No. It adds one folder and copies by default; it only moves loose Desktop files when the user explicitly asks, reuses the same task’s authorized folder, and creates a dated sibling on unrelated name collisions. Protected folders receive an incremental entry.
 - **How does it verify delivery?** It checks manifest-to-file agreement, broken links, empty files, byte-for-byte copy integrity, and whether the destination is the user's real Desktop rather than a sandbox.
 - **Is this an AI-session handoff?** No. The package is for people to review; use `conversation-package` when a future AI session must resume the work.
 
@@ -79,4 +79,9 @@ Probed 7 scenarios across 6 personas · 5 fired correctly · 2 correctly stayed 
 
 > **"Clean up my desktop, it's a mess"** → Stayed quiet. One character separates 整理**到**桌面 (package to desktop — fires) from 整理桌面 (tidy my desktop — never fires); the skill only ever *adds* one folder and never reorganizes what's already there.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
+
+## September 2026 behavior check
+
+An independent agent simulation checked a scoped usage scenario after the instruction
+cleanup. This checks instruction behavior, not human adoption or measured time savings.

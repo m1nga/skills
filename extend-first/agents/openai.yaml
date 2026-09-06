@@ -1,4 +1,4 @@
 interface:
-  display_name: "Skill Reuse Checker"
-  short_description: "Find what to extend or combine before building a duplicate"
-  default_prompt: "Use $extend-first before creating this new skill or agent: inventory installed skills and my skill directories at description level, compare by core function (not names), and give a one-screen EXTEND / COMPOSE / BUILD NEW verdict with the compared descriptions quoted verbatim."
+  display_name: "Find Reusable Skills"
+  short_description: "Find what to reuse before creating another capability"
+  default_prompt: "Use $extend-first to check whether this capability already exists, explain the reuse choice briefly, then continue the creation or update I authorized."

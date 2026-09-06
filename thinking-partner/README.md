@@ -6,7 +6,7 @@ Routes ambiguous requests to the question actually being decided — and refuses
 
 - Detects when the real deliverable is judgment rather than output, and switches into structured thinking without being asked.
 - Separates what you said, what the evidence shows, what it infers, and what is still unknown — so you can disagree with a specific claim instead of a vibe.
-- Keeps two to four live interpretations with the test that would distinguish them, instead of forcing one answer to feel finished.
+- Keeps plausible alternatives with a test that would distinguish them; the number depends on the decision.
 - When convergence is earned, gives one recommendation, its main trade-off, and why the alternatives lost; when it isn't, names the next learning step.
 - Handles dictated, messy, mixed-language input — corrections and decisions arriving in one stream.
 
@@ -24,14 +24,14 @@ No magic words — it triggers on meaning. It stays out of the way for research,
 ## Install
 
 ```
-npx skills add m1nga/skills@thinking-partner
+npx skills add m1nga/thinking-partner
 ```
 
 ## Example
 
 > **User:** I'm torn between rewriting the sync module or patching it again. Help me think this through.
 
-The skill separates the open decision (rewrite vs. patch) from the stated constraints (no downtime, solo maintainer), names what makes each path plausible, and identifies the distinguishing test — "how often has a patch here caused a regression in the last three months?" — before recommending. If that record isn't available, the verdict is "not yet decidable, go get that one number," not a side picked to sound decisive.
+The skill separates the open decision (rewrite vs. patch) from the stated constraints (no downtime, solo maintainer), names what makes each path plausible, and identifies the distinguishing test — "how often has a patch here caused a regression in the last three months?" — before recommending. If that record is unavailable, it can recommend a reversible patch experiment with rollback and a clear observation, while stating what remains unknown.
 
 ## Works well with
 
@@ -46,7 +46,7 @@ Perspectives are selected, not enumerated — a viewpoint only enters when its d
 
 ## Field-tested
 
-Probed 6 scenarios across 5 personas · 4 fired correctly · 2 correctly stayed quiet.
+Historical simulation: 6 scenarios across 5 personas · 4 fired correctly · 2 correctly stayed quiet.
 
 > **"这个项目我现在有两个方向嘛……呃不对,是先把底座锁死再切,你帮我想想,我有点纠结"** → Fired. Untangled the dictated self-correction (later wording overrides earlier), kept both paths alive, and named the one test that would settle them — no fake convergence.
 
@@ -54,4 +54,9 @@ Probed 6 scenarios across 5 personas · 4 fired correctly · 2 correctly stayed 
 
 > **"方案我大概想好了,帮我想想还有没有漏洞,然后我们开工"** → Deferred to grilling. This skill frames the decision; interrogating a committed build plan is explicitly someone else's seat.
 
-Probe method: [scenario-probe](../scenario-probe/)
+Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
+
+## September 2026 behavior check
+
+An independent agent simulation checked a scoped usage scenario after the instruction
+cleanup. This checks instruction behavior, not human adoption or measured time savings.

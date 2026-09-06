@@ -1,6 +1,6 @@
 ---
 name: map-product-system
-description: Turn rough product ideas, conversations, documents, or an existing codebase into an end-to-end product system map covering user journeys, capability boundaries, platform and customer mandates, data lifecycles, agent/service/human responsibilities, architecture, failure paths, governance, and delivery slices. Use to understand the whole product, find missing functions or branches, decide what belongs in code vs mandates or configuration, design multi-agent responsibilities, audit completeness, or turn a concept into an executable architecture. Trigger on "how does this all hang together", "help me see the big picture of my app", "what's missing in my product", "map the whole product", "review the product structure", or Chinese "看一下产品结构", "梳理产品架构", "检查用户旅程和功能分支". For the runtime control loop or autonomous execution, use loop-system-architect; this skill covers static architecture and responsibility contracts. For a chaotic, inherited, or contaminated project, run diagnose-project-rebuild first (if installed).
+description: "Map a product’s user journeys, capabilities, data, responsibilities, and missing paths. Use for system structure or architecture changes; scale the map to the requested scope."
 ---
 
 # Map Product System
@@ -46,22 +46,11 @@ Connect the capabilities to product surfaces, domain logic, mandate/policy resol
 
 For whole-product, mandate, data, multi-agent, or completeness work, read [references/coverage-model.md](references/coverage-model.md) and use only the relevant lenses.
 
-### 4. Resolve code, mandate, configuration, and data
+### 4. Separate mechanisms and policy when relevant
 
-When the product makes governed or customer-specific decisions, classify behavior deliberately:
-
-- **Code** — stable mechanisms, invariants, validation, enforcement, and execution primitives.
-- **Platform mandate** — versioned product-wide authority, prohibitions, safety rules, and governance applied to every customer.
-- **Customer mandate** — versioned customer objectives, domain rules, permissions, preferences, thresholds, and escalation paths, constrained by the platform mandate.
-- **Runtime mandate** — the resolved, auditable policy snapshot for one execution, including identities, versions, data scope, tools, approvals, and limits.
-- **Configuration** — operational choices that may change without redefining authority or product meaning.
-- **Data** — observed facts and events; never use mutable data as an implicit policy source without an explicit resolution rule.
-
-Prefer a resolution pipeline over scattered customer conditionals:
-
-`platform mandate + customer mandate + runtime context → validate/resolve → runtime mandate → execution + audit record`
-
-For products without governed or customer-specific decisions, separating code, configuration, and data is sufficient; do not force the mandate layers onto a product that has none.
+For ordinary products, distinguish code, configuration, and data. Read
+[references/policy-layers.md](references/policy-layers.md) only when customer-specific
+or governed decisions require explicit platform/customer/runtime authority.
 
 ### 5. Design responsibility, not an agent collection
 
@@ -71,7 +60,7 @@ Give every agent/service/human role a contract: purpose, trigger, inputs, allowe
 
 ### 6. Challenge completeness
 
-Run the relevant coverage passes from the reference. At minimum:
+Select coverage checks relevant to the product and requested change:
 
 - Trace every primary journey to capabilities and system owners.
 - Trace every important decision to mandate authority, evidence, and auditability.
@@ -84,7 +73,7 @@ Run the relevant coverage passes from the reference. At minimum:
 
 Lead with the clearest current model and the most consequential decision. Use the smallest useful mix of prose, tables, diagrams, and lists.
 
-For a full-system request, normally provide:
+For a full-system request, include the relevant parts below; omit layers the product does not have:
 
 1. Product spine and scope.
 2. End-to-end journey and capability map.

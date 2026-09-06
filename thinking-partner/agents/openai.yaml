@@ -1,4 +1,4 @@
 interface:
-  display_name: "Decision Thinking Partner"
-  short_description: "Clarify ambiguous decisions without pretending certainty"
+  display_name: "Think Through Decisions"
+  short_description: "Compare options and choose a useful next experiment"
   default_prompt: "Use $thinking-partner to clarify the unresolved decision, preserve meaningful alternatives, select only consequential perspectives, and continue into research or execution when authorized."

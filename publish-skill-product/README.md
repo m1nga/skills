@@ -1,4 +1,4 @@
-# Skill Publisher — Turn a Finished Skill into a Searchable GitHub Product
+# GitHub Skill Publisher — Publish Skills and Track Discovery
 
 Turn one finished agent skill into one independent GitHub product: its own repository, problem-led
 page, real origin story, direct install command, SEO/GEO metadata, and verified release evidence.
@@ -38,6 +38,25 @@ npx skills add m1nga/publish-skill-product
 > `skills/map-product-system/SKILL.md` package is complete, runs the direct CLI discovery check, and
 > reports search/index evidence separately from release success.
 
+## Measure one discovery experiment
+
+Use the bundled `scripts/discovery_snapshot.py` with an owner/repository, up to
+three fixed GitHub queries, and a new output file. It records timestamps, metadata,
+search position, and optional private views/referrers. API failures remain unknown;
+a before/after comparison never claims that the edit caused audience growth.
+Keep snapshots outside your public repository. See
+[the experiment workflow](https://github.com/m1nga/publish-skill-product/blob/main/skills/publish-skill-product/references/growth-experiments.md)
+for the small state-folder layout and observation process.
+
+```bash
+python3 scripts/discovery_snapshot.py m1nga/prompt-distill \
+  --query '"prompt cleaner"' --out /tmp/prompt-discovery.json
+```
+
+Run from the installed skill directory. This uses GitHub CLI authentication and
+GitHub data; no paid keyword-data subscription is required. It does not measure
+Google rankings or AI-answer citations.
+
 ## Works well with
 
 - [`skill-creator`](https://github.com/openai/skills/tree/main/skills/.system/skill-creator) — builds
@@ -64,3 +83,16 @@ The release workflow has published 25 standalone skill repositories. In the late
 and correctly blocked one product with ambiguous local source changes instead of republishing it.
 Publication now triggers the named product's remote verification directly, with no daily polling
 automation. Search indexing remains a separately observed status, not a release claim.
+
+## September 2026 behavior check
+
+An independent agent simulation checked a scoped usage scenario after the instruction
+cleanup. This checks instruction behavior, not human adoption or measured time savings.
+
+The bundled release/data tools also have 14 offline regression tests, covering dirty
+source rejection, unrelated-change preservation, missing API data, fixed-query
+comparison, and snapshot overwrite protection. Run from the installed skill directory:
+
+```bash
+python3 scripts/test_release_tools.py
+```

@@ -1,6 +1,6 @@
 ---
 name: desktop-package
-description: Package this session's outcome into ONE new folder on the user's Desktop for human review — distilled standalone docs plus copies of files produced, organized so a cold reader gets task, conclusion, and open items without the conversation. Two modes — end-of-task packaging, and task-start filing where outputs accumulate during the task. Trigger on "put this in a desktop folder", "package this up so I can review it later", "leave a copy on my desktop", "save this somewhere I can find it"; Chinese — 整理到桌面 / 桌面开个文件夹 / 打包到桌面 / 放到桌面我要查收 / 桌面上给我留一份. Fires even when the ask is the last sentence of a long setup. NOT for AI-session handoff (use conversation-package), NOT a desktop cleaner ("clean up my desktop" / 整理桌面 is a different job) — it only ADDS one new folder (or, after asking, uses an existing same-topic folder) and never reorganizes existing Desktop items. For closing an iteration, run iteration-close first, then package the outputs here. Verifies delivery; degrades to a tar handoff when remote/sandboxed.
+description: "Collect task results into one reviewable Desktop folder, at task start or completion. Copy artifacts and summarize decisions; do not reorganize the Desktop or replace the project’s working files."
 ---
 
 # desktop-package — package this task into a Desktop folder for human pickup
@@ -38,17 +38,19 @@ If the session genuinely has almost nothing worth packaging, say so instead of
 manufacturing filler documents. An honest "there's not much worth packaging" beats a
 padded folder.
 
-## Same-topic folder already on the Desktop? Ask first
+## Existing folders
 
-Before creating anything, check whether the Desktop already has a folder on the same
-topic (same or near-same name, or an obviously matching subject). If it does, ask ONE
-question: **merge into the existing folder, or start a new one?**
+Use the exact folder the user names. When continuing this same task, reuse its
+known delivery folder and add only this task's new results. If an unrelated folder
+has the desired name, create a dated sibling by default; no approval is needed for
+this reversible choice. Ask only if the user requests a merge whose ownership or
+scope cannot be established. Never overwrite another task's files.
 
-- **Merge** = ADD only. Drop new files in (numbered/dated so they sort after existing
-  content), append a dated section to the entry file if one exists (or add your own entry
-  file without displacing theirs). Never rename, reorder, or restructure what is already
-  there.
-- **New** = create a sibling folder with a date suffix. Never touch the existing one.
+For an existing folder with a protected entry file, create a dated incremental
+entry listing only this delivery's additions and their sources. Verify the added
+files and links; do not rewrite the old entry or reorganize unrelated files to
+satisfy a whole-folder manifest. Update the task-owned entry only when that is
+within the user's authorization.
 
 ## Folder conventions (follow the user's habits, not a house style)
 
@@ -61,8 +63,7 @@ When there are no clues, use this default:
 - **Default folder name = one emoji + space + short topic name** (2–8 words / 2–8 字).
   Pick the emoji for the task's nature (⚡ urgent, 📦 packing, 🔥 active project,
   🧰 tools, 📄 docs, ✅ done — inventing a fitting one is encouraged). No dates in the
-  name; dates live inside the entry file. If the name already exists, see the merge
-  question above.
+  name; dates live inside the entry file. If the name already exists, create a dated sibling as described above.
 - **Entry file, always the same name: `START-HERE.md`** (for Chinese-language users:
   `📖 先看这个.md`). A fixed, obvious entry point beats per-package cleverness. Template
   below.
@@ -127,8 +128,8 @@ explanations, never the only version of anything.
 Done is demonstrated, not asserted. Run all five checks before reporting:
 
 **a. Manifest ↔ reality, both directions.** Every file listed in the entry file exists
-and is non-empty (`test -s` each one), and every file actually in the folder appears in
-the manifest. Fix whichever side is lying.
+and is non-empty (`test -s` each one), and every file actually in a new folder appears in
+the manifest. For an existing protected folder, apply this to the new delivery only. Fix whichever side is lying.
 
 **b. Broken links.** `find "$PKG" -type l ! -exec test -e {} \; -print` must output
 nothing. A broken symlink is a file the user cannot open.
@@ -158,8 +159,8 @@ Then hand over:
 ## Boundaries
 
 - ADDS only. Never reorganizes, renames, or deletes existing Desktop items — tidying the
-  whole Desktop is a different job this skill must not drift into. Merging into an
-  existing folder (after asking) still only adds.
+  whole Desktop is a different job this skill must not drift into. Using an
+  existing authorized folder still only adds.
 - Copy by default. Move only what the user explicitly told it to gather, and never out of
   a repo.
 - No secrets: keys, tokens, credentials, client-confidential material stay out. Desktop
