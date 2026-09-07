@@ -13,7 +13,18 @@ the open Agent Skills format.
 
 ## Start here
 
-See every available skill before installing anything:
+Choose one concrete result to try:
+
+| Your current problem | First skill to try | See the result before installing |
+|---|---|---|
+| A task's files moved and the next action is buried in an old chat | [TaskDock](https://github.com/m1nga/taskdock) | [Run the move-and-recover demonstration](docs/try-taskdock.md) |
+| An agent workflow needs explicit budgets and failure checks | [Agent Loop Builder](https://github.com/m1nga/loop-system-architect) | [Reproduce a rejected boolean budget](docs/try-loop-budget-check.md) |
+| A product feature is missing retries, ownership or a complete user path | [Product System Mapper](https://github.com/m1nga/map-product-system) | [Read a complete import-and-retry example](https://github.com/m1nga/map-product-system/blob/main/skills/map-product-system/examples/import-retry.md) |
+
+The first two demonstrations execute real code with fictional inputs. The product
+map is an authored example. None is a customer testimonial or a time-saving claim.
+
+See every available skill:
 
 ```bash
 npx skills add m1nga/skills --list
@@ -22,15 +33,16 @@ npx skills add m1nga/skills --list
 Start with one skill for the task you have now:
 
 ```bash
-npx skills add m1nga/prompt-distill
+npx skills add m1nga/taskdock
 ```
 
-Then ask your agent: `Use $prompt-distill to turn these notes into a reusable prompt.`
+Then ask your agent: `Use $taskdock to organize this task and record its next action.`
 Choose another skill from the task tables below when you need it. You do not need
 all 25 skills loaded for an ordinary task.
 
-If one of these skills saves you time, [star this collection](https://github.com/m1nga/skills).
-It helps other builders find the useful ones without promoting 25 separate repositories.
+If a skill helps a real task, star that skill's own repository or share a small
+reproduction of what failed. You can also [star this collection](https://github.com/m1nga/skills)
+to find the full catalog again.
 
 ## Pick the result you need
 
