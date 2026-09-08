@@ -2,6 +2,12 @@
   "owner": "m1nga",
   "products": [
     {
+      "name": "design-agent",
+      "title": "Design Agent — Turn Visual References into Usable Interfaces",
+      "description": "Turn visual references and feedback into brand direction, focused design revisions, and verified web interfaces without carrying old project choices into new briefs.",
+      "topics": ["m1nga-skill", "agent-skill", "web-design", "design-workflow", "visual-design", "frontend", "codex", "claude-code"]
+    },
+    {
       "name": "coffee-brewing",
       "title": "Coffee Brewing Coach — Get Exact Brew Parameters",
       "description": "Coffee brewing coach that reads bean or espresso photos and taste feedback, then gives exact grind, ratio, temperature, and time settings for the next brew.",

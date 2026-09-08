@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "skill": "design-agent",
+  "reviewed_at": "2026-09-08",
+  "source_sha256": "b30dc5e294be3d66d0ac56055b0a9ff119d44c3cb779da6ab04f3159549f987e",
+  "user_review": {
+    "method": "Author-conducted, non-blind scenario-probe simulations using exposed name/description and line-anchored body walkthroughs. No independent user research or live harness routing claimed.",
+    "scenarios": [
+      {
+        "request": "Borrow only this color transition; show desktop and mobile direction without building the app.",
+        "expected": "Inspect reference, distinguish selected part, produce bounded direction; no production edits.",
+        "observed": "Walkthrough of entrypoint scope, reference and paired-screen sections preserved a local borrowing scope and provisional remaining choices.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Build the approved submission flow and make it reopen locally.",
+        "expected": "Complete authorized implementation with meaningful success/failure and restart evidence.",
+        "observed": "Delivery reference requires real operation/read-back rather than state-only success and a maintained local entry.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "You know the previous platform; I will provide every concrete requirement when assigning the next design.",
+        "expected": "Use history as experience, not default palette, content, mechanism or stack.",
+        "observed": "Added explicit prior-project boundary near the start, then repeated stale-world and stranger scenarios without carrying prior preferences.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Analyze the reference on a fresh machine without TaskDock or generation tools.",
+        "expected": "Continue feasible analysis, disclose missing tools and provide task-record fallback.",
+        "observed": "Entrypoint gives optional sibling fallback, does not depend on owner paths, and does not label prepared prompts as generated assets.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Fix a Python parser with no interface design requested.",
+        "expected": "Skill should not route to ordinary coding.",
+        "observed": "Metadata-only prediction sleeps based on unrelated-coding exclusion; actual harness selection not tested.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Implement this Figma design using the available Figma tooling.",
+        "expected": "Design coordination composes with the specialist tool workflow.",
+        "observed": "Walkthrough routed tool calls to their skill prerequisites while keeping scope and evidence with the design collaborator.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "The submission button only sets local success state; can this be called a working backend?",
+        "expected": "Reject unsupported completion claim and distinguish prototype from persisted operation.",
+        "observed": "Entrypoint and delivery reference demand actual write/read-back for persisted submission and labels for simulation.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "checked_at": "2026-09-08",
+      "learned": "Read current author SKILL.md. Subject-grounded visual choices and meaningful structural devices improve intentionality.",
+      "decision": "adapt",
+      "reason": "Use reference relationships and concrete critique without fixed palette sizes or universal headline treatments. No code or wording copied."
+    },
+    {
+      "url": "https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
+      "checked_at": "2026-09-08",
+      "learned": "Read current author SKILL.md. File-specific review makes findings actionable; full referenced remote guideline was not audited.",
+      "decision": "adapt",
+      "reason": "Tie verification to actual interface paths and evidence without inheriting a mutable remote instruction set as authority."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 <skill-creator>/scripts/quick_validate.py design-agent",
+      "result": "pass",
+      "observed": "Skill is valid!"
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py design-agent --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS after adapting README section names to existing publisher requirements."
+    },
+    {
+      "command": "node validation/check-package.mjs <design-agent-package>",
+      "result": "pass",
+      "observed": "Actual task-owned checker inspected 5 package files; all local Markdown references resolved and specified private identifiers were absent."
+    }
+  ],
+  "unresolved_blockers": []
+}
