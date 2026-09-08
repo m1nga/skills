@@ -1,29 +1,50 @@
 {
   "schema_version": 1,
   "skill": "prompt-craft",
-  "reviewed_at": "2026-09-06T19:49:46.584628+00:00",
-  "source_sha256": "817556c78759933a02df415deef85ecedb0b9ca0b01d1dd646746cf67f1d6d93",
+  "reviewed_at": "2026-09-08T06:27:51.945012+00:00",
+  "source_sha256": "353aa6a7c3a4028e814a44846e7e6fb7f83675fbeda97f1f033b5a57b62eb7d6",
   "user_review": {
-    "method": "Maintainer public-entry assessment and explicitly simulated instruction walkthroughs; not independent agent execution, human research or real customer results. Executed regex fixture is identified separately.",
+    "method": "Maintainer instruction walkthroughs with concrete requests; not independent users or measured target-model execution.",
     "scenarios": [
       {
-        "request": "Use prompt-craft: create a short launch-post prompt for an offline notes app exporting Markdown; calm voice, invite a try, no customer numbers or brand file.",
-        "expected": "Return reusable prompt and verification, generic mode, no fabricated marketing facts.",
-        "observed": "After walkthrough: downstream prompt preserves offline, Markdown, short, calm, invitation and no customer numbers. Verification maps all specifics; added proof boundary disclosed. No named customer, savings, URL or company imported from knowledge examples.",
+        "request": "Write a reusable prompt for one calm launch post about an offline Markdown notes app. No customer numbers. Just the prompt.",
+        "expected": "One short prompt, supplied facts retained, no mandatory advisory or invented proof.",
+        "observed": "Walkthrough output: Write one calm launch post for an offline notes app that exports Markdown. Invite the reader to try it. Use only supplied facts; do not add customer counts or an unverified link. No extra sections.",
         "kind": "simulated",
         "result": "fixed"
       },
       {
-        "request": "Use the usual format; there is no brand file; only knowledge examples name fictional venues.",
-        "expected": "Keep absent facts unresolved.",
-        "observed": "Before README example resolved unnamed venues and format from absent context. After: label proposed plain post format as assumption; omit unnamed venues and block fictional proof. Recovery is real context or verified sources, not guessed brand identity.",
+        "request": "My brand file is absent. Build a short product-post prompt from these facts.",
+        "expected": "Proceed from supplied facts without blocking on setup.",
+        "observed": "Walkthrough proceeds in generic mode; template is optional and its sample companies are not imported.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Why did you pick that CTA? Then change the post prompt to Chinese and keep the 40-word limit.",
+        "expected": "Answer the question and revise the prompt while preserving the limit.",
+        "observed": "Walkthrough answers the rationale in the user language, then returns the revised prompt retaining the 40-word constraint; no mode refusal or second phase approval.",
         "kind": "simulated",
         "result": "fixed"
       },
       {
-        "request": "A five-month-old brand file contains stable calm voice and a quarterly launch target.",
-        "expected": "Use stable voice only; time-scoped claim stays excluded.",
-        "observed": "Walkthrough uses calm voice and emits stale-context notice; quarterly target not copied. Later direct request to write the post exits the prompt task and follows normal work.",
+        "request": "Write the launch copy itself, not a reusable prompt.",
+        "expected": "Do the direct writing task.",
+        "observed": "Direct-task route avoids generating an intermediate prompt or forcing a sibling skill.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Use our usual offer from an undated global brand file while the current project identifies a different product.",
+        "expected": "Do not import the wrong brand or treat an undated offer as current.",
+        "observed": "Walkthrough resolves current project first and leaves the unverified offer out; asks only if it is essential.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Deep review this reusable ad prompt for unsupported claims and a missing dependency.",
+        "expected": "Check the actual risks without mandatory flaws or claimed independent evaluation.",
+        "observed": "Walkthrough checks the evidence/dependency paths and labels the review simulated; no fake conversion numbers or independent reviewer.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -31,27 +52,26 @@
   },
   "similar_skills": [
     {
-      "url": "https://raw.githubusercontent.com/naomimetzger/brand-voice/main/SKILL.md",
-      "checked_at": "2026-09-06T19:44:08.465553+00:00",
-      "learned": "Require real claims and lived product details; do not invent results when a voice guide is missing.",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/5b2c0007766c6a1cf1d53fd8fc73e979e0821022/skills/copywriting/SKILL.md",
+      "checked_at": "2026-09-08T06:27:51.945012+00:00",
+      "learned": "Read applicable product marketing context before asking for information already available.",
       "decision": "adapt",
-      "reason": "Put evidence boundary at the prompt translation step and give a generic no-proof example; keep existing nonblocking generic mode instead of importing a mandatory interview."
+      "reason": "Support project marketing context and supplied facts without requiring another setup file; do not import the source performance statistics."
     },
     {
-      "url": "https://raw.githubusercontent.com/Apeironics/prompt-refine-skill/main/SKILL.md",
-      "checked_at": "2026-09-06T19:44:08.442082+00:00",
-      "learned": "Preserve intent and language, use no edit for already clear input, and disclose assumptions.",
-      "decision": "adapt",
-      "reason": "Retain minimal intervention; reject persistent silent rewrite mode and host-model assumptions because this product returns an explicitly requested reusable prompt."
+      "url": "https://github.com/m1nga/skills/blob/df419e1369cf1ae7b082024b2b1753c957d896b4/prompt-distill/SKILL.md",
+      "checked_at": "2026-09-08T06:27:51.945012+00:00",
+      "learned": "Use natural structure, preserve corrections, and do direct work when that is what the user requested.",
+      "decision": "adopt",
+      "reason": "Align sibling routing and remove the marketing workshop mode trap while retaining marketing-specific context."
     }
   ],
   "validation": [
     {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py prompt-craft --product-manifest products.json",
+      "command": "quick_validate.py prompt-craft; audit_product_page.py prompt-craft --product-manifest products.json",
       "result": "pass",
-      "observed": "Executed page and product metadata audit returned VERDICT: PASS."
+      "observed": "Skill structure and product-page checks passed; no market-performance claim."
     }
   ],
-  "unresolved_blockers": [],
-  "decision": "Changed: enforce source-vs-example boundary in advice and translation, replace unsupported public fixture, align source direct install and sibling URL. Product title/description/topics retained after review."
+  "unresolved_blockers": []
 }

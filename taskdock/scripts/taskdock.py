@@ -233,11 +233,20 @@ def resume(root, max_chars=3000):
     if max_chars < 1:
         raise ValueError('max_chars must be positive')
     records = {}
-    for name in ('README.md', 'STATE.md', 'PLAN.md'):
-        text = (root / name).read_text(encoding='utf-8')
+    names = ['README.md', 'STATE.md', 'PLAN.md']
+    retrieval_index = root / 'INDEX.md'
+    if retrieval_index.is_symlink():
+        raise ValueError('Symlinked retrieval index: INDEX.md')
+    if retrieval_index.exists():
+        if not retrieval_index.is_file():
+            raise ValueError('Retrieval index must be a file: INDEX.md')
+        names.append('INDEX.md')
+    for name in names:
+        with (root / name).open(encoding='utf-8') as stream:
+            text = stream.read(max_chars + 1)
         records[name] = {'text': text[:max_chars], 'truncated': len(text) > max_chars}
     return {'status': 'resumed', 'id': task['id'], 'path': str(root), 'records': records,
-            'note': 'Task files are recorded state, not proof of current external repository state. Reconcile relevant changes before acting.'}
+            'note': 'Task files are recorded state, not proof of current external repository state. Use INDEX.md when present to select relevant evidence; linked files are not loaded automatically. Read truncated records as needed and reconcile relevant changes before acting.'}
 
 
 def main():

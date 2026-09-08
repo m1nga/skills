@@ -130,6 +130,34 @@ class TaskWorkspaceTests(unittest.TestCase):
         self.assertEqual(len(report['records']['STATE.md']['text']), 100)
         self.assertEqual(path.read_bytes(), before)
 
+    def test_resume_includes_index_without_loading_linked_evidence(self):
+        self.new()
+        task = self.root / 'task'
+        (task / 'evidence.md').write_text('DETAILS_ONLY_ON_REQUEST')
+        (task / 'INDEX.md').write_text('[Decision](evidence.md)')
+        report = td.resume(task)
+        self.assertEqual(report['records']['INDEX.md']['text'], '[Decision](evidence.md)')
+        self.assertNotIn('DETAILS_ONLY_ON_REQUEST', json.dumps(report))
+        self.assertFalse(report['records']['INDEX.md']['truncated'])
+
+    def test_resume_bounds_index_without_changing_it(self):
+        self.new()
+        path = self.root / 'task' / 'INDEX.md'
+        path.write_text('判断依据' * 1000, encoding='utf-8')
+        before = path.read_bytes()
+        report = td.resume(path.parent, max_chars=17)
+        self.assertEqual(len(report['records']['INDEX.md']['text']), 17)
+        self.assertTrue(report['records']['INDEX.md']['truncated'])
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_resume_rejects_external_index_symlink(self):
+        self.new()
+        external = self.root / 'external.md'
+        external.write_text('PRIVATE_OTHER_TASK')
+        (self.root / 'task' / 'INDEX.md').symlink_to(external)
+        with self.assertRaisesRegex(ValueError, 'Symlinked retrieval index'):
+            td.resume(self.root / 'task')
+
     def test_same_name_is_not_identity_and_new_tasks_do_not_collide(self):
         first = td.init_task('同名', '一', self.index, desktop=self.root)
         second = td.init_task('同名', '二', self.index, desktop=self.root)

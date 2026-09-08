@@ -1,15 +1,14 @@
 # Marketing Prompt Builder — Turn Rough Ideas into Brand-Ready AI Instructions
 
-Turns "write me a prompt for a TikTok ad" into a prompt that carries your brand voice, platform constraints, and banned-word list — with a line-by-line map showing where every detail you said ended up.
+Turns rough marketing notes into a usable prompt that preserves product facts, audience and brand voice, with extra structure only when the task needs it.
 
 ## What it does
 
-- Transforms rough ideas, dictated voice notes, and revision feedback into structured, copy-paste-ready prompts for marketing work: social posts, ad copy, video scripts, campaign briefs, brand-voice definitions.
-- Grounds every prompt in your brand context file (voice rules, personas, banned phrases) plus a marketing knowledge base: platform specs, headline/hook/CTA patterns, funnel logic, and 25 known ways marketing prompts fail.
-- Preserves every concrete detail you gave — numbers, names, constraints — and proves it with a "you said → I wrote" mapping in every delivery.
-- Adds a 1-3 line advisory: format, platform, or structural choices you didn't ask about but should know about.
-- Treats follow-ups as amendments (v1 → v2 → v3), never restarts. A DEEP mode adds failure-mode analysis and an adversarial review pass for high-stakes prompts.
-- Handles dictated, messy, mixed-language input, including Chinese-English code-switching, with a correction dictionary you can extend.
+- Turns marketing notes and revisions into a reusable prompt that preserves product facts, audience, voice and constraints.
+- Uses supplied product context first, then applicable project or personal brand files. Loads topic references only when useful.
+- Keeps simple prompts short. Adds a detail mapping or deeper failure review when the task warrants it.
+- Answers side questions and follows explicit requests to execute the prompt; drafting itself does not authorize external publication.
+- Handles dictated and mixed-language input without turning tentative ideas into approved decisions.
 
 ## When it fires
 
@@ -28,7 +27,7 @@ It does not activate for general prompt polishing, system prompts, or coding pro
 npx skills add m1nga/prompt-craft
 ```
 
-Then copy `knowledge/user-context.example.md` to `~/.prompt-craft/user-context.md` and fill in your brand. Until you do, it runs in generic mode and tells you so.
+Use it immediately with supplied product facts. Optionally copy `knowledge/user-context.example.md` to a project `user-context.md` or personal `~/.prompt-craft/user-context.md` for recurring brand work.
 
 ## Example: launch notes without invented proof
 
@@ -62,20 +61,21 @@ a brand format or importing a fictional knowledge-base company.
 
 ## Design notes
 
-Built by a solo builder running content production through AI agents with no human reviewer at any step — which is why the output format is verification-heavy: an execution-discipline block in every prompt, a mandatory "you said → I wrote / I added / I guessed" accounting in every delivery. When nobody proofreads downstream, the prompt has to carry its own checks.
+Current agents can reason from clear goals and constraints. This skill supplies
+marketing context, preserves revisions and separates facts from assumptions; it
+should not force a long workshop around a short request. XML, extra advice, trace
+tables and deep review are optional tools rather than mandatory output sections.
 
-Two deliberate asymmetries. Input handling defaults to preservation over invention: when in doubt, every specific you said survives into the prompt, because dropping a number is a worse failure than keeping a redundant one. And the skill is split into an engine (this package: methodology + generic marketing knowledge) and a brand payload (your private context file, which lives outside the package and survives updates). Brand context also carries a staleness date — a 90-day-old sprint goal silently injected into fresh copy is a bug, so time-scoped facts expire after 60 days.
+Project-specific context takes precedence over a personal fallback. Reference
+examples are not customer evidence, and dated campaign facts require checking.
+Private brand files remain outside the installed package and survive updates.
 
-## Field-tested
+## Validation
 
-Probed 9 scenarios across 7 personas · 5 fired correctly · 2 correctly stayed quiet · 1 clean mode exit · 1 sibling boundary flagged.
+The September 8, 2026 review used maintainer walkthroughs for a simple prompt,
+missing context, dense revisions, a mid-task question, direct copywriting and stale
+brand facts. These are instruction simulations, not human trials or measured
+Astra performance. The skill structure and public product page are also validated.
 
-> **"Write me a prompt for a TikTok ad for our sleep app"** (fresh install, no brand file) → fired, ran in generic mode with a one-line setup notice — no dead end, no invented brand facts.
->
-> **"Write a TikTok ad script for our sleep app."** → stayed quiet. You asked for the copy, not a prompt; that's normal work, and this skill knows the difference.
->
-> **Brand context file dated 5 months ago** → stable facts (voice, banned words) still injected; stale sprint KPIs and "hot topics" skipped, with a one-line notice to refresh — a 90-day-old goal never leaks into fresh copy.
->
-> **"先别优化了,帮我看下这个报错"** (mid-session pivot) → exited workshop mode immediately and just helped. No format ceremony, no mode trap.
-
-Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
+The short authored example above remains a useful output shape. A future real
+campaign or target-model comparison is needed to establish marketing performance.

@@ -11,6 +11,7 @@ TaskDock is an agent skill that plans and maintains a portable Desktop workspace
 - Updates decisions, verification, and next actions as the task changes.
 - Finds renamed or relocated task folders within specified search roots and repairs stale index entries.
 - Detects conflicting copies and broken common Markdown links instead of silently guessing.
+- Returns an existing topic index during resume, so the agent can choose relevant evidence without loading the entire task history.
 
 ## When it fires
 
@@ -42,6 +43,11 @@ for English task notes; Chinese is the CLI default.
 
 `TASK.json` identifies the task. `README.md` explains what the folder handles. `STATE.md` tracks current facts, decisions, verified progress, and the next action. `PLAN.md` explains dependencies and why files are grouped that way. `AGENTS.md` lets an agent entering the folder find these records.
 
+For a larger task, an optional `INDEX.md` maps questions to source and decision files.
+`resume` returns this index when present, bounded like the control records, without
+reading its linked files. The agent selects relevant details and reconciles current
+state before acting. Simple tasks do not need an index.
+
 The task ID survives a move. Internal relative links survive a whole-folder move. The Desktop task index is a replaceable location hint, not the only copy of your work. A missing index can be rebuilt from task folders.
 
 ```bash
@@ -69,7 +75,7 @@ that a plain skill installation enables background execution.
 
 ## Validation
 
-Thirteen executable tests cover moved folders, stale or missing indexes, duplicate identities, existing-file preservation, broken-link repair, bounded search, control-file symlinks, corrupt metadata, and same-name task isolation.
+Sixteen executable tests cover moved folders, stale or missing indexes, duplicate identities, existing-file preservation, broken-link repair, bounded search, control-file symlinks, corrupt metadata, same-name task isolation, and bounded topic-index recovery without loading linked documents.
 
 ```bash
 python3 scripts/test_taskdock.py -v
