@@ -4,12 +4,22 @@
 [![skills.sh](https://skills.sh/b/m1nga/skills)](https://skills.sh/m1nga/skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-25 installable agent skills for turning ambiguous work into concrete, checkable results: plan a
+26 installable agent skills for turning ambiguous work into concrete, checkable results: plan a
 product, recover a confused project, stress-test AI instructions, preserve your writing voice,
 close an iteration, or make a playlist that actually imports.
 
 Built from real solo-builder workflows for Codex, Claude Code, Cursor, and other tools that support
 the open Agent Skills format.
+
+## Built to evolve with AI
+
+We follow advances in AI and adapt our skills when they improve real work. Changes
+are checked against concrete tasks, with the scope and limits of validation made
+public. A newer model is a reason to evaluate, not an automatic replacement.
+
+我们持续跟进 AI 的进展，把经过具体任务验证的改进带进产品与技能。
+
+[See the latest verified adaptations](docs/ai-adaptation.md).
 
 ## Start here
 
@@ -38,7 +48,7 @@ npx skills add m1nga/taskdock
 
 Then ask your agent: `Use $taskdock to organize this task and record its next action.`
 Choose another skill from the task tables below when you need it. You do not need
-all 25 skills loaded for an ordinary task.
+all these skills loaded for an ordinary task.
 
 If a skill helps a real task, star that skill's own repository or share a small
 reproduction of what failed. You can also [star this collection](https://github.com/m1nga/skills)
@@ -50,6 +60,7 @@ to find the full catalog again.
 
 | You need to… | Use | You get |
 |---|---|---|
+| turn visual references into a scoped design and usable interface | [Design Agent](https://github.com/m1nga/design-agent) | reference analysis, design decisions and checked implementation |
 | turn a vague idea into a build-ready plan | [Build Plan Interviewer](https://github.com/m1nga/grilling) | a locked scope, decisions, and non-goals |
 | find what will break before building | [Product Idea Stress Test](https://github.com/m1nga/idea-probe) | simulated first contact, ranked risks, and a stronger concept |
 | clarify who a product is for and why it matters | [Product Definition Interview](https://github.com/m1nga/product-5w) | a five-part definition and visible validation debt |
