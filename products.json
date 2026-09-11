@@ -385,6 +385,19 @@
         "codex",
         "claude-code"
       ]
+    },
+    {
+      "name": "daily-brief",
+      "title": "Stock Portfolio Brief — Decide What Changed and What to Do",
+      "description": "Turn stock holdings and fresh filings into a source-backed portfolio decision, with index comparisons, thesis checks and explicit data gaps.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "stock-analysis",
+        "portfolio-management",
+        "investment-research",
+        "codex"
+      ]
     }
   ]
 }

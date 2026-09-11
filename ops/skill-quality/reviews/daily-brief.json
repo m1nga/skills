@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "skill": "daily-brief",
+  "reviewed_at": "2026-09-11",
+  "source_sha256": "3172d639769e2a9c8dc28e9ec9fa85974a311b877ae5f2e4873bf97dd435740a",
+  "user_review": {
+    "method": "Executed deterministic collector tests and live collection; manual instruction walkthroughs explicitly simulated, no independent reviewer.",
+    "scenarios": [
+      {
+        "request": "Value a two-share holding with known cash and a dated quote.",
+        "expected": "NAV 250, gain 40, weight 80%.",
+        "observed": "unittest test_nav_denominator passed with these exact outputs.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Review a portfolio with missing cash or stale/invalid prices.",
+        "expected": "Keep unknown fields null; no false losses or clean thesis checks.",
+        "observed": "Missing, stale, invalid metadata and cash tests pass; thesis remains unreviewed.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Run offline from another working directory, then repeat at same output.",
+        "expected": "Absolute inputs work, prior evidence preserved.",
+        "observed": "First CLI call returned 0 with NAV 250; repeat returned 2 without overwriting.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Check two consecutive gross-margin declines with only one operating-margin observation.",
+        "expected": "Mark unknown and seek comparable gross-margin quarters.",
+        "observed": "Manual walkthrough follows evidence contract; does not substitute metrics.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Produce a general morning news digest.",
+        "expected": "Do not select the stock brief solely from daily-brief name.",
+        "observed": "Description excludes general morning news; stock context is required.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/Jelly13124/stock-analyze-skills/blob/main/stock-analysis/SKILL.md",
+      "checked_at": "2026-09-11",
+      "learned": "Progressive modules and current-source collection; mandatory broad parameter interview and large persona workflow.",
+      "decision": "adapt",
+      "reason": "Keep targeted fresh evidence; omit mandatory interviews and persona machinery for a small portfolio."
+    },
+    {
+      "url": "https://github.com/jinhyeonseo01/stock-trade-analysis-skills/blob/main/skills/analyze-stock-decision/SKILL.md",
+      "checked_at": "2026-09-11",
+      "learned": "Separate deterministic baseline from reasoned judgment; point-in-time evidence and limited research despite missing execution inputs.",
+      "decision": "adapt",
+      "reason": "Use source and period integrity without imposing factor scores, fixed sample minima or model-based trade rules."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -m unittest discover -s daily-brief/tests -v",
+      "result": "pass",
+      "observed": "9 tests passed."
+    },
+    {
+      "command": "python3 <skill-creator>/scripts/quick_validate.py daily-brief",
+      "result": "pass",
+      "observed": "Skill is valid!"
+    },
+    {
+      "command": "python3 <publish-skill-product>/scripts/audit_product_page.py daily-brief --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS after fixing explicit section labels."
+    }
+  ],
+  "unresolved_blockers": []
+}
