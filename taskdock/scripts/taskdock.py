@@ -84,7 +84,7 @@ def register(root, index):
     return {'status': 'registered', 'id': task['id'], 'path': str(root), 'index': str(index)}
 
 
-def init_task(title, goal, index, path=None, adopt=False, desktop=None, language="zh"):
+def init_task(title, goal, index, path=None, adopt=False, desktop=None, language="en"):
     if language not in ("zh", "en"):
         raise ValueError("language must be zh or en")
     title = title.strip()
@@ -252,16 +252,20 @@ def resume(root, max_chars=3000):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
-    for command in ('init', 'register', 'locate', 'check', 'resume'):
+    for command in ('init', 'register', 'locate', 'check', 'resume', 'inventory', 'record', 'reconcile', 'plan', 'apply', 'rollback'):
         p = sub.add_parser(command)
         p.add_argument('--index', type=Path, default=default_index())
-        if command in ('init', 'register', 'check', 'resume'):
+        if command != 'locate':
             p.add_argument('--path', type=Path, required=command != 'init')
         if command == 'init':
             p.add_argument('--title', required=True)
             p.add_argument('--goal', required=True)
             p.add_argument('--adopt', action='store_true')
-            p.add_argument('--language', choices=('zh', 'en'), default='zh')
+            p.add_argument('--language', choices=('zh', 'en'), default='en')
+        elif command in ('record', 'plan'):
+            p.add_argument('--spec', type=Path, required=True)
+        elif command in ('apply', 'rollback'):
+            p.add_argument('--operation', required=True)
         elif command == 'resume':
             p.add_argument('--max-chars', type=int, default=3000)
         elif command == 'locate':
@@ -281,10 +285,23 @@ def main():
             if args.max_dirs < 1:
                 raise ValueError('--max-dirs must be positive')
             result = locate(args.index, args.id, args.title, args.root, args.max_dirs)
-        else:
+        elif args.command == 'check':
             result = check(args.path)
+        else:
+            import workspace_ops as ops
+            root = args.path.expanduser().resolve()
+            task = read_task(root)
+            if args.command == 'inventory':
+                result = ops.inventory(root)
+            elif args.command == 'reconcile':
+                result = ops.reconcile(root)
+            elif args.command in ('record', 'plan'):
+                spec = json.loads(args.spec.read_text(encoding='utf-8'))
+                result = getattr(ops, args.command)(root, task['id'], spec)
+            else:
+                result = ops.transfer(root, task['id'], args.operation, rollback=args.command == 'rollback')
         print(json.dumps(result, ensure_ascii=False, indent=2))
-        return 0 if result['status'] in ('created', 'existing', 'registered', 'found', 'pass', 'resumed') else 1
+        return 0 if result['status'] in ('created', 'existing', 'registered', 'found', 'pass', 'resumed', 'inventoried', 'recorded', 'planned', 'applied', 'rolled_back') else 1
     except (OSError, ValueError, KeyError, TypeError) as error:
         print(json.dumps({'status': 'error', 'error': str(error)}, ensure_ascii=False), file=sys.stderr)
         return 2

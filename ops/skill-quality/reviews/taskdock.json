@@ -1,22 +1,36 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-09-08T06:27:51.945012+00:00",
-  "source_sha256": "a6b328e01731f7b7a0dfbd24b78cc1c4640d7b79ca626081f7df12e8bbcf8bb6",
+  "reviewed_at": "2026-09-13T07:46:10.995317+00:00",
+  "source_sha256": "02c9d4a96e161e9a89f764c96e0b6cb637a6061e9fb01660cf2034c49a9707f2",
   "user_review": {
-    "method": "Maintainer executed filesystem scenarios and regression tests.",
+    "method": "Maintainer followed the public demo and CLI on real macOS filesystems; three synthetic task contexts and failure/recovery regression cases. Not an independent user study.",
     "scenarios": [
       {
-        "request": "Resume a task with a topic index and linked decision.",
-        "expected": "Return the bounded index without loading unrelated details or changing task files.",
-        "observed": "Executed helper: index returned, linked decision body absent, all original bytes preserved.",
+        "request": "Organize a task containing an approved result, a redundant download, a necessary runtime copy and rejected history.",
+        "expected": "Repair the entry, preserve distinct purposes, prove undo, and leave a usable current result.",
+        "observed": "Executed design, release and research demos; each passed apply, link check, exact visible-file rollback and final artifact reconciliation. Final public-command demo reran after refinements.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Apply after external edits, an occupied destination, a new reference, a symlink or a corrupt preimage.",
+        "expected": "Reject conflicting work without overwriting new content.",
+        "observed": "Executable cases pass for source/survivor edits, new and edited referring files, occupied paths, symlinks and corrupted recovery bytes.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Resume with a long index, an external index symlink, or no index.",
-        "expected": "Bound valid text, reject external symlink, keep legacy tasks usable.",
-        "observed": "16 regression tests passed, including bounded Unicode index, symlink rejection and existing index-free task recovery.",
+        "request": "Resume or undo a partially completed operation.",
+        "expected": "Retain source content and recover without replaying destructive actions.",
+        "observed": "Simulated process interruption inside real filesystem tests after a write and before journal completion; resume, partial rollback and interrupted rollback tests pass.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Resume an existing task without deep organization, or answer a tiny question.",
+        "expected": "Keep existing resume bounded; no mandatory artifact catalog or whole-workspace inventory.",
+        "observed": "Existing 16 task identity/retrieval tests pass; instruction review keeps ordinary entry lightweight and optional organization separate. No independent agent-trigger study claimed.",
         "kind": "executed",
         "result": "pass"
       }
@@ -24,30 +38,35 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/OthmanAdi/planning-with-files/blob/0d21b6c4aa5f2c5bdd3d042e7473ee09f7fae9e7/.agents/skills/planning-with-files/SKILL.md",
-      "checked_at": "2026-09-08T06:27:51.945012+00:00",
-      "learned": "Select the task and recover relevant saved files before continuing.",
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-09-13T07:46:10.995317+00:00",
+      "learned": "Choose the right persisted task, reconcile live work and retained state, and use relevant evidence on return.",
       "decision": "adapt",
-      "reason": "Return a bounded task-owned index so the agent can select evidence; do not copy host-specific hooks."
+      "reason": "Keep selected task recovery and evidence links. Do not copy host-specific hooks, universal tool-call counters or unrelated planning rules."
     },
     {
-      "url": "https://github.com/mattpocock/skills/blob/3cca18b368ae95cdbdebbff572ccafa662551015/skills/productivity/handoff/SKILL.md",
-      "checked_at": "2026-09-08T06:27:51.945012+00:00",
-      "learned": "Link existing artifacts instead of duplicating their contents.",
+      "url": "https://github.com/cskwork/skill-curator/blob/main/skills/skill-curator/SKILL.md",
+      "checked_at": "2026-09-13T07:46:10.995317+00:00",
+      "learned": "Separate filesystem facts from semantic judgments; preview changes and preserve complete recovery content.",
       "decision": "adapt",
-      "reason": "Keep durable files in the user task workspace, rather than an OS temporary handoff document."
+      "reason": "Apply explicit evidence, dry-run and preimages to task artifacts. Do not broaden TaskDock into installed-skill curation or infer value from usage counts."
     }
   ],
   "validation": [
     {
-      "command": "quick_validate.py taskdock; audit_product_page.py taskdock --product-manifest products.json",
+      "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v",
       "result": "pass",
-      "observed": "Skill structure and product-page checks passed; no market-performance claim."
+      "observed": "36 tests passed on macOS; Windows/Linux platform behavior is not claimed as verified. Fixed macOS /var versus /private/var root resolution found during first execution."
     },
     {
-      "command": "python3 taskdock/scripts/test_taskdock.py -v",
+      "command": "python3 taskdock/scripts/demo.py --output NEW_FOLDER [--domain design|release|research]",
       "result": "pass",
-      "observed": "16 tests passed, including 3 new retrieval-index cases."
+      "observed": "Three sample contexts and a final README-command run completed; original visible file bytes restored and organized result reconciled."
+    },
+    {
+      "command": "quick_validate.py taskdock; audit_product_page.py taskdock --product-manifest products.json",
+      "result": "pass",
+      "observed": "Skill structure and public product-page checks passed. Workflow SVG rendered and visually inspected without clipping. No growth claims."
     }
   ],
   "unresolved_blockers": []

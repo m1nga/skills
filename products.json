@@ -374,14 +374,15 @@
     },
     {
       "name": "taskdock",
-      "title": "TaskDock — Keep Complex Tasks Organized and Ready to Resume",
-      "description": "TaskDock plans and maintains portable Desktop task folders with durable identity, current progress, decisions, and file checks so work can resume after a move.",
+      "title": "TaskDock — Keep Agent Work Ready to Continue",
+      "description": "Keep agent tasks ready to resume: find current deliverables, preserve decisions and history, and organize local files with link repair and reversible changes.",
       "topics": [
-        "m1nga-skill",
         "agent-skill",
         "task-management",
-        "file-based-planning",
+        "file-organization",
         "context-management",
+        "workflow",
+        "python",
         "codex",
         "claude-code"
       ]

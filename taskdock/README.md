@@ -1,29 +1,13 @@
-# TaskDock — Keep Complex Tasks Organized and Ready to Resume
+# TaskDock — Keep Agent Work Ready to Continue
 
-TaskDock is an agent skill that plans and maintains a portable Desktop workspace for ongoing work. Your goal, decisions, current state, evidence, and results stay together so a fresh session can continue without reconstructing the entire chat.
+After several AI sessions, the work is scattered: a promising draft, a newer export,
+an old handoff that still says “waiting,” and a folder nobody wants to move.
 
-**任务坞：让每个复杂任务都有自己的桌面工作位置。**
+**TaskDock keeps the current result, the decisions behind it, and the next step together.**
+Your agent can resume the task, find a moved folder, and reorganize its files with a
+preview and an undo path.
 
-## What it does
-
-- Creates a task folder with a stable UUID, a human-readable entry point, current state, and a working plan.
-- Plans categories from the actual work and adds folders when they have a use.
-- Updates decisions, verification, and next actions as the task changes.
-- Finds renamed or relocated task folders within specified search roots and repairs stale index entries.
-- Detects conflicting copies and broken common Markdown links instead of silently guessing.
-- Returns an existing topic index during resume, so the agent can choose relevant evidence without loading the entire task history.
-
-## When it fires
-
-Use it for multi-step research, a launch, a design project, or continuing work that needs a durable record. Say:
-
-> 用 TaskDock 给这个任务建桌面工作文件夹，规划怎么做，并在过程中维护进度。
-
-> 找回昨天的任务文件夹，按它的状态继续做。
-
-> 这个任务目录乱了，按工作逻辑重新整理并修好引用。
-
-Simple answers and tiny edits do not need a workspace unless you ask for one.
+![TaskDock: continue from current work, preserve history, and verify reversible organization](https://raw.githubusercontent.com/m1nga/taskdock/main/skills/taskdock/assets/workflow.svg)
 
 ## Install
 
@@ -31,58 +15,140 @@ Simple answers and tiny edits do not need a workspace unless you ask for one.
 npx skills add m1nga/taskdock
 ```
 
-Then ask your agent: `Use $taskdock to organize this task and keep it ready to resume.`
-Requires Python 3.8 or later; no paid API is used by the filesystem helper. A skill
-installation may need a fresh session for automatic discovery.
+Then tell your agent:
 
-Commands below run from the installed skill directory. From another directory, use
-the absolute path to its `scripts/taskdock.py`. Add `--language en` at initialization
-for English task notes; Chinese is the CLI default.
+> Use TaskDock to continue this project. Find the current deliverable and the decisions
+> behind it, check what has changed, and leave a clear next step.
 
-## How the folder works
+Or, when files have piled up:
 
-`TASK.json` identifies the task. `README.md` explains what the folder handles. `STATE.md` tracks current facts, decisions, verified progress, and the next action. `PLAN.md` explains dependencies and why files are grouped that way. `AGENTS.md` lets an agent entering the folder find these records.
+> Organize this task around the version I am using. Preserve earlier decisions and
+> original sources, repair affected links, and give me a way to undo the moves.
 
-For a larger task, an optional `INDEX.md` maps questions to source and decision files.
-`resume` returns this index when present, bounded like the control records, without
-reading its linked files. The agent selects relevant details and reconciles current
-state before acting. Simple tasks do not need an index.
+The agent prepares the records and commands. You do not need to tag every file,
+change how you name your projects, or maintain a second task board.
 
-The task ID survives a move. Internal relative links survive a whole-folder move. The Desktop task index is a replaceable location hint, not the only copy of your work. A missing index can be rebuilt from task folders.
+Requires a local filesystem and Python 3.8+. The helper uses only the standard
+library; no account, network service or paid API. It works with agents that can read
+skills and run local Python. Filesystem tests in this release ran on macOS; Windows
+and Linux behavior has not been independently platform-tested.
+
+## See the result before using your own files
+
+From the installed skill directory, run:
 
 ```bash
-python3 scripts/taskdock.py init --title "Launch review" --goal "Ship a reviewed launch plan"
-python3 scripts/taskdock.py locate --title "Launch review"
-python3 scripts/taskdock.py check --path "/path/to/task-folder"
-python3 scripts/taskdock.py resume --path "/path/to/task-folder"
+python3 scripts/demo.py --output /tmp/taskdock-demo
 ```
 
-Use `locate --id <task-id> --root <search-directory>` for a task moved outside the default Desktop/Documents search. A folder copied twice keeps the same ID; the tool reports ambiguity so the intended working copy can be selected explicitly.
+Choose a new output folder. The demo refuses to overwrite an existing one and uses
+sample files. From another directory, use the absolute path to `scripts/demo.py`.
 
-## Design notes
+```text
+Before                           After
+README → cover.svg               README → assets/cover.svg
+cover.svg                        assets/cover.svg
+download-copy.txt                runtime-copy.txt  (needed)
+runtime-copy.txt                  history/rejected.txt  (kept)
+history/rejected.txt
 
-A folder becomes useful when it carries the reason for the work and the next decision, not merely a transcript. TaskDock starts small and expands its structure as deliverables and dependencies become real. It keeps existing repositories authoritative and task evidence separate from public packages.
+Checked: entry repaired · runtime copy kept · history kept
+Checked: rollback restored every original visible file byte
+```
 
-It does not run while the agent is idle, guarantee discovery anywhere on a disk, move unrelated files, or replace backups. Scheduled work still requires an actual automation. The link check covers common inline Markdown links, not arbitrary HTML or Office document references.
+It performs the change, verifies rollback, and leaves an organized sample ready to
+inspect. `--domain release` and `--domain research` exercise two more sample contexts.
+The printed receipt includes the operation ID and verified results.
 
-## What we learned from similar skills
+## What it does
 
-[Planning with Files](https://github.com/OthmanAdi/planning-with-files) informed the
-explicit recovery check and single-owner rule for shared state. TaskDock adapts those
-ideas to portable Desktop tasks and keeps updates tied to meaningful changes instead
-of a fixed tool-call counter. It does not copy another engine's hook support or claim
-that a plain skill installation enables background execution.
+| Moment | What TaskDock helps the agent do |
+|---|---|
+| Start or return | Locate the same task, read its current state and relevant evidence |
+| Make a decision | Keep the choice, its source and the next action in the task record |
+| Replace a result | Distinguish what is approved, what is used and what is still a proposal |
+| Organize files | Preview moves and link repairs, preserve preimages, detect conflicting edits |
+| Hand off | Leave one usable entry, the current outcome, history and a concrete next step |
+
+A task starts with `TASK.json`, `README.md`, `STATE.md`, `PLAN.md`, and `AGENTS.md`.
+A UUID identifies it after a move. Optional `INDEX.md` links to deeper evidence;
+resume returns that index without loading everything it points to. Your existing
+repository stays where it is. Small questions and tiny edits need no new folder.
+
+## A few tools behind the workflow
+
+Run these from the installed skill directory, or use the absolute script path:
+
+```bash
+python3 scripts/taskdock.py init --title "Launch review" --goal "Prepare a reviewed launch"
+python3 scripts/taskdock.py locate --title "Launch review"
+python3 scripts/taskdock.py resume --path /path/to/task
+python3 scripts/taskdock.py check --path /path/to/task
+```
+
+For a folder moved beyond Desktop/Documents, add `--root /search/location` to
+`locate`. Duplicate task IDs produce an ambiguity report instead of a guess.
+
+When the work needs deeper organization:
+
+```bash
+python3 scripts/taskdock.py inventory --path /path/to/task
+python3 scripts/taskdock.py record --path /path/to/task --spec artifacts.json
+python3 scripts/taskdock.py reconcile --path /path/to/task
+python3 scripts/taskdock.py plan --path /path/to/task --spec moves.json
+python3 scripts/taskdock.py apply --path /path/to/task --operation RETURNED_ID
+python3 scripts/taskdock.py rollback --path /path/to/task --operation RETURNED_ID
+```
+
+The [organization guide](https://github.com/m1nga/taskdock/blob/main/skills/taskdock/references/organize.md)
+contains small input examples, supported references, conflict behavior and recovery.
+Planning saves its receipt and preimages under the task's private `.taskdock/` folder;
+work files change only during apply. Keep this recovery folder in your private backup.
+
+## Why it exists
+
+I built TaskDock because I was doing increasingly complex work with agents and kept
+having to reconstruct earlier sessions. I wanted the work to remain somewhere I could
+open, understand and carry forward.
+
+The next problem came from using it: current materials and abandoned drafts accumulated
+across folders, while old handoff notes still described a previous version. That led to
+explicit artifact records and reversible organization. A file being used, approved or
+published now has a different meaning. Identical content can still serve different purposes.
+
+The demo is a reproducible illustration of those problems, using sample files.
+
+## Who it's for
+
+Use TaskDock when ongoing research, design, operations or engineering work needs a
+durable task home and a reliable way to continue. [Planning with Files](https://github.com/OthmanAdi/planning-with-files)
+is an adjacent option for file-based planning and host hooks;
+[Skill Curator](https://github.com/cskwork/skill-curator) focuses on installed skill libraries.
+TaskDock focuses on the task's deliverables, decisions, location and recovery.
+
+It runs when your agent uses it. It is not a background cleaner, cloud sync service
+or a replacement for backup. The organizer handles ordinary local files and common
+relative Markdown/HTML/CSS references. Dynamic application paths, cloud permissions,
+Office references and full archival metadata require separate tools. The agent still
+has to understand the work; the scripts cannot approve a design or prove a deployment.
 
 ## Validation
 
-Sixteen executable tests cover moved folders, stale or missing indexes, duplicate identities, existing-file preservation, broken-link repair, bounded search, control-file symlinks, corrupt metadata, same-name task isolation, and bounded topic-index recovery without loading linked documents.
+36 executable tests cover task identity, bounded recovery, reference repairs, identical
+copy consolidation, retained runtime copies, changed sources, occupied destinations,
+symlinks, partial operations, interrupted rollback, byte restoration and file mode bits.
+The three demo contexts also execute apply and rollback. These are maintainer-run
+filesystem checks, not independent user studies or measured productivity gains.
 
 ```bash
-python3 scripts/test_taskdock.py -v
+python3 -m unittest discover -s scripts -p 'test_*.py' -v
 ```
 
-The tests establish filesystem behavior, not the quality of every future task plan.
+[What's new](https://github.com/m1nga/taskdock/blob/main/skills/taskdock/CHANGELOG.md)
+explains the update. For a Skills CLI installation, update just this skill with
+`npx skills update taskdock`. Existing task UUIDs and control files remain valid;
+installing the update does not automatically reorganize old projects.
 
 ## Author
 
-Built by Ming. MIT licensed.
+Built by [Ming](https://github.com/m1nga). MIT licensed.

@@ -13,8 +13,8 @@ language. For a simple answer or tiny edit, skip the folder unless asked.
 Resolve `<skill-dir>` from this SKILL.md's actual location, not the task's working
 directory. Use `python3 "<skill-dir>/scripts/taskdock.py" ...`; do not execute a
 relative `scripts/taskdock.py` from an unrelated project. Keep runtime files outside
-the installed skill. Use `--language en` for English task notes; Chinese is the CLI
-default. The agent writes the completed plan and notes in the user's language.
+the installed skill. Generated task notes default to English; the agent writes the
+completed plan and working records in the user's language.
 
 ## Start or resume
 
@@ -26,8 +26,12 @@ default. The agent writes the completed plan and notes in the user's language.
    current question; read relevant truncated records before relying on them.
    Before a consequential next step, reconcile relevant files or repository
    changes with the recorded state; a stale "done" note is not current evidence.
+   If `.taskdock/artifacts.json` exists, run `reconcile --path <folder>` to compare
+   the few recorded artifacts with their current files. Approval, actual use and
+   publication are separate; resolve relevant differences before treating old notes
+   as current. Do not inventory an entire workspace just to answer a small question.
 2. For a new task, create its workspace on the user's actual Desktop using
-   `python3 "<skill-dir>/scripts/taskdock.py" init --title "任务名" --goal "具体结果"`.
+   `python3 "<skill-dir>/scripts/taskdock.py" init --title "Launch review" --goal "Prepare a reviewed launch"`.
    `--path` selects a user-requested location or an existing folder to adopt. Existing
    unmarked folders must use `--adopt`; occupied control filenames are never overwritten.
    The script creates the persistent identity and starting notes, not a finished plan.
@@ -88,17 +92,27 @@ by an index, and a moved task outside searched locations needs another search ro
 
 ## Improve the structure over time
 
-When navigation or responsibilities become unclear, inspect the actual files and
-write a brief old-path → new-path plan in `PLAN.md`, with the reason for each move.
-Then make the authorized changes inside this task, repair affected relative links and
-update the README. Keep the root control files stable. Preserve conflicting drafts and
-mark which decision supersedes which; do not delete evidence merely to tidy the view.
-Avoid moving a file across a repository boundary or overwriting an existing destination.
+When navigation or responsibilities become unclear, read
+[organize.md](references/organize.md). Use `inventory` for scoped facts, `record` and
+`reconcile` for significant artifacts, and `plan` → `apply` → `rollback` for a
+reviewable, reversible reorganization. The agent prepares the small JSON input from
+the user's actual request and evidence; do not ask the user to fill a taxonomy form.
 
-Run `python3 "<skill-dir>/scripts/taskdock.py" check --path <folder>` after creation, a move, or
-reorganization. It checks identity, control files, and common local Markdown links;
-it does not validate arbitrary HTML/Office links or the quality of a plan. Inspect those
-when the task uses them. Repair real problems before claiming the folder is ready.
+Keep current decisions and their sources together as work changes. At handoff,
+link the adopted outcome from the entry, retain superseded reasons in history, and
+check that next actions still apply. Update the existing files this task owns;
+do not broadcast alignment messages or silently take another worker's write scope.
+
+The organizer repairs common relative Markdown/HTML/CSS references and saves byte
+preimages with a progress journal. Apply rechecks planned content; conflicts preserve
+new work. It cannot infer all dynamic/Office/cloud dependencies or provide off-device
+backup. Keep original sources and historical documents immutable when their wording
+is evidence; a separate reading copy may have repaired links.
+
+Run `check --path <folder>` and the actual affected user flow after reorganization.
+The structural check is not a content, rendering or production verdict. Preserve
+necessary source/runtime/delivery copies even when hashes match. Do not classify
+unreferenced assets as rejected or date an approval from filesystem timestamps.
 
 ## Handoff
 
