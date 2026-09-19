@@ -177,7 +177,7 @@ def artifacts(root):
     p = artifact_path(root)
     if not p.exists():
         return {'schema': 'taskdock-artifacts/v1', 'items': {}}
-    obj = json.loads(p.read_text())
+    obj = json.loads(p.read_text(encoding='utf-8'))
     if obj.get('schema') != 'taskdock-artifacts/v1' or not isinstance(obj.get('items'), dict):
         raise ValueError('Invalid artifact record')
     return obj
@@ -311,7 +311,7 @@ def plan(root, task_id, spec):
             try:
                 original = f.read_bytes(); text = original.decode('utf-8')
             except UnicodeDecodeError:
-                continue
+                raise ValueError('Cannot verify references in non-UTF-8 file: ' + name + '; no work files changed')
             capture(name)  # A new reference added after planning must invalidate this view.
             newname = mapping.get(name, name)
             modified = relocate(name, newname, text, f.suffix).encode('utf-8')
@@ -336,7 +336,7 @@ def plan(root, task_id, spec):
             if changed:
                 name = '.taskdock/artifacts.json'; capture(name)
                 raw = (json.dumps(obj, ensure_ascii=False, indent=2) + '\n').encode()
-                h = digest(raw); data[h] = raw; after[name] = {'sha256': h, 'mode': 0o600}
+                h = digest(raw); data[h] = raw; after[name] = {'sha256': h, 'mode': stat.S_IMODE(ap.stat().st_mode)}
         entries = [{'path': n, 'before': before[n], 'after': after[n]} for n in sorted(before) if before[n] != after[n]]
         # Merge survivors are read dependencies, even when they do not need rewriting.
         guards = {n: v for n, v in before.items() if before[n] == after[n]}
@@ -353,7 +353,7 @@ def plan(root, task_id, spec):
                    'coverage': 'Common relative Markdown/HTML/CSS references within this task. Review dynamic/absolute/Office/cloud dependencies separately.'}
         save(folder / 'plan.json', receipt)
         save(folder / 'journal.json', {'status': 'planned', 'completed': [], 'created_dirs': []})
-    return {'status': 'planned', 'operation_id': identity, 'plan': str((folder / 'plan.json').relative_to(root)),
+    return {'status': 'planned', 'operation_id': identity, 'plan': (folder / 'plan.json').relative_to(root).as_posix(),
             'operations': receipt['operations'], 'changes': entries, 'link_repaired': receipt['link_repaired'],
             'coverage': receipt['coverage']}
 
@@ -362,9 +362,9 @@ def load_operation(root, task_id, identity):
     if not re.fullmatch(r'[a-f0-9]{32}', identity):
         raise ValueError('Invalid operation ID')
     folder = safe(root, '.taskdock/operations/' + identity, internal=True)
-    planfile = safe(root, str((folder / 'plan.json').relative_to(root)), internal=True)
-    journalfile = safe(root, str((folder / 'journal.json').relative_to(root)), internal=True)
-    obj = json.loads(planfile.read_text()); journal = json.loads(journalfile.read_text())
+    planfile = safe(root, (folder / 'plan.json').relative_to(root).as_posix(), internal=True)
+    journalfile = safe(root, (folder / 'journal.json').relative_to(root).as_posix(), internal=True)
+    obj = json.loads(planfile.read_text(encoding='utf-8')); journal = json.loads(journalfile.read_text(encoding='utf-8'))
     if obj.get('schema') != 'taskdock-operation/v1' or obj.get('task_id') != task_id or obj.get('id') != identity:
         raise ValueError('Operation belongs to another task')
     for e in obj['entries']:
@@ -375,7 +375,7 @@ def load_operation(root, task_id, identity):
                 h = value['sha256']
                 if not re.fullmatch(r'[a-f0-9]{64}', h):
                     raise ValueError('Invalid content hash')
-                raw = safe(root, str((folder / 'blobs' / h).relative_to(root)), internal=True).read_bytes()
+                raw = safe(root, (folder / 'blobs' / h).relative_to(root).as_posix(), internal=True).read_bytes()
                 if digest(raw) != h:
                     raise ValueError('Recovery content is corrupt')
     return folder, obj, journal
@@ -443,4 +443,4 @@ def transfer(root, task_id, identity, rollback=False):
         journal['status'] = finished
         save(folder / 'journal.json', journal)
         return {'status': finished, 'operation_id': identity, 'changed': changes,
-                'recovery': str(folder.relative_to(root)), 'note': 'Preimages retained locally. This is not an off-device backup.'}
+                'recovery': folder.relative_to(root).as_posix(), 'note': 'Preimages retained locally. This is not an off-device backup.'}

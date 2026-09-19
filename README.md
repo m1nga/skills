@@ -130,6 +130,13 @@ listed by the Skills CLI anymore.
   provenance.
 - Names stay plain for users while stable repository slugs keep existing installs working.
 
+## Local-only boundary
+
+`day-close` is not a public product and is excluded from the current source distribution.
+Its earlier generic instructions remain recoverable from Git history; this is not a
+claim that previously public history became private. Existing personal installations
+and journals are not managed by the public publisher.
+
 ## Source and releases
 
 This repository is the source registry. Each directory contains one skill; `products.json` holds

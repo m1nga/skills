@@ -158,3 +158,12 @@ Leave `STATE.md` with a concrete next action or the evidence that the requested 
 is complete. Deliver the Desktop folder link, the main result, and material unfinished
 work. Reuse the same task ID across sessions. Treat the workspace as a portable task
 record, not a guarantee that the model remembers or has been trained on its contents.
+
+## Failure is part of the handoff
+
+After organization stops, report its actual stage and mutation state, operation ID and
+recovery location. Never translate a partial or unknown state into "nothing changed".
+Use `rollback_argv` without a shell, or the command only in its labelled `rollback_shell`.
+Read `pending_recovery` on resume; inspect unfinished operations before new writes. Do
+not force through conflicts or automatically roll back newer work. Non-UTF-8 reference
+content is a preflight stop, not permission to silently convert source files.

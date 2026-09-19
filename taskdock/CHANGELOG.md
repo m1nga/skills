@@ -1,5 +1,22 @@
 # Changes
 
+## 2026-09-19 — Recovery patch (plugin version 2026.9.20)
+
+- Keep operation ID, recovery location, shell-free rollback arguments and an explicitly
+  labelled shell command after apply or verification failures. No automatic rollback.
+- Save recovery details before mutation. Resume discovers pending operations read-only,
+  recalculates paths after a folder move, and reports bounded-scan limitations.
+- Refuse non-UTF-8 reference files before modifying work files rather than silently
+  skipping them and failing after a move.
+- Do not report partial execution as unchanged. A write before its journal entry is
+  treated as potentially applied, not as proof that nothing happened.
+- POSIX and Windows PowerShell command rendering are separate; argv is the portable
+  interface. Metadata reads explicitly use UTF-8; existing artifact modes are retained.
+- Add fault-injection and executable shell recovery tests, and a cross-platform CI suite.
+- Preserve nested evaluation READMEs in the publisher overlay. Document the limits of
+  the earlier four-case model evaluation; no new model-effectiveness claim is made.
+- Existing task IDs, operations, control files and preview/apply/rollback remain compatible.
+
 ## 2026-09-19 — Claude Code plugin, Python-free fallback, measurable evals
 
 - New `organize` command: plan, apply, structure check and a ready-to-paste report with

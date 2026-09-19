@@ -164,6 +164,7 @@ class OperationsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'corrupt'): self.apply(i)
         self.assertTrue((self.root/'draft.txt').exists())
 
+    @unittest.skipUnless(os.name == 'posix', 'POSIX executable mode bits are not a Windows file contract')
     def test_file_modes_are_restored(self):
         f=self.put('draft.txt','script'); f.chmod(0o755); i=self.plan(); self.apply(i)
         self.assertEqual((self.root/'results/current.txt').stat().st_mode & 0o777,0o755)

@@ -44,7 +44,7 @@ rsync -a --exclude='README.md' --exclude='product-root' "$temp_root/source/$skil
 if [[ -d "$temp_root/source/$skill/product-root" ]]; then
   # Optional per-skill overlay for files that belong at the standalone repository root
   # (plugin manifests, evals, policies). Never README.md, LICENSE or SOURCE.json.
-  rsync -a --exclude='README.md' --exclude='LICENSE' --exclude='SOURCE.json' "$temp_root/source/$skill/product-root/" "$temp_root/product/"
+  rsync -a --exclude='/README.md' --exclude='/LICENSE' --exclude='/SOURCE.json' "$temp_root/source/$skill/product-root/" "$temp_root/product/"
 fi
 rsync -a "$temp_root/source/$skill/README.md" "$temp_root/product/README.md"
 rsync -a "$temp_root/source/LICENSE" "$temp_root/product/LICENSE"
@@ -78,12 +78,17 @@ if ! git -C "$temp_root/repo" diff --cached --quiet; then
   git -C "$temp_root/repo" push --set-upstream origin main >/dev/null
 fi
 
-gh api --method PATCH "repos/$target" \
-  -f description="$description" \
-  -F has_issues=true \
-  -F has_wiki=false >/dev/null
-jq -n --argjson names "$(jq '.topics' <<<"$product")" '{names: $names}' \
-  | gh api --method PUT "repos/$target/topics" --input - >/dev/null
+current_meta="$(gh api "repos/$target")"
+if ! jq -e --arg description "$description" '.description == $description and .has_issues == true and .has_wiki == false' <<<"$current_meta" >/dev/null; then
+  gh api --method PATCH "repos/$target" \
+    -f description="$description" -F has_issues=true -F has_wiki=false >/dev/null
+fi
+wanted_topics="$(jq -c '.topics | sort' <<<"$product")"
+current_topics="$(gh api "repos/$target/topics" --jq '.names | sort')"
+if [[ "$(jq -c . <<<"$current_topics")" != "$wanted_topics" ]]; then
+  jq -n --argjson names "$wanted_topics" '{names: $names}' \
+    | gh api --method PUT "repos/$target/topics" --input - >/dev/null
+fi
 
 "$repo_root/scripts/verify-published-skill" "$skill"
 

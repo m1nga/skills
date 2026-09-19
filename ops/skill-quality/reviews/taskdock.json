@@ -1,37 +1,37 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-09-19T04:25:02+00:00",
-  "source_sha256": "80c8cc1ba228c4c2e013633f334e0b1b6da0033409ae083066f0587bb0b331d1",
+  "reviewed_at": "2026-09-19T06:50:25+00:00",
+  "source_sha256": "c9d37825fdc28694b0d499c6b7f0107f621709814d3a06f61984589c4096663d",
   "user_review": {
-    "method": "Maintainer review on the main Mac (Claude Code, 2026-09-19): built the standalone layout from source, installed it as a Claude Code plugin, ran the script tests and demo with system python3 blocked, then ran the four-case eval suite with a with/without ablation (claude-sonnet-5 agent, haiku judge). Not an independent user study.",
+    "method": "Executed isolated deterministic acceptance on Linux/Python 3.13.5, including the original 37 tests, four retained audit assertions and new fault/shell tests. No live model eval, authenticated host session, independent sub-agent or user-machine installation test was performed in this environment.",
     "scenarios": [
       {
-        "request": "Install TaskDock in Claude Code as a plugin from the published repository layout.",
-        "expected": "marketplace add + install succeed, the skill is listed, version is visible, install is reversible.",
-        "observed": "claude plugin marketplace add <built layout> and claude plugin install taskdock@taskdock succeeded; details show version 2026.9.19, 1 skill, ~144 always-on tokens; uninstall and marketplace remove restored the previous state.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Use TaskDock on a Mac where /usr/bin/python3 is blocked by an unaccepted Xcode license.",
-        "expected": "The agent finds another interpreter or writes valid control files by hand instead of stalling.",
-        "observed": "Reproduced the block on the maintainer's Mac. Added the interpreter fallback list and references/control-files.md (templates match the script's schema, files mapping and write order). 36 tests and demo.py pass under /Library/Developer/CommandLineTools/usr/bin/python3.",
+        "request": "Organize with a non-UTF-8 reference file.",
+        "expected": "Refuse before changing work files or retain actionable recovery after any mutation.",
+        "observed": "Preflight rejects the unreadable reference; original files unchanged. Retained audit assertion passed.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Run claude plugin eval on the standalone layout and act on what it finds.",
-        "expected": "All four cases load; with/without scores show whether the skill helps or hurts.",
-        "observed": "First load rejected nested execution keys in prompt.md; flattened and all four cases load. Full run: resume, new-workspace and tiny-question scored 1.00 in both arms; organize-with-undo scored 0.38 with the skill versus 1.00 without because the plan/apply route ran out of turns before reporting. Added the one-call organize command (plan + apply + check + report + rollback command) and a report-and-merge rule to SKILL.md; rerun scored 1.00 in all three with-arm runs, in 17 to 24 turns versus 20 to 23 without.",
+        "request": "Interrupt after destination write but before the completed journal entry.",
+        "expected": "Keep operation identity and recovery; never claim no change from an empty journal.",
+        "observed": "Fault injection left a destination file and an empty completed list; response retained recovery and partial_or_unverified; rollback restored input.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Trigger review of the new description: resume/handoff phrasing in English and Chinese versus a quick factual question.",
-        "expected": "Resume, hand off, find, reorganize a task folder fire; a symlink-vs-hardlink question does not.",
-        "observed": "Description now names resume/hand off/find/reorganize, cross-agent and cross-machine continuation, Chinese phrases, and an explicit not-for clause covering one-off questions, tiny edits and git-owned code. Walkthrough only; the negative case is encoded as an eval grader (tool_used Skill min 0 max 0).",
-        "kind": "simulated",
+        "request": "Run displayed undo commands for literal dollar signs, quotes, spaces and Chinese paths.",
+        "expected": "Use the current interpreter and literal argv, with shell-specific rendering.",
+        "observed": "POSIX shell commands executed and restored original files. Windows-specific test is collected separately in CI; no Windows result is inferred from POSIX.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Resume a moved folder containing an incomplete operation.",
+        "expected": "Find recovery read-only and use the new path.",
+        "observed": "Returned operation ID and updated rollback argv, with identical bytes before/after resume; completed preimages were not rehashed.",
+        "kind": "executed",
         "result": "pass"
       }
     ]
@@ -39,47 +39,35 @@
   "similar_skills": [
     {
       "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
-      "checked_at": "2026-09-19T02:44:41+00:00",
-      "learned": "Choose the right persisted task, reconcile live work and retained state, and use relevant evidence on return.",
+      "checked_at": "2026-09-19T06:50:25+00:00",
+      "learned": "Selected task state and bounded recovery; static files are not proof of external state. Rechecked blob e13bd532ef7d6407f55b1ac34d8334c99cef4ee1.",
       "decision": "adapt",
-      "reason": "Rechecked scope: unchanged. Keep selected task recovery and evidence links; no host hooks or tool-call counters."
+      "reason": "Retain task-local recovery discovery without host hooks or session-store reads."
     },
     {
       "url": "https://github.com/cskwork/skill-curator/blob/main/skills/skill-curator/SKILL.md",
-      "checked_at": "2026-09-19T02:44:41+00:00",
-      "learned": "Separate filesystem facts from semantic judgments; preview changes and preserve complete recovery content.",
+      "checked_at": "2026-09-19T06:50:25+00:00",
+      "learned": "Explicit mutations and restorable snapshots; distinguish filesystem facts from judgments. Rechecked blob 836499a56bf7622b58f7d6636e06617f3b34b5d6.",
       "decision": "adapt",
-      "reason": "Rechecked scope: unchanged. Explicit evidence, dry-run and preimages stay; no installed-skill curation."
-    },
-    {
-      "url": "https://code.claude.com/docs/en/plugin-evals.md",
-      "checked_at": "2026-09-19T02:44:41+00:00",
-      "learned": "Plugin eval layout (prompt.md + graders/*.md, case.yaml for scaffold), grader types, and with/without ablation where Skill-only graders are indicators, not score.",
-      "decision": "adopt",
-      "reason": "Used as the measurement contract for the new evals/ suite; plugin-mechanism graders marked with-only so the delta reflects user-visible outcomes."
+      "reason": "Keep existing transaction engine and conflict refusal; only improve reports, path handling and recovery discovery."
     }
   ],
   "validation": [
     {
-      "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py'",
+      "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v",
       "result": "pass",
-      "observed": "Ran 37 tests, OK, on macOS 26 after the Xcode license was accepted; includes the new organize merge-then-move-then-rollback test."
+      "observed": "52 tests collected; Linux run passed with the Windows-only PowerShell execution case skipped. Original 37 retained, with POSIX-mode assertion platform-labelled."
     },
     {
-      "command": "/Library/Developer/CommandLineTools/usr/bin/python3 taskdock/scripts/demo.py --output <scratch>/td-demo",
+      "command": "python3 taskdock/scripts/demo.py --output <fresh-folder> [plus --domain release / research]",
       "result": "pass",
-      "observed": "Design demo: entry repaired, runtime copy retained, history preserved, rollback restored original visible bytes, final artifact paths reconciled."
-    },
-    {
-      "command": "jq -e . product-root/.claude-plugin/plugin.json product-root/.claude-plugin/marketplace.json; claude plugin marketplace add <built layout>; claude plugin install taskdock@taskdock; claude plugin details taskdock@taskdock",
-      "result": "pass",
-      "observed": "Manifests valid; install succeeded at user scope; details list 1 skill and version 2026.9.19; uninstalled afterwards."
-    },
-    {
-      "command": "claude plugin eval . --scaffold --allow-tools Bash Write Edit --runs 2 --model claude-sonnet-5 --no-publish --trust-plugin (plus --case organize-with-undo --runs 3 after the fix)",
-      "result": "pass",
-      "observed": "4/4 cases pass at 1.00 with TaskDock after the organize command; without-arm also 1.00; total cost about USD 7 across three runs."
+      "observed": "All three isolated demo contexts executed apply and byte-restoring rollback."
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "not_claimed": [
+    "Live continuity effectiveness and cross-host automatic routing are NOT RUN. See ops/skill-quality/live-pilot/README.md.",
+    "User Mac installations and credentials were not accessed.",
+    "No independent sub-agent runtime available; deterministic tests are not multiple-agent consensus."
+  ]
 }

@@ -40,8 +40,8 @@ library; no account, network service or paid API. If `python3` is missing or blo
 (on macOS an unaccepted Xcode license blocks the system interpreter), the skill tries the
 other interpreters on the machine and otherwise writes the control files by hand from
 `references/control-files.md`; only the reorganization tools need the interpreter. It works with agents that can read
-skills and run local Python. Filesystem tests in this release ran on macOS; Windows
-and Linux behavior has not been independently platform-tested.
+skills and run local Python. Filesystem acceptance checks run in the repository CI on Linux, macOS and Windows.
+Windows shell checks target PowerShell; POSIX permission bits are tested only on POSIX systems.
 
 ## See the result before using your own files
 
@@ -113,6 +113,11 @@ python3 scripts/taskdock.py rollback --path /path/to/task --operation RETURNED_I
 
 The [organization guide](https://github.com/m1nga/taskdock/blob/main/skills/taskdock/references/organize.md)
 contains small input examples, supported references, conflict behavior and recovery.
+`organize` also returns `rollback_argv` for shell-free execution and labels the shell
+used by the copyable `rollback` command. Errors after planning retain recovery details;
+`resume` reports unfinished operations. Non-UTF-8 reference files stop planning before
+work-file changes. Do not automatically retry or roll back over someone else's new work.
+
 Planning saves its receipt and preimages under the task's private `.taskdock/` folder;
 work files change only during apply. Keep this recovery folder in your private backup.
 
@@ -145,14 +150,14 @@ has to understand the work; the scripts cannot approve a design or prove a deplo
 
 ## Validation
 
-37 executable tests cover task identity, bounded recovery, reference repairs, identical
+52 executable tests (including platform-specific cases) cover task identity, bounded recovery, reference repairs, identical
 copy consolidation, retained runtime copies, changed sources, occupied destinations,
 symlinks, partial operations, interrupted rollback, byte restoration and file mode bits.
 The three demo contexts also execute apply and rollback. These are maintainer-run
 filesystem checks, not independent user studies or measured productivity gains.
 
 ```bash
-python3 -m unittest discover -s scripts -p 'test_*.py' -v
+python3 -m unittest discover -s skills/taskdock/scripts -p 'test_*.py' -v
 ```
 
 The standalone repository also ships an `evals/` suite for `claude plugin eval` (four
@@ -179,12 +184,16 @@ arms per case (with TaskDock loaded, and a plain session):
 The first organize result was the useful one: the multi-step plan/apply route did the
 moves and saved the rollback preimages but ran out of turns before reporting, so the user
 never saw what moved or how to undo it. The one-call `organize` command fixed that, and
-the runs with TaskDock now finish in fewer turns (17 to 24) than the plain runs (20 to 23)
-while leaving a real, tested undo path. On the outcome graders a current model already
+the reported ranges were 17 to 24 turns with TaskDock and 20 to 23 without.
+Those overlapping ranges and three runs do not establish lower average cost or better
+tail performance. The helper tests separately exercise actual recovery. On the outcome graders a current model already
 handles these four scenarios without the skill; what TaskDock adds is the identity file,
 the recorded state and the reversible operation receipts, which the graders deliberately
 do not score. The three runs cost about USD 7 in total. Graders are documented in
-`evals/README.md`.
+`evals/README.md`. The resume fixture already gives both arms complete task records;
+that case tests reading existing records, not the end-to-end value of creating and
+maintaining them. A neutral two-stage pilot is specified in `evals/continuity/README.md`;
+live model results for that pilot are not yet available.
 
 [What's new](https://github.com/m1nga/taskdock/blob/main/skills/taskdock/CHANGELOG.md)
 explains the update. For a Skills CLI installation, update just this skill with

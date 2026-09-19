@@ -245,33 +245,17 @@ def resume(root, max_chars=3000):
         with (root / name).open(encoding='utf-8') as stream:
             text = stream.read(max_chars + 1)
         records[name] = {'text': text[:max_chars], 'truncated': len(text) > max_chars}
+    from recovery import pending_operations
+    recovery = pending_operations(root, task['id'], Path(__file__).resolve())
     return {'status': 'resumed', 'id': task['id'], 'path': str(root), 'records': records,
+            'pending_recovery': recovery,
             'note': 'Task files are recorded state, not proof of current external repository state. Use INDEX.md when present to select relevant evidence; linked files are not loaded automatically. Read truncated records as needed and reconcile relevant changes before acting.'}
 
 
 def organize(root, task_id, spec):
-    """plan + apply + check in one call, with a user-facing report and the rollback command."""
-    import workspace_ops as ops
-    planned = ops.plan(root, task_id, spec)
-    identity = planned['operation_id']
-    applied = ops.transfer(root, task_id, identity)
-    if applied['status'] != 'applied':
-        return {'status': applied['status'], 'operation_id': identity, 'detail': applied,
-                'note': 'The plan and its preimages were saved under .taskdock; nothing moved.'}
-    structure = check(root)
-    moved = [op for op in spec['operations'] if op.get('type') == 'move']
-    merged = [op for op in spec['operations'] if op.get('type') == 'merge']
-    rollback = 'python3 "%s" rollback --path "%s" --operation %s' % (Path(__file__).resolve(), root, identity)
-    report = ['Moved: %s → %s (%s)' % (op['from'], op['to'], op['reason']) for op in moved]
-    report += ['Merged into %s (identical copy %s removed; its bytes are kept for rollback)' % (op['to'], op['from']) for op in merged]
-    report.append('Links repaired: ' + (', '.join(planned['link_repaired']) or 'none needed'))
-    report.append('Structure check: ' + structure['status'])
-    report.append('Undo everything: ' + rollback)
-    return {'status': 'organized' if structure['status'] == 'pass' else 'organized_check_failed',
-            'operation_id': identity, 'moved': moved, 'merged': merged,
-            'link_repaired': planned['link_repaired'], 'check': structure,
-            'recovery': applied['recovery'], 'rollback': rollback, 'coverage': planned['coverage'],
-            'report': report}
+    """Organize with recovery details on every post-plan return path."""
+    from recovery import organize_task
+    return organize_task(root, task_id, spec, check, Path(__file__).resolve())
 
 
 def main():
@@ -328,10 +312,10 @@ def main():
                 result = getattr(ops, args.command)(root, task['id'], spec)
             else:
                 result = ops.transfer(root, task['id'], args.operation, rollback=args.command == 'rollback')
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=True, indent=2))
         return 0 if result['status'] in ('created', 'existing', 'registered', 'found', 'pass', 'resumed', 'inventoried', 'recorded', 'planned', 'organized', 'applied', 'rolled_back') else 1
     except (OSError, ValueError, KeyError, TypeError) as error:
-        print(json.dumps({'status': 'error', 'error': str(error)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({'status': 'error', 'error': str(error)}, ensure_ascii=True), file=sys.stderr)
         return 2
 
 
