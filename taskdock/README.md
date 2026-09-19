@@ -15,6 +15,13 @@ preview and an undo path.
 npx skills add m1nga/taskdock
 ```
 
+Claude Code users can install it as a plugin instead (same files, plugin update channel):
+
+```bash
+claude plugin marketplace add m1nga/taskdock
+claude plugin install taskdock@taskdock
+```
+
 Then tell your agent:
 
 > Use TaskDock to continue this project. Find the current deliverable and the decisions
@@ -29,7 +36,10 @@ The agent prepares the records and commands. You do not need to tag every file,
 change how you name your projects, or maintain a second task board.
 
 Requires a local filesystem and Python 3.8+. The helper uses only the standard
-library; no account, network service or paid API. It works with agents that can read
+library; no account, network service or paid API. If `python3` is missing or blocked
+(on macOS an unaccepted Xcode license blocks the system interpreter), the skill tries the
+other interpreters on the machine and otherwise writes the control files by hand from
+`references/control-files.md`; only the reorganization tools need the interpreter. It works with agents that can read
 skills and run local Python. Filesystem tests in this release ran on macOS; Windows
 and Linux behavior has not been independently platform-tested.
 
@@ -96,6 +106,7 @@ python3 scripts/taskdock.py inventory --path /path/to/task
 python3 scripts/taskdock.py record --path /path/to/task --spec artifacts.json
 python3 scripts/taskdock.py reconcile --path /path/to/task
 python3 scripts/taskdock.py plan --path /path/to/task --spec moves.json
+python3 scripts/taskdock.py organize --path /path/to/task --spec moves.json   # plan + apply + check + report
 python3 scripts/taskdock.py apply --path /path/to/task --operation RETURNED_ID
 python3 scripts/taskdock.py rollback --path /path/to/task --operation RETURNED_ID
 ```
@@ -134,7 +145,7 @@ has to understand the work; the scripts cannot approve a design or prove a deplo
 
 ## Validation
 
-36 executable tests cover task identity, bounded recovery, reference repairs, identical
+37 executable tests cover task identity, bounded recovery, reference repairs, identical
 copy consolidation, retained runtime copies, changed sources, occupied destinations,
 symlinks, partial operations, interrupted rollback, byte restoration and file mode bits.
 The three demo contexts also execute apply and rollback. These are maintainer-run
@@ -143,6 +154,37 @@ filesystem checks, not independent user studies or measured productivity gains.
 ```bash
 python3 -m unittest discover -s scripts -p 'test_*.py' -v
 ```
+
+The standalone repository also ships an `evals/` suite for `claude plugin eval` (four
+cases: resume a folder where the newest draft is not the approved one, set up a
+multi-week task, answer a quick question without creating anything, reorganize with a
+real undo path). It runs each case with and without TaskDock and reports the difference,
+so the score shows what the skill adds rather than what the model already does:
+
+```bash
+claude plugin eval . --scaffold --allow-tools Bash Write Edit --no-publish
+```
+
+Measured on 2026-09-19 with `claude-sonnet-5` as the agent and `haiku` as the judge, two
+arms per case (with TaskDock loaded, and a plain session):
+
+| Case | With TaskDock | Without | Runs |
+|---|---|---|---|
+| resume-task-folder | 1.00 | 1.00 | 2 + 2 |
+| new-long-task-workspace | 1.00 | 1.00 | 2 + 2 |
+| tiny-question-no-workspace (must not fire) | 1.00 | 1.00 | 2 + 2 |
+| organize-with-undo, before the `organize` command | 0.38 | 1.00 | 2 + 2 |
+| organize-with-undo, after adding `organize` | 1.00 | 1.00 | 3 + 3 |
+
+The first organize result was the useful one: the multi-step plan/apply route did the
+moves and saved the rollback preimages but ran out of turns before reporting, so the user
+never saw what moved or how to undo it. The one-call `organize` command fixed that, and
+the runs with TaskDock now finish in fewer turns (17 to 24) than the plain runs (20 to 23)
+while leaving a real, tested undo path. On the outcome graders a current model already
+handles these four scenarios without the skill; what TaskDock adds is the identity file,
+the recorded state and the reversible operation receipts, which the graders deliberately
+do not score. The three runs cost about USD 7 in total. Graders are documented in
+`evals/README.md`.
 
 [What's new](https://github.com/m1nga/taskdock/blob/main/skills/taskdock/CHANGELOG.md)
 explains the update. For a Skills CLI installation, update just this skill with

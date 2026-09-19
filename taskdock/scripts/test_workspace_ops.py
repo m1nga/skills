@@ -189,6 +189,28 @@ class OperationsTests(unittest.TestCase):
         self.assertEqual(self.apply(i)['status'],'conflict')
         self.assertTrue((self.root/'draft.txt').exists())
 
+    def test_organize_moves_repairs_reports_and_rolls_back(self):
+        self.put('README.md', '# Task\n\n![cover](cover.svg)\n')
+        self.put('cover.svg', '<svg/>')
+        self.put('cover copy.svg', '<svg/>')
+        before = {p.relative_to(self.root).as_posix(): p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
+        # One path may appear in only one operation per plan: merge first, then move the survivor.
+        merged = td.organize(self.root, self.identity, {'operations': [
+            {'type': 'merge', 'from': 'cover copy.svg', 'to': 'cover.svg', 'reason': 'identical download'}]})
+        self.assertEqual(merged['status'], 'organized')
+        self.assertFalse((self.root / 'cover copy.svg').exists())
+        moved = td.organize(self.root, self.identity, {'operations': [
+            {'type': 'move', 'from': 'cover.svg', 'to': 'assets/cover.svg', 'reason': 'assets folder'}]})
+        self.assertEqual(moved['status'], 'organized')
+        self.assertIn('assets/cover.svg', (self.root / 'README.md').read_text())
+        self.assertEqual(moved['link_repaired'], ['README.md'])
+        self.assertIn(moved['operation_id'], moved['rollback'])
+        self.assertTrue(any(line.startswith('Undo everything') for line in moved['report']))
+        for op in (moved, merged):
+            self.assertEqual(ops.transfer(self.root, self.identity, op['operation_id'], True)['status'], 'rolled_back')
+        after = {p.relative_to(self.root).as_posix(): p.read_bytes() for p in self.root.rglob('*') if p.is_file() and '.taskdock' not in p.parts}
+        self.assertEqual(after, before)
+
     def test_cli_from_unrelated_directory(self):
         self.put('draft.txt','keep'); spec=self.base/'spec.json'; spec.write_text(json.dumps(self.move()))
         cmd=[sys.executable,str(Path(td.__file__).resolve()),'plan','--path',str(self.root),'--spec',str(spec)]

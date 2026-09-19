@@ -51,6 +51,18 @@ current prose within its ownership. Keep historical wording in the evidence laye
 
 ## Plan the whole change, including links
 
+One call does the whole thing when no preview is needed:
+
+```bash
+python3 scripts/taskdock.py organize --path TASK --spec moves.json
+```
+
+It plans, applies, runs the structure check and returns `report` lines plus the exact
+`rollback` command. Use `plan` first when the user wants to review before anything moves.
+A path can appear in only one operation per call: merge a duplicate into its survivor
+first, then move the survivor in a second call.
+
+
 A plan spec lists individual files, not recursive directory moves:
 
 ```json

@@ -249,10 +249,35 @@ def resume(root, max_chars=3000):
             'note': 'Task files are recorded state, not proof of current external repository state. Use INDEX.md when present to select relevant evidence; linked files are not loaded automatically. Read truncated records as needed and reconcile relevant changes before acting.'}
 
 
+def organize(root, task_id, spec):
+    """plan + apply + check in one call, with a user-facing report and the rollback command."""
+    import workspace_ops as ops
+    planned = ops.plan(root, task_id, spec)
+    identity = planned['operation_id']
+    applied = ops.transfer(root, task_id, identity)
+    if applied['status'] != 'applied':
+        return {'status': applied['status'], 'operation_id': identity, 'detail': applied,
+                'note': 'The plan and its preimages were saved under .taskdock; nothing moved.'}
+    structure = check(root)
+    moved = [op for op in spec['operations'] if op.get('type') == 'move']
+    merged = [op for op in spec['operations'] if op.get('type') == 'merge']
+    rollback = 'python3 "%s" rollback --path "%s" --operation %s' % (Path(__file__).resolve(), root, identity)
+    report = ['Moved: %s → %s (%s)' % (op['from'], op['to'], op['reason']) for op in moved]
+    report += ['Merged into %s (identical copy %s removed; its bytes are kept for rollback)' % (op['to'], op['from']) for op in merged]
+    report.append('Links repaired: ' + (', '.join(planned['link_repaired']) or 'none needed'))
+    report.append('Structure check: ' + structure['status'])
+    report.append('Undo everything: ' + rollback)
+    return {'status': 'organized' if structure['status'] == 'pass' else 'organized_check_failed',
+            'operation_id': identity, 'moved': moved, 'merged': merged,
+            'link_repaired': planned['link_repaired'], 'check': structure,
+            'recovery': applied['recovery'], 'rollback': rollback, 'coverage': planned['coverage'],
+            'report': report}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
-    for command in ('init', 'register', 'locate', 'check', 'resume', 'inventory', 'record', 'reconcile', 'plan', 'apply', 'rollback'):
+    for command in ('init', 'register', 'locate', 'check', 'resume', 'inventory', 'record', 'reconcile', 'plan', 'organize', 'apply', 'rollback'):
         p = sub.add_parser(command)
         p.add_argument('--index', type=Path, default=default_index())
         if command != 'locate':
@@ -262,7 +287,7 @@ def main():
             p.add_argument('--goal', required=True)
             p.add_argument('--adopt', action='store_true')
             p.add_argument('--language', choices=('zh', 'en'), default='en')
-        elif command in ('record', 'plan'):
+        elif command in ('record', 'plan', 'organize'):
             p.add_argument('--spec', type=Path, required=True)
         elif command in ('apply', 'rollback'):
             p.add_argument('--operation', required=True)
@@ -295,13 +320,16 @@ def main():
                 result = ops.inventory(root)
             elif args.command == 'reconcile':
                 result = ops.reconcile(root)
+            elif args.command == 'organize':
+                spec = json.loads(args.spec.read_text(encoding='utf-8'))
+                result = organize(root, task['id'], spec)
             elif args.command in ('record', 'plan'):
                 spec = json.loads(args.spec.read_text(encoding='utf-8'))
                 result = getattr(ops, args.command)(root, task['id'], spec)
             else:
                 result = ops.transfer(root, task['id'], args.operation, rollback=args.command == 'rollback')
         print(json.dumps(result, ensure_ascii=False, indent=2))
-        return 0 if result['status'] in ('created', 'existing', 'registered', 'found', 'pass', 'resumed', 'inventoried', 'recorded', 'planned', 'applied', 'rolled_back') else 1
+        return 0 if result['status'] in ('created', 'existing', 'registered', 'found', 'pass', 'resumed', 'inventoried', 'recorded', 'planned', 'organized', 'applied', 'rolled_back') else 1
     except (OSError, ValueError, KeyError, TypeError) as error:
         print(json.dumps({'status': 'error', 'error': str(error)}, ensure_ascii=False), file=sys.stderr)
         return 2

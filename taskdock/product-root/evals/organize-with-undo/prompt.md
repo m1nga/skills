@@ -1,0 +1,1 @@
+Organize ./task around the approved v2 result: put images under assets/, keep the old versions as history, fix any links that break, and make sure I can undo the whole change if I don't like it. Tell me exactly what moved.

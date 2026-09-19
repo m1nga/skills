@@ -1,37 +1,37 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-09-13T07:46:10.995317+00:00",
-  "source_sha256": "02c9d4a96e161e9a89f764c96e0b6cb637a6061e9fb01660cf2034c49a9707f2",
+  "reviewed_at": "2026-09-19T04:25:02+00:00",
+  "source_sha256": "80c8cc1ba228c4c2e013633f334e0b1b6da0033409ae083066f0587bb0b331d1",
   "user_review": {
-    "method": "Maintainer followed the public demo and CLI on real macOS filesystems; three synthetic task contexts and failure/recovery regression cases. Not an independent user study.",
+    "method": "Maintainer review on the main Mac (Claude Code, 2026-09-19): built the standalone layout from source, installed it as a Claude Code plugin, ran the script tests and demo with system python3 blocked, then ran the four-case eval suite with a with/without ablation (claude-sonnet-5 agent, haiku judge). Not an independent user study.",
     "scenarios": [
       {
-        "request": "Organize a task containing an approved result, a redundant download, a necessary runtime copy and rejected history.",
-        "expected": "Repair the entry, preserve distinct purposes, prove undo, and leave a usable current result.",
-        "observed": "Executed design, release and research demos; each passed apply, link check, exact visible-file rollback and final artifact reconciliation. Final public-command demo reran after refinements.",
+        "request": "Install TaskDock in Claude Code as a plugin from the published repository layout.",
+        "expected": "marketplace add + install succeed, the skill is listed, version is visible, install is reversible.",
+        "observed": "claude plugin marketplace add <built layout> and claude plugin install taskdock@taskdock succeeded; details show version 2026.9.19, 1 skill, ~144 always-on tokens; uninstall and marketplace remove restored the previous state.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Apply after external edits, an occupied destination, a new reference, a symlink or a corrupt preimage.",
-        "expected": "Reject conflicting work without overwriting new content.",
-        "observed": "Executable cases pass for source/survivor edits, new and edited referring files, occupied paths, symlinks and corrupted recovery bytes.",
+        "request": "Use TaskDock on a Mac where /usr/bin/python3 is blocked by an unaccepted Xcode license.",
+        "expected": "The agent finds another interpreter or writes valid control files by hand instead of stalling.",
+        "observed": "Reproduced the block on the maintainer's Mac. Added the interpreter fallback list and references/control-files.md (templates match the script's schema, files mapping and write order). 36 tests and demo.py pass under /Library/Developer/CommandLineTools/usr/bin/python3.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Resume or undo a partially completed operation.",
-        "expected": "Retain source content and recover without replaying destructive actions.",
-        "observed": "Simulated process interruption inside real filesystem tests after a write and before journal completion; resume, partial rollback and interrupted rollback tests pass.",
+        "request": "Run claude plugin eval on the standalone layout and act on what it finds.",
+        "expected": "All four cases load; with/without scores show whether the skill helps or hurts.",
+        "observed": "First load rejected nested execution keys in prompt.md; flattened and all four cases load. Full run: resume, new-workspace and tiny-question scored 1.00 in both arms; organize-with-undo scored 0.38 with the skill versus 1.00 without because the plan/apply route ran out of turns before reporting. Added the one-call organize command (plan + apply + check + report + rollback command) and a report-and-merge rule to SKILL.md; rerun scored 1.00 in all three with-arm runs, in 17 to 24 turns versus 20 to 23 without.",
         "kind": "executed",
-        "result": "pass"
+        "result": "fixed"
       },
       {
-        "request": "Resume an existing task without deep organization, or answer a tiny question.",
-        "expected": "Keep existing resume bounded; no mandatory artifact catalog or whole-workspace inventory.",
-        "observed": "Existing 16 task identity/retrieval tests pass; instruction review keeps ordinary entry lightweight and optional organization separate. No independent agent-trigger study claimed.",
-        "kind": "executed",
+        "request": "Trigger review of the new description: resume/handoff phrasing in English and Chinese versus a quick factual question.",
+        "expected": "Resume, hand off, find, reorganize a task folder fire; a symlink-vs-hardlink question does not.",
+        "observed": "Description now names resume/hand off/find/reorganize, cross-agent and cross-machine continuation, Chinese phrases, and an explicit not-for clause covering one-off questions, tiny edits and git-owned code. Walkthrough only; the negative case is encoded as an eval grader (tool_used Skill min 0 max 0).",
+        "kind": "simulated",
         "result": "pass"
       }
     ]
@@ -39,34 +39,46 @@
   "similar_skills": [
     {
       "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
-      "checked_at": "2026-09-13T07:46:10.995317+00:00",
+      "checked_at": "2026-09-19T02:44:41+00:00",
       "learned": "Choose the right persisted task, reconcile live work and retained state, and use relevant evidence on return.",
       "decision": "adapt",
-      "reason": "Keep selected task recovery and evidence links. Do not copy host-specific hooks, universal tool-call counters or unrelated planning rules."
+      "reason": "Rechecked scope: unchanged. Keep selected task recovery and evidence links; no host hooks or tool-call counters."
     },
     {
       "url": "https://github.com/cskwork/skill-curator/blob/main/skills/skill-curator/SKILL.md",
-      "checked_at": "2026-09-13T07:46:10.995317+00:00",
+      "checked_at": "2026-09-19T02:44:41+00:00",
       "learned": "Separate filesystem facts from semantic judgments; preview changes and preserve complete recovery content.",
       "decision": "adapt",
-      "reason": "Apply explicit evidence, dry-run and preimages to task artifacts. Do not broaden TaskDock into installed-skill curation or infer value from usage counts."
+      "reason": "Rechecked scope: unchanged. Explicit evidence, dry-run and preimages stay; no installed-skill curation."
+    },
+    {
+      "url": "https://code.claude.com/docs/en/plugin-evals.md",
+      "checked_at": "2026-09-19T02:44:41+00:00",
+      "learned": "Plugin eval layout (prompt.md + graders/*.md, case.yaml for scaffold), grader types, and with/without ablation where Skill-only graders are indicators, not score.",
+      "decision": "adopt",
+      "reason": "Used as the measurement contract for the new evals/ suite; plugin-mechanism graders marked with-only so the delta reflects user-visible outcomes."
     }
   ],
   "validation": [
     {
-      "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v",
+      "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py'",
       "result": "pass",
-      "observed": "36 tests passed on macOS; Windows/Linux platform behavior is not claimed as verified. Fixed macOS /var versus /private/var root resolution found during first execution."
+      "observed": "Ran 37 tests, OK, on macOS 26 after the Xcode license was accepted; includes the new organize merge-then-move-then-rollback test."
     },
     {
-      "command": "python3 taskdock/scripts/demo.py --output NEW_FOLDER [--domain design|release|research]",
+      "command": "/Library/Developer/CommandLineTools/usr/bin/python3 taskdock/scripts/demo.py --output <scratch>/td-demo",
       "result": "pass",
-      "observed": "Three sample contexts and a final README-command run completed; original visible file bytes restored and organized result reconciled."
+      "observed": "Design demo: entry repaired, runtime copy retained, history preserved, rollback restored original visible bytes, final artifact paths reconciled."
     },
     {
-      "command": "quick_validate.py taskdock; audit_product_page.py taskdock --product-manifest products.json",
+      "command": "jq -e . product-root/.claude-plugin/plugin.json product-root/.claude-plugin/marketplace.json; claude plugin marketplace add <built layout>; claude plugin install taskdock@taskdock; claude plugin details taskdock@taskdock",
       "result": "pass",
-      "observed": "Skill structure and public product-page checks passed. Workflow SVG rendered and visually inspected without clipping. No growth claims."
+      "observed": "Manifests valid; install succeeded at user scope; details list 1 skill and version 2026.9.19; uninstalled afterwards."
+    },
+    {
+      "command": "claude plugin eval . --scaffold --allow-tools Bash Write Edit --runs 2 --model claude-sonnet-5 --no-publish --trust-plugin (plus --case organize-with-undo --runs 3 after the fix)",
+      "result": "pass",
+      "observed": "4/4 cases pass at 1.00 with TaskDock after the organize command; without-arm also 1.00; total cost about USD 7 across three runs."
     }
   ],
   "unresolved_blockers": []
