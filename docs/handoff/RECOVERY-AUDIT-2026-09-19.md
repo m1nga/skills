@@ -2,7 +2,12 @@
 
 ## Status
 
-The deterministic fixes are merged and published. The live-model continuity and routing pilots are prepared, but NOT RUN; they are not release-success or productivity evidence.
+The deterministic fixes are merged and published. The live-model continuity and routing
+pilots were prepared here and have since been **executed on Claude** on an authenticated
+macOS host; see the executed-acceptance section at the end of this file and
+`ops/skill-quality/live-pilot/RESULTS-2026-09-19.md`. The Codex side remains **blocked**
+(runtime not installed). The executed results are a single small sample: they found
+failures, and they are still not release-success or general productivity evidence.
 
 - Source implementation: `2575e0c182c0a424177409e942696527ad6dd905`, merged through [PR #1](https://github.com/m1nga/skills/pull/1).
 - Published TaskDock: `8da92274e8d84b9372333ae4921c97379da76e15` in `m1nga/taskdock`.
@@ -40,7 +45,7 @@ The conversation contains `day-close-local-backup.zip`, verified before source r
 
 Independent recovery source: commit `cd4a5bd51ce49cf8bc8ee68cc98d0644e77a794e`, paths `day-close/SKILL.md` and `day-close/agents/openai.yaml`. Restore to a user-approved local/private location, not back into public distribution. Preserve any existing local customization; do not overwrite it blindly. A backup in this conversation is not confirmation of a Mac-local installation or backup.
 
-## Remaining acceptance — explicitly NOT RUN
+## Remaining acceptance — as handed off on 2026-09-19 (historical, superseded below)
 
 An authorized local executor should read `ops/skill-quality/live-pilot/README.md`, `trigger-cases.json`, and `taskdock/product-root/evals/continuity/README.md`.
 
@@ -49,3 +54,57 @@ An authorized local executor should read `ops/skill-quality/live-pilot/README.md
 - Verify/refresh this user's Mac installations only from an executor that actually has access; preserve day-close locally before a pull could remove its source-backed installation.
 
 The current ChatGPT container had no authenticated Claude/Codex execution environment or model-subagent interface. The remote plugin installation test does not remove that limitation. No model-evaluation spend or productivity advantage is claimed. Do not rerun broad skill rewrites, restore retired repositories, add telemetry, or change app designs while closing these specific checks.
+
+## Remaining acceptance — executed on an authenticated macOS host, 2026-09-19
+
+The Claude-side items above are now run. Full sanitized evidence, provenance, deviations
+and cost are in `ops/skill-quality/live-pilot/RESULTS-2026-09-19.md`. The historical
+statements above are retained as written at handoff time and are not edited.
+
+### Host installation, verified
+
+- `day-close` on that Mac was installed by symlink into the source repository working
+  tree, which current `main` no longer contains — a pull would have removed it. Its two
+  files were byte-identical to `cd4a5bd…` with no local customization. Contents were
+  copied to a private local backup with per-file sha256 verification, the original link
+  target was recorded, and the installation now points at an independent local copy.
+  Nothing about it was added to public distribution.
+- The host's TaskDock was the **pre-fix `cd4a5bd` build**, missing `recovery.py` and the
+  two recovery test modules. It was backed up and refreshed in place by its existing
+  install method; its payload is now byte-identical to the published accepted package.
+  No duplicate plugin installation was added.
+- `python3 -m unittest` on that host: **52 tests, OK, 1 platform skip**, on Python 3.9.6.
+  CI passing on its own runners did not establish this.
+
+### Live pilots
+
+- Continuity, three conditions × two stages, one trial each: executed on Claude with
+  verified per-arm skill inventories. All three conditions, including the plain host,
+  identified the superseding decision and refused publication. No continuity advantage
+  for the full skill was demonstrated on this fixture; it cost about 4.9× the plain arm.
+- Trigger, eight Chinese cases on the real co-installed inventory: seven routed as
+  expected and every prohibition held. One routing failure — the explicit file-organizing
+  request with an executable-undo requirement did **not** select TaskDock.
+- Independent semantic review was performed by a cold session given only the rubrics and
+  the fact files, with no executor commentary.
+
+### Product defects found by execution, not by inspection
+
+1. The recorded one-line `rollback` refuses with `conflict` after the operation's own
+   prescribed note updates, so the published recovery command fails at the moment a user
+   would use it. Contributing details: preimage blobs restore mode `0600` while
+   `rollback` also checks POSIX mode, and link repair touches `STATE.md`. The underlying
+   safety behaviour is correct — a clean rollback restores bytes and modes exactly, and a
+   rollback facing a newer edit refuses, preserves it and changes nothing.
+2. `rollback_argv` embeds absolute paths, so the recorded command cannot be run against a
+   copy without editing it. Two of three arms' supplied undo commands had this problem.
+
+These are recorded for the repository's normal review and release process; no trigger
+descriptions or retirements were rewritten as part of this acceptance run.
+
+### Still not run
+
+- Both Codex pilots: the `codex` executable is not installed on that host. **Blocked**,
+  not failed. Nothing in these results transfers to Codex.
+- Cross-engine cost comparison.
+- Any claim of general speed, cost or reliability advantage: one trial per arm.
