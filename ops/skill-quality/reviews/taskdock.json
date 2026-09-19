@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-09-19T08:02:21+00:00",
-  "source_sha256": "a7b0e960c34780ebd948751089adff2b44b56b4dbb66f916fceab4e722d593a6",
+  "reviewed_at": "2026-09-19T08:09:32+00:00",
+  "source_sha256": "f720a9301628113532facd41a02838e33ffa2ed1e02162bb91f89a3e8a601d3a",
   "user_review": {
-    "method": "Follow-up to the executed Claude pilot (PR #2). Reproduced the missing transaction-note/copy-recovery contracts on verified 2026.9.20 source, then ran 63 deterministic tests on Linux/Python 3.13.5 (one Windows-only skip). This is code acceptance, not a new live-model, macOS-local or independent-subagent run. Trigger description is unchanged.",
+    "method": "Follow-up to the executed Claude pilot (PR #2). Reproduced the missing transaction-note/copy-recovery contracts on verified 2026.9.20 source, then ran 63 deterministic tests on Linux/Python 3.13.5 (one Windows-only skip). This is code acceptance, not a new live-model, macOS-local or independent-subagent run. Trigger description is unchanged. Final CI exposed a test-only temporary-path alias mismatch on macOS and Windows; canonicalized both paths and added an assertion that the injected fault fires. Linux 63-test rerun passed; final cross-platform CI is a separate merge gate.",
     "scenarios": [
       {
         "request": "Organize an asset and update the actual task notes, then undo the whole operation.",
