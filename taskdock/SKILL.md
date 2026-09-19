@@ -124,6 +124,14 @@ one operation per call, so merge a duplicate first and move the survivor in a se
 The agent prepares the small JSON input from the user's actual request and evidence; do
 not ask the user to fill a taxonomy form.
 
+When organization itself needs note changes, prepare the small `notes` map in the same
+spec (see the guide): complete text plus `expected_sha256` of each control file actually
+read. The planner repairs pre-move links and snapshots both moves and these notes. Do
+not append a second round of STATE/README/PLAN/AGENTS edits after `organize` merely to
+record that same operation: those are newer edits and correctly block exact rollback.
+Put the final report in chat; the receipt already records the action. Genuinely later
+work still belongs in the notes, but the earlier exact undo then needs conflict review.
+
 Keep current decisions and their sources together as work changes. At handoff,
 link the adopted outcome from the entry, retain superseded reasons in history, and
 check that next actions still apply. Update the existing files this task owns;
@@ -164,6 +172,11 @@ record, not a guarantee that the model remembers or has been trained on its cont
 After organization stops, report its actual stage and mutation state, operation ID and
 recovery location. Never translate a partial or unknown state into "nothing changed".
 Use `rollback_argv` without a shell, or the command only in its labelled `rollback_shell`.
+That command targets the selected original location. After a move or when testing a
+copy, use `recovery --path <selected-folder> --operation <id>` with the current installed
+script to validate task identity and regenerate argv for that location, without writes.
+Do not run the old absolute-path command against an assumed copy; do not copy recovery
+blobs by hand (their private storage modes are not restored work-file modes).
 Read `pending_recovery` on resume; inspect unfinished operations before new writes. Do
 not force through conflicts or automatically roll back newer work. Non-UTF-8 reference
 content is a preflight stop, not permission to silently convert source files.

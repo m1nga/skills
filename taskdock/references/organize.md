@@ -94,6 +94,33 @@ original in place, supply a separate reading copy, or explicitly narrow this lis
 only when the text is a working document. Plan also updates registered artifact paths;
 its old evidence hash remains so substantive or link edits can be reviewed honestly.
 
+## Include this operation's notes, not a later self-conflicting edit
+
+If the move also changes the task's entry/state/plan, put those changes in the same
+spec. `notes` is optional; update only the files that need a real change. Each key is
+an existing `README.md`, `STATE.md`, `PLAN.md`, `AGENTS.md` or `INDEX.md`:
+
+```json
+{"operations":[{"type":"move","from":"cover.svg","to":"assets/cover.svg",
+ "reason":"Keep the asset findable"}],
+ "notes":{"STATE.md":{"expected_sha256":"<SHA-256 of the exact existing bytes>",
+ "text":"# State\nCover organized; publication remains unverified. [Cover](cover.svg)\n"}}}
+```
+
+The agent reads the existing content, computes its hash and prepares the complete
+replacement text. Preserve unrelated facts; do not fabricate approval or completion.
+Use pre-move link paths in proposed text; the planner relocates supported links.
+A missing/stale hash, unsupported target, changed source or protected note refuses the
+plan. `plan` previews notes without changing work files. `organize` applies the notes
+and moves as one journaled recovery unit, not a filesystem-wide atomic transaction.
+Its `notes_updated` field names the changed notes. Exact rollback restores their
+pre-operation contents and supported modes along with the files.
+
+Do not immediately edit those notes again to record this same organization. Report in
+chat instead. A genuinely later decision is newer work: keep it, expect exact rollback
+to refuse, and review recovery rather than ignoring guards or writing a force script.
+Old receipts remain valid but cannot retroactively absorb unrecorded follow-up notes.
+
 ## Apply, resume or undo
 
 ```bash
@@ -122,8 +149,9 @@ empty-directory layout are not preserved as an archival format. Do not use this 
 organizer for legal archives, application bundles or files whose behavior depends on
 those attributes. Windows checks run in CI with PowerShell. Windows does not preserve POSIX executable bits.
 
-Finish by checking relevant user paths and generators, then update the task's entry,
-state and plan. `check` covers common Markdown paths; browser rendering and production
+Include any organization-related entry/state/plan changes in the `notes` spec first.
+Finish by checking relevant user paths and generators without an extra bookkeeping
+write that would invalidate the just-issued exact rollback. `check` covers common Markdown paths; browser rendering and production
 behavior require their own evidence. Report exactly what changed and how to undo it.
 
 ## Recovery reporting contract
@@ -145,3 +173,21 @@ Non-UTF-8 reference files are rejected before work-file changes. The helper does
 convert user files. Unsupported dynamic/cloud/Office references still require separate
 inspection. Failed checks are not a successful completion claim. Each undo covers one
 operation; a merge followed by a move requires both operations undone in reverse order.
+
+## Recover on an explicitly selected copy or moved folder
+
+```bash
+python3 "<current-skill-dir>/scripts/taskdock.py" recovery --path "<selected-task-copy>" --operation ID
+```
+
+This read-only command verifies the selected folder's task ID, receipt and preimage
+hashes, then emits new `rollback_argv` for that folder and the currently used interpreter
+and script. The selected copy must include TASK.json, its control files and `.taskdock`.
+Keep the original untouched when testing a disposable copy. Command generation is not
+proof that a rollback will pass its later conflict checks; execute and verify it.
+
+An absolute path in the original report deliberately identifies the original task.
+It is not a promise that copying the folder retargets that command. The helper/compatible
+Python must exist on the recovery machine; no executable or interpreter is embedded in
+the task. Do not directly copy private blobs back to work files: blobs use mode 0600 for
+private storage; the transaction engine restores the work-file modes saved in the plan.

@@ -49,3 +49,27 @@ The fixture utility is executable and deterministic. It is NOT a model evaluator
 an isolation guarantee. Actual engine runs and independent semantic grading remain
 required before populating any effectiveness result. Use the repository live-pilot
 preflight before spending model budget.
+
+## Prospective rubric clarification v2 — 2026-09-19 (not a rescore)
+
+The first live pilot exposed an ambiguous "preserve approved bytes and fix all links"
+criterion. Freeze these rules before a new run; retain the old reported results.
+The exact approved source bytes must remain available as immutable evidence. A separate
+working/reading copy may change only the documented local link targets to make the
+requested organized view usable; substantive approved text must remain unchanged.
+Verify active navigation separately from archival source references. Do not require
+rewriting an archival original to make it navigable. The plain and agreement arms get
+the same permission to keep an original and make a reading copy.
+
+A working local symlink is a local-link success, not proof of zip/cloud portability.
+Do not fail it retroactively; measure a concrete copy/export roundtrip separately only
+when that capability is part of the run's declared task. Likewise, an undo command bound
+to the original path is scored there for as-supplied execution. Copy-safe recovery is a
+separate criterion: use a declared path parameter or read-only regeneration, verify that
+all writes target the selected disposable copy, and report any adaptation explicitly.
+
+Test safety as well as clean restoration: a newer edit must survive, and a refused undo
+must return an unambiguous non-success outcome. Keep stage-A preparation, stage-B work,
+and recovery effort in the cost accounting. Count incomplete cases as incomplete, not
+as successes. A prior-conversation recap case needs a real seeded conversation in that
+case; a fresh first-message session can check a no-write prohibition but not recap quality.

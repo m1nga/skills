@@ -241,6 +241,23 @@ def plan(root, task_id, spec):
         raise ValueError('Spec needs a nonempty operations array')
     # Planning only writes an isolated receipt and content preimages under .taskdock.
     with lock(root):
+        # Explicit, compare-and-swap note updates belong to the same recovery unit.
+        # Never exempt control files from conflict checks or infer that a later edit is ours.
+        notes = spec.get('notes', {})
+        if not isinstance(notes, dict):
+            raise ValueError('notes must be an object of existing control-file updates')
+        for name, note in notes.items():
+            if name not in CONTROL - {'TASK.json'} or not isinstance(note, dict):
+                raise ValueError('Notes may update existing Markdown control files only')
+            if not isinstance(note.get('text'), str) or not note['text'].strip():
+                raise ValueError('Each note needs nonempty complete text')
+            if len(note['text'].encode('utf-8')) > LIMIT:
+                raise ValueError('Note exceeds the reference size limit: ' + name)
+            if not re.fullmatch(r'[a-f0-9]{64}', str(note.get('expected_sha256', ''))):
+                raise ValueError('Each note needs expected_sha256 from the content actually read')
+            path = safe(root, name)
+            if not path.is_file() or path.stat().st_size > LIMIT:
+                raise ValueError('Note must be an existing ordinary control file within the size limit: ' + name)
         mapping, merges, reasons = {}, {}, {}
         for op in spec['operations']:
             src, dst = op['from'], op['to']
@@ -303,7 +320,7 @@ def plan(root, task_id, spec):
             for start, end, repl in sorted(set(edits), reverse=True):
                 text = text[:start] + repl + text[end:]
             return text
-        unresolved, repaired = [], []
+        unresolved, repaired, notes_updated = [], [], []
         for f in files:
             name = f.relative_to(root).as_posix()
             if f.suffix not in TEXT or name in merges or f.stat().st_size > LIMIT:
@@ -313,8 +330,14 @@ def plan(root, task_id, spec):
             except UnicodeDecodeError:
                 raise ValueError('Cannot verify references in non-UTF-8 file: ' + name + '; no work files changed')
             capture(name)  # A new reference added after planning must invalidate this view.
+            if name in notes:
+                expected = notes[name]['expected_sha256']
+                if digest(original) != expected or before[name]['sha256'] != expected:
+                    raise ValueError('Note changed since it was read: ' + name + '; no work files changed')
+                text = notes[name]['text']
             newname = mapping.get(name, name)
-            modified = relocate(name, newname, text, f.suffix).encode('utf-8')
+            relocated = relocate(name, newname, text, f.suffix)
+            modified = relocated.encode('utf-8')
             if modified == original:
                 continue
             if protected(name):
@@ -323,7 +346,10 @@ def plan(root, task_id, spec):
             capture(name); capture(newname)
             h = digest(modified); data[h] = modified
             after[newname] = {'sha256': h, 'mode': stat.S_IMODE(f.stat().st_mode)}
-            repaired.append(newname)
+            if relocated != text:
+                repaired.append(newname)
+            if name in notes:
+                notes_updated.append(name)
         if unresolved:
             raise ValueError('Preserved reference conflict: ' + json.dumps(unresolved))
         ap = artifact_path(root)
@@ -348,14 +374,14 @@ def plan(root, task_id, spec):
             atomic(folder / 'blobs' / h, data[h])
         receipt = {'schema': 'taskdock-operation/v1', 'id': identity, 'task_id': task_id,
                    'operations': spec['operations'], 'entries': entries, 'guards': guards,
-                   'link_repaired': sorted(set(repaired)), 'excluded': excluded,
+                   'link_repaired': sorted(set(repaired)), 'notes_updated': sorted(notes_updated), 'excluded': excluded,
                    'reference_files': [f.relative_to(root).as_posix() for f in files if f.suffix in TEXT],
                    'coverage': 'Common relative Markdown/HTML/CSS references within this task. Review dynamic/absolute/Office/cloud dependencies separately.'}
         save(folder / 'plan.json', receipt)
         save(folder / 'journal.json', {'status': 'planned', 'completed': [], 'created_dirs': []})
     return {'status': 'planned', 'operation_id': identity, 'plan': (folder / 'plan.json').relative_to(root).as_posix(),
             'operations': receipt['operations'], 'changes': entries, 'link_repaired': receipt['link_repaired'],
-            'coverage': receipt['coverage']}
+            'notes_updated': receipt['notes_updated'], 'coverage': receipt['coverage']}
 
 
 def load_operation(root, task_id, identity):

@@ -261,7 +261,7 @@ def organize(root, task_id, spec):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
-    for command in ('init', 'register', 'locate', 'check', 'resume', 'inventory', 'record', 'reconcile', 'plan', 'organize', 'apply', 'rollback'):
+    for command in ('init', 'register', 'locate', 'check', 'resume', 'inventory', 'record', 'reconcile', 'plan', 'organize', 'apply', 'rollback', 'recovery'):
         p = sub.add_parser(command)
         p.add_argument('--index', type=Path, default=default_index())
         if command != 'locate':
@@ -273,7 +273,7 @@ def main():
             p.add_argument('--language', choices=('zh', 'en'), default='en')
         elif command in ('record', 'plan', 'organize'):
             p.add_argument('--spec', type=Path, required=True)
-        elif command in ('apply', 'rollback'):
+        elif command in ('apply', 'rollback', 'recovery'):
             p.add_argument('--operation', required=True)
         elif command == 'resume':
             p.add_argument('--max-chars', type=int, default=3000)
@@ -304,6 +304,9 @@ def main():
                 result = ops.inventory(root)
             elif args.command == 'reconcile':
                 result = ops.reconcile(root)
+            elif args.command == 'recovery':
+                from recovery import selected_recovery
+                result = selected_recovery(root, task['id'], args.operation, Path(__file__).resolve())
             elif args.command == 'organize':
                 spec = json.loads(args.spec.read_text(encoding='utf-8'))
                 result = organize(root, task['id'], spec)
@@ -313,7 +316,7 @@ def main():
             else:
                 result = ops.transfer(root, task['id'], args.operation, rollback=args.command == 'rollback')
         print(json.dumps(result, ensure_ascii=True, indent=2))
-        return 0 if result['status'] in ('created', 'existing', 'registered', 'found', 'pass', 'resumed', 'inventoried', 'recorded', 'planned', 'organized', 'applied', 'rolled_back') else 1
+        return 0 if result['status'] in ('created', 'existing', 'registered', 'found', 'pass', 'resumed', 'inventoried', 'recorded', 'planned', 'organized', 'applied', 'rolled_back', 'recovery_ready') else 1
     except (OSError, ValueError, KeyError, TypeError) as error:
         print(json.dumps({'status': 'error', 'error': str(error)}, ensure_ascii=True), file=sys.stderr)
         return 2
