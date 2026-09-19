@@ -18,7 +18,7 @@ class TransactionNotesTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
-        self.base = Path(self.tmp.name)
+        self.base = Path(self.tmp.name).resolve()
         self.root = self.base / 'Original'
         self.task = td.init_task('Notes test', 'Preserve the current work', self.base / 'index.json', self.root)
         self.identity = self.task['id']
@@ -121,11 +121,16 @@ class TransactionNotesTests(unittest.TestCase):
     def test_notes_partial_write_is_recoverable(self):
         before = self.snapshot()
         original = ops.atomic
+        injected = []
         def interrupt(path, data, mode=0o600):
             original(path, data, mode)
-            if path == self.root / 'PLAN.md': raise OSError('after note write, before journal')
+            # The engine canonicalizes roots (macOS /var alias, Windows short paths).
+            if path.resolve() == (self.root / 'PLAN.md').resolve():
+                injected.append(str(path))
+                raise OSError('after note write, before journal')
         with mock.patch.object(ops, 'atomic', side_effect=interrupt):
             result = td.organize(self.root, self.identity, self.spec())
+        self.assertEqual(len(injected), 1, 'The post-write failure must actually fire')
         self.assertEqual(result['status'], 'organize_error')
         self.assertIn('rollback_argv', result)
         self.assertEqual(ops.transfer(self.root, self.identity, result['operation_id'], True)['status'], 'rolled_back')
