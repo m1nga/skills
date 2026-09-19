@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "skill": "map-product-system",
+  "reviewed_at": "2026-09-19T04:08:10+00:00",
+  "source_sha256": "16995d0b75785eae32a92a33c369408abfed0d990849edce9157d1d22161a2a4",
+  "user_review": {
+    "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description extended with scope wording, Chinese phrases and not-for routing to product-experience-officer, taskdock and diagnose-project-rebuild; README no longer routes automation to the retired loop-system-architect. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+    "scenarios": [
+      {
+        "request": "画一下这个产品的结构，谁负责哪块",
+        "expected": "fires at the requested scope",
+        "observed": "Chinese phrases now in the description.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "帮我体验一下这个产品，新用户会怎么想",
+        "expected": "does not fire; product-experience-officer's seat",
+        "observed": "Not-for clause names it.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://code.claude.com/docs/en/skills",
+      "checked_at": "2026-09-19T04:08:10+00:00",
+      "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
+      "decision": "adopt",
+      "reason": "Applied to the description without changing the mapping method."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py map-product-system --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
+    }
+  ],
+  "unresolved_blockers": []
+}

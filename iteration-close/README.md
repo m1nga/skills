@@ -60,7 +60,6 @@ repository is welcome.
 
 ## Works well with
 
-- [`conclude-rounds`](https://github.com/m1nga/conclude-rounds) — recap the recent conversation first, so Phase 1 has a clean list of decisions to bank.
 - [`diagnose-project-rebuild`](https://github.com/m1nga/diagnose-project-rebuild) — when the repo is too tangled to close, diagnose it first; close later.
 - [`map-product-system`](https://github.com/m1nga/map-product-system) — the architecture note Phase 1 keeps current pairs naturally with a full product-system map.
 

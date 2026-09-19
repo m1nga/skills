@@ -13,7 +13,7 @@ description: >
   it", "what lessons from the last project apply here", "start an experience
   log for this repo"; Chinese: 经验包 / 记录经验 / 项目复盘 / 沉淀经验 /
   经验文件 / 这次的教训. NOT on reviewing the
-  current conversation's rounds (use conclude-rounds), NOT on closing an
+  current conversation's rounds (the host recaps that itself), NOT on closing an
   iteration (use iteration-close), and NOT a decision register — decisions
   stay in the project's own truth files.
 ---
@@ -147,8 +147,8 @@ call — never silently.
 
 ## Relationship to adjacent skills
 
-- **conclude-rounds** — reviews the current conversation's rounds. A user
-  saying "复盘" or "let's review" about THIS conversation belongs there; this
+- **The host's own recap** — reviewing the current conversation's rounds. A user
+  saying "复盘" or "let's review" about THIS conversation gets a plain recap; this
   skill owns project-level post-mortems that outlive the conversation.
 - **iteration-close** — closes an iteration of a continuing direction (distill,
   delete baggage, tag, seed). Run experience-pack's Protocol B as part of it if

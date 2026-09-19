@@ -1,29 +1,22 @@
 {
   "schema_version": 1,
   "skill": "experience-pack",
-  "reviewed_at": "2026-09-06T17:45:33.793635+00:00",
-  "source_sha256": "7b1a63d715e8b7c4675538bed3001c1868c04835186ed270ef6082e72cd0c4a1",
+  "reviewed_at": "2026-09-19T04:08:10+00:00",
+  "source_sha256": "470edab07c724419558ac9eaf30eea43700dd2a0a22b28f9fe59478c8fd3625e",
   "user_review": {
-    "method": "Maintainer review from public description and isolated synthetic fixtures or explicitly simulated instruction walkthroughs. Not independent review, external user research, or production usage.",
+    "method": "Maintainer routing review on 2026-09-19 (Claude Code): References to the retired conclude-rounds skill replaced by the host's own recap; no method change. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
     "scenarios": [
       {
-        "request": "Migration took the whole afternoon; corrected endpoint and rerun succeeded. Record it.",
-        "expected": "Report the given duration without inventing a numerical measurement.",
-        "observed": "Old README inferred 4 hours; revised example preserves one afternoon and exact duration unknown. Portable output retains endpoint-check mechanism without bucket identity.",
-        "kind": "simulated",
-        "result": "fixed"
-      },
-      {
-        "request": "Record incident while cwd is Desktop with no project selected.",
-        "expected": "Keep a copyable entry; establish project root before writing.",
-        "observed": "Walkthrough asks which project and emits formatted facts with unknown duration; no Desktop-root ledger written.",
+        "request": "复盘一下刚才这几轮对话",
+        "expected": "stays quiet; plain recap",
+        "observed": "Exclusion text now points at the host recap instead of a retired skill.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Import old bucket name and pricing decision as a reusable lesson.",
-        "expected": "Do not transfer project choices.",
-        "observed": "Boundary walkthrough retains only check-current-endpoints mechanism; old choices stay private.",
+        "request": "记录一下这次事故的教训",
+        "expected": "fires; ledger entry",
+        "observed": "Unchanged path re-read.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -31,27 +24,19 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/aplaceforallmystuff/claude-lessons-learned/blob/main/skills/lessons-learned/SKILL.md",
-      "checked_at": "2026-09-06T17:45:33.793635+00:00",
-      "learned": "Incident facts, contributing factors, implemented fixes and verification remain distinct.",
-      "decision": "adapt",
-      "reason": "Preserve reported facts and uncertainty; do not import automatic global-skill edits or require a fixed five-whys structure for one small incident."
-    },
-    {
-      "url": "https://github.com/buhaistrikalo/skills/blob/main/.agents/skills/handoff/SKILL.md",
-      "checked_at": "2026-09-06T17:45:33.793635+00:00",
-      "learned": "A compact handoff names goal, state, validation and next actions and references existing artifacts.",
-      "decision": "adapt",
-      "reason": "Use explicit evidence and next action; temporary storage and AI handoff scope are not appropriate for every workflow."
+      "url": "https://code.claude.com/docs/en/skills",
+      "checked_at": "2026-09-19T04:08:10+00:00",
+      "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
+      "decision": "adopt",
+      "reason": "Only the routing text changed."
     }
   ],
   "validation": [
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py experience-pack --product-manifest products.json",
       "result": "pass",
-      "observed": "Product page and manifest audit returned VERDICT: PASS; source/metadata identities retained."
+      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
     }
   ],
-  "unresolved_blockers": [],
-  "decision": "Replaced unsupported precise cost with reported uncertainty; added invoke, illustrative ledger and no-project recovery. Metadata already aligned; retained."
+  "unresolved_blockers": []
 }

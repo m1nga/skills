@@ -1,6 +1,6 @@
 ---
 name: daily-brief
-description: Produce a source-backed US stock portfolio decision brief from holdings, new filings and current prices; evaluate hold, buy, trim, switch or wait, and investigate stock tips. Use for stock daily briefs, portfolio reviews and thesis checks, not general morning news. Never executes trades.
+description: "Produce a source-backed US stock portfolio decision brief from holdings, new filings and current prices; evaluate hold, buy, trim, switch or wait, and investigate stock tips. Use for stock daily briefs, portfolio reviews and thesis checks, or when the user says 美股日报 / 看看我的持仓 / 这只该不该卖 / 财报出了帮我看 / 有人推荐了一只股票. Not general morning news, not crypto, not price alerts. Never executes trades."
 ---
 
 # Stock Portfolio Brief

@@ -1,4 +1,0 @@
-interface:
-  display_name: "LLM Judge Validator"
-  short_description: "Measure whether LLM judge scores match human labels"
-  default_prompt: "Use $validate-evaluator to check whether my LLM judge agrees with my human labels before I trust its scores."

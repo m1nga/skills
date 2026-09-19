@@ -1,6 +1,6 @@
 ---
 name: design-agent
-description: "Turn visual references and feedback into brand direction, web design, and verified implementation within the requested scope. Use for reference-led design collaboration or refining AI-generated interfaces; not for unrelated coding or marketing copy alone."
+description: "Turn visual references and feedback into brand direction, web design, and verified implementation within the requested scope. Use for reference-led design collaboration, refining AI-generated interfaces, or when the user says 照这个参考做 / 品牌方向 / 改这个界面 / 网页设计 / 视觉稿 / 这版看着不对. Keep project assets and decisions in the project, not in this skill. Not for unrelated coding, marketing copy alone, or a first-time-user experience report (product-experience-officer)."
 ---
 
 # Design Agent

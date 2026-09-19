@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "skill": "prompt-distill",
+  "reviewed_at": "2026-09-19T04:08:10+00:00",
+  "source_sha256": "482af4ead4b86757735e34f317df59f6b7f239e87b76704d677bb7e684842e93",
+  "user_review": {
+    "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description gains Chinese phrases and a guard against firing on ordinary requests that merely contain instructions; README no longer routes to prompt-craft or write-judge-prompt. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+    "scenarios": [
+      {
+        "request": "把我刚才说的这一堆整理成一个 prompt",
+        "expected": "fires and preserves corrections",
+        "observed": "Chinese phrases now in the description.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "先检查 exports 目录，把本周的 PNG 移进去再数一下",
+        "expected": "does not fire; the request is a task",
+        "observed": "Guard sentence added.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://code.claude.com/docs/en/skills",
+      "checked_at": "2026-09-19T04:08:10+00:00",
+      "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
+      "decision": "adopt",
+      "reason": "Applied to the description only."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py prompt-distill --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
+    }
+  ],
+  "unresolved_blockers": []
+}

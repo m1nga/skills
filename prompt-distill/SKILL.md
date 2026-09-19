@@ -1,6 +1,6 @@
 ---
 name: prompt-distill
-description: "Turn rough or dictated input into a reusable prompt when explicitly asked. Preserve corrections, intent, examples, and constraints. Do not intercept a task the user wants executed."
+description: "Turn rough or dictated input into a reusable prompt when explicitly asked: 把这段整理成 prompt / 提炼成提示词 / 帮我写成可复用的指令 / turn this into a prompt. Preserve corrections, intent, examples, and constraints; keep the user's language. Do not intercept a task the user wants executed, and do not fire on ordinary requests that merely contain instructions."
 ---
 
 # Prompt Distill

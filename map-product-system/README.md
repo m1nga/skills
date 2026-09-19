@@ -22,9 +22,9 @@ architecture poster.
 - 「梳理一下产品架构」
 - 「检查用户旅程和功能分支」
 
-It does not design the runtime control loop of an autonomous workflow — that is
-[`loop-system-architect`](https://github.com/m1nga/loop-system-architect/). This skill covers static
-architecture and responsibility contracts.
+It does not design the runtime control loop of an autonomous workflow; the host's
+scheduler, /loop or Workflow tooling does that. This skill covers static architecture
+and responsibility contracts.
 
 Follow [a complete input/output example](https://github.com/m1nga/map-product-system/blob/main/skills/map-product-system/examples/import-retry.md) to see what this preserves and what it leaves open.
 
@@ -49,8 +49,6 @@ npx skills add m1nga/map-product-system
 
 ## Works well with
 
-- [`loop-system-architect`](https://github.com/m1nga/loop-system-architect/) — once the map names an
-  autonomous capability, that skill designs the loop that runs it.
 - [`diagnose-project-rebuild`](https://github.com/m1nga/diagnose-project-rebuild/) — when the audit finds the architecture is
   accidental rather than incomplete, that skill decides whether to rebuild.
 
@@ -73,7 +71,7 @@ Probed 7 scenarios across 5 personas · 5 fired correctly · 1 correctly stayed 
 
 > **"How does this all hang together? I've got half a spec and a Django repo."** → Fired. Read the repo as evidence (not intent), returned a journey-to-capability-to-owner trace with every claim labeled Known / Inferred / Proposed / Unknown.
 
-> **"把这个流程变成自动循环，每天自动跑"** *("turn this into an automated daily loop")* → Correctly stayed quiet. Runtime automation is explicitly ceded to loop-system-architect in the description itself — the handoff is a design decision, not a coin flip.
+> **"把这个流程变成自动循环，每天自动跑"** *("turn this into an automated daily loop")* → Correctly stayed quiet. Runtime automation is explicitly ceded to the host's scheduling tools in the description itself — the handoff is a design decision, not a coin flip.
 
 > **"看一下产品结构"** *(a five-word "take a look at the product structure")* → Fired, and stayed proportionate: the body's depth-matching rule returns a scoped look, not a nine-lens architecture report nobody asked for.
 

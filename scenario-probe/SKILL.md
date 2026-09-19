@@ -1,6 +1,6 @@
 ---
 name: scenario-probe
-description: Wind-tunnel any instruction text that configures AI behavior — a SKILL.md, system prompt, CLAUDE.md rule, agent definition, or plugin command — by projecting it into persona × scenario simulations before it ships. Derives personas from the owner's real contexts, predicts trigger decisions from the target harness’s pre-load routing metadata, walks the body line-by-line per scenario, and reports false-fires, missed triggers, sibling-skill collisions, stale-world failures, silent-failure paths, and stranger-usability gaps, each with line-anchored fixes. Use for "probe / wind-tunnel / stress-test this skill, prompt, or instruction", "will this description misfire?", 风洞 / 场景推演 / 会不会误触, or after writing/editing any SKILL.md or long-lived prompt. NOT for experiencing a runnable product with a UI (use product-experience-officer), NOT for interrogating a plan (use grilling), NOT for evaluating model outputs (use write-judge-prompt), NOT for unbuilt ideas (idea-probe).
+description: Wind-tunnel any instruction text that configures AI behavior — a SKILL.md, system prompt, CLAUDE.md rule, agent definition, or plugin command — by projecting it into persona × scenario simulations before it ships. Derives personas from the owner's real contexts, predicts trigger decisions from the target harness’s pre-load routing metadata, walks the body line-by-line per scenario, and reports false-fires, missed triggers, sibling-skill collisions, stale-world failures, silent-failure paths, and stranger-usability gaps, each with line-anchored fixes. Use for "probe / wind-tunnel / stress-test this skill, prompt, or instruction", "will this description misfire?", 风洞 / 场景推演 / 会不会误触, or after writing/editing any SKILL.md or long-lived prompt. NOT for experiencing a runnable product with a UI (use product-experience-officer), NOT for interrogating a plan (thinking-partner's interview mode), NOT for evaluating model outputs (write an eval grader instead), NOT for unbuilt ideas (thinking-partner).
 ---
 
 # Scenario Probe（场景风洞）
@@ -137,8 +137,8 @@ fall back to in-chat copyable text.
 
 Optionally emit `traces.jsonl` (persona, utterance, predicted_trigger, predicted_behavior,
 verdict, evidence_lines, synthetic:true) — written to a path the user specifies, never
-inside the audited artifact's directory. Failure clusters become judge criteria for
-write-judge-prompt, calibrated by validate-evaluator. The probe is the trace supply for
+inside the audited artifact's directory. Failure clusters become grader criteria for
+an eval suite (for example `claude plugin eval` LLM graders). The probe is the trace supply for
 products that don't have production traffic yet.
 
 ## Mode B — live fire (optional, after the static run)

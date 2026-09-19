@@ -39,7 +39,7 @@ project that was rebuilt five times because old context kept leaking back in.
 - 「把这次的教训沉淀下来」
 - 「给这个项目建个经验文件」
 
-It does not fire on "review this conversation" (that's `conclude-rounds`) and
+It does not fire on "review this conversation" (a plain recap covers that) and
 it refuses to become a decision register — decisions live in the project's own
 truth files.
 
@@ -89,8 +89,6 @@ If this helps you preserve a useful lesson, a star on this repository is welcome
   this skill's portable layer.
 - [`iteration-close`](https://github.com/m1nga/iteration-close/) — owns the
   closure ritual; runs this skill's distillation pass inside it.
-- [`conclude-rounds`](https://github.com/m1nga/conclude-rounds/) —
-  conversation-level review; this skill is project-level.
 
 ## Design notes
 
@@ -109,7 +107,7 @@ declared bootstrap imports, a mandatory backup channel for gitignored ledgers
 
 Probed 8 scenarios across 5 personas · 6 fired correctly · 1 correctly stayed quiet · 1 logged as a follow-up note.
 
-> **"复盘一下刚才这几轮对话" ("recap the last few rounds of this chat")** → stays quiet. Conversation recaps belong to `conclude-rounds`; this skill only claims post-mortems that outlive the conversation.
+> **"复盘一下刚才这几轮对话" ("recap the last few rounds of this chat")** → stays quiet. Conversation recaps are the host's own job; this skill only claims post-mortems that outlive the conversation.
 
 > **"That refactor ate two days — write down what we learned before we forget."** → fires. Appends a dated ledger entry — what happened, the response, the cost — with a `Portable?` flag for the next distillation pass.
 

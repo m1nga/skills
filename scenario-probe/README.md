@@ -68,9 +68,8 @@ unknown. If nothing else fails, zero findings is a valid bounded result.
 
 ## Works well with
 
-- [`write-judge-prompt`](https://github.com/m1nga/write-judge-prompt/) + [`validate-evaluator`](https://github.com/m1nga/validate-evaluator/)
-  — the probe's `traces.jsonl` is trace supply for products with no production traffic
-  yet: failure clusters become judge criteria, then the judge gets calibrated.
+- `claude plugin eval` — the probe's `traces.jsonl` is trace supply for products with no production traffic
+  yet: failure clusters become grader criteria for an eval suite.
   Wind-tunnel → judge → calibration is a pipeline.
 - [`product-experience-officer`](https://github.com/m1nga/product-experience-officer/) — the cousin seat.
   A runnable product with a UI gets PEO; instruction text gets scenario-probe. Both distinguish simulated predictions from observed execution; a supported
@@ -107,7 +106,7 @@ Three opinionated choices follow from that audit:
 
 Probed 7 scenarios across 4 personas · 3 fired correctly · 3 correctly stayed quiet · the 7th run was the probe auditing itself.
 
-> **"帮我 stress-test 一下这个上线计划"** ("stress-test my launch plan") → stayed quiet. Plans are grilling's seat; this skill only takes instruction text — and the exclusion lives in the description, where triggering actually happens.
+> **"帮我 stress-test 一下这个上线计划"** ("stress-test my launch plan") → stayed quiet. Plans are thinking-partner's interview mode; this skill only takes instruction text — and the exclusion lives in the description, where triggering actually happens.
 
 > **"I just rewrote my CLAUDE.md commit rules — stress-test them before I rely on it."** → fired: cast four personas, predicted triggers from the description alone, then walked the rule body line-by-line per scenario.
 

@@ -5,53 +5,13 @@
       "name": "design-agent",
       "title": "Design Agent — Turn Visual References into Usable Interfaces",
       "description": "Turn visual references and feedback into brand direction, focused design revisions, and verified web interfaces without carrying old project choices into new briefs.",
-      "topics": ["m1nga-skill", "agent-skill", "web-design", "design-workflow", "visual-design", "frontend", "codex", "claude-code"]
-    },
-    {
-      "name": "coffee-brewing",
-      "title": "Coffee Brewing Coach — Get Exact Brew Parameters",
-      "description": "Coffee brewing coach that reads bean or espresso photos and taste feedback, then gives exact grind, ratio, temperature, and time settings for the next brew.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
-        "coffee",
-        "espresso",
-        "v60",
-        "pour-over",
-        "home-barista",
-        "espresso-dial-in",
-        "coffee-brewing",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "conclude-rounds",
-      "title": "Coding Session Recap — See What Is Done, Unverified, and Next",
-      "description": "Coding session recap that reviews the current conversation and separates completed work, unverified claims, open decisions, and the next useful action.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "project-progress",
-        "coding-agent",
-        "session-recap",
-        "work-summary",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "desktop-package",
-      "title": "AI Work Review Pack — Collect Files and Decisions in One Folder",
-      "description": "AI work review pack that collects session files and decisions into one Desktop folder, then verifies the package is complete, linked, and ready for human review.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "ai-workflow",
-        "session-documentation",
-        "artifact-management",
-        "desktop-folder",
-        "human-review",
+        "web-design",
+        "design-workflow",
+        "visual-design",
+        "frontend",
         "codex",
         "claude-code"
       ]
@@ -90,50 +50,6 @@
       ]
     },
     {
-      "name": "extend-first",
-      "title": "Skill Reuse Checker — Find an Existing Skill Before Building Another",
-      "description": "Check existing skills, agents, and automations for a functional match, then extend, combine, or build within the task you authorized.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "skill-discovery",
-        "skill-reuse",
-        "skill-authoring",
-        "duplicate-prevention",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "grilling",
-      "title": "Build Plan Interviewer — Turn a Vague Idea into a Build-Ready Plan",
-      "description": "Build plan interviewer that asks one focused question at a time and turns a vague idea into a scoped, build-ready plan with explicit non-goals.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "planning",
-        "product-planning",
-        "requirements",
-        "scope",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "idea-probe",
-      "title": "Product Idea Stress Test — Find What Will Break Before You Build",
-      "description": "Product idea stress test that simulates first contact across varied users, exposes the biggest risks, and returns a stronger one-page concept before you build.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "product-ideas",
-        "product-validation",
-        "user-research",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
       "name": "iteration-close",
       "title": "Iteration Cleanup & Handoff — Preserve Decisions and Remove Dead Work",
       "description": "Iteration cleanup and handoff that preserves current decisions, removes superseded work safely, verifies a cold takeover, and prepares the next milestone.",
@@ -143,21 +59,6 @@
         "software-development",
         "project-handoff",
         "documentation",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "loop-system-architect",
-      "title": "Agent Loop Builder — Turn Repeated Work into a Reliable Self-Checking System",
-      "description": "Agent loop builder that turns repeated work into an autonomous workflow with persistent state, failure recovery, and independent verification.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "agent-workflow",
-        "automation",
-        "multi-agent",
-        "reliability",
         "codex",
         "claude-code"
       ]
@@ -196,21 +97,6 @@
       ]
     },
     {
-      "name": "one-sentence",
-      "title": "One-Sentence Explainer — Make Any Idea Clear and Memorable",
-      "description": "One-sentence explainer that turns a concept, introduction, tagline, or position into one clear line a stranger can understand and remember.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "writing",
-        "plain-language",
-        "positioning",
-        "tagline",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
       "name": "product-experience-officer",
       "title": "First-Time User Tester — See Where Your Product Confuses New Users",
       "description": "First-time user tester that experiences your product with no prior context and returns a severity-ranked report showing what confuses users and what to fix.",
@@ -221,36 +107,6 @@
         "ux-audit",
         "product-testing",
         "usability",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "product-5w",
-      "title": "Product Definition Interview — Clarify Who It Is For and Why It Matters",
-      "description": "Product definition interviewer that clarifies who the product serves, what job it does, when and how it is used, why it matters, and what remains unproven.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "product-research",
-        "product-definition",
-        "5w",
-        "user-research",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "prompt-craft",
-      "title": "Marketing Prompt Builder — Turn Rough Ideas into Brand-Ready AI Instructions",
-      "description": "Marketing prompt builder that turns rough ideas or dictated notes into reusable AI instructions grounded in your brand voice, channel, audience, and source material.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "prompt-engineering",
-        "marketing",
-        "brand-voice",
-        "content-marketing",
         "codex",
         "claude-code"
       ]
@@ -299,75 +155,15 @@
       ]
     },
     {
-      "name": "side-quest",
-      "title": "Side Task Assistant — Capture Side Work Without Losing Your Main Thread",
-      "description": "Side task assistant that captures bounded background work without interrupting the main conversation, then returns a result or an honest queued status.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "productivity",
-        "multi-agent",
-        "workflow",
-        "focus",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
       "name": "thinking-partner",
       "title": "Decision Thinking Partner — Clarify Ambiguous Choices Without Fake Certainty",
-      "description": "Decision thinking partner that clarifies ambiguous choices, preserves real alternatives, and recommends a direction only when evidence or values support it.",
+      "description": "Decision thinking partner that clarifies ambiguous choices, keeps real alternatives, recommends only when evidence supports it, and on request grills a build plan into a locked scope.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "decision-making",
         "critical-thinking",
         "product-thinking",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "validate-evaluator",
-      "title": "LLM Judge Validator — Measure Whether AI Scores Match Human Labels",
-      "description": "LLM judge validator that compares AI ratings with human labels, measures TPR and TNR, corrects bias, and reports whether production scores can be trusted.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "llm-evaluation",
-        "evaluation",
-        "statistics",
-        "quality-assurance",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "voice-extractor",
-      "title": "Writing Voice Matcher — Make AI Drafts Sound Like You",
-      "description": "Writing voice matcher that extracts a measurable fingerprint from your own samples and checks AI drafts so they sound like you instead of generic model prose.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "writing-style",
-        "stylometry",
-        "brand-voice",
-        "writing",
-        "codex",
-        "claude-code"
-      ]
-    },
-    {
-      "name": "write-judge-prompt",
-      "title": "LLM Judge Prompt Builder — Turn One Quality Rule into a Pass/Fail Evaluator",
-      "description": "LLM judge prompt builder that turns one subjective quality standard and labeled examples into a reliable binary Pass/Fail evaluator prompt.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "llm-evaluation",
-        "llm-as-judge",
-        "prompt-engineering",
-        "quality-assurance",
         "codex",
         "claude-code"
       ]

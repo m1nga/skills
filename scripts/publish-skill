@@ -40,7 +40,12 @@ else
 fi
 
 mkdir -p "$temp_root/product/skills/$skill"
-rsync -a --exclude='README.md' "$temp_root/source/$skill/" "$temp_root/product/skills/$skill/"
+rsync -a --exclude='README.md' --exclude='product-root' "$temp_root/source/$skill/" "$temp_root/product/skills/$skill/"
+if [[ -d "$temp_root/source/$skill/product-root" ]]; then
+  # Optional per-skill overlay for files that belong at the standalone repository root
+  # (plugin manifests, evals, policies). Never README.md, LICENSE or SOURCE.json.
+  rsync -a --exclude='README.md' --exclude='LICENSE' --exclude='SOURCE.json' "$temp_root/source/$skill/product-root/" "$temp_root/product/"
+fi
 rsync -a "$temp_root/source/$skill/README.md" "$temp_root/product/README.md"
 rsync -a "$temp_root/source/LICENSE" "$temp_root/product/LICENSE"
 jq -n \

@@ -73,8 +73,6 @@ Google rankings or AI-answer citations.
   the skill; this skill owns the public product release within the owner’s existing authorization.
 - [`scenario-probe`](https://github.com/m1nga/scenario-probe) — stress-tests the public trigger and
   body before release.
-- [`loop-system-architect`](https://github.com/m1nga/loop-system-architect) — defines the persistent
-  monitoring contract, cursor, recovery, and verification loop.
 
 ## Design notes
 

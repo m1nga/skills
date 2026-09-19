@@ -41,8 +41,6 @@ npx skills add m1nga/prompt-distill
 ## Works well with
 
 - **thinking-partner** — when the ramble contains an unresolved decision rather than a task: think first, distill after.
-- **prompt-craft** — for marketing and brand-context prompts.
-- **write-judge-prompt** — for LLM-judge prompts, which have their own failure modes.
 
 ## Design notes
 
@@ -58,7 +56,7 @@ Probed 8 scenarios across 7 personas · 4 fired correctly · 3 correctly stayed 
 >
 > **"Just check if the exports folder exists, move this week's PNGs in, and count them."** → stayed quiet. A long, messy request is the agent's normal job, not a reason to interrupt you with a rewritten prompt.
 >
-> **"Polish this grader prompt I use to score my model outputs."** → deferred to write-judge-prompt. Judge prompts have their own failure modes; this skill knows what it isn't for.
+> **"Polish this grader prompt I use to score my model outputs."** → stayed quiet. Judge prompts belong to an eval suite's graders; this skill knows what it isn't for.
 
 Historical probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
 

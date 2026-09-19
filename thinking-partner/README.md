@@ -18,6 +18,7 @@ Routes ambiguous requests to the question actually being decided — and refuses
 - "What am I missing here?"
 - 「你帮我想想」
 - 「我在纠结要不要…」
+- 「拷问我」/ "grill me on this plan" (interview mode)
 
 No magic words — it triggers on meaning. It stays out of the way for research, building, review, and status work, and applies only to the unresolved fork in mixed requests.
 
@@ -49,7 +50,7 @@ continue into the patch and its checks rather than reopening the rewrite debate.
 
 ## Works well with
 
-- **grilling** — this skill frames the decision; grilling interrogates the resulting build plan step-by-step.
+- **Interview mode (built in)** — say 拷问我 or "grill me on this plan" and this skill interrogates the build plan one question at a time, then locks a scoped plan with explicit non-goals.
 - **prompt-distill** — once thinking converges, distill the outcome into a reusable prompt.
 
 ## Design notes
@@ -66,7 +67,7 @@ Historical simulation: 6 scenarios across 5 personas · 4 fired correctly · 2 c
 
 > **"帮我想想办法把这个 CSV 转成 JSON"** → Stayed quiet. "想想" alone isn't a thinking request when the deliverable is a file — the execution exclusion held, and even on a misfire the body routes straight to "build it, no thinking prelude."
 
-> **"方案我大概想好了,帮我想想还有没有漏洞,然后我们开工"** → Deferred to grilling. This skill frames the decision; interrogating a committed build plan is explicitly someone else's seat.
+> **"方案我大概想好了,帮我想想还有没有漏洞,然后我们开工"** → Switches to interview mode: one question at a time with a recommended answer each, then a locked plan with explicit non-goals before work starts.
 
 Probe method: [scenario-probe](https://github.com/m1nga/scenario-probe)
 

@@ -1,62 +1,42 @@
 {
   "schema_version": 1,
   "skill": "publish-skill-product",
-  "reviewed_at": "2026-09-06T21:47:42.982841+00:00",
-  "source_sha256": "063bba694c1ade9b3770635d4a842f423908635b6041ef76debca951653fab9a",
+  "reviewed_at": "2026-09-19T04:08:10+00:00",
+  "source_sha256": "92305107fd9e6f436f42500ef6d503ce6a588637cdbd3fd298546260e7afe160",
   "user_review": {
-    "method": "Maintainer public-entry reading and explicitly simulated normal/boundary walkthroughs; existing body knowledge disclosed. Not independent agent runs or human research. Actual offline executions individually marked.",
+    "method": "Maintainer routing review on 2026-09-19 (Claude Code): README no longer references the retired loop-system-architect for the monitor contract; SKILL.md unchanged. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
     "scenarios": [
       {
-        "request": "Publish a ready target while an unrelated skill is dirty.",
-        "expected": "Allow target release and preserve unrelated drafts.",
-        "observed": "Actual 21-test release-tools suite PASS including clean source and unrelated dirty/review preservation. Temporary repositories only.",
-        "result": "pass",
-        "kind": "executed"
+        "request": "把 taskdock 发布出去",
+        "expected": "fires; full release contract",
+        "observed": "Unchanged.",
+        "kind": "simulated",
+        "result": "pass"
       },
       {
-        "request": "Change target after review, or rerun a discovery snapshot on an existing path.",
-        "expected": "Reject stale review/dirty source or overwrite, preserve original evidence.",
-        "observed": "Actual offline suite rejects those failure fixtures; restoration/control fixtures pass. No new release authority inferred.",
-        "result": "pass",
-        "kind": "executed"
-      },
-      {
-        "request": "Read the public setup and failure example with no owner context.",
-        "expected": "Understand installation, invocation, scoped release and evidence boundary.",
-        "observed": "Walkthrough finds usable direct install and discovery example; now correct 21-test count and explicit dirty-target recovery. No causal growth promise.",
-        "result": "pass",
-        "kind": "simulated"
+        "request": "帮我写个 skill 草稿先别发",
+        "expected": "stays quiet on publication; draft stays private",
+        "observed": "Unchanged exclusion.",
+        "kind": "simulated",
+        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/cli/cli/blob/HEAD/skills/gh-skill/SKILL.md",
-      "checked_at": "2026-09-06T21:43:40.526630+00:00",
-      "learned": "Preview/install/publish are distinct actions; publication validates skill layout and creates a release.",
-      "decision": "adapt",
-      "reason": "Retain staged source, remote and install discovery checks; do not replace the established publisher or introduce unnecessary tags."
-    },
-    {
-      "url": "https://github.com/skilld-dev/skills/blob/HEAD/skills/publish-skill/SKILL.md",
-      "checked_at": "2026-09-06T21:43:41.617072+00:00",
-      "learned": "Validate portable package and verify published installation; preserve unrelated changes.",
-      "decision": "adapt",
-      "reason": "Retain post-publish verification and representative execution; no npm path, third-party installation or new approval layer needed."
+      "url": "https://code.claude.com/docs/en/skills",
+      "checked_at": "2026-09-19T04:08:10+00:00",
+      "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
+      "decision": "adopt",
+      "reason": "README-only change."
     }
   ],
   "validation": [
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py publish-skill-product --product-manifest products.json",
       "result": "pass",
-      "observed": "Actual product page/package/metadata audit PASS."
-    },
-    {
-      "command": "python3 publish-skill-product/scripts/test_release_tools.py",
-      "result": "pass",
-      "observed": "21 actual offline tests passed; no live playlist operation."
+      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
     }
   ],
-  "unresolved_blockers": [],
-  "decision": "Correct stale regression count and clarify authorized release/dirty-target recovery with a concrete example. Existing publisher code and metadata retained after successful regression tests."
+  "unresolved_blockers": []
 }

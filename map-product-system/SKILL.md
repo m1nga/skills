@@ -1,6 +1,6 @@
 ---
 name: map-product-system
-description: "Map a product’s user journeys, capabilities, data, responsibilities, and missing paths. Use for system structure or architecture changes; scale the map to the requested scope."
+description: "Map a product's user journeys, capabilities, data, responsibilities, and missing paths at the scope requested: one feature, one flow, or the whole system. Use for system structure or architecture changes, before adding a feature that touches several parts, or when the user says 画一下产品结构 / 系统地图 / 用户旅程 / 这个功能缺什么路径 / 谁负责哪块 / 架构怎么改. Output names journeys, capabilities, owners, gaps, and buildable slices. Not for experiencing a product as a new user (product-experience-officer), not for organizing task files (taskdock), not for a repair-or-rebuild verdict (diagnose-project-rebuild), not for runtime automation loops."
 ---
 
 # Map Product System

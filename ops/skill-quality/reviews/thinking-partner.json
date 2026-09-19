@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
   "skill": "thinking-partner",
-  "reviewed_at": "2026-09-06T19:49:46.584628+00:00",
-  "source_sha256": "4a39cf83cfa36bc5f5fe892356655b1703d965c543d8b92eb3f83daf4ae966a5",
+  "reviewed_at": "2026-09-19T04:08:10+00:00",
+  "source_sha256": "cf73922a7c7c37bab2099bc4793420ad77d7077563c4eeba5ecc6b065a8da82a",
   "user_review": {
-    "method": "Maintainer public-entry assessment and explicitly simulated instruction walkthroughs; not independent agent execution, human research or real customer results. Executed regex fixture is identified separately.",
+    "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description rewritten with Chinese phrases and an explicit not-for clause; grilling's interview mode merged in as an on-request section. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
     "scenarios": [
       {
-        "request": "Solo sync maintainer needs no downtime; patch or rewrite? No regression history. Diagnosis only.",
-        "expected": "Constraint-based recommendation with a distinguishing next inspection.",
-        "observed": "After walkthrough gives bounded diagnosis, conditional patch vs rewrite criteria, absent regression evidence, and no edit under diagnosis-only scope.",
+        "request": "帮我想想这个方向值不值得做",
+        "expected": "fires and frames the decision without an interview",
+        "observed": "Description now lists 帮我想想 / 值不值得做; body keeps the execution exclusion.",
         "kind": "simulated",
-        "result": "fixed"
+        "result": "pass"
       },
       {
-        "request": "Patch or rewrite sync module? No constraints supplied.",
-        "expected": "Do not invent solo-maintainer or downtime requirements.",
-        "observed": "Before README treated unstated constraints as given. New fixture includes them in input and explicitly keeps omitted constraints unknown. No conclusion from borrowed context.",
+        "request": "拷问我，开工前把这个方案问透",
+        "expected": "enters interview mode: one question at a time, recommended answer each, locked plan",
+        "observed": "New section covers P1 interview, reframe, plan sections, exit valve and go/checkpoints.",
         "kind": "simulated",
-        "result": "fixed"
+        "result": "pass"
       },
       {
-        "request": "Defect is now isolated; patch it and check it.",
-        "expected": "Continue authorized execution without reopening debate.",
-        "observed": "Walkthrough routes to patch/check work. No autonomous rewrite or additional planning approval; simulated only.",
+        "request": "你看着办，直接做",
+        "expected": "does not fire; executes",
+        "observed": "Delegation phrases are named as non-triggers in the description.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -31,27 +31,19 @@
   },
   "similar_skills": [
     {
-      "url": "https://raw.githubusercontent.com/mattnowdev/thinking-partner/main/skills/thinking-partner/SKILL.md",
-      "checked_at": "2026-09-06T19:44:08.523039+00:00",
-      "learned": "Understand time horizon, constraints and reversible alternatives before selecting a reasoning model.",
+      "url": "https://github.com/m1nga/grilling/blob/main/skills/grilling/SKILL.md",
+      "checked_at": "2026-09-19T04:08:10+00:00",
+      "learned": "Relentless one-question interview with a recommended answer per question, exit valve, and a plan with explicit non-goals and drift triggers.",
       "decision": "adapt",
-      "reason": "Make constraints explicit in the public fixture; do not import fixed model counts or speculative diagnoses of user motivation."
-    },
-    {
-      "url": "https://raw.githubusercontent.com/prrao87/agent-skills/main/skills/brainstorming/SKILL.md",
-      "checked_at": "2026-09-06T19:44:09.471784+00:00",
-      "learned": "Make load-bearing assumptions and branch losses visible while preserving user-owned values.",
-      "decision": "adapt",
-      "reason": "Keep explicit assumption provenance; reject mandatory phase approval for already authorized reversible execution."
+      "reason": "Condensed into thinking-partner so one skill owns judgment and pre-build interrogation; grilling repository archived."
     }
   ],
   "validation": [
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py thinking-partner --product-manifest products.json",
       "result": "pass",
-      "observed": "Executed page and product metadata audit returned VERDICT: PASS."
+      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
     }
   ],
-  "unresolved_blockers": [],
-  "decision": "Changed README fixture to explicit constraint provenance and continuation/recovery. Existing compact body and metadata retained."
+  "unresolved_blockers": []
 }
