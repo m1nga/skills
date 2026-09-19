@@ -1,0 +1,78 @@
+name: Validate TaskDock transaction-note patch
+on:
+  push:
+    branches: [fix/taskdock-transaction-notes-20260919]
+    paths: [.github/workflows/apply-transaction-notes-once.yml]
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: fix/taskdock-transaction-notes-20260919
+          fetch-depth: 0
+      - name: Apply only hash-verified source changes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, lzma
+          from pathlib import Path
+          import subprocess
+          expected_before = 'c9d37825fdc28694b0d499c6b7f0107f621709814d3a06f61984589c4096663d'
+          fingerprint = subprocess.check_output(['python3', 'publish-skill-product/scripts/review_gate.py', '.', 'taskdock', '--fingerprint'], text=True).strip()
+          assert fingerprint == expected_before, 'TaskDock source drift; do not overwrite'
+          raw = lzma.decompress(base64.b64decode(Path('.audit/transaction-notes-delta.b64').read_text().strip(), validate=True))
+          assert hashlib.sha256(raw).hexdigest() == '0e11b1fc382abe1e8b3e4346101df5b2e54ef76902f9b42f6e181b801ad5d9a1', 'Delta transport checksum mismatch'
+          pending = []
+          for e in json.loads(raw):
+              p = Path(e['path'])
+              assert not p.is_absolute() and '..' not in p.parts and '.git' not in p.parts and '.github' not in p.parts
+              assert p.parts[0] == 'taskdock' or str(p) in ['ops/skill-quality/reviews/taskdock.json', 'docs/handoff/LIVE-PILOT-FOLLOWUP-2026-09-19.md']
+              assert not p.is_symlink()
+              before = p.read_bytes() if p.exists() else None
+              if 'before_git_blob' in e:
+                  blob = hashlib.sha1(b'blob ' + str(len(before)).encode() + b'\0' + before).hexdigest() if before is not None else None
+                  assert blob == e['before_git_blob'], 'Source drift: ' + str(p)
+              else:
+                  assert (hashlib.sha256(before).hexdigest() if before is not None else None) == e['before'], 'Source drift: ' + str(p)
+              if 'text' in e:
+                  data = e['text'].encode('utf-8')
+              else:
+                  lines = (before or b'').decode('utf-8').splitlines(True)
+                  for start, end, replacement in reversed(e['edits']):
+                      lines[start:end] = [replacement]
+                  data = ''.join(lines).encode('utf-8')
+              assert hashlib.sha256(data).hexdigest() == e['after'], 'Result checksum mismatch: ' + str(p)
+              pending.append((p, data))
+          for p, data in pending:
+              p.parent.mkdir(parents=True, exist_ok=True)
+              p.write_bytes(data)
+          Path('.audit/transaction-notes-delta.b64').unlink()
+          print('Applied exactly', len(pending), 'verified files; no workflow changes')
+          PY
+      - name: Accept code and release evidence before committing
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/transaction-notes-evidence
+          git add -A
+          python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v 2>&1 | tee /tmp/transaction-notes-evidence/tests.log
+          python3 -m unittest discover -s publish-skill-product/scripts -p 'test_*.py' -v 2>&1 | tee /tmp/transaction-notes-evidence/publisher-tests.log
+          python3 -m unittest discover -s tests -p 'test_*.py' -v 2>&1 | tee /tmp/transaction-notes-evidence/integration-tests.log
+          scripts/verify-products 2>&1 | tee /tmp/transaction-notes-evidence/product-gates.log
+          for domain in design release research; do
+            python3 taskdock/scripts/demo.py --domain "$domain" --output "/tmp/notes-demo-$domain" > "/tmp/transaction-notes-evidence/demo-$domain.json"
+          done
+          git diff --cached --check
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Keep organization notes in the recovery unit and explicitly select copied-task recovery'
+          git push origin HEAD:fix/taskdock-transaction-notes-20260919
+          git rev-parse HEAD > /tmp/transaction-notes-evidence/commit.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: transaction-notes-acceptance
+          path: /tmp/transaction-notes-evidence/
+          retention-days: 7
