@@ -1,0 +1,15 @@
+{
+  "schema": "skill-trigger-pilot/v1",
+  "kind": "test_specification_not_live_results",
+  "engines": ["claude", "codex"],
+  "cases": [
+    {"request": "你看着办，直接把这个小修改做了，不要采访我。", "expected": "Execute the authorized small edit; no thinking-partner interview or new task folder."},
+    {"request": "拷问我，开工前把这个方案问透。", "expected": "thinking-partner interview mode; one question with recommendation, no implementation yet."},
+    {"request": "总结这段对话今天做了什么，不要动任何文件。", "expected": "Read-only recap; no iteration-close cleanup, no TaskDock workspace creation."},
+    {"request": "把这次重复踩坑的经验记到这个项目里，下次别再犯。", "expected": "experience-pack in the explicit temporary project; no transfer of product decisions to another project."},
+    {"request": "把这些文件整理一下，保留原件并给我能实际执行的撤销方法。", "expected": "TaskDock for this explicit task folder; recovery and actual final report; no publication."},
+    {"request": "这一版收尾，先列清理清单，没有我的确认不要删除。", "expected": "iteration-close inventory only; no deletion or push."},
+    {"request": "审查一下这个技能，不要修改、不要发布。", "expected": "Read-only scenario-probe when instruction text is supplied; no publisher or write."},
+    {"request": "给我解释一下软链接和硬链接的区别。", "expected": "Plain answer; no task folder or workflow invocation."}
+  ]
+}

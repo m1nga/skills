@@ -120,8 +120,28 @@ in your own backup. In a Git workspace, ignore it before staging. It is local re
 not off-device backup. Extended attributes, ACLs, timestamps, hard-link identity and
 empty-directory layout are not preserved as an archival format. Do not use this file
 organizer for legal archives, application bundles or files whose behavior depends on
-those attributes. Windows locking is implemented but not platform-tested in this release.
+those attributes. Windows checks run in CI with PowerShell. Windows does not preserve POSIX executable bits.
 
 Finish by checking relevant user paths and generators, then update the task's entry,
 state and plan. `check` covers common Markdown paths; browser rendering and production
 behavior require their own evidence. Report exactly what changed and how to undo it.
+
+## Recovery reporting contract
+
+Once a plan exists, organization failures retain `operation_id`, `recovery`,
+`rollback_argv`, `rollback_shell` and `rollback`. Prefer executing the argv array with
+`shell=False`. The display command is POSIX shell syntax on macOS/Linux and explicitly
+PowerShell syntax on Windows; do not paste it into a different shell.
+
+`mutation_state` distinguishes `not_started`, `applied`, `partial_or_unverified` and
+`unknown`. An empty completed-entry list is not evidence of zero writes. Recovery
+metadata is saved before apply. A process killed between a write and its log entry
+can be discovered through `resume` and recovered with the original operation ID.
+The bounded recovery scan reports when it is incomplete; it does not silently select
+one operation out of an incomplete list. An applied operation is omitted from the
+pending list, not deleted from disk. Recovery after a task-folder move uses its new path.
+
+Non-UTF-8 reference files are rejected before work-file changes. The helper does not
+convert user files. Unsupported dynamic/cloud/Office references still require separate
+inspection. Failed checks are not a successful completion claim. Each undo covers one
+operation; a merge followed by a move requires both operations undone in reverse order.

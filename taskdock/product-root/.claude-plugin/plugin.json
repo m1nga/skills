@@ -1,6 +1,6 @@
 {
   "name": "taskdock",
-  "version": "2026.9.19",
+  "version": "2026.9.20",
   "description": "Keep agent tasks ready to resume: one portable task folder with a stable identity, current state, decisions and next action, findable after a move and reorganizable with a reversible plan.",
   "author": {
     "name": "Ming",

@@ -27,3 +27,12 @@ claude plugin eval . --scaffold --allow-tools Bash Write Edit --runs 3 --no-publ
 Results land in `evals/results/` (ignored by git). Report the run's numbers and
 model in the README when they are published; a passing suite here is a maintainer
 check, not a user study.
+
+## What these scores do not establish
+
+The resume fixture gives both conditions an already-maintained task folder. A zero
+score difference does not show that producing those records was valueless. The final
+response rubric and undo-word regex do not execute recovery; filesystem tests and the
+independent two-stage pilot have different jobs. See [the continuity pilot](continuity/README.md).
+Do not infer lower mean or tail cost from the earlier overlapping turn ranges. Live
+continuity and cross-host routing trials have not been run for the recovery patch.

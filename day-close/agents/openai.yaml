@@ -1,4 +1,0 @@
-interface:
-  display_name: "今日收笔"
-  short_description: "睡前整理今天或本周的进展、未完事项与待想问题，留一页适合手写的记录"
-  default_prompt: "用 $day-close 整理今天，给我一份适合手写、写完就可以收尾的记录。"

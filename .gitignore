@@ -7,3 +7,6 @@ user-context.md
 .agents/
 .claude/
 skills-lock.json
+
+# Local-only personal skill; intentionally not a public product.
+/day-close/

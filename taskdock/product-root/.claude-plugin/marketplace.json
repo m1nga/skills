@@ -10,10 +10,15 @@
       "name": "taskdock",
       "source": "./",
       "description": "Keep agent tasks ready to resume: one portable task folder with a stable identity, current state, decisions and next action, findable after a move and reorganizable with a reversible plan.",
-      "version": "2026.9.19",
+      "version": "2026.9.20",
       "category": "productivity",
       "homepage": "https://github.com/m1nga/taskdock",
-      "keywords": ["task-management", "handoff", "context-management", "file-organization"]
+      "keywords": [
+        "task-management",
+        "handoff",
+        "context-management",
+        "file-organization"
+      ]
     }
   ]
 }
