@@ -1,73 +1,58 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-09-19T06:50:25+00:00",
-  "source_sha256": "c9d37825fdc28694b0d499c6b7f0107f621709814d3a06f61984589c4096663d",
+  "reviewed_at": "2026-09-19T08:02:21+00:00",
+  "source_sha256": "a7b0e960c34780ebd948751089adff2b44b56b4dbb66f916fceab4e722d593a6",
   "user_review": {
-    "method": "Executed isolated deterministic acceptance on Linux/Python 3.13.5, including the original 37 tests, four retained audit assertions and new fault/shell tests. No live model eval, authenticated host session, independent sub-agent or user-machine installation test was performed in this environment.",
+    "method": "Follow-up to the executed Claude pilot (PR #2). Reproduced the missing transaction-note/copy-recovery contracts on verified 2026.9.20 source, then ran 63 deterministic tests on Linux/Python 3.13.5 (one Windows-only skip). This is code acceptance, not a new live-model, macOS-local or independent-subagent run. Trigger description is unchanged.",
     "scenarios": [
       {
-        "request": "Organize with a non-UTF-8 reference file.",
-        "expected": "Refuse before changing work files or retain actionable recovery after any mutation.",
-        "observed": "Preflight rejects the unreadable reference; original files unchanged. Retained audit assertion passed.",
+        "request": "Organize an asset and update the actual task notes, then undo the whole operation.",
+        "expected": "Preview does not write; the committed notes and moves restore together, including modes. Later independent edits still block rollback.",
+        "observed": "New notes use complete text plus expected_sha256. Integrated-note, stale-input, interruption and newer-edit assertions pass; no guard exclusions.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Interrupt after destination write but before the completed journal entry.",
-        "expected": "Keep operation identity and recovery; never claim no change from an empty journal.",
-        "observed": "Fault injection left a destination file and an empty completed list; response retained recovery and partial_or_unverified; rollback restored input.",
+        "request": "Generate a recovery command for a disposable copy without writing to the original.",
+        "expected": "Explicitly selected copy identity and blobs validate, command generation is read-only, and rollback changes only the copy.",
+        "observed": "New recovery command passed copy isolation and wrong-task/corrupt-blob rejection assertions. The original snapshot remained unchanged.",
         "kind": "executed",
         "result": "fixed"
-      },
-      {
-        "request": "Run displayed undo commands for literal dollar signs, quotes, spaces and Chinese paths.",
-        "expected": "Use the current interpreter and literal argv, with shell-specific rendering.",
-        "observed": "POSIX shell commands executed and restored original files. Windows-specific test is collected separately in CI; no Windows result is inferred from POSIX.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Resume a moved folder containing an incomplete operation.",
-        "expected": "Find recovery read-only and use the new path.",
-        "observed": "Returned operation ID and updated rollback argv, with identical bytes before/after resume; completed preimages were not rehashed.",
-        "kind": "executed",
-        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
-      "checked_at": "2026-09-19T06:50:25+00:00",
-      "learned": "Selected task state and bounded recovery; static files are not proof of external state. Rechecked blob e13bd532ef7d6407f55b1ac34d8334c99cef4ee1.",
+      "url": "https://github.com/cskwork/skill-curator/blob/main/skills/skill-curator/SKILL.md",
+      "checked_at": "2026-09-19",
+      "learned": "Separate exact snapshots and explicit application from semantic judgment; preserve package/work changes rather than bypassing protection.",
       "decision": "adapt",
-      "reason": "Retain task-local recovery discovery without host hooks or session-store reads."
+      "reason": "Reuse the same-day reviewed comparison (blob 836499a56bf7622b58f7d6636e06617f3b34b5d6). This follow-up keeps all conflict guards and adds only explicitly hashed notes to one operation."
     },
     {
-      "url": "https://github.com/cskwork/skill-curator/blob/main/skills/skill-curator/SKILL.md",
-      "checked_at": "2026-09-19T06:50:25+00:00",
-      "learned": "Explicit mutations and restorable snapshots; distinguish filesystem facts from judgments. Rechecked blob 836499a56bf7622b58f7d6636e06617f3b34b5d6.",
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-09-19",
+      "learned": "Resume one explicitly selected persisted task; reconcile work rather than guessing which path is authoritative.",
       "decision": "adapt",
-      "reason": "Keep existing transaction engine and conflict refusal; only improve reports, path handling and recovery discovery."
+      "reason": "Reuse the same-day reviewed comparison (blob e13bd532ef7d6407f55b1ac34d8334c99cef4ee1). Copy recovery validates the selected task and does not silently redirect an old command."
     }
   ],
   "validation": [
     {
       "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v",
       "result": "pass",
-      "observed": "52 tests collected; Linux run passed with the Windows-only PowerShell execution case skipped. Original 37 retained, with POSIX-mode assertion platform-labelled."
+      "observed": "Ran 63 tests; OK (skipped=1). All existing applicable tests and 11 new note/selected-copy cases pass on Linux. Skips are not additional passes."
     },
     {
-      "command": "python3 taskdock/scripts/demo.py --output <fresh-folder> [plus --domain release / research]",
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py taskdock --product-manifest products.json",
       "result": "pass",
-      "observed": "All three isolated demo contexts executed apply and byte-restoring rollback."
+      "observed": "VERDICT: PASS against the candidate documentation and unchanged product metadata."
     }
   ],
   "unresolved_blockers": [],
-  "not_claimed": [
-    "Live continuity effectiveness and cross-host automatic routing are NOT RUN. See ops/skill-quality/live-pilot/README.md.",
-    "User Mac installations and credentials were not accessed.",
-    "No independent sub-agent runtime available; deterministic tests are not multiple-agent consensus."
+  "limitations": [
+    "No new authenticated model pilot or automatic routing result. The reported canonical routing miss remains unverified in this environment.",
+    "The new notes contract covers updates specified before apply; arbitrary subsequent edits remain conflicts. Old receipts cannot silently absorb new work."
   ]
 }

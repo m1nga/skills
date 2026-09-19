@@ -1,5 +1,19 @@
 # Changes
 
+## 2026-09-19 — Transaction notes and selected-path recovery (plugin 2026.9.21)
+
+- Optional `notes` in the organization spec journals this operation's control-file
+  updates with its moves. Each update requires the hash of the content actually read.
+- Keep all existing read/write conflict guards, including control notes. Genuine later
+  edits still prevent destructive exact rollback. Old receipts are not rewritten.
+- Add read-only `recovery --path SELECTED_COPY --operation ID` to validate identity and
+  preimages and regenerate shell-free arguments for an explicitly selected location.
+- Add 11 deterministic regressions for integrated notes, stale-input rejection,
+  post-write interruption, guarded newer work, and copy recovery leaving the original
+  untouched. Existing 52 tests remain. No fresh live-model result is claimed.
+- Separate immutable source evidence from working link repairs in the prospective
+  continuity rubric; do not retroactively rescore the original pilot.
+
 ## 2026-09-19 — Recovery patch (plugin version 2026.9.20)
 
 - Keep operation ID, recovery location, shell-free rollback arguments and an explicitly

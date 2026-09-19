@@ -109,6 +109,7 @@ python3 scripts/taskdock.py plan --path /path/to/task --spec moves.json
 python3 scripts/taskdock.py organize --path /path/to/task --spec moves.json   # plan + apply + check + report
 python3 scripts/taskdock.py apply --path /path/to/task --operation RETURNED_ID
 python3 scripts/taskdock.py rollback --path /path/to/task --operation RETURNED_ID
+python3 scripts/taskdock.py recovery --path /path/to/copied-task --operation RETURNED_ID
 ```
 
 The [organization guide](https://github.com/m1nga/taskdock/blob/main/skills/taskdock/references/organize.md)
@@ -120,6 +121,10 @@ work-file changes. Do not automatically retry or roll back over someone else's n
 
 Planning saves its receipt and preimages under the task's private `.taskdock/` folder;
 work files change only during apply. Keep this recovery folder in your private backup.
+Include organization-related task notes in the same optional `notes` spec, so they undo
+with the move rather than immediately conflicting with it. For a moved or copied task,
+`recovery` generates checked arguments for that explicitly selected location; never
+assume the original absolute-path command now targets the copy.
 
 ## Why it exists
 
@@ -150,7 +155,7 @@ has to understand the work; the scripts cannot approve a design or prove a deplo
 
 ## Validation
 
-52 executable tests (including platform-specific cases) cover task identity, bounded recovery, reference repairs, identical
+63 executable tests (including platform-specific cases) cover task identity, bounded recovery, reference repairs, identical
 copy consolidation, retained runtime copies, changed sources, occupied destinations,
 symlinks, partial operations, interrupted rollback, byte restoration and file mode bits.
 The three demo contexts also execute apply and rollback. These are maintainer-run
@@ -203,3 +208,19 @@ installing the update does not automatically reorganize old projects.
 ## Author
 
 Built by [Ming](https://github.com/m1nga). MIT licensed.
+
+## September 19 follow-up: use selectively
+
+A separate one-trial, three-condition Claude pilot found no continuation advantage on
+its fixture: plain/short-agreement/TaskDock used 15/33/58 turns. Those are one observed
+set, not general speed claims. The same report found TaskDock's conflict refusal safer
+than the plain arm's unconditional undo, but its own follow-up note writes prevented
+normal rollback. This release adds transaction-bound notes and explicit recovery-path
+selection without weakening conflict guards. The prior trace is not a test of this fix.
+
+The detailed maintainer report and its scoring limitations are in the source registry
+under `ops/skill-quality/live-pilot/RESULTS-2026-09-19.md`; the follow-up review separates
+incomplete trigger evidence from passes. No new authenticated Claude/Codex outcome or
+routing result is claimed for this patch. Existing useful task notes are often enough;
+use the organizer for a concrete need for previewed, conflict-checked recovery, not
+merely because a task takes more than one chat.

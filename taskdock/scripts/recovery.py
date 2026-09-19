@@ -39,6 +39,20 @@ def recovery_info(root, identity, script):
                              'Rollback refuses conflicting newer work; it is not an off-device backup.'}
 
 
+
+def selected_recovery(root, task_id, identity, script):
+    """Rebind a receipt to an explicitly selected moved/copied task, with no writes.
+
+    A printed command targets one task location; never silently substitute a copy.
+    Validate identity and recovery bytes before emitting arguments for the new path.
+    Actual rollback still rechecks current files and refuses newer conflicting work.
+    """
+    _, _, journal = ops.load_operation(root, task_id, identity)
+    return {**recovery_info(root, identity, script), 'status': 'recovery_ready',
+            'task_id': task_id, 'journal_status': journal['status'],
+            'note': 'Read-only command generation for this selected path, not a completed rollback or conflict clearance.'}
+
+
 def operation_state(root, task_id, identity):
     """Read the journal, never infer zero writes from an empty completed list."""
     try:
@@ -126,9 +140,11 @@ def organize_task(root, task_id, spec, checker, script):
     report += ['Merged into %s (identical copy %s removed; its bytes are kept for rollback)' %
                (op['to'], op['from']) for op in merged]
     report.append('Links repaired: ' + (', '.join(planned['link_repaired']) or 'none needed'))
+    report.append('Task notes in this operation: ' + (', '.join(planned.get('notes_updated', [])) or 'none'))
     report.append('Structure check: ' + structure['status'])
     report.append('Undo everything in this operation: ' + recovery['rollback'])
     return {**recovery, 'status': 'organized' if structure['status'] == 'pass' else 'organized_check_failed',
             'stage': 'complete' if structure['status'] == 'pass' else 'check', 'mutation_state': 'applied',
             'moved': moved, 'merged': merged, 'link_repaired': planned['link_repaired'],
+            'notes_updated': planned.get('notes_updated', []),
             'check': structure, 'coverage': planned['coverage'], 'report': report}
