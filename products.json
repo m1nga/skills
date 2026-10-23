@@ -195,6 +195,20 @@
         "investment-research",
         "codex"
       ]
+    },
+    {
+      "name": "build-in-public-content",
+      "title": "Build Progress Posts — Turn Verified Changes into Clear Public Updates",
+      "description": "Turn verified project changes, decisions, and setbacks into build-in-public posts with brand-aware visuals, honest demo plans, and traceable publication state.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "build-in-public",
+        "content-design",
+        "progress-updates",
+        "technical-writing",
+        "codex"
+      ]
     }
   ]
 }
