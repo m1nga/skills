@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "distribution": "podcast-revival",
+  "wheel_filename": "podcast_revival-0.2.0-py3-none-any.whl",
+  "sha256": "9eee8ffc328497dbe3d3faedd7f5072b7fef3509d70c91f73b4dd18b4847bbe7",
+  "version": "0.2.0",
+  "release_status": "bound"
+}
