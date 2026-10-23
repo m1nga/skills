@@ -28,7 +28,7 @@ python3 <skill-directory>/scripts/bootstrap.py --project <directory> -- serve --
 
 The first use creates `<directory>/.podcast-revival/runtime-<wheel-hash>`, verifies the wheel hash and installs its pinned dependencies. Internet access may be needed for those packages. Later runs reuse the verified environment. `--install-only` stops after installation. A developer may use `--no-deps` only for an isolated package/CLI test; that is not a full media setup.
 
-Use the installed CLI's actual commands. The adapter contract includes `brief`, `produce`, `plan`, `ingest`, `draft`, `review`, `preflight`, `render`, `resume`, `reconcile`, `report` and `serve`. Read [production.md](production.md) for the new single-language audio/avatar route. `draft` exports prompts; it does not itself run a model to write the finished episode. The host must perform the requested analysis, research, writing and independent review. `resume` reconciles existing requests without creating fresh generation; `reconcile` reads actual bills.
+Use the installed CLI's actual commands. The adapter contract includes `brief`, `produce`, `plan`, `ingest`, `draft`, `review`, `preflight`, `render`, `resume`, `reconcile`, `report` and `serve`. Read [production.md](production.md) for the new single-language audio/avatar/source-video route. `draft` exports prompts; it does not itself run a model to write the finished episode. The host must perform the requested analysis, research, writing and independent review. `resume` reconciles existing requests without creating fresh generation; `reconcile` reads actual bills.
 
 Video-source restoration requires source timestamps, confirmed speakers, independently held-out calibration quotes and permitted portrait/voice references. For text-only/stock-speaker work, the host prepares the reviewed script and uses `produce`; do not manufacture a source video to make the restoration path accept it.
 
@@ -38,4 +38,4 @@ A field described as a URL does not necessarily accept an inline data URI. In pa
 
 ## Wheel binding for release
 
-Release 0.2.0 binds the product wheel to its exact filename/version/SHA-256 in `assets/runtime.json`. Any later release must replace that binding, install the exact wheel into a fresh isolated environment, and rerun normal/failure checks. An absent or altered wheel blocks bootstrap and public release; never substitute a developer checkout or an unverified download.
+Release 0.3.0 binds the product wheel to its exact filename/version/SHA-256 in `assets/runtime.json`. Any later release must replace that binding, install the exact wheel into a fresh isolated environment, and rerun normal/failure checks. An absent or altered wheel blocks bootstrap and public release; never substitute a developer checkout or an unverified download.

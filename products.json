@@ -199,7 +199,7 @@
     {
       "name": "podcast-revival",
       "title": "Podcast Video Maker — Turn Source Material into a Directed Conversation",
-      "description": "Turn video, text, and mixed source material into directed podcast scripts and voiced videos with a local agent, recoverable media jobs, and explicit spending limits.",
+      "description": "Turn video, text or notes into a directed podcast conversation, with budgeted voice generation and lower-cost source-video lip sync.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
