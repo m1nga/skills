@@ -224,6 +224,32 @@
         "technical-writing",
         "codex"
       ]
+    },
+    {
+      "name": "major-tom",
+      "title": "Task Execution Coordinator — Turn Intent into Verified Outcomes",
+      "description": "Translate human intent into scoped work for existing owners, select relevant capabilities and evidence, and verify outcomes without adding a second task queue.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "task-coordination",
+        "workflow",
+        "codex",
+        "outcome-verification"
+      ]
+    },
+    {
+      "name": "work-memory",
+      "title": "Work Memory — Recover Current Context and Learn from Outcomes",
+      "description": "Recall sourced project decisions, inspect exact evidence, preserve exploratory ideas, and test reusable lessons without mixing project facts or copying entire histories.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "project-memory",
+        "knowledge-management",
+        "codex",
+        "evidence"
+      ]
     }
   ]
 }

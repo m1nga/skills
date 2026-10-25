@@ -4,7 +4,7 @@
 [![skills.sh](https://skills.sh/b/m1nga/skills)](https://skills.sh/m1nga/skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-13 installable agent skills for turning ambiguous work into concrete, checkable results: keep a
+Installable agent skills for turning ambiguous work into concrete, checkable results: keep a
 task resumable across sessions and agents, map a product, decide with real alternatives, recover a
 confused project, stress-test AI instructions, close an iteration, or make a playlist that imports.
 
@@ -76,6 +76,8 @@ to find the full catalog again.
 
 | You need to… | Use | You get |
 |---|---|---|
+| carry an instruction through existing owners to a verified result | [Task Execution Coordinator](https://github.com/m1nga/major-tom) | scoped work, selected evidence and verified outcomes |
+| recover current decisions and learn from observed outcomes | [Work Memory](https://github.com/m1nga/work-memory) | bounded project context, exact evidence and a selective learning trail |
 | keep a task resumable across sessions, agents and machines | [TaskDock](https://github.com/m1nga/taskdock) | one portable task folder with identity, state, plan, and reversible organization |
 | close a milestone cleanly | [Iteration Cleanup & Handoff](https://github.com/m1nga/iteration-close) | preserved decisions, safe cleanup, and a tested takeover |
 | retain reusable lessons without stale decisions | [Project Lessons Log](https://github.com/m1nga/experience-pack) | a project ledger plus portable lessons |

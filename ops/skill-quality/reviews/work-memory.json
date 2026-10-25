@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "skill": "work-memory",
+  "reviewed_at": "2026-10-26",
+  "source_sha256": "1cafe23ff59639969ecc3b28f569694cfa4be0519a69c2ebcacc84fe34cf67e1",
+  "user_review": {
+    "method": "Author-performed isolated script execution and static scenario-probe walkthrough. The author had read the body; trigger predictions are not blind, independent or actual host selection. No external business action or model delegate was used.",
+    "scenarios": [
+      {
+        "request": "We changed the page choice; next time use the new one.",
+        "expected": "Current revision changes immediately, old remains audit-only.",
+        "observed": "test_direct_correction_is_immediate_not_trial executed and confirmed revision 2 with no promotion step.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Uh, what did we pick for that page—also show the other idea.",
+        "expected": "Keep current choice and exploratory candidate separate.",
+        "observed": "test_execute_and_explore_keep_baseline_separate executed; current choice stays visible, idea appears only as option.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "What is two plus two?",
+        "expected": "No memory initialization or checkpoint ceremony.",
+        "observed": "Metadata/body walkthrough predicts no substantive-work trigger; author simulation, not fresh-host selection.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Continue an existing TaskDock project.",
+        "expected": "Reuse identity and state, index only meaningful changes.",
+        "observed": "Existing engine tests plus context project-identity CLI checks pass; simulated sibling ownership preserves authoritative STATE/PLAN.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "The source file changed, but the old summary matches the question.",
+        "expected": "Exclude stale guidance, allow labeled evidence audit.",
+        "observed": "test_changed_source_is_excluded_but_snapshot_readable executed; saved original excerpt remains accessible and ineligible.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "The previous method made results worse.",
+        "expected": "Show a relevant caution; never restore as active guidance.",
+        "observed": "test_harmful_lesson_is_caution_not_current executed with trial/use/harmful observe; caution is DO_NOT_REAPPLY.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Read an unknown project on a bare machine.",
+        "expected": "Report missing store without creating it or mixing roots.",
+        "observed": "Missing-store and cross-project tests executed; unrelated-directory CLI works without Major Tom.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "A stranger wants source details without exporting all memory.",
+        "expected": "Page exact evidence with checksum and clear freshness.",
+        "observed": "Evidence paging, bounded result and read-only database tests executed. Text-source live freshness remains explicitly unchecked.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Promote a promising idea without an available independent reviewer.",
+        "expected": "Keep candidate pending and continue ordinary work.",
+        "observed": "Author simulation of learning entry: direct decisions unaffected; independent gate preserved, no extra reviewer created.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md",
+      "checked_at": "2026-10-26",
+      "learned": "Metadata discovery and progressive loading keep narrow helpers independent.",
+      "decision": "adapt",
+      "reason": "Use explicit root metadata discovery and conditional references; do not copy generic mandatory sequences."
+    },
+    {
+      "url": "https://github.com/anthropics/knowledge-work-plugins/blob/main/productivity/skills/memory-management/SKILL.md",
+      "checked_at": "2026-10-26",
+      "learned": "Short entry context with deeper evidence lookup and aliases.",
+      "decision": "adapt",
+      "reason": "Use bounded project recall and source paging, not a global people/personality cache or transcript scan. Reading source did not invoke Claude."
+    },
+    {
+      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/main/README.md",
+      "checked_at": "2026-10-26",
+      "learned": "Layered memory separates compact context from detailed provenance.",
+      "decision": "adapt",
+      "reason": "Implement read-only task briefs and evidence pages using the existing store; reject new service, profile inference and transferred benchmark claims."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -B -m unittest discover -s work-memory/scripts -p test_*.py",
+      "result": "pass",
+      "observed": "73 isolated tests passed."
+    },
+    {
+      "command": "python3 <installed-skill-creator>/scripts/quick_validate.py work-memory",
+      "result": "pass",
+      "observed": "Skill is valid!"
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py work-memory --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS"
+    }
+  ],
+  "unresolved_blockers": [],
+  "limitations": [
+    "No longitudinal user outcome or token-saving claim.",
+    "Host integration and automatic selection require their own live evidence."
+  ],
+  "recovered_source": {
+    "repository": "https://github.com/m1nga/skill-builder",
+    "commit": "8926217d18fb4a3ef19dcee770d283210e942064",
+    "path": "skills/work-memory"
+  }
+}
