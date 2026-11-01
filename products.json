@@ -4,7 +4,7 @@
     {
       "name": "design-agent",
       "title": "Design Agent — Turn Visual References into Usable Interfaces",
-      "description": "Turn visual references and feedback into brand direction, focused design revisions, and verified web interfaces without carrying old project choices into new briefs.",
+      "description": "Turn visual references into focused interface changes, actionable implementation briefs and verified builds within the current project scope.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -99,7 +99,7 @@
     {
       "name": "product-experience-officer",
       "title": "First-Time User Tester — See Where Your Product Confuses New Users",
-      "description": "First-time user tester that experiences your product with no prior context and returns a severity-ranked report showing what confuses users and what to fix.",
+      "description": "Walk through a product as a first-time user and produce an evidence-led HTML report with task outcomes, prioritized fixes and concrete retests.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -171,7 +171,7 @@
     {
       "name": "taskdock",
       "title": "TaskDock — Keep Agent Work Ready to Continue",
-      "description": "Keep agent tasks ready to resume: find current deliverables, preserve decisions and history, and organize local files with link repair and reversible changes.",
+      "description": "Keep agent work ready to continue: portable task identity, safe file organization, bounded resume and a readable private handoff page.",
       "topics": [
         "agent-skill",
         "task-management",
@@ -227,7 +227,7 @@
     {
       "name": "work-memory",
       "title": "Work Memory — Recover Current Context and Learn from Outcomes",
-      "description": "Recall sourced project decisions, inspect exact evidence, preserve exploratory ideas, and test reusable lessons without mixing project facts or copying entire histories.",
+      "description": "Recover current project decisions with sourced recall, outcome-tested lessons and read-only readiness reports that expose stale evidence and missing checkpoints.",
       "topics": [
         "m1nga-skill",
         "agent-skill",

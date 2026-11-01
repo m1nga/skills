@@ -88,3 +88,8 @@ Leave a small handoff: what to open, what changed, what was checked, what remain
 simulated or blocked, and the next decision. Save useful feedback with its source,
 scope and date outside the installed skill. Never turn project-specific tastes,
 tutorial settings or an earlier assistant claim into universal design rules.
+
+
+## Give the builder an actionable brief
+
+When references need to become an implementation handoff, use [actionable-brief.md](references/actionable-brief.md). Capture what was actually seen, the relationship worth transferring, the smallest buildable task and observable acceptance checks. A reference list alone is not a method. A named external skill requires inspecting its current setup and dependencies; do not install a catalog or assume a source was visually inspected. The optional `scripts/brief.py` renderer makes one portable page from that recorded evidence. It performs no inspection, execution or approval itself. For a simple edit, keep the handoff in the existing task instead of generating another report.

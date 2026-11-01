@@ -1,58 +1,58 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-09-19T08:09:32+00:00",
-  "source_sha256": "f720a9301628113532facd41a02838e33ffa2ed1e02162bb91f89a3e8a601d3a",
+  "reviewed_at": "2026-11-01T13:55:36.220420+00:00",
+  "source_sha256": "ca58172a2436afa9f761ec67fe1d926b6ff89712c99a6e4c881da960e2ff6041",
   "user_review": {
-    "method": "Follow-up to the executed Claude pilot (PR #2). Reproduced the missing transaction-note/copy-recovery contracts on verified 2026.9.20 source, then ran 63 deterministic tests on Linux/Python 3.13.5 (one Windows-only skip). This is code acceptance, not a new live-model, macOS-local or independent-subagent run. Trigger description is unchanged. Final CI exposed a test-only temporary-path alias mismatch on macOS and Windows; canonicalized both paths and added an assertion that the injected fault fires. Linux 63-test rerun passed; final cross-platform CI is a separate merge gate.",
+    "method": "Author context-aware CLI execution, deterministic failure/recovery tests, and explicitly labeled instruction simulations. No independent agent or human usability study.",
     "scenarios": [
       {
-        "request": "Organize an asset and update the actual task notes, then undo the whole operation.",
-        "expected": "Preview does not write; the committed notes and moves restore together, including modes. Later independent edits still block rollback.",
-        "observed": "New notes use complete text plus expected_sha256. Integrated-note, stale-input, interruption and newer-edit assertions pass; no guard exclusions.",
+        "request": "Create a readable handoff for an existing task from another working directory.",
+        "expected": "Correct task identity, bounded notes, usable continuation instruction, no task mutation.",
+        "observed": "Executed handoff on the current private TaskDock and test fixture. The first run exposed a truthy recovery-summary dictionary bug; fixed to inspect operations, warnings and completeness. Verified current task returns ok true and pending_recovery false.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Generate a recovery command for a disposable copy without writing to the original.",
-        "expected": "Explicitly selected copy identity and blobs validate, command generation is read-only, and rollback changes only the copy.",
-        "observed": "New recovery command passed copy isolation and wrong-task/corrupt-blob rejection assertions. The original snapshot remained unchanged.",
+        "request": "Export very long notes containing HTML; repeat with an existing destination or a missing task.",
+        "expected": "Escape text, mark truncation, preserve existing report and do not initialize a missing task.",
+        "observed": "test_handoff exercises bounded state, escaping, output refusal and absent-task behavior; source STATE bytes stayed unchanged.",
         "kind": "executed",
-        "result": "fixed"
+        "result": "pass"
+      },
+      {
+        "request": "A report exists: can the next agent assume external deployment is finished?",
+        "expected": "No; read relevant current evidence and pending recovery before consequential work.",
+        "observed": "Instruction walkthrough: the page and SKILL distinguish local recorded context from current runtime, authorization and independent takeover evidence. This was a simulation, not a fresh independent agent.",
+        "kind": "simulated",
+        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/cskwork/skill-curator/blob/main/skills/skill-curator/SKILL.md",
-      "checked_at": "2026-09-19",
-      "learned": "Separate exact snapshots and explicit application from semantic judgment; preserve package/work changes rather than bypassing protection.",
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-11-01T13:55:36.220420+00:00",
+      "learned": "Keep a goal, current step and evidence visible at resume; use a single selected task identity.",
       "decision": "adapt",
-      "reason": "Reuse the same-day reviewed comparison (blob 836499a56bf7622b58f7d6636e06617f3b34b5d6). This follow-up keeps all conflict guards and adds only explicitly hashed notes to one operation."
+      "reason": "Adopt the clear restart surface in a readable handoff. Keep existing TASK/STATE/PLAN and reversible operations; do not add lifecycle hooks, transcript replay or a fixed two-action logging rule.",
+      "repository_stars_at_check": 27804
     },
     {
-      "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
-      "checked_at": "2026-09-19",
-      "learned": "Resume one explicitly selected persisted task; reconcile work rather than guessing which path is authoritative.",
+      "url": "https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/writing-plans/SKILL.md",
+      "checked_at": "2026-11-01T13:55:36.220420+00:00",
+      "learned": "Plans name concrete files, operations and verification, with an explicit execution handoff.",
       "decision": "adapt",
-      "reason": "Reuse the same-day reviewed comparison (blob e13bd532ef7d6407f55b1ac34d8334c99cef4ee1). Copy recovery validates the selected task and does not silently redirect an old command."
+      "reason": "Provide a next-session instruction tied to the existing task. Do not impose worktrees, task granularity or subagent execution on every user.",
+      "repository_stars_at_check": 310381
     }
   ],
   "validation": [
     {
-      "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v",
+      "command": "cd taskdock && python3 -m unittest discover -s scripts -p test_*.py",
       "result": "pass",
-      "observed": "Ran 63 tests; OK (skipped=1). All existing applicable tests and 11 new note/selected-copy cases pass on Linux. Skips are not additional passes."
-    },
-    {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py taskdock --product-manifest products.json",
-      "result": "pass",
-      "observed": "VERDICT: PASS against the candidate documentation and unchanged product metadata."
+      "observed": "65 tests ran: 64 passed, one existing platform/permission test skipped."
     }
   ],
-  "unresolved_blockers": [],
-  "limitations": [
-    "No new authenticated model pilot or automatic routing result. The reported canonical routing miss remains unverified in this environment.",
-    "The new notes contract covers updates specified before apply; arbitrary subsequent edits remain conflicts. Old receipts cannot silently absorb new work."
-  ]
+  "unresolved_blockers": []
 }
