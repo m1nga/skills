@@ -2,6 +2,16 @@
 
 A reviewer that experiences your unreleased product as a total stranger first — and only afterwards puts the expert hat on to tell you what broke, why it hurt, and what to fix first.
 
+## New: an output you can use
+
+Produce a self-contained client report with explicit evidence limits:
+
+```sh
+python3 SKILL_DIR/scripts/report.py --input SKILL_DIR/examples/report.json --out first-use-report.html
+```
+
+The included fixture is labeled simulation and makes no claim that a real product was tested. Replace it with the actual experience log, tested tasks, recovery evidence, severity-ranked findings and retests. Live, screenshot, text-only and simulated runs remain distinct; prior product context is explicit. Missing evidence or an unknown severity fails before creating a report. A generated report validates structure, not the truth or independence of a test. No account, server or paid API is required.
+
 ## What it does
 
 Runs your product (or reads your screenshots) in two phases. Phase 1: follow the public entry path and record confusion before consulting internal specifications or code. A README or help screen that users naturally encounter is part of that experience. If the reviewer already knows the product, disclose that context; the run cannot honestly be called a fresh independent test. Phase 2: a product/UX expert who reads the code and docs to explain each confusion and prescribe a fix. The output is a single report: a one-paragraph verdict up top ("would a stranger come back tomorrow?"), a first-person experience log, severity-ranked findings with evidence, one recommended fix each, and effort estimates, plus an honest list of what this round couldn't verify.

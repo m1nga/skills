@@ -6,6 +6,16 @@ accepted, what an interaction actually does, and what remains a prototype.
 
 **参考驱动的设计协作者：理解你喜欢的具体部分，做出可看的设计，并诚实验证实现。**
 
+## New: an output you can use
+
+Turn a research/reference pile into a page a builder can act on:
+
+```sh
+python3 SKILL_DIR/scripts/brief.py --input SKILL_DIR/examples/capture-brief.json --out design-brief.html
+```
+
+Copy the small example JSON into your project, replace its goal, content and tasks, then render a new output file. Each task connects a method to steps, reference decisions and observable checks, with a ready-to-use implementation prompt. An unseen reference stays labeled unseen. The renderer does not inspect references or build the interface. No accounts or paid API are needed.
+
 ## When it fires
 
 Use it to analyze a reference, establish a brand direction, refine an AI-generated

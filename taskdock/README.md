@@ -9,6 +9,16 @@ preview and an undo path.
 
 ![TaskDock: continue from current work, preserve history, and verify reversible organization](https://raw.githubusercontent.com/m1nga/taskdock/main/skills/taskdock/assets/workflow.svg)
 
+## New: an output you can use
+
+Generate a readable handoff from an existing task:
+
+```sh
+python3 SKILL_DIR/scripts/handoff.py --path TASK_FOLDER --out handoff.html
+```
+
+Open the resulting self-contained page in a browser. It contains the task ID, selected folder, bounded current records and a prompt for the next session. No hosting, account or API is needed. Reports may contain private task notes and local paths; review before sharing. The output must be new. A pending recovery returns a nonzero exit and remains visible in the page. This is a local retrieval aid, not an independent takeover test or a claim that external repositories are current.
+
 ## Install
 
 ```bash

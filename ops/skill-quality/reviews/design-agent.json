@@ -1,22 +1,29 @@
 {
   "schema_version": 1,
   "skill": "design-agent",
-  "reviewed_at": "2026-09-19T04:08:10+00:00",
-  "source_sha256": "0a1b92ca12cc9782a99a35e3ea9e011cb263227fa78494b80a40ee1a5381dbd2",
+  "reviewed_at": "2026-11-01T13:55:36.220420+00:00",
+  "source_sha256": "4f2fe1523f7b1d0cbf9f99f9f4cd34ef28e881986c6ff1302b4fd585dde27023",
   "user_review": {
-    "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description gains Chinese phrases and a not-for clause; body unchanged. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+    "method": "Author context-aware CLI execution, deterministic failure/recovery tests, and explicitly labeled instruction simulations. No independent agent or human usability study.",
     "scenarios": [
       {
-        "request": "照这个参考图把首页改一版",
-        "expected": "fires with the reference as brief",
-        "observed": "Chinese phrases now in the description.",
-        "kind": "simulated",
+        "request": "Turn saved references into an implementation brief a builder can follow.",
+        "expected": "One goal, real content, scope, method, steps, sources, checks and a copyable prompt.",
+        "observed": "Executed brief.py on the original capture fixture and produced an HTML page. It labels its reference unseen and execution not_run.",
+        "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "写一段首页文案",
-        "expected": "does not fire; marketing copy alone is excluded",
-        "observed": "Existing exclusion kept.",
+        "request": "A source is unseen, a task references a missing ID, checks are absent, or a URL is executable.",
+        "expected": "Keep unseen label; reject invalid references/inputs before creating a report.",
+        "observed": "Three tests passed: escaped input and honest unseen state, missing-reference/missing-check failure, unsafe URL failure. save_page uses exclusive output creation.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Polish a small existing dialog using a list of twenty skill links.",
+        "expected": "Use current project and one relevant method; do not install a catalog or force a redesign.",
+        "observed": "Simulated body walkthrough routes to a bounded change and observable checks, keeping reference data separate from execution authority.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -24,18 +31,27 @@
   },
   "similar_skills": [
     {
-      "url": "https://code.claude.com/docs/en/skills",
-      "checked_at": "2026-09-19T04:08:10+00:00",
-      "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
-      "decision": "adopt",
-      "reason": "Applied to the description only."
+      "url": "https://github.com/pbakaus/impeccable/blob/f5c80432f883a0ee437735305eafc2a9e1bdb7a0/.agents/skills/impeccable/SKILL.md",
+      "checked_at": "2026-11-01T13:55:36.220420+00:00",
+      "learned": "The current brief and incumbent visual evidence determine scope; tools for operating a product prioritize successful tasks.",
+      "decision": "adapt",
+      "reason": "Make references actionable without replacing project choices. The new brief carries real content, scope, source observations and task acceptance checks; no universal aesthetic bans or setup imports.",
+      "repository_stars_at_check": 98896
+    },
+    {
+      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/3a13158ff1f32156cbe144108de48eda2ecaed9a/.claude/skills/ui-ux-pro-max/SKILL.md",
+      "checked_at": "2026-11-01T13:55:36.220420+00:00",
+      "learned": "A targeted concern calls for a small intent-specific lookup, while a new system may need broader design-system work.",
+      "decision": "adapt",
+      "reason": "Use one main method for the current task and record dependencies before execution. Do not copy the catalog, require a new system for narrow changes or automatically install linked tools.",
+      "repository_stars_at_check": 143639
     }
   ],
   "validation": [
     {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py design-agent --product-manifest products.json",
+      "command": "cd design-agent && python3 -m unittest discover -s scripts -p test_*.py",
       "result": "pass",
-      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
+      "observed": "3 tests passed."
     }
   ],
   "unresolved_blockers": []
