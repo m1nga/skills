@@ -2,8 +2,8 @@
   "schema_version": 1,
   "skill": "redbot",
   "reviewed_at": "2026-11-03",
-  "source_sha256": "e4ce216e7e5fc5e0593bc2ee4ddb810f7a0b9f3c6e1e10e16965cd8938b7f87b",
-  "release_scope": "1.5 user-first public interaction preview and companion documentation; not an account-connected production release.",
+  "source_sha256": "f35fc1d306e2708ece1da0f08dd3dd051b3e9893065c3d854c2baf31729f55b1",
+  "release_scope": "1.5.1 user-first interaction preview, accurate example prompts and basic-match recovery; not an account-connected production release.",
   "user_review": {
     "method": "Builder-operated Chrome UI on desktop and390px viewport; actual helper regression tests; author-context source review. No independent human study.",
     "scenarios": [
@@ -41,6 +41,13 @@
         "observed": "Source walkthrough preserves read-only helper scope, untrusted-evidence rule, missing-input recovery and explicit local-only boundary. Public Connection UI offers only truthful preview information and examples. No public account acceptance claim.",
         "kind": "simulated",
         "result": "pass"
+      },
+      {
+        "request": "An earlier two-example library is asked for an iced-coffee note.",
+        "expected": "Do not suggest an absent example or use generic note wording to recommend design content.",
+        "observed": "Live returning-browser check reproduced an irrelevant design result. Fixed generic-term filtering, English word boundaries, current-save example prompts and versioned scripts.18 JS tests pass; actual local Chrome now returns no match for absent matcha and the correct original coffee note when present. Public patch verification follows deployment separately.",
+        "kind": "executed",
+        "result": "fixed"
       }
     ]
   },
@@ -64,7 +71,7 @@
     {
       "command": "node --test core.test.cjs promotion.test.cjs semantic.test.cjs",
       "result": "pass",
-      "observed": "17 tests passed earlier in this iteration; retrieval core unchanged."
+      "observed": "18 tests passed after the matching repair; actual missing-subject, substring false-positive and existing-coffee cases covered."
     },
     {
       "command": "python3 test_sync.py",

@@ -1,17 +1,17 @@
 {
-  "version": "1.5 preview",
+  "version": "1.5.1 preview",
   "private_data_included": false,
   "model_revision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
   "assets_sha256": {
-    "BETA-VALIDATION.md": "d3d038d6767b595c19379a63a2c87e644d140c010ba0521af2e12e3325b09d73",
+    "BETA-VALIDATION.md": "b2ef80e128efb079535722d83d43086165cf8591f9a033fc17e19745cacf5b13",
     "RedBot-Starter.html": "7b83b05d0483fe556fe441f236cfcefd3394fcaff9ed2ffd374e1ee51be9eb58",
     "Shelf-Starter.html": "7b83b05d0483fe556fe441f236cfcefd3394fcaff9ed2ffd374e1ee51be9eb58",
     "about.html": "53d042f8841c0f7e3e49906530cf5708c2b81c0cf392a981c78a4f4ea9819477",
     "ai-worker.js": "50d749e5484e7837d3f52386b51f76e82f0f2828b0631a2d40d42d54051af558",
     "ai.js": "b4656eef1027a62aa0f541f03daac4f890271eaf9440c7cac26c052f6981a45f",
-    "app.js": "37f49aca29757c06952c984f366d167f35a63305447ee9ba08f0e6000391c4c7",
+    "app.js": "9580a03580a952bf17a7e60805767dc6ea090dd9731274204e186bae10e65327",
     "calm.css": "6e2d67a03b659c3183af533aee3045dab9dc0ba8793cbf3fdba205612baf3941",
-    "core.js": "eb4ff11b2c7d20ebdc0e88e018f3b1dac1330acc39ec1efa36956748d1903cc8",
+    "core.js": "78edbb7830079b2daaecb02dcde7e5df31a14b987f8e7ab9c4a69a6407a0fec2",
     "demo.js": "cfdc91e53a27c8c698f9cc9a2b58173f1a2479f24bef6bcebc51b0d1b5356e8b",
     "example-notes.html": "c7e7a1e43b4470111dbd4045821d39d3a2ea3e039b82d47cc31aab89c4c58d7a",
     "icon.svg": "2dac171ba1ca73466f787439e1764b14efb9b9a90d4580975691aba0b560b703",
@@ -19,11 +19,11 @@
     "manifest.webmanifest": "4538458e7f2c24c4a8a1312b0313345183f0c218c8ef5efc8938020fdea16531",
     "sitemap.xml": "9f19ff214bb14cf62f5f08fba480d5802575b9aa02451c4078cc4ea5105c9816",
     "style.css": "0ddd218e5f88291a8af4afe02b395a50b00c90ce32d09f00ac195abdfcc3685c",
-    "sw.js": "12fe9e1fecb12e66873cc79dc794a42c9428cf83a3c90457290bfe56a27ef8d6",
+    "sw.js": "98cbc1640047c93e418b34a60546deb59e61441a3ba2af6e25349520cc44624c",
     "test.html": "3eb51d85b8632cae7c6aaa4ef885881635c3f51e074e80cf65db22be249393e3"
   },
   "primary_entry": "https://sidecourt.space/drops/redbot/",
   "github_pages_role": "Migration/export bridge; application hosted on SideCourt",
   "public_account_sync": false,
-  "application_source_commit": "1f29b3a62d3b6870a1a2248ef09f3213828a66a0"
+  "application_source_commit": "08aeb0c40b5091cc6a03b4efa85a250cc6e1c7f5"
 }

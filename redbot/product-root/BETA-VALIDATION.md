@@ -8,7 +8,8 @@ Updated 2026-11-03. This is a design/interaction preview, not a completed public
 - Actual Chrome walkthrough: a natural-language goal selects one supported example; source details and next action are available; save, reload and continue preserve the selected plan; rejecting a suggestion eventually gives an honest no-match recovery.
 - At a 390×844 viewport, the page width is 390 with no horizontal overflow. For now returns to the goal field. My saves, the optional organizing drawer, text search and note details work.
 - The Connection control explicitly states public account sync is unavailable. It does not imitate a successful connection or read the developer's account for visitors.
-- 17 existing JavaScript regression tests passed. The retrieval core and embedding runtime were not changed in this iteration; actual semantic-inference checks below belong to 1.4.
+- 18 JavaScript regression tests passed, including a reproduced upgrade failure: asking for a coffee note in the older design-only example library no longer returns design guidance. Generic save/note wording and English substrings are excluded from basic goal matches. Examples are shown only when their saves are available. The embedding runtime is unchanged; actual semantic-inference checks below belong to 1.4.
+- Browser cache recovery was checked: versioned script URLs load the matching update. Actual local Chrome now gives no match for an absent matcha note and the correct source for an existing iced-coffee note.
 - 3 new local sync tests passed: metadata refresh keeps existing research, guides, plans and absent saves; repeated scan does not create extra entries; sign-in negation does not become a false successful status. No private collection is distributed.
 - 25 SideCourt hosting tests passed after adapting the example-data check to its explicit demo file. Public deployment is verified separately in the release receipt.
 
