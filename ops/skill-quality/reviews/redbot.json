@@ -2,7 +2,7 @@
   "schema_version": 1,
   "skill": "redbot",
   "reviewed_at": "2026-11-02",
-  "source_sha256": "fb55683c1ff28d98b9f63466e28dce21ad8bd6e6aef5d12f18244e4829dbdfc7",
+  "source_sha256": "6568fdd57b07d38addee607602bdd67928b48dcb0ccba0d3a43bdbf6f536db1f",
   "user_review": {
     "method": "Author-context CLI execution, actual browser model inference, and explicit instruction simulations; not a blind review, independent human study or model evaluation benchmark.",
     "scenarios": [
@@ -47,6 +47,13 @@
         "observed": "Browser traversed home->catalog, searched handoff/taskdock, opened the TaskDock platform page and copied command; clipboard readback equals npx skills add m1nga/taskdock. All17 station packages passed CRC and content checks. SideCourt production publication is pending separately; no earlier live claim.",
         "kind": "executed",
         "result": "pass"
+      },
+      {
+        "request": "The earlier browser database cannot be read during migration.",
+        "expected": "Distinguish unreadable storage from a genuinely absent library, preserve data and provide recovery.",
+        "observed": "Instruction/source walkthrough: explicit failed flag on database open/read exceptions shows that the old library could not be read and advises keeping browser data. No storage deletion or auto-redirect is performed. Normal3-item download was actually executed separately; storage denial is simulated.",
+        "kind": "simulated",
+        "result": "fixed"
       }
     ]
   },
