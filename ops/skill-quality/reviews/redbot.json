@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "skill": "redbot",
+  "reviewed_at": "2026-11-02T07:00:00+00:00",
+  "source_sha256": "60d856d31f79be1aeb07666f7fd8aea634ee400f82c0401815336b67e43eeb96",
+  "user_review": {
+    "method": "Author-context CLI execution, actual browser model inference, and explicit instruction simulations; not a blind review, independent human study or model evaluation benchmark.",
+    "scenarios": [
+      {
+        "request": "Choose one source from an authorized saved library and inspect the exact passage.",
+        "expected": "Bounded shortlist, exact selected evidence, no library writes.",
+        "observed": "Executed reader from /tmp against a selected real backup; exit0. Three unit tests use temporary backup bytes and check exact source, unread status, removed sources and preservation.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Use RedBot on a fresh machine with a missing backup.",
+        "expected": "Explain missing material and provide recovery rather than inventing an empty successful library.",
+        "observed": "CLI missing-file run returned exit2 with a backup recovery message. Pasted-note fallback and phone localhost limitations walked through explicitly.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Find a calmer screen with an obvious main action using different words from the save.",
+        "expected": "Actual semantic inference, a supported source, and clear evidence.",
+        "observed": "Chrome downloaded the pinned model and executed inference in a worker. Indirect English wording retrieved the original layout example at similarity0.304; adjusted initially overstrict threshold and fixed premature no-match rendering. Chinese wording selected the matching web-polish guide at0.439. This is functional checking, not calibrated accuracy.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "A title-only source, hostile note, unrelated web query, or a phone trying to use Mac localhost.",
+        "expected": "Keep unread status, ignore source instructions, avoid general-web trigger, and explain missing remote access.",
+        "observed": "Semantic boundary and reader tests cover unread/removed/weak similarity. Metadata/body simulation covers owner mixed language, stranger, wrong-world, hostile source, sibling collision, bare machine and second engine. No unsupported account connection or publication authority inferred.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/tobi/qmd/blob/main/skills/qmd/SKILL.md",
+      "checked_at": "2026-11-02",
+      "learned": "Search returns leads; inspect full selected evidence before answering, and distinguish lexical from conceptual search.",
+      "decision": "adapt",
+      "reason": "Use a bounded read-only shortlist plus exact-item retrieval; keep host reasoning separate from browser embeddings and do not require a separate indexing service."
+    },
+    {
+      "url": "https://github.com/thedotmack/claude-mem/blob/main/plugin/skills/mem-search/SKILL.md",
+      "checked_at": "2026-11-02",
+      "learned": "Progressive retrieval avoids loading complete raw history for every request.",
+      "decision": "adapt",
+      "reason": "Shortlist IDs then fetch one exact source. Do not inherit the unrelated runtime, timeline schema or unverified token-saving claims."
+    }
+  ],
+  "validation": [
+    {
+      "command": "node --test core.test.cjs promotion.test.cjs semantic.test.cjs",
+      "result": "pass",
+      "observed": "17 tests passed, including preserved import rules, clarification, promotion distinctions and semantic evidence boundaries."
+    },
+    {
+      "command": "python3 redbot/scripts/test_reader.py",
+      "result": "pass",
+      "observed": "3 tests passed; selected backup unchanged, exact evidence available, titles marked unread, removed sources excluded, invalid structure rejected."
+    },
+    {
+      "command": "python3 /Users/m1nga/.codex/skills/.system/skill-creator/scripts/quick_validate.py redbot",
+      "result": "pass",
+      "observed": "Skill is valid."
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT PASS after naming setup, audience, purpose, design and validation sections explicitly."
+    }
+  ],
+  "unresolved_blockers": []
+}

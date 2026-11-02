@@ -1,0 +1,21 @@
+{
+  "version": "1.4 beta",
+  "private_data_included": false,
+  "model_revision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
+  "assets_sha256": {
+    "ai.js": "b4656eef1027a62aa0f541f03daac4f890271eaf9440c7cac26c052f6981a45f",
+    "index.html": "fd2206b359c7ffadf8aa78201048b1652d291b2f317e2988f00fdbbe7b9b30d6",
+    "core.js": "eb4ff11b2c7d20ebdc0e88e018f3b1dac1330acc39ec1efa36956748d1903cc8",
+    "about.html": "b31711298ab29bb34e088af6d68704a63fc29a61d94a5a97f23b1c8cd1c4c989",
+    "example-notes.html": "c7e7a1e43b4470111dbd4045821d39d3a2ea3e039b82d47cc31aab89c4c58d7a",
+    "test.html": "f94e8c1a2bfc955d4fc6d24f4a409ec238530ad1a8920fd21adfd9af1ef3ecfa",
+    "Shelf-Starter.html": "7fc6c149b686fbf88c88efed49b71bfe32e7f8abd1f8ec72320fd708408fc5fd",
+    "style.css": "057bd187c1db80b8bdb51bf38a83fa887032ec11fbb92a448a3ee3c95643a4c8",
+    "sitemap.xml": "ae81c458878ea0ac0c4dd17d9b8fce4772e33ce329786ce2a7935b263da138e4",
+    "manifest.webmanifest": "4538458e7f2c24c4a8a1312b0313345183f0c218c8ef5efc8938020fdea16531",
+    "RedBot-Starter.html": "7fc6c149b686fbf88c88efed49b71bfe32e7f8abd1f8ec72320fd708408fc5fd",
+    "ai-worker.js": "50d749e5484e7837d3f52386b51f76e82f0f2828b0631a2d40d42d54051af558",
+    "app.js": "6d39193d7ccf486f7e10457355a03beb69ea2d4a540d301e1e2a6b920aa606f2",
+    "sw.js": "736c944cc61ef22af2900157cec35f9901c639169026b3ca99cd3566e4f72683"
+  }
+}
