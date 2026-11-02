@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-02T07:00:00+00:00",
+  "reviewed_at": "2026-11-02T06:26:08+00:00",
   "source_sha256": "60d856d31f79be1aeb07666f7fd8aea634ee400f82c0401815336b67e43eeb96",
   "user_review": {
     "method": "Author-context CLI execution, actual browser model inference, and explicit instruction simulations; not a blind review, independent human study or model evaluation benchmark.",
