@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-02T06:26:08+00:00",
-  "source_sha256": "60d856d31f79be1aeb07666f7fd8aea634ee400f82c0401815336b67e43eeb96",
+  "reviewed_at": "2026-11-02",
+  "source_sha256": "fb55683c1ff28d98b9f63466e28dce21ad8bd6e6aef5d12f18244e4829dbdfc7",
   "user_review": {
     "method": "Author-context CLI execution, actual browser model inference, and explicit instruction simulations; not a blind review, independent human study or model evaluation benchmark.",
     "scenarios": [
@@ -32,6 +32,20 @@
         "expected": "Keep unread status, ignore source instructions, avoid general-web trigger, and explain missing remote access.",
         "observed": "Semantic boundary and reader tests cover unread/removed/weak similarity. Metadata/body simulation covers owner mixed language, stranger, wrong-world, hostile source, sibling collision, bare machine and second engine. No unsupported account connection or publication authority inferred.",
         "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Move an earlier GitHub Pages user to the canonical SideCourt product without losing saves.",
+        "expected": "Old-origin export before the new-origin import; no automatic deletion or silent cloud copy.",
+        "observed": "Local origin8768 migration bridge found3 existing saved items. Export button produced RedBot-before-SideCourt.json; filesystem read confirmed3 items and valid JSON. A browser download-wait helper timed out after the click, so the real file was independently read rather than re-clicking.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Find a released skill through SideCourt and get its install command.",
+        "expected": "Homepage to catalog to skill page, correct command, local package and source guide.",
+        "observed": "Browser traversed home->catalog, searched handoff/taskdock, opened the TaskDock platform page and copied command; clipboard readback equals npx skills add m1nga/taskdock. All17 station packages passed CRC and content checks. SideCourt production publication is pending separately; no earlier live claim.",
+        "kind": "executed",
         "result": "pass"
       }
     ]

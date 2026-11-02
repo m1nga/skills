@@ -2,11 +2,15 @@
 
 You saved something useful. When you finally need it, you still cannot decide which item to open or which part matters. RedBot connects a current goal to **one supported starting point**, the useful saved passage and a next action.
 
-**[Open the mobile web beta](https://m1nga.github.io/redbot/) · [Product and privacy guide](https://m1nga.github.io/redbot/about.html) · [Five-minute user test](https://m1nga.github.io/redbot/test.html)**
+**[Open the mobile web beta](https://sidecourt.space/drops/redbot/app/) · [Product and privacy guide](https://sidecourt.space/drops/redbot/) · [Five-minute user test](https://sidecourt.space/drops/redbot/test/)**
 
 ## Who it's for
 
 People who save useful links and notes but struggle to choose what to use when a real task arises. Ordinary testers use the mobile webpage; AI-assistant users can install the companion skill.
+
+## Moving from the earlier GitHub Pages beta
+
+RedBot now runs at SideCourt. Browser storage belongs to its original website, so it does not move automatically. The old GitHub Pages address offers an export of its existing browser library. Download that backup, open RedBot through SideCourt, and import it in Library & backups. Keep the original until the imported saves, notes and plan are confirmed. Nothing is uploaded by the migration page.
 
 ## Start without connecting an account
 

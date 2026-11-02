@@ -9,7 +9,7 @@ Turn a current need into one supported starting point, its useful passage, and o
 
 ## Get the user's material
 
-Use a RedBot JSON backup the user names, or their pasted notes. A backup can be exported from **Library & backups** in the [mobile web beta](https://m1nga.github.io/redbot/). No Xiaohongshu account or new model API key is required for this skill. The host assistant's normal account and permissions still apply.
+Use a RedBot JSON backup the user names, or their pasted notes. A backup can be exported from **Library & backups** in the [mobile web beta](https://sidecourt.space/drops/redbot/app/). No Xiaohongshu account or new model API key is required for this skill. The host assistant's normal account and permissions still apply.
 
 Use `scripts/read_library.py` through the skill's actual installed directory, not the current working directory:
 
