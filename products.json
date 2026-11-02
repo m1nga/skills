@@ -239,8 +239,8 @@
     },
     {
       "name": "redbot",
-      "title": "RedBot \u2014 Turn Saved Links into a Useful Next Action",
-      "description": "Choose one useful saved source, read the relevant passage and take a concrete next action with a mobile web beta or an AI-assistant skill.",
+      "title": "RedBot \u2014 Find the Good Thing You Saved",
+      "description": "Find one useful saved source, its relevant passage and a next step. Try the mobile preview or use selected notes with your AI assistant; public account sync is still in development.",
       "topics": [
         "m1nga-skill",
         "agent-skill",

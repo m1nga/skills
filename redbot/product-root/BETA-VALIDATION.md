@@ -1,3 +1,23 @@
+# RedBot 1.5 preview: verification record
+
+Updated 2026-11-03. This is a design/interaction preview, not a completed public account-connected beta. Checks below were performed by the builder, not independent recruited users.
+
+## Current interface checks
+
+- Explicit example loading preserves the existing browser library; returning users are not overwritten by a new seed.
+- Actual Chrome walkthrough: a natural-language goal selects one supported example; source details and next action are available; save, reload and continue preserve the selected plan; rejecting a suggestion eventually gives an honest no-match recovery.
+- At a 390×844 viewport, the page width is 390 with no horizontal overflow. For now returns to the goal field. My saves, the optional organizing drawer, text search and note details work.
+- The Connection control explicitly states public account sync is unavailable. It does not imitate a successful connection or read the developer's account for visitors.
+- 17 existing JavaScript regression tests passed. The retrieval core and embedding runtime were not changed in this iteration; actual semantic-inference checks below belong to 1.4.
+- 3 new local sync tests passed: metadata refresh keeps existing research, guides, plans and absent saves; repeated scan does not create extra entries; sign-in negation does not become a false successful status. No private collection is distributed.
+- 25 SideCourt hosting tests passed after adapting the example-data check to its explicit demo file. Public deployment is verified separately in the release receipt.
+
+## Remaining acceptance
+
+A fresh user's isolated account connection, resumable full favorites enumeration and same-phone authorization are still required. Physical iPhone/Android trials, assistive technology and unaided nontechnical-user tests have not been completed. A passed UI check is not proof of these behaviors or of market demand.
+
+--- Historical 1.4 evidence ---
+
 # RedBot 1.4 beta: verification record
 
 Updated 2026-11-02. Builder-operated checks are not recruited-user research.
