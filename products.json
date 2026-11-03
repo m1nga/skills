@@ -264,6 +264,19 @@
         "productivity",
         "codex"
       ]
+    },
+    {
+      "name": "breakinggap",
+      "title": "BreakingGap \u2014 Small Steps While AI Agents Work",
+      "description": "Turn short waits while AI agents work into one useful human step, a small learning moment, and a clear return to your primary task.",
+      "topics": [
+        "ai-agents",
+        "agent-skills",
+        "productivity",
+        "focus",
+        "learning",
+        "codex"
+      ]
     }
   ]
 }
