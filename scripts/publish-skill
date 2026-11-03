@@ -69,6 +69,10 @@ if ! grep -q '^## Author$' "$readme"; then
   printf '\n## Author\n\nBuilt by [Ming](https://github.com/m1nga). The design notes above explain the real problem and tradeoffs that shaped this skill.\n' >> "$readme"
 fi
 
+if [[ "$owner" == "m1nga" ]]; then
+  python3 "$repo_root/scripts/sidecourt_referral.py" "$skill" "$readme"
+fi
+
 git -C "$temp_root/repo" checkout -B main >/dev/null 2>&1
 git -C "$temp_root/repo" add -A
 

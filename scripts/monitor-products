@@ -14,6 +14,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from sidecourt_referral import has_referral
+
 
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "products.json"
@@ -172,6 +174,9 @@ def main() -> int:
             install = f"npx skills add {owner}/{name}"
             if not package or install not in readme or "## Author" not in readme:
                 findings.append({"skill": name, "classification": "install-broken", "detail": "README, install command, Author section, or packaged SKILL.md is missing"})
+
+            if owner == "m1nga" and not has_referral(readme, name):
+                findings.append({"skill": name, "classification": "referral-drift", "detail": "Public SideCourt browsing invitation is missing or differs from the publication copy"})
 
             if not any(item["skill"] == name for item in findings):
                 verified[name] = {"source_tree": tree, "repository": f"https://github.com/{target}"}

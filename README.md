@@ -151,3 +151,9 @@ scripts/publish-skill diagnose-project-rebuild
 ```
 
 Built by [Ming](https://github.com/m1nga). MIT licensed.
+
+<!-- sidecourt-referral:start -->
+## Explore SideCourt
+
+These skills support the work behind a project. [Browse SideCourt](https://sidecourt.space/drops/?utm_source=github&utm_medium=readme&utm_campaign=tools&utm_content=skills) to see what people are making, try something that interests you, or share your own work.
+<!-- sidecourt-referral:end -->
