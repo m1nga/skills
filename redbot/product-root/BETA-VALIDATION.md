@@ -1,18 +1,17 @@
-# RedBot1.7 — invitation-only account test
+# RedBot 1.8 — invitation-only account test
 
-Checked 2026-11-03. Builder-operated checks, with one user-confirmed native sign-in; not independent research, all-account coverage or production readiness.
+Checked 2026-11-03. Builder-operated tests and read-only account trials, not independent user research or proof of full-account coverage.
 
-- 27 JavaScript tests passed: source-grounded matching, Chinese goal routing and prompt language, private-note and credential exclusion, cost/ad ambiguity, unavailable-source handling and retained plan/research behavior.
-- 15 connector tests passed using a fake source: independent sessions and libraries, login/identity checks, known-save access, origin/host/auth boundaries, expiry and disconnect, current-checkpoint recovery and rejection of stale checkpoints. These fixtures are not two real people.
-- 3 legacy sync regression tests passed. The existing owner's 241-save/21-guide library and local state were kept separate.
-- One real account completed Xiaohongshu confirmation. A timed-out scan recovered 289 observed cards from its current private checkpoint. A second scan returned 289 unchanged cards, zero duplicates and no interruption. Every scan remains explicitly partial.
-- A selected real saved post returned its caption text. Video content and comments were not read. The returning source appeared in place and an unsaved note draft remained intact; the test draft was not saved.
-- Chinese/English UI, browser-library recovery, Chinese goal selection, saved-plan continuation and copied editable prompt were exercised. The app does not run Codex or Claude Code when creating a prompt.
-- IAB viewport390x844: document and scroll width390, detail dialog352, no horizontal overflow. The Chrome viewport control did not apply, so that earlier attempt is not counted. Physical-phone and same-phone QR recognition remain unverified.
-- Public API capability and unauthenticated401 responses checked through the temporary HTTPS relay; full SideCourt deployment is verified separately after release.
+- 27 JavaScript tests, 23 Python connector fixtures and 3 legacy sync regression tests passed. Connector fixtures cover progressive persistence, more than 2,000 cards, stopping without data loss, restart recovery, deduplication, source-end evidence, identity and isolated sessions. Fixtures are not two real people.
+- Targeted upstream Go tests and Node pagination-wire/identity fixtures passed, including the observed note/collect/page and note_id shape, explicit end signals, malformed pagination and delayed identity hydration.
+- A synthetic browser account streamed 20 then 60 cards; browsing/search stayed usable, stop retained arrivals, and focused search and unsaved note drafts survived refreshes. This is a controlled fixture, not a real collection coverage result.
+- The real account library retained 295 unique cards and one retrieved post text. A recent v7 scan observed 80 cards before a successful source envelope lacked pagination fields; it does not establish complete enumeration. Earlier diagnostic traffic included a valid has_more:false page after 290 cards. That single page does not prove the required complete response chain.
+- The final v8 patch recognizes the observed wire shape and stops malformed pagination as source_response_incomplete. Automated fixtures passed; this exact final patch was not followed by another real full scan. No complete real-account claim is made.
+- A real first batch of 20 arrived in about six seconds. One anonymous QR request took 3.77 seconds. These are individual observations, not timing guarantees. The existing real session recovered with its own cookies without a new QR confirmation.
+- An actual 390-pixel Chrome viewport reported document width 390 with no horizontal overflow. Physical-phone sign-in, same-phone QR recognition, two distinct real accounts and unaided human trials remain unverified.
 
-Limits: two distinct real-account isolation, same-phone authorization, complete enumeration and unaided human usability are still open. Scans restart from the top, deduplicate and retain omitted older items; no resumable pagination claim. New scans start only while the page is open/visible. The host and temporary relay must stay online. Seven-day retention and disconnect deletion are part of the test adapter, not a third-party hosting SLA.
+Only a valid source pagination chain starting at the initial cursor, ending explicitly with has_more:false and covering observed IDs permits a complete signal. Silence, unchanged counts, deadlines, errors, stop and malformed responses remain partial. There is no fixed card-count or scroll-count cap; a 45-second lack of new cards and a 30-minute request deadline still stop unconfirmed scans. Retry restarts from the top and deduplicates; omitted old saves remain.
 
-The web app extracts retrieved text and assembles prompts; it does not generate new AI summaries or read comments. Scanning and deduplication make no LLM calls. Optional local semantic matching and host-assistant reasoning have separate resource/cost boundaries. No publishing, likes, native comments, paid calls or Claude execution were performed.
+Scanning and deduplication make no LLM calls. Post captions do not prove video, image or comment understanding. The host must remain online; retention is seven days. Browser notes/plans require export for transfer. Prior native Mac package and GitHub migration/export bridges are unchanged.
 
-Application source: 83a1b254c6143b83fe4b2832c2250505f126936d. SideCourt remains the primary web entry. The original GitHub migration/export bridge is byte-preserved. The prior native Mac package is not rebuilt.
+Application source: 40823da0edf40347e4d1918f0b01bf024d4f5630. Public package excludes private runtime, account content, credentials and binaries.

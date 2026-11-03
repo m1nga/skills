@@ -2,42 +2,35 @@
   "schema_version": 1,
   "skill": "redbot",
   "reviewed_at": "2026-11-03",
-  "source_sha256": "c912b38fed352a0a29a6cce86d46ed00f5d2adab48f00692fc7bef8913c17a13",
+  "source_sha256": "728e861a52614758aa37b5f07004ed48408fa38c6b2a7a507b85831e505e0d5c",
   "user_review": {
-    "method": "Builder-operated browser/service tests and explicitly labeled instruction walkthroughs; one real user-confirmed sign-in. No independent reviewer or two-real-account trial.",
+    "method": "Builder-operated tests with controlled browser fixtures and one real account; root operator supplied live receipts. Instruction behavior checked by explicitly simulated walkthrough. No independent user review.",
     "scenarios": [
       {
-        "request": "Connect my own account and see saved posts without exporting a file.",
-        "expected": "Invitation and native confirmation lead to a private account library, with honest coverage.",
-        "observed": "One real sign-in returned 289 cards. An interrupted scan recovered its private checkpoint; a repeat returned 289 unchanged cards and no duplicates. One unrelated unauthenticated test session remained empty. Full enumeration and two real-account isolation are unproven.",
+        "request": "My account scan is running but I need to browse now.",
+        "expected": "Cards arrive progressively; search and notes remain usable; stop preserves arrived cards.",
+        "observed": "Controlled browser fixture streamed 20 then 60; search focus and unsaved note retained; stop kept arrived cards. Real first batch20 arrived in about6seconds; no timing guarantee.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Read this saved post while I am drafting a personal note.",
-        "expected": "Retrieved text appears without discarding the unsaved note; a caption is not a video transcript.",
-        "observed": "Source caption returned. Initial UI required reopening; changed it to update the open detail. Retest preserved the unsaved note and showed the source in place. Test draft was discarded without saving.",
+        "request": "The source returned success but omitted pagination. Did I get everything?",
+        "expected": "Retain arrivals, mark incomplete; never infer completion from silence or success envelope alone.",
+        "observed": "23 connector fixtures plus Node wire fixtures passed. Real v7 saw80 before a malformed source envelope; library retained295 unique cards. Final v8 stops source_response_incomplete in fixtures; no final real full scan or complete enumeration claim.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "The scan failed. Is the old collection gone?",
-        "expected": "Current checkpoint may recover, stale checkpoints may not; omitted old records remain.",
-        "observed": "15 fake-source connector tests passed, including current recovery, stale rejection, identity changes, disconnect and per-session data. The real interrupted scan also retained 289 cards.",
+        "request": "I have retained cookies but verification failed. Must I scan QR again?",
+        "expected": "Retry existing session identity before requesting another login; timeout is not proof of signout.",
+        "observed": "Existing real session recovered without new QR; delayed hydration/identity Node fixtures and Python retry fixture passed. Anonymous QR3.77seconds was one observation.",
         "kind": "executed",
-        "result": "pass"
+        "result": "fixed"
       },
       {
-        "request": "I have no configured connector, but pasted this post. Summarize it.",
-        "expected": "Use supplied source immediately; do not force installation or borrow an account.",
-        "observed": "Instruction walkthrough selects supplied material, keeps comments/video unread and scopes a cost check to the requested claim. Source IDs/tokens cannot be invented. Skill text now states this explicitly.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "Does connecting the MCP make every save fully read and continuously synchronized for free?",
-        "expected": "Separate source scans, selected reading, model reasoning and foreground refresh.",
-        "observed": "Instruction walkthrough reports partial metadata scans, selected text only, foreground15-minute refresh and zero LLM calls for scanning; host-assistant reasoning uses its own allowance. Same-phone login remains unverified.",
+        "request": "Summarize this supplied passage; no connector is installed.",
+        "expected": "Use supplied text; avoid invented source coverage or forced setup.",
+        "observed": "Instruction walkthrough uses passage directly, separates comments/video from caption and does not require connector installation.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -45,61 +38,49 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/autoclaw-cc/xiaohongshu-mcp-skills/blob/main/SKILL.md",
+      "url": "https://github.com/autoclaw-cc/xiaohongshu-mcp-skills/blob/c79206ce4191fdb5f4c72d62155ed8ac49e7d0ae/SKILL.md",
       "checked_at": "2026-11-03",
-      "source_revision": "236ca2754753f911ca094e1eda87dd0dfed0ac16",
-      "learned": "Check actual tool availability and sign-in; source IDs and access tokens must come from actual responses.",
-      "decision": "adopt",
-      "reason": "Added explicit capability/current-account checks and sourced identifiers to SKILL.md and account-sync. Missing connector still permits supplied notes; broad publishing and mandatory installer routing are outside RedBot scope."
-    },
-    {
-      "url": "https://github.com/xpzouying/xiaohongshu-mcp/blob/main/skills/post-to-xhs/SKILL.md",
-      "checked_at": "2026-11-03",
-      "source_revision": "f9f4d977dd699e45c7fd3ce5c3c539bb352baf92",
-      "learned": "Each named account has an independent browser profile and login/error state.",
+      "snapshot": "autoclaw-current.md",
       "decision": "adapt",
-      "reason": "The test adapter isolates process, cookies, bearer and identity per visitor and refuses cross-account merges. Documented recovery and retained data in account-sync; did not copy publication workflows or account-wide write access."
+      "learned": "Check actual tools and login before source operations; source IDs/tokens must come from responses.",
+      "reason": "Retain RedBot account checks and explicit scan/read separation; expose observed progress and coverage without implying source completion. Do not copy its blanket MCP-only fallback prohibition: user-supplied notes/backups remain useful."
     },
     {
-      "url": "https://github.com/xpzouying/xiaohongshu-mcp/blob/main/skills/post-to-xhs/SKILL.md",
+      "url": "https://github.com/xpzouying/xiaohongshu-mcp/blob/d6352e5435b45ebb48fe240dc03a2bec0476bd56/skills/post-to-xhs/SKILL.md",
       "checked_at": "2026-11-03",
-      "learned": "The publishing skill can switch automatically to a headed browser and uses platform-specific client paths.",
-      "decision": "reject",
-      "reason": "No automatic disruptive GUI switch or Claude execution is authorized. RedBot keeps a headless read-only connector and user-confirmed native login."
+      "snapshot": "post-to-xhs-current.md",
+      "decision": "adapt",
+      "learned": "Separate per-account browser profiles; explicit NOT_LOGGED_IN recovery instead of assuming connector configuration is login.",
+      "reason": "Retain isolated RedBot sessions, concrete expiry recovery and preservation of existing library. Reject automatic headed login fallback and publishing scope; RedBot remains read-only and GUI focus changes require user permission."
     }
   ],
   "validation": [
     {
       "command": "node --test core.test.cjs semantic.test.cjs promotion.test.cjs check.test.cjs",
       "result": "pass",
-      "observed": "27 JavaScript tests; source matching, Chinese route and prompt language, privacy/source boundaries and recovery."
+      "observed": "27 tests rerun against accepted40823da source."
     },
     {
-      "command": "python3 -m unittest discover -s tests -v (application source)",
+      "command": "python3 -m unittest discover -s tests -v",
       "result": "pass",
-      "observed": "15 connector fixture tests; not two real accounts."
+      "observed": "23 fixture tests rerun against accepted40823da source."
     },
     {
-      "command": "python3 -m unittest test_sync -v (legacy application source)",
+      "command": "python3 -m unittest test_sync -v",
       "result": "pass",
-      "observed": "3 regression tests; source preservation and idempotent scan."
+      "observed": "3 legacy regressions rerun; no original personal data copied."
     },
     {
       "command": "python3 -m unittest discover -s scripts -p 'test_reader.py' -v",
       "result": "pass",
-      "observed": "3 companion-reader tests including read-only preservation and malformed input."
+      "observed": "3 reader tests rerun from redbot skill directory."
     },
     {
-      "command": "quick_validate.py redbot; audit_product_page.py redbot --product-manifest products.json",
+      "command": "Root builder browser trial and targeted Go/Node connector fixtures",
       "result": "pass",
-      "observed": "Skill valid and product page audit PASS after adding the expected clear section names."
-    },
-    {
-      "command": "Builder browser trial, IAB390x844",
-      "result": "pass",
-      "observed": "Chinese home/library/detail; document390, dialog352, no horizontal overflow. Read-in-place preserved an unsaved note. Physical phone is not verified."
+      "observed": "Root reported Go targeted and both Node identity/wire fixture groups passed. Browser fixture20->60, stop retention, search/note focus. Actual390px Chrome width390/nooverflow. No physical-phone or two-real-account trial."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "Limited invitation test and companion skill, not production-ready account service. Same-phone QR, two real-account field isolation and complete enumeration remain declared product limits."
+  "release_scope": "1.8 invitation-only account test; complete real-account enumeration unproven. Final v8 malformed-pagination handling fixture-tested, not followed by another full live scan. Temporary host, same-phone QR and two-real-account isolation remain limits."
 }

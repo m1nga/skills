@@ -99,7 +99,7 @@ def merge_scan(previous, profile):
         'version': 1, 'items': result,
         'scan': {'at': iso(), 'count': len(seen), 'added': added, 'changed': changed,
                  'unchanged': unchanged, 'kept': len(old.keys() - seen),
-                 'complete': False, 'coverage': 'bounded',
+                 'complete': False, 'coverage': 'partial',
                  'llmTokens': 0, 'readCount': sum(bool(x.get('description')) for x in result),
                  'analyzedCount': 0},
     }, tokens
@@ -160,7 +160,10 @@ class MCP:
                           headers={'Authorization': 'Bearer ' + self.token, 'Content-Type': 'application/json'},
                           method=method)
             try:
-                with urlopen(req, timeout=190) as response:
+                # Inventory streams through the private checkpoint while this
+                # request remains open. Its deadline is time, not card count.
+                timeout = 1830 if path == '/api/v1/user/me?tab=fav' else 190
+                with urlopen(req, timeout=timeout) as response:
                     out = json.load(response)
             except HTTPError as error:
                 # Diagnostics stay in this private account directory, not in a
@@ -212,7 +215,14 @@ class Session:
         self.state = 'needs_sign_in'
         self.closed = False
         self.scan_started = None
+        self.scan_cancel = threading.Event()
         self.library = read_json(directory / 'library.json', {'version': 1, 'items': []})
+        self.library.setdefault('revision', 0)
+        if self.library.get('scan', {}).get('running'):
+            self.library['scan'].update(running=False, complete=False, coverage='partial',
+                                        interrupted=True, endReason='service_restarted')
+            self.library['revision'] += 1
+            atomic(directory / 'library.json', self.library)
 
     def status(self):
         with self.lock:
@@ -224,15 +234,17 @@ class Session:
                 self.checked_stamp = stamp
                 self.start('verify', self.verify)
             progress = None
-            checkpoint = self.directory / 'scan-checkpoint.json'
-            if self.busy() and self.job['kind'] == 'scan' and self.scan_started and checkpoint.exists() and checkpoint.stat().st_mtime >= self.scan_started:
-                partial = read_json(checkpoint, {})
-                progress = {'seen': len(partial.get('feeds') or []), 'complete': False}
+            scan = self.library.get('scan', {})
+            if self.busy() and self.job['kind'] == 'scan':
+                progress = {key: scan.get(key) for key in ('seen', 'complete', 'endReason')}
+                progress.update(revision=self.library['revision'], running=True)
             return {'state': self.state, 'nickname': self.meta.get('nickname', ''),
                     'sessionId': self.meta['id'], 'expiresAt': self.meta['expires'],
                     'qr': self.qr if self.state == 'waiting' else None,
                     'qrExpiresAt': self.qr_expires, 'job': self.job,
-                    'scan': self.library.get('scan'), 'progress': progress, 'items': len(self.library['items'])}
+                    'scan': self.library.get('scan'), 'progress': progress,
+                    'revision': self.library['revision'], 'items': len(self.library['items']),
+                    'canRetryVerification': bool(stamp and self.state in ('needs_sign_in', 'expired') and not self.busy())}
 
     def busy(self):
         return bool(self.job and self.job['state'] == 'running')
@@ -244,6 +256,8 @@ class Session:
             if self.busy():
                 raise Problem('busy', 409)
             job_id = secrets.token_hex(10)
+            if kind == 'scan':
+                self.scan_cancel.clear()
             self.job = {'id': job_id, 'kind': kind, 'state': 'running', 'startedAt': iso()}
 
         def run():
@@ -252,13 +266,14 @@ class Session:
                 with self.lock:
                     if self.closed:
                         return
-                    self.job = {**self.job, 'state': 'done', 'finishedAt': iso()}
-                if kind == 'verify' and self.state == 'connected':
+                    self.job = {**self.job, 'state': 'cancelled' if kind == 'scan' and self.scan_cancel.is_set() else 'done', 'finishedAt': iso()}
+                if kind in ('verify', 'connect') and self.state == 'connected':
                     self.start('scan', self.scan)
             except Exception as e:
                 with self.lock:
                     if not self.closed:
-                        self.job = {**self.job, 'state': 'failed', 'error': e.code if isinstance(e, Problem) else 'source_unavailable'}
+                        self.job = {**self.job, 'state': 'cancelled' if kind == 'scan' and self.scan_cancel.is_set() else 'failed',
+                                    'error': 'scan_cancelled' if kind == 'scan' and self.scan_cancel.is_set() else e.code if isinstance(e, Problem) else 'source_unavailable'}
         threading.Thread(target=run, daemon=True).start()
         return {'jobId': job_id}
 
@@ -268,6 +283,16 @@ class Session:
         if self.state == 'connected':
             raise Problem('already_connected', 409)
         self.qr = None
+        # Restoring an existing session is an identity check, not a request to
+        # discard login and issue a fresh QR. Transient loading failures remain
+        # retryable. Only a confirmed signed-out response advances to QR login.
+        if self.backend.cookie_stamp():
+            try:
+                self.verify()
+                return
+            except Problem as error:
+                if error.code != 'sign_in_required':
+                    raise
         out = self.backend.request('GET', '/api/v1/login/qrcode')
         if out.get('is_logged_in'):
             self.verify()
@@ -306,33 +331,119 @@ class Session:
             raise Problem('sign_in_required', 401)
         # Check identity on every scan, including after a service restart.
         self.verify()
+        if self.scan_cancel.is_set():
+            raise Problem('scan_cancelled', 409)
         self.scan_started = time.time()
-        interrupted = False
+        checkpoint = self.directory / 'scan-checkpoint.json'
+        checkpoint.unlink(missing_ok=True)
+        stop_monitor = threading.Event()
+        baseline = self.library
+        latest = None
+        checkpoint_stamp = None
+        checkpoint_content = None
+
+        def publish(profile, running, reason=None):
+            nonlocal latest
+            if profile.get('feeds') is None and isinstance(profile.get('userBasicInfo'), dict):
+                profile = {**profile, 'feeds': []}
+            if not isinstance(profile.get('feeds'), list):
+                raise Problem('scan_incomplete', 502)
+            source_scan = profile.get('redbotScan') or {}
+            # Only the adapter's observed, successful final pagination response
+            # proves completeness. A quiet/stalled DOM never does.
+            complete = not running and not reason and source_scan.get('complete') is True and source_scan.get('endReason') == 'source_end'
+            end_reason = reason or ('scanning' if running else source_scan.get('endReason') or 'unconfirmed_end')
+            with self.lock:
+                if self.closed:
+                    return
+                new, tokens = merge_scan(baseline, profile)
+                new['revision'] = self.library['revision'] + 1
+                new['scan'].update(running=running, seen=new['scan']['count'], complete=complete,
+                                   coverage='streaming' if running else 'complete' if complete else 'partial',
+                                   interrupted=bool(reason), endReason=end_reason)
+                prior = read_json(self.directory / 'source-tokens.json', {})
+                atomic(self.directory / 'source-tokens.json', {**prior, **tokens})
+                atomic(self.directory / 'library.json', new)
+                self.library, latest = new, profile
+
+        def ingest_checkpoint():
+            nonlocal checkpoint_stamp, checkpoint_content
+            try:
+                stat = checkpoint.stat()
+            except FileNotFoundError:
+                return
+            if stat.st_mtime < self.scan_started or stat.st_mtime_ns == checkpoint_stamp:
+                return
+            profile = read_json(checkpoint, {})
+            if not isinstance(profile.get('feeds'), list):
+                return
+            marker = profile.get('redbotScan') or {}
+            content = digest(json.dumps({'feeds': profile['feeds'],
+                'scan': {key: marker.get(key) for key in ('complete', 'endReason', 'seen')}},
+                sort_keys=True, ensure_ascii=False))
+            if content != checkpoint_content:
+                publish(profile, True)
+                checkpoint_content = content
+            checkpoint_stamp = stat.st_mtime_ns
+
+        def monitor():
+            while not stop_monitor.wait(.25):
+                try:
+                    ingest_checkpoint()
+                except (OSError, ValueError, Problem):
+                    # The request finalizer performs a last read; a transient
+                    # atomic replacement must not stop future batches.
+                    continue
+
+        with self.lock:
+            self.library = {**self.library, 'revision': self.library['revision'] + 1,
+                            'scan': {**self.library.get('scan', {}), 'at': iso(), 'running': True,
+                                     'seen': 0, 'complete': False, 'coverage': 'streaming',
+                                     'endReason': 'starting', 'interrupted': False}}
+            atomic(self.directory / 'library.json', self.library)
+        watcher = threading.Thread(target=monitor, daemon=True)
+        watcher.start()
+        failure = None
+        profile = None
         try:
             out = self.backend.request('GET', '/api/v1/user/me?tab=fav')
             profile = out.get('data', out)
-        except Problem:
-            # Recover only a checkpoint made by THIS account's CURRENT scan.
-            checkpoint = self.directory / 'scan-checkpoint.json'
-            if not checkpoint.exists() or checkpoint.stat().st_mtime < self.scan_started:
-                raise
-            profile = read_json(checkpoint, {})
-            if not profile.get('feeds'):
-                raise
-            interrupted = True
-        if profile.get('feeds') is None and isinstance(profile.get('userBasicInfo'), dict):
-            profile['feeds'] = []
-        if not isinstance(profile.get('feeds'), list):
-            raise Problem('scan_incomplete', 502)
+            if not isinstance(profile, dict) or not (isinstance(profile.get('feeds'), list) or
+                    profile.get('feeds') is None and isinstance(profile.get('userBasicInfo'), dict)):
+                profile = None
+                raise Problem('scan_incomplete', 502)
+        except Exception as error:
+            failure = error
+        finally:
+            stop_monitor.set()
+            watcher.join()
+            ingest_checkpoint()
+        if self.closed:
+            return
+        reason = 'cancelled' if self.scan_cancel.is_set() else 'source_unavailable' if failure else None
+        if profile is not None and not reason:
+            publish(profile, False)
+        elif latest is not None:
+            publish(latest, False, reason)
+        else:
+            with self.lock:
+                self.library['scan'].update(running=False, complete=False, coverage='partial',
+                                            interrupted=True, endReason=reason or 'source_unavailable')
+                self.library['revision'] += 1
+                atomic(self.directory / 'library.json', self.library)
+            if failure:
+                raise failure
+
+    def cancel_scan(self):
         with self.lock:
-            if self.closed:
-                return
-            new, tokens = merge_scan(self.library, profile)
-            new['scan']['interrupted'] = interrupted
-            prior = read_json(self.directory / 'source-tokens.json', {})
-            atomic(self.directory / 'source-tokens.json', {**prior, **tokens})
-            atomic(self.directory / 'library.json', new)
-            self.library = new
+            if not self.busy() or self.job['kind'] != 'scan':
+                raise Problem('no_scan_running', 409)
+            self.scan_cancel.set()
+            self.job['cancelRequested'] = True
+        # Stopping this isolated process cancels the browser request; credentials
+        # and already-persisted saves remain available for a subsequent sync.
+        self.backend.stop()
+        return {'cancelRequested': True}
 
     def read(self, nid):
         if self.state != 'connected':
@@ -362,11 +473,13 @@ class Session:
             # session tokens, or an invented video transcript into the library.
             if self.library.get('scan'):
                 self.library['scan']['readCount'] = sum(bool(x.get('description')) for x in self.library['items'])
+            self.library['revision'] += 1
             atomic(self.directory / 'library.json', self.library)
 
     def close(self):
         with self.lock:
             self.closed = True
+            self.scan_cancel.set()
             self.backend.disabled = True
             self.backend.stop()
             self.qr = None
@@ -521,11 +634,15 @@ def make_handler(store, origins, host):
                         return self.send(session.library)
                 if method == 'POST' and path == '/api/connect':
                     return self.send(session.start('connect', session.connect))
+                if method == 'POST' and path == '/api/verify':
+                    return self.send(session.start('verify', session.verify))
                 if method == 'POST' and path == '/api/sync':
                     scan = session.library.get('scan', {})
                     if scan.get('at') and time.time() - calendar.timegm(time.strptime(scan['at'], '%Y-%m-%dT%H:%M:%SZ')) < 60:
                         raise Problem('scan_cooldown', 429)
                     return self.send(session.start('scan', session.scan))
+                if method == 'POST' and path == '/api/cancel-sync':
+                    return self.send(session.cancel_scan())
                 if method == 'POST' and path == '/api/read':
                     nid = body.get('id', '')
                     if not isinstance(nid, str):

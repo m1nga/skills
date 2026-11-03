@@ -79,6 +79,44 @@ class ConnectorTests(unittest.TestCase):
         with self.assertRaises(S.Problem): session.read(A)
         self.assertEqual(session.backend.calls, [])
 
+    def test_existing_login_connect_also_starts_inventory(self):
+        _, session = self.new()
+        original = session.backend.request
+        def already_logged_in(method, path, body=None):
+            if path.endswith('/qrcode'): return {'is_logged_in': True}
+            return original(method, path, body)
+        session.backend.request = already_logged_in
+        session.start('connect', session.connect)
+        until = time.monotonic() + 2
+        while time.monotonic() < until and not session.library['items']: time.sleep(.02)
+        self.assertEqual(len(session.library['items']), 1)
+        self.assertEqual(session.state, 'connected')
+        self.assertIsNone(session.qr)
+
+    def test_existing_cookie_transient_failure_retries_without_qr(self):
+        _, session = self.new(); session.backend.cookie_stamp = lambda: 123
+        original = session.backend.request
+        def unavailable(method, path, body=None):
+            if path.endswith('/status'): raise S.Problem('source_unavailable', 502)
+            return original(method, path, body)
+        session.backend.request = unavailable
+        with self.assertRaises(S.Problem): session.connect()
+        self.assertFalse(any(call[1].endswith('/qrcode') for call in session.backend.calls))
+        # Avoid status's first-restore auto-check in this deterministic test.
+        session.checked_stamp = 123
+        self.assertTrue(session.status()['canRetryVerification'])
+        session.backend.request = original
+        session.connect()
+        self.assertEqual(session.state, 'connected')
+        self.assertFalse(any(call[1].endswith('/qrcode') for call in session.backend.calls))
+
+    def test_explicit_signed_out_cookie_can_obtain_qr(self):
+        _, session = self.new(); session.backend.cookie_stamp = lambda: 123
+        session.backend.logged = False
+        session.connect()
+        self.assertEqual(session.state, 'waiting')
+        self.assertTrue(any(call[1].endswith('/qrcode') for call in session.backend.calls))
+
     def test_different_account_cannot_merge(self):
         _, session = self.new(); session.verify(); session.scan()
         before = json.dumps(session.library)
@@ -114,6 +152,112 @@ class ConnectorTests(unittest.TestCase):
         session.backend.request=failed
         with self.assertRaises(S.Problem): session.scan()
         self.assertEqual([x['id'] for x in session.library['items']], [A])
+
+    def test_more_than_2000_saves_are_not_truncated(self):
+        _, session = self.new(); session.verify()
+        session.backend.profile = {'feeds': [card(f'{i:024x}') for i in range(2507)],
+                                   'redbotScan': {'complete': True, 'endReason': 'source_end'}}
+        session.scan()
+        self.assertEqual(len(session.library['items']), 2507)
+        self.assertEqual(session.library['scan']['seen'], 2507)
+        self.assertTrue(session.library['scan']['complete'])
+        self.assertEqual(session.library['scan']['coverage'], 'complete')
+
+    def test_completion_requires_explicit_source_end(self):
+        _, session = self.new(); session.verify()
+        for marker in ({}, {'complete': False, 'endReason': 'stalled'}, {'complete': True, 'endReason': 'stalled'},
+                       {'complete': False, 'endReason': 'source_response_incomplete'}):
+            session.backend.profile = {'feeds': [card()], 'redbotScan': marker}
+            session.scan()
+            self.assertFalse(session.library['scan']['complete'])
+            self.assertEqual(session.library['scan']['coverage'], 'partial')
+        session.backend.profile = {'feeds': [], 'redbotScan': {'complete': True, 'endReason': 'source_end'}}
+        session.scan()
+        self.assertTrue(session.library['scan']['complete'])
+        # A complete source scan still never erases locally retained saves.
+        self.assertEqual(len(session.library['items']), 1)
+
+    def test_streams_and_persists_batches_before_request_finishes(self):
+        _, session = self.new(); session.verify()
+        release, second = threading.Event(), threading.Event()
+        original = session.backend.request
+        def streaming(method, path, body=None):
+            if not path.endswith('tab=fav'):
+                return original(method, path, body)
+            S.atomic(session.directory/'scan-checkpoint.json', {'feeds': [card()]})
+            if not second.wait(3): raise AssertionError('test did not release second batch')
+            S.atomic(session.directory/'scan-checkpoint.json', {'feeds': [card(), card(B)]})
+            if not release.wait(3): raise AssertionError('test did not release request')
+            raise S.Problem('source_unavailable', 502)
+        session.backend.request = streaming
+        session.start('scan', session.scan)
+        def await_count(count):
+            until = time.monotonic() + 2
+            while time.monotonic() < until:
+                if len(session.library['items']) == count: return
+                time.sleep(.02)
+            self.fail('batch did not become visible while request was running')
+        try:
+            await_count(1)
+            first_revision = session.status()['revision']
+            self.assertTrue(session.busy())
+            self.assertEqual(len(S.read_json(session.directory/'library.json', {})['items']), 1)
+            # A source touching/replacing an identical checkpoint must not
+            # repeatedly persist the library or move the reader's card focus.
+            S.atomic(session.directory/'scan-checkpoint.json', {'feeds': [card()]})
+            time.sleep(.35)
+            self.assertEqual(session.status()['revision'], first_revision)
+            second.set(); await_count(2)
+            self.assertGreater(session.status()['revision'], first_revision)
+            self.assertEqual(session.status()['progress']['seen'], 2)
+            self.assertTrue(session.library['scan']['running'])
+        finally:
+            second.set(); release.set()
+        until = time.monotonic() + 2
+        while session.busy() and time.monotonic() < until: time.sleep(.02)
+        self.assertFalse(session.busy())
+        self.assertTrue(session.library['scan']['interrupted'])
+        self.assertFalse(session.library['scan']['running'])
+        self.assertEqual(len(session.library['items']), 2)
+
+    def test_cancel_scan_keeps_arrived_batch_and_allows_retry(self):
+        _, session = self.new(); session.verify()
+        stopped = threading.Event()
+        original = session.backend.request
+        def waiting(method, path, body=None):
+            if not path.endswith('tab=fav'): return original(method, path, body)
+            S.atomic(session.directory/'scan-checkpoint.json', {'feeds': [card()]})
+            stopped.wait(3)
+            raise S.Problem('source_unavailable', 502)
+        session.backend.request = waiting
+        session.backend.stop = stopped.set
+        session.start('scan', session.scan)
+        until = time.monotonic() + 2
+        while not session.library['items'] and time.monotonic() < until: time.sleep(.02)
+        self.assertEqual(len(session.library['items']), 1)
+        session.cancel_scan()
+        until = time.monotonic() + 2
+        while session.busy() and time.monotonic() < until: time.sleep(.02)
+        self.assertEqual(session.job['state'], 'cancelled')
+        self.assertEqual(session.library['scan']['endReason'], 'cancelled')
+        self.assertFalse(session.library['scan']['running'])
+        self.assertEqual(len(session.library['items']), 1)
+        session.backend.request = original
+        session.start('scan', session.scan)
+        until = time.monotonic() + 2
+        while session.busy() and time.monotonic() < until: time.sleep(.02)
+        self.assertEqual(session.job['state'], 'done')
+
+    def test_restart_keeps_streamed_cards_but_does_not_claim_running(self):
+        token, session = self.new(); session.verify(); session.scan()
+        session.library['scan'].update(running=True, complete=False)
+        revision = session.library['revision']
+        S.atomic(session.directory/'library.json', session.library)
+        restored = S.Store(Path(self.temp.name), Path('/unused'), factory=Fake).get(token)
+        self.assertFalse(restored.library['scan']['running'])
+        self.assertEqual(restored.library['scan']['endReason'], 'service_restarted')
+        self.assertGreater(restored.library['revision'], revision)
+        self.assertEqual(len(restored.library['items']), 1)
 
     def test_incremental_duplicate_partial_and_notes(self):
         first, _ = S.merge_scan({}, {'feeds':[card(),card()]})
