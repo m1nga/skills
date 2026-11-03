@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "skill": "breakinggap",
+  "reviewed_at": "2026-11-03T11:57:21.500778+00:00",
+  "source_sha256": "8517d58da2b0886474d7317cb891cd778e7d3e8952776055a67ee45da6b81263",
+  "user_review": {
+    "method": "Independent reviewer executed real isolated helper calls and simulated instruction scenarios; root executed companion browser flow. Routing simulation was not blind (reviewer accidentally saw initial body lines); actual harness selection and field effectiveness remain unverified.",
+    "scenarios": [
+      {
+        "request": "Use a ten-minute gap while a search build runs, from a different working directory.",
+        "expected": "Choose an eligible sourced step, preserve canonical files, checkpoint and resume.",
+        "observed": "Independent reviewer executed recommend/start/checkpoint/resume with a real file SHA-256; journal recovered, canonical source bytes unchanged.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Continue when source changed, work is held, agent needs input, or saved journal is malformed.",
+        "expected": "Exclude stale/held work, hand back when needed, preserve malformed records.",
+        "observed": "Independent helper subprocess cases returned no_match/needs_attention/ready_to_review or JSON error as appropriate; stale start refused, stale resume warned, malformed journal preserved.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Start the companion, pause/reopen, then return immediately when the agent is ready.",
+        "expected": "Timer does not auto-resume; return must not require finishing a form.",
+        "observed": "Root browser verified reload paused at remaining time. Review found mandatory note gate; fix shows return cue immediately and Skip note & return works with blank fields.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Save a short learning note and export it.",
+        "expected": "A real checkpoint export preserves the stated work and does not change source tasks.",
+        "observed": "Root browser saved a fictional test note, downloaded JSON, and verified exact note and source_task_changed=false.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Skip with an unfinished draft, then start another gap.",
+        "expected": "Keep incomplete draft without claiming completion.",
+        "observed": "Companion regression test verifies draft survives in separate drafts collection and history gains no completed checkpoint; malformed nested draft data stays recoverable.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Messy waiting request, project learning, weekly planning, day reflection, task-manager collision, bare machine and another agent engine.",
+        "expected": "Fit waiting work, exclude generic planning/reflection, degrade without inventing tools or data.",
+        "observed": "Nine labeled instruction walkthroughs found appropriate boundaries and conversation-only fallback. Actual host routing and long-term behavior were not measured.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/Terryc21/unforget/blob/cf907b2c35aa2a2cc1a4cc2c75cb75f60f3ff5fc/skills/unforget/SKILL.md",
+      "checked_at": "2026-11-03",
+      "learned": "Recheck that an unfinished item is still open and use traceable evidence.",
+      "decision": "adapt",
+      "reason": "BreakingGap reuses authoritative project state and avoids building a duplicate backlog or automatically fixing small items."
+    },
+    {
+      "url": "https://github.com/Terryc21/tutorial-creator/blob/6d4b025615405ea1fc0c5e7c70b6fb36785ab0d0/skills/tutorial-creator/SKILL.md",
+      "checked_at": "2026-11-03",
+      "learned": "Ground learning in real project material, ask for active understanding, and count saving only after a successful write.",
+      "decision": "adapt",
+      "reason": "Learning mode uses one prediction/explanation and a small honest checkpoint; full lessons and streaks would consume the short gap."
+    },
+    {
+      "url": "https://github.com/ahzia/StayOn-Claude-Mod/blob/710f5d1d1aa309fbf6c716de7d515364bffcdabb/hooks/core/recommend.ts",
+      "checked_at": "2026-11-03",
+      "learned": "Filter ready independent human-owned work and return one candidate.",
+      "decision": "adopt",
+      "reason": "The helper implements explicit ready/owner/authorization/conflict and duration filtering; unknown fixed time defaults and unverified agent notifications are rejected."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -m unittest discover -s breakinggap/tests -p test_gap.py (absolute test path; task-owned cwd)",
+      "result": "pass",
+      "observed": "15 tests passed after portable fixture-path fix; includes corruption, safe output, source changes, budgets, owner/hold/status, permissions and idempotency."
+    },
+    {
+      "command": "node breakinggap/tests/companion-check.mjs",
+      "result": "pass",
+      "observed": "Syntax, eligibility, integer budgets, malformed storage, immediate return, skipped draft preservation and no invented checkpoint all passed."
+    },
+    {
+      "command": "python3 skill-creator/scripts/quick_validate.py breakinggap",
+      "result": "pass",
+      "observed": "Skill is valid."
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS after aligning public section titles with the repository contract."
+    }
+  ],
+  "unresolved_blockers": []
+}
