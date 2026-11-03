@@ -1,11 +1,12 @@
-# First Principles — Finish the Real Task with Fewer Unnecessary Steps
+# First Principles — A Codex Skill for Simpler, Complete Workflows
 
-A skill for people who keep asking their AI to stop adding process and finish the
-actual job. It checks which steps are necessary, reuses existing work and follows
-through to a result the user can use.
+First Principles is an AI workflow skill for Codex. It helps an agent identify the
+actual outcome, reuse existing work, remove unnecessary steps and verify a complete
+result. Use it when repeated plans, handoffs or partial fixes are getting in the way
+of finishing a task.
 
-[Find First Principles on SideCourt](https://sidecourt.space/work/6123779e-5d92-42aa-9daf-62302822df8f/).
-Publication of that page is controlled by its author. GitHub hosts the source and installation package.
+Built for personal workflows. Install the instructions into your agent; no website,
+account or separate service is required. This repository is the source and install entry.
 
 ## What it does
 
@@ -68,13 +69,33 @@ process rather than adding a second process.
 
 ## Validation
 
-The release includes a maintainer walkthrough of normal, failure and routing cases,
-explicitly labeled as simulations, plus actual package, metadata and publication
-checks. It has not been independently user-tested, and no reduction in tokens,
-execution time or rework is claimed yet. See the content-bound
+On 2026-11-03, six actual Codex executions compared three identical local tasks
+with and without this skill. Both configurations passed all 15 acceptance criteria
+across the three tasks on the first delivery, with zero correction rounds.
+**This small test did not demonstrate an incremental reduction in rework.**
+
+The tasks covered a broken download, a budget correction and a paused migration
+handoff. They were reconstructed fixtures, not live business work or an independent
+user study. See [measurement details](skills/first-principles/references/evaluation.md).
+Use the skill as an optional execution aid; measured efficiency is not promised.
+
+The release also includes 11 maintainer walkthroughs labeled as simulations, plus
+actual package, metadata and publication checks. See the content-bound
 [release evidence](https://github.com/m1nga/skills/blob/main/ops/skill-quality/reviews/first-principles.json).
+
+## Common questions
+
+**Does this create a new task or run in the background?** No. It guides the agent
+working on the task you requested. It does not install a scheduler, service or a
+separate coordination system.
+
+**Should I use it for every question?** No. Invoke it for first-principles execution
+or workflow simplification. Ordinary questions and small edits can stay direct.
+
+**Does it replace permissions or project instructions?** No. Current scope, original
+owners, publication holds and real verification requirements remain in force.
 
 ## Author
 
-Built by [Ming](https://github.com/m1nga). Source and installation are maintained on
-GitHub; the product's primary discovery entry is on SideCourt.
+Built by [Ming](https://github.com/m1nga). Source, documentation and installation are
+maintained in this GitHub repository.

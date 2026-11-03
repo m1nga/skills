@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "skill": "first-principles",
-  "reviewed_at": "2026-11-03T15:43:38.234029+08:00",
-  "source_sha256": "d181d369fd3dcc8801691b2679efd2f919fdba3d2fe9fc2ec7394fdd7f3186b9",
+  "reviewed_at": "2026-11-03T08:23:20.769571+00:00",
+  "source_sha256": "279bb828eaf6b4810203c7b576adde76641e7d1983e8a16d6b7c5020f22973c9",
   "user_review": {
-    "method": "Maintainer walkthrough from public entry and explicit simulated execution/routing cases. These are authored simulations, not independent agent runs, human research or measured production improvements. Actual deterministic package and publication checks are recorded separately.",
+    "method": "Eleven maintainer simulations retained from initial release; followed by six actual isolated Codex executions, three paired tasks with/without the frozen skill. Acceptance criteria were written before execution; artifacts were checked programmatically and read by the maintainer. Not independent, not strictly blinded, and not longitudinal production research. Both arms passed; no incremental rework reduction demonstrated.",
     "scenarios": [
       {
         "request": "Use first principles to fix an already-authorized broken download on an existing page.",
@@ -82,6 +82,34 @@
         "observed": "Walkthrough included coordination and rework in the missing denominator; the end-to-end improvement remained unproven.",
         "kind": "simulated",
         "result": "pass"
+      },
+      {
+        "request": "Fix the current download while preserving existing entry points.",
+        "expected": "Download valid version-3 ZIP over HTTP; preserve historical ZIP and avoid new services.",
+        "observed": "Both arms passed 4/4 criteria on first delivery; actual HTTP downloads, ZIP manifest and historical hash checked; zero repairs.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Apply a zero-new-budget correction to the source and shareable artifact.",
+        "expected": "Source and generated briefing agree; existing tools retained; historical evidence unchanged.",
+        "observed": "Both arms passed 5/5 criteria on first delivery; generator rerun produced the same corrected artifact; zero repairs.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Prepare a ready-to-use migration handoff while routines remain paused.",
+        "expected": "Keep owners, adopted version, hold, receipt reconciliation, expired eligibility case and promised help.",
+        "observed": "Both arms passed 6/6 criteria on first delivery; local links, unchanged scheduler/owners and handoff content checked; zero repairs.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Use this as a personal installed skill, with GitHub publishing only.",
+        "expected": "Direct installation and clear GitHub discovery without requiring a platform product page.",
+        "observed": "Removed the unrelated SideCourt entry from README, kept direct install command, clarified no hosted service/background task, and retained the stable repository slug.",
+        "kind": "executed",
+        "result": "pass"
       }
     ]
   },
@@ -113,6 +141,13 @@
       "learned": "Bound retrieved observations and count coordination overhead in optimization.",
       "decision": "adapt",
       "reason": "Applied to evidence selection and whole-path accounting; discarded numerical targets and automatic delegation/runtime-control prescriptions."
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md",
+      "checked_at": "2026-11-03",
+      "learned": "Paired with/without-skill runs, artifact grades and separate timing/token evidence.",
+      "decision": "adapt",
+      "reason": "Adapted to Codex-only actual local execution; kept deterministic checks and reported reviewer/measurement limits. No empty-feedback-as-satisfaction assumption or mandatory runtime evaluation system."
     }
   ],
   "validation": [
@@ -125,7 +160,39 @@
       "command": "python3 publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
       "result": "pass",
       "observed": "Actual product metadata, package and README audit returned VERDICT: PASS."
+    },
+    {
+      "command": "python3 effect-eval/grade.py (private task workspace)",
+      "result": "pass",
+      "observed": "All 30 criterion checks across 6 actual runs passed; substantive artifact review confirmed the predefined task requirements. Zero correction rounds in both arms."
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
+      "result": "pass",
+      "observed": "Updated GitHub-focused README, title, description and topics passed; no SideCourt entry remains in target README."
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "effectiveness": {
+    "status": "no_incremental_rework_reduction_demonstrated",
+    "executions": 6,
+    "paired_tasks": 3,
+    "criteria_per_arm": 15,
+    "first_delivery_passes": {
+      "with_skill": 3,
+      "without_skill": 3
+    },
+    "extra_repair_rounds": {
+      "with_skill": 0,
+      "without_skill": 0
+    },
+    "frozen_skill_sha256": "4f614a50a7cadfe8031be5551398e97b7c89a8bd83845f6549fff084a7d62455",
+    "limits": [
+      "Reconstructed known historical task families",
+      "One run per arm per task",
+      "Author participated in grading; not independent/blinded",
+      "Transport retries confound time",
+      "Executor usage excludes coordination overhead"
+    ]
+  }
 }

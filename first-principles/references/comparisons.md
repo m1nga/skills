@@ -14,3 +14,16 @@ The private historical review also supplied a counterexample: an over-short
 handoff can omit the knowledge needed to execute. This skill therefore minimizes
 unnecessary work while retaining essential context and complete outcomes. Historical
 examples explain design choices; they do not establish efficacy of this release.
+
+## Evaluation and documentation follow-up, 2026-11-03
+
+- Re-read the current First Principles Thinking author source above. Keep the
+  outcome/constraint distinction; continue to omit mandatory analysis sections.
+  The public README now explains the execution use case and direct installation
+  without requiring a separate hosted product page.
+- Adapt [Anthropic's skill-creator evaluation workflow](https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md): paired executions with and without the skill,
+  fixed acceptance criteria, recorded artifacts and honest timing/token evidence.
+  Runs here use Codex, not Claude. Programmatic checks handle deterministic facts;
+  the author reviews meaning and states that limitation. Do not interpret missing
+  user feedback as satisfaction, or promote a passing demonstration into proof of
+  reduced rework. No evaluation pipeline is installed as a runtime dependency.
