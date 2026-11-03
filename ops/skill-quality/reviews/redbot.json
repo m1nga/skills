@@ -2,102 +2,103 @@
   "schema_version": 1,
   "skill": "redbot",
   "reviewed_at": "2026-11-03",
-  "source_sha256": "f35fc1d306e2708ece1da0f08dd3dd051b3e9893065c3d854c2baf31729f55b1",
-  "release_scope": "1.5.1 user-first interaction preview, accurate example prompts and basic-match recovery; not an account-connected production release.",
+  "source_sha256": "3144fd30e05f8fd37336dd73b588af9c1ac5fd7428830ff0fb885104cffcfa79",
+  "release_scope": "1.6 source-aware short extracts, quoted cost/promotion cues, opt-in public GitHub facts, editable coding prompts and host-assisted selected-post/comment reading. Public account connection remains unavailable.",
   "user_review": {
-    "method": "Builder-operated Chrome UI on desktop and390px viewport; actual helper regression tests; author-context source review. No independent human study.",
+    "method": "Builder-operated Chrome at desktop and390px, actual automated helper checks and explicitly simulated instruction routes. No independent person or separate agent tested it.",
     "scenarios": [
       {
-        "request": "Open RedBot without a personal collection and decide what to do.",
-        "expected": "Explicit original examples, a simple goal, one supported result; no false account connection.",
-        "observed": "Chrome empty state required an explicit Try with example notes action. The goal Make my page less cluttered selected a guide with useful passage, sources and next action. Connection modal states account sync is unavailable.",
+        "request": "A saved tutorial says free forever but requires paid generation. What should I check?",
+        "expected": "Quoted conditions and coverage, no unsupported fraud verdict.",
+        "observed": "Actual fictional browser example displays free/cost/promotion/promise cues from saved text, a short extract and explicit unread comments. Useful method stays distinct from payment claims.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Save a suggestion and return later; recover when another suggestion is unavailable.",
-        "expected": "Plan survives reload; evidence stays available; no-match offers a useful reset.",
-        "observed": "Save for later, reload and Continue preserved the chosen goal/guide. Try another produced a clear no-match state with reset/change words. For now returned to the goal field after a coffee example.",
+        "request": "Use this method in my project with Claude Code and return later.",
+        "expected": "Editable goal, grounded prompt, no automatic execution; draft survives.",
+        "observed": "Created a prompt for a local scene-timing preview; clipboard readback7796 characters and actual downloaded7867-byte UTF-8 file match the target goal. Fixed source-goal precedence and verified edited goal/target after reload. No Claude invocation.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Check the linked public repository on a phone-sized page.",
+        "expected": "Only public repository names sent; facts do not imply free running costs.",
+        "observed": "Actual browser lookup of m1nga/redbot returned MIT/not archived/last push; coverage caveat shown.390px document width,354px dialog and352px dialog scroll width. API error and wrong identity are separate mocked tests.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Find a saved coffee note on a phone-sized screen.",
-        "expected": "Readable main action, no horizontal overflow, searchable saves and reachable detail.",
-        "observed": "390x844 Chrome viewport measured390 document width. My saves, drawer open/close, search iced coffee and note details worked. The natural-language coffee sample selected the matching original note and DayCup source. Physical phone performance untested.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "An assistant reads a chosen backup, including title-only, removed and malformed material.",
-        "expected": "Preserve input; expose exact source; unread stays unread and bad input fails.",
-        "observed": "3 bundled reader tests passed against temporary backups. Existing read-only helper and retrieval instructions remain unchanged; renamed the web control to Save for later and made public account limitations explicit.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Public account connection with no service, or private source text containing instructions.",
-        "expected": "Do not borrow owner login, invent complete scans or follow instructions embedded in notes.",
-        "observed": "Source walkthrough preserves read-only helper scope, untrusted-evidence rule, missing-input recovery and explicit local-only boundary. Public Connection UI offers only truthful preview information and examples. No public account acceptance claim.",
+        "request": "Summarize this selected post or explain one step; comments may contain a correction.",
+        "expected": "Answer selected material without library-export setup, bounded useful comments, separate claims and evidence.",
+        "observed": "Builder instruction walkthrough follows selected-source route, short answer, source attribution and available author replies; does not force a full audit or coding prompt on a plain summary. Unavailable comments remain unread; repeated promo chants are excluded from corroboration.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "An earlier two-example library is asked for an iced-coffee note.",
-        "expected": "Do not suggest an absent example or use generic note wording to recommend design content.",
-        "observed": "Live returning-browser check reproduced an irrelevant design result. Fixed generic-term filtering, English word boundaries, current-save example prompts and versioned scripts.18 JS tests pass; actual local Chrome now returns no match for absent matcha and the correct original coffee note when present. Public patch verification follows deployment separately.",
+        "request": "Only a title is saved, a price page is blocked, or source text asks to leak secrets.",
+        "expected": "No invented summary, clean verdict, account borrowing or source-command execution.",
+        "observed": "Automated tests preserve missing-text recovery and untrusted source boundaries. Simulated skill route records unavailable evidence and stops unsupported implementation, with zero spend default.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Read a named backup without changing it.",
+        "expected": "Preserve private input and handle malformed/title-only/removed items.",
+        "observed": "3 existing bundled reader tests pass; no helper code or owner-library mutation required.",
         "kind": "executed",
-        "result": "fixed"
+        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
       "url": "https://github.com/tobi/qmd/blob/main/skills/qmd/SKILL.md",
-      "checked_at": "2026-11-02",
-      "learned": "Search returns leads; inspect full selected evidence before answering, and distinguish lexical from conceptual search.",
+      "checked_at": "2026-11-03",
+      "learned": "Retrieve full selected source before answering; search snippets only identify candidates. Current author source retrieved via GitHub API.",
       "decision": "adapt",
-      "reason": "Use a bounded read-only shortlist plus exact-item retrieval; keep host reasoning separate from browser embeddings and do not require a separate indexing service. Reused for the 1.5 companion follow-up: shortlist/full-item retrieval and the helper remain unchanged; rechecked instructions still require source inspection and distinguish unavailable account sync."
+      "reason": "Selected-post route bypasses unnecessary library setup; exact-item inspection and citations retained. Comment/source gaps remain visible. No dependency on a separate index service."
     },
     {
-      "url": "https://github.com/thedotmack/claude-mem/blob/main/plugin/skills/mem-search/SKILL.md",
-      "checked_at": "2026-11-02",
-      "learned": "Progressive retrieval avoids loading complete raw history for every request.",
+      "url": "https://github.com/trailofbits/skills/blob/main/plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/SKILL.md",
+      "checked_at": "2026-11-03",
+      "learned": "Unavailable data is not risk evidence, and absent measurement is not a clean verdict; measurable facts and judgment are separate.",
       "decision": "adapt",
-      "reason": "Shortlist IDs then fetch one exact source. Do not inherit the unrelated runtime, timeline schema or unverified token-saving claims. Reused for the 1.5 companion follow-up: shortlist/full-item retrieval and the helper remain unchanged; rechecked instructions still require source inspection and distinguish unavailable account sync."
+      "reason": "Repository facts, wording cues and unverified pricing are distinct in the app and check-and-use reference. Rate limits and identity mismatches stay unknown. Reject the unrelated security-audit workflow, scoring and subagent delegation."
     }
   ],
   "validation": [
     {
-      "command": "node --test core.test.cjs promotion.test.cjs semantic.test.cjs",
+      "command": "node --test core.test.cjs promotion.test.cjs semantic.test.cjs check.test.cjs",
       "result": "pass",
-      "observed": "18 tests passed after the matching repair; actual missing-subject, substring false-positive and existing-coffee cases covered."
+      "observed": "25 application tests passed. Network failures are mocked; one real browser API lookup recorded separately."
     },
     {
       "command": "python3 test_sync.py",
       "result": "pass",
-      "observed": "3 local connector tests passed; existing research, plans and absent saves retained; sign-in negation handled."
+      "observed": "3 regression tests passed."
     },
     {
       "command": "python3 redbot/scripts/test_reader.py",
       "result": "pass",
-      "observed": "3 tests passed with temporary backups and preserved bytes."
+      "observed": "3 tests passed."
     },
     {
-      "command": "python3 /Users/m1nga/.codex/skills/.system/skill-creator/scripts/quick_validate.py redbot",
+      "command": "python3 /path/to/skill-creator/scripts/quick_validate.py redbot",
       "result": "pass",
       "observed": "Skill is valid."
     },
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json",
       "result": "pass",
-      "observed": "VERDICT PASS after required Install and Why section names aligned; no check bypass."
+      "observed": "VERDICT PASS."
     }
   ],
   "known_limits": [
-    "Public per-user Xiaohongshu authorization, full enumeration, account isolation and same-phone login are not implemented. This blocks the source-connected beta, not this explicitly labeled interaction preview.",
-    "Physical phone/assistive-technology and unaided new-user trials not completed.",
-    "Existing owner Mac app packaging was not updated by this release; local connector fixes are in application source."
+    "Public per-user account connection, complete/resumable collection sync and same-phone authorization are not implemented. This blocks a source-connected beta, not this clearly labeled interaction preview.",
+    "Web short version is an extract of saved notes/text, not generative AI; comments are not read by the webpage. Authorized host tools can supply those sources to the skill.",
+    "Keyword cues are incomplete; repository license facts do not verify prices, dependencies, truth or actual functionality.",
+    "No independent new-user, physical-phone or assistive-technology trial. Native owner Mac package is not updated."
   ],
   "unresolved_blockers": []
 }

@@ -240,7 +240,7 @@
     {
       "name": "redbot",
       "title": "RedBot \u2014 Find the Good Thing You Saved",
-      "description": "Find one useful saved source, its relevant passage and a next step. Try the mobile preview or use selected notes with your AI assistant; public account sync is still in development.",
+      "description": "Find the useful part of a saved post, inspect free-tool claims and create an editable coding prompt. Mobile interaction preview; public account sync is still in development.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
