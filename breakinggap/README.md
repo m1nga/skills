@@ -1,22 +1,28 @@
-# BreakingGap — Small Steps While AI Agents Work
+# BreakingGap — Playful Brainstorming While AI Works
 
-<img src="skills/breakinggap/assets/logo.png" alt="BreakingGap open-loop logo with an orange stepping block" width="140">
+<img src="skills/breakinggap/assets/wordmark.svg" alt="BreakingGap" width="460">
 
-**A little gap. A little further.**
+**Let a different thought in.**
 
-Your agent is working. You have ten minutes, a half-finished idea, and just enough attention for something worthwhile. BreakingGap helps you choose **one useful human step** and leave a clear place to return.
-
-BreakingGap is an AI-agent skill with an optional offline companion. It turns a short waiting gap into a small contribution to your current work, an unfinished task, or relevant learning. It is designed for independent makers, developers, and knowledge workers who already work with agents.
+Your agent is working. You have a gap. BreakingGap gives you one interesting opening: a sideways question about your project, a surprising connection, or a gentle return to an idea you once wanted to try. You answer; the conversation develops from there.
 
 ## What it does
 
-| Intention | A small, useful result |
-| --- | --- |
-| Move this forward | Write one acceptance example while an agent builds the feature. |
-| Pick something up | Continue a saved opening paragraph without reopening an entire project. |
-| Learn one thing | Explain one concept from your actual work, then check your understanding. |
+BreakingGap is an Agent Skill for short, playful thinking breaks inside your existing AI conversation. It uses the context that is actually available, invites your own thinking, and lets you leave as soon as you want.
 
-You get one suggestion, its source, an estimated time allowance, a stopping point, and a cue for returning to your primary work. Setup and wrap-up count toward the budget; two minutes stay free for returning. You can stop early. You can also leave the gap empty.
+| Direction | What a conversation might open up |
+| --- | --- |
+| Change the angle | “What would a visitor enjoy here if they never created an account?” |
+| Make a strange connection | “What could this onboarding learn from a good dinner host?” |
+| Revisit an idea | “You mentioned giving photographs their own soundtracks. I don't know whether you tried it since. Want to imagine the first five seconds?” |
+
+These are illustrative prompts, not facts about you. A repeated intention needs distinct, direct user mentions; lack of a progress note does not prove you never started. If you want a completely unrelated game or a quiet break, that choice counts too.
+
+## Who it's for
+
+Independent makers, developers, writers, and curious knowledge workers who already use AI agents and sometimes want a lighter way to think while waiting. You do not need another backlog, timer, or productivity score. A conversation can be worthwhile without producing a document.
+
+It is not a full design workshop, automatic agent monitor, reminder service, or universal memory system. It cannot access other chats merely because you installed it. It respects the host's available tools, source access, and permissions.
 
 ## Install
 
@@ -24,50 +30,65 @@ You get one suggestion, its source, an estimated time allowance, a stopping poin
 npx skills add m1nga/breakinggap
 ```
 
-In your agent, invoke the skill with your current work and available time:
+Select your supported agent during installation. Then invoke the installed skill explicitly:
 
-> Use $breakinggap. My agent is building search. I have about 10 minutes. Help me make one useful contribution without touching the files it is editing.
+**Codex**
 
-Example response, using a **fictional** search-feature plan supplied in the conversation:
+> Use $breakinggap. I have a gap while my agent works. Give me one interesting angle to explore together.
 
-> **Try:** Write one acceptance check for an empty search result: the query, expected message, and a useful recovery action.
+**Claude Code**
+
+> /breakinggap I have a gap. Let's play with a different angle on this project.
+
+Or say “I have a gap—what could we explore?” Automatic selection depends on the host. The same portable `SKILL.md` is used in both; no custom service or API key is required. See [Codex's skills documentation](https://learn.chatgpt.com/docs/build-skills) and [Claude Code's skills documentation](https://code.claude.com/docs/en/skills) for current host setup. Codex installation is verified in this release; Claude Code compatibility is based on the documented skill format, not a runtime test.
+
+## A conversation, not just a prompt
+
+An **illustrative** exchange while a signup feature is being built:
+
+> **You:** I have a gap. I'm tired of staring at this registration flow.
 >
-> **Why this fits:** You can clarify what “good” means without editing the agent's files. Estimate: 1 minute to reread the plan, 5 to write, 1 to save; 2 minutes remain for returning, with 1 minute spare.
+> **BreakingGap:** Imagine someone visits this community every week and never posts. What could happen on their first visit that makes them feel welcome?
 >
-> **Enough for now:** One runnable check in your notes. Stop after that check.
+> **You:** They could choose a photo they want to sit with, without having to like or comment.
 >
-> **Return to:** Review the agent's search result against this example when it is ready.
+> **BreakingGap:** That makes browsing feel like choosing a place to stay. What would help them feel they can leave without owing the community a response?
+>
+> **You:** My agent's back.
+>
+> **BreakingGap:** Back to the signup review. The thought to keep, if useful: browsing can be a complete form of participation.
 
-“The agent is back” returns you to the primary work. It does not require finishing the small step first. For a learning step, you do the prediction or explanation; the skill helps you check it against the source.
+No mandatory recap, saving step, or unfinished-exercise penalty. It does not write to project files unless asked or already authorized.
 
-## The offline companion
+## Why use a skill when AI can already do this?
 
-Open [`companion.html`](skills/breakinggap/assets/companion.html) from the downloaded package, keeping `logo.png` beside it. It includes clearly labeled fictional examples, three intentions, 10/15/20-minute choices, a pauseable timer, and a checkpoint export. No account or network request is needed. Hidden tabs pause the timer; reopening never resumes it automatically.
+You can ask ordinary AI for this. BreakingGap does not add intelligence or unlock hidden memory. It packages a particular interaction: start from the actual situation, choose one fresh angle, wait for your answer, develop that answer, handle remembered intentions carefully, and get out of the way when you return.
 
-For real work, ask the skill to prepare an import from your current project. The page uses a **saved snapshot**, not a live connection. It cannot verify source files or observe an agent. Tell it when your agent is ready. Browser data stays on that browser origin; exports are portable, and imported data is never written back to source files automatically. Shared-device users should handle browser storage and exported notes as local work data.
+That consistency is the intended value. It has to earn its place through use. A small same-model response exercise during this revision produced enjoyable replies with both a plain request and the skill. It did **not** establish that the skill is better. We are testing whether people prefer this behavior repeatedly, not claiming a capability they cannot get from AI otherwise.
 
-For file-backed use, the optional Python 3.9+ helper verifies local source hashes and keeps one recoverable session. See the [helper contract](skills/breakinggap/references/session-format.md). Python is not required for conversational use. Browser exports and the helper's journal are separate; the skill reconciles a checkpoint only after checking current work.
+## Try the visual playground
 
-## Who it's for
+Download the repository and open [`companion.html`](skills/breakinggap/assets/companion.html). It is a single-file offline playground with clearly fictional dialogues and an editable starter to copy into your AI. It does not run a model, read history, or connect to agents. It keeps newly entered context only in the current tab. Previous v1 browser data is left untouched and can be exported from the same browser origin when available.
 
-Use it when you already have a bounded gap and want a worthwhile next move. It does not monitor agents, schedule your day, resume paused projects, resolve competing owners, or make uncertain waits predictable. Unknown or conflicting work is excluded. A task's eligibility and time estimate still require judgment.
+The visual identity uses a **text-only BreakingGap wordmark**, element-like Br/Ga tiles, dark chemical greens and aged off-white type. The [brand guide](BRAND.md) explains the audience and direction. There is no separate icon mark.
 
 ## Design notes
 
-Waiting can leave room for curiosity as well as productivity. The design protects that choice: one step, an easy stopping point, a clear return, no streak to maintain. The [brand guide](BRAND.md) explains the audience, promise, visual identity, and initial validation plan.
+The originating question was about ten-to-twenty-minute agent waits. The first version emphasized finding small tasks and keeping checkpoints. The direction changed after the creator pointed out that ordinary AI already covers task suggestions: the interesting part was brainstorming, curiosity, and thoughtful recall, with room to step away from heavy work.
 
-Current author-source research informed three decisions:
+Current author-source research changed the actual instructions:
 
-- [unforget](https://github.com/Terryc21/unforget/blob/cf907b2c35aa2a2cc1a4cc2c75cb75f60f3ff5fc/skills/unforget/SKILL.md): adopt checking that unfinished work is still open; adapt it to existing project records rather than another backlog.
-- [tutorial-creator](https://github.com/Terryc21/tutorial-creator/blob/6d4b025615405ea1fc0c5e7c70b6fb36785ab0d0/skills/tutorial-creator/SKILL.md): adapt project-grounded, active learning into one short question and an honest checkpoint.
-- [StayOn](https://github.com/ahzia/StayOn-Claude-Mod/blob/710f5d1d1aa309fbf6c716de7d515364bffcdabb/hooks/core/recommend.ts): adopt ready, independent, human-owned work and one recommendation; reject fixed fallback estimates and unverified notification promises.
-
-These are design influences, not incorporated third-party code or proof of effectiveness. BreakingGap is not claimed to be the first tool in this area.
+- [creative-thinking](https://github.com/ysskrishna/ai-agent-skills/blob/f2bebb8e94b6292d372e1db8dbc4401fc3e2346f/skills/creative-thinking/SKILL.md): adapt analogy, rule reversal, and changes of viewpoint into one conversational opening. Leave the full workshop and long idea lists out.
+- [unforget](https://github.com/Terryc21/unforget/blob/cf907b2c35aa2a2cc1a4cc2c75cb75f60f3ff5fc/skills/unforget/SKILL.md): adopt checking whether old work is still open; distinguish a sourced intention from an inferred wish or missing progress record. Do not build a debt ledger.
+- [superpowers brainstorming](https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/brainstorming/SKILL.md): adopt reading the existing context before asking questions; leave its design-document and planning workflow out of short breaks.
+- [Oblique Strategies](https://enoshop.co.uk/products/oblique-strategies): the compact creative prompt is a useful form reference. BreakingGap's example prompts are original; it does not reproduce the card deck.
 
 ## Evidence
 
-The release is checked with local helper tests, companion checks, browser interaction, and labeled instruction scenarios. Those checks cover behavior and recovery, not productivity gains. There are no claimed customer numbers, measured time savings, learning gains, or long-term field results. The first useful test is whether a real person makes something worthwhile **and returns without extra friction**.
+This revision includes controlled model-response exercises, labeled instruction simulations, offline playground checks and browser interaction. They test instruction behavior and UI function, not proven creativity, engagement, wellbeing, or productivity improvements. Actual host routing and long-term user preference remain unverified. No customer numbers, testimonials, or measured time savings are claimed.
+
+The optional v1 [Python helper](skills/breakinggap/references/session-format.md) remains for existing file-backed sessions. It verifies task source hashes and preserves its checkpoint journal; it does not generate creative dialogue or discover repeated intentions. It is not the default v2 experience.
 
 ## Author
 
-Made by Ming. Feedback is most useful with the original waiting situation, the suggested step, and what made returning easier or harder. Do not include private project material in public issues.
+Made by Ming. Useful feedback describes the waiting situation, the first question, whether you wanted to answer, and whether returning was easy. Keep private project notes out of public issues.

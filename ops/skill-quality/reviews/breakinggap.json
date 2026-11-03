@@ -1,98 +1,105 @@
 {
   "schema_version": 1,
   "skill": "breakinggap",
-  "reviewed_at": "2026-11-03T11:57:21.500778+00:00",
-  "source_sha256": "8517d58da2b0886474d7317cb891cd778e7d3e8952776055a67ee45da6b81263",
+  "reviewed_at": "2026-11-03T13:32:19Z",
+  "source_sha256": "e08595ffb8fd7dab1c861fdedd747552c38b9ce835ef721c9021db5178c172ba",
   "user_review": {
-    "method": "Independent reviewer executed real isolated helper calls and simulated instruction scenarios; root executed companion browser flow. Routing simulation was not blind (reviewer accidentally saw initial body lines); actual harness selection and field effectiveness remain unverified.",
+    "method": "Two fresh same-model agents produced responses with and without skill text in three synthetic contexts; one skill follow-up/stop exchange. Separate metadata-first static routing review and failure simulations. Root browser tested the actual offline UI. This is not user research, a proof of superiority, live routing or Claude runtime validation.",
     "scenarios": [
       {
-        "request": "Use a ten-minute gap while a search build runs, from a different working directory.",
-        "expected": "Choose an eligible sourced step, preserve canonical files, checkpoint and resume.",
-        "observed": "Independent reviewer executed recommend/start/checkpoint/resume with a real file SHA-256; journal recovered, canonical source bytes unchanged.",
+        "request": "A bored maker waits for signup implementation; a quiet-visitor concern exists in context.",
+        "expected": "An inviting relevant opening, followed by a response to the user's answer, without a task list.",
+        "observed": "Skill-text agent invited imagining a visitor who never posts; after a supplied answer it asked what feeling the visitor should leave with. Baseline also offered a playful photo-related activity; no preference winner was established.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Continue when source changed, work is held, agent needs input, or saved journal is malformed.",
-        "expected": "Exclude stale/held work, hand back when needed, preserve malformed records.",
-        "observed": "Independent helper subprocess cases returned no_match/needs_attention/ready_to_review or JSON error as appropriate; stale start refused, stale resume warned, malformed journal preserved.",
+        "request": "Two dated direct notes mention giving travel photos soundtracks; later action status unknown.",
+        "expected": "Recognize supplied repetition without asserting the idea remains unstarted.",
+        "observed": "Skill-text agent named the two supplied days and explicitly said it did not know whether the person had tried it since. Baseline also recalled the idea without inventing additional history.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Start the companion, pause/reopen, then return immediately when the agent is ready.",
-        "expected": "Timer does not auto-resume; return must not require finishing a form.",
-        "observed": "Root browser verified reload paused at remaining time. Review found mandatory note gate; fix shows return cue immediately and Skip note & return works with blank fields.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Save a short learning note and export it.",
-        "expected": "A real checkpoint export preserves the stated work and does not change source tasks.",
-        "observed": "Root browser saved a fictional test note, downloaded JSON, and verified exact note and source_task_changed=false.",
+        "request": "The person explicitly wants an unrelated three-minute game; then return when their agent is ready.",
+        "expected": "Honor the wish to step away and allow immediate return.",
+        "observed": "Skill-text response offered an imaginative lost-property scene, not disguised data-cleaning work. Separate stop response returned immediately to the known signup result.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Skip with an unfinished draft, then start another gap.",
-        "expected": "Keep incomplete draft without claiming completion.",
-        "observed": "Companion regression test verifies draft survives in separate drafts collection and history gains no completed checkpoint; malformed nested draft data stays recoverable.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Messy waiting request, project learning, weekly planning, day reflection, task-manager collision, bare machine and another agent engine.",
-        "expected": "Fit waiting work, exclude generic planning/reflection, degrade without inventing tools or data.",
-        "observed": "Nine labeled instruction walkthroughs found appropriate boundaries and conversation-only fallback. Actual host routing and long-term behavior were not measured.",
+        "request": "Friend's wish, duplicated summaries, paused project, absent history, conflicting status dates or failed saving.",
+        "expected": "Do not invent repeated intentions, revive a pause, scan private sources or falsely claim saved work.",
+        "observed": "Independent labeled simulations followed safe source/fallback/exit behavior. Review found ambiguous conflict handling; body now explicitly rejects file-order status inference and avoids uncertain paused obligations.",
         "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Messy gap request, generic week planning, design-spec request, product branding discussion and a bare host.",
+        "expected": "Route gap conversations; exclude broad planning and discussion of the product itself; degrade without fake integrations.",
+        "observed": "Metadata-first reviewer predicted appropriate boundaries; product discussion exclusion was made explicit. Real host routing remains untested.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "Browse an example, inspect an intention's sources, add context and hand a starter to the selected host.",
+        "expected": "Clear fictional boundary; readable wordmark; correct host prefix and actual copy.",
+        "observed": "Root browser verified Br/eaking Ga/p typography, fictional snippets in revisit mode, changed example, supplied context and /breakinggap in visible starter, plus actual clipboard prefix after copy.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Open v2 with old or malformed v1 browser data.",
+        "expected": "Preserve raw data and allow unchanged export; no new background state writes.",
+        "observed": "Node DOM harness tests verified old raw data is not changed and raw export works even when malformed. This recovery case was not executed in browser UI.",
+        "kind": "executed",
         "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
+      "url": "https://github.com/ysskrishna/ai-agent-skills/blob/f2bebb8e94b6292d372e1db8dbc4401fc3e2346f/skills/creative-thinking/SKILL.md",
+      "checked_at": "2026-11-03",
+      "learned": "Analogy, rule reversal, changes of scale and viewpoint can produce distinct openings.",
+      "decision": "adapt",
+      "reason": "Use mechanisms to choose one contextual human question; reject long idea quotas and full workshop output."
+    },
+    {
       "url": "https://github.com/Terryc21/unforget/blob/cf907b2c35aa2a2cc1a4cc2c75cb75f60f3ff5fc/skills/unforget/SKILL.md",
       "checked_at": "2026-11-03",
-      "learned": "Recheck that an unfinished item is still open and use traceable evidence.",
+      "learned": "Check that deferred work is still open with traceable evidence.",
       "decision": "adapt",
-      "reason": "BreakingGap reuses authoritative project state and avoids building a duplicate backlog or automatically fixing small items."
+      "reason": "Require direct user evidence for repeated intentions, distinguish unknown status from unstarted work, and avoid a debt ledger or broad private scans."
     },
     {
-      "url": "https://github.com/Terryc21/tutorial-creator/blob/6d4b025615405ea1fc0c5e7c70b6fb36785ab0d0/skills/tutorial-creator/SKILL.md",
+      "url": "https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/brainstorming/SKILL.md",
       "checked_at": "2026-11-03",
-      "learned": "Ground learning in real project material, ask for active understanding, and count saving only after a successful write.",
+      "learned": "Read existing context before asking questions and preserve the user's own intent.",
       "decision": "adapt",
-      "reason": "Learning mode uses one prediction/explanation and a small honest checkpoint; full lessons and streaks would consume the short gap."
-    },
-    {
-      "url": "https://github.com/ahzia/StayOn-Claude-Mod/blob/710f5d1d1aa309fbf6c716de7d515364bffcdabb/hooks/core/recommend.ts",
-      "checked_at": "2026-11-03",
-      "learned": "Filter ready independent human-owned work and return one candidate.",
-      "decision": "adopt",
-      "reason": "The helper implements explicit ready/owner/authorization/conflict and duration filtering; unknown fixed time defaults and unverified agent notifications are rejected."
+      "reason": "Use a light contextual opening; reject design-document, approval and planning chains in a short break."
     }
   ],
   "validation": [
     {
-      "command": "python3 -m unittest discover -s breakinggap/tests -p test_gap.py (absolute test path; task-owned cwd)",
-      "result": "pass",
-      "observed": "15 tests passed after portable fixture-path fix; includes corruption, safe output, source changes, budgets, owner/hold/status, permissions and idempotency."
-    },
-    {
       "command": "node breakinggap/tests/companion-check.mjs",
       "result": "pass",
-      "observed": "Syntax, eligibility, integer budgets, malformed storage, immediate return, skipped draft preservation and no invented checkpoint all passed."
+      "observed": "Modes, keyboard tabs, editable starter generation, clipboard/fallback, untouched legacy export, offline/accessibility structure passed."
     },
     {
       "command": "python3 skill-creator/scripts/quick_validate.py breakinggap",
       "result": "pass",
-      "observed": "Skill is valid."
+      "observed": "Skill is valid; final frontmatter is quoted and metadata excludes discussion/editing of the product."
     },
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json",
       "result": "pass",
-      "observed": "VERDICT: PASS after aligning public section titles with the repository contract."
+      "observed": "VERDICT PASS; public package metadata and product page meet release contract."
+    },
+    {
+      "command": "git diff --cached --check; git diff --cached --numstat -- breakinggap/scripts/gap.py breakinggap/tests/test_gap.py breakinggap/references/session-format.md",
+      "result": "pass",
+      "observed": "No whitespace errors; v1 helper implementation, tests and schema are unchanged for existing sessions."
     }
   ],
   "unresolved_blockers": []

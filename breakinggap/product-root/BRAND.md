@@ -1,69 +1,55 @@
 # BreakingGap
 
-**A little gap. A little further.**
+**Let a different thought in.**
 
-## The idea
+## What we are inviting
 
-The minutes between asking an agent and receiving its result can hold a small creative contribution, a useful question, or a little discovery. BreakingGap helps you choose one that fits, enjoy doing it, and return with your place intact.
+A small gap can become a different kind of conversation. Someone has been working hard; their agent is busy. We offer a good question, a curious connection, or a gentle way to touch an old idea. The person may leave with a clearer thought, a laugh, something to try, or simply a better-feeling break.
 
-**Value promise:** One worthwhile human step while your agent works, with an easy way back.
+**Audience:** people already making, writing, researching, or coding with agents. Begin with independent makers and developers who move between concentrated work and uncertain waits. Broader knowledge-work use is a hypothesis to test.
 
-**Product definition:** BreakingGap is a skill and offline companion for short, uncertain waiting gaps in agent-assisted work. It suggests a sourced, interruptible action for current work, unfinished work, or relevant learning. It keeps a stopping point and a return cue together.
+**Value:** a thoughtfully chosen, contextual opening; responsive conversation after the user's answer; honest recall; an easy way back. We do not claim ordinary AI cannot do these things. The skill packages a behavior people may prefer without having to describe it every time.
 
-## Who we are making it for
+## Visual direction
 
-Start with **independent makers and developers who regularly work with one or more AI agents**. They already have a project, a pending result, and enough context to contribute something small. They may enjoy discovering a better idea as much as checking off a task.
+The creator explicitly requested the mood of *Breaking Bad*. The design uses cinematic dark greens, element-like typography, restrained technical rules, rough atmosphere and aged light text. The artwork and lettering are made for BreakingGap; no show footage, character likenesses, or downloaded logo assets are used.
 
-Three initial situations matter:
+The brand is the word **BreakingGap** itself. Br (35) begins Breaking; Ga (31) begins Gap. These are typographic elements inside a complete wordmark, not a separate app symbol. Keep the lettering legible at small sizes; preserve the accessible full name. No mascot, floating icon, or old orange loop is part of this direction.
 
-| Person and moment | What they want | Product response |
-| --- | --- | --- |
-| A maker waiting for a feature build | Give the result a better chance of being useful | Write one real acceptance example without editing the agent's files. |
-| A writer or researcher waiting for synthesis | Reconnect with something worth finishing | Resume a known paragraph or question with almost no setup. |
-| A curious builder waiting for a tool run | Understand more of what they are making | Explain or predict one project concept, then check it against a source. |
+| Role | Color |
+| --- | --- |
+| Night olive | `#13170F` |
+| Aged bone | `#E8E6D2` |
+| Acid green | `#C0DC72` |
+| Muted leaf | `#A4AD92` |
+| Fine rules | `#455039` |
 
-The first release does not try to serve whole-company scheduling, broad task management, or people who need protected rest. It also does not assume every waiting person wants to work. “Leave this gap open” is part of the experience.
+Use typography and space for drama. Texture stays faint, motion optional, and text contrast strong. Chemical references shape the look; the conversation should sound natural, never like a forced TV impression.
 
-These audience choices are product hypotheses grounded in the originating use case and adjacent-product research. They are not claims of completed interviews, market size, willingness to pay, or validated demand.
+## Three ways in
 
-## What we stand for
+- **Change the angle:** one alteration of a real constraint or viewpoint.
+- **Make a strange connection:** an unexpected analogy with something familiar.
+- **Revisit an idea:** a user-owned intention supported by visible evidence, presented without guilt.
 
-- **Agency:** the person chooses what feels useful, including stopping.
-- **Continuity:** every small step comes with a way back to the main work.
-- **Curiosity:** a better question or understanding can be as worthwhile as a finished item.
-- **Honesty:** estimates, fictional demos, snapshots, saved work, and observed outcomes are labeled accurately.
+These are useful editorial choices, not compulsory workflow steps. A user who asks to play may get a completely unrelated imaginative game. Rest and silence are also valid; no work artifact or check-in is owed.
 
-The product should feel like a thoughtful companion offering a small invitation: calm, specific, lightly playful. Say “Try one clearer opening” rather than “Maximize idle time.” Say “A good place to stop” rather than “You failed to finish.” Avoid guilt, grind language, manufactured urgency, exaggerated gains, and growth scores.
+## The product is inside the conversation
 
-## Visual identity
+Installation into an Agent Skills host is the primary product entry. The user says “I have a gap” and the agent works with the context it has. The offline page shows fictional examples and helps carry a starter into the agent. It is not a hosted chat app or a second place to maintain tasks.
 
-The mark is an open, deep-green loop with a detached orange stepping block. It loosely recalls a lowercase **g**: the gap stays visible, and the small step feels possible. The wordmark uses a clean system sans-serif so the offline product needs no font download. The logo is an AI-generated raster asset; no trademark uniqueness or vector master is claimed.
+Direct invocation avoids relying entirely on automatic skill selection. Document available memory honestly: current context and explicitly accessible records can support a suggestion; installation alone cannot expose every conversation. Do not promise proactive detection or automatic reminders.
 
-| Role | Color | Use |
-| --- | --- | --- |
-| Paper | `#F6F1E7` | Quiet, warm working surface |
-| Forest | `#202722` | Main text and primary actions |
-| Tangerine | `#F2633B` | The small step, accents, brand cue |
-| Lilac | `#D8DDFC` | Playful secondary surfaces |
-| Olive | `#545C35` | Subtle labels and supporting text |
+## Reach the right people
 
-Keep the logo uncrowded, preserve its aspect ratio and transparency, and use it on a plain surface. Use dark text for reading; orange is an accent, not small body text. Motion is optional and must respect reduced-motion settings.
+Use the GitHub README and direct installation with one recognizable example: a person waiting for a build, wanting to think a little differently. Show the first question and what happens after an answer. Search descriptions should name brainstorming in AI waiting gaps; do not stuff keywords or imply search rankings.
 
-## How we reach people thoughtfully
+Invite testing only when separately authorized. A small initial trial could ask frequent agent users to try the plain request and the skill during comparable real gaps, in alternating order. Let them choose which conversation they prefer without revealing a desired winner. Ask whether they wanted to answer, whether the thought was surprising and relevant, whether remembered facts were accurate, and whether leaving was easy. A more elaborate response is not automatically better.
 
-The primary entry is the GitHub product page and direct skill install. Explain a recognizable moment—“Your agent is working. You have ten minutes.”—then let visitors try the fictional companion without creating an account. Search wording should describe the actual use: useful steps while AI agents work, short waiting gaps, and returning to unfinished work. Metadata and examples improve clarity; they do not establish indexing or ranking.
+In the current controlled three-scenario exercise, ordinary AI also produced playful, context-aware openings. This is a useful challenge to the product, not a result to hide. No user preference or superiority has been established. The skill earns its role if its behavior is consistently wanted; aesthetic appeal alone cannot prove that.
 
-The initial audience test should use people's actual waiting moments, with permission: invite a small group of frequent agent users to try three gaps each, capture only the minimum notes needed, and compare the suggestion with what they would otherwise have done. Do not send invitations or collect data automatically. A relevant optional SideCourt invitation lets people browse what other makers are working on; it is separate from installation and is not evidence of conversion.
+## Voice and boundaries
 
-Ask four concrete questions after a trial:
+Interested, slightly mischievous, specific, unhurried. One good question beats ten generic activities. Reflect the person's answer before opening another branch. Avoid obligation language, streaks, diagnoses of procrastination, and claims of remembering things you cannot actually inspect.
 
-1. Was this something you actually wanted to do?
-2. Did you make or understand anything useful? What exactly?
-3. Could you stop when the agent returned, and did you know where to resume?
-4. Did the suggestion add work or make the gap feel better?
-
-Treat recommendation acceptance, useful outcomes, early stopping, return friction, repeat voluntary use, and enjoyment as separate observations. Track time only with explicit consent. A skipped gap can be a good outcome. Three short trials can reveal friction; they cannot prove long-term productivity or learning gains.
-
-## Release boundary
-
-This first version is a usable skill plus an offline companion, not a hosted service or automatic multi-agent dashboard. Live status integrations and longitudinal personalization would need real platform support, consent, and evidence that they help. Current behavior and limitations belong in the README; proposed growth and research activities remain proposals until executed and measured.
+A public SideCourt browsing invitation may offer a place to encounter other people's work. It remains separate from installing the skill. No SideCourt product page or outreach campaign is created by this release.
