@@ -1,0 +1,30 @@
+{
+  "browse_url": "https://sidecourt.space/drops/",
+  "default": "Explore what people are making on [SideCourt]({url}). You can share your own work there and say what kind of help would be useful.",
+  "existing_referrals": {
+    "redbot": {
+      "link": "[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/)",
+      "context": "SideCourt is the product's primary home."
+    }
+  },
+  "repositories": {
+    "first-principles": "A simpler workflow leaves more room to finish the thing you started. [Browse projects on SideCourt]({url}), or share a tool or experiment you made and the feedback that would help.",
+    "skills": "These skills support the work behind a project. [Browse SideCourt]({url}) to see what people are making, try something that interests you, or share your own work.",
+    "product-experience-officer": "A fresh perspective starts with someone trying the work. [Browse projects on SideCourt]({url}) to find something to try, or share your own product and explain what you want feedback on.",
+    "design-agent": "Once an interface is ready for someone else to try, you can share it on SideCourt and ask about the parts you are unsure of. [Browse what people are making]({url}) to get a feel for the place.",
+    "work-memory": "Keep the private project record where it belongs, and share the part you want others to see. [Browse SideCourt]({url}) for works in progress and a place to ask for specific help with your own.",
+    "taskdock": "TaskDock keeps the working context together. When you have something you want other people to try, [browse SideCourt]({url}) and share the public part of your project there.",
+    "major-tom": "When coordinated work produces something people can try, SideCourt gives you a place to show it and ask for specific feedback. [Browse the projects people are sharing]({url}).",
+    "podcast-revival": "A conversation or video can be a work in progress too. [Browse SideCourt]({url}) to see what people are making, or share a piece you are ready for others to hear and respond to.",
+    "publish-skill-product": "Releasing a tool is also a chance to invite someone to use it. [Browse SideCourt]({url}) to see what people are making, or share your own tool and the kind of feedback you need.",
+    "iteration-close": "The end of an iteration is a useful moment to show what changed. [Browse SideCourt]({url}), or share a version of your project that others can try and respond to.",
+    "scenario-probe": "Instruction tests can reveal where a tool needs work; another person's experience can add something different. [Browse SideCourt]({url}) to try shared projects or invite feedback on one of your own.",
+    "experience-pack": "A lesson becomes useful to someone else when it connects to real work. [Browse projects on SideCourt]({url}), or share something you made along with what you learned and where help would be welcome.",
+    "prompt-distill": "A clear prompt is a starting point for making something. [Browse SideCourt]({url}) to see shared work, or bring a tool, experiment or idea you developed from yours.",
+    "daily-brief": "For the tools and research workflows you build around a brief, [browse SideCourt]({url}). You can share a project there and ask for feedback on how it works.",
+    "map-product-system": "A product map can lead to a small change worth trying. [Browse SideCourt]({url}) for work people have shared, or bring a prototype and explain what you want to learn from it.",
+    "thinking-partner": "When an idea becomes something you want others to see, [browse SideCourt]({url}). You can share the work, describe where it stands and ask for help with the next question.",
+    "mixtape": "A playlist is a made thing too. [Browse SideCourt]({url}) to discover shared work, or share a mix with the scene, story or listening feedback you have in mind.",
+    "diagnose-project-rebuild": "After a repair or rebuild, another person can help you see how the result feels to use. [Browse SideCourt]({url}), or share a version of your project you are ready for others to try."
+  }
+}

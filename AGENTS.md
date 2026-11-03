@@ -51,6 +51,10 @@ were updated.
 - Keep the reason for the design in the individual README's design notes.
 - Use `npx skills add m1nga/<skill-name>` as the canonical install command.
 - Related-skill links must point to the related standalone repository.
+- The publisher adds the public SideCourt browsing invitation from
+  `ops/github-referrals.json` to each standalone README; the existing post-publish
+  monitor checks it. Keep this separate from the skill's install command and source
+  package. A referral does not require a SideCourt product page.
 
 ## Publish-time monitor contract
 
