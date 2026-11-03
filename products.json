@@ -251,6 +251,19 @@
         "codex",
         "local-first"
       ]
+    },
+    {
+      "name": "first-principles",
+      "title": "First Principles \u2014 Finish the Real Task with Fewer Unnecessary Steps",
+      "description": "Complete the actual task with fewer unnecessary steps, using existing work, real constraints and outcome verification instead of adding process.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "first-principles",
+        "workflow",
+        "productivity",
+        "codex"
+      ]
     }
   ]
 }
