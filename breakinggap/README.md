@@ -2,9 +2,9 @@
 
 <img src="skills/breakinggap/assets/wordmark.svg" alt="BreakingGap" width="460">
 
-**Let a different thought in.**
+**Change your perspective. Keep your focus.**
 
-Your agent is working. You have a gap, and your attention is caught in the details. BreakingGap invites you to spend three minutes with a few open questions about what you are making, what matters, or what another perspective might reveal. Answer any one. A fragment is enough.
+Your agent is working. You feel stuck, have too many ideas, or keep putting one off. BreakingGap gives you a few open questions for a three-minute thinking break, then helps you bring a fresh perspective back to your work.
 
 ## What it does
 
@@ -34,7 +34,7 @@ Select your supported agent. Then request the installed skill explicitly:
 
 **Codex**
 
-> Use $breakinggap. I have a gap. Give me a few open questions for three minutes, grounded in what I'm working on.
+> Use $breakinggap. I have a gap. I feel stuck. Help me see my current work from a fresh angle.
 
 **Claude Code**
 
@@ -71,7 +71,7 @@ The intended value is lower effort to enter that kind of reflection. It is not a
 
 ## Try the offline walkthrough
 
-Open [companion.html](skills/breakinggap/assets/companion.html) from a downloaded copy of the repository. It shows three clearly fictional conversations, including questions, a possible human reply, a short context note and a consent-based handoff invitation. An editable starter brings the experience back to your own AI.
+Open [companion.html](skills/breakinggap/assets/companion.html) from a downloaded copy of the repository. Try three everyday situations: too many ideas, no feedback, or an idea you haven’t started. Each fictional example shows a few questions, a possible reply and a way to continue. Choose how you feel—including “Stuck”—and copy a short starter into your AI. The mood changes your starter, not the prewritten examples.
 
 The page runs no model, reads no chat history, starts no timer and cannot open a new chat. Newly entered text stays only in the current tab. Previous v1 browser data is left untouched and can be exported from the same origin when available.
 
@@ -86,7 +86,7 @@ Current author-source research informed the actual behavior:
 - [Socratic Learning Coach](https://github.com/Shuboya1030/socratic-learning-coach/blob/cebfc0b479fd6983e54aef331d3c2a85f6dda821/SKILL.md): adapt the transition from a person's own reflection to a faithful synthesis. Preserve their wording and uncertainty. Reject its mandatory one-question tutoring loop, repeated probing of incomplete answers and full knowledge-document format; this break offers a few optional perspectives and accepts fragments.
 - [Requirements Interview](https://github.com/SuperCorks/agent-skills/blob/498c6d75b3c4f95e072a14e80b15b23f43ec6a58/requirements-interview/SKILL.md): adopt context-first synthesis, source attribution and the distinction between observed state, inference and a decision. Carry those distinctions into the optional next chat. Reject restricting every question to an implementation decision; a philosophical thought can be useful without changing the plan.
 
-Only these main instruction files were read for this comparison; their examples, references and runtime behavior were not evaluated. These are design inputs, not evidence that a questioning method improves outcomes.
+Rechecked for the shorter entry flow: retain a person’s own reflection, use plain questions, and preserve an easy exit; reject mandatory diagnostic interviews or forcing every thought into an action. Only these main instruction files were read for this comparison; their examples, references and runtime behavior were not evaluated. These are design inputs, not evidence that a questioning method improves outcomes.
 
 ## Evidence
 

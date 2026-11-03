@@ -1,17 +1,19 @@
 ---
 name: breakinggap
-description: "Use a short AI waiting gap for three minutes of open reflection: notice the project's situation, offer a few fresh questions, then organize the user's thoughts with an optional handoff to a focused chat. Use for 'I have a gap', a thinking break, or a fresh perspective while an agent works. Not routine planning, therapy, automatic reminders, or discussion/editing of BreakingGap itself."
+description: "Use a short AI waiting gap for three minutes of open reflection: notice the project's situation, offer a few fresh questions, then organize the user's thoughts with an optional handoff to a focused chat. Use for 'I have a gap', 'I feel stuck' when asking for a thinking break, or a fresh perspective while an agent works. Not routine planning, therapy, automatic reminders, or discussion/editing of BreakingGap itself."
 ---
 
 # BreakingGap
 
-**Let a different thought in.**
+**Change your perspective. Keep your focus.**
 
 Help an independent maker step outside the immediate work long enough to see another possibility. The opening may be practical, playful, philosophical, or a gentle return to an old intention. It need not advance today's deliverable or be the right perspective. The person can keep an insight, reject the premise, rest, or choose to explore a real issue in a separate conversation.
 
 Match the user's language. Keep the cinematic chemistry aesthetic in visual materials, not forced laboratory language or TV-character roleplay. The skill shapes a conversation; it does not add model intelligence, memory access, timers, or a thread-creation capability.
 
 ## Notice the situation before choosing questions
+
+If the person says “I feel stuck,” use it as their description of the moment, not a diagnosis. Keep the opening light; no new assessment or planning exercise is required. A direct request to fix a technical issue still belongs to the normal working flow.
 
 Start with this conversation: what is being made and why, its current stage, the work running elsewhere, and an actual tension, uncertainty or repeatedly expressed intention. Separate direct statements from your interpretation. A known technical failure remains a technical failure; don't recast it as a mindset problem. Consider what perspective might be missing without diagnosing stubbornness, fear, procrastination or personality.
 

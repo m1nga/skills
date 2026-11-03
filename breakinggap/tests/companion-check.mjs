@@ -28,7 +28,7 @@ for(const tab of app.tabs){
  assert.equal(app.el('questions').children.length,3);
  assert(app.el('questions').children.every(q=>q.tag==='li'&&q.textContent.endsWith('?')));
  assert(app.el('source').textContent.startsWith('Fictional'));
- assert(app.el('deeper').textContent.startsWith('In this fictional example'));
+ assert(app.el('deeper').textContent.length<310);
  assert(app.el('handoff').textContent.includes('separate chat'));
  assert(app.el('invitation').textContent.includes('three minutes'));
  assert.equal(app.el('example').attrs['aria-labelledby'],tab.id);
@@ -41,9 +41,11 @@ app.el('tab-angle').onkeydown({key:'End',preventDefault(){}});assert(app.el('tab
 app.el('work').value='<script>A little garden</script>';app.el('work').events.input();assert(app.el('starter').value.includes('<script>A little garden</script>'));
 assert(app.el('starter').value.startsWith('$breakinggap'));
 app.el('platform').value='cc';app.el('platform').events.change();assert(app.el('starter').value.startsWith('/breakinggap'));
-assert(app.el('starter').value.includes('two or three broad, open questions'));
-assert(app.el('starter').value.includes('After any reflection'));
-assert(app.el('starter').value.includes('No timer or automatic follow-up'));
+app.el('mood').value='stuck';app.el('mood').events.change();
+assert(app.el('starter').value.includes('I feel stuck.'));
+assert(app.el('starter').value.includes('three minutes'));
+assert(app.el('starter').value.length<500);
+assert(html.includes('<option value="stuck">Stuck</option>'));
 app.el('starter').value='My edited starter';
 await app.el('copy').onclick();assert.equal(app.copies[0],app.el('starter').value);assert(app.el('feedback').textContent.includes('Copied'));
 const fallback=run(null,false);await fallback.el('copy').onclick();assert(fallback.el('starter').selected);assert(fallback.el('starter').focused);assert(fallback.el('feedback').textContent.includes('Ctrl+C'));

@@ -268,7 +268,7 @@
     {
       "name": "breakinggap",
       "title": "BreakingGap \u2014 Three-Minute Reflection While AI Works",
-      "description": "Use AI waiting gaps for three minutes of open reflection, put your thoughts in project context, and optionally carry a focused question into a new chat.",
+      "description": "A thinking break for your AI workflow. Use a waiting gap for fresh questions, a clearer perspective and an optional focused chat in Codex or Claude Code.",
       "topics": [
         "agent-skills",
         "brainstorming",

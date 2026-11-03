@@ -1,6 +1,6 @@
 # BreakingGap
 
-**Let a different thought in.**
+**Change your perspective. Keep your focus.**
 
 ## The invitation
 
@@ -10,7 +10,7 @@ The question can concern purpose, a choice, an overlooked person, a philosophica
 
 **Audience:** start with independent developers and makers who use agents and work alone through both technical detail and broader choices. Broader knowledge-work demand remains a hypothesis.
 
-**Value:** an easy entry into reflection, a wider view that respects the person's judgment, and a prepared context if they choose to go deeper. Ordinary AI can do this; the skill aims to make the experience consistently accessible without writing a new prompt each time.
+**Value:** attention and continuity in an AI workflow. Change the angle of thought while keeping a way back to the work. Offer a light entry, a wider view and prepared context if the person wants to go deeper. Ordinary AI can do this; the skill aims to make the experience consistently accessible without writing a new prompt each time.
 
 ## Visual direction
 
@@ -56,4 +56,4 @@ Earlier controlled model exercises also produced good plain-AI responses. Curren
 
 Curious, open, specific, occasionally playful. Let the person disagree. Offer a possible angle without diagnosing stubbornness or insisting the difficulty is psychological. Preserve real technical constraints and the user's existing decisions.
 
-The public GitHub README includes the existing natural SideCourt browsing invitation. It remains separate from installation; this release creates no SideCourt product page or outreach campaign.
+The public GitHub README includes the existing natural SideCourt browsing invitation. It remains separate from installation. A SideCourt Work can introduce the skill when the creator requests it; GitHub remains the source and direct installation path.

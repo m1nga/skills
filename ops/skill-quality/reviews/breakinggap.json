@@ -1,57 +1,36 @@
 {
   "schema_version": 1,
   "skill": "breakinggap",
-  "reviewed_at": "2026-11-03T15:06:50.263314+00:00",
-  "source_sha256": "b48c192ad86d67f9ac99d9889466fe91c969509b42f68f6bb1c08a1b54a8aa2e",
+  "reviewed_at": "2026-11-03T15:54:32.499192+00:00",
+  "source_sha256": "26230be48ac442c500f50ae31d1c0402b65cc9951a8b2e96a9aa6c5a7d66f45c",
   "user_review": {
-    "method": "Fresh agent metadata-first predictions, three actual generated conversation turns on synthetic inputs and one revised-turn regeneration; separately labeled no-tool/pending/recall/exit simulations. Root browser tested offline examples and clipboard after CUA runtime recovery. No real user trial, live automatic routing or actual chat creation.",
+    "method": "Independent static copy review, one actual model-generated response using updated skill text in a simulated host, static routing boundary assessment, and executed Node interaction harness. Live browser unavailable after CUA reset; no new browser, real-user or host-routing success claimed.",
     "scenarios": [
       {
-        "request": "Independent maker waits for a real API failure investigation; wants three minutes of broader reflection.",
-        "expected": "Offer a few distinct open questions, preserve the technical issue and let the user choose.",
-        "observed": "Fresh skill-text agent generated three open questions about viewer experience, evidence for design choices and a tentative tradeoff. It acknowledged HTTP 429 as technical and invited one fragment without a timer.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "The maker notices a tension between thoughtful viewing and daily visits, but has not decided what to change.",
-        "expected": "Synthesize actual words and project state without deciding; offer a specific optional new chat.",
-        "observed": "Initial reply preserved uncertainty but added a frequency-framed exercise and only offered prompt preparation. Narrow instructions were refined; regeneration kept the maker’s value question, preserved the active API owner, and directly offered a focused chat with alternatives.",
+        "request": "A maker recognizes their situation and selects Stuck before copying a starter.",
+        "expected": "Short concrete situations; correct example stage; selected mood carried into a concise prompt.",
+        "observed": "Static review caught an unstarted-label/prototype mismatch and unclear mood effect; both fixed. Node harness executed all three tabs and Stuck prompt generation, context propagation, keyboard navigation and copy.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Prepare content for a new chat; explicitly do not open one or decide feature changes.",
-        "expected": "A portable starter preserving purpose, current state, uncertainty and exploration-only scope.",
-        "observed": "Generated starter carried the user’s own reflection, unfinished decisions, technical issue and owner, and missing evidence; no actual chat creation or project edit occurred.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "User consents but no creation tool exists; or a tool reports setup pending.",
-        "expected": "Distinguish a ready prompt, submitted creation and a ready chat; avoid fake success and duplicate creation.",
-        "observed": "Labeled text simulations retained a copy-ready fallback with no-tool disclosure, and reported a synthetic pending response as pending. No live host creation was tested.",
+        "request": "Explicit thinking break: agent handles a deployment error while maker feels stuck over feature growth.",
+        "expected": "Light questions without diagnosing the technical failure or forcing a planning exercise.",
+        "observed": "Fresh reviewer generated three questions about intended feeling, everyday usefulness and a notebook users perspective; no timer or tool actions. This is a model-response exercise in a simulated host.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Old note has unknown later status; or user wants to stare into space / return to agent.",
-        "expected": "No invented inaction, guilt or mandatory recap; immediate exit.",
-        "observed": "Labeled simulations used unknown-status wording and ended immediately for rest or return. No actual history lookup was performed.",
+        "request": "I feel stuck, fix the deployment error now.",
+        "expected": "Direct debugging stays normal work, not reflection routing.",
+        "observed": "Static assessment confirms trigger qualification and explicit body boundary. Actual host routing remains untested.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Gap/three-minute reflection requests versus week planning or discussion of the skill itself.",
-        "expected": "Apply only to relevant reflective gap use.",
-        "observed": "Metadata-first reviewer predicted matches for both gap requests and exclusions for week planning and product-positioning discussion; live automatic routing untested.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "Switch fictional examples; edit/copy starter; export old and malformed v1 data.",
-        "expected": "Complete reflection/synthesis/invitation examples, working handoff text and unchanged legacy export.",
-        "observed": "Node DOM harness passed examples, keyboard tabs, editable starter propagation, copy/fallback and exact valid/malformed/empty legacy export. After runtime reconnect, root actually verified example switching, context input, CC prefix, clipboard result and readable question/answer/context/handoff in IAB; screenshot saved. Mobile and direct-file rendering untested.",
+        "request": "Clipboard unavailable; legacy browser content valid, malformed or empty.",
+        "expected": "Manual-copy fallback and byte-exact export without overwriting old data.",
+        "observed": "Executed existing Node harness; fallback selects editable text and each raw legacy value exports unchanged.",
         "kind": "executed",
         "result": "pass"
       }
@@ -59,35 +38,35 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/Shuboya1030/socratic-learning-coach/blob/cebfc0b479fd6983e54aef331d3c2a85f6dda821/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Move from the person’s own reflection to a faithful synthesis, retaining their wording. Main instruction file fully read; referenced examples not read.",
+      "url": "https://github.com/Shuboya1030/socratic-learning-coach/blob/master/SKILL.md",
+      "checked_at": "2026-11-03T15:54:32.499192+00:00",
+      "learned": "Current author instructions preserve user-developed reasoning after questioning, but require a diagnosis and one-question teaching loop.",
       "decision": "adapt",
-      "reason": "Use a brief thought/context synthesis and explicitly preserve uncertainty. Reject compulsory single-question tutoring, continued probing of fragments, and a full knowledge document."
+      "reason": "Keep user-led thought and short synthesis in simpler examples; reject mandatory assessment/probing. Stuck is a light self-description, not diagnosis."
     },
     {
-      "url": "https://github.com/SuperCorks/agent-skills/blob/498c6d75b3c4f95e072a14e80b15b23f43ec6a58/requirements-interview/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Start from context; distinguish evidence, inference, observed behavior and decisions; carry uncertainty into handoff. Main instruction file fully read.",
-      "decision": "adapt",
-      "reason": "Carry these distinctions into optional focused chat preparation and preserve existing authority. Reject requiring every question to change implementation; a philosophical perspective alone is valid."
+      "url": "https://github.com/SuperCorks/agent-skills/blob/main/requirements-interview/SKILL.md",
+      "checked_at": "2026-11-03T15:54:32.499192+00:00",
+      "learned": "Current author instructions use short questions in user vocabulary and separate observation from inference.",
+      "decision": "adopt",
+      "reason": "Applied recognizable scenario labels, source-consistent situations and short context notes; do not adopt limiting reflection to implementation decisions."
     }
   ],
   "validation": [
     {
       "command": "node breakinggap/tests/companion-check.mjs",
       "result": "pass",
-      "observed": "Companion checks passed: three complete fictional examples, keyboard navigation, editable starter, clipboard/fallback, untouched legacy export, offline/accessibility structure."
+      "observed": "All three examples, Stuck context propagation, short editable starter, keyboard/copy/fallback, untouched legacy export and offline/accessibility structure passed."
     },
     {
-      "command": "python3 /Users/m1nga/.codex/skills/.system/skill-creator/scripts/quick_validate.py breakinggap",
+      "command": "skill-creator quick_validate.py breakinggap",
       "result": "pass",
-      "observed": "Skill is valid!"
+      "observed": "Skill is valid."
     },
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json",
       "result": "pass",
-      "observed": "VERDICT: PASS"
+      "observed": "VERDICT: PASS."
     },
     {
       "command": "git diff --check",
