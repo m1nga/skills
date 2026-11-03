@@ -254,13 +254,13 @@
     },
     {
       "name": "first-principles",
-      "title": "First Principles \u2014 Finish the Real Task with Fewer Unnecessary Steps",
-      "description": "Complete the actual task with fewer unnecessary steps, using existing work, real constraints and outcome verification instead of adding process.",
+      "title": "First Principles \u2014 A Codex Skill for Simpler, Complete Workflows",
+      "description": "A first-principles workflow skill for Codex: reuse existing work, remove unnecessary steps, preserve constraints, and verify complete outcomes.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "first-principles",
-        "workflow",
+        "workflow-optimization",
         "productivity",
         "codex"
       ]
