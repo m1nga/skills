@@ -1,0 +1,4 @@
+interface:
+  display_name: "First Principles"
+  short_description: "Finish the real task with fewer unnecessary steps"
+  default_prompt: "Use $first-principles to complete this task through the simplest sufficient path, preserving my scope and verifying the usable result."
