@@ -1,5 +1,5 @@
 interface:
-  display_name: "BreakingGap Brainstorming Breaks"
-  short_description: "Turn an AI waiting gap into a playful thinking break"
+  display_name: "BreakingGap Thinking Breaks"
+  short_description: "Use an AI waiting gap to reflect and find a fresh angle"
   brand_color: "#AFCB63"
-  default_prompt: "Use $breakinggap. I have a gap while my agent works. Give me one interesting angle to explore together."
+  default_prompt: "Use $breakinggap. I have a gap. Give me a few open questions for three minutes, grounded in what I'm working on."

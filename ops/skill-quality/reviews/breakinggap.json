@@ -1,57 +1,57 @@
 {
   "schema_version": 1,
   "skill": "breakinggap",
-  "reviewed_at": "2026-11-03T13:32:19Z",
-  "source_sha256": "e08595ffb8fd7dab1c861fdedd747552c38b9ce835ef721c9021db5178c172ba",
+  "reviewed_at": "2026-11-03T15:06:50.263314+00:00",
+  "source_sha256": "b48c192ad86d67f9ac99d9889466fe91c969509b42f68f6bb1c08a1b54a8aa2e",
   "user_review": {
-    "method": "Two fresh same-model agents produced responses with and without skill text in three synthetic contexts; one skill follow-up/stop exchange. Separate metadata-first static routing review and failure simulations. Root browser tested the actual offline UI. This is not user research, a proof of superiority, live routing or Claude runtime validation.",
+    "method": "Fresh agent metadata-first predictions, three actual generated conversation turns on synthetic inputs and one revised-turn regeneration; separately labeled no-tool/pending/recall/exit simulations. Root browser tested offline examples and clipboard after CUA runtime recovery. No real user trial, live automatic routing or actual chat creation.",
     "scenarios": [
       {
-        "request": "A bored maker waits for signup implementation; a quiet-visitor concern exists in context.",
-        "expected": "An inviting relevant opening, followed by a response to the user's answer, without a task list.",
-        "observed": "Skill-text agent invited imagining a visitor who never posts; after a supplied answer it asked what feeling the visitor should leave with. Baseline also offered a playful photo-related activity; no preference winner was established.",
+        "request": "Independent maker waits for a real API failure investigation; wants three minutes of broader reflection.",
+        "expected": "Offer a few distinct open questions, preserve the technical issue and let the user choose.",
+        "observed": "Fresh skill-text agent generated three open questions about viewer experience, evidence for design choices and a tentative tradeoff. It acknowledged HTTP 429 as technical and invited one fragment without a timer.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Two dated direct notes mention giving travel photos soundtracks; later action status unknown.",
-        "expected": "Recognize supplied repetition without asserting the idea remains unstarted.",
-        "observed": "Skill-text agent named the two supplied days and explicitly said it did not know whether the person had tried it since. Baseline also recalled the idea without inventing additional history.",
+        "request": "The maker notices a tension between thoughtful viewing and daily visits, but has not decided what to change.",
+        "expected": "Synthesize actual words and project state without deciding; offer a specific optional new chat.",
+        "observed": "Initial reply preserved uncertainty but added a frequency-framed exercise and only offered prompt preparation. Narrow instructions were refined; regeneration kept the maker’s value question, preserved the active API owner, and directly offered a focused chat with alternatives.",
         "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "The person explicitly wants an unrelated three-minute game; then return when their agent is ready.",
-        "expected": "Honor the wish to step away and allow immediate return.",
-        "observed": "Skill-text response offered an imaginative lost-property scene, not disguised data-cleaning work. Separate stop response returned immediately to the known signup result.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Friend's wish, duplicated summaries, paused project, absent history, conflicting status dates or failed saving.",
-        "expected": "Do not invent repeated intentions, revive a pause, scan private sources or falsely claim saved work.",
-        "observed": "Independent labeled simulations followed safe source/fallback/exit behavior. Review found ambiguous conflict handling; body now explicitly rejects file-order status inference and avoids uncertain paused obligations.",
-        "kind": "simulated",
         "result": "fixed"
       },
       {
-        "request": "Messy gap request, generic week planning, design-spec request, product branding discussion and a bare host.",
-        "expected": "Route gap conversations; exclude broad planning and discussion of the product itself; degrade without fake integrations.",
-        "observed": "Metadata-first reviewer predicted appropriate boundaries; product discussion exclusion was made explicit. Real host routing remains untested.",
-        "kind": "simulated",
-        "result": "fixed"
-      },
-      {
-        "request": "Browse an example, inspect an intention's sources, add context and hand a starter to the selected host.",
-        "expected": "Clear fictional boundary; readable wordmark; correct host prefix and actual copy.",
-        "observed": "Root browser verified Br/eaking Ga/p typography, fictional snippets in revisit mode, changed example, supplied context and /breakinggap in visible starter, plus actual clipboard prefix after copy.",
+        "request": "Prepare content for a new chat; explicitly do not open one or decide feature changes.",
+        "expected": "A portable starter preserving purpose, current state, uncertainty and exploration-only scope.",
+        "observed": "Generated starter carried the user’s own reflection, unfinished decisions, technical issue and owner, and missing evidence; no actual chat creation or project edit occurred.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Open v2 with old or malformed v1 browser data.",
-        "expected": "Preserve raw data and allow unchanged export; no new background state writes.",
-        "observed": "Node DOM harness tests verified old raw data is not changed and raw export works even when malformed. This recovery case was not executed in browser UI.",
+        "request": "User consents but no creation tool exists; or a tool reports setup pending.",
+        "expected": "Distinguish a ready prompt, submitted creation and a ready chat; avoid fake success and duplicate creation.",
+        "observed": "Labeled text simulations retained a copy-ready fallback with no-tool disclosure, and reported a synthetic pending response as pending. No live host creation was tested.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Old note has unknown later status; or user wants to stare into space / return to agent.",
+        "expected": "No invented inaction, guilt or mandatory recap; immediate exit.",
+        "observed": "Labeled simulations used unknown-status wording and ended immediately for rest or return. No actual history lookup was performed.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Gap/three-minute reflection requests versus week planning or discussion of the skill itself.",
+        "expected": "Apply only to relevant reflective gap use.",
+        "observed": "Metadata-first reviewer predicted matches for both gap requests and exclusions for week planning and product-positioning discussion; live automatic routing untested.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Switch fictional examples; edit/copy starter; export old and malformed v1 data.",
+        "expected": "Complete reflection/synthesis/invitation examples, working handoff text and unchanged legacy export.",
+        "observed": "Node DOM harness passed examples, keyboard tabs, editable starter propagation, copy/fallback and exact valid/malformed/empty legacy export. After runtime reconnect, root actually verified example switching, context input, CC prefix, clipboard result and readable question/answer/context/handoff in IAB; screenshot saved. Mobile and direct-file rendering untested.",
         "kind": "executed",
         "result": "pass"
       }
@@ -59,47 +59,40 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/ysskrishna/ai-agent-skills/blob/f2bebb8e94b6292d372e1db8dbc4401fc3e2346f/skills/creative-thinking/SKILL.md",
+      "url": "https://github.com/Shuboya1030/socratic-learning-coach/blob/cebfc0b479fd6983e54aef331d3c2a85f6dda821/SKILL.md",
       "checked_at": "2026-11-03",
-      "learned": "Analogy, rule reversal, changes of scale and viewpoint can produce distinct openings.",
+      "learned": "Move from the person’s own reflection to a faithful synthesis, retaining their wording. Main instruction file fully read; referenced examples not read.",
       "decision": "adapt",
-      "reason": "Use mechanisms to choose one contextual human question; reject long idea quotas and full workshop output."
+      "reason": "Use a brief thought/context synthesis and explicitly preserve uncertainty. Reject compulsory single-question tutoring, continued probing of fragments, and a full knowledge document."
     },
     {
-      "url": "https://github.com/Terryc21/unforget/blob/cf907b2c35aa2a2cc1a4cc2c75cb75f60f3ff5fc/skills/unforget/SKILL.md",
+      "url": "https://github.com/SuperCorks/agent-skills/blob/498c6d75b3c4f95e072a14e80b15b23f43ec6a58/requirements-interview/SKILL.md",
       "checked_at": "2026-11-03",
-      "learned": "Check that deferred work is still open with traceable evidence.",
+      "learned": "Start from context; distinguish evidence, inference, observed behavior and decisions; carry uncertainty into handoff. Main instruction file fully read.",
       "decision": "adapt",
-      "reason": "Require direct user evidence for repeated intentions, distinguish unknown status from unstarted work, and avoid a debt ledger or broad private scans."
-    },
-    {
-      "url": "https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/brainstorming/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Read existing context before asking questions and preserve the user's own intent.",
-      "decision": "adapt",
-      "reason": "Use a light contextual opening; reject design-document, approval and planning chains in a short break."
+      "reason": "Carry these distinctions into optional focused chat preparation and preserve existing authority. Reject requiring every question to change implementation; a philosophical perspective alone is valid."
     }
   ],
   "validation": [
     {
       "command": "node breakinggap/tests/companion-check.mjs",
       "result": "pass",
-      "observed": "Modes, keyboard tabs, editable starter generation, clipboard/fallback, untouched legacy export, offline/accessibility structure passed."
+      "observed": "Companion checks passed: three complete fictional examples, keyboard navigation, editable starter, clipboard/fallback, untouched legacy export, offline/accessibility structure."
     },
     {
-      "command": "python3 skill-creator/scripts/quick_validate.py breakinggap",
+      "command": "python3 /Users/m1nga/.codex/skills/.system/skill-creator/scripts/quick_validate.py breakinggap",
       "result": "pass",
-      "observed": "Skill is valid; final frontmatter is quoted and metadata excludes discussion/editing of the product."
+      "observed": "Skill is valid!"
     },
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json",
       "result": "pass",
-      "observed": "VERDICT PASS; public package metadata and product page meet release contract."
+      "observed": "VERDICT: PASS"
     },
     {
-      "command": "git diff --cached --check; git diff --cached --numstat -- breakinggap/scripts/gap.py breakinggap/tests/test_gap.py breakinggap/references/session-format.md",
+      "command": "git diff --check",
       "result": "pass",
-      "observed": "No whitespace errors; v1 helper implementation, tests and schema are unchanged for existing sessions."
+      "observed": "No whitespace errors."
     }
   ],
   "unresolved_blockers": []

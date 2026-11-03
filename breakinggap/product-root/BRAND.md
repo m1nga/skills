@@ -2,19 +2,21 @@
 
 **Let a different thought in.**
 
-## What we are inviting
+## The invitation
 
-A small gap can become a different kind of conversation. Someone has been working hard; their agent is busy. We offer a good question, a curious connection, or a gentle way to touch an old idea. The person may leave with a clearer thought, a laugh, something to try, or simply a better-feeling break.
+A person working with agents has a few minutes between results. Their attention may be on the next fix while a wider question remains unexamined. BreakingGap offers a small space to think: a few open questions, about three minutes, and permission to follow just one thought.
 
-**Audience:** people already making, writing, researching, or coding with agents. Begin with independent makers and developers who move between concentrated work and uncertain waits. Broader knowledge-work use is a hypothesis to test.
+The question can concern purpose, a choice, an overlooked person, a philosophical possibility or a real old idea. It may miss. It need not produce a task. After the person responds, the skill connects their words with known project context and offers a focused new conversation only when useful and wanted.
 
-**Value:** a thoughtfully chosen, contextual opening; responsive conversation after the user's answer; honest recall; an easy way back. We do not claim ordinary AI cannot do these things. The skill packages a behavior people may prefer without having to describe it every time.
+**Audience:** start with independent developers and makers who use agents and work alone through both technical detail and broader choices. Broader knowledge-work demand remains a hypothesis.
+
+**Value:** an easy entry into reflection, a wider view that respects the person's judgment, and a prepared context if they choose to go deeper. Ordinary AI can do this; the skill aims to make the experience consistently accessible without writing a new prompt each time.
 
 ## Visual direction
 
-The creator explicitly requested the mood of *Breaking Bad*. The design uses cinematic dark greens, element-like typography, restrained technical rules, rough atmosphere and aged light text. The artwork and lettering are made for BreakingGap; no show footage, character likenesses, or downloaded logo assets are used.
+The creator requested the mood of *Breaking Bad*. Keep cinematic dark greens, element-like typography, restrained rules, faint grain and aged light text. The lettering and artwork are made for BreakingGap; no show footage, character likenesses or downloaded logo assets are used.
 
-The brand is the word **BreakingGap** itself. Br (35) begins Breaking; Ga (31) begins Gap. These are typographic elements inside a complete wordmark, not a separate app symbol. Keep the lettering legible at small sizes; preserve the accessible full name. No mascot, floating icon, or old orange loop is part of this direction.
+The complete name is the mark: Br (35) begins Breaking; Ga (31) begins Gap. The tiles belong inside the wordmark, with an accessible full name. There is no separate app icon or mascot.
 
 | Role | Color |
 | --- | --- |
@@ -24,32 +26,34 @@ The brand is the word **BreakingGap** itself. Br (35) begins Breaking; Ga (31) b
 | Muted leaf | `#A4AD92` |
 | Fine rules | `#455039` |
 
-Use typography and space for drama. Texture stays faint, motion optional, and text contrast strong. Chemical references shape the look; the conversation should sound natural, never like a forced TV impression.
+Keep contrast strong and motion optional. The aesthetic can be dramatic; the conversation stays natural and unhurried.
 
-## Three ways in
+## The simplest experience
 
-- **Change the angle:** one alteration of a real constraint or viewpoint.
-- **Make a strange connection:** an unexpected analogy with something familiar.
-- **Revisit an idea:** a user-owned intention supported by visible evidence, presented without guilt.
+- The user says “I have a gap.”
+- The skill reads the context it actually has, then offers two or three distinct questions. The person can choose one, answer early, reject them, or rest.
+- After any thought, show a short synthesis: what the person said, what is known about the project, and what remains an open possibility.
+- If the person wants to explore further, ask about a focused chat with that context. Open it only after agreement and only through a supported host tool. Otherwise provide a starter to carry over manually.
+- If they only wanted inspiration or their agent is ready, finish. No summary form, streak or completed task is owed.
 
-These are useful editorial choices, not compulsory workflow steps. A user who asks to play may get a completely unrelated imaginative game. Rest and silence are also valid; no work artifact or check-in is owed.
+Three minutes is an invitation, not a countdown or automatic notification. A new idea is not an approved implementation. Past intentions require actual sources and current status; no missing progress record is treated as proof of inaction.
 
-## The product is inside the conversation
+## Where the product lives
 
-Installation into an Agent Skills host is the primary product entry. The user says “I have a gap” and the agent works with the context it has. The offline page shows fictional examples and helps carry a starter into the agent. It is not a hosted chat app or a second place to maintain tasks.
+The primary product is a skill inside the user's AI conversation. Codex and Claude Code share the standard skill file; available history and chat tools differ by host. The offline page is a clearly fictional walkthrough plus a starter, not a hosted AI or another place to manage projects.
 
-Direct invocation avoids relying entirely on automatic skill selection. Document available memory honestly: current context and explicitly accessible records can support a suggestion; installation alone cannot expose every conversation. Do not promise proactive detection or automatic reminders.
+Do not claim all context has been gathered, a file has been saved, or a chat has been created without evidence. In a host with no new-chat tool, the prepared starter remains useful.
 
-## Reach the right people
+## Reach and evaluate
 
-Use the GitHub README and direct installation with one recognizable example: a person waiting for a build, wanting to think a little differently. Show the first question and what happens after an answer. Search descriptions should name brainstorming in AI waiting gaps; do not stuff keywords or imply search rankings.
+Show independent makers a recognizable sequence: waiting for a build, an unexpected question, a real thought, and a low-effort way to continue. Keep the README and installation clear. Search descriptions should explain reflection during AI waits; no ranking or indexing promise is made.
 
-Invite testing only when separately authorized. A small initial trial could ask frequent agent users to try the plain request and the skill during comparable real gaps, in alternating order. Let them choose which conversation they prefer without revealing a desired winner. Ask whether they wanted to answer, whether the thought was surprising and relevant, whether remembered facts were accurate, and whether leaving was easy. A more elaborate response is not automatically better.
+A future authorized field trial could compare ordinary prompting and the skill across similar real gaps. Look for whether people want to answer, whether the synthesis preserves their meaning, whether old references are accurate, whether they choose to continue, and whether returning is easy. More follow-up chats are not automatically success: a useful insight with no action is valid.
 
-In the current controlled three-scenario exercise, ordinary AI also produced playful, context-aware openings. This is a useful challenge to the product, not a result to hide. No user preference or superiority has been established. The skill earns its role if its behavior is consistently wanted; aesthetic appeal alone cannot prove that.
+Earlier controlled model exercises also produced good plain-AI responses. Current behavioral and interface checks establish only that the designed path can work, not that people prefer it or become more productive.
 
 ## Voice and boundaries
 
-Interested, slightly mischievous, specific, unhurried. One good question beats ten generic activities. Reflect the person's answer before opening another branch. Avoid obligation language, streaks, diagnoses of procrastination, and claims of remembering things you cannot actually inspect.
+Curious, open, specific, occasionally playful. Let the person disagree. Offer a possible angle without diagnosing stubbornness or insisting the difficulty is psychological. Preserve real technical constraints and the user's existing decisions.
 
-A public SideCourt browsing invitation may offer a place to encounter other people's work. It remains separate from installing the skill. No SideCourt product page or outreach campaign is created by this release.
+The public GitHub README includes the existing natural SideCourt browsing invitation. It remains separate from installation; this release creates no SideCourt product page or outreach campaign.
