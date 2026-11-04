@@ -3,7 +3,7 @@
   "products": [
     {
       "name": "design-agent",
-      "title": "Design Agent \u2014 Turn Visual References into Usable Interfaces",
+      "title": "Design Agent — Turn Visual References into Usable Interfaces",
       "description": "Turn visual references into focused interface changes, actionable implementation briefs and verified builds within the current project scope.",
       "topics": [
         "m1nga-skill",
@@ -18,7 +18,7 @@
     },
     {
       "name": "diagnose-project-rebuild",
-      "title": "Project Rebuild Advisor \u2014 Know Whether to Repair, Recover, or Start Over",
+      "title": "Project Rebuild Advisor — Know Whether to Repair, Recover, or Start Over",
       "description": "Project rebuild advisor that inspects a confused or inherited project and tells you whether to recover, clarify, repair, rebuild, continue, or stop.",
       "topics": [
         "m1nga-skill",
@@ -34,7 +34,7 @@
     },
     {
       "name": "experience-pack",
-      "title": "Project Lessons Log \u2014 Reuse Lessons Without Carrying Old Decisions",
+      "title": "Project Lessons Log — Reuse Lessons Without Carrying Old Decisions",
       "description": "Project lessons log that records costly incidents, distills reusable lessons, and prevents expired decisions from contaminating the next project.",
       "topics": [
         "m1nga-skill",
@@ -51,7 +51,7 @@
     },
     {
       "name": "iteration-close",
-      "title": "Iteration Cleanup & Handoff \u2014 Preserve Decisions and Remove Dead Work",
+      "title": "Iteration Cleanup & Handoff — Preserve Decisions and Remove Dead Work",
       "description": "Iteration cleanup and handoff that preserves current decisions, removes superseded work safely, verifies a cold takeover, and prepares the next milestone.",
       "topics": [
         "m1nga-skill",
@@ -65,7 +65,7 @@
     },
     {
       "name": "map-product-system",
-      "title": "Product System Map \u2014 Connect User Journeys to What You Need to Build",
+      "title": "Product System Map — Connect User Journeys to What You Need to Build",
       "description": "Product system map for ideas and codebases: connect user journeys, capabilities, responsibilities, missing paths, and buildable delivery slices at the scope you need.",
       "topics": [
         "m1nga-skill",
@@ -80,7 +80,7 @@
     },
     {
       "name": "mixtape",
-      "title": "Playlist Builder \u2014 Get a Verified Playlist You Can Actually Import",
+      "title": "Playlist Builder — Get a Verified Playlist You Can Actually Import",
       "description": "Playlist builder that turns a mood, scene, or seed songs into a verified playlist you can import to Apple Music, Spotify, YouTube Music, or other services.",
       "topics": [
         "m1nga-skill",
@@ -98,7 +98,7 @@
     },
     {
       "name": "product-experience-officer",
-      "title": "First-Time User Tester \u2014 See Where Your Product Confuses New Users",
+      "title": "First-Time User Tester — See Where Your Product Confuses New Users",
       "description": "Walk through a product as a first-time user and produce an evidence-led HTML report with task outcomes, prioritized fixes and concrete retests.",
       "topics": [
         "m1nga-skill",
@@ -113,7 +113,7 @@
     },
     {
       "name": "prompt-distill",
-      "title": "Prompt Cleaner \u2014 Turn Dictated Notes into Reusable Prompts",
+      "title": "Prompt Cleaner — Turn Dictated Notes into Reusable Prompts",
       "description": "Prompt cleaner for dictated or mixed-language notes. Produce a reusable AI prompt while preserving corrections, examples, scope, and calendar-week boundaries.",
       "topics": [
         "m1nga-skill",
@@ -127,8 +127,8 @@
     },
     {
       "name": "publish-skill-product",
-      "title": "GitHub Skill Publisher \u2014 Publish Skills and Track Discovery",
-      "description": "Review a skill from the user\u2019s perspective, learn from comparable skills, test improvements, and publish a verified GitHub product and install package.",
+      "title": "GitHub Skill Publisher — Publish Skills and Track Discovery",
+      "description": "Review a skill from the user’s perspective, learn from comparable skills, test improvements, and publish a verified GitHub product and install package.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -142,7 +142,7 @@
     },
     {
       "name": "scenario-probe",
-      "title": "AI Instruction Stress Test \u2014 Find Trigger and Behavior Failures Before Release",
+      "title": "AI Instruction Stress Test — Find Trigger and Behavior Failures Before Release",
       "description": "AI instruction stress test that simulates users and environments to expose trigger misses, skill collisions, stale assumptions, and silent behavior failures before release.",
       "topics": [
         "m1nga-skill",
@@ -156,7 +156,7 @@
     },
     {
       "name": "thinking-partner",
-      "title": "Decision Thinking Partner \u2014 Clarify Ambiguous Choices Without Fake Certainty",
+      "title": "Decision Thinking Partner — Clarify Ambiguous Choices Without Fake Certainty",
       "description": "Decision thinking partner that clarifies ambiguous choices, keeps real alternatives, recommends only when evidence supports it, and on request grills a build plan into a locked scope.",
       "topics": [
         "m1nga-skill",
@@ -170,7 +170,7 @@
     },
     {
       "name": "taskdock",
-      "title": "TaskDock \u2014 Keep Agent Work Ready to Continue",
+      "title": "TaskDock — Keep Agent Work Ready to Continue",
       "description": "Keep agent work ready to continue: portable task identity, safe file organization, bounded resume and a readable private handoff page.",
       "topics": [
         "agent-skill",
@@ -180,12 +180,13 @@
         "workflow",
         "python",
         "codex",
-        "claude-code"
+        "claude-code",
+        "m1nga-skill"
       ]
     },
     {
       "name": "daily-brief",
-      "title": "Stock Portfolio Brief \u2014 Decide What Changed and What to Do",
+      "title": "Stock Portfolio Brief — Decide What Changed and What to Do",
       "description": "Turn stock holdings and fresh filings into a source-backed portfolio decision, with index comparisons, thesis checks and explicit data gaps.",
       "topics": [
         "m1nga-skill",
@@ -198,7 +199,7 @@
     },
     {
       "name": "podcast-revival",
-      "title": "Podcast Video Maker \u2014 Turn Source Material into a Directed Conversation",
+      "title": "Podcast Video Maker — Turn Source Material into a Directed Conversation",
       "description": "Turn video, text or notes into a directed podcast conversation, with budgeted voice generation and lower-cost source-video lip sync.",
       "topics": [
         "m1nga-skill",
@@ -213,7 +214,7 @@
     },
     {
       "name": "major-tom",
-      "title": "Task Execution Coordinator \u2014 Turn Intent into Verified Outcomes",
+      "title": "Task Execution Coordinator — Turn Intent into Verified Outcomes",
       "description": "Translate human intent into scoped work for existing owners, select relevant capabilities and evidence, and verify outcomes without adding a second task queue.",
       "topics": [
         "m1nga-skill",
@@ -226,7 +227,7 @@
     },
     {
       "name": "work-memory",
-      "title": "Work Memory \u2014 Recover Current Context and Learn from Outcomes",
+      "title": "Work Memory — Recover Current Context and Learn from Outcomes",
       "description": "Recover current project decisions with sourced recall, outcome-tested lessons and read-only readiness reports that expose stale evidence and missing checkpoints.",
       "topics": [
         "m1nga-skill",
@@ -239,8 +240,8 @@
     },
     {
       "name": "redbot",
-      "title": "RedBot \u2014 Find the Good Thing You Saved",
-      "description": "Open saved content immediately, sync changed posts, and turn a relevant saved method into a coding prompt with source evidence.",
+      "title": "RedBot — Find the Good Thing You Saved",
+      "description": "Find and read your saved Xiaohongshu posts, search a resumable library, and turn useful source material into an editable coding prompt. Invitation beta.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -249,12 +250,13 @@
         "knowledge-management",
         "mobile-web",
         "codex",
-        "local-first"
+        "local-first",
+        "xiaohongshu"
       ]
     },
     {
       "name": "first-principles",
-      "title": "First Principles \u2014 A Codex Skill for Simpler, Complete Workflows",
+      "title": "First Principles — A Codex Skill for Simpler, Complete Workflows",
       "description": "A first-principles workflow skill for Codex: reuse existing work, remove unnecessary steps, preserve constraints, and verify complete outcomes.",
       "topics": [
         "m1nga-skill",
@@ -267,7 +269,7 @@
     },
     {
       "name": "breakinggap",
-      "title": "BreakingGap \u2014 Three-Minute Reflection While AI Works",
+      "title": "BreakingGap — Three-Minute Reflection While AI Works",
       "description": "Waiting for your AI agent? Start with how you feel, try one fresh question, and take a three-minute thinking break in Codex or Claude Code.",
       "topics": [
         "agent-skills",
@@ -275,7 +277,9 @@
         "reflection",
         "codex",
         "claude-code",
-        "indie-hackers"
+        "indie-hackers",
+        "m1nga-skill",
+        "agent-skill"
       ]
     }
   ]
