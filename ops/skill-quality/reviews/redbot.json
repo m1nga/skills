@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T11:27:29.560333+00:00",
-  "source_sha256": "19e5f347b057be656427a060568db9d0ffbb847ef08a18d2e8ac63090e1c49a8",
+  "reviewed_at": "2026-11-04T12:21:33.372080+00:00",
+  "source_sha256": "70c678c404c590fbdb64c2a2045fc4ec99444a31d3d8e93a7b8a7a673a79088f",
   "user_review": {
     "method": "Executed synthetic backup fixtures plus a labelled instruction walkthrough; no private library, account access or independent user trial.",
     "scenarios": [
@@ -31,6 +31,13 @@
         "request": "Need a kidney-disease-safe weight-loss recipe but only ordinary recipe evidence exists.",
         "expected": "Unknown necessary requirement cannot become supported based on topic similarity.",
         "observed": "Reader unsupported explicit requirement fixture returns insufficient. Skill requires host reasoning outside bounded helper patterns.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Video processing fails before any successful result exists.",
+        "expected": "Show the first failure without claiming a previous successful result was retained.",
+        "observed": "Executed UI fixtures distinguish first failure from last-refresh failure and preserve previous result only when it exists.",
         "kind": "executed",
         "result": "pass"
       }
@@ -83,8 +90,13 @@
       "command": "cd redbot/product-root/source && python3 -m unittest discover -s tests -v",
       "result": "pass",
       "observed": "40 tests passed, including isolated-session retention, selected video access, source/download restrictions, local static vendor, global capacity and last-refresh failure retaining previous result."
+    },
+    {
+      "command": "cd redbot/product-root/source && node --test tests/client-recommendation.test.cjs",
+      "result": "pass",
+      "observed": "11 UI tests passed, including first video failure and preserved prior success cases; source fixture copied from commit b63e426cbe814a4c9d246a5cf44d01fbf53eafe2."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.0 source commit 62e99cb5a780a1ee77b75981a5ceb1765d025e2a changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed."
+  "release_scope": "1.9.1 source commit b63e426cbe814a4c9d246a5cf44d01fbf53eafe2 changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed."
 }

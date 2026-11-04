@@ -1,5 +1,5 @@
 {
-  "version": "1.9.0 invitation-only account test",
+  "version": "1.9.1 invitation-only account test",
   "private_data_included": false,
   "model_revision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
   "assets_sha256": {
@@ -30,16 +30,16 @@
     "source/app/check-ui.js": "708e92c795879539bfaae330456914bfac4275b9f2684be50ee0b049c4353bcf",
     "source/app/check.js": "f94796222a8b768a5b3b4358468216eb92863b7142e6baba4095c41af1797240",
     "source/app/client.css": "078ca7998c1823a40deecc3ca2df6338edc23072e39e34c6d2eac6bfd0a48e39",
-    "source/app/client.js": "205c1d3816b52914fceb525dceefa119c71e3d43c22ef3d2f78ebec9f101dcb1",
+    "source/app/client.js": "3f2018ad3f6d64aa7fa309154ad3398930d8ff6bf04201188022405d5749899a",
     "source/app/connection.json": "7e4c2d761a91e64019d6d4178e83e22834c575ad2ea249f2b95293d33a5ec1b2",
-    "source/app/core.js": "31dfa1b811b5c72d366444968b15c6dd1ff5a7fbcc2941688403bf4f48e97bbe",
+    "source/app/core.js": "8bc1fa4d497cc533d74d1359ae0e7128a9bed31ce66629164a433082eb0bfead",
     "source/app/demo.js": "4b2787eb5bb3b2aeaa8655b90434e1763281f6fe83cd7daf824ad4fb73eab1c8",
     "source/app/icon.svg": "2dac171ba1ca73466f787439e1764b14efb9b9a90d4580975691aba0b560b703",
-    "source/app/index.html": "69533d348f19022071ea8ee85f25d72637a37551270c35510ad22094dcac98f3",
+    "source/app/index.html": "76f3b30290f951a3332bf1929b41636a1910d65f040cabde2417bc5a2983cd1f",
     "source/app/manifest.webmanifest": "4538458e7f2c24c4a8a1312b0313345183f0c218c8ef5efc8938020fdea16531",
     "source/app/semantic-engine.mjs": "32736a116be970ad9fe177cf14e69d3d5d018993b0ed5dbe339c35ad1a304a45",
     "source/app/style.css": "0ddd218e5f88291a8af4afe02b395a50b00c90ce32d09f00ac195abdfcc3685c",
-    "source/app/sw.js": "3382e8d9af5ba436e5ad19543fa8c6e1cf08ce3a62cdb8af574fe0bd7d2f99cd",
+    "source/app/sw.js": "31c6e6db3ce5751e9df791f9875f93fc82951dbaa6dde19dc9996bac5c10a277",
     "source/app/vendor/transformers/LICENSE-onnxruntime": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
     "source/app/vendor/transformers/LICENSE-transformers": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "source/app/vendor/transformers/assets.lock.json": "77a98cd2619be344bd24540c3a5eff3b521b83aae12b506031246c7ff5dc6631",
@@ -62,7 +62,7 @@
     "source/promotion.test.cjs": "6c9db2439233625940268a1d98c7a75bc97cf79cc4c4fa1f0e2a7cd17e043a0d",
     "source/semantic.test.cjs": "bf1771ce63343698f5189183a0ff72c70ef8dc508346b257876695ade2bf69d4",
     "source/tests/client-bootstrap.test.cjs": "d6622e3ddea29e3dc6bbdfdd700a4051303b5e87e9d41c014ec6f8a5a7c2ae52",
-    "source/tests/client-recommendation.test.cjs": "ce85e60bd89b4fb447218f04e46007049af8f6bc26b6b8ac468c7b5aadfbcb03",
+    "source/tests/client-recommendation.test.cjs": "e74141701175076aa57c337c1c4e504e78bd401cf8be2323a3db8237ecf1fc85",
     "source/tests/goal-constraints.test.cjs": "884976210e052428f7df616e601ae2ed91c97e9b584184398654f5ba7eb1603e",
     "source/tests/semantic-worker.test.cjs": "d1580b1921a839fd19cb6374f0fd4d7f5d374583aece2f9fc990bb6e3c0597c3",
     "source/tests/test_connector.py": "0bf8228dc7a73463b59b949e145538459c49036f7aecfb989c9bbfa728668265",
@@ -74,7 +74,7 @@
   "primary_entry": "https://sidecourt.space/drops/redbot/",
   "github_pages_role": "Migration/export bridge; application hosted on SideCourt",
   "public_account_sync": "invitation-only; temporary host; progressive scans; completion requires source evidence",
-  "application_source_commit": "62e99cb5a780a1ee77b75981a5ceb1765d025e2a",
+  "application_source_commit": "b63e426cbe814a4c9d246a5cf44d01fbf53eafe2",
   "distribution_adjustments": [
     "source/README.md: runnable public test command excludes historical promotion fixture and unbundled legacy native-sync test. Root migration/export bridge remains unchanged."
   ]
