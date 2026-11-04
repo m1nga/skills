@@ -20,9 +20,9 @@
     "index.html": "bb2b53f3191ec92594bbd5ecfcd1066bb953541749a22a31384b7c5f3575cb31",
     "manifest.webmanifest": "4538458e7f2c24c4a8a1312b0313345183f0c218c8ef5efc8938020fdea16531",
     "sitemap.xml": "9f19ff214bb14cf62f5f08fba480d5802575b9aa02451c4078cc4ea5105c9816",
-    "source/.gitignore": "68fdb2aa731d2b397da3c08df015f2fa95110511bfcbac9af7569d2d93e274fd",
-    "source/DEPENDENCIES.md": "08af7db267bde7c9c990f04653949577305c02add85d5e3b451f12ae66ec76d9",
-    "source/README.md": "d8e93137def80a8a232084a82d90747ceadedbec1fba4637fe796e1c78c3c33a",
+    "source/.gitignore": "39194260d9d0f207150849bd9dd8022cac43a74e28fd8cc8f7fb3e1971fcdfae",
+    "source/DEPENDENCIES.md": "961578a2aab1b715e87d8c7c00701296993c5e7b7b41a6e826e6f84f1fb0c047",
+    "source/README.md": "1126f7b4b58dfce657b0a277b5286a24065665d45b344bd170944ad292407616",
     "source/app/ai-worker.js": "d2140025d429e98af8afd5e49ec1f4c0a91a949e5896d61ecdc7e88fe1031ce0",
     "source/app/ai.js": "c53cc5c27649f4a6782f1778e9aa2ed0da596119c349f0c8f055a1331b8b756a",
     "source/app/app.js": "24255a0ffad3a512f1d978fd70062246ed98905ed13ea8a6288c2a6016a6e0d1",
@@ -44,7 +44,6 @@
     "source/app/vendor/transformers/LICENSE-transformers": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "source/app/vendor/transformers/assets.lock.json": "77a98cd2619be344bd24540c3a5eff3b521b83aae12b506031246c7ff5dc6631",
     "source/app/vendor/transformers/ort-wasm-simd-threaded.jsep.mjs": "08fb86ec433c78bfb032c5d84a68b8e8e5a8d81268fa39e24314179a5767a5b9",
-    "source/app/vendor/transformers/ort-wasm-simd-threaded.jsep.wasm": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39",
     "source/app/vendor/transformers/transformers.min.js": "aa5002b70e789798da263f5f99c62bd3e8fcd0c119258a493c40c180648365fa",
     "source/check.test.cjs": "7e9e6c975fdc46a99aeed3830532623bc69391b0f02b38f5119046f168afbaf0",
     "source/connector/.gitattributes": "7dce468e9022f1ad2b2c2d6c8e564a89423a3d601a00cc67856c0373a127a3a1",
@@ -52,7 +51,7 @@
     "source/connector/UPSTREAM.md": "51847cb7a950d18ee6ae732bf45bfa27c0d31c0760bc6b0c0651bb7901013bb5",
     "source/connector/VIDEO.md": "c5c850a0eeaf026407f6f0ff87b301ec6ead7a5205ddea07b92a64f96e9f4705",
     "source/connector/patches/favorites-checkpoint.patch": "19a09e57017e01cb7cfe6307c91c874c7412afe9b23b735e775519431388e339",
-    "source/connector/service.py": "0746d341a373a72c77f25caabdec6f26ed0f0f1649c41af6a9e560a0940f6553",
+    "source/connector/service.py": "959b5dc8aab16295de44e95eb3bee1f51683d7098b4471d65d36d5a2a4b4b65d",
     "source/connector/setup_video.py": "c1e17affef6a94f01337733b0af25656502a0359a3f7be865703c7434f877012",
     "source/connector/tests/login-identity.test.cjs": "b92f5ef903f2629f38c8394005677dec097d381b3a3383a5c2f28115b6c28318",
     "source/connector/tests/pagination-observer.test.cjs": "f71311220d3d7cc43c29c5895d151922fa34a75eb4927ee34f941da1ed83c34b",
@@ -66,16 +65,28 @@
     "source/tests/goal-constraints.test.cjs": "884976210e052428f7df616e601ae2ed91c97e9b584184398654f5ba7eb1603e",
     "source/tests/semantic-worker.test.cjs": "d1580b1921a839fd19cb6374f0fd4d7f5d374583aece2f9fc990bb6e3c0597c3",
     "source/tests/test_connector.py": "0bf8228dc7a73463b59b949e145538459c49036f7aecfb989c9bbfa728668265",
-    "source/tests/test_video.py": "ef66b33c854538846723b42faebdacd09b290fd8e0748b2b6ecd8f44f51007d8",
+    "source/tests/test_video.py": "a1aa92366e1710c7614263218499a0a8e623d7202051116c0b0c7193ccf046d8",
     "style.css": "0ddd218e5f88291a8af4afe02b395a50b00c90ce32d09f00ac195abdfcc3685c",
     "sw.js": "ba7d13a87a422fa764b243fb11d13cff9563c5db52c059d53f741c9d7446bd2f",
-    "test.html": "3eb51d85b8632cae7c6aaa4ef885881635c3f51e074e80cf65db22be249393e3"
+    "test.html": "3eb51d85b8632cae7c6aaa4ef885881635c3f51e074e80cf65db22be249393e3",
+    "source/scripts/prepare-runtime.py": "719ea38b410d83751d41bad223bd37bdc1563822cccab6742d064fe9e7a29efa",
+    "source/tests/test_prepare_runtime.py": "44aa651634dad2546818d9a61ccae2813dc86488e6a3765930065f1e99d44397"
   },
   "primary_entry": "https://sidecourt.space/drops/redbot/",
   "github_pages_role": "Migration/export bridge; application hosted on SideCourt",
   "public_account_sync": "invitation-only; temporary host; progressive scans; completion requires source evidence",
-  "application_source_commit": "b63e426cbe814a4c9d246a5cf44d01fbf53eafe2",
+  "application_source_commit": "55938ee8d5329c523fdf3b1da3220034818578d5",
   "distribution_adjustments": [
     "source/README.md: runnable public test command excludes historical promotion fixture and unbundled legacy native-sync test. Root migration/export bridge remains unchanged."
+  ],
+  "external_build_assets": [
+    {
+      "path": "source/app/vendor/transformers/ort-wasm-simd-threaded.jsep.wasm",
+      "url": "https://raw.githubusercontent.com/m1nga/skills/278e12261fd7f4fefc2a632138665510ccbcad6e/redbot/product-root/source/app/vendor/transformers/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 21596019,
+      "sha256": "c46655e8a94afc45338d4cb2b840475f88e5012d524509916e505079c00bfa39",
+      "prepare_command": "python3 scripts/prepare-runtime.py",
+      "execution": "Only the browser app uses WASM; skill installation does not run this download."
+    }
   ]
 }

@@ -61,10 +61,10 @@ class StaticAndCapacityTests(unittest.TestCase):
         import tempfile
         s=self.service()
         with tempfile.TemporaryDirectory() as folder,tempfile.TemporaryDirectory() as outside:
-            app=pathlib.Path(folder); (app/'vendor').mkdir();(app/'vendor/tool.mjs').write_text('export {}');(app/'vendor/tool.wasm').write_bytes(b'wasm')
+            app=pathlib.Path(folder); (app/'vendor').mkdir();(app/'vendor/tool.mjs').write_text('export {}');(app/'vendor/tool.wasm').write_bytes(b'wasm');(app/'manifest.webmanifest').write_text('{}')
             secret=pathlib.Path(outside)/'private.json';secret.write_text('private');(app/'vendor/leak.json').symlink_to(secret)
             with patch.object(s,'APP',app):
-                self.assertIn('javascript',s.static_asset('/vendor/tool.mjs')[1]); self.assertEqual(s.static_asset('/vendor/tool.wasm')[1],'application/wasm')
+                self.assertEqual(s.static_asset('/manifest.webmanifest')[1],'application/manifest+json');self.assertIn('javascript',s.static_asset('/vendor/tool.mjs')[1]); self.assertEqual(s.static_asset('/vendor/tool.wasm')[1],'application/wasm')
                 for path in ['/vendor/../../private.json','/vendor/%2e%2e/%2e%2e/private.json','/vendor/leak.json','/.hidden.json','/connector/service.py']:
                     with self.assertRaises(s.Problem):s.static_asset(path)
     def test_video_global_slot_releases_after_failure(self):

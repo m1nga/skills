@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T12:21:33.372080+00:00",
-  "source_sha256": "70c678c404c590fbdb64c2a2045fc4ec99444a31d3d8e93a7b8a7a673a79088f",
+  "reviewed_at": "2026-11-04T12:31:43.710959+00:00",
+  "source_sha256": "a79014e323da4557cf02740fc94558b266e44b0c9ca1968080a139efc5176aca",
   "user_review": {
     "method": "Executed synthetic backup fixtures plus a labelled instruction walkthrough; no private library, account access or independent user trial.",
     "scenarios": [
@@ -38,6 +38,13 @@
         "request": "Video processing fails before any successful result exists.",
         "expected": "Show the first failure without claiming a previous successful result was retained.",
         "observed": "Executed UI fixtures distinguish first failure from last-refresh failure and preserve previous result only when it exists.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Prepare the browser runtime with missing, corrupt, oversized, interrupted or slow WASM downloads.",
+        "expected": "Verify pinned bytes/hash, preserve existing files on failure, and report explicit recovery.",
+        "observed": "Executed helper failure fixtures pass; valid existing runtime skips download. No actual browser inference acceptance claimed.",
         "kind": "executed",
         "result": "pass"
       }
@@ -95,8 +102,13 @@
       "command": "cd redbot/product-root/source && node --test tests/client-recommendation.test.cjs",
       "result": "pass",
       "observed": "11 UI tests passed, including first video failure and preserved prior success cases; source fixture copied from commit b63e426cbe814a4c9d246a5cf44d01fbf53eafe2."
+    },
+    {
+      "command": "cd redbot/product-root/source && python3 -m unittest discover -s tests -v",
+      "result": "pass",
+      "observed": "49 Python tests pass, including 9 runtime helper tests and webmanifest static MIME response fixture."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.1 source commit b63e426cbe814a4c9d246a5cf44d01fbf53eafe2 changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed."
+  "release_scope": "1.9.1 source commit 55938ee8d5329c523fdf3b1da3220034818578d5 changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed. Browser WASM is an explicit pinned external build resource prepared by size/hash-verified helper; current package does not bundle it. Local static webmanifest MIME whitelist included."
 }

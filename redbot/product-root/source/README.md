@@ -25,8 +25,11 @@ The public frontend lives on SideCourt. app/connection.json selects the running 
 Build the pinned upstream dependency using [connector/UPSTREAM.md](connector/UPSTREAM.md), then run:
 
 ~~~sh
+python3 scripts/prepare-runtime.py
 python3 connector/service.py --binary /absolute/path/redbot-xhs --data-dir /absolute/private/runtime --port 8776
 ~~~
+
+The preparation command reconstructs the 21,596,019-byte browser WASM asset from a fixed public source commit and verifies its size and SHA256 before installation. An already verified local file skips the download. Use `python3 scripts/prepare-runtime.py --repair` to replace a damaged file; failed downloads or checks preserve the previous file. The large WASM is excluded from source tracking, while its pin manifest and licenses remain included. The prepared file must be included when deploying the frontend; browser self-hosting remains unchanged.
 
 Open http://127.0.0.1:8776/. The generated private operator.json contains the invitation. Remote hosting requires an explicitly configured HTTPS proxy with the loopback Host header and an allowed frontend origin. Runtime stays outside Git; do not publish account files, logs or recovery checkpoints.
 
@@ -39,12 +42,11 @@ The legacy Mac package and its original local data in ~/Library/Application Supp
 ## Checks
 
 ~~~sh
-node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs
+node --test core.test.cjs semantic.test.cjs promotion.test.cjs check.test.cjs tests/*.test.cjs
 python3 -m unittest discover -s tests -v
+python3 -m unittest test_sync -v
 ~~~
 
 The 1.7 builder trial observed 289 cards and one selected-post caption. The 1.8 trials retain 295 unique cards and the earlier selected-post text. The latest real scan observed 80 before the source returned success without pagination data; this is partial, not proof of full-account coverage. First 20 arrived about 6 seconds after scan start. The final adapter stops on that incomplete response and offers a later retry. Synthetic UI tests verify batches appearing before completion, stopping without data loss, and preservation of a search and unsaved note. A single fresh QR trial took 3.77 seconds; this is not a latency guarantee. See the distribution’s validation record for the final source-end result. No independent-human, two-real-account or physical-phone acceptance is claimed.
 
 The 1.9 semantic checks used the actual pinned multilingual model in Node with native CPU inference on synthetic material: all 351 rows and 369 chunks were covered, the relevant long-text tail ranked first for Chinese and English queries, and the second pass reused all cached chunks. IndexedDB API tests used fake-indexeddb; these are not browser persistence tests. Real browser worker/WASM execution, cache persistence across a browser restart and two-account live isolation remain separate acceptance checks. Local synthetic video verification used real Whisper and Apple Vision, not a private Xiaohongshu video. Neither test proves full-library source reading or complete video understanding.
-
-Distribution note: the public test command omits the historical promotion fixture and legacy native-sync test, whose input files are not bundled. The source commit remains recorded in APP-SOURCE.json; this README adjusts the distribution test instructions only.

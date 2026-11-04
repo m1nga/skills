@@ -12,3 +12,6 @@ connector/.build/
 connector/video-models/
 connector/video-runtime.local.json
 connector/video-evidence/
+
+# Reconstructed from the pinned public source by scripts/prepare-runtime.py
+/app/vendor/transformers/ort-wasm-simd-threaded.jsep.wasm

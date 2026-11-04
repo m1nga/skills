@@ -682,10 +682,10 @@ def static_asset(path):
     target = (APP / name).resolve()
     if not target.is_relative_to(APP.resolve()) or not target.is_file():
         raise Problem('not_found', 404)
-    if target.suffix.lower() not in ('.html', '.js', '.mjs', '.css', '.json', '.wasm', '.png', '.svg', '.ico', '.woff', '.woff2'):
+    if target.suffix.lower() not in ('.html', '.js', '.mjs', '.css', '.json', '.webmanifest', '.wasm', '.png', '.svg', '.ico', '.woff', '.woff2'):
         raise Problem('not_found', 404)
     import mimetypes
-    mime = {'.mjs':'text/javascript', '.js':'text/javascript', '.wasm':'application/wasm'}.get(target.suffix.lower()) or mimetypes.guess_type(str(target))[0] or 'application/octet-stream'
+    mime = {'.mjs':'text/javascript', '.js':'text/javascript', '.webmanifest':'application/manifest+json', '.wasm':'application/wasm'}.get(target.suffix.lower()) or mimetypes.guess_type(str(target))[0] or 'application/octet-stream'
     if mime.startswith('text/') or mime == 'application/json': mime += '; charset=utf-8'
     return target.read_bytes(), mime
 
