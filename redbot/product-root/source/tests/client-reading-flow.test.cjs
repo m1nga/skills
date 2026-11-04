@@ -120,3 +120,9 @@ test('restored failed video cannot automatically start a replacement read',async
 test('same-second source timestamps cannot certify historical ready as accepted-attempt success',async()=>{
  const h=harness();await h.request(h.x.id,{briefAfter:true});const at=new Date(Math.floor(h.state().r.acceptedAt/1000)*1000).toISOString();Object.assign(h.x,{description:'Previous same-second body',contentReadStatus:'ready',contentReadAttemptedAt:at,contentReadAt:at});h.setStatus({job:null});await h.reconcile();assert.equal(h.state().r.state,'interrupted');assert.equal(h.state().briefs,0);
 });
+test('a queued selection reuses an all-library read that completed while waiting',async()=>{
+ const h=harness();h.setStatus({job:{id:'other',kind:'read',state:'running'}});await h.request(h.x.id);
+ h.x.description='The background queue already read this';h.x.contentReadStatus='ready';h.setStatus({job:null});await h.reconcile();
+ assert.equal(h.state().calls.length,0);assert.equal(h.state().r.state,'done');
+ await h.request(h.x.id,{retry:true});assert.equal(h.state().calls.filter(c=>c.body).length,1);
+});

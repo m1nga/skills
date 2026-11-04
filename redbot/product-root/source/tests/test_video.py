@@ -25,7 +25,28 @@ class VideoTests(unittest.TestCase):
         self.assertNotEqual(first,v.select_source(note)[2])
     def test_protected_and_long(self):
         with self.assertRaises(v.VideoError): v.select_source({'video':{'media':{'video':{'drmType':1}}}})
-        with self.assertRaises(v.VideoError): v.select_source({'video':{'media':{'stream':{'h264':[{'masterUrl':'x','duration':601000}]}}}})
+        url, duration, _ = v.select_source({'video':{'media':{'stream':{'h264':[{'masterUrl':'https://sns-video.xhscdn.com/long','duration':1801000,'size':200*1024*1024}]}}}})
+        self.assertEqual(duration, 1801)
+        self.assertEqual(url, 'https://sns-video.xhscdn.com/long')
+
+    def test_audio_chunks_keep_the_end_of_a_long_video(self):
+        import tempfile
+        commands=[]
+        def command(args, cancel, deadline):
+            commands.append(args)
+            if '-progress' in args: return 'out_time_us=901000000\nprogress=end'
+            if '-oj' in args:
+                path=pathlib.Path(args[args.index('-of')+1]).with_suffix('.json')
+                path.write_text('{"transcription":[{"offsets":{"from":0,"to":1000},"text":"Chunk content"}]}')
+            if '-frames:v' in args:
+                pathlib.Path(str(args[-1]).replace('%02d','01')).write_bytes(b'frame')
+            if args[0]=='ocr': return '[]'
+            return ''
+        with tempfile.TemporaryDirectory() as folder, patch.object(v,'tools',return_value=('ffmpeg','whisper','model','ocr')),patch.object(v,'command',side_effect=command),patch.object(v.Path,'is_file',return_value=True):
+            result=v.analyze_file(pathlib.Path(folder)/'source.mp4',901,threading.Event(),time.monotonic()+30)
+        self.assertEqual([x['start'] for x in result['transcript']], [0,300,600,900])
+        self.assertEqual(result['transcript'][-1]['end'],901)
+        self.assertTrue(result['complete'])
     def test_current_platform_stream_labels_use_mp4_container(self):
         note={'video':{'media':{'video':{'duration':23},'stream':{
             'EF4':[{'masterUrl':'https://sns-video.xhscdn.com/large','format':'mp4','duration':22453,'size':2126960}],

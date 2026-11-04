@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T14:08:58.004561+00:00",
-  "source_sha256": "d936f1c708fc62dfadac0a956c24e3e1aebf95480dd7c88504066350dc32636d",
+  "reviewed_at": "2026-11-04T14:42:25.833726+00:00",
+  "source_sha256": "533e17f87f5a43c86d7c58ab8506b6c7202f6f4e133325ddd19d6834d3f72e34",
   "user_review": {
     "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial.",
     "scenarios": [
@@ -89,6 +89,27 @@
         "observed": "Actual Chrome synthetic 390px receipt: Simplified derived view, collapsed original, prior timestamped draft retained and 397-character prompt without timecodes. Offline selected-source receipt: 441-character prompt, author method once, original timestamped blocks unchanged. No generative reasoning or automatic ASR-error correction claimed.",
         "kind": "executed",
         "result": "pass"
+      },
+      {
+        "request": "Read every saved item without reopening hundreds of cards. Pause, refresh and recover a failed entry.",
+        "expected": "No item-count cutoff, persisted queue, successful content reuse and truthful remaining/failure counts.",
+        "observed": "67 backend tests include 2,507 eligible saves, restart/identity/failure/priority cases. Actual Chrome synthetic trial reached 3/3 through pause, reload, resume and a targeted retry.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Read a video longer than ten minutes and larger than 100 MB.",
+        "expected": "Process audio in bounded chunks without rejecting the whole video; preserve full duration and coverage.",
+        "observed": "Actual local synthetic 661-second, 106012140-byte MP4 completed; chunk-offset fixture retained the final second at901. Silence/blank visuals are not ASR quality evidence.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Summarize a selected post after new whole-library reading is added.",
+        "expected": "Selected material still answers directly, simple Chinese without default timestamps; no forced whole-library sync.",
+        "observed": "Updated Skill reviewed directly against selected-summary and missing-source walkthroughs; runtime detail and preserved timestamps remain available separately. No external model execution claimed.",
+        "kind": "simulated",
+        "result": "pass"
       }
     ]
   },
@@ -114,28 +135,46 @@
       "rejected": "Reject training-only source handles and mandatory long confidence templates: RedBot has actual selected source passages and links, with concise request-specific output.",
       "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied.",
       "rechecked_scope": "Same-day author-source comparison reused for the 1.9.2 reading-chain continuation; timestamp/modality separation and source/comment/inference distinctions still apply. No extra framework or copied code."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/jackwener/xiaohongshu-cli/main/SKILL.md",
+      "checked_at": "2026-11-04T14:42:25.833726+00:00",
+      "source_sha256": "f51686b47d7196c604c12d201fecf9c97161d6599bf77fa721fedda99c6e8cf6",
+      "learned": "Separates favorites listing from reading a note, and verifies identity before source access.",
+      "decision": "adapt",
+      "reason": "Make card inventory and content-read progress distinct; preserve same-account checks. Do not add its write operations or arbitrary browser-cookie extraction.",
+      "effect": "1.9.4 saved-card versus content progress, serial resumable queue, readable default and optional raw source. No third-party code copied."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
+      "checked_at": "2026-11-04T14:42:25.833726+00:00",
+      "source_sha256": "874509499810331b005aef27551c92ca03868eefe0bbce69dc1ef6b81c0dbe93",
+      "learned": "Clean prose by default, with timestamped material available separately; paced multi-item processing.",
+      "decision": "adapt",
+      "reason": "Keep concise default results and serial processing. Reject its 50-item cap, certificate bypass and unconditional upgrades; use persisted queue and pinned runtime.",
+      "effect": "1.9.4 saved-card versus content progress, serial resumable queue, readable default and optional raw source. No third-party code copied."
     }
   ],
   "validation": [
     {
-      "command": "cd redbot/product-root/source && node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs",
+      "command": "node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs (public source)",
       "result": "pass",
-      "observed": "94 public Node tests passed; source checkout 97 includes 3 historical promotion fixtures excluded from this public package."
+      "observed": "96 passed; pinned browser runtime already prepared."
     },
     {
-      "command": "APP-SOURCE.json bundled-file SHA256 comparison",
+      "command": "python3 -m unittest discover -s tests -v (public source)",
       "result": "pass",
-      "observed": "80 bundled assets match hashes; external WASM pin unchanged."
+      "observed": "67 passed."
     },
     {
-      "command": "Pinned OpenCC1.4.2 npm registry integrity, tarball SHA512 and bundled-file SHA256 verification",
+      "command": "python3 redbot/scripts/test_reader.py",
       "result": "pass",
-      "observed": "Registry integrity matches lock; downloaded fixed tarball SHA512 verified; four bundled conversion/license files match package bytes and per-file hashes."
+      "observed": "9 passed."
     },
     {
-      "command": "Prior1.9.2 Python and companion-reader evidence reused after source delta comparison",
+      "command": "Chrome synthetic UI trial and local authored long-file probe",
       "result": "pass",
-      "observed": "No public-bundle Python or installed skill/reader source changed in 1.9.3. Retained 60 public Python and 9 reader tests as prior evidence, not newly executed tests. Original source 4 legacy server tests remain distinct and branch is not bundled."
+      "observed": "Pause/reload/resume, single selection, failure/retry,3/3 complete,390px no overflow;661s MP4>100MiB processed. No broad recognition/user acceptance claim."
     }
   ],
   "unresolved_blockers": [],

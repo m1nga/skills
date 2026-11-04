@@ -240,7 +240,7 @@
     {
       "name": "redbot",
       "title": "RedBot \u2014 Find the Good Thing You Saved",
-      "description": "Find useful saved posts with evidence-based goal matching, local semantic search and timestamped video text; check claims and prepare a coding prompt.",
+      "description": "Read and search saved posts with a resumable library queue, local video text and evidence-based recommendations; turn a useful method into a coding prompt.",
       "topics": [
         "m1nga-skill",
         "agent-skill",

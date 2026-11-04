@@ -286,6 +286,8 @@ class Session:
         self.scan_cancel = threading.Event()
         self.video_cancel = threading.Event()
         self.read_cancel = threading.Event()
+        self.queue_stop = threading.Event()
+        self.queue_worker = None
         self.library = read_json(directory / 'library.json', {'version': 1, 'items': []})
         self.library.setdefault('revision', 0)
         interrupted_reads = False
@@ -302,6 +304,9 @@ class Session:
             self.library['scan'].update(running=False, complete=False, coverage='partial',
                                         interrupted=True, endReason='service_restarted')
             self.library['revision'] += 1
+            atomic(directory / 'library.json', self.library)
+        if self.library.get('readingQueue', {}).get('state') == 'running':
+            self.library['readingQueue'].update(state='paused', reason='service_restarted', currentId=None)
             atomic(directory / 'library.json', self.library)
 
     def pending_deadline(self):
@@ -344,10 +349,146 @@ class Session:
                     'qrExpiresAt': self.qr_expires, 'job': self.job,
                     'scan': self.library.get('scan'), 'progress': progress,
                     'revision': self.library['revision'], 'items': len(self.library['items']),
+                    'readingQueue': self.queue_status(),
                     'canRetryVerification': bool(stamp and self.state in ('needs_sign_in', 'expired') and not self.busy())}
 
     def busy(self):
         return bool(self.job and self.job['state'] == 'running')
+
+    @staticmethod
+    def content_complete(item):
+        if item.get('type') == 'video':
+            return item.get('videoAnalysis', {}).get('complete') is True
+        return item.get('contentReadStatus') in ('ready', 'empty') and bool(item.get('contentReadAt'))
+
+    def queue_status(self):
+        queue = self.library.get('readingQueue')
+        if not queue:
+            return None
+        complete = {x['id'] for x in self.library['items'] if self.content_complete(x)}
+        return {**{k:queue.get(k) for k in ('state', 'total', 'currentId', 'reason', 'updatedAt')},
+                'done': len(complete), 'remaining': sum(n not in complete for n in queue.get('pending', [])),
+                'failed': sum(n not in complete for n in queue.get('failed', []))}
+
+    def save_queue(self):
+        self.library['readingQueue']['updatedAt'] = iso()
+        self.library['revision'] += 1
+        atomic(self.directory / 'library.json', self.library)
+
+    def read_all(self, retry_failed=False):
+        with self.lock:
+            if self.closed:
+                raise Problem('session_expired', 401)
+            if self.state != 'connected':
+                raise Problem('sign_in_required', 401)
+            queue = self.library.get('readingQueue')
+            if queue and queue.get('state') == 'running':
+                return self.queue_status()
+            if self.queue_worker and self.queue_worker.is_alive():
+                raise Problem('busy', 409)
+            eligible = [x for x in self.library['items'] if ID.fullmatch(x.get('id', ''))]
+            # Every item is eligible: no top-N window or total count cap. Finished
+            # source reads are reused; failures require an explicit retry action.
+            if queue and queue.get('pending'):
+                pending = list(dict.fromkeys(queue['pending']))
+                failed = list(queue.get('failed', []))
+                if retry_failed:
+                    pending = list(dict.fromkeys(pending + failed)); failed = []
+                queue.update(pending=pending, failed=failed)
+            else:
+                failed = list(queue.get('failed', [])) if queue and not retry_failed else []
+                pending = [x['id'] for x in eligible if not self.content_complete(x) and x['id'] not in failed]
+                queue = {'pending': pending, 'failed': failed, 'total': len(eligible),
+                         'done': sum(self.content_complete(x) for x in eligible)}
+                self.library['readingQueue'] = queue
+            queue.update(state='running' if queue['pending'] else 'complete', reason='', currentId=None)
+            self.queue_stop.clear()
+            self.save_queue()
+            if queue['pending']:
+                self.queue_worker = threading.Thread(target=self.run_reading_queue, daemon=True)
+                self.queue_worker.start()
+            return self.queue_status()
+
+    def pause_reading(self, reason='user_paused'):
+        self.queue_stop.set()
+        with self.lock:
+            if self.library.get('readingQueue'):
+                self.library['readingQueue'].update(state='paused', reason=reason)
+                self.save_queue()
+            return self.queue_status()
+
+    def prioritize_read(self, nid):
+        with self.lock:
+            if not isinstance(nid, str) or not ID.fullmatch(nid) or not any(x['id'] == nid for x in self.library['items']):
+                raise Problem('save_not_found', 404)
+            queue = self.library.get('readingQueue')
+            if not queue or queue.get('state') != 'running':
+                return self.queue_status()
+            current = queue.get('currentId')
+            if nid != current:
+                tail = [x for x in queue['pending'] if x not in (current, nid)]
+                queue['pending'] = ([current] if current else []) + [nid] + tail
+                queue['failed'] = [x for x in queue['failed'] if x != nid]
+                self.save_queue()
+            return self.queue_status()
+
+    def run_reading_queue(self):
+        consecutive_failures = 0
+        while not self.queue_stop.is_set() and not self.closed:
+            with self.lock:
+                queue = self.library['readingQueue']
+                if not queue['pending']:
+                    queue.update(state='complete', currentId=None)
+                    self.save_queue()
+                    return
+                if self.busy():
+                    worker = None
+                else:
+                    nid = queue['pending'][0]
+                    item = next((x for x in self.library['items'] if x['id'] == nid), None)
+                    if item is None or self.content_complete(item):
+                        queue['pending'].pop(0)
+                        if item is not None: queue['done'] += 1
+                        self.save_queue()
+                        continue
+                    kind = 'video' if item.get('type') == 'video' else 'read'
+                    fn = self.read_video if kind == 'video' else self.read
+                    try:
+                        self.start(kind, lambda: fn(nid), nid)
+                    except Problem as error:
+                        if error.code in ('video_busy', 'busy'):
+                            worker = None
+                        else:
+                            self.pause_reading(error.code)
+                            return
+                    else:
+                        queue['currentId'] = nid
+                        worker = self.worker
+                        self.save_queue()
+            if worker is None:
+                self.queue_stop.wait(1)
+                continue
+            # Pause finishes the current read and keeps the remaining queue.
+            worker.join()
+            with self.lock:
+                if self.closed: return
+                queue = self.library['readingQueue']
+                if queue['pending'] and queue['pending'][0] == nid:
+                    queue['pending'].pop(0)
+                if self.content_complete(item):
+                    queue['done'] += 1
+                    consecutive_failures = 0
+                else:
+                    if nid not in queue['failed']: queue['failed'].append(nid)
+                    consecutive_failures += 1
+                queue['currentId'] = None
+                self.save_queue()
+                error = (item.get('contentReadError') or {}).get('code')
+                if error in ('sign_in_required', 'wrong_account') or consecutive_failures >= 3:
+                    self.pause_reading(error or 'source_unavailable')
+                    return
+            # Leave a gap for an explicitly opened save to take priority.
+            self.queue_stop.wait(2)
 
     def start(self, kind, fn, target_id=None):
         with self.lock:
@@ -667,6 +808,14 @@ class Session:
                         item['comments'] = comments
                         self.library['revision'] += 1
                         atomic(self.directory / 'library.json', self.library)
+            # Publish post text before the media work. A media failure must never
+            # discard a readable caption or the already-returned comments.
+            with self.lock:
+                if not self.closed:
+                    item.update(description=note['desc'], contentReadAt=iso(),
+                                hasContent=bool(note['desc'].strip() or item.get('hasContent')))
+                    self.library['revision'] += 1
+                    atomic(self.directory / 'library.json', self.library)
             result = video.analyze(note, self.directory, self.video_cancel, previous)
             if self.video_cancel.is_set():
                 raise video.VideoError('video_cancelled')
@@ -707,6 +856,7 @@ class Session:
 
     def close(self):
         with self.lock:
+            self.queue_stop.set()
             self.closed = True
             self.video_cancel.set()
             self.read_cancel.set()
@@ -782,6 +932,8 @@ class Store:
 
     def stop(self):
         for session in self.sessions.values():
+            session.pause_reading('service_restarted')
+            session.read_cancel.set()
             session.video_cancel.set()
             session.scan_cancel.set()
             session.backend.stop()
@@ -916,6 +1068,12 @@ def make_handler(store, origins, host):
                     if not isinstance(nid, str):
                         raise Problem('invalid_request', 400)
                     return self.send(session.start('read', lambda: session.read(nid), nid))
+                if method == 'POST' and path == '/api/read-all':
+                    return self.send(session.read_all(retry_failed=body.get('retryFailed') is True))
+                if method == 'POST' and path == '/api/pause-reading':
+                    return self.send(session.pause_reading())
+                if method == 'POST' and path == '/api/prioritize-read':
+                    return self.send(session.prioritize_read(body.get('id')))
                 if method == 'POST' and path == '/api/disconnect':
                     store.remove(token)
                     return self.send({'disconnected': True, 'serverDataDeleted': True})

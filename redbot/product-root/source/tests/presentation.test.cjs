@@ -1,5 +1,9 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),R=require('../app/check.js');
 function example(extra={}){return {title:'A saved workflow',type:'video',description:'关注后领取更多内容。',videoAnalysis:{transcript:[{start:0,end:3,text:'ASR alternate words'}],frames:[{at:4,text:[{text:'第一步，检查当前设置。'},{text:'第二步，保留已有配置。'}]},{at:6,text:[{text:'第一步，检查当前设置。'}]}]},...extra};}
+test('a title and hashtag caption cannot hide the video content that was read',()=>{
+ const x=example({title:'给网站做 SEO 体检#SEO #独立站',description:'给网站做 SEO 体检#SEO[话题]# #独立站[话题]#'});
+ assert.equal(R.shortTake(x).sourceKind,'ocr');assert(R.idea(x).includes('检查当前设置'));assert(!R.idea(x).includes('[话题]'));
+});
 test('specific author method outranks caption, repeated OCR and speech without changing raw blocks',()=>{
  const x=example({comments:{scope:'first_page_returned',hasMore:true,items:[{isAuthor:false,text:'Random reader advice'},{isAuthor:true,text:'先检查当前项目的真实设置，再保留已有配置，只更新目标字段。完成后核对实际结果。'}]}}),before=JSON.stringify(R.blocks(x));
  const take=R.shortTake(x);assert.equal(take.sourceKind,'author_method');assert(take.lead.includes('检查当前项目'));assert(!R.idea(x).includes('ASR alternate'));assert(!R.idea(x).includes('[4s]'));assert.equal(JSON.stringify(R.blocks(x)),before);assert(take.coverage.includes('不代表授权'));assert(take.points.length<=3);

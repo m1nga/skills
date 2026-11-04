@@ -15,3 +15,11 @@ Only a valid source pagination chain starting at the initial cursor, ending expl
 Scanning and deduplication make no LLM calls. Post captions do not prove video, image or comment understanding. The host must remain online; retention is seven days. Browser notes/plans require export for transfer. Prior native Mac package and GitHub migration/export bridges are unchanged.
 
 Application source: 40823da0edf40347e4d1918f0b01bf024d4f5630. Public package excludes private runtime, account content, credentials and binaries.
+
+## 1.9.4 — all-content reading (2026-11-04)
+
+- Executed: 99 application JavaScript tests; 96 distributed JavaScript tests (three historical private-research fixtures excluded); 67 Python tests; 9 companion reader tests.
+- Actual Chrome, synthetic source/account: whole-library reading, pause, reload and resume, selected-video result, one failure then targeted retry, final 3/3 ready; 390px view without horizontal overflow.
+- Actual local synthetic 661-second / 106,012,140-byte MP4 completed chunked audio and 12 OCR samples, with no cloud inference. Blank/silent media is not recognition-quality evidence.
+- The original connected app browser was inspected and showed the user-selected SEO video ready. This does not certify all real saved content as processed. Three existing libraries and their sign-in credentials were retained; normal rescan can update list/checkpoint files.
+- Queue has no saved-item-count cutoff. Source access, storage, login and deadlines can still fail. Completed content is reused and failures stay visible.

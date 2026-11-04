@@ -5,6 +5,8 @@ import ipaddress
 import json
 import os
 import platform
+import math
+import shutil
 from pathlib import Path
 import socket
 import ssl
@@ -13,9 +15,9 @@ import tempfile
 import time
 from urllib.parse import urlsplit, urljoin
 
-MAX_BYTES = 100 * 1024 * 1024
-MAX_SECONDS = 600
-PIPELINE = 'whisper-cpp-1.9.2-small+apple-vision-v1-macos-' + platform.mac_ver()[0]
+CHUNK_SECONDS = 300
+DISK_RESERVE = 256 * 1024 * 1024
+PIPELINE = 'whisper-cpp-1.9.2-small+apple-vision-chunked-v2-macos-' + platform.mac_ver()[0]
 
 class VideoError(Exception):
     def __init__(self, code):
@@ -69,7 +71,7 @@ def download(url, path, cancel, deadline):
                 url = urljoin(url, response.getheader('Location', ''))
                 continue
             if response.status != 200: raise VideoError('video_download_failed')
-            if int(response.getheader('Content-Length', '0')) > MAX_BYTES: raise VideoError('video_too_large')
+            if int(response.getheader('Content-Length', '0')) + DISK_RESERVE > shutil.disk_usage(Path(path).parent).free: raise VideoError('video_storage_full')
             size = 0
             with open(path, 'wb') as f:
                 while True:
@@ -77,7 +79,7 @@ def download(url, path, cancel, deadline):
                     chunk = response.read(65536)
                     if not chunk: break
                     size += len(chunk)
-                    if size > MAX_BYTES: raise VideoError('video_too_large')
+                    if size % (16 * 1024 * 1024) < len(chunk) and shutil.disk_usage(Path(path).parent).free < DISK_RESERVE: raise VideoError('video_storage_full')
                     f.write(chunk)
             return
         finally: conn.close()
@@ -95,8 +97,9 @@ def command(args, cancel, deadline):
                 check(cancel, deadline)
                 time.sleep(.1)
             if proc.returncode: raise VideoError('video_tool_failed')
-            output.seek(0)
-            return output.read(2_000_000).decode('utf-8')
+            output.seek(0, 2)
+            output.seek(max(0, output.tell() - 2_000_000))
+            return output.read().decode('utf-8', errors='replace')
         finally:
             if proc.poll() is None:
                 import signal
@@ -133,8 +136,7 @@ def select_source(note):
     choices.sort(key=lambda s: s.get('size') or 10**12)
     s = choices[0]
     duration = s.get('duration', 0) / 1000 or meta.get('duration') or video.get('capa', {}).get('duration')
-    if not duration or duration > MAX_SECONDS: raise VideoError('video_duration_limit')
-    if s.get('size', 0) > MAX_BYTES: raise VideoError('video_too_large')
+    if not isinstance(duration, (int, float)) or not math.isfinite(duration) or duration <= 0: raise VideoError('video_source_unavailable')
     identity = {'mediaPath':urlsplit(s['masterUrl']).path, 'mediaId':media.get('videoId'), 'md5':meta.get('md5'), 'duration':duration,
                 'stream':{k:s.get(k) for k in ('width','height','size','videoCodec','qualityType')},
                 'noteTime':note.get('time'), 'desc':note.get('desc'), 'pipeline':PIPELINE}
@@ -148,18 +150,21 @@ def analyze_file(path, duration, cancel, deadline):
               'cloudCalls':0, 'visualUnderstanding':False, 'transcript':[], 'frames':[],
               'coverage':{'audio':'pending','frames':'pending','visual':'not_performed'}}
     progress = command([ffmpeg,'-v','error','-nostdin','-protocol_whitelist','file,pipe','-f','mov','-i',path,
-                        '-t',MAX_SECONDS+1,'-progress','pipe:1','-f','null','-'],cancel,deadline)
+                        '-progress','pipe:1','-f','null','-'],cancel,deadline)
     actual = max([int(line.split('=')[1])/1000000 for line in progress.splitlines() if line.startswith('out_time_us=') and line.split('=')[1].isdigit()] or [0])
-    if actual > MAX_SECONDS or actual <= 0: raise VideoError('video_duration_limit')
+    if actual <= 0: raise VideoError('video_tool_failed')
     duration = actual
     result['durationSeconds'] = actual
     with tempfile.TemporaryDirectory(prefix='redbot-analysis-') as folder:
         temp = Path(folder)
         try:
-            command([ffmpeg,'-v','error','-nostdin','-protocol_whitelist','file,pipe','-f','mov','-i',path,'-t',MAX_SECONDS,'-vn','-ar','16000','-ac','1',temp/'audio.wav'], cancel, deadline)
-            command([whisper,'-m',model,'-f',temp/'audio.wav','-l','auto','-oj','-of',temp/'speech'], cancel, deadline)
-            data = json.loads((temp/'speech.json').read_text())
-            result['transcript'] = [{'start':r['offsets']['from']/1000,'end':r['offsets']['to']/1000,'text':r['text'].strip()} for r in data.get('transcription', [])][:4000]
+            # Read all audio in small chunks; duration is not an eligibility cap.
+            for offset in range(0, math.ceil(duration), CHUNK_SECONDS):
+                check(cancel, deadline)
+                command([ffmpeg,'-v','error','-nostdin','-protocol_whitelist','file,pipe','-ss',offset,'-f','mov','-i',path,'-t',CHUNK_SECONDS,'-vn','-ar','16000','-ac','1',temp/'audio.wav'], cancel, deadline)
+                command([whisper,'-m',model,'-f',temp/'audio.wav','-l','auto','-oj','-of',temp/'speech'], cancel, deadline)
+                data = json.loads((temp/'speech.json').read_text())
+                result['transcript'].extend({'start':offset+r['offsets']['from']/1000,'end':min(duration,offset+r['offsets']['to']/1000),'text':r['text'].strip()} for r in data.get('transcription', []))
             result['coverage']['audio'] = 'transcribed' if result['transcript'] else 'no_speech_detected'
         except VideoError as e:
             if e.code in ('video_cancelled','video_timeout'): raise
@@ -167,7 +172,7 @@ def analyze_file(path, duration, cancel, deadline):
         # Uniform bounded samples, explicitly not all frames or semantic scene analysis.
         interval = max(2, duration / 12)
         try:
-            command([ffmpeg,'-v','error','-nostdin','-protocol_whitelist','file,pipe','-f','mov','-i',path,'-t',MAX_SECONDS,'-vf',f'fps=1/{interval},scale=960:-2','-frames:v','12',temp/'frame-%02d.png'], cancel, deadline)
+            command([ffmpeg,'-v','error','-nostdin','-protocol_whitelist','file,pipe','-f','mov','-i',path,'-vf',f'fps=1/{interval},scale=960:-2','-frames:v','12',temp/'frame-%02d.png'], cancel, deadline)
             for i, frame in enumerate(sorted(temp.glob('frame-*.png'))):
                 text = json.loads(command([ocr,frame],cancel,deadline)) if ocr and Path(ocr).is_file() else None
                 if text is not None:
@@ -187,7 +192,7 @@ def analyze(note, directory, cancel, previous=None):
     if previous and previous.get('sourceVersion') == version and previous.get('complete'):
         return {**previous,'cached':True}
     tools() # fail before any media request if local runtime is missing
-    deadline = time.monotonic() + 900
+    deadline = time.monotonic() + max(900, duration * 4)
     with tempfile.TemporaryDirectory(prefix='video-', dir=directory) as folder:
         path = Path(folder)/'source.mp4'
         download(url,path,cancel,deadline)
