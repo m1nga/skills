@@ -4,7 +4,7 @@ You saved something useful, but cannot find it when you need it. RedBot helps yo
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 
-**Version 1.9.5 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
+**Version 1.9.6 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
 
 ## Who it's for
 
@@ -23,6 +23,8 @@ People who collect design references, methods or tools and then struggle to deci
 An invitation opens a test slot; a separate random session credential protects each visitor's data. The former three-account quota is removed by default; invitations, isolated sessions and seven-day expiry still apply. Host processing capacity remains limited. No invitation? Original example notes let you try the interface without signing in. Manual JSON backup is a recovery option.
 
 Saved device content now appears before the connection-address check completes. The header keeps a visible **Xiaohongshu account** button during scans, video reads and temporary outages. This is device-first browsing, not fully local account synchronization: the test host still retains isolated login sessions and fetched source content.
+
+Version 1.9.6 opens the cached application without waiting for a slow connection, then transfers only changed posts. A slow library download no longer blocks account status or completed reads. Recent identity checks are reused only while the exact credentials remain unchanged; reconnect, source failure and expiry still require verification. The test computer and source website must be available for new reads.
 
 ## What it does
 
@@ -94,7 +96,7 @@ When enabled, opening the app checks the connection and a visible page can scan 
 
 ## Privacy and recovery
 
-The invitation test stores separate login sessions and retrieved text on Ming's host for up to seven days. Remote access is forwarded through Cloudflare; local access stays local. Host downtime prevents new sync. Disconnect deletes that session's server data and keeps a device copy for export.
+The invitation test keeps credentials from the QR sign-in and already retrieved post, comment and video text separately on Ming's test computer for up to seven days. Remote access is forwarded through Cloudflare; local access stays local. Host downtime prevents new sync. Disconnect deletes that session's server data and keeps a device copy for export.
 
 Personal notes, plans and organizing choices stay in this browser's IndexedDB. Account libraries and old device libraries are separate. Export JSON through **设置与我的数据 / Settings and my data** before switching devices or clearing storage. No automatic phone-to-computer note sync.
 
@@ -111,6 +113,8 @@ The distribution includes [application source](source/README.md), the adapter, i
 The previous native Mac package is a separate build and is not updated by this web release.
 
 ## Validation
+
+For 1.9.6, 103 JavaScript and 77 Python checks passed. A slow-receiver HTTP probe reproduced account status blocking before the fix and verified it returned while delivery remained blocked afterward. In actual Chrome, a two-post synthetic account connected, read both posts and retained both through reload. With every fixture GET delayed four seconds, the already cached app reloaded in an observed 75 ms and its saved content remained available. A single changed-post sample in a 306-item library reduced compressed response size from 1,213,771 to 1,519 bytes; that is a transfer-size comparison, not an end-to-end speed guarantee. The running host upgrade preserved three existing identities/libraries and completed content. No general uptime, source-login timing or physical-phone acceptance is claimed.
 
 For 1.9.4, the bundled source is pinned in `APP-SOURCE.json`. The application checkout passed 99 JavaScript and 67 Python tests; the public bundle excludes three historical private-research promotion fixtures. Actual Chrome with synthetic accounts exercised read-all, pause, reload/resume, selected-video completion, failure then explicit retry, and a 390-pixel view without horizontal overflow. A real local 661-second, 106,012,140-byte synthetic MP4 completed decoding, chunked speech processing and 12 OCR frame samples. Blank/silent synthetic media establishes pipeline execution, not recognition accuracy. The real user’s previously selected SEO video was independently seen ready in the original app browser; full-library content completion and production uptime are not claimed.
 

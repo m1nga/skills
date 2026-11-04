@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T15:25:13.564286+00:00",
-  "source_sha256": "189baffd6974ebd30d426421ce8ac1a8270de7215ea93826f481f611c9a885d7",
+  "reviewed_at": "2026-11-04T19:29:01.780280+00:00",
+  "source_sha256": "c5a8b5f4394dd328ddac1b4fff15e9d38768dae00e25b00776affcb3b36638da",
   "user_review": {
     "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial.",
     "scenarios": [
@@ -145,6 +145,41 @@
         "observed": "HTTP fixture verifies gzip lossless content, Content-Length and CORS; identity and gzip;q=0 remain uncompressed; unauthenticated request remains 401.",
         "kind": "executed",
         "result": "pass"
+      },
+      {
+        "request": "Download a large library through a deliberately stalled receiver while checking connection status.",
+        "expected": "Slow delivery must not hold the account lock or prevent status from returning.",
+        "observed": "Actual HTTP-handler probe reproduced blocking before the change; after it, status completed while delivery remained held. Source regression uses the same boundary.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Read another post while its exact login credentials were verified recently, then change cookies or encounter a failure.",
+        "expected": "Avoid a redundant identity request only within the same verified account and five-minute TTL. Changed credentials, expired TTL, explicit verify or source failure require a fresh check.",
+        "observed": "Executed source fixtures cover exact-stamp reuse, different account rejection before detail retrieval, TTL, missing cookie stamp, explicit verification and read-failure invalidation.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Receive one changed post without replacing the library or losing personal notes.",
+        "expected": "Changed rows only, with account-isolated cursors and safe fallback after restart; old-account late responses are ignored.",
+        "observed": "Backend and client regressions pass. One changed-row transfer in a 306-item library was 1,519 bytes gzip versus 1,213,771 for full. Real Chrome own synthetic account read both posts and retained both after reload. No real-user source speed guarantee.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Reopen saved content while all fixture HTTP GET requests are delayed four seconds.",
+        "expected": "The cached app and library open before network responses.",
+        "observed": "Actual Chrome warm reload returned in observed 75 ms, then two read posts were visible. Cache-first service-worker fixture also verifies API/config/version remain uncached. This is a local warm-cache trial, not physical-phone or first-visit timing.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Use already supplied source through the skill while the connector is unavailable.",
+        "expected": "Answer from actual retrieved evidence without forcing another sign-in or whole-library scan.",
+        "observed": "Instruction walkthrough preserves source-first answer and material-missing boundaries; no model execution was performed for this walkthrough.",
+        "kind": "simulated",
+        "result": "pass"
       }
     ]
   },
@@ -189,18 +224,36 @@
       "reason": "Keep concise default results and serial processing. Reject its 50-item cap, certificate bypass and unconditional upgrades; use persisted queue and pinned runtime.",
       "effect": "1.9.4 saved-card versus content progress, serial resumable queue, readable default and optional raw source. No third-party code copied.",
       "followup_application": "Retain incremental, resumable reads and concise source presentation; this follow-up prevents connection discovery from delaying cached content. No new library/model policy or unsupported browser-background claim."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/jackwener/xiaohongshu-cli/main/SKILL.md",
+      "checked_at": "2026-11-04T19:29:01.780280+00:00",
+      "decision": "adapt",
+      "learned": "Inspect existing authenticated identity/readiness and distinguish listing from content reading before repeating sign-in.",
+      "reason": "Reusing a known valid account reduces avoidable source work while retaining isolation.",
+      "effect": "Cookie-stamp-bound identity reuse with a five-minute TTL; explicit reconnect/restart/credential-change/failure invalidates it. Skill reuses already retrieved material.",
+      "rejected": "Do not import arbitrary browser cookies, add write operations, skip identity boundaries or upgrade dependencies automatically."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
+      "checked_at": "2026-11-04T19:29:01.780280+00:00",
+      "decision": "adapt",
+      "learned": "Deliver available content directly and prefer reusable text over unnecessary heavier retrieval.",
+      "reason": "The user wants the useful result with minimal waiting; do not make cache access depend on a new source read.",
+      "effect": "Cached app startup, changed-post transfer, retained completed content and a direct selected-source skill path. No claim that XHS subtitle extraction was added.",
+      "rejected": "No 50-item cap, certificate bypass, unconditional package upgrades, copied code or YouTube-specific API added."
     }
   ],
   "validation": [
     {
       "command": "node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs (public source)",
       "result": "pass",
-      "observed": "98 passed."
+      "observed": "103 passed."
     },
     {
-      "command": "python3 -m unittest discover -s tests (public source)",
+      "command": "python3 -m unittest discover -s tests -v (public source)",
       "result": "pass",
-      "observed": "71 passed."
+      "observed": "77 passed."
     },
     {
       "command": "python3 redbot/scripts/test_reader.py",
@@ -208,13 +261,13 @@
       "observed": "9 passed."
     },
     {
-      "command": "Chrome synthetic account-entry trial and actual host fourth-session trial",
+      "command": "Actual Chrome synthetic-account connection/read-all/warm-reload trial; running-host upgrade preservation",
       "result": "pass",
-      "observed": "Stable entry opens account panel; fourth disposable session accepted and removed; three existing identities/results retained. No unlimited capacity claim."
+      "observed": "Two synthetic posts read and preserved; warm cache opened under artificial four-second GET delay. Three existing real session identities, card IDs and completed content preserved across running-host update. No general connection uptime claim."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.5 patch: cache-first initial render, visible account entry, sync-specific outage wording, optional account-count quota disabled by default. Preserve 1.9.4 whole-library/video results and evidence. No architecture migration, paid host, background discovery scheduler or local-only storage claim. Follow-up in the same release preserves reading queue across card scans and negotiates gzip for large JSON; no new user data destination.",
+  "release_scope": "1.9.6: remove per-account lock from HTTP delivery, account-local changed-post snapshots, five-minute exact-cookie-stamp identity reuse, cache-first app shell and activation-aware update, honest connection status after library failure, plain-language data explanation. No new host, paid API, model upgrade, source-auth bypass or background discovery scheduler. Temporary forwarding and host uptime remain limitations.",
   "dependency_research": {
     "source": "https://github.com/nk2028/opencc-js",
     "checked_at": "2026-11-04T14:08:58.004717+00:00",

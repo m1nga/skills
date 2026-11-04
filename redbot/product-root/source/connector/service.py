@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import base64
 import calendar
+import copy
 import gzip
 import hashlib
 import hmac
@@ -29,12 +30,13 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, build_opener, ProxyHandler
-from urllib.parse import unquote
+from urllib.parse import unquote, parse_qs
 
 APP = Path(__file__).resolve().parents[1] / 'app'
 ID = re.compile(r'^[a-f0-9]{24}$')
 TTL = 7 * 86400
 PENDING_TTL = 20 * 60
+VERIFIED_TTL = 5 * 60
 VIDEO_SLOT = threading.BoundedSemaphore(1)
 # The source process lives on loopback. Never forward its bearer or health
 # request through a shell/system HTTP proxy (macOS can supply one implicitly).
@@ -281,6 +283,9 @@ class Session:
         self.qr = None
         self.qr_expires = 0
         self.checked_stamp = None
+        self.verified_stamp = None
+        self.verified_at = 0
+        self.library_views = []
         self.state = 'needs_sign_in'
         self.closed = False
         self.scan_started = None
@@ -329,6 +334,27 @@ class Session:
         return (not self.meta.get('account') and not self.library.get('items')
                 and not self.busy() and not self.backend.cookie_stamp()
                 and self.pending_deadline() <= time.time())
+
+    def library_snapshot(self, cursor=None):
+        # Snapshot quickly, then serialize/hash/deliver outside the account lock.
+        # A slow receiver must never block status, pause or completed source work.
+        with self.lock:
+            snapshot = copy.deepcopy(self.library)
+        rows = snapshot.get('items', [])
+        # The scan-wide timestamp is returned separately; a timestamp-only card
+        # observation must not retransmit an unchanged transcript.
+        hashes = {x['id']: digest(json.dumps({k:v for k,v in x.items() if k != 'lastSeenAt'},
+                   sort_keys=True, ensure_ascii=False)) for x in rows}
+        with self.lock:
+            previous = next((v for v in self.library_views if v['cursor'] == cursor), None)
+            current = next((v for v in self.library_views if v['hashes'] == hashes), None)
+            if current is None:
+                current = {'cursor': secrets.token_urlsafe(18), 'hashes': hashes}
+                self.library_views.append(current)
+                self.library_views = self.library_views[-16:]
+        if previous is not None:
+            snapshot['items'] = [x for x in rows if previous['hashes'].get(x['id']) != hashes[x['id']]]
+        return {**snapshot, 'mode': 'delta' if previous is not None else 'full', 'cursor': current['cursor']}
 
     def status(self):
         with self.lock:
@@ -566,9 +592,15 @@ class Session:
                 raise Problem('session_expired', 401)
             self.state, self.qr, self.qr_expires = 'waiting', img, time.time() + 230
 
-    def verify(self):
+    def verify(self, reuse=False):
         if self.closed:
             raise Problem('session_expired', 401)
+        stamp = self.backend.cookie_stamp()
+        if (reuse and self.state == 'connected' and stamp is not None
+                and stamp == self.verified_stamp and self.verified_at
+                and time.monotonic() - self.verified_at < VERIFIED_TTL):
+            return
+        self.verified_at = 0
         out = self.backend.request('GET', '/api/v1/login/status')
         uid = out.get('user_id') or out.get('userId')
         if not out.get('is_logged_in') or not uid:
@@ -591,12 +623,15 @@ class Session:
                 self.meta.pop('pendingUntil', None)
             atomic(self.directory / 'session.json', self.meta)
             self.state, self.qr = 'connected', None
+            self.verified_stamp = self.backend.cookie_stamp()
+            self.verified_at = time.monotonic()
 
     def scan(self):
         if self.state != 'connected':
             raise Problem('sign_in_required', 401)
-        # Check identity on every scan, including after a service restart.
-        self.verify()
+        # Reuse only a recent check bound to this exact cookie file. A restart,
+        # changed cookies, expiry or source failure forces a real identity check.
+        self.verify(reuse=True)
         if self.scan_cancel.is_set():
             raise Problem('scan_cancelled', 409)
         self.scan_started = time.time()
@@ -683,6 +718,7 @@ class Session:
                 profile = None
                 raise Problem('scan_incomplete', 502)
         except Exception as error:
+            self.verified_at = 0
             failure = error
         finally:
             stop_monitor.set()
@@ -740,7 +776,7 @@ class Session:
         try:
             if self.state != 'connected':
                 raise Problem('sign_in_required', 401)
-            self.verify()
+            self.verify(reuse=True)
             if self.read_cancel.is_set():
                 raise Problem('read_cancelled', 409)
             token = read_json(self.directory / 'source-tokens.json', {}).get(nid)
@@ -773,6 +809,7 @@ class Session:
                     self.library['scan']['readCount'] = sum(bool(x.get('description')) for x in self.library['items'])
                 self.content_status(item, 'ready' if item['hasContent'] else 'empty')
         except Exception as error:
+            self.verified_at = 0
             code = 'read_cancelled' if self.read_cancel.is_set() else error.code if isinstance(error, Problem) else 'source_unavailable'
             self.content_status(item, 'cancelled' if code == 'read_cancelled' else 'failed', code)
             raise Problem(code, error.status if isinstance(error, Problem) else 502)
@@ -799,7 +836,7 @@ class Session:
         try:
             if self.state != 'connected':
                 raise Problem('sign_in_required', 401)
-            self.verify()
+            self.verify(reuse=True)
             token = read_json(self.directory / 'source-tokens.json', {}).get(nid)
             if not token:
                 raise Problem('sync_first', 409)
@@ -829,6 +866,7 @@ class Session:
             if previous and previous.get('complete') and not result.get('complete'):
                 raise video.VideoError('video_partial')
         except (Problem, video.VideoError, OSError, ValueError) as error:
+            self.verified_at = 0
             code = 'video_cancelled' if self.video_cancel.is_set() else error.code if isinstance(error, (Problem, video.VideoError)) else 'video_tool_failed'
             failure = {'code':code,'at':iso(),'retainedPrevious':bool(previous and previous.get('complete'))}
             result = {**previous, 'lastRefreshError':failure} if previous and previous.get('complete') else {
@@ -1060,8 +1098,9 @@ def make_handler(store, origins, host):
                 if method == 'GET' and path == '/api/connection':
                     return self.send(session.status())
                 if method == 'GET' and path == '/api/library':
-                    with session.lock:
-                        return self.send(session.library)
+                    query = parse_qs(self.path.partition('?')[2], max_num_fields=8)
+                    cursor = query.get('cursor', [None])[0]
+                    return self.send(session.library_snapshot(cursor))
                 if method == 'POST' and path == '/api/connect':
                     return self.send(session.start('connect', session.connect))
                 if method == 'POST' and path == '/api/verify':

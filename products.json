@@ -240,7 +240,7 @@
     {
       "name": "redbot",
       "title": "RedBot \u2014 Find the Good Thing You Saved",
-      "description": "Open cached saves first, read and search a resumable library, and turn a useful method into a coding prompt with source evidence.",
+      "description": "Open saved content immediately, sync changed posts, and turn a relevant saved method into a coding prompt with source evidence.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
