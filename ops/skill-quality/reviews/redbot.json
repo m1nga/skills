@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T19:29:01.780280+00:00",
-  "source_sha256": "c5a8b5f4394dd328ddac1b4fff15e9d38768dae00e25b00776affcb3b36638da",
+  "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+  "source_sha256": "94a6bf31f1cf89a9373c8a6b0ee9c60c80f42598ded555bdb2146882bb34a069",
   "user_review": {
-    "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial.",
+    "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
     "scenarios": [
       {
         "request": "Find home cooking suitable for weight loss among dessert and meal saves.",
@@ -180,6 +180,24 @@
         "observed": "Instruction walkthrough preserves source-first answer and material-missing boundaries; no model execution was performed for this walkthrough.",
         "kind": "simulated",
         "result": "pass"
+      },
+      {
+        "request": "Find a tool for saved Xiaohongshu posts and turn one useful source into an editable coding prompt.",
+        "expected": "The repository description identifies the platform, source-backed workflow and beta availability.",
+        "observed": "Walked through the new description, README and SKILL: Xiaohongshu saved posts, resumable reading and editable prompt output are supported. The invitation-beta qualification remains explicit.",
+        "kind": "simulated",
+        "result": "pass",
+        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+        "scope": "2026-11-05 metadata discovery pass"
+      },
+      {
+        "request": "The connector is unavailable and a saved item has only a title and link.",
+        "expected": "Do not invent its contents or promise production sync; use supplied source or identify the missing material.",
+        "observed": "Simulated the documented path: title-only content remains Needs reading; already supplied material can be used without forcing a new login. No automatic scraper, publishing capability or source truth guarantee is advertised.",
+        "kind": "simulated",
+        "result": "pass",
+        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+        "scope": "2026-11-05 metadata discovery pass"
       }
     ]
   },
@@ -242,28 +260,53 @@
       "reason": "The user wants the useful result with minimal waiting; do not make cache access depend on a new source read.",
       "effect": "Cached app startup, changed-post transfer, retained completed content and a direct selected-source skill path. No claim that XHS subtitle extraction was added.",
       "rejected": "No 50-item cap, certificate bypass, unconditional package upgrades, copied code or YouTube-specific API added."
+    },
+    {
+      "url": "https://github.com/jackwener/xhs-cli/blob/main/SKILL.md",
+      "learned": "The author makes Xiaohongshu/RedNote/XHS naming, favorites listing, selected-note reading and account access explicit.",
+      "decision": "adapt",
+      "reason": "Platform-specific naming makes the saved-source use easier to find and understand, while RedBot has narrower authority and beta limits.",
+      "effect": "Added Xiaohongshu to the public repository description and focused topics; retained invitation beta and source-backed prompt wording.",
+      "rejected": "Do not import posting/liking operations, arbitrary cookie extraction, or claim complete production synchronization.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
     }
   ],
   "validation": [
     {
       "command": "node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs (public source)",
       "result": "pass",
-      "observed": "103 passed."
+      "observed": "103 passed.",
+      "checked_at": "2026-11-04T19:29:01.780280+00:00"
     },
     {
       "command": "python3 -m unittest discover -s tests -v (public source)",
       "result": "pass",
-      "observed": "77 passed."
+      "observed": "77 passed.",
+      "checked_at": "2026-11-04T19:29:01.780280+00:00"
     },
     {
       "command": "python3 redbot/scripts/test_reader.py",
       "result": "pass",
-      "observed": "9 passed."
+      "observed": "9 passed.",
+      "checked_at": "2026-11-04T19:29:01.780280+00:00"
     },
     {
       "command": "Actual Chrome synthetic-account connection/read-all/warm-reload trial; running-host upgrade preservation",
       "result": "pass",
-      "observed": "Two synthetic posts read and preserved; warm cache opened under artificial four-second GET delay. Three existing real session identities, card IDs and completed content preserved across running-host update. No general connection uptime claim."
+      "observed": "Two synthetic posts read and preserved; warm cache opened under artificial four-second GET delay. Three existing real session identities, card IDs and completed content preserved across running-host update. No general connection uptime claim.",
+      "checked_at": "2026-11-04T19:29:01.780280+00:00"
+    },
+    {
+      "command": "python3 -m unittest discover -s redbot/scripts -p test_*.py",
+      "result": "pass",
+      "observed": "9 saved-source reader regression tests passed. The full 1.9.6 app tests below are retained historical evidence, not rerun in this metadata-only pass.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json --json",
+      "result": "pass",
+      "observed": "PASS, no errors or warnings. Checked the current source README, license, install entry, referral and manifest metadata.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
     }
   ],
   "unresolved_blockers": [],
@@ -276,5 +319,12 @@
     "learned": "Self-hosted JavaScript converter bundles dictionaries and can perform local script conversion; conversion is not generative reasoning.",
     "effect": "Fixed small conversion bundle, adjacent MIT/Apache license files and registry/file integrity pins; derived prose converted while original source, code and URLs remain unchanged.",
     "rejected": "No runtime CDN/latest, no claim that conversion fixes transcription errors or improves source truth."
+  },
+  "metadata_discovery_review": {
+    "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+    "prior_reviewed_at": "2026-11-04T19:29:01.780280+00:00",
+    "scope": "Only clarify the repository description with Xiaohongshu saved-post use and invitation beta, and add the xiaohongshu topic. Version 1.9.6 source and skill behavior are unchanged.",
+    "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
+    "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
   }
 }

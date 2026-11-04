@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "skill": "breakinggap",
-  "reviewed_at": "2026-11-04T03:57:49.257914+00:00",
-  "source_sha256": "47707db2c4725be281dee69889d2bf66855cb77ec4b8cdb43fdd138a4fb52b8a",
+  "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+  "source_sha256": "741c2a12e9611a1dca56f98fdb26587c0d68c55e0ba46dff0fa5d0fbe37f87ae",
   "user_review": {
-    "method": "Independent static review and four actual model-generated replies in a simulated host; executed Node interaction harness; actual desktop browser interaction. After the independent review, root refined example context, starter isolation and first-screen spacing and verified those changes with the harness and browser. No real-user outcome, installed-host routing or automatic invitation test is claimed.",
+    "method": "Independent static review and four actual model-generated replies in a simulated host; executed Node interaction harness; actual desktop browser interaction. After the independent review, root refined example context, starter isolation and first-screen spacing and verified those changes with the harness and browser. No real-user outcome, installed-host routing or automatic invitation test is claimed. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
     "scenarios": [
       {
         "request": "Start a thinking break with no mood or project supplied.",
@@ -47,6 +47,24 @@
         "observed": "Executed Node harness covers clipboard rejection and legacy values. Browser displayed Copied but bridge clipboard readback was empty; real clipboard contents were not verified.",
         "kind": "executed",
         "result": "pass"
+      },
+      {
+        "request": "I have three minutes while the AI works and feel stuck; give me a thinking break.",
+        "expected": "One light question, using the supplied mood without asking it again; no mandatory planning process.",
+        "observed": "Simulated the current instruction path: go directly to one open question and allow skipping. README discovery language and the added agent-skill classification describe this bounded reflection use.",
+        "kind": "simulated",
+        "result": "pass",
+        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+        "scope": "2026-11-05 metadata discovery pass"
+      },
+      {
+        "request": "Fix this build error; do not start a reflection exercise.",
+        "expected": "Continue normal technical work and do not invoke BreakingGap from the word stuck alone.",
+        "observed": "Instruction walkthrough kept explicit thinking-break intent, immediate exit, and no timer/listener or new-chat creation without consent. Metadata does not advertise automatic monitoring.",
+        "kind": "simulated",
+        "result": "pass",
+        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+        "scope": "2026-11-05 metadata discovery pass"
       }
     ]
   },
@@ -71,34 +89,67 @@
       "learned": "The actual script reads a skill and emits platform-specific startup context; it is distinct from a skill instruction file.",
       "decision": "adapt",
       "reason": "Document installation versus invocation and any future host integration separately. The script does not demonstrate five-minute idle detection; no third-party code was copied or executed."
+    },
+    {
+      "url": "https://github.com/prrao87/agent-skills/blob/main/skills/brainstorming/SKILL.md",
+      "learned": "The author limits brainstorming to intentional invocation and distinguishes consequential user judgment from ordinary analysis. The author repository is archived.",
+      "decision": "adapt",
+      "reason": "The explicit-intent boundary fits BreakingGap; its longer structured interview does not fit a short optional break.",
+      "effect": "Completed focused agent-skill/m1nga-skill classification while preserving the existing short reflection description and explicit invocation boundary.",
+      "rejected": "No multi-phase planning interview, generic auto-invocation or claim that the archived source remains actively maintained.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
     }
   ],
   "validation": [
     {
       "command": "node breakinggap/tests/companion-check.mjs",
       "result": "pass",
-      "observed": "Three waiting moments, five moods, contextual first questions, isolated editable starter, keyboard navigation, clipboard/fallback and untouched legacy export passed."
+      "observed": "Three waiting moments, five moods, contextual first questions, isolated editable starter, keyboard navigation, clipboard/fallback and untouched legacy export passed.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
     },
     {
       "command": "skill-creator quick_validate.py breakinggap",
       "result": "pass",
-      "observed": "Skill is valid."
+      "observed": "Skill is valid.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
     },
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json",
       "result": "pass",
-      "observed": "VERDICT: PASS."
+      "observed": "VERDICT: PASS.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
     },
     {
       "command": "git diff --check",
       "result": "pass",
-      "observed": "No whitespace errors."
+      "observed": "No whitespace errors.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
     },
     {
       "command": "Actual browser interaction on the local companion page",
       "result": "pass",
-      "observed": "Mood, first question, focus, old-note source and disclosure verified; final desktop screenshot saved. Clipboard contents, mobile layout, live host routing, automatic welcome and automatic window opening were not verified."
+      "observed": "Mood, first question, focus, old-note source and disclosure verified; final desktop screenshot saved. Clipboard contents, mobile layout, live host routing, automatic welcome and automatic window opening were not verified.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
+    },
+    {
+      "command": "python3 -m unittest discover -s breakinggap/tests -p test_*.py",
+      "result": "pass",
+      "observed": "15 legacy helper regression tests passed. This does not test model quality or installed-host routing.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json --json",
+      "result": "pass",
+      "observed": "PASS, no errors or warnings. Checked the current source README, license, install entry, referral and manifest metadata.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "metadata_discovery_review": {
+    "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+    "prior_reviewed_at": "2026-11-04T03:57:49.257914+00:00",
+    "scope": "Only add missing m1nga-skill and agent-skill repository topics. Reflection behavior, companion and package files are unchanged.",
+    "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
+    "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
+  }
 }
