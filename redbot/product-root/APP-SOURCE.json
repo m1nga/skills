@@ -1,5 +1,5 @@
 {
-  "version": "1.8.1 invitation-only account test",
+  "version": "1.8.2 invitation-only account test",
   "private_data_included": false,
   "model_revision": "2c4055b12046f11709e9df2c122e59ffbdc2f900",
   "assets_sha256": {
@@ -28,33 +28,34 @@
     "source/app/check-ui.js": "708e92c795879539bfaae330456914bfac4275b9f2684be50ee0b049c4353bcf",
     "source/app/check.js": "8cf2e415a97285097195098d6a61315945074d3ab4b7b38404663fcafbd632c7",
     "source/app/client.css": "7e14ccb65984b82f3001db2899571ef9ba5adc4b73a46ef2410e09a680c0e876",
-    "source/app/client.js": "637ed5aca035a97e9f6ddf77b12961b1495408ed8ec7b1841464b394e0c538fe",
+    "source/app/client.js": "892906e29731b2cf966bb7163d9cb5f7e667ba9175a926fc69f937461010c872",
     "source/app/connection.json": "7e4c2d761a91e64019d6d4178e83e22834c575ad2ea249f2b95293d33a5ec1b2",
     "source/app/core.js": "fdd1b5ea1807e9bf6e48fde751157a86975cdcee34b8f02d0c679b58867ba8f5",
     "source/app/demo.js": "4b2787eb5bb3b2aeaa8655b90434e1763281f6fe83cd7daf824ad4fb73eab1c8",
     "source/app/icon.svg": "2dac171ba1ca73466f787439e1764b14efb9b9a90d4580975691aba0b560b703",
-    "source/app/index.html": "0059acd705378a7bed50028e1f1e219db60097c30ea539d90965da5cc29e28da",
+    "source/app/index.html": "48d922a3935d1b8691959524ea1c969947082670b8b9d0e7a914411e7c2ae09f",
     "source/app/manifest.webmanifest": "4538458e7f2c24c4a8a1312b0313345183f0c218c8ef5efc8938020fdea16531",
     "source/app/style.css": "0ddd218e5f88291a8af4afe02b395a50b00c90ce32d09f00ac195abdfcc3685c",
-    "source/app/sw.js": "0d2155faa8f5a34771bec3d905c982ac3a2a27d29a7b8e496a15f8096dfc864c",
+    "source/app/sw.js": "c12aadc2019e32eccb5ff9415cf52df883c705d19e01fed4c9faf5ee6ab2715b",
     "source/check.test.cjs": "7e9e6c975fdc46a99aeed3830532623bc69391b0f02b38f5119046f168afbaf0",
     "source/connector/.gitattributes": "7dce468e9022f1ad2b2c2d6c8e564a89423a3d601a00cc67856c0373a127a3a1",
     "source/connector/UPSTREAM-LICENSE": "9d8b162d4b4822b793666e2a8cb6c94df7ecdb8204f23a20e6042f93e691cb0d",
     "source/connector/UPSTREAM.md": "51847cb7a950d18ee6ae732bf45bfa27c0d31c0760bc6b0c0651bb7901013bb5",
     "source/connector/patches/favorites-checkpoint.patch": "19a09e57017e01cb7cfe6307c91c874c7412afe9b23b735e775519431388e339",
-    "source/connector/service.py": "412dcae5c934d9a21992d20b7fcc180767d856ffdddfac677a3a493a27046974",
+    "source/connector/service.py": "829cf8429181e86714d6540349a80dcc66fab8c50835f2695da77226f7250f79",
     "source/connector/tests/login-identity.test.cjs": "b92f5ef903f2629f38c8394005677dec097d381b3a3383a5c2f28115b6c28318",
     "source/connector/tests/pagination-observer.test.cjs": "f71311220d3d7cc43c29c5895d151922fa34a75eb4927ee34f941da1ed83c34b",
     "source/core.test.cjs": "88f6ffdf6fcc8bb243caf42f874fc912c035fb0ef2d107a0fcf8235d8aa345b3",
     "source/promotion.test.cjs": "6c9db2439233625940268a1d98c7a75bc97cf79cc4c4fa1f0e2a7cd17e043a0d",
     "source/semantic.test.cjs": "bf1771ce63343698f5189183a0ff72c70ef8dc508346b257876695ade2bf69d4",
-    "source/tests/test_connector.py": "c456f950d43f901557a0da60afe61e3b865c0ac0b24982e9dec61aae87ed6ca0",
+    "source/tests/test_connector.py": "0bf8228dc7a73463b59b949e145538459c49036f7aecfb989c9bbfa728668265",
     "style.css": "0ddd218e5f88291a8af4afe02b395a50b00c90ce32d09f00ac195abdfcc3685c",
     "sw.js": "ba7d13a87a422fa764b243fb11d13cff9563c5db52c059d53f741c9d7446bd2f",
-    "test.html": "3eb51d85b8632cae7c6aaa4ef885881635c3f51e074e80cf65db22be249393e3"
+    "test.html": "3eb51d85b8632cae7c6aaa4ef885881635c3f51e074e80cf65db22be249393e3",
+    "source/tests/client-bootstrap.test.cjs": "d6622e3ddea29e3dc6bbdfdd700a4051303b5e87e9d41c014ec6f8a5a7c2ae52"
   },
   "primary_entry": "https://sidecourt.space/drops/redbot/",
   "github_pages_role": "Migration/export bridge; application hosted on SideCourt",
   "public_account_sync": "invitation-only; temporary host; progressive scans; completion requires source evidence",
-  "application_source_commit": "3f4c7afd18dc81f264c22027ee4e8eb8df98ad00"
+  "application_source_commit": "3c244b7bd07bde7d7d34064a9de9bfa520c5d612"
 }

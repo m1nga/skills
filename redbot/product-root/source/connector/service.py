@@ -30,6 +30,7 @@ from urllib.request import Request, build_opener, ProxyHandler
 APP = Path(__file__).resolve().parents[1] / 'app'
 ID = re.compile(r'^[a-f0-9]{24}$')
 TTL = 7 * 86400
+PENDING_TTL = 20 * 60
 # The source process lives on loopback. Never forward its bearer or health
 # request through a shell/system HTTP proxy (macOS can supply one implicitly).
 _local_http = build_opener(ProxyHandler({}))
@@ -227,6 +228,26 @@ class Session:
             self.library['revision'] += 1
             atomic(directory / 'library.json', self.library)
 
+    def pending_deadline(self):
+        # Legacy trials had a seven-day expiry. Use their original creation time,
+        # never passive status polling, as the fallback QR-flow clock.
+        if 'pendingUntil' in self.meta:
+            return self.meta['pendingUntil']
+        try:
+            return calendar.timegm(time.strptime(self.meta['createdAt'], '%Y-%m-%dT%H:%M:%SZ')) + PENDING_TTL
+        except (KeyError, ValueError, TypeError):
+            return self.meta['expires']
+
+    def expires_at(self):
+        if self.meta.get('account') or self.library.get('items') or self.backend.cookie_stamp():
+            return self.meta['expires']
+        return min(self.meta['expires'], self.pending_deadline())
+
+    def abandoned(self):
+        return (not self.meta.get('account') and not self.library.get('items')
+                and not self.busy() and not self.backend.cookie_stamp()
+                and self.pending_deadline() <= time.time())
+
     def status(self):
         with self.lock:
             if self.state == 'waiting' and time.time() >= self.qr_expires:
@@ -242,7 +263,7 @@ class Session:
                 progress = {key: scan.get(key) for key in ('seen', 'complete', 'endReason')}
                 progress.update(revision=self.library['revision'], running=True)
             return {'state': self.state, 'nickname': self.meta.get('nickname', ''),
-                    'sessionId': self.meta['id'], 'expiresAt': self.meta['expires'],
+                    'sessionId': self.meta['id'], 'expiresAt': self.expires_at(),
                     'qr': self.qr if self.state == 'waiting' else None,
                     'qrExpiresAt': self.qr_expires, 'job': self.job,
                     'scan': self.library.get('scan'), 'progress': progress,
@@ -285,6 +306,10 @@ class Session:
             raise Problem('session_expired', 401)
         if self.state == 'connected':
             raise Problem('already_connected', 409)
+        with self.lock:
+            if not self.meta.get('account'):
+                self.meta['pendingUntil'] = time.time() + PENDING_TTL
+                atomic(self.directory / 'session.json', self.meta)
         self.qr = None
         # Restoring an existing session is an identity check, not a request to
         # discard login and issue a fresh QR. Transient loading failures remain
@@ -325,7 +350,12 @@ class Session:
         with self.lock:
             if self.closed:
                 raise Problem('session_expired', 401)
+            first_verification = not self.meta.get('account')
             self.meta.update(account=account, nickname=str(out.get('username', ''))[:120])
+            if first_verification:
+                # Start the normal account retention window at first verification.
+                self.meta['expires'] = time.time() + TTL
+                self.meta.pop('pendingUntil', None)
             atomic(self.directory / 'session.json', self.meta)
             self.state, self.qr = 'connected', None
 
@@ -516,12 +546,13 @@ class Store:
             if len(self.sessions) >= self.capacity:
                 raise Problem('beta_full', 429)
             sid, token = secrets.token_hex(16), secrets.token_urlsafe(32)
-            meta = {'id': sid, 'tokenHash': digest(token), 'createdAt': iso(), 'expires': time.time() + TTL}
+            meta = {'id': sid, 'tokenHash': digest(token), 'createdAt': iso(),
+                    'expires': time.time() + TTL, 'pendingUntil': time.time() + PENDING_TTL}
             directory = self.root / 'sessions' / sid
             atomic(directory / 'session.json', meta)
             session = Session(directory, meta, self.factory(self.binary, directory))
             self.sessions[meta['tokenHash']] = session
-            return {'token': token, 'sessionId': sid, 'expiresAt': meta['expires']}
+            return {'token': token, 'sessionId': sid, 'expiresAt': session.expires_at()}
 
     def get(self, token):
         if not isinstance(token, str) or not re.fullmatch('[A-Za-z0-9_-]{40,100}', token):
@@ -530,6 +561,11 @@ class Store:
             session = self.sessions.get(digest(token))
             if not session or session.closed or session.meta['expires'] < time.time():
                 raise Problem('session_expired', 401)
+            with session.lock:
+                if session.abandoned():
+                    session.close()
+                    self.sessions.pop(digest(token), None)
+                    raise Problem('session_expired', 401)
             return session
 
     def remove(self, token):
@@ -541,9 +577,10 @@ class Store:
     def reap(self):
         with self.lock:
             for key, session in list(self.sessions.items()):
-                if session.meta['expires'] < time.time():
-                    session.close()
-                    del self.sessions[key]
+                with session.lock:
+                    if session.meta['expires'] < time.time() or session.abandoned():
+                        session.close()
+                        del self.sessions[key]
 
     def stop(self):
         for session in self.sessions.values():

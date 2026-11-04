@@ -319,6 +319,91 @@ class ConnectorTests(unittest.TestCase):
         self.assertFalse(session.directory.exists())
         with self.assertRaises(S.Problem):self.store.get(token)
 
+    def test_abandoned_trial_releases_capacity_and_can_sign_in_again(self):
+        self.store.capacity = 1
+        token, session = self.new()
+        session.meta['pendingUntil'] = time.time() - 1
+        replacement, fresh = self.new()
+        self.assertNotEqual(token, replacement)
+        self.assertFalse(session.directory.exists())
+        with self.assertRaises(S.Problem) as error:
+            self.store.get(token)
+        self.assertEqual(error.exception.code, 'session_expired')
+        fresh.connect()
+        self.assertEqual(fresh.state, 'waiting')
+
+    def test_recent_or_busy_pending_trial_is_kept(self):
+        token, session = self.new()
+        self.store.reap()
+        self.assertIs(self.store.get(token), session)
+        session.meta['pendingUntil'] = time.time() - 1
+        session.job = {'state': 'running', 'kind': 'connect'}
+        self.store.reap()
+        self.assertIs(self.store.get(token), session)
+        session.job['state'] = 'done'
+        self.store.reap()
+        self.assertFalse(session.directory.exists())
+
+    def test_pending_expiry_never_evicts_identity_cookie_or_saved_items(self):
+        sessions = [self.new() for _ in range(3)]
+        sessions[0][1].meta['account'] = 'verified-account'
+        sessions[1][1].backend.cookie_stamp = lambda: 123
+        sessions[2][1].library['items'] = [{'id': A}]
+        for _, session in sessions:
+            session.meta['pendingUntil'] = time.time() - 1
+        self.store.reap()
+        for token, session in sessions:
+            self.assertIs(self.store.get(token), session)
+            self.assertTrue(session.directory.exists())
+
+    def test_qr_start_refreshes_pending_clock_but_polling_does_not(self):
+        _, session = self.new()
+        deadline = session.meta['pendingUntil']
+        self.assertEqual(session.status()['expiresAt'], deadline)
+        session.status()
+        self.assertEqual(session.meta['pendingUntil'], deadline)
+        with patch.object(S.time, 'time', return_value=time.time() + 60):
+            session.connect()
+        self.assertGreater(session.meta['pendingUntil'], deadline + 59)
+        persisted = S.read_json(session.directory / 'session.json', {})
+        self.assertEqual(persisted['pendingUntil'], session.meta['pendingUntil'])
+
+    def test_legacy_abandoned_trial_reaped_after_restart(self):
+        token, session = self.new()
+        session.meta.pop('pendingUntil')
+        session.meta['createdAt'] = '2020-01-01T00:00:00Z'
+        S.atomic(session.directory / 'session.json', session.meta)
+        restored = S.Store(Path(self.temp.name), Path('/unused'), factory=Fake)
+        restored.reap()
+        self.assertFalse(session.directory.exists())
+        with self.assertRaises(S.Problem):
+            restored.get(token)
+
+    def test_expired_pending_token_fails_without_waiting_for_next_signup(self):
+        token, session = self.new()
+        session.meta['pendingUntil'] = time.time() - 1
+        with self.assertRaises(S.Problem) as error:
+            self.store.get(token)
+        self.assertEqual(error.exception.code, 'session_expired')
+        self.assertFalse(session.directory.exists())
+
+    def test_first_verification_promotes_to_normal_retention_only_once(self):
+        _, session = self.new()
+        now = time.time()
+        with patch.object(S.time, 'time', return_value=now):
+            session.verify()
+        self.assertNotIn('pendingUntil', session.meta)
+        self.assertEqual(session.meta['expires'], now + S.TTL)
+        with patch.object(S.time, 'time', return_value=now + 60):
+            session.verify()
+        self.assertEqual(session.meta['expires'], now + S.TTL)
+        # Reconnecting a bound account must not restart its seven-day window.
+        session.state = 'needs_sign_in'
+        session.backend.cookie_stamp = lambda: 123
+        session.connect()
+        self.assertEqual(session.meta['expires'], now + S.TTL)
+        self.assertNotIn('pendingUntil', session.meta)
+
     def test_adapter_rejects_mutations_before_starting_process(self):
         mcp=S.MCP(Path('/missing'),Path(self.temp.name)/'new')
         with self.assertRaises(S.Problem):mcp.request('POST','/api/v1/feeds/favorite',{})
