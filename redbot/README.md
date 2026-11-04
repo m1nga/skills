@@ -4,7 +4,7 @@ You saved something useful, but cannot find it when you need it. RedBot helps yo
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 
-**Version 1.8 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
+**Version 1.9.0 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
 
 ## Who it's for
 
@@ -17,7 +17,8 @@ People who collect design references, methods or tools and then struggle to deci
 3. RedBot shows the observed count and adds saved cards as batches arrive. You can browse and search the cards already received while scanning continues, or stop and keep them. You do not need to upload files or copy cookies.
 4. Describe what you want to do in **现在想做 / For now**, or browse **我的收藏 / My saves**.
 5. Open a relevant save and choose **读取这篇正文 / Read this post**. A list scan does not read every post or video.
-6. Read the useful text, inspect cost/promotion cues, save a plan or create an editable prompt for your project.
+6. For a video, choose **读取视频内容 / Read video content** separately. Read the timestamped speech and sampled on-screen text, with partial results and errors clearly marked.
+7. Inspect the goal requirements and actual supporting passages, check cost/promotion cues, then save a supported plan or create an editable prompt for your project. A title-only source must be read before it can be kept as a supported plan.
 
 An invitation opens a test slot; a separate random session credential protects each visitor's data. The default host supports three simultaneous sessions. No invitation? Original example notes let you try the interface without signing in. Manual JSON backup is a recovery option.
 
@@ -32,6 +33,8 @@ An invitation opens a test slot; a separate random session credential protects e
 | Want to use an idea in a project | Builds an editable, source-grounded Codex or Claude Code prompt |
 | Want to continue later | Keeps a plan and personal notes in this browser |
 | Want to organize | Search, topics, collections, favorites, read state, archive and recoverable trash |
+
+Goal matching checks bounded task/constraint patterns, including cooking, weight-loss claims, free use, low cost, no equipment and explicit exclusions. Negated, unsupported and unknown requirements cannot be rescued by a high similarity score. A source claiming “减脂餐” is not an independently verified nutrition recommendation. No supported match is a valid result.
 
 A cue is not a fraud verdict. A public repository or MIT license does not prove zero API costs, all dependency terms or working functionality. GitHub lookup sends only identified repository names; ordinary network request information still reaches GitHub. Errors remain unverified.
 
@@ -83,7 +86,7 @@ Scans have no fixed saved-card or scroll-count cutoff. A 45-second lack of new c
 
 When enabled, opening the app checks the connection and a visible page can scan every 15 minutes. Closing it stops new scans; a started job may finish. No source webhook or always-on background scheduler is implied.
 
-**Scanning and deduplication use no LLM calls.** Optional semantic search runs locally after a roughly 120 MB model download plus runtime and matches up to 300 entries. It uses bandwidth, memory and battery. Asking an AI assistant to reason over a library consumes that assistant's usage. The webpage does not generate new AI summaries, read comments or transcribe videos.
+**Scanning and deduplication use no LLM calls.** Optional semantic search runs locally after a roughly 120 MB model download plus runtime and searches all saved text in the active library, splitting long passages into chunks and reporting actual coverage. It uses bandwidth, memory and battery. Asking an AI assistant to reason over a library consumes that assistant's usage. Selected videos can be read on demand: machine speech transcription and up to 12 uniform frame OCR samples, limited to 10 minutes and 100 MB. Processing uses the test host computer, with no cloud inference token bill. This is not full visual understanding, a truth verdict or a new generated summary; comments remain unread.
 
 ## Privacy and recovery
 
@@ -91,7 +94,7 @@ The invitation test stores separate login sessions and retrieved text on Ming's 
 
 Personal notes, plans and organizing choices stay in this browser's IndexedDB. Account libraries and old device libraries are separate. Export JSON through **设置与我的数据 / Settings and my data** before switching devices or clearing storage. No automatic phone-to-computer note sync.
 
-Semantic matching downloads Transformers.js 3.8.1 and the multilingual MiniLM model pinned to revision 2c4055b12046f11709e9df2c122e59ffbdc2f900. Hugging Face and jsDelivr receive ordinary asset requests; saved text is processed on device rather than sent to an inference API. Basic matching remains available if loading fails.
+Semantic matching uses locally vendored Transformers.js 3.8.1 runtime and downloads the multilingual MiniLM model pinned to revision 2c4055b12046f11709e9df2c122e59ffbdc2f900. Hugging Face receives ordinary model asset requests; saved text is processed on device rather than sent to an inference API. The semantic switch is remembered on this device; vectors are isolated by active account/library, model version and text hash. Switching libraries cancels old searches. Disconnect requests deletion of that account’s vector cache and reports a deletion that cannot be confirmed. Basic matching remains available if loading fails; incomplete indexing is not full coverage.
 
 Never post backups, cookies, access tokens or login codes in public issues. Feedback downloads only what you type and is not sent automatically.
 
@@ -102,6 +105,8 @@ The distribution includes [application source](source/README.md), the adapter, i
 The previous native Mac package is a separate build and is not updated by this web release.
 
 ## Validation
+
+For 1.9.0, copied application source is pinned in `APP-SOURCE.json` with file hashes, including the vendored runtime. Goal and video behavior is checked with deterministic fixtures and the companion reader has seven synthetic-backup tests. Actual pinned-model native-CPU tests on synthetic material are narrower evidence than browser worker/WASM or a real Xiaohongshu-video trial; those remain unverified here. A failed video refresh retains previous evidence with `lastRefreshError`, not a new success claim.
 
 [BETA-VALIDATION.md](BETA-VALIDATION.md) records automated tests and builder trials. The prior 1.7 builder trial returned 289 cards, introduced no duplicates on repeat, recovered an interrupted scan and retrieved one selected post caption. A 390-pixel browser layout was checked. For 1.8, 23 connector fixtures and 27 JavaScript tests passed; controlled browser batches progressed from 20 to 60, and the real library retained 295 unique cards. The final v8 pagination fix passed fixtures but was not followed by another real full scan. Complete real-account enumeration remains unproven. These do not prove all favorites were found, the video was watched, two real accounts were isolated, or an unaided user can finish.
 

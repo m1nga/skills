@@ -1,0 +1,14 @@
+private/
+evidence/
+__pycache__/
+*.zip
+*.tgz
+.DS_Store
+connector/.runtime/
+connector/.build/
+
+# Local models, binaries, generated runtime paths and private verification
+.video-venv/
+connector/video-models/
+connector/video-runtime.local.json
+connector/video-evidence/

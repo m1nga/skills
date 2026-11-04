@@ -1,22 +1,50 @@
-# RedBot application source
+# RedBot — Put your saved ideas to use
 
-The public entry is [RedBot on SideCourt](https://sidecourt.space/drops/redbot/). This folder contains the exact browser app and invitation-test adapter, without private runtime, an upstream binary or browser dependencies.
+[Open RedBot on SideCourt](https://sidecourt.space/drops/redbot/) to connect your own Xiaohongshu account in the invitation-only test, find a relevant save, read its useful text and turn it into a next step. Chinese-first web interface with an English switch.
 
-Build the pinned dependency using [connector/UPSTREAM.md](connector/UPSTREAM.md), then from this directory run:
+This is the application source. The [companion skill](https://github.com/m1nga/redbot) lets an authorized AI assistant reason over selected material. Browse [SideCourt](https://sidecourt.space/) for other makers’ work and share what you are making when it is useful.
+
+## Account test (1.9)
+
+Enter an invitation, review data handling and scan the sign-in code in Xiaohongshu. Invitation links visibly prefill the code; an existing verified device session does not ask for it again. Each visitor gets a separate browser process, cookie file, library and random bearer. The invitation only opens a test slot; it cannot read another visitor’s data. The small test host supports three concurrent sessions, expires them after seven days and removes server data on disconnect.
+
+This is an unofficial browser connection, not official favorites OAuth. Login, saved-card scanning, selected-post text and explicitly requested local video transcription/sampled-frame OCR are exposed. No publishing, likes, comments or native collection edits. The operator must keep the host running; temporary HTTPS forwarding has no uptime guarantee. Same-phone QR recognition and two distinct real-account isolation are not yet field-verified.
+
+Saves appear as each batch arrives; the list stays usable during a scan. There is no fixed card or scroll-count limit. A scan is complete only when a continuous source pagination chain reports its end and all observed IDs have arrived. Stalls, cancellation and a 30-minute fault deadline leave a clearly partial result. Stop for now retains arrived saves; checking again starts from the top and deduplicates, preserving older saves and notes. Opening the app checks the connection; while visible it can scan every 15 minutes. Closing the page stops new scans, but an already-started job can finish.
+
+Scanning, deduplication and wording checks make no LLM calls. Optional on-device semantic matching covers the full active library, including imported text, notes and available video transcripts/OCR, with token-based chunks rather than a 300-entry or character limit. It reports coverage, processes bounded batches and keeps account-scoped local vector caches so completed work can be reused after cancellation. Model similarity ranks candidates; source evidence and supported goal constraints still determine whether RedBot can offer a next step. A high similarity score alone is not proof of applicability.
+
+The semantic model runs on the visitor’s device; its JavaScript/WASM runtime is served from pinned local application assets and public model weights download from a fixed Hugging Face revision on first use. No save text is sent to a paid embedding API. CPU, memory, initial download and browser storage are real costs; model/cache eviction can require downloads or computation again. See [DEPENDENCIES.md](DEPENDENCIES.md).
+
+Reading an eligible selected video requires separately installed local tools on the connector host. It transcribes speech with timestamps and samples up to 12 frames for Chinese/English OCR. It does not understand scenes, gestures, objects or complete visual instructions. Recognition can be wrong, video access can fail and limits/errors remain visible. Computation and temporary media use the operator’s CPU, memory, disk and bandwidth, with one video pipeline at a time. See [video setup and limits](connector/VIDEO.md). List scanning itself does not read every saved post, comment, image or video. An AI assistant’s later reasoning or API use has its own cost.
+
+## Use and run
+
+The public frontend lives on SideCourt. app/connection.json selects the running test API; it must contain no invitation, bearer or cookie. Never point it to a developer’s existing personal MCP service.
+
+Build the pinned upstream dependency using [connector/UPSTREAM.md](connector/UPSTREAM.md), then run:
 
 ~~~sh
 python3 connector/service.py --binary /absolute/path/redbot-xhs --data-dir /absolute/private/runtime --port 8776
 ~~~
 
-Open http://127.0.0.1:8776/. The private runtime operator.json contains a newly generated invitation. Set your own invitation there while the service is stopped. Do not commit this runtime.
+Open http://127.0.0.1:8776/. The generated private operator.json contains the invitation. Remote hosting requires an explicitly configured HTTPS proxy with the loopback Host header and an allowed frontend origin. Runtime stays outside Git; do not publish account files, logs or recovery checkpoints.
 
-For remote use, replace app/connection.json with your own HTTPS API endpoint and allow only your frontend origin through the service's --origin option. The checked-in endpoint is the author's temporary test host, not infrastructure for your deployment. Cookies and bearers must never appear in that file. Use an HTTPS proxy that forwards Host as 127.0.0.1:8776; the service binds to loopback.
+## Data and recovery
 
-Verify locally:
+Device notes, plans, collections, read state and recoverable trash live in IndexedDB. Account and old device libraries use separate keys. Disconnect keeps a local offline copy for export; reconnect uses a separate library. Backup/restore currently uses RedBot JSON. A link is a reference, not proof that its source was read. No automatic phone-to-computer note sync.
+
+The legacy Mac package and its original local data in ~/Library/Application Support/Shelf remain a separate prior build. This web release does not rebuild it. Do not use the old private packaging script for a public release.
+
+## Checks
 
 ~~~sh
-node --test core.test.cjs semantic.test.cjs promotion.test.cjs check.test.cjs
+node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs
 python3 -m unittest discover -s tests -v
 ~~~
 
-The upstream patch is deliberately a textual diff: its context whitespace must remain intact. The original application source commit is recorded in ../APP-SOURCE.json. The root migration/export bridge is preserved for earlier GitHub Pages users.
+The 1.7 builder trial observed 289 cards and one selected-post caption. The 1.8 trials retain 295 unique cards and the earlier selected-post text. The latest real scan observed 80 before the source returned success without pagination data; this is partial, not proof of full-account coverage. First 20 arrived about 6 seconds after scan start. The final adapter stops on that incomplete response and offers a later retry. Synthetic UI tests verify batches appearing before completion, stopping without data loss, and preservation of a search and unsaved note. A single fresh QR trial took 3.77 seconds; this is not a latency guarantee. See the distribution’s validation record for the final source-end result. No independent-human, two-real-account or physical-phone acceptance is claimed.
+
+The 1.9 semantic checks used the actual pinned multilingual model in Node with native CPU inference on synthetic material: all 351 rows and 369 chunks were covered, the relevant long-text tail ranked first for Chinese and English queries, and the second pass reused all cached chunks. IndexedDB API tests used fake-indexeddb; these are not browser persistence tests. Real browser worker/WASM execution, cache persistence across a browser restart and two-account live isolation remain separate acceptance checks. Local synthetic video verification used real Whisper and Apple Vision, not a private Xiaohongshu video. Neither test proves full-library source reading or complete video understanding.
+
+Distribution note: the public test command omits the historical promotion fixture and legacy native-sync test, whose input files are not bundled. The source commit remains recorded in APP-SOURCE.json; this README adjusts the distribution test instructions only.

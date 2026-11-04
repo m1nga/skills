@@ -1,4 +1,6 @@
-"""RedBot's invite-only account connector. No model, owner session, or write tool.
+"""RedBot's invite-only read connector with opt-in local ASR/OCR inference.
+
+No cloud inference, shared owner session, or source write tool.
 
 Each visitor gets a separate MCP process, cookie file, private library and bearer.
 The HTTP server binds to loopback. An operator may explicitly place an HTTPS proxy
@@ -26,14 +28,25 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, build_opener, ProxyHandler
+from urllib.parse import unquote
 
 APP = Path(__file__).resolve().parents[1] / 'app'
 ID = re.compile(r'^[a-f0-9]{24}$')
 TTL = 7 * 86400
 PENDING_TTL = 20 * 60
+VIDEO_SLOT = threading.BoundedSemaphore(1)
 # The source process lives on loopback. Never forward its bearer or health
 # request through a shell/system HTTP proxy (macOS can supply one implicitly).
 _local_http = build_opener(ProxyHandler({}))
+
+
+try:
+    from . import video
+except ImportError:
+    import importlib.util
+    _video_spec = importlib.util.spec_from_file_location("redbot_video", Path(__file__).with_name("video.py"))
+    video = importlib.util.module_from_spec(_video_spec)
+    _video_spec.loader.exec_module(video)
 
 
 class Problem(Exception):
@@ -220,6 +233,7 @@ class Session:
         self.closed = False
         self.scan_started = None
         self.scan_cancel = threading.Event()
+        self.video_cancel = threading.Event()
         self.library = read_json(directory / 'library.json', {'version': 1, 'items': []})
         self.library.setdefault('revision', 0)
         if self.library.get('scan', {}).get('running'):
@@ -279,9 +293,13 @@ class Session:
                 raise Problem('session_expired', 401)
             if self.busy():
                 raise Problem('busy', 409)
+            if kind == 'video' and not VIDEO_SLOT.acquire(blocking=False):
+                raise Problem('video_busy', 429)
             job_id = secrets.token_hex(10)
             if kind == 'scan':
                 self.scan_cancel.clear()
+            if kind == 'video':
+                self.video_cancel.clear()
             self.job = {'id': job_id, 'kind': kind, 'state': 'running', 'startedAt': iso()}
 
         def run():
@@ -290,15 +308,20 @@ class Session:
                 with self.lock:
                     if self.closed:
                         return
-                    self.job = {**self.job, 'state': 'cancelled' if kind == 'scan' and self.scan_cancel.is_set() else 'done', 'finishedAt': iso()}
+                    self.job = {**self.job, 'state': 'cancelled' if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set()) else 'done', 'finishedAt': iso()}
                 if kind in ('verify', 'connect') and self.state == 'connected':
                     self.start('scan', self.scan)
             except Exception as e:
                 with self.lock:
                     if not self.closed:
-                        self.job = {**self.job, 'state': 'cancelled' if kind == 'scan' and self.scan_cancel.is_set() else 'failed',
-                                    'error': 'scan_cancelled' if kind == 'scan' and self.scan_cancel.is_set() else e.code if isinstance(e, Problem) else 'source_unavailable'}
-        threading.Thread(target=run, daemon=True).start()
+                        self.job = {**self.job, 'state': 'cancelled' if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set()) else 'failed',
+                                    'error': ('video_cancelled' if kind == 'video' else 'scan_cancelled') if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set()) else e.code if isinstance(e, Problem) else 'source_unavailable'}
+            finally:
+                if kind == 'video':
+                    VIDEO_SLOT.release()
+        worker = threading.Thread(target=run, daemon=True)
+        self.worker = worker
+        worker.start()
         return {'jobId': job_id}
 
     def connect(self):
@@ -509,9 +532,67 @@ class Session:
             self.library['revision'] += 1
             atomic(self.directory / 'library.json', self.library)
 
+    def read_video(self, nid):
+        if not ID.fullmatch(nid):
+            raise Problem('save_not_found', 404)
+        item = next((x for x in self.library['items'] if x['id'] == nid), None)
+        if not item:
+            raise Problem('save_not_found', 404)
+        if item.get('type') != 'video':
+            raise Problem('not_video', 400)
+        previous = item.get('videoAnalysis')
+        try:
+            if self.state != 'connected':
+                raise Problem('sign_in_required', 401)
+            self.verify()
+            token = read_json(self.directory / 'source-tokens.json', {}).get(nid)
+            if not token:
+                raise Problem('sync_first', 409)
+            out = self.backend.request('POST', '/api/v1/feeds/detail', {
+                'feed_id':nid,'xsec_token':token,'load_all_comments':False})
+            content = out.get('data', out)
+            note = content.get('note') or content.get('data', {}).get('note')
+            if not isinstance(note, dict):
+                raise Problem('source_unavailable', 502)
+            result = video.analyze(note, self.directory, self.video_cancel, previous)
+            if self.video_cancel.is_set():
+                raise video.VideoError('video_cancelled')
+            if previous and previous.get('complete') and not result.get('complete'):
+                raise video.VideoError('video_partial')
+        except (Problem, video.VideoError, OSError, ValueError) as error:
+            code = error.code if isinstance(error, (Problem, video.VideoError)) else 'video_tool_failed'
+            failure = {'code':code,'at':iso(),'retainedPrevious':bool(previous and previous.get('complete'))}
+            result = {**previous, 'lastRefreshError':failure} if previous and previous.get('complete') else {
+                'complete':False,'coverage':{'audio':'not_completed','frames':'not_completed','visual':'not_performed'},
+                'error':code,'lastRefreshError':failure,'localCompute':True,'cloudCalls':0,'visualUnderstanding':False}
+            with self.lock:
+                if not self.closed:
+                    item['videoAnalysis'] = result
+                    self.library['revision'] += 1
+                    atomic(self.directory / 'library.json', self.library)
+            raise Problem(code, error.status if isinstance(error, Problem) else 409)
+        with self.lock:
+            if self.closed:
+                return
+            result = {k:v for k,v in result.items() if k not in ('lastRefreshError','error')}
+            item.update(videoAnalysis={**result,'readAt':iso()},description=str(note.get('desc','')),
+                        coverage='video_audio_and_sampled_ocr' if result['complete'] else 'video_partial')
+            self.library['revision'] += 1
+            atomic(self.directory / 'library.json', self.library)
+
+    def cancel_video(self):
+        with self.lock:
+            if not self.busy() or self.job['kind'] != 'video':
+                raise Problem('no_video_running', 409)
+            self.video_cancel.set()
+            self.job['cancelRequested'] = True
+        self.backend.stop()
+        return {'cancelRequested':True}
+
     def close(self):
         with self.lock:
             self.closed = True
+            self.video_cancel.set()
             self.scan_cancel.set()
             self.backend.disabled = True
             self.backend.stop()
@@ -584,7 +665,29 @@ class Store:
 
     def stop(self):
         for session in self.sessions.values():
+            session.video_cancel.set()
+            session.scan_cancel.set()
             session.backend.stop()
+        for session in self.sessions.values():
+            worker = getattr(session, 'worker', None)
+            if worker:
+                worker.join(timeout=12)
+
+
+def static_asset(path):
+    name = 'index.html' if path == '/' else unquote(path).lstrip('/')
+    parts = Path(name).parts
+    if not parts or any(p.startswith('.') for p in parts) or ('/' in name and not name.startswith('vendor/')):
+        raise Problem('not_found', 404)
+    target = (APP / name).resolve()
+    if not target.is_relative_to(APP.resolve()) or not target.is_file():
+        raise Problem('not_found', 404)
+    if target.suffix.lower() not in ('.html', '.js', '.mjs', '.css', '.json', '.wasm', '.png', '.svg', '.ico', '.woff', '.woff2'):
+        raise Problem('not_found', 404)
+    import mimetypes
+    mime = {'.mjs':'text/javascript', '.js':'text/javascript', '.wasm':'application/wasm'}.get(target.suffix.lower()) or mimetypes.guess_type(str(target))[0] or 'application/octet-stream'
+    if mime.startswith('text/') or mime == 'application/json': mime += '; charset=utf-8'
+    return target.read_bytes(), mime
 
 
 def make_handler(store, origins, host):
@@ -646,13 +749,12 @@ def make_handler(store, origins, host):
                 path = self.path.split('?', 1)[0]
                 if method == 'GET' and path == '/api/capabilities':
                     return self.send({'redbotConnector': 1, 'readOnly': True, 'inviteRequired': True,
-                                      'automatic': 'while_app_open', 'retentionDays': 7, 'llmCalls': False})
+                                      'automatic': 'while_app_open', 'retentionDays': 7, 'llmCalls': False, 'cloudInferenceCalls': False,
+                                      'video': {'onDemand': True, 'localModelInference': True, 'audio': 'whisper_asr',
+                                                'frames': 'sampled_ocr', 'visualUnderstanding': False, 'maxConcurrent': 1}})
                 if method == 'GET' and not path.startswith('/api/'):
-                    filename = 'index.html' if path == '/' else path[1:]
-                    if '/' in filename or filename.startswith('.') or not (APP / filename).is_file():
-                        raise Problem('not_found', 404)
-                    import mimetypes
-                    return self.send((APP / filename).read_bytes(), mime=(mimetypes.guess_type(filename)[0] or 'application/octet-stream') + '; charset=utf-8')
+                    content, mime = static_asset(path)
+                    return self.send(content, mime=mime)
                 body = {}
                 if method == 'POST':
                     if self.headers.get('Content-Type', '').split(';')[0] != 'application/json':
@@ -683,6 +785,13 @@ def make_handler(store, origins, host):
                     return self.send(session.start('scan', session.scan))
                 if method == 'POST' and path == '/api/cancel-sync':
                     return self.send(session.cancel_scan())
+                if method == 'POST' and path == '/api/cancel-video':
+                    return self.send(session.cancel_video())
+                if method == 'POST' and path == '/api/video':
+                    nid = body.get('id', '')
+                    if not isinstance(nid, str):
+                        raise Problem('invalid_request', 400)
+                    return self.send(session.start('video', lambda: session.read_video(nid)))
                 if method == 'POST' and path == '/api/read':
                     nid = body.get('id', '')
                     if not isinstance(nid, str):
@@ -710,6 +819,10 @@ def main():
     parser.add_argument('--origin', action='append', default=['https://sidecourt.space'])
     args = parser.parse_args()
     os.umask(0o077)
+    runtime = read_json(Path(__file__).with_name('video-runtime.local.json'), {})
+    for key in ('REDBOT_FFMPEG', 'REDBOT_WHISPER', 'REDBOT_WHISPER_MODEL', 'REDBOT_WHISPER_SHA256', 'REDBOT_OCR'):
+        if isinstance(runtime.get(key), str):
+            os.environ.setdefault(key, runtime[key])
     store = Store(args.data_dir.resolve(), args.binary.resolve(), args.capacity)
     host = f'127.0.0.1:{args.port}'
     origins = set(args.origin + ['http://' + host])

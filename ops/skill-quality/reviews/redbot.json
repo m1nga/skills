@@ -1,90 +1,90 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04",
-  "source_sha256": "54903071c8b6e2034beecb5ea2293e4e23121b53a017e24b0c2cefcd8a36226c",
+  "reviewed_at": "2026-11-04T11:27:29.560333+00:00",
+  "source_sha256": "19e5f347b057be656427a060568db9d0ffbb847ef08a18d2e8ac63090e1c49a8",
   "user_review": {
-    "method": "Scoped1.8.2 bootstrap-retry and abandoned-QR trial repair. Builder executed copied public source tests; root owns final actual browser/hosting verification, not claimed by this receipt. Existing unchanged instruction walkthrough retained.",
+    "method": "Executed synthetic backup fixtures plus a labelled instruction walkthrough; no private library, account access or independent user trial.",
     "scenarios": [
       {
-        "request": "My account scan is running but I need to browse now.",
-        "expected": "Cards arrive progressively; search and notes remain usable; stop preserves arrived cards.",
-        "observed": "Controlled browser fixture streamed 20 then 60; search focus and unsaved note retained; stop kept arrived cards. Real first batch20 arrived in about6seconds; no timing guarantee.",
+        "request": "Find home cooking suitable for weight loss among dessert and meal saves.",
+        "expected": "Reject dessert; require cooking and weight-loss claim evidence.",
+        "observed": "Reader fixture selects only lunch; negated weight-loss body produces no match.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "The source returned success but omitted pagination. Did I get everything?",
-        "expected": "Retain arrivals, mark incomplete; never infer completion from silence or success envelope alone.",
-        "observed": "23 connector fixtures plus Node wire fixtures passed. Real v7 saw80 before a malformed source envelope; library retained295 unique cards. Final v8 stops source_response_incomplete in fixtures; no final real full scan or complete enumeration claim.",
+        "request": "Use a selected partially processed video, including OCR and speech.",
+        "expected": "Keep actual timestamps and partial coverage, omit private media URLs and frame paths.",
+        "observed": "Reader fixture preserves transcript/frames structure, complete=false and error while removing signedURL/url/path fields.",
         "kind": "executed",
-        "result": "fixed"
+        "result": "pass"
       },
       {
-        "request": "I have retained cookies but verification failed. Must I scan QR again?",
-        "expected": "Retry existing session identity before requesting another login; timeout is not proof of signout.",
-        "observed": "Existing real session recovered without new QR; delayed hydration/identity Node fixtures and Python retry fixture passed. Anonymous QR3.77seconds was one observation.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Summarize this supplied passage; no connector is installed.",
-        "expected": "Use supplied text; avoid invented source coverage or forced setup.",
-        "observed": "Instruction walkthrough uses passage directly, separates comments/video from caption and does not require connector installation.",
+        "request": "Summarize a selected source without a full claim audit.",
+        "expected": "Answer directly, no mandatory library search or research template.",
+        "observed": "Instruction walkthrough preserves selected-source short answer path and cost-check reference only when requested.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Connect a fresh account without losing an existing retained account when QR is slow.",
-        "expected": "Bound QR readiness; keep authenticated account identity checks separate; preserve account data and bypass system proxy only for local connector traffic.",
-        "observed": "24 copied Python tests and explicit patched-source login/pagination Node fixtures passed. Root reported one anonymous real QR at about32seconds, browser-local QR, and restored retained owner identity/library295; these are operator-reported observations, not guaranteed latency or complete enumeration.",
+        "request": "Need a kidney-disease-safe weight-loss recipe but only ordinary recipe evidence exists.",
+        "expected": "Unknown necessary requirement cannot become supported based on topic similarity.",
+        "observed": "Reader unsupported explicit requirement fixture returns insufficient. Skill requires host reasoning outside bounded helper patterns.",
         "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Initial connection configuration failed; retry without losing my saved account or library.",
-        "expected": "Explicit retry reloads validated configuration, deduplicates concurrent fetches, preserves identity and never sends a bearer to an unvalidated endpoint.",
-        "observed": "8 copied client bootstrap fixtures passed, including invalid/config-network failure, explicit retry, stale saved endpoint and expired-session offline recovery without replay/deletion.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "An abandoned anonymous QR test occupied capacity; can a new sign-in start without evicting a real account?",
-        "expected": "Expire only eligible empty, unbound, inactive pending trials; preserve bound identity, cookies, saved cards, recent/busy trials.",
-        "observed": "31 copied Python tests passed, including7 pending-trial expiry and preservation regressions. Actual browser verification remains root-owned and is not asserted here.",
-        "kind": "executed",
-        "result": "fixed"
+        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/autoclaw-cc/xiaohongshu-mcp-skills/blob/c79206ce4191fdb5f4c72d62155ed8ac49e7d0ae/SKILL.md",
-      "checked_at": "2026-11-04",
+      "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
+      "checked_at": "2026-11-04T11:01:07.024416+00:00",
+      "source_sha256": "874509499810331b005aef27551c92ca03868eefe0bbce69dc1ef6b81c0dbe93",
       "decision": "adapt",
-      "learned": "Rechecked current author source after current GitHub repo search: tool availability and actual account login remain separate prerequisites; source identifiers come from real responses. Re-searched and re-read current author source for1.8.2 follow-up.",
-      "reason": "Retain RedBot distinct authenticated identity checks while allowing anonymous QR readiness. Existing supplied-material fallback remains useful, so reject blanket MCP-only prohibition; no instruction edits required. Effect on1.8.2: keep setup/config failure distinct from authenticated-session expiry and preserve isolated account data; no third-party code or instruction changes."
+      "learned": "Keep timestamped transcript segments and identify machine speech provenance; apply this to RedBot speech separately from sampled frame OCR.",
+      "effect": "Updated SKILL, check-and-use and reader to retain timestamps/modalities and partial coverage.",
+      "rejected": "Reject whole-filesystem helper search and unconditional dependency upgrades: installed skill paths and authorized service setup remain explicit.",
+      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied."
     },
     {
-      "url": "https://github.com/xpzouying/xiaohongshu-mcp/blob/539d296f5623ab1a359065d8dc74dccfb237b05a/skills/post-to-xhs/SKILL.md",
-      "checked_at": "2026-11-04",
+      "url": "https://raw.githubusercontent.com/molly-diversifiedfun/claude-skills/main/research-brief/SKILL.md",
+      "checked_at": "2026-11-04T11:01:07.024416+00:00",
+      "source_sha256": "6be1e57cfb31c1c2503a6752dfa533a5af342c109d5651e1b6d7e0aea52d22c3",
       "decision": "adapt",
-      "learned": "Rechecked current author source: isolated per-account browser profiles, concrete NOT_LOGGED_IN recovery, and UI selector drift require explicit treatment. Re-searched and re-read current author source for1.8.2 follow-up.",
-      "reason": "Preserve isolated RedBot sessions and existing data during bounded QR recovery. Reject automatic headed fallback and publishing workflow; no third-party code copied and no instruction edits needed. Effect on1.8.2: keep setup/config failure distinct from authenticated-session expiry and preserve isolated account data; no third-party code or instruction changes."
+      "learned": "Distinguish source claims, inference and missing evidence rather than letting fluent output imply verification.",
+      "effect": "Added per-requirement full source claims and missing/conflict statuses; explicit nutritional claims remain unverified.",
+      "rejected": "Reject training-only source handles and mandatory long confidence templates: RedBot has actual selected source passages and links, with concise request-specific output.",
+      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied."
     }
   ],
   "validation": [
     {
-      "command": "python3 -m unittest discover -s redbot/product-root/source/tests -v",
+      "command": "python3 release-registry/redbot/scripts/test_reader.py",
       "result": "pass",
-      "observed": "31 tests passed against copied3c244b7 public source, including pending-session TTL/capacity and real-account preservation fixtures."
+      "observed": "7 tests passed: original preservation/bad input tests and 4 goal/video/recovery cases."
     },
     {
-      "command": "node --test redbot/product-root/source/tests/client-bootstrap.test.cjs",
+      "command": "python3 -m py_compile release-registry/redbot/scripts/read_library.py",
       "result": "pass",
-      "observed": "8 tests passed against copied3c244b7 client, including config failure/retry, concurrency, auth-preserving endpoint refresh, no unvalidated bearer, and session-expired no-replay recovery."
+      "observed": "Compiled successfully."
+    },
+    {
+      "command": "git -C release-registry diff --check -- redbot",
+      "result": "pass",
+      "observed": "No whitespace errors."
+    },
+    {
+      "command": "cd redbot/product-root/source && node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs",
+      "result": "pass",
+      "observed": "57 public copied-source tests passed, including full-library synthetic vectors, cancellation/cache scope, goal constraints, video metadata, UI stale results and last-refresh warning. Historical private promotion fixture is omitted and documented, not copied."
+    },
+    {
+      "command": "cd redbot/product-root/source && python3 -m unittest discover -s tests -v",
+      "result": "pass",
+      "observed": "40 tests passed, including isolated-session retention, selected video access, source/download restrictions, local static vendor, global capacity and last-refresh failure retaining previous result."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.8.2 app-only repair aligned6 committed shelf3c244b7 files plus APP-SOURCE metadata. UnchangedSKILL, README and manifest. Final actual IAB/hosting checks remain root-owned; no UI success claim. Temporary host and incomplete-enumeration limits remain."
+  "release_scope": "1.9.0 source commit 62e99cb5a780a1ee77b75981a5ceb1765d025e2a changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed."
 }
