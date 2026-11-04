@@ -93,3 +93,23 @@ class PerformanceTests(unittest.TestCase):
             self.assertTrue(done.wait(1),'A slow download locked this account')
         finally:
             release.set();reader.join();server.shutdown();server.server_close()
+
+    def test_paged_library_delivers_every_row_and_catches_changes_during_transfer(self):
+        rows=[{'id':f'{i:024x}','url':f'https://www.xiaohongshu.com/explore/{i:024x}','description':'text '*12000} for i in range(23)]
+        self.session.library['items']=rows
+        first=self.session.library_page();self.assertTrue(first['next']);self.assertLess(len(first['items']),len(rows))
+        target=first['cursor'];received=list(first['items']);seen_pages=[];next_page=first['next']
+        rows[0]['description']='Changed after first page'
+        # More than sixteen content revisions during a long paged transfer must
+        # not evict its protected starting cursor and cause an endless full loop.
+        for i in range(20):rows[1]['title']=str(i);self.session.library_snapshot()
+        while next_page:
+            result=self.session.library_page(page=next_page);seen_pages.append(next_page)
+            self.assertEqual(result['cursor'],target);received+=result['items'];next_page=result['next']
+        self.assertEqual([x['id'] for x in received],[x['id'] for x in rows])
+        delta=self.session.library_page(cursor=target)
+        self.assertEqual(delta['mode'],'delta');self.assertEqual({x['id'] for x in delta['items']},{rows[0]['id'],rows[1]['id']})
+        self.assertLessEqual(len(self.session.library_pages),4)
+        other=self.store.get(self.store.create(self.store.config['invite'],True)['token'])
+        self.assertEqual(other.library_page(page=seen_pages[-1])['items'],[])
+        self.assertEqual(self.session.library_page(page='expired-page')['mode'],'full')

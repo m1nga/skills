@@ -4,7 +4,7 @@
 
 This is the application source. The [companion skill](https://github.com/m1nga/redbot) lets an authorized AI assistant reason over selected material. Browse [SideCourt](https://sidecourt.space/) for other makers’ work and share what you are making when it is useful.
 
-## Account test (1.9.6)
+## Account test (1.9.7)
 
 Enter an invitation, review data handling and scan the sign-in code in Xiaohongshu. Invitation links visibly prefill the code; an existing verified device session does not ask for it again. Each visitor gets a separate browser process, cookie file, library and random bearer. The invitation cannot read another visitor’s data. Sessions expire after seven days, and disconnect removes server data. There is no default three-account quota; operators can set an explicit `--capacity` if needed. Removing an account quota does not increase the test host’s processing capacity: video inference still runs one job at a time.
 
@@ -61,3 +61,5 @@ In 1.9.4, **Read all content** adds every unread save to an account-local queue 
 In 1.9.6, library snapshots are sent outside the account lock, so a slow download cannot block connection status or completed reads. After the first download, each browser receives only changed posts; an unknown or expired sync cursor safely falls back to a full snapshot. Recently verified identity is reused for at most five minutes only while the exact credential file is unchanged. Explicit reconnect, changed credentials, service restart or a source failure requires a fresh check. The cached application opens before network responses; connection status and new data still come from the live service. These changes remove measured overhead; they do not guarantee Xiaohongshu response time or test-host availability.
 
 “Sign-in session” means the credentials left after a QR login, not a new password requested by RedBot. “Server reading results” means already extracted post text, comments and video text. In the current test both are kept separately on the operator’s computer, with a copy of received content and personal notes in the visitor’s browser. The phone uses its own browser storage; it does not run the source connector.
+
+In 1.9.7, the initial library and large updates arrive in small pages, displayed and saved as each arrives. This limits transfer size per response, not the number of saves. The final completed cursor advances only after all pages arrive; retry/restart and concurrent source changes cannot silently skip unreceived rows. An individual large post is never truncated to fit the page budget. Restart also clears an abandoned in-flight pause marker so Continue remains usable.

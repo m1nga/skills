@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-  "source_sha256": "94a6bf31f1cf89a9373c8a6b0ee9c60c80f42598ded555bdb2146882bb34a069",
+  "reviewed_at": "2026-11-04T19:52:00.535923+00:00",
+  "source_sha256": "de0e46beadbd98546926421e2707bce3075c97443488bd64f4022f4d9ce5e02f",
   "user_review": {
     "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
     "scenarios": [
@@ -182,6 +182,20 @@
         "result": "pass"
       },
       {
+        "request": "A process restarts after pause persisted while the current source read was still finishing.",
+        "expected": "Keep pending and finished content; clear the obsolete current-read marker so Continue is enabled.",
+        "observed": "Real original account exposed this disabled-button state. New restart regression preserves completed A and pending B, clears the marker and allows Continue. Original browser subsequently displayed enabled Continue and resumed progress.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Receive a large library over a fragile connection without waiting for one whole response.",
+        "expected": "Render each received page, preserve all saves and advance the completed cursor only at the end; reconcile concurrent source changes.",
+        "observed": "Actual Chrome received all 4,000 own synthetic cards across six pages, first batch visible before completion. Tests cover partial-page client cursor, account isolation, unknown-token fallback, all IDs retained and protected cursor across twenty concurrent revisions. No source scrape timing claim.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
         "request": "Find a tool for saved Xiaohongshu posts and turn one useful source into an editable coding prompt.",
         "expected": "The repository description identifies the platform, source-backed workflow and beta availability.",
         "observed": "Walked through the new description, README and SKILL: Xiaohongshu saved posts, resumable reading and editable prompt output are supported. The invitation-beta qualification remains explicit.",
@@ -249,7 +263,7 @@
       "decision": "adapt",
       "learned": "Inspect existing authenticated identity/readiness and distinguish listing from content reading before repeating sign-in.",
       "reason": "Reusing a known valid account reduces avoidable source work while retaining isolation.",
-      "effect": "Cookie-stamp-bound identity reuse with a five-minute TTL; explicit reconnect/restart/credential-change/failure invalidates it. Skill reuses already retrieved material.",
+      "effect": "Cookie-stamp-bound identity reuse with a five-minute TTL; explicit reconnect/restart/credential-change/failure invalidates it. Skill reuses already retrieved material. Follow-up keeps reconnect recovery separate from content transfer, including a stale in-flight marker after restart.",
       "rejected": "Do not import arbitrary browser cookies, add write operations, skip identity boundaries or upgrade dependencies automatically."
     },
     {
@@ -258,7 +272,7 @@
       "decision": "adapt",
       "learned": "Deliver available content directly and prefer reusable text over unnecessary heavier retrieval.",
       "reason": "The user wants the useful result with minimal waiting; do not make cache access depend on a new source read.",
-      "effect": "Cached app startup, changed-post transfer, retained completed content and a direct selected-source skill path. No claim that XHS subtitle extraction was added.",
+      "effect": "Cached app startup, changed-post transfer, retained completed content and a direct selected-source skill path. No claim that XHS subtitle extraction was added. Initial large libraries now arrive as usable pages; completed cursor commits only after transfer, with completed content retained.",
       "rejected": "No 50-item cap, certificate bypass, unconditional package upgrades, copied code or YouTube-specific API added."
     },
     {
@@ -275,26 +289,27 @@
     {
       "command": "node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs (public source)",
       "result": "pass",
-      "observed": "103 passed.",
-      "checked_at": "2026-11-04T19:29:01.780280+00:00"
+      "observed": "104 passed in final 1.9.7 public bundle."
     },
     {
       "command": "python3 -m unittest discover -s tests -v (public source)",
       "result": "pass",
-      "observed": "77 passed.",
-      "checked_at": "2026-11-04T19:29:01.780280+00:00"
+      "observed": "79 passed in final 1.9.7 public bundle."
     },
     {
       "command": "python3 redbot/scripts/test_reader.py",
       "result": "pass",
-      "observed": "9 passed.",
-      "checked_at": "2026-11-04T19:29:01.780280+00:00"
+      "observed": "9 passed."
     },
     {
       "command": "Actual Chrome synthetic-account connection/read-all/warm-reload trial; running-host upgrade preservation",
       "result": "pass",
-      "observed": "Two synthetic posts read and preserved; warm cache opened under artificial four-second GET delay. Three existing real session identities, card IDs and completed content preserved across running-host update. No general connection uptime claim.",
-      "checked_at": "2026-11-04T19:29:01.780280+00:00"
+      "observed": "Two synthetic posts read and preserved; warm cache opened under artificial four-second GET delay. Three existing real session identities, card IDs and completed content preserved across running-host update. No general connection uptime claim."
+    },
+    {
+      "command": "Bounded anonymous Cloudflare relay large/small transfer experiments",
+      "result": "pass",
+      "observed": "Single 1,400,000-byte response timed out; subsequent tiny response also timed out. Separate relay run passed all 25 requests, including twenty-two 64,000-byte responses (1,408,000 bytes total), plus three tiny responses. Observed small-request range 1.971–14.327 seconds. Different relay instances and variable network mean no universal latency guarantee or isolated causal claim."
     },
     {
       "command": "python3 -m unittest discover -s redbot/scripts -p test_*.py",
@@ -310,7 +325,7 @@
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.6: remove per-account lock from HTTP delivery, account-local changed-post snapshots, five-minute exact-cookie-stamp identity reuse, cache-first app shell and activation-aware update, honest connection status after library failure, plain-language data explanation. No new host, paid API, model upgrade, source-auth bypass or background discovery scheduler. Temporary forwarding and host uptime remain limitations.",
+  "release_scope": "1.9.6: remove per-account lock from HTTP delivery, account-local changed-post snapshots, five-minute exact-cookie-stamp identity reuse, cache-first app shell and activation-aware update, honest connection status after library failure, plain-language data explanation. No new host, paid API, model upgrade, source-auth bypass or background discovery scheduler. Temporary forwarding and host uptime remain limitations. Final 1.9.7 follow-up pages initial/large updates without limiting total saves and clears paused in-flight restart markers. Preserve 1.9.6 evidence as historical. No new data destination or source-auth bypass.",
   "dependency_research": {
     "source": "https://github.com/nk2028/opencc-js",
     "checked_at": "2026-11-04T14:08:58.004717+00:00",
@@ -326,5 +341,6 @@
     "scope": "Only clarify the repository description with Xiaohongshu saved-post use and invitation beta, and add the xiaohongshu topic. Version 1.9.6 source and skill behavior are unchanged.",
     "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
     "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
-  }
+  },
+  "concurrent_metadata_preserved": "Retained the independently committed 2026-11-05 discovery metadata and historical review while verifying the changed 1.9.7 application sources. No other products changed by this repair."
 }

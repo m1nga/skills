@@ -37,6 +37,7 @@ ID = re.compile(r'^[a-f0-9]{24}$')
 TTL = 7 * 86400
 PENDING_TTL = 20 * 60
 VERIFIED_TTL = 5 * 60
+LIBRARY_PAGE_BYTES = 256 * 1024
 VIDEO_SLOT = threading.BoundedSemaphore(1)
 # The source process lives on loopback. Never forward its bearer or health
 # request through a shell/system HTTP proxy (macOS can supply one implicitly).
@@ -286,6 +287,7 @@ class Session:
         self.verified_stamp = None
         self.verified_at = 0
         self.library_views = []
+        self.library_pages = {}
         self.state = 'needs_sign_in'
         self.closed = False
         self.scan_started = None
@@ -311,9 +313,12 @@ class Session:
                                         interrupted=True, endReason='service_restarted')
             self.library['revision'] += 1
             atomic(directory / 'library.json', self.library)
-        if self.library.get('readingQueue', {}).get('state') == 'running':
-            self.library['readingQueue'].update(state='paused', reason='service_restarted', currentId=None)
-            atomic(directory / 'library.json', self.library)
+        queue = self.library.get('readingQueue', {})
+        if queue.get('state') == 'running' or queue.get('currentId'):
+            # Graceful shutdown may persist "paused" while the in-flight read
+            # is still finishing. No worker survives a new service process.
+            queue.update(state='paused', reason='service_restarted', currentId=None)
+            self.save_queue()
 
     def pending_deadline(self):
         # Legacy trials had a seven-day expiry. Use their original creation time,
@@ -351,10 +356,46 @@ class Session:
             if current is None:
                 current = {'cursor': secrets.token_urlsafe(18), 'hashes': hashes}
                 self.library_views.append(current)
-                self.library_views = self.library_views[-16:]
+                protected = {v['cursor'] for v in self.library_pages.values() if v['expires'] > time.monotonic()}
+                self.library_views = [v for v in self.library_views[:-16] if v['cursor'] in protected] + self.library_views[-16:]
         if previous is not None:
             snapshot['items'] = [x for x in rows if previous['hashes'].get(x['id']) != hashes[x['id']]]
         return {**snapshot, 'mode': 'delta' if previous is not None else 'full', 'cursor': current['cursor']}
+
+    def library_page(self, cursor=None, page=None):
+        # Page tokens contain only account-local IDs and hashes, not extra copies
+        # of source text. Retries are read-only; an expired token starts safely
+        # from the client's last completed cursor.
+        with self.lock:
+            now = time.monotonic()
+            self.library_pages = {k:v for k,v in self.library_pages.items() if v['expires'] > now}
+            continuation = self.library_pages.get(page)
+        snapshot = self.library_snapshot(None if continuation else cursor)
+        if continuation:
+            by_id = {x['id']:x for x in snapshot['items']}
+            rows = [by_id[nid] for nid in continuation['remaining'] if nid in by_id]
+            target_cursor, mode = continuation['cursor'], continuation['mode']
+        else:
+            rows = snapshot['items']
+            target_cursor, mode = snapshot['cursor'], snapshot['mode']
+        count, size = 0, 0
+        for row in rows:
+            row_size = len(json.dumps(row, ensure_ascii=False).encode())
+            if count and size + row_size > LIBRARY_PAGE_BYTES:
+                break
+            count += 1
+            size += row_size
+        next_page = None
+        if count < len(rows):
+            next_page = secrets.token_urlsafe(18)
+            with self.lock:
+                self.library_pages[next_page] = {'remaining':[x['id'] for x in rows[count:]],
+                    'cursor':target_cursor, 'mode':mode, 'expires':time.monotonic()+600}
+                while len(self.library_pages) > 4:
+                    self.library_pages.pop(next(iter(self.library_pages)))
+        # Retain the initial snapshot cursor, even if source work changed rows
+        # during transfer. The next delta then catches every concurrent change.
+        return {**snapshot, 'items':rows[:count], 'cursor':target_cursor, 'mode':mode, 'next':next_page}
 
     def status(self):
         with self.lock:
@@ -1100,6 +1141,8 @@ def make_handler(store, origins, host):
                 if method == 'GET' and path == '/api/library':
                     query = parse_qs(self.path.partition('?')[2], max_num_fields=8)
                     cursor = query.get('cursor', [None])[0]
+                    if query.get('paged') == ['1']:
+                        return self.send(session.library_page(cursor, query.get('page', [None])[0]))
                     return self.send(session.library_snapshot(cursor))
                 if method == 'POST' and path == '/api/connect':
                     return self.send(session.start('connect', session.connect))

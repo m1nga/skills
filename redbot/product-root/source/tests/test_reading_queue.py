@@ -116,6 +116,26 @@ class ReadingQueueTests(unittest.TestCase):
         self.assertEqual(other.library['items'], [])
         self.assertEqual(other.backend.calls, [])
 
+    def test_restart_clears_paused_inflight_marker_so_continue_is_available(self):
+        session = self.session
+        session.backend.profile = {'feeds': [card(A), card(B)]}
+        session.scan(); session.read(A)
+        with patch.object(threading.Thread, 'start'): session.read_all()
+        session.library['readingQueue']['currentId'] = B
+        session.pause_reading('service_restarted')
+        before_revision = session.library['revision']
+        restored = S.Session(session.directory, session.meta, Fake(None, session.directory))
+        status = restored.queue_status()
+        self.assertEqual(status['state'], 'paused')
+        self.assertIsNone(status['currentId'])
+        self.assertEqual((status['done'], status['remaining']), (1, 1))
+        self.assertGreater(restored.library['revision'], before_revision)
+        self.assertEqual(restored.backend.calls, [])
+        restored.state = 'connected'
+        with patch.object(threading.Thread, 'start'): status = restored.read_all()
+        self.assertEqual(status['state'], 'running')
+        self.assertEqual(restored.library['readingQueue']['pending'], [B])
+
     def test_video_failure_keeps_caption_and_comments(self):
         session = self.session; session.backend.profile = {'feeds': [card(A)]}; session.scan()
         item = session.library['items'][0]; item['type'] = 'video'
