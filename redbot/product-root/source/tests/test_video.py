@@ -26,6 +26,18 @@ class VideoTests(unittest.TestCase):
     def test_protected_and_long(self):
         with self.assertRaises(v.VideoError): v.select_source({'video':{'media':{'video':{'drmType':1}}}})
         with self.assertRaises(v.VideoError): v.select_source({'video':{'media':{'stream':{'h264':[{'masterUrl':'x','duration':601000}]}}}})
+    def test_current_platform_stream_labels_use_mp4_container(self):
+        note={'video':{'media':{'video':{'duration':23},'stream':{
+            'EF4':[{'masterUrl':'https://sns-video.xhscdn.com/large','format':'mp4','duration':22453,'size':2126960}],
+            'EF5':[{'masterUrl':'https://sns-video.xhscdn.com/small','format':'mp4','duration':22453,'size':1780392}],
+            'EF6':[], 'unknown':[{'masterUrl':'https://sns-video.xhscdn.com/playlist','format':'m3u8','size':1}],
+        }}}}
+        url,duration,_=v.select_source(note)
+        self.assertEqual(url,'https://sns-video.xhscdn.com/small')
+        self.assertEqual(duration,22.453)
+        note['video']['media']['video']['drmType']=1
+        with self.assertRaises(v.VideoError) as error:v.select_source(note)
+        self.assertEqual(error.exception.code,'video_protected')
 if __name__=='__main__': unittest.main()
 
 class VideoSessionTests(unittest.TestCase):
@@ -43,7 +55,7 @@ class VideoSessionTests(unittest.TestCase):
             backend.request.assert_not_called()
             session.library['items']=[{'id':nid,'type':'video'}]
             service.atomic(directory/'source-tokens.json',{nid:'private-token'})
-            note={'desc':'saved caption','video':{}}
+            note={'noteId':nid,'desc':'saved caption','video':{}}
             backend.request.return_value={'note':note}
             result={'complete':True,'transcript':[{'start':0,'end':1,'text':'speech'}],'frames':[],'coverage':{'audio':'transcribed','frames':'sampled_ocr','visual':'not_performed'}}
             with patch.object(session,'verify'),patch.object(service.video,'analyze',return_value=result) as analyze:
@@ -52,6 +64,29 @@ class VideoSessionTests(unittest.TestCase):
             data=(directory/'library.json').read_text()
             self.assertNotIn('private-token',data)
             self.assertEqual(session.library['items'][0]['videoAnalysis']['transcript'][0]['text'],'speech')
+
+    def test_video_empty_caption_and_invalid_identity(self):
+        import tempfile
+        from unittest.mock import Mock
+        spec=importlib.util.spec_from_file_location('empty_video_service',pathlib.Path(__file__).resolve().parents[1]/'connector/service.py')
+        service=importlib.util.module_from_spec(spec);spec.loader.exec_module(service)
+        with tempfile.TemporaryDirectory() as folder:
+            directory=pathlib.Path(folder);backend=Mock();nid='c'*24
+            session=service.Session(directory,{'id':'s'},backend);session.state='connected'
+            item={'id':nid,'type':'video'};session.library['items']=[item]
+            service.atomic(directory/'source-tokens.json',{nid:'private-token'})
+            backend.request.return_value={'feed_id':nid,'data':{'note':{'noteId':nid,'desc':'','video':{}}}}
+            result={'complete':True,'transcript':[{'text':'Actual speech'}],'frames':[]}
+            with patch.object(session,'verify'),patch.object(service.video,'analyze',return_value=result):session.read_video(nid)
+            self.assertEqual(item['contentReadStatus'],'ready');self.assertTrue(item['hasContent'])
+            self.assertEqual(item['videoAnalysis']['transcript'],[{'text':'Actual speech'}])
+            backend.request.return_value={'data':{'note':{'noteId':'','desc':''}}}
+            with patch.object(session,'verify'),patch.object(service.video,'analyze') as analyze:
+                with self.assertRaises(service.Problem) as error:session.read_video(nid)
+                analyze.assert_not_called()
+            self.assertEqual(error.exception.code,'source_content_invalid')
+            self.assertEqual(item['videoAnalysis']['transcript'],[{'text':'Actual speech'}])
+            self.assertEqual(item['contentReadStatus'],'failed')
 
 class StaticAndCapacityTests(unittest.TestCase):
     def service(self):
@@ -95,7 +130,7 @@ class RefreshAndSourceTests(unittest.TestCase):
             prior={'complete':True,'readAt':'original-time','sourceVersion':'original-version','transcript':[{'start':0,'end':1,'text':'valuable prior transcript'}],'frames':[]}
             item={'id':nid,'type':'video','videoAnalysis':prior.copy(),'coverage':'video_audio_and_sampled_ocr'};session.library['items']=[item]
             service.atomic(directory/'source-tokens.json',{nid:'private-token'})
-            backend.request.return_value={'note':{'desc':'new caption'}}
+            backend.request.return_value={'feed_id':nid,'data':{'note':{'noteId':nid,'desc':'new caption'},'comments':{}}}
             for stage in ('verify','detail','analyze','partial'):
                 with patch.object(session,'verify') as verify,patch.object(service.video,'analyze',return_value={'complete':False}) as analyze:
                     if stage=='verify':verify.side_effect=service.Problem('sign_in_required',401)

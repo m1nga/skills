@@ -16,7 +16,7 @@ If source text, transcript or a critical visual step is unavailable, name the ga
 
 Separate the source's mechanism from the user's desired adaptation: the problem, required input, essential steps, output and limits. If the user only wants a summary or decision, stop with that useful result. Do not always ask them to run a coding agent.
 
-For a reusable Codex or Claude Code prompt, include:
+For a reusable coding-assistant prompt, include:
 
 - The user's actual project goal and the smallest useful change.
 - A concise method summary, original link/author and the relevant retrieved passages; label earlier research, comment experiences and proposed changes separately.
@@ -36,3 +36,5 @@ A fictional post says “free forever” but its setup asks for a paid image-gen
 Parse the requested task and necessary conditions before choosing a saved item. For each condition, preserve a supporting full source sentence or mark missing/conflicting evidence. The bundled reader's `goal_assessment` uses bounded patterns; it is not semantic inference or independent validation. A title-only candidate must at least match all parsed requirements to enter “Needs reading”; it cannot become a confirmed next action. The host must still interpret constraints outside the reader's supported vocabulary. Do not assume arbitrary dietary, medical, compatibility or budget requirements are satisfied because the helper returned a topical match.
 
 `videoAnalysis.transcript` stores machine speech segments (`start`, `end`, `text`). `frames` stores sampled on-screen OCR (`at`, `text` entries), not image descriptions. Cite actual seconds and keep modalities distinct. Retain `coverage`, `complete`, `error` and source version; partial processing is not full viewing. Reused output describes the same source version only. A `lastRefreshError` records a failed later refresh while retaining earlier output: disclose its code/date and do not present the earlier `complete` flag as success of the latest attempt. If an action or non-text visual detail matters, inspect it through separately authorized visual tools or say it remains unseen. Do not infer a visual demonstration from OCR.
+
+In 1.9.2, first-page comments already returned by selected-source reading retain author/reader and reply labels plus has-more/truncation coverage. Never convert those statements into post facts or treat a partial sample as consensus. The tested small speech model still mishears Chinese/technical terms; exact implementation instructions need a source/OCR cross-check. A completed processing flag describes execution, not accuracy.

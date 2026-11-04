@@ -34,7 +34,7 @@ class Fake:
         if path.endswith('tab=fav'):
             return {'data': self.profile}
         if path.endswith('/detail'):
-            return {'data': {'note': {'desc': 'Original text', 'title': 'A free tool'}}}
+            return {'feed_id': body['feed_id'], 'data': {'note': {'noteId': body['feed_id'], 'desc': 'Original text', 'title': 'A free tool'}, 'comments': {}}}
         if path.endswith('/qrcode'):
             return {'img':'data:image/png;base64,YQ==', 'is_logged_in': False}
         raise AssertionError(path)
@@ -290,6 +290,84 @@ class ConnectorTests(unittest.TestCase):
         self.assertEqual(session.library['items'][0]['description'],'Original text')
         self.assertEqual(session.library['scan']['readCount'],1)
 
+    def test_pinned_go_http_envelope_reaches_selected_read(self):
+        _, session = self.new(); session.verify(); session.scan()
+        requests = []
+        class Source(S.BaseHTTPRequestHandler):
+            def log_message(self, *_): pass
+            def do_POST(self):
+                body = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+                requests.append((self.path, body))
+                payload = {'success': True, 'data': {'feed_id': A, 'data': {
+                    'note': {'noteId': A, 'desc': 'Body from Go envelope', 'title': 'Read title', 'type': 'normal'},
+                    'comments': {'list': [], 'hasMore': False}}}}
+                self.send_response(200); self.end_headers(); self.wfile.write(json.dumps(payload).encode())
+        server = S.ThreadingHTTPServer(('127.0.0.1', 0), Source)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        mcp = S.MCP(Path('/unused'), session.directory); mcp.port = server.server_port; mcp.start = lambda: None
+        try:
+            with patch.object(session, 'verify'):
+                session.backend = mcp
+                session.start('read', lambda: session.read(A), A); session.worker.join(2)
+            self.assertEqual(session.job['state'], 'done'); self.assertEqual(session.job['targetId'], A)
+            self.assertEqual(requests, [('/api/v1/feeds/detail', {'feed_id': A, 'xsec_token': 'private-source-token', 'load_all_comments': False})])
+            item = session.library['items'][0]
+            self.assertEqual(item['description'], 'Body from Go envelope'); self.assertEqual(item['contentReadStatus'], 'ready')
+            self.assertEqual(session.library['scan']['readCount'], 1)
+        finally:
+            server.shutdown(); server.server_close()
+
+    def test_invalid_or_failed_refresh_retains_successful_body(self):
+        _, session = self.new(); session.verify(); session.scan(); session.read(A)
+        item = session.library['items'][0]; original_time = item['contentReadAt']
+        cases = [None, {'data': {'note': {'noteId': '', 'desc': ''}}},
+                 {'data': {'note': {'noteId': B, 'desc': 'Wrong post'}}},
+                 {'feed_id': B, 'data': {'note': {'noteId': A, 'desc': 'Wrong envelope'}}}]
+        for payload in cases:
+            with patch.object(session.backend, 'request', return_value=payload), patch.object(session, 'verify'):
+                with self.assertRaises(S.Problem) as error: session.read(A)
+            self.assertEqual(error.exception.code, 'source_content_invalid')
+            self.assertEqual(item['description'], 'Original text'); self.assertEqual(item['contentReadAt'], original_time)
+            self.assertEqual(item['contentReadStatus'], 'failed'); self.assertTrue(item['contentReadError']['retainedPrevious'])
+        with patch.object(session.backend, 'request', side_effect=S.Problem('source_unavailable', 502)), patch.object(session, 'verify'):
+            session.start('read', lambda: session.read(A), A); session.worker.join(2)
+        self.assertEqual(session.job['state'], 'failed'); self.assertEqual(session.job['error'], 'source_unavailable')
+        self.assertEqual(item['description'], 'Original text'); self.assertEqual(item['contentReadAt'], original_time)
+
+    def test_legitimate_empty_caption_has_explicit_status(self):
+        _, session = self.new(); session.verify(); session.scan()
+        with patch.object(session.backend, 'request', return_value={'feed_id': A, 'data': {'note': {'noteId': A, 'desc': ''}}}), patch.object(session, 'verify'):
+            session.read(A)
+        item = session.library['items'][0]
+        self.assertEqual(item['contentReadStatus'], 'empty'); self.assertFalse(item['hasContent'])
+        self.assertEqual(item['coverage'], 'post_text_empty'); self.assertNotIn('contentReadError', item)
+        self.assertEqual(session.library['scan']['readCount'], 0)
+
+    def test_missing_token_does_not_request_detail(self):
+        _, session = self.new(); session.verify(); session.scan()
+        S.atomic(session.directory / 'source-tokens.json', {})
+        with patch.object(session.backend, 'request') as request, patch.object(session, 'verify'):
+            with self.assertRaises(S.Problem) as error: session.read(A)
+        self.assertEqual(error.exception.code, 'sync_first'); request.assert_not_called()
+        self.assertEqual(session.library['items'][0]['contentReadError']['code'], 'sync_first')
+
+    def test_cancel_selected_read_prevents_late_source_commit(self):
+        _, session = self.new(); session.verify(); session.scan(); session.read(A)
+        entered, release = threading.Event(), threading.Event()
+        previous_comments = {'items': [{'text': 'Previously read', 'isAuthor': True}], 'scope': 'first_page_returned'}
+        session.library['items'][0]['comments'] = previous_comments
+        def detail(*args):
+            entered.set(); release.wait(2)
+            return {'feed_id': A, 'data': {'note': {'noteId': A, 'desc': 'Late body'}, 'comments': {'list': [{'content': 'Late comment'}]}}}
+        with patch.object(session.backend, 'request', side_effect=detail), patch.object(session, 'verify'):
+            session.start('read', lambda: session.read(A), A); self.assertTrue(entered.wait(1))
+            self.assertEqual(session.cancel_read(), {'cancelRequested': True}); release.set(); session.worker.join(2)
+        self.assertEqual(session.job['state'], 'cancelled'); self.assertEqual(session.job['targetId'], A)
+        item = session.library['items'][0]
+        self.assertEqual(item['description'], 'Original text'); self.assertEqual(item['contentReadStatus'], 'cancelled')
+        self.assertEqual(item['contentReadError']['code'], 'read_cancelled')
+        self.assertEqual(item['comments'], previous_comments)
+
     def test_disconnect_revokes_token_and_deletes_credentials(self):
         token, session=self.new();session.verify();session.scan()
         self.store.remove(token)
@@ -304,6 +382,34 @@ class ConnectorTests(unittest.TestCase):
         session.close();event.set()
         time.sleep(.03)
         self.assertFalse(session.directory.exists())
+
+    def test_cancel_video_during_source_failure_persists_cancelled_status(self):
+        _, session = self.new(); session.verify(); session.scan()
+        item = session.library['items'][0]; item['type'] = 'video'
+        previous_comments = {'items': [{'text': 'Previous video comment', 'isAuthor': True}], 'scope': 'first_page_returned'}
+        item['comments'] = previous_comments
+        entered, release = threading.Event(), threading.Event()
+        def detail(*args):
+            entered.set(); release.wait(2)
+            return {'feed_id': A, 'data': {'note': {'noteId': A, 'desc': 'Late caption'}, 'comments': {'list': [{'content': 'Late video comment'}]}}}
+        with patch.object(session.backend, 'request', side_effect=detail), patch.object(session, 'verify'):
+            session.start('video', lambda: session.read_video(A), A); self.assertTrue(entered.wait(1))
+            session.cancel_video(); release.set(); session.worker.join(2)
+        self.assertEqual(session.job['state'], 'cancelled')
+        self.assertEqual(item['contentReadStatus'], 'cancelled')
+        self.assertEqual(item['contentReadError']['code'], 'video_cancelled')
+        self.assertEqual(item['comments'], previous_comments)
+
+    def test_restart_turns_inflight_read_into_recoverable_failure(self):
+        token, session = self.new(); session.verify(); session.scan(); session.read(A)
+        item = session.library['items'][0]; item['contentReadStatus'] = 'running'
+        S.atomic(session.directory / 'library.json', session.library)
+        restored = S.Store(Path(self.temp.name), Path('/unused'), factory=Fake).get(token)
+        recovered = restored.library['items'][0]
+        self.assertEqual(recovered['contentReadStatus'], 'failed')
+        self.assertEqual(recovered['contentReadError']['code'], 'service_restarted')
+        self.assertTrue(recovered['contentReadError']['retainedPrevious'])
+        self.assertEqual(recovered['description'], 'Original text')
 
     def test_persistent_session_keeps_its_identity(self):
         token,session=self.new();session.verify();session.scan()
@@ -451,6 +557,46 @@ class ConnectorTests(unittest.TestCase):
             self.assertEqual(request('/sessions/'+session.meta['id']+'/cookies.json',token)[0],404)
             self.assertEqual(request('/api/v1/feeds/favorite',token)[0],404)
         finally:server.shutdown();server.server_close()
+
+
+    def test_returned_first_page_comments_are_bounded_and_identity_free(self):
+        author = {'userId': 'private-author', 'nickname': 'not copied'}
+        comment = {'id': 'private-comment', 'noteId': A, 'content': 'A concrete method',
+                   'userInfo': author, 'ipLocation': 'not copied',
+                   'subComments': [{'content': 'A reader reply', 'userInfo': {'userId': 'private-reader'}}]}
+        note = {'noteId': A, 'desc': 'caption', 'user': author}
+        out = {'data': {'note': note, 'comments': {'list': [comment], 'hasMore': True, 'cursor': 'private-cursor'}}}
+        result = S.detail_comments(out, note, A)
+        self.assertEqual(result['scope'], 'first_page_returned')
+        self.assertTrue(result['hasMore'])
+        self.assertEqual(result['items'], [{'text': 'A concrete method', 'isAuthor': True, 'reply': False},
+                                           {'text': 'A reader reply', 'isAuthor': False, 'reply': True}])
+        self.assertNotIn('private-', json.dumps(result))
+        self.assertIsNone(S.detail_comments({'data': {}}, note, A))
+        out['data']['comments']['list'] = [{'noteId': B, 'content': 'Wrong note'}, *[{'content': 'x' * 8000}] * 50]
+        result = S.detail_comments(out, note, A)
+        self.assertTrue(result['truncated'])
+        self.assertLessEqual(sum(len(c['text']) for c in result['items']), 30000)
+        self.assertTrue(all(len(c['text']) <= 4000 for c in result['items']))
+        self.assertNotIn('Wrong note', json.dumps(result))
+
+    def test_selected_read_keeps_only_already_returned_first_page_comments(self):
+        _, session = self.new(); session.verify(); session.scan()
+        original = session.backend.request
+        def response(method, path, body=None):
+            out = original(method, path, body)
+            if path.endswith('/detail'):
+                out['data']['note']['user'] = {'userId': 'author'}
+                out['data']['comments'] = {'list': [{'content': 'Useful original author method', 'userInfo': {'userId': 'author'}}], 'hasMore': True}
+            return out
+        with patch.object(session.backend, 'request', side_effect=response):
+            session.read(A)
+        comments = session.library['items'][0]['comments']
+        self.assertTrue(comments['items'][0]['isAuthor'])
+        self.assertTrue(comments['hasMore'])
+        detail_calls = [c for c in session.backend.calls if c[1].endswith('/detail')]
+        self.assertEqual(len(detail_calls), 1)
+        self.assertFalse(detail_calls[0][2]['load_all_comments'])
 
 
 if __name__=='__main__':unittest.main()

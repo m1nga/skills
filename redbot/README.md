@@ -4,7 +4,7 @@ You saved something useful, but cannot find it when you need it. RedBot helps yo
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 
-**Version 1.9.1 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
+**Version 1.9.2 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
 
 ## Who it's for
 
@@ -16,8 +16,8 @@ People who collect design references, methods or tools and then struggle to deci
 2. Review how the test stores your data. Scan the login code with Xiaohongshu and confirm in that app.
 3. RedBot shows the observed count and adds saved cards as batches arrive. You can browse and search the cards already received while scanning continues, or stop and keep them. You do not need to upload files or copy cookies.
 4. Describe what you want to do in **现在想做 / For now**, or browse **我的收藏 / My saves**.
-5. Open a relevant save and choose **读取这篇正文 / Read this post**. A list scan does not read every post or video.
-6. For a video, choose **读取视频内容 / Read video content** separately. Read the timestamped speech and sampled on-screen text, with partial results and errors clearly marked.
+5. Open a relevant save. With your account connected, RedBot starts one read of that selected item: post text for a text save, or speech and sampled on-screen text for a video. Scanning the list does not read every save.
+6. Read the persistent status inside the detail view. A failed, cancelled or empty read stays distinct from success; retry or cancel there. Timestamped speech and sampled OCR remain separate evidence. Source-dependent prompts become available after useful source arrives.
 7. Inspect the goal requirements and actual supporting passages, check cost/promotion cues, then save a supported plan or create an editable prompt for your project. A title-only source must be read before it can be kept as a supported plan.
 
 An invitation opens a test slot; a separate random session credential protects each visitor's data. The default host supports three simultaneous sessions. No invitation? Original example notes let you try the interface without signing in. Manual JSON backup is a recovery option.
@@ -86,7 +86,7 @@ Scans have no fixed saved-card or scroll-count cutoff. A 45-second lack of new c
 
 When enabled, opening the app checks the connection and a visible page can scan every 15 minutes. Closing it stops new scans; a started job may finish. No source webhook or always-on background scheduler is implied.
 
-**Scanning and deduplication use no LLM calls.** Optional semantic search runs locally after a roughly 120 MB model download plus runtime and searches all saved text in the active library, splitting long passages into chunks and reporting actual coverage. It uses bandwidth, memory and battery. Asking an AI assistant to reason over a library consumes that assistant's usage. Selected videos can be read on demand: machine speech transcription and up to 12 uniform frame OCR samples, limited to 10 minutes and 100 MB. Processing uses the test host computer, with no cloud inference token bill. This is not full visual understanding, a truth verdict or a new generated summary; comments remain unread.
+**Scanning and deduplication use no LLM calls.** Optional semantic search runs locally after a roughly 120 MB model download plus runtime and searches all saved text in the active library, splitting long passages into chunks and reporting actual coverage. It uses bandwidth, memory and battery. Asking an AI assistant to reason over a library consumes that assistant's usage. Selected videos can be read on demand: machine speech transcription and up to 12 uniform frame OCR samples, limited to 10 minutes and 100 MB. Processing uses the test host computer, with no cloud inference token bill. This is not full visual understanding, a truth verdict or a new generated summary. Retrieved first-screen comments are a bounded sample of user statements, not all comments, verified facts or agreement from the whole audience.
 
 ## Privacy and recovery
 
@@ -95,6 +95,8 @@ The invitation test stores separate login sessions and retrieved text on Ming's 
 Personal notes, plans and organizing choices stay in this browser's IndexedDB. Account libraries and old device libraries are separate. Export JSON through **设置与我的数据 / Settings and my data** before switching devices or clearing storage. No automatic phone-to-computer note sync.
 
 Semantic matching uses locally vendored Transformers.js 3.8.1 runtime and downloads the multilingual MiniLM model pinned to revision 2c4055b12046f11709e9df2c122e59ffbdc2f900. Hugging Face receives ordinary model asset requests; saved text is processed on device rather than sent to an inference API. The semantic switch is remembered on this device; vectors are isolated by active account/library, model version and text hash. Switching libraries cancels old searches. Disconnect requests deletion of that account’s vector cache and reports a deletion that cannot be confirmed. Basic matching remains available if loading fails; incomplete indexing is not full coverage.
+
+The current app version is visible in the interface. When a newer version is available, the update action saves the current draft before refreshing; a failed save keeps the page open. It does not force an unsaved active tab to reload.
 
 Never post backups, cookies, access tokens or login codes in public issues. Feedback downloads only what you type and is not sent automatically.
 
@@ -106,7 +108,11 @@ The previous native Mac package is a separate build and is not updated by this w
 
 ## Validation
 
-For 1.9.1, copied application source is pinned in `APP-SOURCE.json` with 68 bundled-file hashes and an explicit external WASM build resource. The runtime preparation download and hash check passed; after preparation, 58 public JavaScript tests and 49 Python tests passed. The companion reader has seven synthetic-backup tests. Actual pinned-model native-CPU tests on synthetic material are narrower evidence than browser worker/WASM or a real Xiaohongshu-video trial; those remain unverified here. A failed video refresh retains previous evidence with `lastRefreshError`, not a new success claim.
+For 1.9.2, copied application source is pinned in `APP-SOURCE.json` with 72 bundled-file hashes and an explicit external WASM build resource. The published source bundle passed 76 JavaScript tests and 60 Python tests after preparing the verified WASM resource; the companion reader passed nine synthetic-backup tests. The original application checkout passed 79 JavaScript tests, including three historical promotion fixtures excluded from the public package. Four additional legacy-server tests passed there; that private-research-dependent legacy branch is not bundled, and its test command is omitted from the public instructions.
+
+One selected 22.43-second Xiaohongshu video completed the local pipeline in an observed 6.2 seconds, producing ten machine-speech segments and eleven sampled OCR frames with zero cloud inference calls. The default speech model is multilingual small pinned to its author-hosted revision and SHA-256 in [video setup](source/connector/VIDEO.md). It improved this sample over tiny/base but still mistranscribed Chinese and technical terms. This single source trial is evidence of working media delivery and processing, not general transcription accuracy, full visual understanding or a performance guarantee.
+
+An actual Chrome run using synthetic account/source responses exercised connect, automatic selected-video read, first failure, explicit retry, timestamped prompt generation, personal-note preservation and text-post cost cues. The real pinned browser WASM semantic model loaded and retrieved both fixture entries. After a page reload, the preference persisted and one unchanged chunk was reused while an updated item was recalculated; this was not a browser-process restart. A 390-pixel viewport had no horizontal overflow. These fixture checks do not establish real-account UI completion or physical-phone behavior.
 
 [BETA-VALIDATION.md](BETA-VALIDATION.md) records automated tests and builder trials. The prior 1.7 builder trial returned 289 cards, introduced no duplicates on repeat, recovered an interrupted scan and retrieved one selected post caption. A 390-pixel browser layout was checked. For 1.8, 23 connector fixtures and 27 JavaScript tests passed; controlled browser batches progressed from 20 to 60, and the real library retained 295 unique cards. The final v8 pagination fix passed fixtures but was not followed by another real full scan. Complete real-account enumeration remains unproven. These do not prove all favorites were found, the video was watched, two real accounts were isolated, or an unaided user can finish.
 

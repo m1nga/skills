@@ -16,7 +16,7 @@ The client must set the active account scope, cancel stale jobs and clear the ol
 
 ## Selected-video reading
 
-See [connector/VIDEO.md](connector/VIDEO.md) for exact tool/model pins, installation, licensing, security limits, local resource costs and diagnostic codes. This feature uses pinned Whisper tiny/whisper.cpp for speech, FFmpeg for media decoding and the host’s Apple Vision for sampled OCR. It does not use a cloud vision or transcription API. Apple Vision is a macOS platform dependency rather than a separately pinned redistributed model. The bundled FFmpeg’s GPL obligations must be retained when redistributing that binary.
+See [connector/VIDEO.md](connector/VIDEO.md) for exact tool/model pins, installation, licensing, security limits, local resource costs and diagnostic codes. This feature uses pinned Whisper small/whisper.cpp for speech, FFmpeg for media decoding and the host’s Apple Vision for sampled OCR. It does not use a cloud vision or transcription API. Apple Vision is a macOS platform dependency rather than a separately pinned redistributed model. The bundled FFmpeg’s GPL obligations must be retained when redistributing that binary.
 
 ## Verification boundaries
 

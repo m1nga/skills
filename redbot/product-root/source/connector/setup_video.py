@@ -6,23 +6,23 @@ import subprocess
 import sys
 import urllib.request
 ROOT = Path(__file__).resolve().parents[1]
-MODEL_SHA = 'be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21'
+MODEL_SHA = '1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b'
 REVISION = '5359861c739e955e79d9a303bcbc70fb988958b1'
 venv = ROOT/'.video-venv'
 subprocess.run([sys.executable,'-m','venv',venv],check=True)
 subprocess.run([venv/'bin/python','-m','pip','install','imageio-ffmpeg==0.6.0'],check=True)
-model = ROOT/'connector/video-models/ggml-tiny.bin'
+model = ROOT/'connector/video-models/ggml-small.bin'
 model.parent.mkdir(parents=True,exist_ok=True)
 if not model.is_file() or hashlib.sha256(model.read_bytes()).hexdigest()!=MODEL_SHA:
     temp = model.with_suffix('.download')
     try:
-        with urllib.request.urlopen(f'https://huggingface.co/ggerganov/whisper.cpp/resolve/{REVISION}/ggml-tiny.bin',timeout=30) as r,temp.open('wb') as f:
+        with urllib.request.urlopen(f'https://huggingface.co/ggerganov/whisper.cpp/resolve/{REVISION}/ggml-small.bin',timeout=30) as r,temp.open('wb') as f:
             size=0
             while True:
                 b=r.read(1024*1024)
                 if not b:break
                 size+=len(b)
-                if size>80_000_000:raise RuntimeError('model_size_mismatch')
+                if size>490_000_000:raise RuntimeError('model_size_mismatch')
                 f.write(b)
         if hashlib.sha256(temp.read_bytes()).hexdigest()!=MODEL_SHA:raise RuntimeError('model_checksum_mismatch')
         temp.replace(model)

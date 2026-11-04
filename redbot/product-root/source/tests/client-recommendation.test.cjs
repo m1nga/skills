@@ -4,7 +4,7 @@ function section(from,to){return code.slice(code.indexOf(from),code.indexOf(to))
 function searchHarness(){
  const h=vm.createContext({console,Promise,Error});
  vm.runInContext(`let goal='old goal',choice='',working=false,searchGeneration=0,searchCoverage=null,searchProgress='',ai=true,aiReady=false,answer=null,scope='account:a',log=[],resolveSearch;
- const data={items:[],guides:[]};const C={chooseStart:()=>({status:'no_match'}),semanticStart:()=>({status:'ready',source:{id:'old'}})};
+ const reads=new Map();const data={items:[],guides:[]};const C={chooseStart:()=>({status:'no_match'}),semanticStart:()=>({status:'ready',source:{id:'old'}})};
  const t=(a,b)=>a,libraryKey=()=>scope,$=()=>null,render=()=>log.push('render');
  const RedBotAI={setScope:s=>log.push(s),progress:()=>{},load:async()=>{log.push('load')},search:()=>new Promise(r=>resolveSearch=r),cancel:()=>log.push('cancel')};
  const window={RedBotAI};

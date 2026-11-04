@@ -31,6 +31,23 @@ def video_evidence(item):
       'visualUnderstanding':False,'sourceVersion':v.get('sourceVersion','') if re.fullmatch('[a-fA-F0-9]{64}',str(v.get('sourceVersion',''))) else '',
       'sampling':{'allFrames':False,'maxFrames':12},'readAt':str(v.get('readAt',''))[:40]}
 
+def comment_evidence(item):
+    """Bounded source statements only; no comment identities, cursors or raw metadata."""
+    c=item.get('comments')
+    if not isinstance(c,dict):return None
+    rows=[];remaining=30000
+    for x in (c.get('items') or [])[:80]:
+        if not isinstance(x,dict):continue
+        text=str(x.get('text',''))[:min(4000,remaining)].strip()
+        if not text:continue
+        rows.append({'text':text,'isAuthor':x.get('isAuthor') if isinstance(x.get('isAuthor'),bool) else None,'reply':x.get('reply') is True})
+        remaining-=len(text)
+        if remaining<=0:break
+    return {'items':rows,'scope':'first_page_returned','hasMore':c.get('hasMore') if isinstance(c.get('hasMore'),bool) else None,'truncated':c.get('truncated') is True or len(rows)<len(c.get('items') or []) or sum(len(str(x.get('text',''))) for x in (c.get('items') or []) if isinstance(x,dict))>sum(len(x['text']) for x in rows),'readAt':str(c.get('readAt',''))[:40],'claims':'Unverified author/reader statements; not all comments or independent verification.'}
+
+def comment_text(item):
+    return '\n'.join(('Original author comment: ' if c['isAuthor'] is True else 'Reader comment: ' if c['isAuthor'] is False else 'Comment: ')+c['text'] for c in (comment_evidence(item) or {}).get('items',[]))
+
 def source_text(x,note=''):
     research=x.get('research') or {};v=video_evidence(x) or {}
     return '\n'.join(str(s) for s in [x.get('summary',''),x.get('description',''),x.get('readingNotes',''),x.get('transcript',''),research.get('decision',''),*[' '.join(map(str,p)) for p in research.get('points',[]) if isinstance(p,list) and len(p)==2],*[t['text'] for t in v.get('transcript',[])],*[t['text'] for f in v.get('frames',[]) for t in f['text']],note] if s)
@@ -86,6 +103,8 @@ def select(d,query='',item_id=None,limit=8):
         out={k:item[k] for k in allowed if k in item}
         video=video_evidence(item)
         if video is not None:out['videoAnalysis']=video
+        comments=comment_evidence(item)
+        if comments is not None:out['comments']=comments
         if query:out['goal_assessment']=goal_assessment(query,item,ann.get(item_id,{}).get('note',''))
         out['personal_note']=ann.get(item_id,{}).get('note','')
         out['related_guides']=[g for g in d.get('guides',[]) if item_id in g.get('sourceIds',[])]
@@ -102,13 +121,13 @@ def select(d,query='',item_id=None,limit=8):
     result=[]
     for x in rows:
         note=ann.get(x.get('id'),{}).get('note','')
-        body=str(x.get('title',''))+' '+source_text(x,note)
+        body=str(x.get('title',''))+' '+source_text(x,note)+' '+comment_text(x)
         score=sum(body.lower().count(t) for t in set(terms)) if terms else 1
         if not score:continue
         assessment=goal_assessment(query,x,note)
         if assessment['status'] in ['conflict','insufficient']:continue
         research=x.get('research') or {}
-        readable=bool(source_text(x,note).strip())
+        readable=bool((source_text(x,note)+comment_text(x)).strip())
         result.append({'id':x.get('id'),'title':x.get('title'),'url':x.get('url'),'status':'saved_text' if readable else 'needs_reading','score':score,'excerpt':body[:450],'goal_assessment':assessment})
     result.sort(key=lambda x:-x['score'])
     return {'mode':'lexical_shortlist','matches':result[:limit],'matched_count':len(result),'next':'Inspect a selected ID before recommending. No match is not proof of absence.'}

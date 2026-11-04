@@ -32,7 +32,7 @@ test('vendored runtime files match pinned provenance lock',()=>{
 test('semantic request includes normalized video transcript and sampled OCR without transport metadata',async()=>{
  const fs=require('node:fs'),vm=require('node:vm'),C=require('../app/core.js');const messages=[];
  class Worker{constructor(){this.onmessage=null;}postMessage(message){messages.push(message);queueMicrotask(()=>this.onmessage({data:{id:message.id,ranked:[]}}));}}
- const context={window:{},Worker,document:{baseURI:'https://example.test/'},URL,crypto:require('node:crypto').webcrypto,Error,queueMicrotask};
+ const context={window:{},Worker,document:{baseURI:'https://example.test/'},URL,crypto:require('node:crypto').webcrypto,Error,queueMicrotask,setTimeout,clearTimeout};
  vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'../app/ai.js'),'utf8'),context);
  const item=C.normalize({id:'video',title:'Video example',url:'https://example.test/video',type:'video',videoAnalysis:{transcript:[{start:1,end:2,text:'免费语音转录保留完整的音频尾部'}],frames:[{at:2,text:[{text:'OCR only instruction visible on a sampled frame',confidence:.9}]}],cookie:'DO_NOT_SEND_COOKIE',videoURL:'DO_NOT_SEND_URL'}});
  await context.window.RedBotAI.search('convert speech',[item],[],{});

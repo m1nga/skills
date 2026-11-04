@@ -4,13 +4,15 @@
 
 This is the application source. The [companion skill](https://github.com/m1nga/redbot) lets an authorized AI assistant reason over selected material. Browse [SideCourt](https://sidecourt.space/) for other makers’ work and share what you are making when it is useful.
 
-## Account test (1.9)
+## Account test (1.9.2)
 
 Enter an invitation, review data handling and scan the sign-in code in Xiaohongshu. Invitation links visibly prefill the code; an existing verified device session does not ask for it again. Each visitor gets a separate browser process, cookie file, library and random bearer. The invitation only opens a test slot; it cannot read another visitor’s data. The small test host supports three concurrent sessions, expires them after seven days and removes server data on disconnect.
 
-This is an unofficial browser connection, not official favorites OAuth. Login, saved-card scanning, selected-post text and explicitly requested local video transcription/sampled-frame OCR are exposed. No publishing, likes, comments or native collection edits. The operator must keep the host running; temporary HTTPS forwarding has no uptime guarantee. Same-phone QR recognition and two distinct real-account isolation are not yet field-verified.
+This is an unofficial browser connection, not official favorites OAuth. Login, saved-card scanning, selected-post text, already-returned first-page comments and local video transcription/sampled-frame OCR are exposed. No publishing, likes, comment posting or native collection edits. The operator must keep the host running; temporary HTTPS forwarding has no uptime guarantee. Same-phone QR recognition and two distinct real-account isolation are not yet field-verified.
 
 Saves appear as each batch arrives; the list stays usable during a scan. There is no fixed card or scroll-count limit. A scan is complete only when a continuous source pagination chain reports its end and all observed IDs have arrived. Stalls, cancellation and a 30-minute fault deadline leave a clearly partial result. Stop for now retains arrived saves; checking again starts from the top and deduplicates, preserving older saves and notes. Opening the app checks the connection; while visible it can scan every 15 minutes. Closing the page stops new scans, but an already-started job can finish.
+
+Opening an unread save automatically reads that selected post, or its video speech and sampled screen text. This does not bulk-read the library. Progress, cancellation, failure and explicit retry remain visible in the detail panel, and unsaved notes survive polling. Empty or mismatched source responses cannot unlock an invented summary. Already-returned first-page comments are labeled as author/reader statements, never complete coverage or verified facts; no additional full-comment crawl is started. Updates show a visible version and an explicit save-and-reload action.
 
 Scanning, deduplication and wording checks make no LLM calls. Optional on-device semantic matching covers the full active library, including imported text, notes and available video transcripts/OCR, with token-based chunks rather than a 300-entry or character limit. It reports coverage, processes bounded batches and keeps account-scoped local vector caches so completed work can be reused after cancellation. Model similarity ranks candidates; source evidence and supported goal constraints still determine whether RedBot can offer a next step. A high similarity score alone is not proof of applicability.
 
@@ -42,11 +44,12 @@ The legacy Mac package and its original local data in ~/Library/Application Supp
 ## Checks
 
 ~~~sh
-node --test core.test.cjs semantic.test.cjs promotion.test.cjs check.test.cjs tests/*.test.cjs
+node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs
 python3 -m unittest discover -s tests -v
-python3 -m unittest test_sync -v
 ~~~
 
 The 1.7 builder trial observed 289 cards and one selected-post caption. The 1.8 trials retain 295 unique cards and the earlier selected-post text. The latest real scan observed 80 before the source returned success without pagination data; this is partial, not proof of full-account coverage. First 20 arrived about 6 seconds after scan start. The final adapter stops on that incomplete response and offers a later retry. Synthetic UI tests verify batches appearing before completion, stopping without data loss, and preservation of a search and unsaved note. A single fresh QR trial took 3.77 seconds; this is not a latency guarantee. See the distribution’s validation record for the final source-end result. No independent-human, two-real-account or physical-phone acceptance is claimed.
 
 The 1.9 semantic checks used the actual pinned multilingual model in Node with native CPU inference on synthetic material: all 351 rows and 369 chunks were covered, the relevant long-text tail ranked first for Chinese and English queries, and the second pass reused all cached chunks. IndexedDB API tests used fake-indexeddb; these are not browser persistence tests. Real browser worker/WASM execution, cache persistence across a browser restart and two-account live isolation remain separate acceptance checks. Local synthetic video verification used real Whisper and Apple Vision, not a private Xiaohongshu video. Neither test proves full-library source reading or complete video understanding.
+
+The 1.9.2 follow-up reproduced the user's selected real post: normal identity and caption succeeded; current EF4/EF5 MP4 labels caused the old video selector to reject it. After repair, the actual 22.43-second video completed local ASR and 11 OCR samples. The small speech model improved over tiny but retained observable errors; automatic transcripts require checking. In actual Chrome, a synthetic library passed normal connection, selected-read progress/failure/retry, preserved drafts, fee-cue display and timestamped build-brief output. The pinned browser WASM model loaded and retrieved both synthetic entries with reported coverage. These checks do not establish physical-phone behavior, two-real-account isolation or flawless source understanding.

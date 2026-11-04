@@ -15,7 +15,7 @@ from urllib.parse import urlsplit, urljoin
 
 MAX_BYTES = 100 * 1024 * 1024
 MAX_SECONDS = 600
-PIPELINE = 'whisper-cpp-1.9.2-tiny+apple-vision-v1-macos-' + platform.mac_ver()[0]
+PIPELINE = 'whisper-cpp-1.9.2-small+apple-vision-v1-macos-' + platform.mac_ver()[0]
 
 class VideoError(Exception):
     def __init__(self, code):
@@ -113,7 +113,7 @@ def tools():
         raise VideoError('video_setup_required')
     # Operator pins the actual model bytes, never an auto-updated model alias.
     expected = os.environ.get('REDBOT_WHISPER_SHA256', '')
-    if expected != 'be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21' or hashlib.sha256(Path(model).read_bytes()).hexdigest() != expected:
+    if expected != '1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b' or hashlib.sha256(Path(model).read_bytes()).hexdigest() != expected:
         raise VideoError('video_model_mismatch')
     return ffmpeg, whisper, model, ocr
 
@@ -122,7 +122,13 @@ def select_source(note):
     media = video.get('media') or {}
     meta = media.get('video') or {}
     if meta.get('drmType'): raise VideoError('video_protected')
-    choices = [s for s in (media.get('stream') or {}).get('h264', []) if s.get('masterUrl') and s.get('format', 'mp4') == 'mp4']
+    # Stream group names are platform labels, not a stable codec contract:
+    # current posts also return EF4/EF5 groups. Inspect the actual container and
+    # let the pinned local decoder read it instead of requiring an h264 key.
+    streams = media.get('stream') or {}
+    choices = [s for rows in streams.values() if isinstance(rows, list)
+               for s in rows if isinstance(s, dict) and s.get('masterUrl')
+               and s.get('format', 'mp4') == 'mp4']
     if not choices: raise VideoError('video_source_unavailable')
     choices.sort(key=lambda s: s.get('size') or 10**12)
     s = choices[0]

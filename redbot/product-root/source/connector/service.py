@@ -122,6 +122,57 @@ def merge_scan(previous, profile):
     }, tokens
 
 
+def detail_note(out, nid):
+    """Decode the pinned HTTP service result after MCP strips success/data."""
+    if not isinstance(out, dict):
+        raise Problem('source_content_invalid', 502)
+    if out.get('feed_id', nid) != nid:
+        raise Problem('source_content_invalid', 502)
+    content = out.get('data', out)
+    note = content.get('note') if isinstance(content, dict) else None
+    if not isinstance(note, dict) or note.get('noteId') != nid or not isinstance(note.get('desc'), str):
+        raise Problem('source_content_invalid', 502)
+    return note
+
+
+def detail_comments(out, note, nid):
+    """Only the already-returned first page; never persist commenter IDs or cursors."""
+    content = out.get('data', out)
+    raw = content.get('comments') if isinstance(content, dict) else None
+    if not isinstance(raw, dict) or not isinstance(raw.get('list'), list):
+        return None
+    author = note.get('user', {}).get('userId') if isinstance(note.get('user'), dict) else None
+    rows, budget, truncated = [], 30000, False
+    def keep(comment, reply=False):
+        nonlocal budget, truncated
+        if not isinstance(comment, dict) or comment.get('noteId', nid) != nid:
+            return
+        text = comment.get('content')
+        if not isinstance(text, str) or not text.strip():
+            return
+        text = text.strip()
+        if len(text) > 4000 or len(text) > budget:
+            truncated = True
+        text = text[:min(4000, budget)]
+        if not text:
+            return
+        user = comment.get('userInfo')
+        uid = user.get('userId') if isinstance(user, dict) else None
+        rows.append({'text': text, 'isAuthor': uid == author if uid and author else None,
+                     'reply': reply})
+        budget -= len(text)
+    for comment in raw['list'][:20]:
+        keep(comment)
+        if isinstance(comment, dict):
+            replies = comment.get('subComments')
+            if isinstance(replies, list):
+                for reply in replies[:3]:
+                    keep(reply, True)
+                truncated = truncated or len(replies) > 3
+    return {'items': rows, 'scope': 'first_page_returned', 'hasMore': raw.get('hasMore') if isinstance(raw.get('hasMore'), bool) else None,
+            'truncated': truncated or len(raw['list']) > 20, 'readAt': iso()}
+
+
 class MCP:
     """A private process, never a connection to a pre-existing owner MCP port."""
     def __init__(self, binary, directory):
@@ -234,8 +285,19 @@ class Session:
         self.scan_started = None
         self.scan_cancel = threading.Event()
         self.video_cancel = threading.Event()
+        self.read_cancel = threading.Event()
         self.library = read_json(directory / 'library.json', {'version': 1, 'items': []})
         self.library.setdefault('revision', 0)
+        interrupted_reads = False
+        for item in self.library['items']:
+            if item.get('contentReadStatus') == 'running':
+                item.update(contentReadStatus='failed', contentReadError={
+                    'code': 'service_restarted', 'at': iso(),
+                    'retainedPrevious': bool(item.get('contentReadAt'))})
+                interrupted_reads = True
+        if interrupted_reads:
+            self.library['revision'] += 1
+            atomic(directory / 'library.json', self.library)
         if self.library.get('scan', {}).get('running'):
             self.library['scan'].update(running=False, complete=False, coverage='partial',
                                         interrupted=True, endReason='service_restarted')
@@ -287,7 +349,7 @@ class Session:
     def busy(self):
         return bool(self.job and self.job['state'] == 'running')
 
-    def start(self, kind, fn):
+    def start(self, kind, fn, target_id=None):
         with self.lock:
             if self.closed:
                 raise Problem('session_expired', 401)
@@ -296,11 +358,15 @@ class Session:
             if kind == 'video' and not VIDEO_SLOT.acquire(blocking=False):
                 raise Problem('video_busy', 429)
             job_id = secrets.token_hex(10)
+            if kind == 'read':
+                self.read_cancel.clear()
             if kind == 'scan':
                 self.scan_cancel.clear()
             if kind == 'video':
                 self.video_cancel.clear()
             self.job = {'id': job_id, 'kind': kind, 'state': 'running', 'startedAt': iso()}
+            if target_id is not None:
+                self.job['targetId'] = target_id
 
         def run():
             try:
@@ -308,14 +374,14 @@ class Session:
                 with self.lock:
                     if self.closed:
                         return
-                    self.job = {**self.job, 'state': 'cancelled' if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set()) else 'done', 'finishedAt': iso()}
+                    self.job = {**self.job, 'state': 'cancelled' if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set() or kind == 'read' and self.read_cancel.is_set()) else 'done', 'finishedAt': iso()}
                 if kind in ('verify', 'connect') and self.state == 'connected':
                     self.start('scan', self.scan)
             except Exception as e:
                 with self.lock:
                     if not self.closed:
-                        self.job = {**self.job, 'state': 'cancelled' if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set()) else 'failed',
-                                    'error': ('video_cancelled' if kind == 'video' else 'scan_cancelled') if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set()) else e.code if isinstance(e, Problem) else 'source_unavailable'}
+                        self.job = {**self.job, 'state': 'cancelled' if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set() or kind == 'read' and self.read_cancel.is_set()) else 'failed',
+                                    'error': ('video_cancelled' if kind == 'video' else 'read_cancelled' if kind == 'read' else 'scan_cancelled') if (kind == 'scan' and self.scan_cancel.is_set() or kind == 'video' and self.video_cancel.is_set() or kind == 'read' and self.read_cancel.is_set()) else e.code if isinstance(e, Problem) else 'source_unavailable'}
             finally:
                 if kind == 'video':
                     VIDEO_SLOT.release()
@@ -501,36 +567,76 @@ class Session:
         self.backend.stop()
         return {'cancelRequested': True}
 
-    def read(self, nid):
-        if self.state != 'connected':
-            raise Problem('sign_in_required', 401)
-        if not ID.fullmatch(nid) or not any(x['id'] == nid for x in self.library['items']):
-            raise Problem('save_not_found', 404)
-        self.verify()
-        token = read_json(self.directory / 'source-tokens.json', {}).get(nid)
-        if not token:
-            raise Problem('sync_first', 409)
-        out = self.backend.request('POST', '/api/v1/feeds/detail', {
-            'feed_id': nid, 'xsec_token': token, 'load_all_comments': False})
-        content = out.get('data', out)
-        note = content.get('note') or content.get('data', {}).get('note')
-        if not isinstance(note, dict):
-            raise Problem('source_unavailable', 502)
+    def content_status(self, item, status, code=None):
         with self.lock:
             if self.closed:
                 return
-            item = next(x for x in self.library['items'] if x['id'] == nid)
-            item.update(description=str(note.get('desc', '')), hasContent=bool(note.get('desc')),
-                        contentReadAt=iso(), sourceMayHaveChanged=False,
-                        coverage='post_text_only')
-            if note.get('title'):
-                item['title'] = str(note['title'])
-            # We deliberately do not copy comment identities, signed media,
-            # session tokens, or an invented video transcript into the library.
-            if self.library.get('scan'):
-                self.library['scan']['readCount'] = sum(bool(x.get('description')) for x in self.library['items'])
+            item['contentReadStatus'] = status
+            if status == 'running':
+                item['contentReadAttemptedAt'] = iso()
+            if code:
+                item['contentReadError'] = {'code': code, 'at': iso(),
+                                            'retainedPrevious': bool(item.get('contentReadAt'))}
+            else:
+                item.pop('contentReadError', None)
             self.library['revision'] += 1
             atomic(self.directory / 'library.json', self.library)
+
+    def read(self, nid):
+        if not ID.fullmatch(nid):
+            raise Problem('save_not_found', 404)
+        item = next((x for x in self.library['items'] if x['id'] == nid), None)
+        if not item:
+            raise Problem('save_not_found', 404)
+        self.content_status(item, 'running')
+        try:
+            if self.state != 'connected':
+                raise Problem('sign_in_required', 401)
+            self.verify()
+            if self.read_cancel.is_set():
+                raise Problem('read_cancelled', 409)
+            token = read_json(self.directory / 'source-tokens.json', {}).get(nid)
+            if not token:
+                raise Problem('sync_first', 409)
+            out = self.backend.request('POST', '/api/v1/feeds/detail', {
+                'feed_id': nid, 'xsec_token': token, 'load_all_comments': False})
+            note = detail_note(out, nid)
+            comments = detail_comments(out, note, nid)
+            if comments is not None:
+                with self.lock:
+                    if not self.closed:
+                        if self.read_cancel.is_set():
+                            raise Problem('read_cancelled', 409)
+                        item['comments'] = comments
+                        self.library['revision'] += 1
+                        atomic(self.directory / 'library.json', self.library)
+            with self.lock:
+                if self.closed:
+                    return
+                if self.read_cancel.is_set():
+                    raise Problem('read_cancelled', 409)
+                description = note['desc']
+                item.update(description=description, hasContent=bool(description.strip() or (item.get('comments') or {}).get('items')),
+                            contentReadAt=iso(), sourceMayHaveChanged=False,
+                            coverage='post_text_only' if description.strip() else 'post_text_empty')
+                if note.get('title'):
+                    item['title'] = str(note['title'])
+                if self.library.get('scan'):
+                    self.library['scan']['readCount'] = sum(bool(x.get('description')) for x in self.library['items'])
+                self.content_status(item, 'ready' if item['hasContent'] else 'empty')
+        except Exception as error:
+            code = 'read_cancelled' if self.read_cancel.is_set() else error.code if isinstance(error, Problem) else 'source_unavailable'
+            self.content_status(item, 'cancelled' if code == 'read_cancelled' else 'failed', code)
+            raise Problem(code, error.status if isinstance(error, Problem) else 502)
+
+    def cancel_read(self):
+        with self.lock:
+            if not self.busy() or self.job['kind'] != 'read':
+                raise Problem('no_read_running', 409)
+            self.read_cancel.set()
+            self.job['cancelRequested'] = True
+        self.backend.stop()
+        return {'cancelRequested': True}
 
     def read_video(self, nid):
         if not ID.fullmatch(nid):
@@ -541,6 +647,7 @@ class Session:
         if item.get('type') != 'video':
             raise Problem('not_video', 400)
         previous = item.get('videoAnalysis')
+        self.content_status(item, 'running')
         try:
             if self.state != 'connected':
                 raise Problem('sign_in_required', 401)
@@ -550,17 +657,23 @@ class Session:
                 raise Problem('sync_first', 409)
             out = self.backend.request('POST', '/api/v1/feeds/detail', {
                 'feed_id':nid,'xsec_token':token,'load_all_comments':False})
-            content = out.get('data', out)
-            note = content.get('note') or content.get('data', {}).get('note')
-            if not isinstance(note, dict):
-                raise Problem('source_unavailable', 502)
+            note = detail_note(out, nid)
+            comments = detail_comments(out, note, nid)
+            if comments is not None:
+                with self.lock:
+                    if not self.closed:
+                        if self.video_cancel.is_set():
+                            raise video.VideoError('video_cancelled')
+                        item['comments'] = comments
+                        self.library['revision'] += 1
+                        atomic(self.directory / 'library.json', self.library)
             result = video.analyze(note, self.directory, self.video_cancel, previous)
             if self.video_cancel.is_set():
                 raise video.VideoError('video_cancelled')
             if previous and previous.get('complete') and not result.get('complete'):
                 raise video.VideoError('video_partial')
         except (Problem, video.VideoError, OSError, ValueError) as error:
-            code = error.code if isinstance(error, (Problem, video.VideoError)) else 'video_tool_failed'
+            code = 'video_cancelled' if self.video_cancel.is_set() else error.code if isinstance(error, (Problem, video.VideoError)) else 'video_tool_failed'
             failure = {'code':code,'at':iso(),'retainedPrevious':bool(previous and previous.get('complete'))}
             result = {**previous, 'lastRefreshError':failure} if previous and previous.get('complete') else {
                 'complete':False,'coverage':{'audio':'not_completed','frames':'not_completed','visual':'not_performed'},
@@ -570,15 +683,18 @@ class Session:
                     item['videoAnalysis'] = result
                     self.library['revision'] += 1
                     atomic(self.directory / 'library.json', self.library)
+            self.content_status(item, 'cancelled' if code == 'video_cancelled' else 'failed', code)
             raise Problem(code, error.status if isinstance(error, Problem) else 409)
         with self.lock:
             if self.closed:
                 return
             result = {k:v for k,v in result.items() if k not in ('lastRefreshError','error')}
-            item.update(videoAnalysis={**result,'readAt':iso()},description=str(note.get('desc','')),
+            item.update(videoAnalysis={**result,'readAt':iso()},description=note['desc'],
+                        hasContent=bool(note['desc'].strip() or (item.get('comments') or {}).get('items') or result.get('transcript') or any(frame.get('text') for frame in result.get('frames', []))), contentReadAt=iso(),
                         coverage='video_audio_and_sampled_ocr' if result['complete'] else 'video_partial')
             self.library['revision'] += 1
             atomic(self.directory / 'library.json', self.library)
+            self.content_status(item, 'ready' if item['hasContent'] else 'empty')
 
     def cancel_video(self):
         with self.lock:
@@ -593,6 +709,7 @@ class Session:
         with self.lock:
             self.closed = True
             self.video_cancel.set()
+            self.read_cancel.set()
             self.scan_cancel.set()
             self.backend.disabled = True
             self.backend.stop()
@@ -791,12 +908,14 @@ def make_handler(store, origins, host):
                     nid = body.get('id', '')
                     if not isinstance(nid, str):
                         raise Problem('invalid_request', 400)
-                    return self.send(session.start('video', lambda: session.read_video(nid)))
+                    return self.send(session.start('video', lambda: session.read_video(nid), nid))
+                if method == 'POST' and path == '/api/cancel-read':
+                    return self.send(session.cancel_read())
                 if method == 'POST' and path == '/api/read':
                     nid = body.get('id', '')
                     if not isinstance(nid, str):
                         raise Problem('invalid_request', 400)
-                    return self.send(session.start('read', lambda: session.read(nid)))
+                    return self.send(session.start('read', lambda: session.read(nid), nid))
                 if method == 'POST' and path == '/api/disconnect':
                     store.remove(token)
                     return self.send({'disconnected': True, 'serverDataDeleted': True})

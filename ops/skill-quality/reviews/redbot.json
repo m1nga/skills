@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T12:35:08.493616+00:00",
-  "source_sha256": "0f79144388095de0baaf81b1f8daccfbb32b12817cb03013aee6fd12c20fda5f",
+  "reviewed_at": "2026-11-04T13:02:34.250524+00:00",
+  "source_sha256": "f87f788f96b6b75acfc94721a5c0f4f47dccc1e86b3685d78b8a1ad23b583b91",
   "user_review": {
-    "method": "Executed synthetic backup fixtures plus a labelled instruction walkthrough; no private library, account access or independent user trial.",
+    "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial.",
     "scenarios": [
       {
         "request": "Find home cooking suitable for weight loss among dessert and meal saves.",
@@ -47,6 +47,34 @@
         "observed": "Executed helper failure fixtures pass; valid existing runtime skips download. No actual browser inference acceptance claimed.",
         "kind": "executed",
         "result": "pass"
+      },
+      {
+        "request": "Open a selected unread source, encounter a failed automatic read, retry and generate a source-grounded prompt.",
+        "expected": "One selected-source job, persistent distinct terminal states, useful timestamped evidence before source-dependent prompt, and preserved personal-note draft.",
+        "observed": "Actual Chrome synthetic API receipt records connect, automatic selected-video read, first failure, explicit retry, timestamped prompt and note preservation. Public reading-flow regression fixtures passed. No real-account UI or phone claim.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Use an authorized selected real video, retaining speech accuracy and visual limits.",
+        "expected": "Decode available returned MP4 stream groups; preserve actual timestamped ASR/OCR and never equate execution with exact transcription.",
+        "observed": "Sanitized real-source receipt: 22.433333 seconds, pinned multilingual small, 10 speech segments, 11 sampled OCR frames, zero cloud inference calls, observed pipeline 6.2 seconds. Recognition mistakes remain. No full visual understanding or general speed/accuracy claim.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Read exported first-page author/reader comments without leaking metadata or treating them as verified post facts.",
+        "expected": "Bounded sanitized comments, partial scope, author/reply labels; comment text cannot prove body-based mandatory conditions.",
+        "observed": "New companion reader fixtures verify retrieval, first-page scope, has-more/truncation, nonmutation and dropped IDs/names/URLs/cursors. Constraint assessment does not treat comments as body evidence.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Load browser semantic model and reuse its cache after a page reload.",
+        "expected": "Actual model execution, persisted preference and only unchanged-content reuse.",
+        "observed": "Actual Chrome receipt records pinned WASM/model loaded, both fixture entries retrieved, one unchanged chunk reused after page reload and changed item recomputed. This was not a browser-process restart.",
+        "kind": "executed",
+        "result": "pass"
       }
     ]
   },
@@ -59,7 +87,8 @@
       "learned": "Keep timestamped transcript segments and identify machine speech provenance; apply this to RedBot speech separately from sampled frame OCR.",
       "effect": "Updated SKILL, check-and-use and reader to retain timestamps/modalities and partial coverage.",
       "rejected": "Reject whole-filesystem helper search and unconditional dependency upgrades: installed skill paths and authorized service setup remain explicit.",
-      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied."
+      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied.",
+      "rechecked_scope": "Same-day author-source comparison reused for the 1.9.2 reading-chain continuation; timestamp/modality separation and source/comment/inference distinctions still apply. No extra framework or copied code."
     },
     {
       "url": "https://raw.githubusercontent.com/molly-diversifiedfun/claude-skills/main/research-brief/SKILL.md",
@@ -69,51 +98,32 @@
       "learned": "Distinguish source claims, inference and missing evidence rather than letting fluent output imply verification.",
       "effect": "Added per-requirement full source claims and missing/conflict statuses; explicit nutritional claims remain unverified.",
       "rejected": "Reject training-only source handles and mandatory long confidence templates: RedBot has actual selected source passages and links, with concise request-specific output.",
-      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied."
+      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied.",
+      "rechecked_scope": "Same-day author-source comparison reused for the 1.9.2 reading-chain continuation; timestamp/modality separation and source/comment/inference distinctions still apply. No extra framework or copied code."
     }
   ],
   "validation": [
     {
-      "command": "python3 release-registry/redbot/scripts/test_reader.py",
+      "command": "python3 redbot/scripts/test_reader.py",
       "result": "pass",
-      "observed": "7 tests passed: original preservation/bad input tests and 4 goal/video/recovery cases."
-    },
-    {
-      "command": "python3 -m py_compile release-registry/redbot/scripts/read_library.py",
-      "result": "pass",
-      "observed": "Compiled successfully."
-    },
-    {
-      "command": "git -C release-registry diff --check -- redbot",
-      "result": "pass",
-      "observed": "No whitespace errors."
+      "observed": "9 synthetic-backup tests pass, including new bounded comment privacy/coverage and nonmutation cases."
     },
     {
       "command": "cd redbot/product-root/source && node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs",
       "result": "pass",
-      "observed": "57 public copied-source tests passed, including full-library synthetic vectors, cancellation/cache scope, goal constraints, video metadata, UI stale results and last-refresh warning. Historical private promotion fixture is omitted and documented, not copied."
+      "observed": "76 public Node tests passed with prepared pinned WASM. Original app checkout reports 79 including 3 historical promotion fixtures excluded from this distribution."
     },
     {
       "command": "cd redbot/product-root/source && python3 -m unittest discover -s tests -v",
       "result": "pass",
-      "observed": "40 tests passed, including isolated-session retention, selected video access, source/download restrictions, local static vendor, global capacity and last-refresh failure retaining previous result."
+      "observed": "60 public Python tests passed. Original app also reports 4 legacy-server tests, whose private-research-dependent prepare.py/server.py/test_sync.py branch is not bundled."
     },
     {
-      "command": "cd redbot/product-root/source && node --test tests/client-recommendation.test.cjs",
+      "command": "APP-SOURCE.json bundled-file SHA-256 comparison",
       "result": "pass",
-      "observed": "11 UI tests passed, including first video failure and preserved prior success cases; source fixture copied from commit b63e426cbe814a4c9d246a5cf44d01fbf53eafe2."
-    },
-    {
-      "command": "cd redbot/product-root/source && python3 -m unittest discover -s tests -v",
-      "result": "pass",
-      "observed": "49 Python tests pass, including 9 runtime helper tests and webmanifest static MIME response fixture."
-    },
-    {
-      "command": "cd redbot/product-root/source && python3 scripts/prepare-runtime.py && node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs",
-      "result": "pass",
-      "observed": "Actual fixed-source WASM download verified its 21,596,019 bytes and pinned SHA-256; 58 public Node tests passed after preparation. Running those tests before preparing correctly failed for missing WASM. Product README now states this preparation requirement."
+      "observed": "72 bundled assets match hashes; external WASM is explicitly pinned and prepared rather than bundled."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.1 source commit 55938ee8d5329c523fdf3b1da3220034818578d5 changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed. Browser WASM is an explicit pinned external build resource prepared by size/hash-verified helper; current package does not bundle it. Local static webmanifest MIME whitelist included. README preserves the current Chinese-first interface with English switch per explicit product instruction."
+  "release_scope": "1.9.2 application source frozen at 9bde6112ace654f56d607e133726942390c1566d; scoped tracked deltas copied into current public connector bundle. README test command omits unbundled legacy server test_sync and historical promotion fixture. Legacy migration/export bridge unchanged. Companion reader gains bounded comments output and tests. Real selected-source processing and Chrome synthetic fixture acceptance are separate. No private source text/account identifiers/media URLs copied; no real-phone, independent-user, browser-process-restart, exact-transcription or general performance claim."
 }
