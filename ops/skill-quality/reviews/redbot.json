@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T13:02:34.250524+00:00",
-  "source_sha256": "f87f788f96b6b75acfc94721a5c0f4f47dccc1e86b3685d78b8a1ad23b583b91",
+  "reviewed_at": "2026-11-04T14:08:58.004561+00:00",
+  "source_sha256": "d936f1c708fc62dfadac0a956c24e3e1aebf95480dd7c88504066350dc32636d",
   "user_review": {
     "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial.",
     "scenarios": [
@@ -75,6 +75,20 @@
         "observed": "Actual Chrome receipt records pinned WASM/model loaded, both fixture entries retrieved, one unchanged chunk reused after page reload and changed item recomputed. This was not a browser-process restart.",
         "kind": "executed",
         "result": "pass"
+      },
+      {
+        "request": "A read was accepted, but its matching job disappeared or was replaced after its item outcome was saved.",
+        "expected": "Read-only reconcile this attempt; historical or ambiguous outcomes cannot claim new success and no read is automatically resubmitted.",
+        "observed": "Recovery regressions pass and actual Chrome synthetic receipt records lost terminal job resolving to ready with no automatic resubmission. Persisted outcome timestamps/attempt baseline separate new from old evidence.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Show the useful method simply and generate a short project prompt from Traditional Chinese and fallible speech.",
+        "expected": "Prefer author-written method, simplify only derived prose, omit timestamps by default, retain original source and earlier draft; preserve source, zero-paid and untrusted-data boundaries.",
+        "observed": "Actual Chrome synthetic 390px receipt: Simplified derived view, collapsed original, prior timestamped draft retained and 397-character prompt without timecodes. Offline selected-source receipt: 441-character prompt, author method once, original timestamped blocks unchanged. No generative reasoning or automatic ASR-error correction claimed.",
+        "kind": "executed",
+        "result": "pass"
       }
     ]
   },
@@ -104,26 +118,35 @@
   ],
   "validation": [
     {
-      "command": "python3 redbot/scripts/test_reader.py",
-      "result": "pass",
-      "observed": "9 synthetic-backup tests pass, including new bounded comment privacy/coverage and nonmutation cases."
-    },
-    {
       "command": "cd redbot/product-root/source && node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs",
       "result": "pass",
-      "observed": "76 public Node tests passed with prepared pinned WASM. Original app checkout reports 79 including 3 historical promotion fixtures excluded from this distribution."
+      "observed": "94 public Node tests passed; source checkout 97 includes 3 historical promotion fixtures excluded from this public package."
     },
     {
-      "command": "cd redbot/product-root/source && python3 -m unittest discover -s tests -v",
+      "command": "APP-SOURCE.json bundled-file SHA256 comparison",
       "result": "pass",
-      "observed": "60 public Python tests passed. Original app also reports 4 legacy-server tests, whose private-research-dependent prepare.py/server.py/test_sync.py branch is not bundled."
+      "observed": "80 bundled assets match hashes; external WASM pin unchanged."
     },
     {
-      "command": "APP-SOURCE.json bundled-file SHA-256 comparison",
+      "command": "Pinned OpenCC1.4.2 npm registry integrity, tarball SHA512 and bundled-file SHA256 verification",
       "result": "pass",
-      "observed": "72 bundled assets match hashes; external WASM is explicitly pinned and prepared rather than bundled."
+      "observed": "Registry integrity matches lock; downloaded fixed tarball SHA512 verified; four bundled conversion/license files match package bytes and per-file hashes."
+    },
+    {
+      "command": "Prior1.9.2 Python and companion-reader evidence reused after source delta comparison",
+      "result": "pass",
+      "observed": "No public-bundle Python or installed skill/reader source changed in 1.9.3. Retained 60 public Python and 9 reader tests as prior evidence, not newly executed tests. Original source 4 legacy server tests remain distinct and branch is not bundled."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.2 application source frozen at 9bde6112ace654f56d607e133726942390c1566d; scoped tracked deltas copied into current public connector bundle. README test command omits unbundled legacy server test_sync and historical promotion fixture. Legacy migration/export bridge unchanged. Companion reader gains bounded comments output and tests. Real selected-source processing and Chrome synthetic fixture acceptance are separate. No private source text/account identifiers/media URLs copied; no real-phone, independent-user, browser-process-restart, exact-transcription or general performance claim."
+  "release_scope": "1.9.3 frontend/public-bundle delta from frozen application81ee89381ec01717063ab8c276ae4e26ac47adf3: missing-job read-only reconciliation, concise author-method-first derived display, short goal-first brief, pinned local OpenCC conversion. Companion SKILL/reader and backend unchanged; same-day author-skill research reused. Legacy private-research-dependent server branch and historical promotion fixture remain excluded, with public README commands accurate. No private original text/IDs copied. Browser synthetic, offline selected-source and earlier actual media trials are separate; no new generative reasoning, exact ASR, real phone or browser-process restart claim.",
+  "dependency_research": {
+    "source": "https://github.com/nk2028/opencc-js",
+    "checked_at": "2026-11-04T14:08:58.004717+00:00",
+    "version": "1.4.2",
+    "decision": "adopt",
+    "learned": "Self-hosted JavaScript converter bundles dictionaries and can perform local script conversion; conversion is not generative reasoning.",
+    "effect": "Fixed small conversion bundle, adjacent MIT/Apache license files and registry/file integrity pins; derived prose converted while original source, code and URLs remain unchanged.",
+    "rejected": "No runtime CDN/latest, no claim that conversion fixes transcription errors or improves source truth."
+  }
 }
