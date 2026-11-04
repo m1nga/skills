@@ -67,6 +67,23 @@ class ReadingQueueTests(unittest.TestCase):
         calls = [c for c in session.backend.calls if c[1].endswith('/detail')]
         self.assertEqual([c[2]['feed_id'] for c in calls].count('c'*24), 1)
 
+    def test_refresh_preserves_pause_and_results_then_resume_includes_new_saves(self):
+        session = self.session
+        session.backend.profile = {'feeds': [card(A), card(B)]}
+        session.scan(); session.read(A)
+        with patch.object(threading.Thread, 'start'): session.read_all()
+        session.pause_reading()
+        session.backend.profile = {'feeds': [card(A), card(B), card('c'*24)]}
+        session.scan()
+        self.assertEqual(session.queue_status()['state'], 'paused')
+        self.assertEqual(session.queue_status()['done'], 1)
+        restored = S.Session(session.directory, session.meta, Fake(None, session.directory))
+        restored.state = 'connected'
+        self.assertEqual(restored.queue_status()['state'], 'paused')
+        with patch.object(threading.Thread, 'start'): status = restored.read_all()
+        self.assertEqual((status['total'], status['done'], status['remaining']), (3, 1, 2))
+        self.assertEqual(restored.library['readingQueue']['pending'], [B, 'c'*24])
+
     def test_pause_finishes_current_and_restart_does_not_silently_restart(self):
         session = self.session
         session.backend.profile = {'feeds': [card(A), card(B)]}; session.scan()

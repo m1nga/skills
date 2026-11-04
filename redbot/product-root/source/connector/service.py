@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import base64
 import calendar
+import gzip
 import hashlib
 import hmac
 import json
@@ -392,9 +393,11 @@ class Session:
             if queue and queue.get('pending'):
                 pending = list(dict.fromkeys(queue['pending']))
                 failed = list(queue.get('failed', []))
+                pending = list(dict.fromkeys(pending + [x['id'] for x in eligible
+                    if not self.content_complete(x) and x['id'] not in failed]))
                 if retry_failed:
                     pending = list(dict.fromkeys(pending + failed)); failed = []
-                queue.update(pending=pending, failed=failed)
+                queue.update(pending=pending, failed=failed, total=len(eligible))
             else:
                 failed = list(queue.get('failed', [])) if queue and not retry_failed else []
                 pending = [x['id'] for x in eligible if not self.content_complete(x) and x['id'] not in failed]
@@ -620,6 +623,10 @@ class Session:
                 if self.closed:
                     return
                 new, tokens = merge_scan(baseline, profile)
+                # Card refreshes replace source fields, not the user's reading
+                # queue or a pause requested while this scan was in flight.
+                if 'readingQueue' in self.library:
+                    new['readingQueue'] = self.library['readingQueue']
                 new['revision'] = self.library['revision'] + 1
                 new['scan'].update(running=running, seen=new['scan']['count'], complete=complete,
                                    coverage='streaming' if running else 'complete' if complete else 'partial',
@@ -974,18 +981,27 @@ def make_handler(store, origins, host):
 
         def send(self, data, code=200, mime='application/json'):
             body = json.dumps(data, ensure_ascii=False).encode() if mime == 'application/json' else data
+            compressible = mime == 'application/json' and len(body) > 4096
+            compressed = compressible and 'gzip' in [x.strip().lower() for x in self.headers.get('Accept-Encoding', '').split(',')]
+            if compressed:
+                body = gzip.compress(body, compresslevel=4, mtime=0)
             self.send_response(code)
             self.send_header('Content-Type', mime)
+            if compressed:
+                self.send_header('Content-Encoding', 'gzip')
             self.send_header('Cache-Control', 'no-store')
             self.send_header('Referrer-Policy', 'no-referrer')
             self.send_header('X-Content-Type-Options', 'nosniff')
             self.send_header('X-Frame-Options', 'DENY')
             origin = self.headers.get('Origin')
+            vary = ['Accept-Encoding'] if compressible else []
             if origin in origins:
                 self.send_header('Access-Control-Allow-Origin', origin)
-                self.send_header('Vary', 'Origin')
+                vary.append('Origin')
                 self.send_header('Access-Control-Allow-Headers', 'Authorization, Content-Type')
                 self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+            if vary:
+                self.send_header('Vary', ', '.join(vary))
             self.send_header('Content-Length', str(len(body)))
             self.end_headers()
             try:

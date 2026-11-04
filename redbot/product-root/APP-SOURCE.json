@@ -51,7 +51,7 @@
     "source/connector/UPSTREAM.md": "51847cb7a950d18ee6ae732bf45bfa27c0d31c0760bc6b0c0651bb7901013bb5",
     "source/connector/VIDEO.md": "6dd8e0918be6058d35dbbb189a0a11161df1e78f52233669806cbae27139e9df",
     "source/connector/patches/favorites-checkpoint.patch": "19a09e57017e01cb7cfe6307c91c874c7412afe9b23b735e775519431388e339",
-    "source/connector/service.py": "024805f9a5eb50d3f80cd827cea22da8573ecc8d13105c17051f314bee55aa93",
+    "source/connector/service.py": "71cf56353e4c6e8cd9aa5341e04bbeb4b00a7fa7da3e0bc432ee5a354bcab30d",
     "source/connector/setup_video.py": "599a130840d27f1db161c6c667f7e695cc29daee74d00142f7974b5539fbd318",
     "source/connector/tests/login-identity.test.cjs": "b92f5ef903f2629f38c8394005677dec097d381b3a3383a5c2f28115b6c28318",
     "source/connector/tests/pagination-observer.test.cjs": "f71311220d3d7cc43c29c5895d151922fa34a75eb4927ee34f941da1ed83c34b",
@@ -64,7 +64,7 @@
     "source/tests/client-recommendation.test.cjs": "d1e8a4459052ffd12c27ab78251d2fb6725012ec55b58798b96d7409d4467aa0",
     "source/tests/goal-constraints.test.cjs": "884976210e052428f7df616e601ae2ed91c97e9b584184398654f5ba7eb1603e",
     "source/tests/semantic-worker.test.cjs": "207d290f6e1b285a993b37f130c1e2f1b78b0b04ed3b74b8cb3a0ae7889f28c5",
-    "source/tests/test_connector.py": "7530ed97f6254e851a17e2bece89310742d42bc69545e5286cb2855f6f997191",
+    "source/tests/test_connector.py": "e6d61fb9c263b883af2812d22092695ebae1286bb17f137335f1deef908e3524",
     "source/tests/test_video.py": "901c6a6a4846b21234274f9d5d83f869273387cb01c3ace3947a6665951625f3",
     "style.css": "0ddd218e5f88291a8af4afe02b395a50b00c90ce32d09f00ac195abdfcc3685c",
     "sw.js": "ba7d13a87a422fa764b243fb11d13cff9563c5db52c059d53f741c9d7446bd2f",
@@ -83,12 +83,12 @@
     "source/app/vendor/opencc/t2cn.js": "5009384a6bdc904babee967a8bb9928e3c92288ec8a89ed036d53257e74cd8ab",
     "source/tests/presentation.test.cjs": "cbe184e39e066075cc7f9545e56580e84bc9343efcfe0da9d9d8992f6a2ddc01",
     "source/tests/text-display.test.cjs": "703d28affb4a9af875c1a704d1606729119ad50f031cf1f69ca1159aeaf79bc3",
-    "source/tests/test_reading_queue.py": "e6904d026d7e13cca8d5c9dc82a7544438dd41ad28c9f3ba6a6830faa7a27ac3"
+    "source/tests/test_reading_queue.py": "5a6eabd2d04c7d0b3a23c40f236925c41b8b2b3c31c9790afc73fe97b4aa0bfd"
   },
   "primary_entry": "https://sidecourt.space/drops/redbot/",
   "github_pages_role": "Migration/export bridge; application hosted on SideCourt",
   "public_account_sync": "invitation-only; temporary host; progressive scans; completion requires source evidence",
-  "application_source_commit": "4c847ed12a8da5cdfc15f6c1d187acf8ad2ca9fa",
+  "application_source_commit": "f65b208ede1b03fe4bcc5c921a19d62e964fd5cf",
   "distribution_adjustments": [
     "source/README.md: public test commands exclude the historical promotion fixture and legacy server test_sync branch, whose private-research prepare.py dependency is not bundled. Current connector host and all its test resources are included. Root migration/export bridge remains unchanged."
   ],

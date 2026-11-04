@@ -576,6 +576,36 @@ class ConnectorTests(unittest.TestCase):
         finally:server.shutdown();server.server_close()
 
 
+    def test_large_private_library_compression_preserves_content_and_auth(self):
+        import gzip
+        token, session = self.new(); session.verify(); session.scan()
+        session.library['items'][0]['description'] = '原始收藏内容与个人方法。' * 2000
+        server = S.ThreadingHTTPServer(('127.0.0.1', 0), S.BaseHTTPRequestHandler)
+        host = '127.0.0.1:' + str(server.server_port)
+        server.RequestHandlerClass = S.make_handler(self.store, {'https://sidecourt.space'}, host)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        try:
+            for encoding in ['gzip', 'identity', 'gzip;q=0']:
+                headers = {'Authorization': 'Bearer ' + token, 'Origin': 'https://sidecourt.space', 'Accept-Encoding': encoding}
+                with urlopen(Request('http://' + host + '/api/library', headers=headers)) as response:
+                    body = response.read()
+                    self.assertEqual(len(body), int(response.headers['Content-Length']))
+                    self.assertEqual(response.headers['Access-Control-Allow-Origin'], 'https://sidecourt.space')
+                    self.assertIn('Accept-Encoding', response.headers['Vary'])
+                    if encoding == 'gzip':
+                        self.assertEqual(response.headers['Content-Encoding'], 'gzip')
+                        decoded = gzip.decompress(body)
+                        self.assertLess(len(body), len(decoded) // 2)
+                    else:
+                        self.assertIsNone(response.headers.get('Content-Encoding'))
+                        decoded = body
+                    self.assertEqual(json.loads(decoded)['items'][0]['description'], session.library['items'][0]['description'])
+            with self.assertRaises(HTTPError) as error:
+                urlopen(Request('http://' + host + '/api/library', headers={'Accept-Encoding': 'gzip'}))
+            self.assertEqual(error.exception.code, 401)
+        finally:
+            server.shutdown(); server.server_close()
+
     def test_returned_first_page_comments_are_bounded_and_identity_free(self):
         author = {'userId': 'private-author', 'nickname': 'not copied'}
         comment = {'id': 'private-comment', 'noteId': A, 'content': 'A concrete method',

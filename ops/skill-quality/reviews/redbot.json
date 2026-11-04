@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T15:15:21.928377+00:00",
-  "source_sha256": "30b909473cf35b86c181415d4c618b156318b7c2036c85eebe6aafdc192de8e9",
+  "reviewed_at": "2026-11-04T15:25:13.564286+00:00",
+  "source_sha256": "189baffd6974ebd30d426421ce8ac1a8270de7215ea93826f481f611c9a885d7",
   "user_review": {
     "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial.",
     "scenarios": [
@@ -131,6 +131,20 @@
         "observed": "Actual running host accepted a fourth disposable session; it was disconnected without XHS login. Existing three sessions remained. Source fixture also checked five distinct sessions and explicit operator quota.",
         "kind": "executed",
         "result": "pass"
+      },
+      {
+        "request": "Refresh saved cards while a reading queue is paused, then continue including newly saved cards.",
+        "expected": "Keep pause, existing content and pending work; add new unread saves when continuing.",
+        "observed": "Executed scan/read/pause/scan/reload/resume fixture retains completed item and queues both pending and new items. Added after actual restart scan exposed lost queue metadata; completed real content was not lost.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Read a large private library over a slow connection.",
+        "expected": "Compress when accepted without changing content, auth or CORS.",
+        "observed": "HTTP fixture verifies gzip lossless content, Content-Length and CORS; identity and gzip;q=0 remain uncompressed; unauthenticated request remains 401.",
+        "kind": "executed",
+        "result": "pass"
       }
     ]
   },
@@ -186,7 +200,7 @@
     {
       "command": "python3 -m unittest discover -s tests (public source)",
       "result": "pass",
-      "observed": "69 passed."
+      "observed": "71 passed."
     },
     {
       "command": "python3 redbot/scripts/test_reader.py",
@@ -200,7 +214,7 @@
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.5 patch: cache-first initial render, visible account entry, sync-specific outage wording, optional account-count quota disabled by default. Preserve 1.9.4 whole-library/video results and evidence. No architecture migration, paid host, background discovery scheduler or local-only storage claim.",
+  "release_scope": "1.9.5 patch: cache-first initial render, visible account entry, sync-specific outage wording, optional account-count quota disabled by default. Preserve 1.9.4 whole-library/video results and evidence. No architecture migration, paid host, background discovery scheduler or local-only storage claim. Follow-up in the same release preserves reading queue across card scans and negotiates gzip for large JSON; no new user data destination.",
   "dependency_research": {
     "source": "https://github.com/nk2028/opencc-js",
     "checked_at": "2026-11-04T14:08:58.004717+00:00",
