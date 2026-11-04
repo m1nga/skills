@@ -124,6 +124,18 @@ listed by the Skills CLI anymore.
 | voice-extractor | Not used |
 | coffee-brewing | Replaced by the Daycup application |
 
+## More ways to put a skill to work
+
+| Your current need | Skill and install entry | What to expect |
+|---|---|---|
+| Find something useful in saved Xiaohongshu research | [RedBot](https://github.com/m1nga/redbot) | Read selected source material and prepare an editable coding prompt; account access is an invitation beta. |
+| Remove unnecessary steps from a task | [First Principles](https://github.com/m1nga/first-principles) | Reuse existing work, preserve constraints and verify the requested result. |
+| Take a short thinking break while an AI agent works | [BreakingGap](https://github.com/m1nga/breakinggap) | A three-minute reflection in your conversation; it does not monitor agents or run reminders. |
+
+Use `npx skills add m1nga/<skill-name>` with the repository name shown on the
+individual product page. Each guide describes its requirements and validation limits.
+These links point to already published products; installing one does not start a service.
+
 ## Why these skills are different
 
 - Each skill solves one recognizable problem and produces a named result.
