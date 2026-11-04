@@ -14,7 +14,7 @@ assert(!/setInterval|requestAnimationFrame/.test(script));
 assert(html.includes('aria-live="polite"'));
 function run(raw,clipboardWorks=true){
  const elements=new Map();
- function el(id){if(!elements.has(id))elements.set(id,{id,value:({mood:'curious',platform:'codex',work:''})[id]||'',hidden:true,textContent:'',attrs:{},events:{},setAttribute(k,v){this.attrs[k]=v;},addEventListener(k,f){this.events[k]=f;},replaceChildren(...children){this.children=children;},focus(){this.focused=true;},select(){this.selected=true;},click(){this.clicked=true;this.onclick?.();}});return elements.get(id);}
+ function el(id){if(!elements.has(id))elements.set(id,{id,value:({mood:'not sure',platform:'codex',work:''})[id]||'',hidden:true,textContent:'',attrs:{},events:{},setAttribute(k,v){this.attrs[k]=v;},addEventListener(k,f){this.events[k]=f;},replaceChildren(...children){this.children=children;},focus(){this.focused=true;},select(){this.selected=true;},click(){this.clicked=true;this.onclick?.();}});return elements.get(id);}
  const tabs=['angle','connection','idea'].map(x=>{const t=el('tab-'+x);t.dataset={mode:x};return t;});
  const downloads=[],blobs=[],copies=[];let readKey;
  const context=vm.createContext({document:{getElementById:el,querySelectorAll:()=>tabs,createElement:tag=>{const a={tag,textContent:'',click(){downloads.push(this);}};return a;}},localStorage:{getItem(key){readKey=key;return raw;}},navigator:{clipboard:{async writeText(s){if(!clipboardWorks)throw Error('unavailable');copies.push(s);}}},Blob:class {constructor(parts){blobs.push(parts.join(''));}},URL:{createObjectURL:()=> 'blob:test',revokeObjectURL(){}},setTimeout:f=>f()});
@@ -25,11 +25,12 @@ const seen=new Set();
 for(const tab of app.tabs){
  tab.click();seen.add(app.el('question').textContent);
  assert.equal(tab.attrs['aria-selected'],'true');assert.equal(tab.tabIndex,0);
- assert.equal(app.el('questions').children.length,3);
- assert(app.el('questions').children.every(q=>q.tag==='li'&&q.textContent.endsWith('?')));
+ assert(app.el('question').textContent.endsWith('?'));
+ assert(html.includes('<details id="dialogue"'));
+ assert(!html.includes('<details id="dialogue" open'));
  assert(app.el('source').textContent.startsWith('Fictional'));
  assert(app.el('deeper').textContent.length<310);
- assert(app.el('handoff').textContent.includes('separate chat'));
+ assert(app.el('handoff').textContent.length>0);
  assert(app.el('invitation').textContent.includes('three minutes'));
  assert.equal(app.el('example').attrs['aria-labelledby'],tab.id);
 }
@@ -43,12 +44,25 @@ assert(app.el('starter').value.startsWith('$breakinggap'));
 app.el('platform').value='cc';app.el('platform').events.change();assert(app.el('starter').value.startsWith('/breakinggap'));
 app.el('mood').value='stuck';app.el('mood').events.change();
 assert(app.el('starter').value.includes('I feel stuck.'));
-assert(app.el('starter').value.includes('three minutes'));
+assert(app.el('starter').value.includes('three-minute'));
 assert(app.el('starter').value.length<500);
 assert(html.includes('<option value="stuck">Stuck</option>'));
+const moodQuestions=new Set();const moodStarters=new Set();
+for(const mood of ['restless','foggy','stuck','curious','not sure']){
+ app.el('mood').value=mood;app.el('mood').events.change();
+ moodQuestions.add(app.el('question').textContent);moodStarters.add(app.el('starter').value);
+ assert(app.el('starter').value.includes('I feel '+(mood==='not sure'?'unsure':mood)+'.'));
+ assert(!app.el('starter').value.includes(app.el('question').textContent));
+ assert(!app.el('starter').value.includes('reading app')); // Fictional example context must not be passed off as the user project.
+ assert(app.el('starter').value.startsWith('/breakinggap start'));
+}
+assert.equal(moodQuestions.size,5);assert.equal(moodStarters.size,5);
+app.el('refresh').click();assert(app.el('question').focused);
+assert(html.includes('How do you feel right now?'));assert(html.includes('Refresh me'));
+assert(!html.includes('Keep your focus'));assert(!html.includes('Too many ideas'));
 app.el('starter').value='My edited starter';
 await app.el('copy').onclick();assert.equal(app.copies[0],app.el('starter').value);assert(app.el('feedback').textContent.includes('Copied'));
 const fallback=run(null,false);await fallback.el('copy').onclick();assert(fallback.el('starter').selected);assert(fallback.el('starter').focused);assert(fallback.el('feedback').textContent.includes('Ctrl+C'));
 for(const raw of ['{"session":{"draft":"keep me"}}','{malformed legacy data','']){const a=run(raw);assert.equal(a.el('legacy').hidden,false);a.el('exportLegacy').click();assert.equal(a.blobs[0],raw);assert.equal(a.downloads[0].download,'breakinggap-previous-session.txt');}
 const svg=readFileSync(new URL('../assets/wordmark.svg',import.meta.url),'utf8');assert(svg.includes('<title id="title">BreakingGap</title>'));assert(!svg.includes('<image'));
-console.log('Companion checks passed: three complete fictional examples, keyboard navigation, editable starter, clipboard/fallback, untouched legacy export, offline/accessibility structure.');
+console.log('Companion checks passed: three waiting moments, mood-specific first questions and starters, keyboard navigation, editable starter, clipboard/fallback, untouched legacy export, offline/accessibility structure.');

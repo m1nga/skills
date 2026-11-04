@@ -1,15 +1,27 @@
 ---
 name: breakinggap
-description: "Use a short AI waiting gap for three minutes of open reflection: notice the project's situation, offer a few fresh questions, then organize the user's thoughts with an optional handoff to a focused chat. Use for 'I have a gap', 'I feel stuck' when asking for a thinking break, or a fresh perspective while an agent works. Not routine planning, therapy, automatic reminders, or discussion/editing of BreakingGap itself."
+description: "Use a short AI waiting gap for three minutes of open reflection: notice the project's situation, offer a few fresh questions, then organize the user's thoughts with an optional handoff to a focused chat. Use for a BreakingGap start/setup request, 'I have a gap', 'refresh me', or 'I feel stuck' when asking for a thinking break. Not routine planning, therapy, automatic reminders, or discussion/editing of BreakingGap itself."
 ---
 
 # BreakingGap
 
-**Change your perspective. Keep your focus.**
+**Stay sharp. Feel refreshed.**
 
-Help an independent maker step outside the immediate work long enough to see another possibility. The opening may be practical, playful, philosophical, or a gentle return to an old intention. It need not advance today's deliverable or be the right perspective. The person can keep an insight, reject the premise, rest, or choose to explore a real issue in a separate conversation.
+Help an independent maker use an AI waiting moment to loosen a fixed view and feel open to another possibility. Lead with a recognizable moment: about to scroll, still waiting, or losing the thread. A person need not have a problem to fix. The opening may be practical, playful, philosophical, or a gentle return to an old intention. It need not advance today's deliverable or be the right perspective. The person can keep an insight, reject the premise, rest, or choose to explore a real issue in a separate conversation.
 
 Match the user's language. Keep the cinematic chemistry aesthetic in visual materials, not forced laboratory language or TV-character roleplay. The skill shapes a conversation; it does not add model intelligence, memory access, timers, or a thread-creation capability.
+
+## Start without needing a question
+
+For a bare invocation, a start/setup request, or a person saying they just installed the skill, make the entry immediate. If they have not already supplied a mood or a concrete wish, ask in their language: **“How do you feel right now?”** Offer a short inline choice: **Restless / Foggy / Stuck / Curious / Not sure**. Add that they can answer in their own words or say “surprise me”. Use ordinary chat text when the host has no choice UI. Wait for this one answer; do not also ask for a project description, a time budget and a goal.
+
+If they have already said how they feel, want a question, or want to skip setup, go straight to one light question. Do not repeat the mood check in a break, after a correction, or after returning from a handoff. Use visible conversation state; don't claim to know an installation date or that onboarding was remembered across chats. No tracking file is required.
+
+After the answer, use one available project fact when relevant and ask **one easy-to-enter, open question**. Restless can invite an unexpected comparison; foggy can invite noticing or letting one thought rest; stuck can invite a tentative alternative explanation; curious can invite discovery; not sure can get a gentle, concrete observation. These are suggestions, not diagnoses or a rigid mood-to-question mapping. A technical blocker still needs technical work. Never infer phone use from silence or task timestamps.
+
+The first response should be short enough to read at a glance. Invite about three minutes, with no required wait or result. Offer another angle if it misses. For returning users or an explicit request for several questions, use the broader flow below.
+
+Installation copies the skill; it does not execute this welcome, monitor activity or open a chat. The default prompt and README supply the start entry. Only claim a first-install or automatic invitation when an actual host integration has delivered it. Do not create hooks, timers, scheduled jobs or background listeners just by running this skill.
 
 ## Notice the situation before choosing questions
 
@@ -21,7 +33,7 @@ Use a small relevant project note or authorized memory lookup only when it would
 
 ## Offer a three-minute thinking break
 
-Give a brief, tentative connection to the situation, then usually **two or three short, distinct, open questions**. Choose lenses rather than following a fixed checklist:
+Give a brief, tentative connection to the situation, then **one light question for the first guided break**, or **two or three short, distinct, open questions** when the person wants a wider choice. Choose lenses rather than following a fixed checklist:
 
 - **Purpose and meaning:** what drew them to this work, what still matters, or what they are free to reconsider.
 - **A different explanation:** what seems blocked, what observations support that, or what would remain unresolved if a technical constraint vanished. Leave room for technical, conceptual, resource and mixed constraints.
@@ -31,7 +43,7 @@ Give a brief, tentative connection to the situation, then usually **two or three
 
 Invite: “Take about three minutes. Pick whichever question catches you; a fragment, another thought, or ‘none of these’ is enough.” Adapt the wording naturally. They don't have to answer all the questions, wait three minutes, or report an outcome. Don't start a timer, promise an automatic follow-up, or estimate the other agent's completion. If they have less time or energy, offer one question. If they want quiet or no work, honor that.
 
-Offer perspectives as hypotheses, not leading questions with a concealed correct answer. Vary their distance from the immediate task; when broader reflection is wanted, don't offer three versions of the same optimization question. Don't assert that the user is optimizing the wrong thing or has lost their original purpose. Do not answer the questions for them or turn the break into a lecture. Read [references/sparks.md](references/sparks.md) only when help choosing an angle would be useful; examples are not a script or a mandatory framework.
+Make the invitation interesting through concrete situations, surprise and a fresh way to see the work. Do not invent urgency, lost-time statistics, diagnoses or competitive pressure. Never imply that scrolling, resting or skipping makes the person lazy or behind. Offer perspectives as hypotheses, not leading questions with a concealed correct answer. Vary their distance from the immediate task; when broader reflection is wanted, don't offer three versions of the same optimization question. Don't assert that the user is optimizing the wrong thing or has lost their original purpose. Do not answer the questions for them or turn the break into a lecture. Read [references/sparks.md](references/sparks.md) only when help choosing an angle would be useful; examples are not a script or a mandatory framework.
 
 ## Receive any thought, then make it easy to continue
 

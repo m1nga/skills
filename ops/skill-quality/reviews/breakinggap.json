@@ -1,36 +1,50 @@
 {
   "schema_version": 1,
   "skill": "breakinggap",
-  "reviewed_at": "2026-11-03T15:54:32.499192+00:00",
-  "source_sha256": "26230be48ac442c500f50ae31d1c0402b65cc9951a8b2e96a9aa6c5a7d66f45c",
+  "reviewed_at": "2026-11-04T03:57:49.257914+00:00",
+  "source_sha256": "47707db2c4725be281dee69889d2bf66855cb77ec4b8cdb43fdd138a4fb52b8a",
   "user_review": {
-    "method": "Independent static copy review, one actual model-generated response using updated skill text in a simulated host, static routing boundary assessment, and executed Node interaction harness. Live browser unavailable after CUA reset; no new browser, real-user or host-routing success claimed.",
+    "method": "Independent static review and four actual model-generated replies in a simulated host; executed Node interaction harness; actual desktop browser interaction. After the independent review, root refined example context, starter isolation and first-screen spacing and verified those changes with the harness and browser. No real-user outcome, installed-host routing or automatic invitation test is claimed.",
     "scenarios": [
       {
-        "request": "A maker recognizes their situation and selects Stuck before copying a starter.",
-        "expected": "Short concrete situations; correct example stage; selected mood carried into a concise prompt.",
-        "observed": "Static review caught an unstarted-label/prototype mismatch and unclear mood effect; both fixed. Node harness executed all three tabs and Stuck prompt generation, context propagation, keyboard navigation and copy.",
+        "request": "Start a thinking break with no mood or project supplied.",
+        "expected": "One short mood invitation, no setup form.",
+        "observed": "Generated response offered Restless, Foggy, Stuck, Curious and Not sure with free text; it waited for the answer.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Foggy after the welcome, with a reading-app project already visible.",
+        "expected": "One light contextual question; no repeated mood check.",
+        "observed": "Generated response asked about a sentence the person would enjoy encountering again, with no invented progress or extra forms.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "I feel stuck; just give me a surprising question.",
+        "expected": "Skip onboarding and honor the direct request.",
+        "observed": "Generated response gave one imaginative postcard question.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "No update for five minutes: open a new window every time.",
+        "expected": "Explain current package limits without claiming activation.",
+        "observed": "Generated response distinguished a skill from an activity integration and created no timer, listener or chat.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Explore waiting moments, change mood and copy an editable starter.",
+        "expected": "A matching first question, fictional context kept separate from the real starter, optional reply collapsed.",
+        "observed": "Browser verified Foggy changes, Refresh me focus, old-note source/status and expanded continuation. Root removed fictional project text from the copied starter; harness checks all five moods and three moments. Final browser reload verified the Not sure starter reads I feel unsure.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Explicit thinking break: agent handles a deployment error while maker feels stuck over feature growth.",
-        "expected": "Light questions without diagnosing the technical failure or forcing a planning exercise.",
-        "observed": "Fresh reviewer generated three questions about intended feeling, everyday usefulness and a notebook users perspective; no timer or tool actions. This is a model-response exercise in a simulated host.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "I feel stuck, fix the deployment error now.",
-        "expected": "Direct debugging stays normal work, not reflection routing.",
-        "observed": "Static assessment confirms trigger qualification and explicit body boundary. Actual host routing remains untested.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "Clipboard unavailable; legacy browser content valid, malformed or empty.",
-        "expected": "Manual-copy fallback and byte-exact export without overwriting old data.",
-        "observed": "Executed existing Node harness; fallback selects editable text and each raw legacy value exports unchanged.",
+        "request": "Clipboard fails; legacy stored data is malformed or empty.",
+        "expected": "Manual-copy fallback and byte-exact legacy export.",
+        "observed": "Executed Node harness covers clipboard rejection and legacy values. Browser displayed Copied but bridge clipboard readback was empty; real clipboard contents were not verified.",
         "kind": "executed",
         "result": "pass"
       }
@@ -38,25 +52,32 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/Shuboya1030/socratic-learning-coach/blob/master/SKILL.md",
-      "checked_at": "2026-11-03T15:54:32.499192+00:00",
-      "learned": "Current author instructions preserve user-developed reasoning after questioning, but require a diagnosis and one-question teaching loop.",
+      "url": "https://github.com/SuperCorks/agent-skills/blob/498c6d75b3c4f95e072a14e80b15b23f43ec6a58/requirements-interview/SKILL.md",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00",
+      "learned": "Read supplied context before asking; avoid repeating answers and use short questions.",
       "decision": "adapt",
-      "reason": "Keep user-led thought and short synthesis in simpler examples; reject mandatory assessment/probing. Stuck is a light self-description, not diagnosis."
+      "reason": "Reuse stated mood and start with one approachable question. Reject the full requirements interview and success-criteria form."
     },
     {
-      "url": "https://github.com/SuperCorks/agent-skills/blob/main/requirements-interview/SKILL.md",
-      "checked_at": "2026-11-03T15:54:32.499192+00:00",
-      "learned": "Current author instructions use short questions in user vocabulary and separate observation from inference.",
-      "decision": "adopt",
-      "reason": "Applied recognizable scenario labels, source-consistent situations and short context notes; do not adopt limiting reflection to implementation decisions."
+      "url": "https://github.com/obra/superpowers/blob/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/using-superpowers/SKILL.md",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00",
+      "learned": "The author prescribes broad startup invocation. A separate mechanism is needed to supply session context.",
+      "decision": "reject",
+      "reason": "Do not force this waiting break at every session or whenever marginally relevant. Explicit short invocation remains the reliable entry."
+    },
+    {
+      "url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/hooks/session-start",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00",
+      "learned": "The actual script reads a skill and emits platform-specific startup context; it is distinct from a skill instruction file.",
+      "decision": "adapt",
+      "reason": "Document installation versus invocation and any future host integration separately. The script does not demonstrate five-minute idle detection; no third-party code was copied or executed."
     }
   ],
   "validation": [
     {
       "command": "node breakinggap/tests/companion-check.mjs",
       "result": "pass",
-      "observed": "All three examples, Stuck context propagation, short editable starter, keyboard/copy/fallback, untouched legacy export and offline/accessibility structure passed."
+      "observed": "Three waiting moments, five moods, contextual first questions, isolated editable starter, keyboard navigation, clipboard/fallback and untouched legacy export passed."
     },
     {
       "command": "skill-creator quick_validate.py breakinggap",
@@ -72,6 +93,11 @@
       "command": "git diff --check",
       "result": "pass",
       "observed": "No whitespace errors."
+    },
+    {
+      "command": "Actual browser interaction on the local companion page",
+      "result": "pass",
+      "observed": "Mood, first question, focus, old-note source and disclosure verified; final desktop screenshot saved. Clipboard contents, mobile layout, live host routing, automatic welcome and automatic window opening were not verified."
     }
   ],
   "unresolved_blockers": []

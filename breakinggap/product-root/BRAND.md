@@ -1,16 +1,16 @@
 # BreakingGap
 
-**Change your perspective. Keep your focus.**
+**Stay sharp. Feel refreshed.**
 
 ## The invitation
 
-A person working with agents has a few minutes between results. Their attention may be on the next fix while a wider question remains unexamined. BreakingGap offers a small space to think: a few open questions, about three minutes, and permission to follow just one thought.
+A person working with agents has a few minutes between results. They may be about to scroll, restless from waiting, or losing their train of thought. BreakingGap offers an easy entry: how they feel, one unexpected question, and room to follow a thought without needing to produce another task.
 
 The question can concern purpose, a choice, an overlooked person, a philosophical possibility or a real old idea. It may miss. It need not produce a task. After the person responds, the skill connects their words with known project context and offers a focused new conversation only when useful and wanted.
 
 **Audience:** start with independent developers and makers who use agents and work alone through both technical detail and broader choices. Broader knowledge-work demand remains a hypothesis.
 
-**Value:** attention and continuity in an AI workflow. Change the angle of thought while keeping a way back to the work. Offer a light entry, a wider view and prepared context if the person wants to go deeper. Ordinary AI can do this; the skill aims to make the experience consistently accessible without writing a new prompt each time.
+**Value:** a clearer, more open state of mind during an AI workflow. Loosen a fixed view and let new perspectives in, with an easy way back to the work. This is an intended experience, not a measured mental-health or performance outcome. Offer a light entry, a wider view and prepared context if the person wants to go deeper. Ordinary AI can do this; the skill aims to make the experience consistently accessible without writing a new prompt each time.
 
 ## Visual direction
 
@@ -30,8 +30,8 @@ Keep contrast strong and motion optional. The aesthetic can be dramatic; the con
 
 ## The simplest experience
 
-- The user says “I have a gap.”
-- The skill reads the context it actually has, then offers two or three distinct questions. The person can choose one, answer early, reject them, or rest.
+- Installation presents a one-line start entry. The first invocation asks “How do you feel right now?” unless the person already supplied a mood or wants to skip.
+- The skill reads the context it actually has, then offers one light question. A wider choice is available when wanted. The person can answer early, reject it, or rest.
 - After any thought, show a short synthesis: what the person said, what is known about the project, and what remains an open possibility.
 - If the person wants to explore further, ask about a focused chat with that context. Open it only after agreement and only through a supported host tool. Otherwise provide a starter to carry over manually.
 - If they only wanted inspiration or their agent is ready, finish. No summary form, streak or completed task is owed.
@@ -57,3 +57,9 @@ Earlier controlled model exercises also produced good plain-AI responses. Curren
 Curious, open, specific, occasionally playful. Let the person disagree. Offer a possible angle without diagnosing stubbornness or insisting the difficulty is psychological. Preserve real technical constraints and the user's existing decisions.
 
 The public GitHub README includes the existing natural SideCourt browsing invitation. It remains separate from installation. A SideCourt Work can introduce the skill when the creator requests it; GitHub remains the source and direct installation path.
+
+## A reason to try it now
+
+Use recognizable moments: About to scroll / Still waiting / Lost the thread. The invitation can be direct: “Your agent is working. Don’t let the scroll take over.” Show the alternative immediately. Avoid invented attention-loss statistics, shame, or claims that everyone else is getting ahead. Let the user dismiss the invitation and rest.
+
+Automatic windows after five minutes are an integration proposal, not a shipped skill feature. An actual host adapter needs explicit user preference and observed waiting/activity state; silence alone is insufficient. Installation does not deploy such an adapter.

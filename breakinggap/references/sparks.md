@@ -19,3 +19,15 @@ For example, a maker is polishing onboarding while saying visitors should feel w
 After an answer, reflect its particular wording and relate it to known context. If the person says “I don't want participation to feel like homework”, a synthesis can distinguish that value from a proposed feature such as removing reactions. Ask permission before treating the feature as a chosen direction. A small reflection can end with that distinction alone.
 
 If the person wants an unrelated break, let it stay unrelated. For example: “Would a perfect copy of a place you remember feel like the same place?” or “What would a lost-property office do with an unspoken sentence?” Do not smuggle a work assignment into a requested diversion.
+
+## A light first question
+
+Use these as original illustrative openings, adapting to actual context. No claimed knowledge of the user's phone or mood beyond what they supplied:
+
+- About to scroll: “What would you be curious to see if your project were made by someone else?”
+- Still waiting: “If the work running now were finished, what would you be free to wonder about?”
+- Lost the thread: “What part of this still feels worth your attention, even before you know the answer?”
+- Restless: “If this project were a place, where would you want to wander?”
+- Foggy: “Which thought would you be relieved to leave undecided for a moment?”
+
+Offer a broader or lighter angle if it misses. Don't turn a three-minute invitation into an assessment, an optimization checklist or an infinite feed.
