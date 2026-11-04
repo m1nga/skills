@@ -4,7 +4,7 @@ You saved something useful, but cannot find it when you need it. RedBot helps yo
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 
-**Version 1.9.4 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
+**Version 1.9.5 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
 
 ## Who it's for
 
@@ -20,7 +20,9 @@ People who collect design references, methods or tools and then struggle to deci
 6. Read the persistent status inside the detail view. A failed, cancelled or empty read stays distinct from success; retry or cancel there. Timestamped speech and sampled OCR remain separate evidence. Source-dependent prompts become available after useful source arrives. If the matching job disappears after another job or a service restart, RedBot checks the selected item’s outcome for this read instead of leaving it running forever. An older successful result cannot stand in for the new attempt. This check is read-only and never resubmits the read automatically.
 7. Inspect the goal requirements and actual supporting passages, check cost/promotion cues, then save a supported plan or create an editable prompt for your project. A title-only source must be read before it can be kept as a supported plan.
 
-An invitation opens a test slot; a separate random session credential protects each visitor's data. The default host supports three simultaneous sessions. No invitation? Original example notes let you try the interface without signing in. Manual JSON backup is a recovery option.
+An invitation opens a test slot; a separate random session credential protects each visitor's data. The former three-account quota is removed by default; invitations, isolated sessions and seven-day expiry still apply. Host processing capacity remains limited. No invitation? Original example notes let you try the interface without signing in. Manual JSON backup is a recovery option.
+
+Saved device content now appears before the connection-address check completes. The header keeps a visible **Xiaohongshu account** button during scans, video reads and temporary outages. This is device-first browsing, not fully local account synchronization: the test host still retains isolated login sessions and fetched source content.
 
 ## What it does
 

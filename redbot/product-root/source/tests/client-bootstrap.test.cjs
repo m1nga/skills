@@ -135,3 +135,34 @@ test('only authenticated 401 session_expired triggers recovery, without replayin
     if(recoveries)assert.equal(context.state().recovered[0],'old');
   }
 });
+
+
+test('account entry remains visible during reading and connection failures',()=>{
+ const h=vm.createContext({});
+ vm.runInContext(`let credentials=null,status=null,offline=false,lang='zh';const t=(a,b)=>lang==='zh'?a:b;
+ ${source.slice(source.indexOf('  function accountLabel()'),source.indexOf('  function render()'))}
+ globalThis.label=(connected,state,down,language='zh')=>{credentials=connected?{}:null;status=state;offline=down;lang=language;return accountLabel();};`,h);
+ assert.equal(h.label(false,null,false),'连接小红书');
+ for(const state of [{state:'connected'}, {job:{kind:'video',state:'running'}}, {state:'waiting'},null]) {
+  assert.equal(h.label(true,state,false),'小红书账号');
+  assert.equal(h.label(true,state,true),'小红书账号');
+ }
+ assert.equal(h.label(true,null,true,'en'),'Xiaohongshu account');
+});
+
+test('startup displays cached saves before pending or failed connection discovery',async()=>{
+ for(const fail of [false,true]) {
+  let finish;const network=new Promise((resolve,reject)=>{finish=()=>fail?reject(Error('offline')):resolve();});
+  const h=vm.createContext({network});
+  vm.runInContext(`let data={},credentials={},connectionError='',events=[];
+   function resetSearchScope(){} async function cacheRead(){return {items:[{id:'cached'}]};}
+   const normalize=x=>x,render=()=>events.push(data.items[0].id),failure=e=>e.message;
+   async function refreshConnectionConfig(){events.push('network');await network;}
+   globalThis.start=async()=>{${source.slice(source.indexOf('    resetSearchScope();',source.indexOf('  async function init()')),source.indexOf('    void checkVersion();',source.indexOf('  async function init()')))}};
+   globalThis.state=()=>({events,connectionError});`,h);
+  const pending=h.start();await new Promise(resolve=>setImmediate(resolve));
+  assert.deepEqual(Array.from(h.state().events),['cached','network']);
+  finish();await pending;
+  assert.equal(h.state().connectionError,fail?'offline':'');
+ }
+});

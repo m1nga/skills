@@ -868,7 +868,9 @@ class Session:
 
 
 class Store:
-    def __init__(self, root, binary, capacity=3, factory=MCP):
+    def __init__(self, root, binary, capacity=0, factory=MCP):
+        if capacity < 0:
+            raise ValueError('capacity must be zero (no account quota) or positive')
         self.root, self.binary, self.capacity, self.factory = root, binary, capacity, factory
         self.lock, self.sessions = threading.RLock(), {}
         root.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -891,7 +893,7 @@ class Store:
             raise Problem('consent_required', 400)
         with self.lock:
             self.reap()
-            if len(self.sessions) >= self.capacity:
+            if self.capacity and len(self.sessions) >= self.capacity:
                 raise Problem('beta_full', 429)
             sid, token = secrets.token_hex(16), secrets.token_urlsafe(32)
             meta = {'id': sid, 'tokenHash': digest(token), 'createdAt': iso(),
@@ -1018,6 +1020,7 @@ def make_handler(store, origins, host):
                 path = self.path.split('?', 1)[0]
                 if method == 'GET' and path == '/api/capabilities':
                     return self.send({'redbotConnector': 1, 'readOnly': True, 'inviteRequired': True,
+                                      'accountCapacity': store.capacity or None,
                                       'automatic': 'while_app_open', 'retentionDays': 7, 'llmCalls': False, 'cloudInferenceCalls': False,
                                       'video': {'onDemand': True, 'localModelInference': True, 'audio': 'whisper_asr',
                                                 'frames': 'sampled_ocr', 'visualUnderstanding': False, 'maxConcurrent': 1}})
@@ -1092,9 +1095,11 @@ def main():
     parser.add_argument('--binary', type=Path, required=True)
     parser.add_argument('--data-dir', type=Path, required=True)
     parser.add_argument('--port', type=int, default=8776)
-    parser.add_argument('--capacity', type=int, default=3)
+    parser.add_argument('--capacity', type=int, default=0, help='Optional stored-account quota; 0 disables the quota, not compute limits')
     parser.add_argument('--origin', action='append', default=['https://sidecourt.space'])
     args = parser.parse_args()
+    if args.capacity < 0:
+        parser.error('--capacity must be zero or positive')
     os.umask(0o077)
     runtime = read_json(Path(__file__).with_name('video-runtime.local.json'), {})
     for key in ('REDBOT_FFMPEG', 'REDBOT_WHISPER', 'REDBOT_WHISPER_MODEL', 'REDBOT_WHISPER_SHA256', 'REDBOT_OCR'):

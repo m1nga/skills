@@ -6,7 +6,7 @@ This is the application source. The [companion skill](https://github.com/m1nga/r
 
 ## Account test (1.9.4)
 
-Enter an invitation, review data handling and scan the sign-in code in Xiaohongshu. Invitation links visibly prefill the code; an existing verified device session does not ask for it again. Each visitor gets a separate browser process, cookie file, library and random bearer. The invitation only opens a test slot; it cannot read another visitor’s data. The small test host supports three concurrent sessions, expires them after seven days and removes server data on disconnect.
+Enter an invitation, review data handling and scan the sign-in code in Xiaohongshu. Invitation links visibly prefill the code; an existing verified device session does not ask for it again. Each visitor gets a separate browser process, cookie file, library and random bearer. The invitation cannot read another visitor’s data. Sessions expire after seven days, and disconnect removes server data. There is no default three-account quota; operators can set an explicit `--capacity` if needed. Removing an account quota does not increase the test host’s processing capacity: video inference still runs one job at a time.
 
 This is an unofficial browser connection, not official favorites OAuth. Login, saved-card scanning, selected-post text, already-returned first-page comments and local video transcription/sampled-frame OCR are exposed. No publishing, likes, comment posting or native collection edits. The operator must keep the host running; temporary HTTPS forwarding has no uptime guarantee. Same-phone QR recognition and two distinct real-account isolation are not yet field-verified.
 

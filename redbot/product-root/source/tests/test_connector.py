@@ -63,6 +63,23 @@ class ConnectorTests(unittest.TestCase):
         for invite, consent in [('bad', True), (self.store.config['invite'], False)]:
             with self.assertRaises(S.Problem): self.store.create(invite, consent)
 
+    def test_default_account_store_accepts_more_than_three_without_evicting_existing(self):
+        with tempfile.TemporaryDirectory() as folder:
+            store = S.Store(Path(folder), Path('/unused'), factory=Fake)
+            try:
+                connections = [store.create(store.config['invite'], True) for _ in range(5)]
+                self.assertEqual(len(store.sessions), 5)
+                self.assertEqual(len({x['sessionId'] for x in connections}), 5)
+                for connection in connections:
+                    self.assertEqual(store.get(connection['token']).meta['id'], connection['sessionId'])
+            finally:
+                store.stop()
+
+    def test_explicit_account_quota_remains_an_operator_option(self):
+        for _ in range(3): self.new()
+        with self.assertRaises(S.Problem) as error: self.new()
+        self.assertEqual(error.exception.code, 'beta_full')
+
     def test_separate_paths_tokens_and_libraries(self):
         ta, a = self.new(); tb, b = self.new()
         self.assertNotEqual(a.directory, b.directory)
