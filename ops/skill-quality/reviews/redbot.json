@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T12:34:14.726133+00:00",
-  "source_sha256": "662642122e3702bba03cbbfa0b54b4d9144f1bf8e986fc84506295d97d447d4d",
+  "reviewed_at": "2026-11-04T12:35:08.493616+00:00",
+  "source_sha256": "0f79144388095de0baaf81b1f8daccfbb32b12817cb03013aee6fd12c20fda5f",
   "user_review": {
     "method": "Executed synthetic backup fixtures plus a labelled instruction walkthrough; no private library, account access or independent user trial.",
     "scenarios": [
@@ -115,5 +115,5 @@
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.1 source commit 55938ee8d5329c523fdf3b1da3220034818578d5 changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed. Browser WASM is an explicit pinned external build resource prepared by size/hash-verified helper; current package does not bundle it. Local static webmanifest MIME whitelist included."
+  "release_scope": "1.9.1 source commit 55938ee8d5329c523fdf3b1da3220034818578d5 changed files copied into product-root/source. Source README only has documented packaging test-command correction. Legacy root migration/export bridge unchanged. No real browser, private Xiaohongshu video, second real account or physical phone verification claimed. Browser WASM is an explicit pinned external build resource prepared by size/hash-verified helper; current package does not bundle it. Local static webmanifest MIME whitelist included. README preserves the current Chinese-first interface with English switch per explicit product instruction."
 }

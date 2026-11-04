@@ -4,7 +4,7 @@ You saved something useful, but cannot find it when you need it. RedBot helps yo
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 
-**Version 1.9.1 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. English interface. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
+**Version 1.9.1 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
 
 ## Who it's for
 
@@ -92,7 +92,7 @@ When enabled, opening the app checks the connection and a visible page can scan 
 
 The invitation test stores separate login sessions and retrieved text on Ming's host for up to seven days. Remote access is forwarded through Cloudflare; local access stays local. Host downtime prevents new sync. Disconnect deletes that session's server data and keeps a device copy for export.
 
-Personal notes, plans and organizing choices stay in this browser's IndexedDB. Account libraries and old device libraries are separate. Export JSON through **Settings and my data** before switching devices or clearing storage. No automatic phone-to-computer note sync.
+Personal notes, plans and organizing choices stay in this browser's IndexedDB. Account libraries and old device libraries are separate. Export JSON through **设置与我的数据 / Settings and my data** before switching devices or clearing storage. No automatic phone-to-computer note sync.
 
 Semantic matching uses locally vendored Transformers.js 3.8.1 runtime and downloads the multilingual MiniLM model pinned to revision 2c4055b12046f11709e9df2c122e59ffbdc2f900. Hugging Face receives ordinary model asset requests; saved text is processed on device rather than sent to an inference API. The semantic switch is remembered on this device; vectors are isolated by active account/library, model version and text hash. Switching libraries cancels old searches. Disconnect requests deletion of that account’s vector cache and reports a deletion that cannot be confirmed. Basic matching remains available if loading fails; incomplete indexing is not full coverage.
 
