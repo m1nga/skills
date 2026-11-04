@@ -7,6 +7,7 @@ import tempfile
 import threading
 import time
 import unittest
+from unittest.mock import patch
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
@@ -322,6 +323,23 @@ class ConnectorTests(unittest.TestCase):
         mcp=S.MCP(Path('/missing'),Path(self.temp.name)/'new')
         with self.assertRaises(S.Problem):mcp.request('POST','/api/v1/feeds/favorite',{})
         self.assertIsNone(mcp.child)
+
+    def test_private_connector_never_uses_system_proxy(self):
+        class Source(S.BaseHTTPRequestHandler):
+            def log_message(self, *_): pass
+            def do_GET(self):
+                body = json.dumps({'success': True, 'data': {'is_logged_in': False}}).encode()
+                self.send_response(200); self.end_headers(); self.wfile.write(body)
+        server = S.ThreadingHTTPServer(('127.0.0.1', 0), Source)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        mcp = S.MCP(Path('/unused'), Path(self.temp.name))
+        mcp.port = server.server_port
+        mcp.start = lambda: None
+        try:
+            with patch.dict(os.environ, {'http_proxy': 'http://127.0.0.1:1', 'HTTP_PROXY': 'http://127.0.0.1:1', 'no_proxy': '', 'NO_PROXY': ''}):
+                self.assertFalse(mcp.request('GET', '/api/v1/login/status')['is_logged_in'])
+        finally:
+            server.shutdown(); server.server_close()
 
     def test_http_origin_host_auth_and_no_raw_files(self):
         server=S.ThreadingHTTPServer(('127.0.0.1',0),S.BaseHTTPRequestHandler)

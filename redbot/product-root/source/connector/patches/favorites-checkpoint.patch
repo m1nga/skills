@@ -186,30 +186,42 @@
  	if err != nil {
  		return nil, errors.Wrap(err, "read current user state failed")
  	}
-@@ -88,12 +114,19 @@
+@@ -88,14 +114,29 @@
  }
  
  func (a *LoginAction) FetchQrcodeImage(ctx context.Context) (string, bool, error) {
 -	pp := a.page.Context(ctx)
-+	pp := a.page.Context(ctx).Timeout(30 * time.Second)
++	pp := a.page.Context(ctx).Timeout(90 * time.Second)
  
- 	// 导航到小红书首页，这会触发二维码弹窗
+-	// 导航到小红书首页，这会触发二维码弹窗
 -	pp.MustNavigate("https://www.xiaohongshu.com/explore").MustWaitLoad()
--
--	time.Sleep(2 * time.Second)
++	// Source scripts may hydrate after 30 seconds on a cold anonymous session.
++	// Keep one bounded page and use the normal login control if no modal opens.
 +	if err := pp.Navigate("https://www.xiaohongshu.com/explore"); err != nil {
 +		return "", false, err
 +	}
 +	// QR readiness does not depend on unrelated feed images or page load events.
 +	if err := pp.Wait(rod.Eval(`() => {
 +		const qr = document.querySelector('.login-container .qrcode-img');
-+		return !!document.querySelector('.main-container .user .link-wrapper .channel') || !!(qr && qr.getAttribute('src'));
++		if ((` + redbotCurrentUserState + `)()) return true;
++		if (qr && qr.getAttribute('src')) return true;
++		const button = document.querySelector('button.login-btn');
++		if (!document.querySelector('.login-container') && button && !button.dataset.redbotLoginRequested) {
++			button.dataset.redbotLoginRequested = 'true';
++			button.click();
++		}
++		return false;
 +	}`)); err != nil {
 +		return "", false, err
 +	}
  
- 	if exists, _, _ := pp.Has(".main-container .user .link-wrapper .channel"); exists {
+-	time.Sleep(2 * time.Second)
+-
+-	if exists, _, _ := pp.Has(".main-container .user .link-wrapper .channel"); exists {
++	if identity, err := pp.Eval(redbotCurrentUserState); err == nil && identity.Value.String() != "" {
  		return "", true, nil
+ 	}
+ 
 --- a/xiaohongshu/navigate.go
 +++ b/xiaohongshu/navigate.go
 @@ -19,9 +19,10 @@

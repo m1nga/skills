@@ -25,11 +25,14 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import Request, build_opener, ProxyHandler
 
 APP = Path(__file__).resolve().parents[1] / 'app'
 ID = re.compile(r'^[a-f0-9]{24}$')
 TTL = 7 * 86400
+# The source process lives on loopback. Never forward its bearer or health
+# request through a shell/system HTTP proxy (macOS can supply one implicitly).
+_local_http = build_opener(ProxyHandler({}))
 
 
 class Problem(Exception):
@@ -140,7 +143,7 @@ class MCP:
             if self.child.poll() is not None:
                 raise Problem('connector_unavailable', 503)
             try:
-                with urlopen(f'http://127.0.0.1:{self.port}/health', timeout=0.3) as response:
+                with _local_http.open(f'http://127.0.0.1:{self.port}/health', timeout=0.3) as response:
                     if response.status == 200:
                         return
             except (OSError, URLError):
@@ -163,7 +166,7 @@ class MCP:
                 # Inventory streams through the private checkpoint while this
                 # request remains open. Its deadline is time, not card count.
                 timeout = 1830 if path == '/api/v1/user/me?tab=fav' else 190
-                with urlopen(req, timeout=timeout) as response:
+                with _local_http.open(req, timeout=timeout) as response:
                     out = json.load(response)
             except HTTPError as error:
                 # Diagnostics stay in this private account directory, not in a
@@ -681,6 +684,9 @@ def main():
             time.sleep(60)
             store.reap()
     threading.Thread(target=reap, daemon=True).start()
+    def shutdown_signal(*_):
+        raise KeyboardInterrupt
+    signal.signal(signal.SIGTERM, shutdown_signal)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

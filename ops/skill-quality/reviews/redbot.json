@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-03",
-  "source_sha256": "728e861a52614758aa37b5f07004ed48408fa38c6b2a7a507b85831e505e0d5c",
+  "reviewed_at": "2026-11-04",
+  "source_sha256": "07cef2c1439acef9b923e5b8edd15618b5c574b7c76b80a06f2309abeec69637",
   "user_review": {
-    "method": "Builder-operated tests with controlled browser fixtures and one real account; root operator supplied live receipts. Instruction behavior checked by explicitly simulated walkthrough. No independent user review.",
+    "method": "Scoped app-only QR repair alignment. Builder reran copied public tests; root operator reported real anonymous QR and retained-owner recovery. Existing unchanged instruction walkthrough retained; no independent user review.",
     "scenarios": [
       {
         "request": "My account scan is running but I need to browse now.",
@@ -33,54 +33,59 @@
         "observed": "Instruction walkthrough uses passage directly, separates comments/video from caption and does not require connector installation.",
         "kind": "simulated",
         "result": "pass"
+      },
+      {
+        "request": "Connect a fresh account without losing an existing retained account when QR is slow.",
+        "expected": "Bound QR readiness; keep authenticated account identity checks separate; preserve account data and bypass system proxy only for local connector traffic.",
+        "observed": "24 copied Python tests and explicit patched-source login/pagination Node fixtures passed. Root reported one anonymous real QR at about32seconds, browser-local QR, and restored retained owner identity/library295; these are operator-reported observations, not guaranteed latency or complete enumeration.",
+        "kind": "executed",
+        "result": "fixed"
       }
     ]
   },
   "similar_skills": [
     {
       "url": "https://github.com/autoclaw-cc/xiaohongshu-mcp-skills/blob/c79206ce4191fdb5f4c72d62155ed8ac49e7d0ae/SKILL.md",
-      "checked_at": "2026-11-03",
-      "snapshot": "autoclaw-current.md",
+      "checked_at": "2026-11-04",
       "decision": "adapt",
-      "learned": "Check actual tools and login before source operations; source IDs/tokens must come from responses.",
-      "reason": "Retain RedBot account checks and explicit scan/read separation; expose observed progress and coverage without implying source completion. Do not copy its blanket MCP-only fallback prohibition: user-supplied notes/backups remain useful."
+      "learned": "Rechecked current author source after current GitHub repo search: tool availability and actual account login remain separate prerequisites; source identifiers come from real responses.",
+      "reason": "Retain RedBot distinct authenticated identity checks while allowing anonymous QR readiness. Existing supplied-material fallback remains useful, so reject blanket MCP-only prohibition; no instruction edits required."
     },
     {
-      "url": "https://github.com/xpzouying/xiaohongshu-mcp/blob/d6352e5435b45ebb48fe240dc03a2bec0476bd56/skills/post-to-xhs/SKILL.md",
-      "checked_at": "2026-11-03",
-      "snapshot": "post-to-xhs-current.md",
+      "url": "https://github.com/xpzouying/xiaohongshu-mcp/blob/539d296f5623ab1a359065d8dc74dccfb237b05a/skills/post-to-xhs/SKILL.md",
+      "checked_at": "2026-11-04",
       "decision": "adapt",
-      "learned": "Separate per-account browser profiles; explicit NOT_LOGGED_IN recovery instead of assuming connector configuration is login.",
-      "reason": "Retain isolated RedBot sessions, concrete expiry recovery and preservation of existing library. Reject automatic headed login fallback and publishing scope; RedBot remains read-only and GUI focus changes require user permission."
+      "learned": "Rechecked current author source: isolated per-account browser profiles, concrete NOT_LOGGED_IN recovery, and UI selector drift require explicit treatment.",
+      "reason": "Preserve isolated RedBot sessions and existing data during bounded QR recovery. Reject automatic headed fallback and publishing workflow; no third-party code copied and no instruction edits needed."
     }
   ],
   "validation": [
     {
-      "command": "node --test core.test.cjs semantic.test.cjs promotion.test.cjs check.test.cjs",
+      "command": "python3 -m unittest discover -s redbot/product-root/source/tests -v",
       "result": "pass",
-      "observed": "27 tests rerun against accepted40823da source."
+      "observed": "24 tests passed against copied public source, including explicit no-system-proxy regression."
     },
     {
-      "command": "python3 -m unittest discover -s tests -v",
+      "command": "node <registry>/redbot/product-root/source/connector/tests/login-identity.test.cjs <application>/shelf/connector/.build/xhs-source/xiaohongshu/login.go; node <registry>/redbot/product-root/source/connector/tests/pagination-observer.test.cjs <application>/shelf/connector/.build/xhs-source/xiaohongshu/redbot_scan.go",
       "result": "pass",
-      "observed": "23 fixture tests rerun against accepted40823da source."
+      "observed": "Identity, anonymous bounded QR guard and pagination wire fixtures passed with explicit patched source paths. Initial default-path run could not find excluded .build dependency; corrected invocation passed; no private binary copied."
     },
     {
-      "command": "python3 -m unittest test_sync -v",
+      "command": "node --test redbot/product-root/source/core.test.cjs redbot/product-root/source/semantic.test.cjs redbot/product-root/source/check.test.cjs",
       "result": "pass",
-      "observed": "3 legacy regressions rerun; no original personal data copied."
+      "observed": "24 tests passed. The separate promotion fixture was not part of scoped QR validation: its evidence fixture is absent from public overlay; initial broad run could not open that prerequisite."
     },
     {
-      "command": "python3 -m unittest discover -s scripts -p 'test_reader.py' -v",
+      "command": "python3 -m unittest discover -s redbot/scripts -p 'test_reader.py' -v",
       "result": "pass",
-      "observed": "3 reader tests rerun from redbot skill directory."
+      "observed": "3 unchanged reader tests passed."
     },
     {
-      "command": "Root builder browser trial and targeted Go/Node connector fixtures",
+      "command": "Root operator real runtime, hosting and Go checks (reported, not rerun by registry alignment)",
       "result": "pass",
-      "observed": "Root reported Go targeted and both Node identity/wire fixture groups passed. Browser fixture20->60, stop retention, search/note focus. Actual390px Chrome width390/nooverflow. No physical-phone or two-real-account trial."
+      "observed": "Root reported24 Python/25hosting tests, targetedGo tests, anonymous realQR about32s, browserlocalQR and retained owner recovery with295 cards. Application3f4c7af; hosting1d16986; public app-only1606648. Hosting CI tracked separately by root."
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.8 invitation-only account test; complete real-account enumeration unproven. Final v8 malformed-pagination handling fixture-tested, not followed by another full live scan. Temporary host, same-phone QR and two-real-account isolation remain limits."
+  "release_scope": "App-only repair: align11 committed public files including APP-SOURCE to standalone1606648; unchanged skill instructions/README/manifest. Keep invitation-only, temporary-host and incomplete-enumeration limits. Runtime credentials, private QR material and binaries excluded."
 }

@@ -44,3 +44,5 @@ python3 -m unittest discover -s tests -p test_connector.py
 ~~~
 
 The Python command runs from the RedBot repository. Fixtures validate more than 2,000 records, progressive visibility and persistence, partial recovery, cancellation, explicit completion evidence, account isolation and restart recovery. They do not prove completeness or timing for any real user's account.
+
+The v9 QR adapter retains one anonymous page for up to 90 seconds: a 2026-11-04 cold-page trial returned a real QR data image after 31.7 seconds, beyond v8's 30-second deadline. If the hydrated page exposes a normal `button.login-btn` without a login modal, it invokes that control once. QR readiness and signed-in readiness are distinct; a sidebar alone never reports authenticated success. Source network failures or a missing QR still return an error at the bounded deadline. This does not promise a fixed login time or bypass source verification.
