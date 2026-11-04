@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T12:31:43.710959+00:00",
-  "source_sha256": "a79014e323da4557cf02740fc94558b266e44b0c9ca1968080a139efc5176aca",
+  "reviewed_at": "2026-11-04T12:34:14.726133+00:00",
+  "source_sha256": "662642122e3702bba03cbbfa0b54b4d9144f1bf8e986fc84506295d97d447d4d",
   "user_review": {
     "method": "Executed synthetic backup fixtures plus a labelled instruction walkthrough; no private library, account access or independent user trial.",
     "scenarios": [
@@ -107,6 +107,11 @@
       "command": "cd redbot/product-root/source && python3 -m unittest discover -s tests -v",
       "result": "pass",
       "observed": "49 Python tests pass, including 9 runtime helper tests and webmanifest static MIME response fixture."
+    },
+    {
+      "command": "cd redbot/product-root/source && python3 scripts/prepare-runtime.py && node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs",
+      "result": "pass",
+      "observed": "Actual fixed-source WASM download verified its 21,596,019 bytes and pinned SHA-256; 58 public Node tests passed after preparation. Running those tests before preparing correctly failed for missing WASM. Product README now states this preparation requirement."
     }
   ],
   "unresolved_blockers": [],

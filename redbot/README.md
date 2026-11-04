@@ -4,7 +4,7 @@ You saved something useful, but cannot find it when you need it. RedBot helps yo
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 
-**Version 1.9.0 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
+**Version 1.9.1 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. English interface. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
 
 ## Who it's for
 
@@ -30,7 +30,7 @@ An invitation opens a test slot; a separate random session credential protects e
 | Cannot remember the exact words | Optional on-device multilingual semantic matching |
 | Do not know which part matters | Shows a bounded extract of text already retrieved |
 | “Free” may have conditions | Quotes cost/promotion cues and can check public GitHub facts |
-| Want to use an idea in a project | Builds an editable, source-grounded Codex or Claude Code prompt |
+| Want to use an idea in a project | Builds an editable, source-grounded Codex prompt |
 | Want to continue later | Keeps a plan and personal notes in this browser |
 | Want to organize | Search, topics, collections, favorites, read state, archive and recoverable trash |
 
@@ -92,7 +92,7 @@ When enabled, opening the app checks the connection and a visible page can scan 
 
 The invitation test stores separate login sessions and retrieved text on Ming's host for up to seven days. Remote access is forwarded through Cloudflare; local access stays local. Host downtime prevents new sync. Disconnect deletes that session's server data and keeps a device copy for export.
 
-Personal notes, plans and organizing choices stay in this browser's IndexedDB. Account libraries and old device libraries are separate. Export JSON through **设置与我的数据 / Settings and my data** before switching devices or clearing storage. No automatic phone-to-computer note sync.
+Personal notes, plans and organizing choices stay in this browser's IndexedDB. Account libraries and old device libraries are separate. Export JSON through **Settings and my data** before switching devices or clearing storage. No automatic phone-to-computer note sync.
 
 Semantic matching uses locally vendored Transformers.js 3.8.1 runtime and downloads the multilingual MiniLM model pinned to revision 2c4055b12046f11709e9df2c122e59ffbdc2f900. Hugging Face receives ordinary model asset requests; saved text is processed on device rather than sent to an inference API. The semantic switch is remembered on this device; vectors are isolated by active account/library, model version and text hash. Switching libraries cancels old searches. Disconnect requests deletion of that account’s vector cache and reports a deletion that cannot be confirmed. Basic matching remains available if loading fails; incomplete indexing is not full coverage.
 
@@ -100,13 +100,13 @@ Never post backups, cookies, access tokens or login codes in public issues. Feed
 
 ## Run your own test host
 
-The distribution includes [application source](source/README.md), the adapter, its tests and a pinned upstream patch. See [connector provenance and build steps](source/connector/UPSTREAM.md). Binary/browser dependencies are not bundled. Use a new private runtime directory and your own endpoint configuration; never attach public visitors to an existing personal MCP.
+The distribution includes [application source](source/README.md), the adapter, its tests and a pinned upstream patch. See [connector provenance and build steps](source/connector/UPSTREAM.md). Transformers.js is bundled; prepare the pinned browser WASM before serving the app or running its browser-runtime fixture tests: `cd source && python3 scripts/prepare-runtime.py`. The helper downloads 21,596,019 bytes from a fixed public source commit, verifies SHA-256, and preserves existing files on failure. Skill installation does not require this browser resource. Other native/browser dependencies are installed separately. Use a new private runtime directory and your own endpoint configuration; never attach public visitors to an existing personal MCP.
 
 The previous native Mac package is a separate build and is not updated by this web release.
 
 ## Validation
 
-For 1.9.0, copied application source is pinned in `APP-SOURCE.json` with file hashes, including the vendored runtime. Goal and video behavior is checked with deterministic fixtures and the companion reader has seven synthetic-backup tests. Actual pinned-model native-CPU tests on synthetic material are narrower evidence than browser worker/WASM or a real Xiaohongshu-video trial; those remain unverified here. A failed video refresh retains previous evidence with `lastRefreshError`, not a new success claim.
+For 1.9.1, copied application source is pinned in `APP-SOURCE.json` with 68 bundled-file hashes and an explicit external WASM build resource. The runtime preparation download and hash check passed; after preparation, 58 public JavaScript tests and 49 Python tests passed. The companion reader has seven synthetic-backup tests. Actual pinned-model native-CPU tests on synthetic material are narrower evidence than browser worker/WASM or a real Xiaohongshu-video trial; those remain unverified here. A failed video refresh retains previous evidence with `lastRefreshError`, not a new success claim.
 
 [BETA-VALIDATION.md](BETA-VALIDATION.md) records automated tests and builder trials. The prior 1.7 builder trial returned 289 cards, introduced no duplicates on repeat, recovered an interrupted scan and retrieved one selected post caption. A 390-pixel browser layout was checked. For 1.8, 23 connector fixtures and 27 JavaScript tests passed; controlled browser batches progressed from 20 to 60, and the real library retained 295 unique cards. The final v8 pagination fix passed fixtures but was not followed by another real full scan. Complete real-account enumeration remains unproven. These do not prove all favorites were found, the video was watched, two real accounts were isolated, or an unaided user can finish.
 
