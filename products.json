@@ -281,6 +281,19 @@
         "m1nga-skill",
         "agent-skill"
       ]
+    },
+    {
+      "name": "context-budget",
+      "title": "Context Budget — Cut Repeated Reading in Agent Workflows",
+      "description": "Reduce repeated reading and tool-output context. Compare source changes, reuse working implementations, and verify token savings against the same completed task.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "codex",
+        "context-engineering",
+        "token-efficiency",
+        "workflow-optimization"
+      ]
     }
   ]
 }

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "skill": "context-budget",
+  "reviewed_at": "2026-11-07",
+  "source_sha256": "4e12ee7a4a057b0eea25323df2b3ba7ef4a8c817822986f4cfefa5390c8b869f",
+  "user_review": {
+    "method": "Maintainer walk-through of the public metadata and four scoped requests, plus executed CLI tests and a replay of two private saved-source manifests. Evidence below distinguishes executed checks from simulated routing. No independent user test was run.",
+    "scenarios": [
+      {
+        "request": "Review what changed between two 200-record research snapshots without loading them both into the model.",
+        "expected": "Compare all records, keep the full set of changed source references, and distinguish absence from deletion.",
+        "observed": "Executed comparison recovered all 68 records across four pages: 33 additions, two metadata updates and 33 not seen. 165 matched rows were left out of the delta; both input manifests were unchanged.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Compare a partial scan with conflicting copies of one record.",
+        "expected": "Stop with a diagnostic rather than selecting one revision silently.",
+        "observed": "The CLI exited 2, returned a conflicting duplicate message and emitted no success JSON. Fixture files remained unchanged.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Use the Ponytail reuse check before fixing a behavior that is already implemented in a shared component.",
+        "expected": "Inspect the real entry and affected callers, reuse when compatible, and test the completed path.",
+        "observed": "Body walk-through selects the working component and its callers before proposing new code. It keeps accessibility, data and failure behavior in the acceptance boundary.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Give a short answer to an ordinary one-line wording question.",
+        "expected": "Use direct work with no snapshot or measurement procedure.",
+        "observed": "The description is scoped to context costs, repeated large reads and explicit reuse checks. The body keeps small requests direct.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Estimate the subscription savings from a shorter tool response.",
+        "expected": "Keep payload size, actual tokens and official subscription meter separate.",
+        "observed": "Measurement walk-through reports the bytes that were measured. It leaves actual token and subscription changes unmeasured without a completed comparable run.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/DietrichGebert/ponytail/blob/96608e078b2d5ea607c5c3b8b5a54d1c1fba6846/skills/ponytail/SKILL.md",
+      "checked_at": "2026-11-07",
+      "learned": "Check reuse and all affected callers before writing the smallest complete change.",
+      "decision": "adapt",
+      "reason": "The bounded Ponytail reuse check retains acceptance and failure behavior without making all coding a session mode."
+    },
+    {
+      "url": "https://github.com/vagkaratzas/token-saviour/blob/8fe77b754c0a5e67eaf5ba5f374db95238d65b22/skills/token-saviour/SKILL.md",
+      "checked_at": "2026-11-07",
+      "learned": "Separate source reading, tool output and generated response or implementation costs.",
+      "decision": "adapt",
+      "reason": "The entrypoint chooses one observed bottleneck and reuses already available tools without a fixed tool stack."
+    },
+    {
+      "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md",
+      "checked_at": "2026-11-07",
+      "learned": "Store bulky observations with recoverable source references and measure the effect of optimization.",
+      "decision": "adapt",
+      "reason": "The local comparator emits scoped changes and makes partial coverage explicit. The measurement guide includes the cost of coordination and retries."
+    },
+    {
+      "url": "https://github.com/mksglu/context-mode/blob/0491ccb9c798a95f3f8ee3124c9dcd57b72b8114/README.md",
+      "checked_at": "2026-11-07",
+      "learned": "Process complete local inputs before returning relevant evidence.",
+      "decision": "adapt",
+      "reason": "The shipped helper compares explicit manifests from the existing task rather than adding hooks, databases or a runtime service."
+    },
+    {
+      "url": "https://github.com/rtk-ai/rtk/blob/develop/README.md",
+      "checked_at": "2026-11-07",
+      "learned": "Filtered output is a separate measure and a suspicious result needs access to original output.",
+      "decision": "adapt",
+      "reason": "The workflow keeps original failures retrievable and measures real bytes without inferring provider token or subscription savings."
+    },
+    {
+      "url": "https://github.com/JuliusBrussee/caveman/blob/c310c9d300df13a1dd9f5c086120ffd857a164a1/skills/caveman/SKILL.md",
+      "checked_at": "2026-11-07",
+      "learned": "Concise output still needs exact facts and unambiguous language.",
+      "decision": "adapt",
+      "reason": "The skill reduces repeated inputs and unnecessary code first and leaves reporting in normal language."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -B -m unittest discover -s context-budget/tests -v",
+      "result": "pass",
+      "observed": "6 CLI tests passed from isolated fixture directories, including complete paging, conflict handling, scope checks and file preservation."
+    },
+    {
+      "command": "python3 -B runtime/replay_saved_source_delta.py (private task replay)",
+      "result": "pass",
+      "observed": "Both 200-record projections were checked against an independent ID-and-field comparison. All delta rows recovered across four pages. 72,574 input bytes vs 14,852 output bytes. Metadata selection and byte measurements only."
+    },
+    {
+      "command": "python3 quick_validate.py context-budget (bundled skill-creator validator)",
+      "result": "pass",
+      "observed": "Valid skill entrypoint after final metadata edit."
+    }
+  ],
+  "unresolved_blockers": []
+}

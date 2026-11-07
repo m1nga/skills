@@ -1,0 +1,4 @@
+interface:
+  display_name: "Context Budget"
+  short_description: "Reduce repeated reading and agent token use"
+  default_prompt: "Use $context-budget to review this costly workflow, reuse existing work and verify the same complete result."
