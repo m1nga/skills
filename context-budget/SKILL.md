@@ -1,11 +1,17 @@
 ---
 name: context-budget
-description: "Reduce token use in agent workflows by selecting source changes, bounding tool output and reusing working implementations. Use for token costs, context bloat, repeated large reads, delta-first review, 省 token / 上下文消耗, or an explicit request to apply the Ponytail reuse check."
+description: "Reduce repeated reading and implementation work while preserving the requested result. Use for incremental research or RedBot saved-library updates, large tool output, repeated source/history reads, token costs, 省 token / 上下文消耗, and Ponytail reuse checks before implementation."
 ---
 
 # Context Budget
 
 Reach the requested result with less irrelevant context and less repeat work. Preserve the evidence, scope, permissions and checks that make the result usable.
+
+## Enter through the existing workflow
+
+When the host has enabled this skill for relevant work, apply it at the natural task entry without waiting for the user to repeat its name. Installation and implicit invocation make the skill available; they do not prove a running agent loaded it. Keep routing in the host's existing instruction entry point, not a new timer, agent or background service. An explicit invocation always applies. Keep small answers and trivial edits direct.
+
+For repeated research, including RedBot collection updates, use the [incremental workflow](references/workflow.md). Before implementation, perform the Ponytail reuse check below. Do not start a benchmark on every run: reuse a validated route and measure again when the source shape, implementation or acceptance requirements materially change.
 
 ## Choose the expensive step
 
@@ -22,10 +28,14 @@ When there is no suitable built-in comparison for two local record snapshots, us
 
 Before writing or rebuilding, find the existing implementation and read the actual entry point, affected callers and the required output. Reuse a compatible working component, source project or platform feature when it saves adaptation and maintenance. Check the source version, license and fit when adapting external material. Prove one representative slice with real inputs before expanding. If reuse makes the full job harder, change the smallest part that reaches the outcome.
 
+Keep a short observable record in the existing task: the component considered, the reuse/adapt/reject decision and the real entry-point check. Calling an approach "Ponytail" or reading its instructions is not execution evidence. Preserve surrounding error handling when moving or combining code.
+
 When requested, show the observed reuse decision and the check that passed through the real entry point. Preserve required behavior, accessibility, failure recovery, data and security checks. Apply the check to the current task.
 
 ## Measure when it matters
 
 For a usage claim, a costly workflow or a comparison, read [measurement](references/measurement.md). Compare equivalent completed tasks. Report measured payload size, actual tokens, wall time and official subscription usage as separate quantities. Keep cache reuse and extra setup, verification and retries in view. Keep provider and account settings under their existing authority.
+
+Adopt an optimization only after the same acceptance checks pass. Missing source evidence, a changed conclusion caused by omitted material, extra recovery work or slower completion must be reported and resolved; restore the needed context or narrow the change. One paired run supports that case, not a universal percentage or a guarantee of unchanged quality.
 
 A short excerpt is sufficient only when it supports the decision. Use the original for exact quotations, new or contested evidence, approvals and release verification. Deliver the requested result and the relevant evidence once the necessary checks pass.

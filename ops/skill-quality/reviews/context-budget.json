@@ -2,42 +2,42 @@
   "schema_version": 1,
   "skill": "context-budget",
   "reviewed_at": "2026-11-07",
-  "source_sha256": "4e12ee7a4a057b0eea25323df2b3ba7ef4a8c817822986f4cfefa5390c8b869f",
+  "source_sha256": "4543c60d9a679aea3e912813994f01946b0e16288467fcb7b16345b303407f65",
   "user_review": {
-    "method": "Maintainer walk-through of the public metadata and four scoped requests, plus executed CLI tests and a replay of two private saved-source manifests. Evidence below distinguishes executed checks from simulated routing. No independent user test was run.",
+    "method": "Maintainer review of actual paired research outputs and source anchors, executed comparator tests, and a fresh-agent natural-entry test on a synthetic local fixture. Private inputs and raw usage receipts remain outside the public package. The paired baseline reconstructs ordinary full-index review rather than claiming to reproduce a historical agent trace.",
     "scenarios": [
       {
-        "request": "Review what changed between two 200-record research snapshots without loading them both into the model.",
-        "expected": "Compare all records, keep the full set of changed source references, and distinguish absence from deletion.",
-        "observed": "Executed comparison recovered all 68 records across four pages: 33 additions, two metadata updates and 33 not seen. 165 matched rows were left out of the delta; both input manifests were unchanged.",
+        "request": "Review a historical saved-library increment through full-index and delta-first paths with the same research output.",
+        "expected": "Cover all changed candidates, retain common body/comment evidence and uncertainty, produce supported findings and a concrete trial, and measure provider usage.",
+        "observed": "Both completed outputs classified exactly the same 35 candidates and selected the same five core sources from eight shared evidence packets. Both rejected an unsupported 95% claim, kept partial scan and comment limitations, and proposed a bounded same-quality trial. Two peripheral title-only categories differed; core recommendations did not. Materials: 71,483 vs 40,948 bytes. Actual input: 50,532 vs 39,527; output: 1,720 vs 1,561; cached input: zero for both. One pair only; shared selection, audit and release overhead is outside this model-stage comparison.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Compare a partial scan with conflicting copies of one record.",
-        "expected": "Stop with a diagnostic rather than selecting one revision silently.",
-        "observed": "The CLI exited 2, returned a conflicting duplicate message and emitted no success JSON. Fixture files remained unchanged.",
+        "request": "Do a small saved-library increment without naming the skill, through an existing host entry rule.",
+        "expected": "Select the installed workflow and comparator, distinguish partial absence from deletion and unread bodies from reviewed evidence, and preserve fixture inputs.",
+        "observed": "A fresh agent selected Context Budget from the local rule, ran the installed source_delta.py once, recovered 1 addition, 1 not-seen item and 2 unchanged items, and read the relevant originals. It retained the unchanged title-only item as unread. Independent checksum recheck preserved all seven fixture input files. Synthetic fixture; not proof of every future session.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Use the Ponytail reuse check before fixing a behavior that is already implemented in a shared component.",
-        "expected": "Inspect the real entry and affected callers, reuse when compatible, and test the completed path.",
-        "observed": "Body walk-through selects the working component and its callers before proposing new code. It keeps accessibility, data and failure behavior in the acceptance boundary.",
-        "kind": "simulated",
+        "request": "Compare a partial scan with conflicting duplicate versions and recover complete pagination.",
+        "expected": "Reject conflicts and scope mismatches; preserve every relevant delta and input file.",
+        "observed": "Six current CLI tests passed, including duplicate conflict, scope mismatch, changed version/reference, full paging and read-only behavior.",
+        "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Give a short answer to an ordinary one-line wording question.",
-        "expected": "Use direct work with no snapshot or measurement procedure.",
-        "observed": "The description is scoped to context costs, repeated large reads and explicit reuse checks. The body keeps small requests direct.",
-        "kind": "simulated",
+        "request": "Use an existing reader and source comparator rather than recreate the research pipeline.",
+        "expected": "Check real installed interfaces and verify a representative slice.",
+        "observed": "The paired input preparation invoked all four pages of the installed comparator and selected eight source packets through the existing RedBot reader. Independent sets matched the entire 200-versus-200 snapshot scope; no parser, source fetcher or model provider was replaced.",
+        "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Estimate the subscription savings from a shorter tool response.",
-        "expected": "Keep payload size, actual tokens and official subscription meter separate.",
-        "observed": "Measurement walk-through reports the bytes that were measured. It leaves actual token and subscription changes unmeasured without a completed comparable run.",
+        "request": "Answer a trivial wording question or infer subscription savings from a shorter payload.",
+        "expected": "Keep tiny work direct and keep bytes, model tokens, time and official quota separate.",
+        "observed": "Instruction walkthrough retains the direct route, disallows conversion of bytes into actual tokens or account quota, and requires wider task overhead and active-turn cutoffs to be disclosed.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -45,63 +45,40 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/DietrichGebert/ponytail/blob/96608e078b2d5ea607c5c3b8b5a54d1c1fba6846/skills/ponytail/SKILL.md",
+      "url": "https://github.com/DietrichGebert/ponytail/blob/main/skills/ponytail/SKILL.md",
       "checked_at": "2026-11-07",
-      "learned": "Check reuse and all affected callers before writing the smallest complete change.",
+      "learned": "Reuse existing components and platforms first, inspect affected callers and preserve error handling. Current body was fetched and inspected, SHA256 9badd22a32e19cb884e46dfa8d3aae82bb81dfa5484105b8b4f0262df823a509.",
       "decision": "adapt",
-      "reason": "The bounded Ponytail reuse check retains acceptance and failure behavior without making all coding a session mode."
-    },
-    {
-      "url": "https://github.com/vagkaratzas/token-saviour/blob/8fe77b754c0a5e67eaf5ba5f374db95238d65b22/skills/token-saviour/SKILL.md",
-      "checked_at": "2026-11-07",
-      "learned": "Separate source reading, tool output and generated response or implementation costs.",
-      "decision": "adapt",
-      "reason": "The entrypoint chooses one observed bottleneck and reuses already available tools without a fixed tool stack."
+      "reason": "Added an observable reuse decision and real entry-point check to the existing task. Excluded whole-session persona, ultra pushback and mandatory endings."
     },
     {
       "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md",
       "checked_at": "2026-11-07",
-      "learned": "Store bulky observations with recoverable source references and measure the effect of optimization.",
+      "learned": "Keep compacted observations retrievable and measure actual outcomes. Current body was fetched and inspected, SHA256 96fbd47c16d163857b92d477ba5c7ec3ae947127772e327b8236d05d64d5b123.",
       "decision": "adapt",
-      "reason": "The local comparator emits scoped changes and makes partial coverage explicit. The measurement guide includes the cost of coordination and retries."
-    },
-    {
-      "url": "https://github.com/mksglu/context-mode/blob/0491ccb9c798a95f3f8ee3124c9dcd57b72b8114/README.md",
-      "checked_at": "2026-11-07",
-      "learned": "Process complete local inputs before returning relevant evidence.",
-      "decision": "adapt",
-      "reason": "The shipped helper compares explicit manifests from the existing task rather than adding hooks, databases or a runtime service."
-    },
-    {
-      "url": "https://github.com/rtk-ai/rtk/blob/develop/README.md",
-      "checked_at": "2026-11-07",
-      "learned": "Filtered output is a separate measure and a suspicious result needs access to original output.",
-      "decision": "adapt",
-      "reason": "The workflow keeps original failures retrievable and measures real bytes without inferring provider token or subscription savings."
-    },
-    {
-      "url": "https://github.com/JuliusBrussee/caveman/blob/c310c9d300df13a1dd9f5c086120ffd857a164a1/skills/caveman/SKILL.md",
-      "checked_at": "2026-11-07",
-      "learned": "Concise output still needs exact facts and unambiguous language.",
-      "decision": "adapt",
-      "reason": "The skill reduces repeated inputs and unnecessary code first and leaves reporting in normal language."
+      "reason": "Added same-input acceptance, shared setup separation and material-change remeasurement. Rejected fixed reduction targets, tolerated quality loss and automatic agent-partition thresholds."
     }
   ],
   "validation": [
     {
       "command": "python3 -B -m unittest discover -s context-budget/tests -v",
       "result": "pass",
-      "observed": "6 CLI tests passed from isolated fixture directories, including complete paging, conflict handling, scope checks and file preservation."
+      "observed": "6 tests passed in 0.160 seconds; code unchanged in this workflow-only update."
     },
     {
-      "command": "python3 -B runtime/replay_saved_source_delta.py (private task replay)",
+      "command": "python3 quick_validate.py context-budget",
       "result": "pass",
-      "observed": "Both 200-record projections were checked against an independent ID-and-field comparison. All delta rows recovered across four pages. 72,574 input bytes vs 14,852 output bytes. Metadata selection and byte measurements only."
+      "observed": "Installed skill-creator validator reported Skill is valid."
     },
     {
-      "command": "python3 quick_validate.py context-budget (bundled skill-creator validator)",
+      "command": "Private paired-benchmark/freeze.py, run.py and verify.py",
       "result": "pass",
-      "observed": "Valid skill entrypoint after final metadata edit."
+      "observed": "Real ephemeral subscription-account model runs completed; all candidate sets, counts and source URLs checked. Model-stage total tokens 52,252 vs 41,088, elapsed 47.761 vs 48.096 seconds, no tools or retries. Sol 6.1/medium returned by configuration; explicit Default turn request accepted, service did not separately return execution tier."
+    },
+    {
+      "command": "Fresh-agent synthetic entry test and independent SHA256 input recheck",
+      "result": "pass",
+      "observed": "Natural entry selected installed skill, real comparator produced exact fixture delta, and seven inputs remained byte-identical."
     }
   ],
   "unresolved_blockers": []

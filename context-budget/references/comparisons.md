@@ -11,3 +11,12 @@ These are author sources inspected on 2026-11-07. They explain choices in this s
 - [UI Morph](https://github.com/cutcodstudio/cutcod-ui-morph) and [Guizang product video workflow](https://github.com/op7418/guizang-product-video-skill/blob/main/SKILL.md) illustrate adapting a working source project and verifying actual inputs, a representative slice and final delivery. Check compatibility and licenses before reusing external code or assets.
 
 Author benchmark numbers describe their respective setups. The skill's own validation reports its measured scope and units.
+
+## Workflow follow-up, 2026-11-07
+
+Current author sources were searched again and their actual skill bodies fetched for the incremental-research integration:
+
+- **Adapt Ponytail:** retain the existing-component → platform → installed-dependency preference, affected-callers check and preservation of error handling. Add an observable reuse decision and a real entry-point result to the existing task record. Reject whole-session personality, ultra-mode pushback and compulsory response endings; they do not improve this research deliverable.
+- **Adapt Context Optimization:** retain source recovery and outcome measurement. Add same-input/same-deliverable acceptance, one-time setup separation and remeasurement after material changes. Reject its fixed context percentages, promised reduction ranges, tolerated quality loss and automatic partitioning thresholds. This workflow requires the user's original acceptance checks and does not need a new runtime or agent to reduce a saved-library payload.
+
+The update adds a specific RedBot/repeated-research route and explicit implicit-invocation metadata. It does not install Ponytail's hooks, change the model or claim that an instruction file enforces every running session.
