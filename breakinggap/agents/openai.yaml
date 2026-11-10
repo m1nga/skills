@@ -1,7 +1,5 @@
 interface:
-  display_name: "BreakingGap Small Steps"
-  short_description: "Use waiting time for one useful step and a clear return"
-  icon_small: "./assets/logo.png"
-  icon_large: "./assets/logo.png"
-  brand_color: "#F2633B"
-  default_prompt: "Use $breakinggap to find one useful step while my agent works, with a clear stopping point and return cue."
+  display_name: "BreakingGap Thinking Breaks"
+  short_description: "A fresh thinking break while your AI agent works"
+  brand_color: "#AFCB63"
+  default_prompt: "Use $breakinggap. Start a thinking break."

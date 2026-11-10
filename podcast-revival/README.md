@@ -2,7 +2,7 @@
 
 ## What it does
 
-Give your agent a video, notes, a script, or mixed source material. Tell it how long the conversation should be, how it should sound, and which questions or viewpoints matter. Podcast Revival helps the agent prepare a source-grounded script and make its voiced video with a local, recoverable media runtime.
+Give your agent a video, notes, a script, or mixed source material. Tell it how long the conversation should be, how it should sound, and which questions or viewpoints matter. Podcast Revival helps the agent prepare a source-grounded script and make its voiced video with a local, recoverable media runtime. Reuse a permitted existing recording when arranging another recording session is the main obstacle. The new source-video route preserves the recorded scene and motion while generating revised lip movements, with an explicit AI disclosure.
 
 ## Who it's for
 
@@ -18,13 +18,23 @@ Then ask naturally:
 
 > Use $podcast-revival to turn these notes into a three-minute discussion. Keep a curious, skeptical tone, compare both explanations, and end with what the evidence cannot tell us.
 
-The skill works with a capable local agent, Python 3.10+ on macOS/Linux, internet access for setup/provider calls, and your own fal account/key. Installing the skill does not include hosted generation credits. The agent handles setup; you do not need to write JSON or operate a command line after installation.
+The skill needs a capable local agent, Python 3.10+, FFmpeg with H.264/AAC and drawtext font support, internet access for setup/provider calls, and your own fal account/key. The release was exercised on macOS; Linux is intended but not release-tested. Installing the skill does not include hosted generation credits. The agent handles setup; you do not need to write JSON or operate a command line after installation.
 
 ## What you receive
 
 A finished run produces the actual video, its matching audio track, the script and source references, and an honest status/cost report. Existing-video work keeps source timestamps and speaker attribution. New text or mixed-material work starts from the requested editorial direction and an explicit speaker/voice plan.
 
 The host agent performs material analysis, research, writing and review. The bundled runtime handles supported media steps, current prices, budget reservations and recovery. It does not independently turn arbitrary material into a complete episode without an agent, and it does not impersonate a person's endorsement.
+
+## Continue a recording at lower cost
+
+> Use $podcast-revival to continue this permitted interview for twenty minutes. Keep the speakers’ existing voices, investigate the unanswered question, and cap this run at $10. Reuse the source motion and label the video as AI-generated.
+
+The agent prepares distinct single-speaker shots, a reviewed speaker-mapped script and existing permitted voice IDs, then selects `output_mode: "lipsync"`. The bundled route freezes speech, adds a short protection tail, sends the exact driver to LatentSync, checks complete audio coverage, trims only a verified quiet tail and assembles a labeled MP4. It keeps a ledger and resumes original jobs without duplicating unknown submissions. See the [input and recovery contract](https://github.com/m1nga/podcast-revival/blob/main/skills/podcast-revival/references/lipsync.md).
+
+At the [LatentSync quote](https://fal.ai/models/fal-ai/latentsync) checked on 2026-10-24, twenty 60-second turns reserve $6.20 for video; sixty reserve $18.60. Speech synthesis, initial voice enrollment, any billed failures, host-agent work and hosting are extra. These are planning examples, not all-in prices or measured episode costs. Many short turns raise costs because every video request has a 40-second minimum. The runtime checks current account prices and enforces the authorized run cap.
+
+The tradeoff is visible: recorded gestures and camera movement repeat. This is not a newly acted full-body performance. Every source shot must contain exactly one visible face for its entire duration; a single speaking voice over a two-face shot is insufficient. The CLI requires a review declaration but does not automatically count faces. Human or model inspection of actual mouth movement, likeness and seams is still necessary.
 
 ## Limits and spending
 
@@ -38,9 +48,9 @@ Source preservation, editorial direction and media generation have different res
 
 ## Validation
 
-Release 0.2.0 bundles a 68,807-byte runtime wheel with SHA-256 `9eee8ffc328497dbe3d3faedd7f5072b7fef3509d70c91f73b4dd18b4847bbe7`. It was installed with its dependencies into a clean temporary environment outside both source repositories. The installed CLI preserved a 90-second skeptical brief, refused an existing destination, passed an offline stock-voice production check, and rejected a changed script signature. Those release checks made no generation calls.
+Release 0.3.0 binds its runtime wheel by version and SHA-256 in `assets/runtime.json`. The core passed 116 local tests, including seven new source-video tests using a fake provider and real FFmpeg. They exercise complete audio coverage and shortened protection tails, minimum billing, retained unknown submissions, upload reuse, changed-driver rejection, single-speaker declarations and multiple-speaker source isolation.
 
-Four isolated bootstrap mechanism tests cover installation/reuse, a missing wheel, a modified wheel and preservation of an unowned directory. The frozen core is accompanied by 109 passing tests. These are setup, safety and pipeline checks; they do not establish universal voice resemblance, visible lip-sync quality or human preference.
+The exact wheel was installed with dependencies into a fresh directory outside the source repositories. Installed CLI brief/default-production/stale-review checks and all seven new local media tests passed there. Four separate bootstrap tests cover installation/reuse, missing or modified wheels, and preservation of an unowned directory. These release checks made no paid generation calls. They verify pipeline behavior and recovery, not full-episode perceptual quality, human preference or a universal model winner.
 
 ## Author
 

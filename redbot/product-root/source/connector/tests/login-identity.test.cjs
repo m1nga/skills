@@ -1,0 +1,28 @@
+// Regression: visible login/sidebar DOM can precede account-state hydration.
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const path = require('node:path');
+const source = fs.readFileSync(process.argv[2] || path.join(__dirname, '../.build/xhs-source/xiaohongshu/login.go'), 'utf8');
+const predicate = source.match(/const redbotCurrentUserState = `([\s\S]*?)`/)[1];
+const context = {document:{querySelector:() => ({})}}; context.window = context;
+const ready = vm.runInNewContext('(' + predicate + ')', context);
+assert.equal(ready(), '', 'visible sidebar/QR without state must not count as authenticated');
+context.__INITIAL_STATE__ = {user:{userInfo:{value:{guest:true}}}};
+assert.equal(ready(), '', 'initial guest state must not restore an account');
+context.__INITIAL_STATE__.user.userInfo.value = {guest:false,nickname:'Fixture'};
+assert.equal(ready(), '', 'no user ID means hydration is not complete');
+context.__INITIAL_STATE__.user.userInfo.value.userId = 'fixture-account';
+assert.equal(JSON.parse(ready()).userId, 'fixture-account');
+context.__INITIAL_STATE__.user.userInfo = {_value:{guest:false,user_id:'wrapped-account'}};
+assert.equal(JSON.parse(ready()).userId, 'wrapped-account');
+context.__INITIAL_STATE__.user.userInfo = {guest:true,userId:'stale-account'};
+assert.equal(ready(), '', 'guest must not restore a stale ID');
+console.log('Login identity readiness regression fixtures passed.');
+const fetchQR = source.slice(source.indexOf('func (a *LoginAction) FetchQrcodeImage'), source.indexOf('func (a *LoginAction) WaitForLogin'));
+assert.match(fetchQR, /Timeout\(90 \* time.Second\)/);
+assert.doesNotMatch(fetchQR, /pp.Has\(".main-container .user/);
+assert.match(fetchQR, /pp.Eval\(redbotCurrentUserState\)/);
+assert.match(fetchQR, /button\.login-btn/);
+assert.match(fetchQR, /redbotLoginRequested/);
+console.log('QR bounded readiness and authenticated identity guard checks passed.');

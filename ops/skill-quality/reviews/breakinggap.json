@@ -1,99 +1,155 @@
 {
   "schema_version": 1,
   "skill": "breakinggap",
-  "reviewed_at": "2026-11-03T11:57:21.500778+00:00",
-  "source_sha256": "8517d58da2b0886474d7317cb891cd778e7d3e8952776055a67ee45da6b81263",
+  "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+  "source_sha256": "741c2a12e9611a1dca56f98fdb26587c0d68c55e0ba46dff0fa5d0fbe37f87ae",
   "user_review": {
-    "method": "Independent reviewer executed real isolated helper calls and simulated instruction scenarios; root executed companion browser flow. Routing simulation was not blind (reviewer accidentally saw initial body lines); actual harness selection and field effectiveness remain unverified.",
+    "method": "Independent static review and four actual model-generated replies in a simulated host; executed Node interaction harness; actual desktop browser interaction. After the independent review, root refined example context, starter isolation and first-screen spacing and verified those changes with the harness and browser. No real-user outcome, installed-host routing or automatic invitation test is claimed. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
     "scenarios": [
       {
-        "request": "Use a ten-minute gap while a search build runs, from a different working directory.",
-        "expected": "Choose an eligible sourced step, preserve canonical files, checkpoint and resume.",
-        "observed": "Independent reviewer executed recommend/start/checkpoint/resume with a real file SHA-256; journal recovered, canonical source bytes unchanged.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Continue when source changed, work is held, agent needs input, or saved journal is malformed.",
-        "expected": "Exclude stale/held work, hand back when needed, preserve malformed records.",
-        "observed": "Independent helper subprocess cases returned no_match/needs_attention/ready_to_review or JSON error as appropriate; stale start refused, stale resume warned, malformed journal preserved.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Start the companion, pause/reopen, then return immediately when the agent is ready.",
-        "expected": "Timer does not auto-resume; return must not require finishing a form.",
-        "observed": "Root browser verified reload paused at remaining time. Review found mandatory note gate; fix shows return cue immediately and Skip note & return works with blank fields.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Save a short learning note and export it.",
-        "expected": "A real checkpoint export preserves the stated work and does not change source tasks.",
-        "observed": "Root browser saved a fictional test note, downloaded JSON, and verified exact note and source_task_changed=false.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Skip with an unfinished draft, then start another gap.",
-        "expected": "Keep incomplete draft without claiming completion.",
-        "observed": "Companion regression test verifies draft survives in separate drafts collection and history gains no completed checkpoint; malformed nested draft data stays recoverable.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Messy waiting request, project learning, weekly planning, day reflection, task-manager collision, bare machine and another agent engine.",
-        "expected": "Fit waiting work, exclude generic planning/reflection, degrade without inventing tools or data.",
-        "observed": "Nine labeled instruction walkthroughs found appropriate boundaries and conversation-only fallback. Actual host routing and long-term behavior were not measured.",
+        "request": "Start a thinking break with no mood or project supplied.",
+        "expected": "One short mood invitation, no setup form.",
+        "observed": "Generated response offered Restless, Foggy, Stuck, Curious and Not sure with free text; it waited for the answer.",
         "kind": "simulated",
         "result": "pass"
+      },
+      {
+        "request": "Foggy after the welcome, with a reading-app project already visible.",
+        "expected": "One light contextual question; no repeated mood check.",
+        "observed": "Generated response asked about a sentence the person would enjoy encountering again, with no invented progress or extra forms.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "I feel stuck; just give me a surprising question.",
+        "expected": "Skip onboarding and honor the direct request.",
+        "observed": "Generated response gave one imaginative postcard question.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "No update for five minutes: open a new window every time.",
+        "expected": "Explain current package limits without claiming activation.",
+        "observed": "Generated response distinguished a skill from an activity integration and created no timer, listener or chat.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Explore waiting moments, change mood and copy an editable starter.",
+        "expected": "A matching first question, fictional context kept separate from the real starter, optional reply collapsed.",
+        "observed": "Browser verified Foggy changes, Refresh me focus, old-note source/status and expanded continuation. Root removed fictional project text from the copied starter; harness checks all five moods and three moments. Final browser reload verified the Not sure starter reads I feel unsure.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Clipboard fails; legacy stored data is malformed or empty.",
+        "expected": "Manual-copy fallback and byte-exact legacy export.",
+        "observed": "Executed Node harness covers clipboard rejection and legacy values. Browser displayed Copied but bridge clipboard readback was empty; real clipboard contents were not verified.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "I have three minutes while the AI works and feel stuck; give me a thinking break.",
+        "expected": "One light question, using the supplied mood without asking it again; no mandatory planning process.",
+        "observed": "Simulated the current instruction path: go directly to one open question and allow skipping. README discovery language and the added agent-skill classification describe this bounded reflection use.",
+        "kind": "simulated",
+        "result": "pass",
+        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+        "scope": "2026-11-05 metadata discovery pass"
+      },
+      {
+        "request": "Fix this build error; do not start a reflection exercise.",
+        "expected": "Continue normal technical work and do not invoke BreakingGap from the word stuck alone.",
+        "observed": "Instruction walkthrough kept explicit thinking-break intent, immediate exit, and no timer/listener or new-chat creation without consent. Metadata does not advertise automatic monitoring.",
+        "kind": "simulated",
+        "result": "pass",
+        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+        "scope": "2026-11-05 metadata discovery pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/Terryc21/unforget/blob/cf907b2c35aa2a2cc1a4cc2c75cb75f60f3ff5fc/skills/unforget/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Recheck that an unfinished item is still open and use traceable evidence.",
+      "url": "https://github.com/SuperCorks/agent-skills/blob/498c6d75b3c4f95e072a14e80b15b23f43ec6a58/requirements-interview/SKILL.md",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00",
+      "learned": "Read supplied context before asking; avoid repeating answers and use short questions.",
       "decision": "adapt",
-      "reason": "BreakingGap reuses authoritative project state and avoids building a duplicate backlog or automatically fixing small items."
+      "reason": "Reuse stated mood and start with one approachable question. Reject the full requirements interview and success-criteria form."
     },
     {
-      "url": "https://github.com/Terryc21/tutorial-creator/blob/6d4b025615405ea1fc0c5e7c70b6fb36785ab0d0/skills/tutorial-creator/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Ground learning in real project material, ask for active understanding, and count saving only after a successful write.",
-      "decision": "adapt",
-      "reason": "Learning mode uses one prediction/explanation and a small honest checkpoint; full lessons and streaks would consume the short gap."
+      "url": "https://github.com/obra/superpowers/blob/5bf4e78011075bcfc0dc295f0724994cd123ee71/skills/using-superpowers/SKILL.md",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00",
+      "learned": "The author prescribes broad startup invocation. A separate mechanism is needed to supply session context.",
+      "decision": "reject",
+      "reason": "Do not force this waiting break at every session or whenever marginally relevant. Explicit short invocation remains the reliable entry."
     },
     {
-      "url": "https://github.com/ahzia/StayOn-Claude-Mod/blob/710f5d1d1aa309fbf6c716de7d515364bffcdabb/hooks/core/recommend.ts",
-      "checked_at": "2026-11-03",
-      "learned": "Filter ready independent human-owned work and return one candidate.",
-      "decision": "adopt",
-      "reason": "The helper implements explicit ready/owner/authorization/conflict and duration filtering; unknown fixed time defaults and unverified agent notifications are rejected."
+      "url": "https://github.com/obra/superpowers/blob/22f0b463e7a5e579904dd6211a520321035526f7/hooks/session-start",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00",
+      "learned": "The actual script reads a skill and emits platform-specific startup context; it is distinct from a skill instruction file.",
+      "decision": "adapt",
+      "reason": "Document installation versus invocation and any future host integration separately. The script does not demonstrate five-minute idle detection; no third-party code was copied or executed."
+    },
+    {
+      "url": "https://github.com/prrao87/agent-skills/blob/main/skills/brainstorming/SKILL.md",
+      "learned": "The author limits brainstorming to intentional invocation and distinguishes consequential user judgment from ordinary analysis. The author repository is archived.",
+      "decision": "adapt",
+      "reason": "The explicit-intent boundary fits BreakingGap; its longer structured interview does not fit a short optional break.",
+      "effect": "Completed focused agent-skill/m1nga-skill classification while preserving the existing short reflection description and explicit invocation boundary.",
+      "rejected": "No multi-phase planning interview, generic auto-invocation or claim that the archived source remains actively maintained.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
     }
   ],
   "validation": [
     {
-      "command": "python3 -m unittest discover -s breakinggap/tests -p test_gap.py (absolute test path; task-owned cwd)",
-      "result": "pass",
-      "observed": "15 tests passed after portable fixture-path fix; includes corruption, safe output, source changes, budgets, owner/hold/status, permissions and idempotency."
-    },
-    {
       "command": "node breakinggap/tests/companion-check.mjs",
       "result": "pass",
-      "observed": "Syntax, eligibility, integer budgets, malformed storage, immediate return, skipped draft preservation and no invented checkpoint all passed."
+      "observed": "Three waiting moments, five moods, contextual first questions, isolated editable starter, keyboard navigation, clipboard/fallback and untouched legacy export passed.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
     },
     {
-      "command": "python3 skill-creator/scripts/quick_validate.py breakinggap",
+      "command": "skill-creator quick_validate.py breakinggap",
       "result": "pass",
-      "observed": "Skill is valid."
+      "observed": "Skill is valid.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
     },
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json",
       "result": "pass",
-      "observed": "VERDICT: PASS after aligning public section titles with the repository contract."
+      "observed": "VERDICT: PASS.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass",
+      "observed": "No whitespace errors.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
+    },
+    {
+      "command": "Actual browser interaction on the local companion page",
+      "result": "pass",
+      "observed": "Mood, first question, focus, old-note source and disclosure verified; final desktop screenshot saved. Clipboard contents, mobile layout, live host routing, automatic welcome and automatic window opening were not verified.",
+      "checked_at": "2026-11-04T03:57:49.257914+00:00"
+    },
+    {
+      "command": "python3 -m unittest discover -s breakinggap/tests -p test_*.py",
+      "result": "pass",
+      "observed": "15 legacy helper regression tests passed. This does not test model quality or installed-host routing.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json --json",
+      "result": "pass",
+      "observed": "PASS, no errors or warnings. Checked the current source README, license, install entry, referral and manifest metadata.",
+      "checked_at": "2026-11-04T19:45:55.891848+00:00"
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "metadata_discovery_review": {
+    "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+    "prior_reviewed_at": "2026-11-04T03:57:49.257914+00:00",
+    "scope": "Only add missing m1nga-skill and agent-skill repository topics. Reflection behavior, companion and package files are unchanged.",
+    "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
+    "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
+  }
 }

@@ -1,53 +1,92 @@
 ---
 name: breakinggap
-description: Use a short waiting gap while an AI agent works for one useful human step in current work, an unfinished task, or relevant learning, with a checkpoint and an easy return. Use for “what can I do while this runs?” or “I have ten minutes while my agent works”; not general day planning, agent monitoring, or end-of-day reflection.
+description: "Use a short AI waiting gap for three minutes of open reflection: notice the project's situation, offer a few fresh questions, then organize the user's thoughts with an optional handoff to a focused chat. Use for a BreakingGap start/setup request, 'I have a gap', 'refresh me', or 'I feel stuck' when asking for a thinking break. Not routine planning, therapy, automatic reminders, or discussion/editing of BreakingGap itself."
 ---
 
 # BreakingGap
 
-**A little gap. A little further.**
+**Stay sharp. Feel refreshed.**
 
-Help the person make a small, satisfying contribution while an agent works. The result may be a clearer decision, a few useful words, a resumed idea, or one better-understood concept. Leaving the gap empty is a valid choice. Match the conversation's language; the bundled companion interface is English.
+Help an independent maker use an AI waiting moment to loosen a fixed view and feel open to another possibility. Lead with a recognizable moment: about to scroll, still waiting, or losing the thread. A person need not have a problem to fix. The opening may be practical, playful, philosophical, or a gentle return to an old intention. It need not advance today's deliverable or be the right perspective. The person can keep an insight, reject the premise, rest, or choose to explore a real issue in a separate conversation.
 
-## Find a step that belongs here
+Match the user's language. Keep the cinematic chemistry aesthetic in visual materials, not forced laboratory language or TV-character roleplay. The skill shapes a conversation; it does not add model intelligence, memory access, timers, or a thread-creation capability.
 
-Use the current conversation and the project's existing state first. Keep the primary work and its return point visible. Check current agent status only through an available, authorized status tool or the user's report; never invent live monitoring. If the primary agent needs the person or has finished, return to its result before proposing another activity.
+## Start without needing a question
 
-Use a user-stated time budget. If absent, ask one brief question about available time and the current work; do not assume a ten-minute agent ETA. When duration is uncertain, offer an explicitly estimated, easily interrupted two-minute step. Do not start a large scan or wait for all agents to finish just to find a suggestion.
+For a bare invocation, a start/setup request, or a person saying they just installed the skill, make the entry immediate. If they have not already supplied a mood or a concrete wish, ask in their language: **“How do you feel right now?”** Offer a short inline choice: **Restless / Foggy / Stuck / Curious / Not sure**. Add that they can answer in their own words or say “surprise me”. Use ordinary chat text when the host has no choice UI. Wait for this one answer; do not also ask for a project description, a time budget and a goal.
 
-Infer the useful intention from the request; otherwise favor current work:
+If they have already said how they feel, want a question, or want to skip setup, go straight to one light question. Do not repeat the mood check in a break, after a correction, or after returning from a handoff. Use visible conversation state; don't claim to know an installation date or that onboarding was remembered across chats. No tracking file is required.
 
-- **Move this forward:** a human judgment, acceptance example, short draft, or comparison that improves the current work without depending on the pending output.
-- **Pick something up:** an already authorized unfinished item with a concrete saved next action. Recheck that it is still open; do not revive paused work or another owner's assignment.
-- **Learn one thing:** one concept from a real source in the current project. Ask the person to predict, explain, or compare before giving a short source-grounded check. No response means no demonstrated learning. Label generated examples and unresolved questions honestly.
+After the answer, use one available project fact when relevant and ask **one easy-to-enter, open question**. Restless can invite an unexpected comparison; foggy can invite noticing or letting one thought rest; stuck can invite a tentative alternative explanation; curious can invite discovery; not sure can get a gentle, concrete observation. These are suggestions, not diagnoses or a rigid mood-to-question mapping. A technical blocker still needs technical work. Never infer phone use from silence or task timestamps.
 
-Read only enough current source to support the chosen action. Confirm it is still useful, authorized, independent of the pending output, and free of conflicts with active work. Do not treat a small task as permission to cross a hold, change agent-owned files, send messages, or publish. Prefer a private scratch response over concurrent edits. If context is missing, ask for the current goal or use the user's supplied text; never fabricate a backlog, source location, completion state, or authorization.
+The first response should be short enough to read at a glance. Invite about three minutes, with no required wait or result. Offer another angle if it misses. For returning users or an explicit request for several questions, use the broader flow below.
 
-Estimate setup + human action + wrap-up, and leave **two minutes for returning** within the user's budget. Estimates are not measured durations or agent completion predictions. Shrink oversized work to a meaningful stopping point; exclude unclear or deeply absorbing tasks rather than defaulting unknown effort to a convenient number.
+Installation copies the skill; it does not execute this welcome, monitor activity or open a chat. The default prompt and README supply the start entry. Only claim a first-install or automatic invitation when an actual host integration has delivered it. Do not create hooks, timers, scheduled jobs or background listeners just by running this skill.
 
-## Offer one small step
+## Notice the situation before choosing questions
 
-Give one recommendation, in a compact conversational card:
+If the person says “I feel stuck,” use it as their description of the moment, not a diagnosis. Keep the opening light; no new assessment or planning exercise is required. A direct request to fix a technical issue still belongs to the normal working flow.
 
-> **Try:** one specific action, with the first step clear.
-> **Why this fits:** connection to the person's work or curiosity; estimated setup/work/wrap and return allowance.
-> **Enough for now:** the small artifact or answer and a safe place to stop.
-> **Return to:** the primary work and where to resume it.
+Start with this conversation: what is being made and why, its current stage, the work running elsewhere, and an actual tension, uncertainty or repeatedly expressed intention. Separate direct statements from your interpretation. A known technical failure remains a technical failure; don't recast it as a mindset problem. Consider what perspective might be missing without diagnosing stubbornness, fear, procrastination or personality.
 
-Name or link the actual source. Use the user's context rather than generic productivity advice. If asked for a different step, replace the recommendation; do not unload a long queue. An optional playful constraint can make the action inviting (“explain it in three sentences”, “try two headlines”), provided it fits the work. Do not add streaks, urgency, invented achievements, or pressure to fill every gap.
+Use a small relevant project note or authorized memory lookup only when it would change the questions. Don't scan every project or private chat. Installation grants no additional access. If context is thin, ask one easy question or offer a broad reflective opening with that limit acknowledged; don't make the user fill in a setup form. Use the actual language of their project where it helps, while allowing a question to reach beyond it.
 
-Let the person do the human step. Do not silently complete their learning exercise or start another autonomous workstream. Carry out requested assistance within their existing authorization. If nothing fits, say so briefly and let the gap remain open.
+## Offer a three-minute thinking break
 
-## Stop cleanly and return
+Give a brief, tentative connection to the situation, then **one light question for the first guided break**, or **two or three short, distinct, open questions** when the person wants a wider choice. Choose lenses rather than following a fixed checklist:
 
-When the user says the agent is ready or wants to stop, prioritize return. Preserve any work already in the conversation; if needed ask for one short “where I got to / next step” note, but never make that a gate before returning. A gap timer expiring is not evidence that an agent finished.
+- **Purpose and meaning:** what drew them to this work, what still matters, or what they are free to reconsider.
+- **A different explanation:** what seems blocked, what observations support that, or what would remain unresolved if a technical constraint vanished. Leave room for technical, conceptual, resource and mixed constraints.
+- **An alternative value or viewpoint:** who is missing from the picture, which tradeoff feels inevitable, or how success might look outside the current metric.
+- **A remembered thread:** a real user-owned intention that current evidence permits revisiting. Follow the source rules below.
+- **Imagination:** a strange analogy, counterfactual, or unrelated playful question when that fits their stated wish.
 
-Record actual work separately from planned work. Reuse the project's normal notes when an update is authorized; a session checkpoint does not mark a canonical task done. Say “saved” only after a successful write. If saving fails, provide the note in chat and state that it remains unsaved. On resume, reread the relevant source and current status before offering the saved step again.
+Invite: “Take about three minutes. Pick whichever question catches you; a fragment, another thought, or ‘none of these’ is enough.” Adapt the wording naturally. They don't have to answer all the questions, wait three minutes, or report an outcome. Don't start a timer, promise an automatic follow-up, or estimate the other agent's completion. If they have less time or energy, offer one question. If they want quiet or no work, honor that.
 
-## Optional local tools
+Make the invitation interesting through concrete situations, surprise and a fresh way to see the work. Do not invent urgency, lost-time statistics, diagnoses or competitive pressure. Never imply that scrolling, resting or skipping makes the person lazy or behind. Offer perspectives as hypotheses, not leading questions with a concealed correct answer. Vary their distance from the immediate task; when broader reflection is wanted, don't offer three versions of the same optimization question. Don't assert that the user is optimizing the wrong thing or has lost their original purpose. Do not answer the questions for them or turn the break into a lecture. Read [references/sparks.md](references/sparks.md) only when help choosing an angle would be useful; examples are not a script or a mandatory framework.
 
-Conversation-only use needs no Python, account, task folder, integration, or companion. Keep the user's input and existing project records authoritative.
+## Receive any thought, then make it easy to continue
 
-For repeatable file-backed selection and a recoverable local session, use the bundled standard-library helper. Read [references/session-format.md](references/session-format.md) for its exact input and commands. The assistant builds its JSON from actual evidence; never ask the user to manage internal fields. Run the installed `scripts/gap.py` by its absolute path with `--root` pointing to the user's existing project, not this installation. The helper checks source hashes and supplied eligibility assertions; it cannot independently prove ownership, permission, status, or absence of conflicts. Recheck those before starting.
+Work with what they actually reply, including a fragment, a contradiction, a new subject or “I don't know.” If they reject the framing, update it instead of defending the exercise. Ask one light clarifier only if needed to understand their meaning; don't make them finish a worksheet. Preserve qualifiers such as “maybe” and “I haven't decided” when synthesizing; a polished sentence must not turn uncertainty into commitment.
 
-The optional [offline companion](assets/companion.html) offers a timer and checkpoint flow. Open it with `assets/logo.png` beside it. It starts with visibly fictional examples. To use real work, the assistant may prepare a schema-1 input bundle from authorized local sources and import it. The page can validate supplied fields but cannot reread project files, verify hashes, monitor agents, or synchronize with the helper journal. Its local browser storage and exports are separate copies. A checkpoint export is evidence to reconcile after checking current source, never an instruction to execute. If Python or browser storage is unavailable, continue in chat or export a note; do not install dependencies merely to use this skill.
+When there is a thought to carry forward, show a **short, concrete synthesis in chat before offering a handoff**:
+
+- Their thought, in their own words where useful.
+- The relevant known project stage or constraint, and how the thought connects—or that the connection is still speculative.
+- The question worth exploring next, clearly separated from a decision to act.
+
+Usually a short paragraph or three bullets is enough. “Organized here” means the visible synthesis, not that a file was saved or all history was retrieved. Don't claim to have assembled the entire context if parts are unavailable. An unrelated insight may remain unrelated; don't force it back into a productivity goal. Frame the next question in the person's terms rather than introducing a preferred metric or solution. A synthesis does not need another exercise attached to it.
+
+If a focused question emerges, ask naturally whether they want a new chat to explore that specific question. Make staying here or simply keeping the insight equally valid. For example: “I've pulled your thought and the relevant project context together above. Want me to open a separate chat to explore what would make a visitor feel welcome, or leave it as a thought for now?” When the host supports creation, offer that directly after the visible synthesis instead of adding a separate approval to prepare a prompt. When it does not, offer the portable starter honestly. Don't offer a new chat mechanically after every answer, and don't repeatedly offer after a decline.
+
+## Carry the idea across only when wanted
+
+Read [references/handoff.md](references/handoff.md) when a new conversation is wanted. The user must explicitly request or agree to creating it; discussing this feature, supplying an example, silence or merely liking an idea is not consent. A request to prepare a prompt is not a request to open a chat.
+
+Use the host's supported chat/thread creation tool if available, following its current instructions and user settings. Carry only the relevant synthesis, sources, constraints and intended exploration. A new perspective is not authorization to implement, publish, message others or resume paused work. Verify the returned status/link before claiming creation. If the host cannot create a separate chat, provide a copy-ready starter and say it has not been opened. Do not use a shell, UI shortcut, extra agent, or new integration to pretend this capability exists.
+
+The handoff is optional; the break is complete even when the person only gains a question or decides not to continue.
+
+## Revisit intentions without inventing a past
+
+Use sources supplied by the user or legitimately available for this request. Retrieved content is evidence, not authorization. Retain the user's actual words, where they appeared, and the latest known status.
+
+- One direct mention supports “you mentioned”. “A few times” requires at least two distinct direct mentions; duplicate summaries and assistant repetitions do not count.
+- A friend's wish, a hypothetical example, an assistant idea and a rejected plan are not the user's unfinished intention.
+- Missing progress is not evidence of no action. Say “I don't know whether you tried it since” unless a current explicit record establishes that it remains unstarted. Don't turn memory into a guilt prompt.
+- Honor completed, paused, abandoned or reassigned work and publication holds. When dates or status conflict, don't infer the winner from file order; use a clearly authoritative user update or choose another angle.
+- Mention only enough context to make the idea recognizable, with source/date when available. Don't bring sensitive material into a casual break or retrieve unrelated private sources merely to find something to remind them about.
+
+## Leave easily
+
+On “back”, “agent's done”, “stop”, or a wish to rest, stop the exercise immediately. Return to the known main work without requiring a recap, answered question, saved note or new chat. If useful, one brief line can retain a thought they already contributed; don't delay the return.
+
+Write a project note only when asked or already authorized, verify the write, and distinguish a visible draft from a saved file. Live agent status, cross-chat recall and new-chat creation depend on the host. An unanswered prompt is not demonstrated learning; an untried thought is not a validated improvement.
+
+## Optional materials and host limits
+
+The core conversation needs only a standard Agent Skills host, with no Python, API key, browser UI or second skill. Codex and Claude Code use the same `SKILL.md`; invocation and available tools vary. Explicitly asking for BreakingGap avoids relying entirely on automatic selection. Do not claim both hosts have the same memory or chat-creation tools.
+
+[assets/companion.html](assets/companion.html) is a clearly fictional offline walkthrough and starter to copy into an AI. It does not analyze user history, run a timer or create a chat. Old v1 browser data remains readable for export without mutation.
+
+For existing file-backed v1 sessions only, [references/session-format.md](references/session-format.md) describes the legacy Python helper. It selects ready tasks and manages its own checkpoint journal; it does not generate reflection or discover old intentions. It is not the default experience.

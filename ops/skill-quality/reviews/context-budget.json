@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "skill": "context-budget",
+  "reviewed_at": "2026-11-07",
+  "source_sha256": "4543c60d9a679aea3e912813994f01946b0e16288467fcb7b16345b303407f65",
+  "user_review": {
+    "method": "Maintainer review of actual paired research outputs and source anchors, executed comparator tests, and a fresh-agent natural-entry test on a synthetic local fixture. Private inputs and raw usage receipts remain outside the public package. The paired baseline reconstructs ordinary full-index review rather than claiming to reproduce a historical agent trace.",
+    "scenarios": [
+      {
+        "request": "Review a historical saved-library increment through full-index and delta-first paths with the same research output.",
+        "expected": "Cover all changed candidates, retain common body/comment evidence and uncertainty, produce supported findings and a concrete trial, and measure provider usage.",
+        "observed": "Both completed outputs classified exactly the same 35 candidates and selected the same five core sources from eight shared evidence packets. Both rejected an unsupported 95% claim, kept partial scan and comment limitations, and proposed a bounded same-quality trial. Two peripheral title-only categories differed; core recommendations did not. Materials: 71,483 vs 40,948 bytes. Actual input: 50,532 vs 39,527; output: 1,720 vs 1,561; cached input: zero for both. One pair only; shared selection, audit and release overhead is outside this model-stage comparison.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Do a small saved-library increment without naming the skill, through an existing host entry rule.",
+        "expected": "Select the installed workflow and comparator, distinguish partial absence from deletion and unread bodies from reviewed evidence, and preserve fixture inputs.",
+        "observed": "A fresh agent selected Context Budget from the local rule, ran the installed source_delta.py once, recovered 1 addition, 1 not-seen item and 2 unchanged items, and read the relevant originals. It retained the unchanged title-only item as unread. Independent checksum recheck preserved all seven fixture input files. Synthetic fixture; not proof of every future session.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Compare a partial scan with conflicting duplicate versions and recover complete pagination.",
+        "expected": "Reject conflicts and scope mismatches; preserve every relevant delta and input file.",
+        "observed": "Six current CLI tests passed, including duplicate conflict, scope mismatch, changed version/reference, full paging and read-only behavior.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Use an existing reader and source comparator rather than recreate the research pipeline.",
+        "expected": "Check real installed interfaces and verify a representative slice.",
+        "observed": "The paired input preparation invoked all four pages of the installed comparator and selected eight source packets through the existing RedBot reader. Independent sets matched the entire 200-versus-200 snapshot scope; no parser, source fetcher or model provider was replaced.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Answer a trivial wording question or infer subscription savings from a shorter payload.",
+        "expected": "Keep tiny work direct and keep bytes, model tokens, time and official quota separate.",
+        "observed": "Instruction walkthrough retains the direct route, disallows conversion of bytes into actual tokens or account quota, and requires wider task overhead and active-turn cutoffs to be disclosed.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/DietrichGebert/ponytail/blob/main/skills/ponytail/SKILL.md",
+      "checked_at": "2026-11-07",
+      "learned": "Reuse existing components and platforms first, inspect affected callers and preserve error handling. Current body was fetched and inspected, SHA256 9badd22a32e19cb884e46dfa8d3aae82bb81dfa5484105b8b4f0262df823a509.",
+      "decision": "adapt",
+      "reason": "Added an observable reuse decision and real entry-point check to the existing task. Excluded whole-session persona, ultra pushback and mandatory endings."
+    },
+    {
+      "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md",
+      "checked_at": "2026-11-07",
+      "learned": "Keep compacted observations retrievable and measure actual outcomes. Current body was fetched and inspected, SHA256 96fbd47c16d163857b92d477ba5c7ec3ae947127772e327b8236d05d64d5b123.",
+      "decision": "adapt",
+      "reason": "Added same-input acceptance, shared setup separation and material-change remeasurement. Rejected fixed reduction targets, tolerated quality loss and automatic agent-partition thresholds."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -B -m unittest discover -s context-budget/tests -v",
+      "result": "pass",
+      "observed": "6 tests passed in 0.160 seconds; code unchanged in this workflow-only update."
+    },
+    {
+      "command": "python3 quick_validate.py context-budget",
+      "result": "pass",
+      "observed": "Installed skill-creator validator reported Skill is valid."
+    },
+    {
+      "command": "Private paired-benchmark/freeze.py, run.py and verify.py",
+      "result": "pass",
+      "observed": "Real ephemeral subscription-account model runs completed; all candidate sets, counts and source URLs checked. Model-stage total tokens 52,252 vs 41,088, elapsed 47.761 vs 48.096 seconds, no tools or retries. Sol 6.1/medium returned by configuration; explicit Default turn request accepted, service did not separately return execution tier."
+    },
+    {
+      "command": "Fresh-agent synthetic entry test and independent SHA256 input recheck",
+      "result": "pass",
+      "observed": "Natural entry selected installed skill, real comparator produced exact fixture delta, and seven inputs remained byte-identical."
+    }
+  ],
+  "unresolved_blockers": []
+}

@@ -180,7 +180,8 @@
         "workflow",
         "python",
         "codex",
-        "claude-code"
+        "claude-code",
+        "m1nga-skill"
       ]
     },
     {
@@ -199,7 +200,7 @@
     {
       "name": "podcast-revival",
       "title": "Podcast Video Maker — Turn Source Material into a Directed Conversation",
-      "description": "Turn video, text, and mixed source material into directed podcast scripts and voiced videos with a local agent, recoverable media jobs, and explicit spending limits.",
+      "description": "Turn video, text or notes into a directed podcast conversation, with budgeted voice generation and lower-cost source-video lip sync.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -209,20 +210,6 @@
         "fal-ai",
         "codex",
         "video-production"
-      ]
-    },
-    {
-      "name": "build-in-public-content",
-      "title": "Build Progress Posts — Turn Verified Changes into Clear Public Updates",
-      "description": "Turn verified project changes, decisions, and setbacks into build-in-public posts with brand-aware visuals, honest demo plans, and traceable publication state.",
-      "topics": [
-        "m1nga-skill",
-        "agent-skill",
-        "build-in-public",
-        "content-design",
-        "progress-updates",
-        "technical-writing",
-        "codex"
       ]
     },
     {
@@ -252,6 +239,22 @@
       ]
     },
     {
+      "name": "redbot",
+      "title": "RedBot — Find the Good Thing You Saved",
+      "description": "Find and read your saved Xiaohongshu posts, search a resumable library, and turn useful source material into an editable coding prompt. Invitation beta.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "bookmarks",
+        "semantic-search",
+        "knowledge-management",
+        "mobile-web",
+        "codex",
+        "local-first",
+        "xiaohongshu"
+      ]
+    },
+    {
       "name": "first-principles",
       "title": "First Principles — A Codex Skill for Simpler, Complete Workflows",
       "description": "A first-principles workflow skill for Codex: reuse existing work, remove unnecessary steps, preserve constraints, and verify complete outcomes.",
@@ -266,14 +269,43 @@
     },
     {
       "name": "breakinggap",
-      "title": "BreakingGap — Small Steps While AI Agents Work",
-      "description": "Turn short waits while AI agents work into one useful human step, a small learning moment, and a clear return to your primary task.",
+      "title": "BreakingGap — Three-Minute Reflection While AI Works",
+      "description": "Waiting for your AI agent? Start with how you feel, try one fresh question, and take a three-minute thinking break in Codex or Claude Code.",
       "topics": [
-        "ai-agents",
         "agent-skills",
-        "productivity",
-        "focus",
-        "learning",
+        "brainstorming",
+        "reflection",
+        "codex",
+        "claude-code",
+        "indie-hackers",
+        "m1nga-skill",
+        "agent-skill"
+      ]
+    },
+    {
+      "name": "context-budget",
+      "title": "Context Budget — Cut Repeated Reading in Agent Workflows",
+      "description": "Reduce repeated reading in incremental research. Compare source changes, reuse working implementations, and verify tokens and quality against the same completed task.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "codex",
+        "context-engineering",
+        "token-efficiency",
+        "workflow-optimization"
+      ]
+    },
+    {
+      "name": "build-in-public-content",
+      "title": "Build Progress Posts — Turn Verified Changes into Clear Public Updates",
+      "description": "Turn verified project changes, decisions, and setbacks into build-in-public posts with brand-aware visuals, honest demo plans, and traceable publication state.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "build-in-public",
+        "content-design",
+        "progress-updates",
+        "technical-writing",
         "codex"
       ]
     }

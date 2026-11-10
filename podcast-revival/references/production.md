@@ -1,4 +1,4 @@
-# New audio or avatar production
+# New audio, avatar or source-video production
 
 Use this route after the host has interpreted the brief, inspected the sources, written the exact script and completed an independent editorial review. It supports one language per production and does not require a source video or the restoration experiment's two-language calibration.
 
@@ -8,7 +8,7 @@ Create a private `production.json` with:
 
 - `language`: the actual output language, such as `en` or `zh`.
 - `target_seconds`, `tone`, `viewpoint`: preserve the user's requested direction. The target is planned; actual speech duration must be measured and reported.
-- `output_mode`: `audio` or `avatar`.
+- `output_mode`: `audio`, `avatar` or `lipsync`. For `lipsync`, follow [the source-video contract](lipsync.md) and supply a reviewed single-speaker shot for each speaker.
 - `script.turns`: ordered `{turn_id, speaker_id, text}` records with unique turn IDs.
 - `script.editorial_review`: actual `{decision, reviewer_type, script_hash}` from a separate model or human review. The `approved` decision must bind the exact canonical `revival.content.script_hash(script)`; never fill approval just to pass validation.
 - `speakers`: each `{speaker_id, voice_type: "stock", voice_id: "Wise_Woman"}` uses a documented stock synthesis voice. Choose other stock voices only after verifying their current IDs. A `custom` voice needs its already-created `voice_id` and `permission: {allowed: true, proof_ref: <real local permission file>}`. A reference audio alone does not enroll a custom voice.
