@@ -1,414 +1,468 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-10",
-  "source_sha256": "3d84433d1e47d3e03ec1c1b65c8ccc1e6d04c88b0e275108aaf72d85e521f40a",
+  "reviewed_at": "2026-11-10T04:12:05.462822+00:00",
+  "source_sha256": "9b797db98e112486cfc1b706d7f921f24a424fbe65dbe6301e16a78e7e04a955",
   "user_review": {
-    "method": "2026-11-10 first-visitor walkthrough and actual package CLI runs from outside the repository. Historical evidence follows the new scenarios. Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "I have a note and want to make the first task in my app clearer. I do not have an invitation.",
-        "expected": "Search a sample backup, open one exact source and identify a concrete next action without connecting an account.",
-        "observed": "The actual CLI shortlist returned first-task as saved_text and unread-task as needs_reading. Exact source retrieval recovered the expected primary-action passage and visitor test. Fixture SHA-256 stayed identical.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "My candidate has only a title, or my JSON backup cannot be found.",
-        "expected": "Leave the title-only method unknown. Report the missing file and a clear way to provide evidence.",
-        "observed": "Exact ID for unread-task returned no description or research. A nonexistent backup returned status 2 and explicit JSON stderr with export guidance.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "I arrive with a Xiaohongshu invitation and want to read one save.",
-        "expected": "Read the invitation, account and host prerequisites before signing in, and locate a selected-item retry or offline fallback.",
-        "observed": "Public landing, application and invitation-test HTML returned HTTP 200. The revised route specifies a second screen, one selected post and saved-text recovery. No QR, account connection, private source access or user study was performed.",
+        "request": "Find one useful item among my Xiaohongshu saves.",
+        "expected": "The opening maps accessible text or backups to reading one source and a useful next step.",
+        "observed": "The opening maps accessible text or backups to reading one source and a useful next step.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Find home cooking suitable for weight loss among dessert and meal saves.",
-        "expected": "Reject dessert; require cooking and weight-loss claim evidence.",
-        "observed": "Reader fixture selects only lunch; negated weight-loss body produces no match.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Use a selected partially processed video, including OCR and speech.",
-        "expected": "Keep actual timestamps and partial coverage, omit private media URLs and frame paths.",
-        "observed": "Reader fixture preserves transcript/frames structure, complete=false and error while removing signedURL/url/path fields.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Summarize a selected source without a full claim audit.",
-        "expected": "Answer directly, no mandatory library search or research template.",
-        "observed": "Instruction walkthrough preserves selected-source short answer path and cost-check reference only when requested.",
+        "request": "Can a title-only match be summarized as if the complete note was read?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The opening retains it as a lead and exposes missing content as a gap.",
         "kind": "simulated",
         "result": "pass"
-      },
-      {
-        "request": "Need a kidney-disease-safe weight-loss recipe but only ordinary recipe evidence exists.",
-        "expected": "Unknown necessary requirement cannot become supported based on topic similarity.",
-        "observed": "Reader unsupported explicit requirement fixture returns insufficient. Skill requires host reasoning outside bounded helper patterns.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Video processing fails before any successful result exists.",
-        "expected": "Show the first failure without claiming a previous successful result was retained.",
-        "observed": "Executed UI fixtures distinguish first failure from last-refresh failure and preserve previous result only when it exists.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Prepare the browser runtime with missing, corrupt, oversized, interrupted or slow WASM downloads.",
-        "expected": "Verify pinned bytes/hash, preserve existing files on failure, and report explicit recovery.",
-        "observed": "Executed helper failure fixtures pass; valid existing runtime skips download. No actual browser inference acceptance claimed.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Open a selected unread source, encounter a failed automatic read, retry and generate a source-grounded prompt.",
-        "expected": "One selected-source job, persistent distinct terminal states, useful timestamped evidence before source-dependent prompt, and preserved personal-note draft.",
-        "observed": "Actual Chrome synthetic API receipt records connect, automatic selected-video read, first failure, explicit retry, timestamped prompt and note preservation. Public reading-flow regression fixtures passed. No real-account UI or phone claim.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Use an authorized selected real video, retaining speech accuracy and visual limits.",
-        "expected": "Decode available returned MP4 stream groups; preserve actual timestamped ASR/OCR and never equate execution with exact transcription.",
-        "observed": "Sanitized real-source receipt: 22.433333 seconds, pinned multilingual small, 10 speech segments, 11 sampled OCR frames, zero cloud inference calls, observed pipeline 6.2 seconds. Recognition mistakes remain. No full visual understanding or general speed/accuracy claim.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Read exported first-page author/reader comments without leaking metadata or treating them as verified post facts.",
-        "expected": "Bounded sanitized comments, partial scope, author/reply labels; comment text cannot prove body-based mandatory conditions.",
-        "observed": "New companion reader fixtures verify retrieval, first-page scope, has-more/truncation, nonmutation and dropped IDs/names/URLs/cursors. Constraint assessment does not treat comments as body evidence.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Load browser semantic model and reuse its cache after a page reload.",
-        "expected": "Actual model execution, persisted preference and only unchanged-content reuse.",
-        "observed": "Actual Chrome receipt records pinned WASM/model loaded, both fixture entries retrieved, one unchanged chunk reused after page reload and changed item recomputed. This was not a browser-process restart.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "A read was accepted, but its matching job disappeared or was replaced after its item outcome was saved.",
-        "expected": "Read-only reconcile this attempt; historical or ambiguous outcomes cannot claim new success and no read is automatically resubmitted.",
-        "observed": "Recovery regressions pass and actual Chrome synthetic receipt records lost terminal job resolving to ready with no automatic resubmission. Persisted outcome timestamps/attempt baseline separate new from old evidence.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Show the useful method simply and generate a short project prompt from Traditional Chinese and fallible speech.",
-        "expected": "Prefer author-written method, simplify only derived prose, omit timestamps by default, retain original source and earlier draft; preserve source, zero-paid and untrusted-data boundaries.",
-        "observed": "Actual Chrome synthetic 390px receipt: Simplified derived view, collapsed original, prior timestamped draft retained and 397-character prompt without timecodes. Offline selected-source receipt: 441-character prompt, author method once, original timestamped blocks unchanged. No generative reasoning or automatic ASR-error correction claimed.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Read every saved item without reopening hundreds of cards. Pause, refresh and recover a failed entry.",
-        "expected": "No item-count cutoff, persisted queue, successful content reuse and truthful remaining/failure counts.",
-        "observed": "67 backend tests include 2,507 eligible saves, restart/identity/failure/priority cases. Actual Chrome synthetic trial reached 3/3 through pause, reload, resume and a targeted retry.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Read a video longer than ten minutes and larger than 100 MB.",
-        "expected": "Process audio in bounded chunks without rejecting the whole video; preserve full duration and coverage.",
-        "observed": "Actual local synthetic 661-second, 106012140-byte MP4 completed; chunk-offset fixture retained the final second at901. Silence/blank visuals are not ASR quality evidence.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Summarize a selected post after new whole-library reading is added.",
-        "expected": "Selected material still answers directly, simple Chinese without default timestamps; no forced whole-library sync.",
-        "observed": "Updated Skill reviewed directly against selected-summary and missing-source walkthroughs; runtime detail and preserved timestamps remain available separately. No external model execution claimed.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "Open previously saved content while the connection address is slow or unavailable.",
-        "expected": "Render the local library before waiting for the network.",
-        "observed": "Executed actual startup sequence with a held network promise and rejected request; cached item rendered first in both cases.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Find the account control while a background task runs.",
-        "expected": "Stable account wording and a working account panel.",
-        "observed": "Actual Chrome synthetic-account page displayed Xiaohongshu account during a scan and opened account management. Function regression also covers video, waiting and offline states.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Connect a fourth invited trial without deleting the first three accounts.",
-        "expected": "No default three-session quota; account isolation and existing data preserved.",
-        "observed": "Actual running host accepted a fourth disposable session; it was disconnected without XHS login. Existing three sessions remained. Source fixture also checked five distinct sessions and explicit operator quota.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Refresh saved cards while a reading queue is paused, then continue including newly saved cards.",
-        "expected": "Keep pause, existing content and pending work; add new unread saves when continuing.",
-        "observed": "Executed scan/read/pause/scan/reload/resume fixture retains completed item and queues both pending and new items. Added after actual restart scan exposed lost queue metadata; completed real content was not lost.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Read a large private library over a slow connection.",
-        "expected": "Compress when accepted without changing content, auth or CORS.",
-        "observed": "HTTP fixture verifies gzip lossless content, Content-Length and CORS; identity and gzip;q=0 remain uncompressed; unauthenticated request remains 401.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Download a large library through a deliberately stalled receiver while checking connection status.",
-        "expected": "Slow delivery must not hold the account lock or prevent status from returning.",
-        "observed": "Actual HTTP-handler probe reproduced blocking before the change; after it, status completed while delivery remained held. Source regression uses the same boundary.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Read another post while its exact login credentials were verified recently, then change cookies or encounter a failure.",
-        "expected": "Avoid a redundant identity request only within the same verified account and five-minute TTL. Changed credentials, expired TTL, explicit verify or source failure require a fresh check.",
-        "observed": "Executed source fixtures cover exact-stamp reuse, different account rejection before detail retrieval, TTL, missing cookie stamp, explicit verification and read-failure invalidation.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Receive one changed post without replacing the library or losing personal notes.",
-        "expected": "Changed rows only, with account-isolated cursors and safe fallback after restart; old-account late responses are ignored.",
-        "observed": "Backend and client regressions pass. One changed-row transfer in a 306-item library was 1,519 bytes gzip versus 1,213,771 for full. Real Chrome own synthetic account read both posts and retained both after reload. No real-user source speed guarantee.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Reopen saved content while all fixture HTTP GET requests are delayed four seconds.",
-        "expected": "The cached app and library open before network responses.",
-        "observed": "Actual Chrome warm reload returned in observed 75 ms, then two read posts were visible. Cache-first service-worker fixture also verifies API/config/version remain uncached. This is a local warm-cache trial, not physical-phone or first-visit timing.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Use already supplied source through the skill while the connector is unavailable.",
-        "expected": "Answer from actual retrieved evidence without forcing another sign-in or whole-library scan.",
-        "observed": "Instruction walkthrough preserves source-first answer and material-missing boundaries; no model execution was performed for this walkthrough.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "A process restarts after pause persisted while the current source read was still finishing.",
-        "expected": "Keep pending and finished content; clear the obsolete current-read marker so Continue is enabled.",
-        "observed": "Real original account exposed this disabled-button state. New restart regression preserves completed A and pending B, clears the marker and allows Continue. Original browser subsequently displayed enabled Continue and resumed progress.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Receive a large library over a fragile connection without waiting for one whole response.",
-        "expected": "Render each received page, preserve all saves and advance the completed cursor only at the end; reconcile concurrent source changes.",
-        "observed": "Actual Chrome received all 4,000 own synthetic cards across six pages, first batch visible before completion. Tests cover partial-page client cursor, account isolation, unknown-token fallback, all IDs retained and protected cursor across twenty concurrent revisions. No source scrape timing claim.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Find a tool for saved Xiaohongshu posts and turn one useful source into an editable coding prompt.",
-        "expected": "The repository description identifies the platform, source-backed workflow and beta availability.",
-        "observed": "Walked through the new description, README and SKILL: Xiaohongshu saved posts, resumable reading and editable prompt output are supported. The invitation-beta qualification remains explicit.",
-        "kind": "simulated",
-        "result": "pass",
-        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-        "scope": "2026-11-05 metadata discovery pass"
-      },
-      {
-        "request": "The connector is unavailable and a saved item has only a title and link.",
-        "expected": "Do not invent its contents or promise production sync; use supplied source or identify the missing material.",
-        "observed": "Simulated the documented path: title-only content remains Needs reading; already supplied material can be used without forcing a new login. No automatic scraper, publishing capability or source truth guarantee is advertised.",
-        "kind": "simulated",
-        "result": "pass",
-        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-        "scope": "2026-11-05 metadata discovery pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/readwiseio/readwise-skills/blob/2d1ce9627c611d24f510dfc2e05a123fa509d2f6/skills/readwise-mcp/SKILL.md",
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "It separates OAuth setup, bounded search and document retrieval.",
+      "learned": "Separate search intent and map the task to a relevant page.",
       "decision": "adapt",
-      "reason": "Separate invitation setup from the offline route. Show one search and an exact selected-ID read with RedBot's existing bounded reader."
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
-      "url": "https://github.com/intellectronica/agent-skills/blob/9b0e00ad1b941165e2506545bbfddafa34cf2cb8/skills/raindrop-api/SKILL.md",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "It documents provider-side credentials, exact bookmark routes and HTTP failure classes.",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
       "decision": "adapt",
-      "reason": "Make credential ownership and recovery concrete. Avoid manual token entry and account-changing actions for a read-only first try."
-    },
-    {
-      "url": "https://github.com/kpab/github-star-growth/blob/95927c607254e4145b4fc6e1f75c6cbb9c8d75/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "It asks how quickly a stranger can try one meaningful result.",
-      "decision": "adapt",
-      "reason": "Place the no-invitation fixture and expected passage before the more involved account workflow. Treat actual uptake as unmeasured."
-    },
-    {
-      "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
-      "checked_at": "2026-11-04T11:01:07.024416+00:00",
-      "source_sha256": "874509499810331b005aef27551c92ca03868eefe0bbce69dc1ef6b81c0dbe93",
-      "decision": "adapt",
-      "learned": "Keep timestamped transcript segments and identify machine speech provenance; apply this to RedBot speech separately from sampled frame OCR.",
-      "effect": "Updated SKILL, check-and-use and reader to retain timestamps/modalities and partial coverage.",
-      "rejected": "Reject whole-filesystem helper search and unconditional dependency upgrades: installed skill paths and authorized service setup remain explicit.",
-      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied.",
-      "rechecked_scope": "Same-day author-source comparison reused for the 1.9.2 reading-chain continuation; timestamp/modality separation and source/comment/inference distinctions still apply. No extra framework or copied code."
-    },
-    {
-      "url": "https://raw.githubusercontent.com/molly-diversifiedfun/claude-skills/main/research-brief/SKILL.md",
-      "checked_at": "2026-11-04T11:01:07.024416+00:00",
-      "source_sha256": "6be1e57cfb31c1c2503a6752dfa533a5af342c109d5651e1b6d7e0aea52d22c3",
-      "decision": "adapt",
-      "learned": "Distinguish source claims, inference and missing evidence rather than letting fluent output imply verification.",
-      "effect": "Added per-requirement full source claims and missing/conflict statuses; explicit nutritional claims remain unverified.",
-      "rejected": "Reject training-only source handles and mandatory long confidence templates: RedBot has actual selected source passages and links, with concise request-specific output.",
-      "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied.",
-      "rechecked_scope": "Same-day author-source comparison reused for the 1.9.2 reading-chain continuation; timestamp/modality separation and source/comment/inference distinctions still apply. No extra framework or copied code."
-    },
-    {
-      "url": "https://raw.githubusercontent.com/jackwener/xiaohongshu-cli/main/SKILL.md",
-      "checked_at": "2026-11-04T14:42:25.833726+00:00",
-      "source_sha256": "f51686b47d7196c604c12d201fecf9c97161d6599bf77fa721fedda99c6e8cf6",
-      "learned": "Separates favorites listing from reading a note, and verifies identity before source access.",
-      "decision": "adapt",
-      "reason": "Make card inventory and content-read progress distinct; preserve same-account checks. Do not add its write operations or arbitrary browser-cookie extraction.",
-      "effect": "1.9.4 saved-card versus content progress, serial resumable queue, readable default and optional raw source. No third-party code copied."
-    },
-    {
-      "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
-      "checked_at": "2026-11-04T14:42:25.833726+00:00",
-      "source_sha256": "874509499810331b005aef27551c92ca03868eefe0bbce69dc1ef6b81c0dbe93",
-      "learned": "Clean prose by default, with timestamped material available separately; paced multi-item processing.",
-      "decision": "adapt",
-      "reason": "Keep concise default results and serial processing. Reject its 50-item cap, certificate bypass and unconditional upgrades; use persisted queue and pinned runtime.",
-      "effect": "1.9.4 saved-card versus content progress, serial resumable queue, readable default and optional raw source. No third-party code copied.",
-      "followup_application": "Retain incremental, resumable reads and concise source presentation; this follow-up prevents connection discovery from delaying cached content. No new library/model policy or unsupported browser-background claim."
-    },
-    {
-      "url": "https://raw.githubusercontent.com/jackwener/xiaohongshu-cli/main/SKILL.md",
-      "checked_at": "2026-11-04T19:29:01.780280+00:00",
-      "decision": "adapt",
-      "learned": "Inspect existing authenticated identity/readiness and distinguish listing from content reading before repeating sign-in.",
-      "reason": "Reusing a known valid account reduces avoidable source work while retaining isolation.",
-      "effect": "Cookie-stamp-bound identity reuse with a five-minute TTL; explicit reconnect/restart/credential-change/failure invalidates it. Skill reuses already retrieved material. Follow-up keeps reconnect recovery separate from content transfer, including a stale in-flight marker after restart.",
-      "rejected": "Do not import arbitrary browser cookies, add write operations, skip identity boundaries or upgrade dependencies automatically."
-    },
-    {
-      "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
-      "checked_at": "2026-11-04T19:29:01.780280+00:00",
-      "decision": "adapt",
-      "learned": "Deliver available content directly and prefer reusable text over unnecessary heavier retrieval.",
-      "reason": "The user wants the useful result with minimal waiting; do not make cache access depend on a new source read.",
-      "effect": "Cached app startup, changed-post transfer, retained completed content and a direct selected-source skill path. No claim that XHS subtitle extraction was added. Initial large libraries now arrive as usable pages; completed cursor commits only after transfer, with completed content retained.",
-      "rejected": "No 50-item cap, certificate bypass, unconditional package upgrades, copied code or YouTube-specific API added."
-    },
-    {
-      "url": "https://github.com/jackwener/xhs-cli/blob/main/SKILL.md",
-      "learned": "The author makes Xiaohongshu/RedNote/XHS naming, favorites listing, selected-note reading and account access explicit.",
-      "decision": "adapt",
-      "reason": "Platform-specific naming makes the saved-source use easier to find and understand, while RedBot has narrower authority and beta limits.",
-      "effect": "Added Xiaohongshu to the public repository description and focused topics; retained invitation beta and source-backed prompt wording.",
-      "rejected": "Do not import posting/liking operations, arbitrary cookie extraction, or claim complete production synchronization.",
-      "checked_at": "2026-11-04T19:45:55.891848+00:00"
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 redbot/scripts/read_library.py redbot/examples/first-save.json --query 'first task'; python3 redbot/scripts/read_library.py redbot/examples/first-save.json --id first-task",
-      "result": "pass",
-      "observed": "The two stages ran from /tmp with absolute paths and returned the expected shortlist and exact passage."
-    },
-    {
-      "command": "python3 redbot/scripts/read_library.py <nonexistent backup> --id first-task",
-      "result": "pass",
-      "observed": "Exit 2 with explicit missing-file and export-recovery message. An exact title-only fixture returned no source body."
-    },
-    {
-      "command": "PYTHONDONTWRITEBYTECODE=1 python3 redbot/scripts/test_reader.py",
-      "result": "pass",
-      "observed": "Nine tests passed, including missing evidence, video/comment boundaries and read-only behavior."
-    },
-    {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json --json",
       "result": "pass",
-      "observed": "PASS with zero errors or warnings."
+      "observed": "{\n  \"skill\": \"redbot\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "gh api 'repos/m1nga/redbot/git/trees/main?recursive=1' plus tracked overlay blob comparison",
+      "command": "python3 <skill-creator>/scripts/quick_validate.py redbot",
       "result": "pass",
-      "observed": "All 84 bundled app blobs matched the published Git blob IDs; no app paths existed only in the public distribution."
-    },
-    {
-      "command": "node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs (public source)",
-      "result": "pass",
-      "observed": "104 passed in final 1.9.7 public bundle."
-    },
-    {
-      "command": "python3 -m unittest discover -s tests -v (public source)",
-      "result": "pass",
-      "observed": "79 passed in final 1.9.7 public bundle."
-    },
-    {
-      "command": "python3 redbot/scripts/test_reader.py",
-      "result": "pass",
-      "observed": "9 passed."
-    },
-    {
-      "command": "Actual Chrome synthetic-account connection/read-all/warm-reload trial; running-host upgrade preservation",
-      "result": "pass",
-      "observed": "Two synthetic posts read and preserved; warm cache opened under artificial four-second GET delay. Three existing real session identities, card IDs and completed content preserved across running-host update. No general connection uptime claim."
-    },
-    {
-      "command": "Bounded anonymous Cloudflare relay large/small transfer experiments",
-      "result": "pass",
-      "observed": "Single 1,400,000-byte response timed out; subsequent tiny response also timed out. Separate relay run passed all 25 requests, including twenty-two 64,000-byte responses (1,408,000 bytes total), plus three tiny responses. Observed small-request range 1.971–14.327 seconds. Different relay instances and variable network mean no universal latency guarantee or isolated causal claim."
-    },
-    {
-      "command": "python3 -m unittest discover -s redbot/scripts -p test_*.py",
-      "result": "pass",
-      "observed": "9 saved-source reader regression tests passed. The full 1.9.6 app tests below are retained historical evidence, not rerun in this metadata-only pass.",
-      "checked_at": "2026-11-04T19:45:55.891848+00:00"
-    },
-    {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json --json",
-      "result": "pass",
-      "observed": "PASS, no errors or warnings. Checked the current source README, license, install entry, referral and manifest metadata.",
-      "checked_at": "2026-11-04T19:45:55.891848+00:00"
+      "observed": "Skill is valid!"
     }
   ],
   "unresolved_blockers": [],
-  "release_scope": "1.9.6: remove per-account lock from HTTP delivery, account-local changed-post snapshots, five-minute exact-cookie-stamp identity reuse, cache-first app shell and activation-aware update, honest connection status after library failure, plain-language data explanation. No new host, paid API, model upgrade, source-auth bypass or background discovery scheduler. Temporary forwarding and host uptime remain limitations. Final 1.9.7 follow-up pages initial/large updates without limiting total saves and clears paused in-flight restart markers. Preserve 1.9.6 evidence as historical. No new data destination or source-auth bypass.",
-  "dependency_research": {
-    "source": "https://github.com/nk2028/opencc-js",
-    "checked_at": "2026-11-04T14:08:58.004717+00:00",
-    "version": "1.4.2",
-    "decision": "adopt",
-    "learned": "Self-hosted JavaScript converter bundles dictionaries and can perform local script conversion; conversion is not generative reasoning.",
-    "effect": "Fixed small conversion bundle, adjacent MIT/Apache license files and registry/file integrity pins; derived prose converted while original source, code and URLs remain unchanged.",
-    "rejected": "No runtime CDN/latest, no claim that conversion fixes transcription errors or improves source truth."
-  },
-  "metadata_discovery_review": {
-    "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-    "prior_reviewed_at": "2026-11-04T19:29:01.780280+00:00",
-    "scope": "Only clarify the repository description with Xiaohongshu saved-post use and invitation beta, and add the xiaohongshu topic. Version 1.9.6 source and skill behavior are unchanged.",
-    "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
-    "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
-  },
-  "concurrent_metadata_preserved": "Retained the independently committed 2026-11-05 discovery metadata and historical review while verifying the changed 1.9.7 application sources. No other products changed by this repair.",
-  "current_review_scope": "First saved-post onboarding, offline fixture, recovery guidance and discovery copy. Public hosted app assets observed at 1.14.0; bundled 1.9.7 overlay and connector behavior were not updated. No new live account, QR or post read."
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "redbot",
+    "reviewed_at": "2026-11-10",
+    "source_sha256": "3d84433d1e47d3e03ec1c1b65c8ccc1e6d04c88b0e275108aaf72d85e521f40a",
+    "user_review": {
+      "method": "2026-11-10 first-visitor walkthrough and actual package CLI runs from outside the repository. Historical evidence follows the new scenarios. Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
+      "scenarios": [
+        {
+          "request": "I have a note and want to make the first task in my app clearer. I do not have an invitation.",
+          "expected": "Search a sample backup, open one exact source and identify a concrete next action without connecting an account.",
+          "observed": "The actual CLI shortlist returned first-task as saved_text and unread-task as needs_reading. Exact source retrieval recovered the expected primary-action passage and visitor test. Fixture SHA-256 stayed identical.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "My candidate has only a title, or my JSON backup cannot be found.",
+          "expected": "Leave the title-only method unknown. Report the missing file and a clear way to provide evidence.",
+          "observed": "Exact ID for unread-task returned no description or research. A nonexistent backup returned status 2 and explicit JSON stderr with export guidance.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "I arrive with a Xiaohongshu invitation and want to read one save.",
+          "expected": "Read the invitation, account and host prerequisites before signing in, and locate a selected-item retry or offline fallback.",
+          "observed": "Public landing, application and invitation-test HTML returned HTTP 200. The revised route specifies a second screen, one selected post and saved-text recovery. No QR, account connection, private source access or user study was performed.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Find home cooking suitable for weight loss among dessert and meal saves.",
+          "expected": "Reject dessert; require cooking and weight-loss claim evidence.",
+          "observed": "Reader fixture selects only lunch; negated weight-loss body produces no match.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Use a selected partially processed video, including OCR and speech.",
+          "expected": "Keep actual timestamps and partial coverage, omit private media URLs and frame paths.",
+          "observed": "Reader fixture preserves transcript/frames structure, complete=false and error while removing signedURL/url/path fields.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Summarize a selected source without a full claim audit.",
+          "expected": "Answer directly, no mandatory library search or research template.",
+          "observed": "Instruction walkthrough preserves selected-source short answer path and cost-check reference only when requested.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Need a kidney-disease-safe weight-loss recipe but only ordinary recipe evidence exists.",
+          "expected": "Unknown necessary requirement cannot become supported based on topic similarity.",
+          "observed": "Reader unsupported explicit requirement fixture returns insufficient. Skill requires host reasoning outside bounded helper patterns.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Video processing fails before any successful result exists.",
+          "expected": "Show the first failure without claiming a previous successful result was retained.",
+          "observed": "Executed UI fixtures distinguish first failure from last-refresh failure and preserve previous result only when it exists.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Prepare the browser runtime with missing, corrupt, oversized, interrupted or slow WASM downloads.",
+          "expected": "Verify pinned bytes/hash, preserve existing files on failure, and report explicit recovery.",
+          "observed": "Executed helper failure fixtures pass; valid existing runtime skips download. No actual browser inference acceptance claimed.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Open a selected unread source, encounter a failed automatic read, retry and generate a source-grounded prompt.",
+          "expected": "One selected-source job, persistent distinct terminal states, useful timestamped evidence before source-dependent prompt, and preserved personal-note draft.",
+          "observed": "Actual Chrome synthetic API receipt records connect, automatic selected-video read, first failure, explicit retry, timestamped prompt and note preservation. Public reading-flow regression fixtures passed. No real-account UI or phone claim.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Use an authorized selected real video, retaining speech accuracy and visual limits.",
+          "expected": "Decode available returned MP4 stream groups; preserve actual timestamped ASR/OCR and never equate execution with exact transcription.",
+          "observed": "Sanitized real-source receipt: 22.433333 seconds, pinned multilingual small, 10 speech segments, 11 sampled OCR frames, zero cloud inference calls, observed pipeline 6.2 seconds. Recognition mistakes remain. No full visual understanding or general speed/accuracy claim.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Read exported first-page author/reader comments without leaking metadata or treating them as verified post facts.",
+          "expected": "Bounded sanitized comments, partial scope, author/reply labels; comment text cannot prove body-based mandatory conditions.",
+          "observed": "New companion reader fixtures verify retrieval, first-page scope, has-more/truncation, nonmutation and dropped IDs/names/URLs/cursors. Constraint assessment does not treat comments as body evidence.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Load browser semantic model and reuse its cache after a page reload.",
+          "expected": "Actual model execution, persisted preference and only unchanged-content reuse.",
+          "observed": "Actual Chrome receipt records pinned WASM/model loaded, both fixture entries retrieved, one unchanged chunk reused after page reload and changed item recomputed. This was not a browser-process restart.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "A read was accepted, but its matching job disappeared or was replaced after its item outcome was saved.",
+          "expected": "Read-only reconcile this attempt; historical or ambiguous outcomes cannot claim new success and no read is automatically resubmitted.",
+          "observed": "Recovery regressions pass and actual Chrome synthetic receipt records lost terminal job resolving to ready with no automatic resubmission. Persisted outcome timestamps/attempt baseline separate new from old evidence.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Show the useful method simply and generate a short project prompt from Traditional Chinese and fallible speech.",
+          "expected": "Prefer author-written method, simplify only derived prose, omit timestamps by default, retain original source and earlier draft; preserve source, zero-paid and untrusted-data boundaries.",
+          "observed": "Actual Chrome synthetic 390px receipt: Simplified derived view, collapsed original, prior timestamped draft retained and 397-character prompt without timecodes. Offline selected-source receipt: 441-character prompt, author method once, original timestamped blocks unchanged. No generative reasoning or automatic ASR-error correction claimed.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Read every saved item without reopening hundreds of cards. Pause, refresh and recover a failed entry.",
+          "expected": "No item-count cutoff, persisted queue, successful content reuse and truthful remaining/failure counts.",
+          "observed": "67 backend tests include 2,507 eligible saves, restart/identity/failure/priority cases. Actual Chrome synthetic trial reached 3/3 through pause, reload, resume and a targeted retry.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Read a video longer than ten minutes and larger than 100 MB.",
+          "expected": "Process audio in bounded chunks without rejecting the whole video; preserve full duration and coverage.",
+          "observed": "Actual local synthetic 661-second, 106012140-byte MP4 completed; chunk-offset fixture retained the final second at901. Silence/blank visuals are not ASR quality evidence.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Summarize a selected post after new whole-library reading is added.",
+          "expected": "Selected material still answers directly, simple Chinese without default timestamps; no forced whole-library sync.",
+          "observed": "Updated Skill reviewed directly against selected-summary and missing-source walkthroughs; runtime detail and preserved timestamps remain available separately. No external model execution claimed.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Open previously saved content while the connection address is slow or unavailable.",
+          "expected": "Render the local library before waiting for the network.",
+          "observed": "Executed actual startup sequence with a held network promise and rejected request; cached item rendered first in both cases.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Find the account control while a background task runs.",
+          "expected": "Stable account wording and a working account panel.",
+          "observed": "Actual Chrome synthetic-account page displayed Xiaohongshu account during a scan and opened account management. Function regression also covers video, waiting and offline states.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Connect a fourth invited trial without deleting the first three accounts.",
+          "expected": "No default three-session quota; account isolation and existing data preserved.",
+          "observed": "Actual running host accepted a fourth disposable session; it was disconnected without XHS login. Existing three sessions remained. Source fixture also checked five distinct sessions and explicit operator quota.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Refresh saved cards while a reading queue is paused, then continue including newly saved cards.",
+          "expected": "Keep pause, existing content and pending work; add new unread saves when continuing.",
+          "observed": "Executed scan/read/pause/scan/reload/resume fixture retains completed item and queues both pending and new items. Added after actual restart scan exposed lost queue metadata; completed real content was not lost.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Read a large private library over a slow connection.",
+          "expected": "Compress when accepted without changing content, auth or CORS.",
+          "observed": "HTTP fixture verifies gzip lossless content, Content-Length and CORS; identity and gzip;q=0 remain uncompressed; unauthenticated request remains 401.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Download a large library through a deliberately stalled receiver while checking connection status.",
+          "expected": "Slow delivery must not hold the account lock or prevent status from returning.",
+          "observed": "Actual HTTP-handler probe reproduced blocking before the change; after it, status completed while delivery remained held. Source regression uses the same boundary.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Read another post while its exact login credentials were verified recently, then change cookies or encounter a failure.",
+          "expected": "Avoid a redundant identity request only within the same verified account and five-minute TTL. Changed credentials, expired TTL, explicit verify or source failure require a fresh check.",
+          "observed": "Executed source fixtures cover exact-stamp reuse, different account rejection before detail retrieval, TTL, missing cookie stamp, explicit verification and read-failure invalidation.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Receive one changed post without replacing the library or losing personal notes.",
+          "expected": "Changed rows only, with account-isolated cursors and safe fallback after restart; old-account late responses are ignored.",
+          "observed": "Backend and client regressions pass. One changed-row transfer in a 306-item library was 1,519 bytes gzip versus 1,213,771 for full. Real Chrome own synthetic account read both posts and retained both after reload. No real-user source speed guarantee.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Reopen saved content while all fixture HTTP GET requests are delayed four seconds.",
+          "expected": "The cached app and library open before network responses.",
+          "observed": "Actual Chrome warm reload returned in observed 75 ms, then two read posts were visible. Cache-first service-worker fixture also verifies API/config/version remain uncached. This is a local warm-cache trial, not physical-phone or first-visit timing.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Use already supplied source through the skill while the connector is unavailable.",
+          "expected": "Answer from actual retrieved evidence without forcing another sign-in or whole-library scan.",
+          "observed": "Instruction walkthrough preserves source-first answer and material-missing boundaries; no model execution was performed for this walkthrough.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "A process restarts after pause persisted while the current source read was still finishing.",
+          "expected": "Keep pending and finished content; clear the obsolete current-read marker so Continue is enabled.",
+          "observed": "Real original account exposed this disabled-button state. New restart regression preserves completed A and pending B, clears the marker and allows Continue. Original browser subsequently displayed enabled Continue and resumed progress.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Receive a large library over a fragile connection without waiting for one whole response.",
+          "expected": "Render each received page, preserve all saves and advance the completed cursor only at the end; reconcile concurrent source changes.",
+          "observed": "Actual Chrome received all 4,000 own synthetic cards across six pages, first batch visible before completion. Tests cover partial-page client cursor, account isolation, unknown-token fallback, all IDs retained and protected cursor across twenty concurrent revisions. No source scrape timing claim.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Find a tool for saved Xiaohongshu posts and turn one useful source into an editable coding prompt.",
+          "expected": "The repository description identifies the platform, source-backed workflow and beta availability.",
+          "observed": "Walked through the new description, README and SKILL: Xiaohongshu saved posts, resumable reading and editable prompt output are supported. The invitation-beta qualification remains explicit.",
+          "kind": "simulated",
+          "result": "pass",
+          "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+          "scope": "2026-11-05 metadata discovery pass"
+        },
+        {
+          "request": "The connector is unavailable and a saved item has only a title and link.",
+          "expected": "Do not invent its contents or promise production sync; use supplied source or identify the missing material.",
+          "observed": "Simulated the documented path: title-only content remains Needs reading; already supplied material can be used without forcing a new login. No automatic scraper, publishing capability or source truth guarantee is advertised.",
+          "kind": "simulated",
+          "result": "pass",
+          "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+          "scope": "2026-11-05 metadata discovery pass"
+        }
+      ]
+    },
+    "similar_skills": [
+      {
+        "url": "https://github.com/readwiseio/readwise-skills/blob/2d1ce9627c611d24f510dfc2e05a123fa509d2f6/skills/readwise-mcp/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "It separates OAuth setup, bounded search and document retrieval.",
+        "decision": "adapt",
+        "reason": "Separate invitation setup from the offline route. Show one search and an exact selected-ID read with RedBot's existing bounded reader."
+      },
+      {
+        "url": "https://github.com/intellectronica/agent-skills/blob/9b0e00ad1b941165e2506545bbfddafa34cf2cb8/skills/raindrop-api/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "It documents provider-side credentials, exact bookmark routes and HTTP failure classes.",
+        "decision": "adapt",
+        "reason": "Make credential ownership and recovery concrete. Avoid manual token entry and account-changing actions for a read-only first try."
+      },
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/95927c607254e4145b4fc6e1f75c6cbb9c8d75/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "It asks how quickly a stranger can try one meaningful result.",
+        "decision": "adapt",
+        "reason": "Place the no-invitation fixture and expected passage before the more involved account workflow. Treat actual uptake as unmeasured."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
+        "checked_at": "2026-11-04T11:01:07.024416+00:00",
+        "source_sha256": "874509499810331b005aef27551c92ca03868eefe0bbce69dc1ef6b81c0dbe93",
+        "decision": "adapt",
+        "learned": "Keep timestamped transcript segments and identify machine speech provenance; apply this to RedBot speech separately from sampled frame OCR.",
+        "effect": "Updated SKILL, check-and-use and reader to retain timestamps/modalities and partial coverage.",
+        "rejected": "Reject whole-filesystem helper search and unconditional dependency upgrades: installed skill paths and authorized service setup remain explicit.",
+        "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied.",
+        "rechecked_scope": "Same-day author-source comparison reused for the 1.9.2 reading-chain continuation; timestamp/modality separation and source/comment/inference distinctions still apply. No extra framework or copied code."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/molly-diversifiedfun/claude-skills/main/research-brief/SKILL.md",
+        "checked_at": "2026-11-04T11:01:07.024416+00:00",
+        "source_sha256": "6be1e57cfb31c1c2503a6752dfa533a5af342c109d5651e1b6d7e0aea52d22c3",
+        "decision": "adapt",
+        "learned": "Distinguish source claims, inference and missing evidence rather than letting fluent output imply verification.",
+        "effect": "Added per-requirement full source claims and missing/conflict statuses; explicit nutritional claims remain unverified.",
+        "rejected": "Reject training-only source handles and mandatory long confidence templates: RedBot has actual selected source passages and links, with concise request-specific output.",
+        "reason": "Useful provenance and uncertainty practices fit the selected-save workflow; source code and mandatory templates were not copied.",
+        "rechecked_scope": "Same-day author-source comparison reused for the 1.9.2 reading-chain continuation; timestamp/modality separation and source/comment/inference distinctions still apply. No extra framework or copied code."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/jackwener/xiaohongshu-cli/main/SKILL.md",
+        "checked_at": "2026-11-04T14:42:25.833726+00:00",
+        "source_sha256": "f51686b47d7196c604c12d201fecf9c97161d6599bf77fa721fedda99c6e8cf6",
+        "learned": "Separates favorites listing from reading a note, and verifies identity before source access.",
+        "decision": "adapt",
+        "reason": "Make card inventory and content-read progress distinct; preserve same-account checks. Do not add its write operations or arbitrary browser-cookie extraction.",
+        "effect": "1.9.4 saved-card versus content progress, serial resumable queue, readable default and optional raw source. No third-party code copied."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
+        "checked_at": "2026-11-04T14:42:25.833726+00:00",
+        "source_sha256": "874509499810331b005aef27551c92ca03868eefe0bbce69dc1ef6b81c0dbe93",
+        "learned": "Clean prose by default, with timestamped material available separately; paced multi-item processing.",
+        "decision": "adapt",
+        "reason": "Keep concise default results and serial processing. Reject its 50-item cap, certificate bypass and unconditional upgrades; use persisted queue and pinned runtime.",
+        "effect": "1.9.4 saved-card versus content progress, serial resumable queue, readable default and optional raw source. No third-party code copied.",
+        "followup_application": "Retain incremental, resumable reads and concise source presentation; this follow-up prevents connection discovery from delaying cached content. No new library/model policy or unsupported browser-background claim."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/jackwener/xiaohongshu-cli/main/SKILL.md",
+        "checked_at": "2026-11-04T19:29:01.780280+00:00",
+        "decision": "adapt",
+        "learned": "Inspect existing authenticated identity/readiness and distinguish listing from content reading before repeating sign-in.",
+        "reason": "Reusing a known valid account reduces avoidable source work while retaining isolation.",
+        "effect": "Cookie-stamp-bound identity reuse with a five-minute TTL; explicit reconnect/restart/credential-change/failure invalidates it. Skill reuses already retrieved material. Follow-up keeps reconnect recovery separate from content transfer, including a stale in-flight marker after restart.",
+        "rejected": "Do not import arbitrary browser cookies, add write operations, skip identity boundaries or upgrade dependencies automatically."
+      },
+      {
+        "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
+        "checked_at": "2026-11-04T19:29:01.780280+00:00",
+        "decision": "adapt",
+        "learned": "Deliver available content directly and prefer reusable text over unnecessary heavier retrieval.",
+        "reason": "The user wants the useful result with minimal waiting; do not make cache access depend on a new source read.",
+        "effect": "Cached app startup, changed-post transfer, retained completed content and a direct selected-source skill path. No claim that XHS subtitle extraction was added. Initial large libraries now arrive as usable pages; completed cursor commits only after transfer, with completed content retained.",
+        "rejected": "No 50-item cap, certificate bypass, unconditional package upgrades, copied code or YouTube-specific API added."
+      },
+      {
+        "url": "https://github.com/jackwener/xhs-cli/blob/main/SKILL.md",
+        "learned": "The author makes Xiaohongshu/RedNote/XHS naming, favorites listing, selected-note reading and account access explicit.",
+        "decision": "adapt",
+        "reason": "Platform-specific naming makes the saved-source use easier to find and understand, while RedBot has narrower authority and beta limits.",
+        "effect": "Added Xiaohongshu to the public repository description and focused topics; retained invitation beta and source-backed prompt wording.",
+        "rejected": "Do not import posting/liking operations, arbitrary cookie extraction, or claim complete production synchronization.",
+        "checked_at": "2026-11-04T19:45:55.891848+00:00"
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 redbot/scripts/read_library.py redbot/examples/first-save.json --query 'first task'; python3 redbot/scripts/read_library.py redbot/examples/first-save.json --id first-task",
+        "result": "pass",
+        "observed": "The two stages ran from /tmp with absolute paths and returned the expected shortlist and exact passage."
+      },
+      {
+        "command": "python3 redbot/scripts/read_library.py <nonexistent backup> --id first-task",
+        "result": "pass",
+        "observed": "Exit 2 with explicit missing-file and export-recovery message. An exact title-only fixture returned no source body."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 redbot/scripts/test_reader.py",
+        "result": "pass",
+        "observed": "Nine tests passed, including missing evidence, video/comment boundaries and read-only behavior."
+      },
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json --json",
+        "result": "pass",
+        "observed": "PASS with zero errors or warnings."
+      },
+      {
+        "command": "gh api 'repos/m1nga/redbot/git/trees/main?recursive=1' plus tracked overlay blob comparison",
+        "result": "pass",
+        "observed": "All 84 bundled app blobs matched the published Git blob IDs; no app paths existed only in the public distribution."
+      },
+      {
+        "command": "node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs (public source)",
+        "result": "pass",
+        "observed": "104 passed in final 1.9.7 public bundle."
+      },
+      {
+        "command": "python3 -m unittest discover -s tests -v (public source)",
+        "result": "pass",
+        "observed": "79 passed in final 1.9.7 public bundle."
+      },
+      {
+        "command": "python3 redbot/scripts/test_reader.py",
+        "result": "pass",
+        "observed": "9 passed."
+      },
+      {
+        "command": "Actual Chrome synthetic-account connection/read-all/warm-reload trial; running-host upgrade preservation",
+        "result": "pass",
+        "observed": "Two synthetic posts read and preserved; warm cache opened under artificial four-second GET delay. Three existing real session identities, card IDs and completed content preserved across running-host update. No general connection uptime claim."
+      },
+      {
+        "command": "Bounded anonymous Cloudflare relay large/small transfer experiments",
+        "result": "pass",
+        "observed": "Single 1,400,000-byte response timed out; subsequent tiny response also timed out. Separate relay run passed all 25 requests, including twenty-two 64,000-byte responses (1,408,000 bytes total), plus three tiny responses. Observed small-request range 1.971–14.327 seconds. Different relay instances and variable network mean no universal latency guarantee or isolated causal claim."
+      },
+      {
+        "command": "python3 -m unittest discover -s redbot/scripts -p test_*.py",
+        "result": "pass",
+        "observed": "9 saved-source reader regression tests passed. The full 1.9.6 app tests below are retained historical evidence, not rerun in this metadata-only pass.",
+        "checked_at": "2026-11-04T19:45:55.891848+00:00"
+      },
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json --json",
+        "result": "pass",
+        "observed": "PASS, no errors or warnings. Checked the current source README, license, install entry, referral and manifest metadata.",
+        "checked_at": "2026-11-04T19:45:55.891848+00:00"
+      }
+    ],
+    "unresolved_blockers": [],
+    "release_scope": "1.9.6: remove per-account lock from HTTP delivery, account-local changed-post snapshots, five-minute exact-cookie-stamp identity reuse, cache-first app shell and activation-aware update, honest connection status after library failure, plain-language data explanation. No new host, paid API, model upgrade, source-auth bypass or background discovery scheduler. Temporary forwarding and host uptime remain limitations. Final 1.9.7 follow-up pages initial/large updates without limiting total saves and clears paused in-flight restart markers. Preserve 1.9.6 evidence as historical. No new data destination or source-auth bypass.",
+    "dependency_research": {
+      "source": "https://github.com/nk2028/opencc-js",
+      "checked_at": "2026-11-04T14:08:58.004717+00:00",
+      "version": "1.4.2",
+      "decision": "adopt",
+      "learned": "Self-hosted JavaScript converter bundles dictionaries and can perform local script conversion; conversion is not generative reasoning.",
+      "effect": "Fixed small conversion bundle, adjacent MIT/Apache license files and registry/file integrity pins; derived prose converted while original source, code and URLs remain unchanged.",
+      "rejected": "No runtime CDN/latest, no claim that conversion fixes transcription errors or improves source truth."
+    },
+    "metadata_discovery_review": {
+      "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+      "prior_reviewed_at": "2026-11-04T19:29:01.780280+00:00",
+      "scope": "Only clarify the repository description with Xiaohongshu saved-post use and invitation beta, and add the xiaohongshu topic. Version 1.9.6 source and skill behavior are unchanged.",
+      "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
+      "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
+    },
+    "concurrent_metadata_preserved": "Retained the independently committed 2026-11-05 discovery metadata and historical review while verifying the changed 1.9.7 application sources. No other products changed by this repair.",
+    "current_review_scope": "First saved-post onboarding, offline fixture, recovery guidance and discovery copy. Public hosted app assets observed at 1.14.0; bundled 1.9.7 overlay and connector behavior were not updated. No new live account, QR or post read."
+  }
 }

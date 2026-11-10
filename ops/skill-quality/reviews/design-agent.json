@@ -1,120 +1,174 @@
 {
   "schema_version": 1,
   "skill": "design-agent",
-  "reviewed_at": "2026-11-10",
-  "source_sha256": "054aff2f51d069681ef0408cc8d33529c9e54642324331ead8a3399a2bb1165b",
+  "reviewed_at": "2026-11-10T04:12:04.933296+00:00",
+  "source_sha256": "7ff270cd0ad05c79cf586490b4061b9a29f2404cff40717ddd8aa27c5f0fdb5a",
   "user_review": {
-    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Render the bundled reference-to-handoff example locally.",
-        "expected": "Create a useful artifact while preserving the unseen reference status and unexecuted build state.",
-        "observed": "The existing CLI rendered one task and the HTML contained the recovery check, unseen reference and unexecuted-build notice.",
-        "kind": "executed",
+        "request": "My generated interface does not follow this reference.",
+        "expected": "The opening asks for reference, existing page and scoped change; points to implementation checks.",
+        "observed": "The opening asks for reference, existing page and scoped change; points to implementation checks.",
+        "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Build a submission prototype from an inaccessible reference, then show a success screen.",
-        "expected": "Distinguish missing reference evidence, mock success and independently observed submission.",
-        "observed": "Walkthrough reports the reference as unseen, leaves the operation simulated and names the missing run. The worked handoff asks for same-content desktop/mobile and interaction evidence only when checked.",
+        "request": "Does the brief renderer itself prove the responsive implementation matches?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The page explicitly says a brief alone is not a verified visual match.",
         "kind": "simulated",
         "result": "pass"
       }
-    ],
-    "previous_review": {
-      "method": "Author context-aware CLI execution, deterministic failure/recovery tests, and explicitly labeled instruction simulations. No independent agent or human usability study.",
-      "scenarios": [
-        {
-          "request": "Turn saved references into an implementation brief a builder can follow.",
-          "expected": "One goal, real content, scope, method, steps, sources, checks and a copyable prompt.",
-          "observed": "Executed brief.py on the original capture fixture and produced an HTML page. It labels its reference unseen and execution not_run.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "A source is unseen, a task references a missing ID, checks are absent, or a URL is executable.",
-          "expected": "Keep unseen label; reject invalid references/inputs before creating a report.",
-          "observed": "Three tests passed: escaped input and honest unseen state, missing-reference/missing-check failure, unsafe URL failure. save_page uses exclusive output creation.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "Polish a small existing dialog using a list of twenty skill links.",
-          "expected": "Use current project and one relevant method; do not install a catalog or force a redesign.",
-          "observed": "Simulated body walkthrough routes to a bounded change and observable checks, keeping reference data separate from execution authority.",
-          "kind": "simulated",
-          "result": "pass"
-        }
-      ]
-    }
+    ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/pbakaus/impeccable/blob/f5c80432f883a0ee437735305eafc2a9e1bdb7a0/.agents/skills/impeccable/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "The current brief and incumbent visual evidence determine scope; tools for operating a product prioritize successful tasks.",
-      "decision": "adapt",
-      "reason": "Make references actionable without replacing project choices. The new brief carries real content, scope, source observations and task acceptance checks; no universal aesthetic bans or setup imports.",
-      "repository_stars_at_check": 98896
-    },
-    {
-      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/3a13158ff1f32156cbe144108de48eda2ecaed9a/.claude/skills/ui-ux-pro-max/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "A targeted concern calls for a small intent-specific lookup, while a new system may need broader design-system work.",
-      "decision": "adapt",
-      "reason": "Use one main method for the current task and record dependencies before execution. Do not copy the catalog, require a new system for narrow changes or automatically install linked tools.",
-      "repository_stars_at_check": 143639
-    },
-    {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "learned": "Separate search intent and map the task to a relevant page.",
       "decision": "adapt",
-      "reason": "Kept the runnable brief near the top and separated rendered output from a proposed build and visuals. No star-impact estimate or audit ceremony was added."
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
       "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
       "decision": "adapt",
-      "reason": "Centered the evidence on a recognizably specific interaction and its recovery. No external user research or distribution result is inferred."
-    },
-    {
-      "url": "https://github.com/pbakaus/impeccable/blob/main/.agents/skills/impeccable/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "The current project context and visual evidence should determine design decisions and the needed review.",
-      "decision": "adapt",
-      "reason": "Applied evidence traceability to one reference decision, two viewports and a real interaction result without importing its commands or mandatory context files."
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 skill-creator/scripts/quick_validate.py design-agent",
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py design-agent --product-manifest products.json --json",
       "result": "pass",
-      "observed": "Local frontmatter validator reported Skill is valid!"
+      "observed": "{\n  \"skill\": \"design-agent\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py design-agent --product-manifest products.json",
+      "command": "python3 <skill-creator>/scripts/quick_validate.py design-agent",
       "result": "pass",
-      "observed": "Product audit reported VERDICT: PASS."
-    },
-    {
-      "command": "python3 -B -m unittest discover -s design-agent/scripts -p test_brief.py",
-      "result": "pass",
-      "observed": "3 tests passed: escaping and unseen status, rejection of unknown references or missing checks, and rejection of unsafe URLs."
-    },
-    {
-      "command": "python3 -B design-agent/scripts/brief.py --input design-agent/examples/capture-brief.json --out <scratch>/design-brief.html",
-      "result": "pass",
-      "observed": "Actual HTML render returned one task and execution=not_run; inspected HTML preserved unseen status and the invalid-paste recovery check."
+      "observed": "Skill is valid!"
     }
   ],
   "unresolved_blockers": [],
-  "previous_validation": [
-    {
-      "command": "cd design-agent && python3 -m unittest discover -s scripts -p test_*.py",
-      "result": "pass",
-      "observed": "3 tests passed."
-    }
-  ]
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "design-agent",
+    "reviewed_at": "2026-11-10",
+    "source_sha256": "054aff2f51d069681ef0408cc8d33529c9e54642324331ead8a3399a2bb1165b",
+    "user_review": {
+      "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+      "scenarios": [
+        {
+          "request": "Render the bundled reference-to-handoff example locally.",
+          "expected": "Create a useful artifact while preserving the unseen reference status and unexecuted build state.",
+          "observed": "The existing CLI rendered one task and the HTML contained the recovery check, unseen reference and unexecuted-build notice.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Build a submission prototype from an inaccessible reference, then show a success screen.",
+          "expected": "Distinguish missing reference evidence, mock success and independently observed submission.",
+          "observed": "Walkthrough reports the reference as unseen, leaves the operation simulated and names the missing run. The worked handoff asks for same-content desktop/mobile and interaction evidence only when checked.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ],
+      "previous_review": {
+        "method": "Author context-aware CLI execution, deterministic failure/recovery tests, and explicitly labeled instruction simulations. No independent agent or human usability study.",
+        "scenarios": [
+          {
+            "request": "Turn saved references into an implementation brief a builder can follow.",
+            "expected": "One goal, real content, scope, method, steps, sources, checks and a copyable prompt.",
+            "observed": "Executed brief.py on the original capture fixture and produced an HTML page. It labels its reference unseen and execution not_run.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "A source is unseen, a task references a missing ID, checks are absent, or a URL is executable.",
+            "expected": "Keep unseen label; reject invalid references/inputs before creating a report.",
+            "observed": "Three tests passed: escaped input and honest unseen state, missing-reference/missing-check failure, unsafe URL failure. save_page uses exclusive output creation.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "Polish a small existing dialog using a list of twenty skill links.",
+            "expected": "Use current project and one relevant method; do not install a catalog or force a redesign.",
+            "observed": "Simulated body walkthrough routes to a bounded change and observable checks, keeping reference data separate from execution authority.",
+            "kind": "simulated",
+            "result": "pass"
+          }
+        ]
+      }
+    },
+    "similar_skills": [
+      {
+        "url": "https://github.com/pbakaus/impeccable/blob/f5c80432f883a0ee437735305eafc2a9e1bdb7a0/.agents/skills/impeccable/SKILL.md",
+        "checked_at": "2026-11-01T13:55:36.220420+00:00",
+        "learned": "The current brief and incumbent visual evidence determine scope; tools for operating a product prioritize successful tasks.",
+        "decision": "adapt",
+        "reason": "Make references actionable without replacing project choices. The new brief carries real content, scope, source observations and task acceptance checks; no universal aesthetic bans or setup imports.",
+        "repository_stars_at_check": 98896
+      },
+      {
+        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/3a13158ff1f32156cbe144108de48eda2ecaed9a/.claude/skills/ui-ux-pro-max/SKILL.md",
+        "checked_at": "2026-11-01T13:55:36.220420+00:00",
+        "learned": "A targeted concern calls for a small intent-specific lookup, while a new system may need broader design-system work.",
+        "decision": "adapt",
+        "reason": "Use one main method for the current task and record dependencies before execution. Do not copy the catalog, require a new system for narrow changes or automatically install linked tools.",
+        "repository_stars_at_check": 143639
+      },
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+        "decision": "adapt",
+        "reason": "Kept the runnable brief near the top and separated rendered output from a proposed build and visuals. No star-impact estimate or audit ceremony was added."
+      },
+      {
+        "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+        "decision": "adapt",
+        "reason": "Centered the evidence on a recognizably specific interaction and its recovery. No external user research or distribution result is inferred."
+      },
+      {
+        "url": "https://github.com/pbakaus/impeccable/blob/main/.agents/skills/impeccable/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "The current project context and visual evidence should determine design decisions and the needed review.",
+        "decision": "adapt",
+        "reason": "Applied evidence traceability to one reference decision, two viewports and a real interaction result without importing its commands or mandatory context files."
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 skill-creator/scripts/quick_validate.py design-agent",
+        "result": "pass",
+        "observed": "Local frontmatter validator reported Skill is valid!"
+      },
+      {
+        "command": "python3 -B publish-skill-product/scripts/audit_product_page.py design-agent --product-manifest products.json",
+        "result": "pass",
+        "observed": "Product audit reported VERDICT: PASS."
+      },
+      {
+        "command": "python3 -B -m unittest discover -s design-agent/scripts -p test_brief.py",
+        "result": "pass",
+        "observed": "3 tests passed: escaping and unseen status, rejection of unknown references or missing checks, and rejection of unsafe URLs."
+      },
+      {
+        "command": "python3 -B design-agent/scripts/brief.py --input design-agent/examples/capture-brief.json --out <scratch>/design-brief.html",
+        "result": "pass",
+        "observed": "Actual HTML render returned one task and execution=not_run; inspected HTML preserved unseen status and the invalid-paste recovery check."
+      }
+    ],
+    "unresolved_blockers": [],
+    "previous_validation": [
+      {
+        "command": "cd design-agent && python3 -m unittest discover -s scripts -p test_*.py",
+        "result": "pass",
+        "observed": "3 tests passed."
+      }
+    ]
+  }
 }

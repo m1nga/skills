@@ -1,6 +1,10 @@
 # First-Time User Tester — See Where Your Product Confuses New Users
 
-A reviewer that experiences your unreleased product as a total stranger first — and only afterwards puts the expert hat on to tell you what broke, why it hurt, and what to fix first.
+Find where a first-time user gets stuck completing a task in your product. Give
+the agent an entry point and an intended outcome, such as finishing onboarding or
+creating the first project. It attempts the journey without owner explanations,
+then produces an HTML usability report with evidence, prioritized fixes and retests.
+An agent walkthrough does not measure customer conversion or replace user research.
 
 ## Run a first-use report
 

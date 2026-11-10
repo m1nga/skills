@@ -1,8 +1,10 @@
 # Design Agent — Turn Visual References into Usable Interfaces
 
-Design Agent helps a coding assistant carry visual references and feedback into a
-specific design and a usable implementation. It keeps track of which choices are
-accepted, what an interaction actually does, and what remains a prototype.
+When an AI-generated page misses the reference, Design Agent connects the visual
+choices you care about to a responsive interface and concrete checks. Give it a
+reference, the existing page and the change you want. You get a design brief or a
+scoped implementation, with accepted choices, working interactions and remaining
+prototype behavior kept explicit. A brief alone is not a verified visual match.
 
 ## Try the brief renderer
 

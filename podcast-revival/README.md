@@ -1,5 +1,11 @@
 # Podcast Video Maker — Turn Source Material into a Directed Conversation
 
+Want to turn notes into a podcast conversation, but review the script before
+spending on audio or video? Start with the no-provider editorial preview below.
+Continue to media generation only with suitable source rights, runtime setup and
+a confirmed spending boundary. The preview demonstrates the writing workflow;
+it is not a generated-video sample or a measured cost claim.
+
 ## What it does
 
 Give your agent a video, notes, a script, or mixed source material. Tell it how long the conversation should be, how it should sound, and which questions or viewpoints matter. Podcast Revival helps the agent prepare a source-grounded script and make its voiced video with a local, recoverable media runtime. Reuse a permitted existing recording when arranging another recording session is the main obstacle. The new source-video route preserves the recorded scene and motion while generating revised lip movements, with an explicit AI disclosure.

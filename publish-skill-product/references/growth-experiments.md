@@ -17,6 +17,10 @@ Choose a primary audience and task, then one hypothesis, such as:
 Name the affected surface, the baseline, the change, and the observation date.
 Do not manufacture query-volume numbers. Treat candidate search phrases as hypotheses.
 
+Before choosing copy or comparing discoverability, use the
+[search-intent workflow](search-intent.md). Keep name, function, problem and pain
+queries separate; inspect actual results and retain useful failed-query evidence.
+
 ## Use a small persistent work folder
 
 Keep private operations outside the public source registry, for example:

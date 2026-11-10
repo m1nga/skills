@@ -1,6 +1,9 @@
 # Prompt Cleaner — Turn Dictated Notes into Reusable Prompts
 
-Turns a rambling, self-correcting, mixed-language draft into a prompt that says the same thing — shorter, not fancier.
+Turn a voice-note transcript or rambling draft into a reusable AI prompt without
+losing your corrections. Prompt Distill preserves examples, scope and mixed-language
+meaning, and keeps ambiguous dates visible. Supply text that is already transcribed;
+this skill edits the instruction and does not record or transcribe audio.
 
 ## What it does
 

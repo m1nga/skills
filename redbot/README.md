@@ -1,6 +1,9 @@
 # RedBot — Find the Good Thing You Saved
 
-You saved something useful, but cannot find it when you need it. RedBot helps you choose **one relevant source, see the useful part and take a next step**.
+Saved too many Xiaohongshu posts to find the useful one? RedBot searches the saved
+material you can provide or access, then helps you **read one relevant source and
+use it for a concrete next step**. A title-only match stays a lead, not a summary
+of unread content; missing or inaccessible posts stay visible as coverage gaps.
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 

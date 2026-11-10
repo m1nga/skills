@@ -2,11 +2,11 @@
 
 **Find out how your SKILL.md fails before a real session pays for it.**
 
-Wind-tunnel testing for instruction text — skills, system prompts, CLAUDE.md rules,
-agent definitions, plugin commands. It casts a small set of personas from your real
-contexts, replays realistic utterances against the trigger surface alone, then walks
-the body line-by-line per scenario and reports what actually happens. Every finding is
-anchored to a line number; description problems come with a paste-ready rewrite.
+Test why a SKILL.md might miss a request or activate on the wrong task. Scenario
+Probe simulates intended requests, near misses and overlapping skills against the
+host’s routing metadata, then examines the instruction body for behavior failures.
+Findings point to source lines and proposed fixes. These are predictions: actual
+trigger selection needs a fresh run in the target agent, recorded separately.
 
 ## What it does
 

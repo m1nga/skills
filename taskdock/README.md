@@ -1,7 +1,9 @@
 # TaskDock — Keep Agent Work Ready to Continue
 
-After several AI sessions, the work is scattered: a promising draft, a newer export,
-an old handoff that still says “waiting,” and a folder nobody wants to move.
+Starting a new coding-agent session should not mean hunting for the latest draft.
+When task files, decisions and handoffs are scattered, TaskDock puts the current
+work in a portable folder with a stable identity. Its file organizer previews
+moves and can undo its own recorded changes, with protection for later edits.
 
 **TaskDock keeps the current result, the decisions behind it, and the next step together.**
 Your agent can resume the task, find a moved folder, and reorganize its files with a

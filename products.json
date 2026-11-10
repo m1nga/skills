@@ -4,7 +4,7 @@
     {
       "name": "design-agent",
       "title": "Design Agent — Turn Visual References into Usable Interfaces",
-      "description": "Turn visual references into focused interface changes, actionable implementation briefs and verified builds within the current project scope.",
+      "description": "Turn visual references into responsive interface changes, actionable design briefs and checked implementations; keep prototype behavior and unverified visual claims explicit.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -52,7 +52,7 @@
     {
       "name": "iteration-close",
       "title": "Iteration Cleanup & Handoff — Preserve Decisions and Remove Dead Work",
-      "description": "Iteration cleanup and handoff that preserves current decisions, removes superseded work safely, verifies a cold takeover, and prepares the next milestone.",
+      "description": "Check repository handoff readiness, find missing setup and stale decisions, then close a milestone with scoped cleanup, takeover verification and a next-step brief.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -81,7 +81,7 @@
     {
       "name": "mixtape",
       "title": "Playlist Builder — Get a Verified Playlist You Can Actually Import",
-      "description": "Playlist builder that turns a mood, scene, or seed songs into a verified playlist you can import to Apple Music, Spotify, YouTube Music, or other services.",
+      "description": "Build a playlist from a mood or seed songs, check recordings in an Apple Music storefront and prepare a Soundiiz import link. Verify the destination separately.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -99,7 +99,7 @@
     {
       "name": "product-experience-officer",
       "title": "First-Time User Tester — See Where Your Product Confuses New Users",
-      "description": "Walk through a product as a first-time user and produce an evidence-led HTML report with task outcomes, prioritized fixes and concrete retests.",
+      "description": "Find where first-time users get stuck in onboarding or a core task. Produce an evidence-led HTML usability report with prioritized fixes and concrete retests.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -108,13 +108,14 @@
         "product-testing",
         "usability",
         "codex",
-        "claude-code"
+        "claude-code",
+        "onboarding"
       ]
     },
     {
       "name": "prompt-distill",
       "title": "Prompt Cleaner — Turn Dictated Notes into Reusable Prompts",
-      "description": "Prompt cleaner for dictated or mixed-language notes. Produce a reusable AI prompt while preserving corrections, examples, scope, and calendar-week boundaries.",
+      "description": "Turn voice-note transcripts and rambling drafts into reusable prompts while preserving corrections, examples, scope and ambiguous dates. Text editing; no audio transcription.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -128,7 +129,7 @@
     {
       "name": "publish-skill-product",
       "title": "GitHub Skill Publisher — Publish Skills and Track Discovery",
-      "description": "Review a skill from the user’s perspective, learn from comparable skills, test improvements, and publish a verified GitHub product and install package.",
+      "description": "Review and publish installable GitHub skills, verify release evidence, and test discovery through function, problem and pain-point searches without inventing growth.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -228,20 +229,21 @@
     {
       "name": "work-memory",
       "title": "Work Memory — Recover Current Context and Learn from Outcomes",
-      "description": "Recover current project decisions with sourced recall, outcome-tested lessons and read-only readiness reports that expose stale evidence and missing checkpoints.",
+      "description": "Recover project decisions between AI sessions with local sourced records, revision history and stale-evidence checks. Keep current decisions separate from rejected ideas.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
         "project-memory",
         "knowledge-management",
         "codex",
-        "evidence"
+        "evidence",
+        "agent-memory"
       ]
     },
     {
       "name": "redbot",
       "title": "RedBot — Find the Good Thing You Saved",
-      "description": "Find one useful Xiaohongshu save and turn its evidence into a next step. Try it with a note or JSON backup, or connect your account in the invitation beta.",
+      "description": "Search Xiaohongshu saves or a supplied JSON backup, read one relevant source and turn it into a next step. Missing text stays explicit; account sync is an invitation beta.",
       "topics": [
         "m1nga-skill",
         "agent-skill",

@@ -1,6 +1,10 @@
 # Context Budget — Cut Repeated Reading in Agent Workflows
 
-Context Budget is an agent skill for workflows that repeatedly load large sources, logs and old context. It helps the agent find what changed, open the relevant evidence and finish the requested job. It includes a small local comparison tool for repeated source lists.
+Does your coding agent keep rereading the same files or research library? Context
+Budget compares source versions, reuses the relevant material already reviewed and
+opens what is new, missing or conflicting. It includes a local snapshot comparator
+and a reproducible example. The aim is less repeated reading with the same complete
+result; a byte reduction alone does not establish token or subscription savings.
 
 ## Reproduce a saved-source update
 

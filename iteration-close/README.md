@@ -1,6 +1,10 @@
 # Iteration Cleanup & Handoff — Preserve Decisions and Remove Dead Work
 
-Close an iteration so nothing is lost and nothing dead survives — and prove, with an actual test, that a stranger could take the repo over.
+Can another developer or coding agent run this repository and find the current
+decisions? Start with a read-only handoff check that identifies missing setup,
+stale status and unclear next steps. For a full milestone close, preserve decisions,
+review cleanup and verify takeover and bootstrap separately. A documentation
+preview is not proof that a fresh machine can run the project.
 
 ## What it does
 

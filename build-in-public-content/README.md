@@ -1,6 +1,10 @@
 # Build Progress Posts — Turn Verified Changes into Clear Public Updates
 
-Use verified changes, decisions, and setbacks to make a build-in-public post people can understand, with a useful visual or demo plan when needed.
+Not sure what to post about the project you are building? Start with one real
+change, decision or setback and the person it affects. This skill turns that
+evidence into a build-in-public draft, with a useful visual or demo plan when
+needed. You receive specific copy and its supporting record, without inventing
+customer stories or treating a draft as an approved publication.
 
 ## What it does
 

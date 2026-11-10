@@ -1,68 +1,122 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
-  "source_sha256": "c5f2fa768470934dec3bb5a6787e5ee4f33e9a3da46bd4e33cd312411c5ef53a",
+  "reviewed_at": "2026-11-10T04:12:04.587735+00:00",
+  "source_sha256": "523574e677e335992daf1a39bdaa048880ee09d3d3fadcd301c834714be6a0e1",
   "user_review": {
-    "method": "Maintainer first-use demo from outside the source directory, real filesystem operations on disposable fixtures, and existing recovery tests. No cross-session productivity trial.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Organize the sample folder and keep its entry and active files useful.",
-        "expected": "Move the sample artifact, repair its relative link, and retain runtime and history files.",
-        "observed": "All three demo domains applied and reconciled successfully with the entry link repaired.",
-        "kind": "executed",
+        "request": "Resume a scattered project and organize its files.",
+        "expected": "The opening identifies the portable folder, stable task identity and previewed moves.",
+        "observed": "The opening identifies the portable folder, stable task identity and previewed moves.",
+        "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Undo after a collaborator has edited the moved file.",
-        "expected": "Refuse the undo, name the conflicting file and preserve visible files.",
-        "observed": "The demo changed the real disposable postimage, reported conflict in all three domains, and compared the visible files byte for byte. It then removed only its fixture edit, verified normal undo restored the before snapshot, and reapplied a fresh plan.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Run the demo again on an existing folder.",
-        "expected": "Refuse to overwrite it.",
-        "observed": "The CLI returned exit 1 and told the user to choose a new folder.",
-        "kind": "executed",
+        "request": "Can it undo any unrelated change another tool made?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "Undo is explicitly scoped to its own recorded changes and protects later edits.",
+        "kind": "simulated",
         "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "A short reproducible demo can expose the most valuable operation and its output.",
-      "reason": "Bring the conflict path into the existing runnable organizer demo.",
-      "decision": "adapt"
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Separate search intent and map the task to a relevant page.",
+      "decision": "adapt",
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
-      "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "Recovery selects the owned plan and stops on ambiguity before reading or changing another workspace.",
-      "reason": "Retain TaskDock's explicit target and operation receipt; demonstrate from a separate working directory.",
-      "decision": "adapt"
-    },
-    {
-      "url": "https://restic.readthedocs.io/en/stable/050_restore.html",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "Recovery policies should make existing-file handling and dry-run behavior visible.",
-      "reason": "Show TaskDock's scoped preimage restore refusing newer work and keep this operation distinct from restoring a whole backup.",
-      "decision": "adapt"
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
+      "decision": "adapt",
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 -B taskdock/scripts/demo.py --domain DOMAIN --output NEW_DIRECTORY",
-      "observed": "Ran design, release, and research from a separate directory. All returned rollback_conflict with the expected path and byte-preservation proof, ordinary rollback and final reconciliation.",
-      "result": "pass"
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py taskdock --product-manifest products.json --json",
+      "result": "pass",
+      "observed": "{\n  \"skill\": \"taskdock\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python3 -B -m unittest discover -s taskdock/scripts -p 'test_*.py'",
-      "observed": "65 tests run, 64 passed and one platform-specific case skipped.",
-      "result": "pass"
+      "command": "python3 <skill-creator>/scripts/quick_validate.py taskdock",
+      "result": "pass",
+      "observed": "Skill is valid!"
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "taskdock",
+    "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
+    "source_sha256": "c5f2fa768470934dec3bb5a6787e5ee4f33e9a3da46bd4e33cd312411c5ef53a",
+    "user_review": {
+      "method": "Maintainer first-use demo from outside the source directory, real filesystem operations on disposable fixtures, and existing recovery tests. No cross-session productivity trial.",
+      "scenarios": [
+        {
+          "request": "Organize the sample folder and keep its entry and active files useful.",
+          "expected": "Move the sample artifact, repair its relative link, and retain runtime and history files.",
+          "observed": "All three demo domains applied and reconciled successfully with the entry link repaired.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Undo after a collaborator has edited the moved file.",
+          "expected": "Refuse the undo, name the conflicting file and preserve visible files.",
+          "observed": "The demo changed the real disposable postimage, reported conflict in all three domains, and compared the visible files byte for byte. It then removed only its fixture edit, verified normal undo restored the before snapshot, and reapplied a fresh plan.",
+          "kind": "executed",
+          "result": "fixed"
+        },
+        {
+          "request": "Run the demo again on an existing folder.",
+          "expected": "Refuse to overwrite it.",
+          "observed": "The CLI returned exit 1 and told the user to choose a new folder.",
+          "kind": "executed",
+          "result": "pass"
+        }
+      ]
+    },
+    "similar_skills": [
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "A short reproducible demo can expose the most valuable operation and its output.",
+        "reason": "Bring the conflict path into the existing runnable organizer demo.",
+        "decision": "adapt"
+      },
+      {
+        "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "Recovery selects the owned plan and stops on ambiguity before reading or changing another workspace.",
+        "reason": "Retain TaskDock's explicit target and operation receipt; demonstrate from a separate working directory.",
+        "decision": "adapt"
+      },
+      {
+        "url": "https://restic.readthedocs.io/en/stable/050_restore.html",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "Recovery policies should make existing-file handling and dry-run behavior visible.",
+        "reason": "Show TaskDock's scoped preimage restore refusing newer work and keep this operation distinct from restoring a whole backup.",
+        "decision": "adapt"
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 -B taskdock/scripts/demo.py --domain DOMAIN --output NEW_DIRECTORY",
+        "observed": "Ran design, release, and research from a separate directory. All returned rollback_conflict with the expected path and byte-preservation proof, ordinary rollback and final reconciliation.",
+        "result": "pass"
+      },
+      {
+        "command": "python3 -B -m unittest discover -s taskdock/scripts -p 'test_*.py'",
+        "observed": "65 tests run, 64 passed and one platform-specific case skipped.",
+        "result": "pass"
+      }
+    ],
+    "unresolved_blockers": []
+  }
 }

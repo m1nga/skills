@@ -1,174 +1,228 @@
 {
   "schema_version": 1,
   "skill": "major-tom",
-  "reviewed_at": "2026-11-10",
-  "source_sha256": "bebee2a34bf501a33d973f54910c9d0c0b8381dc9351bbb264e978505d13dbc2",
+  "reviewed_at": "2026-11-10T04:12:05.363817+00:00",
+  "source_sha256": "95e165e65b046f17aef5e534c38a967d1ee3b154231728761c532795ee66963e",
   "user_review": {
-    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Review one existing handoff without dispatch.",
-        "expected": "Identify the owner, exact result to verify and immediate dependency.",
-        "observed": "In the fictional correction case, the current docs version and unresolved older submission are separated; the original release owner remains responsible for receipt reconciliation. No dispatch was made.",
+        "request": "Existing owners duplicate work and claim completion without a result.",
+        "expected": "The opening names responsibility, evidence, dependencies and observable outcome.",
+        "observed": "The opening names responsibility, evidence, dependencies and observable outcome.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Validate a clean fixture and one with unknown dispatch state or an active owner.",
-        "expected": "Show structural readiness for the clean fixture and refusal for blocked cases without sending or authorizing.",
-        "observed": "Packet tests passed for ready fixtures, active owners, stale observations and unknown or accepted prior intent. A ready result still reports business_authorized=false and side_effects=0.",
-        "kind": "executed",
+        "request": "Does installing this spawn agents or send coordination messages?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The page explicitly says it does neither by itself.",
+        "kind": "simulated",
         "result": "pass"
       }
-    ],
-    "previous_review": {
-      "method": "Author-performed isolated script execution and static scenario-probe walkthrough. The author had read the body; trigger predictions are not blind, independent or actual host selection. No external business action or model delegate was used.",
-      "scenarios": [
-        {
-          "request": "Messy directive: help the existing owners finish this, but first compare two directions.",
-          "expected": "Separate exploration from dispatch and retain the latest correction.",
-          "observed": "Author simulation: smallest-route entry selects comparison first, original intent and scope travel with any later authorized dispatch.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Coordinate an approved multi-owner change and verify its actual result.",
-          "expected": "Keep original owners, one case and native result evidence.",
-          "observed": "Executed packet tests check source/owner/freshness and no-resend; instructions separate artifact delivery from delayed outcomes.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "Fix this one typo.",
-          "expected": "Direct execution without coordinator paperwork.",
-          "observed": "Metadata and smallest-route body both exclude orchestration ceremony for a single clear edit; simulated, no new agent was invoked.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Resume this task and recall its layout decision.",
-          "expected": "TaskDock owns state; Work Memory owns selective recall.",
-          "observed": "Simulated sibling routing: read state once, optional memory brief for the relevant question, no duplicate plan or decision database.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Find the newly installed memory skill.",
-          "expected": "Search known metadata roots, disclose unavailable/conflicting versions.",
-          "observed": "5 discovery tests executed: folded frontmatter, aliases, version conflicts, missing roots, empty query and foreign working directory.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "Fresh machine has no Work Memory or task dispatcher.",
-          "expected": "Use canonical project files; no invented tool or handoff.",
-          "observed": "Simulated bare-machine/second-host path uses project documents, no sibling dependency, records dispatch unavailable instead of pretending it sent.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "A previous dispatch returned unknown; please check the outcome.",
-          "expected": "Read-only reconciliation, no resend.",
-          "observed": "Existing test_packet.py executes unknown/prior intent rejection; no external action submitted.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "A stranger installs only Major Tom for a page experiment.",
-          "expected": "Explain result, route and invocation without owner-specific context.",
-          "observed": "Simulated new-user pass: plain display name, standalone install, Python requirement, concrete page comparison and limits all visible; body already known to author.",
-          "kind": "simulated",
-          "result": "pass"
-        }
-      ]
-    }
+    ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md",
-      "checked_at": "2026-10-26",
-      "learned": "Metadata discovery and progressive loading keep narrow helpers independent.",
-      "decision": "adapt",
-      "reason": "Use explicit root metadata discovery and conditional references; do not copy generic mandatory sequences."
-    },
-    {
-      "url": "https://github.com/oil-oil/oil-ui/blob/main/SKILL.md",
-      "checked_at": "2026-10-26",
-      "learned": "Compare actual visual directions with real content and preserve the chosen artifact and reasons.",
-      "decision": "adapt",
-      "reason": "Carry concrete visual decisions into the existing project; reject compulsory multi-agent reviews and promotional instructions."
-    },
-    {
-      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/main/README.md",
-      "checked_at": "2026-10-26",
-      "learned": "Small context should have an inspectable path to raw evidence.",
-      "decision": "adapt",
-      "reason": "Use exact record revisions and source snapshots; no additional runtime or unsupported savings claim."
-    },
-    {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "learned": "Separate search intent and map the task to a relevant page.",
       "decision": "adapt",
-      "reason": "Added a concrete read-only starting point and links the walkthrough to existing executable packet tests. No star-impact estimate or audit ceremony was added."
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
       "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
       "decision": "adapt",
-      "reason": "Answered what a new user can learn before committing to coordination across owners. No external user research or distribution result is inferred."
-    },
-    {
-      "url": "https://github.com/entireio/skills/blob/main/skills/session-handoff/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "Handoffs preserve actual state, decisions and open items; recovered text cannot grant new authority.",
-      "decision": "adapt",
-      "reason": "Applied the read-only distinction without a dependency on transcript software or a session replacement workflow."
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 skill-creator/scripts/quick_validate.py major-tom",
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py major-tom --product-manifest products.json --json",
       "result": "pass",
-      "observed": "Local frontmatter validator reported Skill is valid!"
+      "observed": "{\n  \"skill\": \"major-tom\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py major-tom --product-manifest products.json",
+      "command": "python3 <skill-creator>/scripts/quick_validate.py major-tom",
       "result": "pass",
-      "observed": "Product audit reported VERDICT: PASS."
-    },
-    {
-      "command": "python3 -B -m unittest discover -s major-tom/scripts -p 'test_*.py'",
-      "result": "pass",
-      "observed": "17 tests passed for packet validation and capability metadata, including rejection of wrong owner, stale evidence and no-resend states."
+      "observed": "Skill is valid!"
     }
   ],
   "unresolved_blockers": [],
-  "limitations": [
-    "No longitudinal user outcome or token-saving claim.",
-    "Host integration and automatic selection require their own live evidence."
-  ],
-  "recovered_source": {
-    "repository": "https://github.com/m1nga/skill-builder",
-    "commit": "8926217d18fb4a3ef19dcee770d283210e942064",
-    "path": "skills/major-tom"
-  },
-  "previous_validation": [
-    {
-      "command": "python3 -B -m unittest discover -s major-tom/scripts -p test_*.py",
-      "result": "pass",
-      "observed": "17 isolated tests passed."
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "major-tom",
+    "reviewed_at": "2026-11-10",
+    "source_sha256": "bebee2a34bf501a33d973f54910c9d0c0b8381dc9351bbb264e978505d13dbc2",
+    "user_review": {
+      "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+      "scenarios": [
+        {
+          "request": "Review one existing handoff without dispatch.",
+          "expected": "Identify the owner, exact result to verify and immediate dependency.",
+          "observed": "In the fictional correction case, the current docs version and unresolved older submission are separated; the original release owner remains responsible for receipt reconciliation. No dispatch was made.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Validate a clean fixture and one with unknown dispatch state or an active owner.",
+          "expected": "Show structural readiness for the clean fixture and refusal for blocked cases without sending or authorizing.",
+          "observed": "Packet tests passed for ready fixtures, active owners, stale observations and unknown or accepted prior intent. A ready result still reports business_authorized=false and side_effects=0.",
+          "kind": "executed",
+          "result": "pass"
+        }
+      ],
+      "previous_review": {
+        "method": "Author-performed isolated script execution and static scenario-probe walkthrough. The author had read the body; trigger predictions are not blind, independent or actual host selection. No external business action or model delegate was used.",
+        "scenarios": [
+          {
+            "request": "Messy directive: help the existing owners finish this, but first compare two directions.",
+            "expected": "Separate exploration from dispatch and retain the latest correction.",
+            "observed": "Author simulation: smallest-route entry selects comparison first, original intent and scope travel with any later authorized dispatch.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Coordinate an approved multi-owner change and verify its actual result.",
+            "expected": "Keep original owners, one case and native result evidence.",
+            "observed": "Executed packet tests check source/owner/freshness and no-resend; instructions separate artifact delivery from delayed outcomes.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "Fix this one typo.",
+            "expected": "Direct execution without coordinator paperwork.",
+            "observed": "Metadata and smallest-route body both exclude orchestration ceremony for a single clear edit; simulated, no new agent was invoked.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Resume this task and recall its layout decision.",
+            "expected": "TaskDock owns state; Work Memory owns selective recall.",
+            "observed": "Simulated sibling routing: read state once, optional memory brief for the relevant question, no duplicate plan or decision database.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Find the newly installed memory skill.",
+            "expected": "Search known metadata roots, disclose unavailable/conflicting versions.",
+            "observed": "5 discovery tests executed: folded frontmatter, aliases, version conflicts, missing roots, empty query and foreign working directory.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "Fresh machine has no Work Memory or task dispatcher.",
+            "expected": "Use canonical project files; no invented tool or handoff.",
+            "observed": "Simulated bare-machine/second-host path uses project documents, no sibling dependency, records dispatch unavailable instead of pretending it sent.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "A previous dispatch returned unknown; please check the outcome.",
+            "expected": "Read-only reconciliation, no resend.",
+            "observed": "Existing test_packet.py executes unknown/prior intent rejection; no external action submitted.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "A stranger installs only Major Tom for a page experiment.",
+            "expected": "Explain result, route and invocation without owner-specific context.",
+            "observed": "Simulated new-user pass: plain display name, standalone install, Python requirement, concrete page comparison and limits all visible; body already known to author.",
+            "kind": "simulated",
+            "result": "pass"
+          }
+        ]
+      }
     },
-    {
-      "command": "python3 <installed-skill-creator>/scripts/quick_validate.py major-tom",
-      "result": "pass",
-      "observed": "Skill is valid!"
+    "similar_skills": [
+      {
+        "url": "https://github.com/openai/skills/blob/main/skills/.system/skill-creator/SKILL.md",
+        "checked_at": "2026-10-26",
+        "learned": "Metadata discovery and progressive loading keep narrow helpers independent.",
+        "decision": "adapt",
+        "reason": "Use explicit root metadata discovery and conditional references; do not copy generic mandatory sequences."
+      },
+      {
+        "url": "https://github.com/oil-oil/oil-ui/blob/main/SKILL.md",
+        "checked_at": "2026-10-26",
+        "learned": "Compare actual visual directions with real content and preserve the chosen artifact and reasons.",
+        "decision": "adapt",
+        "reason": "Carry concrete visual decisions into the existing project; reject compulsory multi-agent reviews and promotional instructions."
+      },
+      {
+        "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/main/README.md",
+        "checked_at": "2026-10-26",
+        "learned": "Small context should have an inspectable path to raw evidence.",
+        "decision": "adapt",
+        "reason": "Use exact record revisions and source snapshots; no additional runtime or unsupported savings claim."
+      },
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+        "decision": "adapt",
+        "reason": "Added a concrete read-only starting point and links the walkthrough to existing executable packet tests. No star-impact estimate or audit ceremony was added."
+      },
+      {
+        "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+        "decision": "adapt",
+        "reason": "Answered what a new user can learn before committing to coordination across owners. No external user research or distribution result is inferred."
+      },
+      {
+        "url": "https://github.com/entireio/skills/blob/main/skills/session-handoff/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Handoffs preserve actual state, decisions and open items; recovered text cannot grant new authority.",
+        "decision": "adapt",
+        "reason": "Applied the read-only distinction without a dependency on transcript software or a session replacement workflow."
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 skill-creator/scripts/quick_validate.py major-tom",
+        "result": "pass",
+        "observed": "Local frontmatter validator reported Skill is valid!"
+      },
+      {
+        "command": "python3 -B publish-skill-product/scripts/audit_product_page.py major-tom --product-manifest products.json",
+        "result": "pass",
+        "observed": "Product audit reported VERDICT: PASS."
+      },
+      {
+        "command": "python3 -B -m unittest discover -s major-tom/scripts -p 'test_*.py'",
+        "result": "pass",
+        "observed": "17 tests passed for packet validation and capability metadata, including rejection of wrong owner, stale evidence and no-resend states."
+      }
+    ],
+    "unresolved_blockers": [],
+    "limitations": [
+      "No longitudinal user outcome or token-saving claim.",
+      "Host integration and automatic selection require their own live evidence."
+    ],
+    "recovered_source": {
+      "repository": "https://github.com/m1nga/skill-builder",
+      "commit": "8926217d18fb4a3ef19dcee770d283210e942064",
+      "path": "skills/major-tom"
     },
-    {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py major-tom --product-manifest products.json",
-      "result": "pass",
-      "observed": "VERDICT: PASS"
-    }
-  ]
+    "previous_validation": [
+      {
+        "command": "python3 -B -m unittest discover -s major-tom/scripts -p test_*.py",
+        "result": "pass",
+        "observed": "17 isolated tests passed."
+      },
+      {
+        "command": "python3 <installed-skill-creator>/scripts/quick_validate.py major-tom",
+        "result": "pass",
+        "observed": "Skill is valid!"
+      },
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py major-tom --product-manifest products.json",
+        "result": "pass",
+        "observed": "VERDICT: PASS"
+      }
+    ]
+  }
 }

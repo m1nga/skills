@@ -1,68 +1,122 @@
 {
   "schema_version": 1,
   "skill": "scenario-probe",
-  "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
-  "source_sha256": "1a35818c550f0eb0543296befd3af49d3ac517547f5ce9245e5fb1f17eca67f7",
+  "reviewed_at": "2026-11-10T04:12:04.496631+00:00",
+  "source_sha256": "07a1a356cf779187a0285aad2f695495b1ef2755678d7bc4da34a1986510b491",
   "user_review": {
-    "method": "Maintainer static instruction walk through a small release-notes description with the original surface considered before the rewrite. No fresh model or skill-load trace was measured.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Turn these merged PRs into a changelog entry.",
-        "expected": "Surface a plausible trigger vocabulary gap and produce an actionable description change.",
-        "observed": "Original description says release notes only. Static walkthrough marked a possible miss; revised description gives a direct alias and input. Actual load remains unmeasured.",
-        "kind": "simulated",
-        "result": "fixed"
-      },
-      {
-        "request": "Deploy this build, with the proposed description change present.",
-        "expected": "Avoid claiming the neighboring deployment request.",
-        "observed": "Both descriptions predict no selection because the requested output is a deployment rather than a changelog or release notes.",
+        "request": "Check whether this SKILL.md fires on intended requests and near misses.",
+        "expected": "The page maps the request to routing-metadata simulation and source-anchored findings.",
+        "observed": "The page maps the request to routing-metadata simulation and source-anchored findings.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "The response looks right, but the host exposes no skill-load evidence.",
-        "expected": "Leave implicit selection unknown and distinguish behavior after explicit invocation.",
-        "observed": "The live-fire path records behavior separately, labels a final-answer inference as a proxy, and keeps synthetic traces separate.",
+        "request": "Can the walkthrough certify actual selection by my coding agent?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "Prediction is now explicit; fresh target-harness execution is a separate requirement.",
         "kind": "simulated",
-        "result": "fixed"
+        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "Show one bounded case a visitor can understand from the first screen.",
-      "reason": "Add a before/after request, negative control and explicit live-evidence column.",
-      "decision": "adapt"
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Separate search intent and map the task to a relevant page.",
+      "decision": "adapt",
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
-      "url": "https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/skill-creator/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "Use realistic prompts with minimal context for independent skill evaluation.",
-      "reason": "Keep live replays unhinted and hold the model, harness and sibling set fixed across versions.",
-      "decision": "adapt"
-    },
-    {
-      "url": "https://github.com/openai/plugins/blob/main/plugins/plugin-eval/skills/evaluate-skill/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "Static package analysis and an actual benchmark are separate operations.",
-      "reason": "Preserve that separation in predictions, traces and behavior outcomes without adding another evaluator dependency.",
-      "decision": "adapt"
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
+      "decision": "adapt",
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py scenario-probe --product-manifest products.json",
-      "observed": "Product audit passed. The static review distinguishes prediction, actual load and post-selection behavior.",
-      "result": "pass"
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py scenario-probe --product-manifest products.json --json",
+      "result": "pass",
+      "observed": "{\n  \"skill\": \"scenario-probe\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "git diff --check",
-      "observed": "No whitespace errors in the source changes.",
-      "result": "pass"
+      "command": "python3 <skill-creator>/scripts/quick_validate.py scenario-probe",
+      "result": "pass",
+      "observed": "Skill is valid!"
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "scenario-probe",
+    "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
+    "source_sha256": "1a35818c550f0eb0543296befd3af49d3ac517547f5ce9245e5fb1f17eca67f7",
+    "user_review": {
+      "method": "Maintainer static instruction walk through a small release-notes description with the original surface considered before the rewrite. No fresh model or skill-load trace was measured.",
+      "scenarios": [
+        {
+          "request": "Turn these merged PRs into a changelog entry.",
+          "expected": "Surface a plausible trigger vocabulary gap and produce an actionable description change.",
+          "observed": "Original description says release notes only. Static walkthrough marked a possible miss; revised description gives a direct alias and input. Actual load remains unmeasured.",
+          "kind": "simulated",
+          "result": "fixed"
+        },
+        {
+          "request": "Deploy this build, with the proposed description change present.",
+          "expected": "Avoid claiming the neighboring deployment request.",
+          "observed": "Both descriptions predict no selection because the requested output is a deployment rather than a changelog or release notes.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "The response looks right, but the host exposes no skill-load evidence.",
+          "expected": "Leave implicit selection unknown and distinguish behavior after explicit invocation.",
+          "observed": "The live-fire path records behavior separately, labels a final-answer inference as a proxy, and keeps synthetic traces separate.",
+          "kind": "simulated",
+          "result": "fixed"
+        }
+      ]
+    },
+    "similar_skills": [
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "Show one bounded case a visitor can understand from the first screen.",
+        "reason": "Add a before/after request, negative control and explicit live-evidence column.",
+        "decision": "adapt"
+      },
+      {
+        "url": "https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/skill-creator/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "Use realistic prompts with minimal context for independent skill evaluation.",
+        "reason": "Keep live replays unhinted and hold the model, harness and sibling set fixed across versions.",
+        "decision": "adapt"
+      },
+      {
+        "url": "https://github.com/openai/plugins/blob/main/plugins/plugin-eval/skills/evaluate-skill/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "Static package analysis and an actual benchmark are separate operations.",
+        "reason": "Preserve that separation in predictions, traces and behavior outcomes without adding another evaluator dependency.",
+        "decision": "adapt"
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py scenario-probe --product-manifest products.json",
+        "observed": "Product audit passed. The static review distinguishes prediction, actual load and post-selection behavior.",
+        "result": "pass"
+      },
+      {
+        "command": "git diff --check",
+        "observed": "No whitespace errors in the source changes.",
+        "result": "pass"
+      }
+    ],
+    "unresolved_blockers": []
+  }
 }

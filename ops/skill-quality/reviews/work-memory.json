@@ -1,68 +1,122 @@
 {
   "schema_version": 1,
   "skill": "work-memory",
-  "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
-  "source_sha256": "3ae895b71d71a9251eb36fd998563925ac2759dc8576c8efefc6861c99afd282",
+  "reviewed_at": "2026-11-10T04:12:04.675145+00:00",
+  "source_sha256": "17ff0ce60a656a53c4e9578cb9908a1472f01a338e15b0ca2e634ea56ba51997",
   "user_review": {
-    "method": "Maintainer first-use replay using genuine local CLI processes and fictional instructions in a new isolated project. No independent fresh agent session or maintenance-cost study.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "After three launch-day changes, what is current and why?",
-        "expected": "Retrieve Thursday with the latest original wording while leaving the first three revisions audit-only.",
-        "observed": "The demo created four revisions, retrieved only Thursday in a new local brief process, and read all four exact source excerpts with only revision 4 eligible for execution.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "A delayed writer still thinks revision 2 is current.",
-        "expected": "Reject the stale update and leave revision 4 authoritative.",
-        "observed": "The live capture CLI returned exit 2 with expected_revision must be 4. A later brief still returned Thursday only.",
-        "kind": "executed",
+        "request": "Retrieve the latest decision after changing direction in earlier sessions.",
+        "expected": "The page connects local records to sources, revision history and stale-evidence checks.",
+        "observed": "The page connects local records to sources, revision history and stale-evidence checks.",
+        "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Point the sample at an existing folder.",
-        "expected": "Refuse without writing sample data.",
-        "observed": "The demo exited 1 at exclusive directory creation.",
-        "kind": "executed",
+        "request": "Will installation alone make every future session remember?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The opening states that the workflow must record and retrieve context.",
+        "kind": "simulated",
         "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "A visible short example reduces uncertainty about the result.",
-      "reason": "Expose a one-command replay and the exact distinction between a CLI check and a fresh-host handoff.",
-      "decision": "adapt"
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Separate search intent and map the task to a relevant page.",
+      "decision": "adapt",
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
-      "url": "https://github.com/thedotmack/claude-mem/blob/b80b29bc49d08a71312f44b8feacb2e7585edff4/plugin/skills/mem-search/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "Index lookup precedes full observation retrieval.",
-      "reason": "Demonstrate the existing brief and exact revision reader instead of inventing a new retrieval engine.",
-      "decision": "adapt"
-    },
-    {
-      "url": "https://github.com/mem0ai/mem0/blob/753496cf1435d76c3a711f3af51303f7fdcb6420/integrations/codex-plugin/skills/remember/SKILL.md",
-      "checked_at": "2026-11-10T01:55:06.996623+00:00",
-      "learned": "Background extraction is distinct from an actual storage receipt.",
-      "reason": "Keep explicit CLI captures and observed receipts; do not infer capture or fresh-host retrieval from a conversational acknowledgment.",
-      "decision": "reject"
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
+      "decision": "adapt",
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 -B work-memory/scripts/demo.py --output NEW_DIRECTORY",
-      "observed": "Four revisions, one current decision with exact evidence, three readable historical revisions, and one stale writer rejected.",
-      "result": "pass"
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py work-memory --product-manifest products.json --json",
+      "result": "pass",
+      "observed": "{\n  \"skill\": \"work-memory\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python3 -B -m unittest discover -s work-memory/scripts -p 'test_*.py'",
-      "observed": "All 75 tests passed.",
-      "result": "pass"
+      "command": "python3 <skill-creator>/scripts/quick_validate.py work-memory",
+      "result": "pass",
+      "observed": "Skill is valid!"
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "work-memory",
+    "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
+    "source_sha256": "3ae895b71d71a9251eb36fd998563925ac2759dc8576c8efefc6861c99afd282",
+    "user_review": {
+      "method": "Maintainer first-use replay using genuine local CLI processes and fictional instructions in a new isolated project. No independent fresh agent session or maintenance-cost study.",
+      "scenarios": [
+        {
+          "request": "After three launch-day changes, what is current and why?",
+          "expected": "Retrieve Thursday with the latest original wording while leaving the first three revisions audit-only.",
+          "observed": "The demo created four revisions, retrieved only Thursday in a new local brief process, and read all four exact source excerpts with only revision 4 eligible for execution.",
+          "kind": "executed",
+          "result": "fixed"
+        },
+        {
+          "request": "A delayed writer still thinks revision 2 is current.",
+          "expected": "Reject the stale update and leave revision 4 authoritative.",
+          "observed": "The live capture CLI returned exit 2 with expected_revision must be 4. A later brief still returned Thursday only.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Point the sample at an existing folder.",
+          "expected": "Refuse without writing sample data.",
+          "observed": "The demo exited 1 at exclusive directory creation.",
+          "kind": "executed",
+          "result": "pass"
+        }
+      ]
+    },
+    "similar_skills": [
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "A visible short example reduces uncertainty about the result.",
+        "reason": "Expose a one-command replay and the exact distinction between a CLI check and a fresh-host handoff.",
+        "decision": "adapt"
+      },
+      {
+        "url": "https://github.com/thedotmack/claude-mem/blob/b80b29bc49d08a71312f44b8feacb2e7585edff4/plugin/skills/mem-search/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "Index lookup precedes full observation retrieval.",
+        "reason": "Demonstrate the existing brief and exact revision reader instead of inventing a new retrieval engine.",
+        "decision": "adapt"
+      },
+      {
+        "url": "https://github.com/mem0ai/mem0/blob/753496cf1435d76c3a711f3af51303f7fdcb6420/integrations/codex-plugin/skills/remember/SKILL.md",
+        "checked_at": "2026-11-10T01:55:06.996623+00:00",
+        "learned": "Background extraction is distinct from an actual storage receipt.",
+        "reason": "Keep explicit CLI captures and observed receipts; do not infer capture or fresh-host retrieval from a conversational acknowledgment.",
+        "decision": "reject"
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 -B work-memory/scripts/demo.py --output NEW_DIRECTORY",
+        "observed": "Four revisions, one current decision with exact evidence, three readable historical revisions, and one stale writer rejected.",
+        "result": "pass"
+      },
+      {
+        "command": "python3 -B -m unittest discover -s work-memory/scripts -p 'test_*.py'",
+        "observed": "All 75 tests passed.",
+        "result": "pass"
+      }
+    ],
+    "unresolved_blockers": []
+  }
 }

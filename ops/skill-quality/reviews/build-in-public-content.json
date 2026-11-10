@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
   "skill": "build-in-public-content",
-  "reviewed_at": "2026-11-10",
-  "source_sha256": "b6197956e54d008c23c54360726c7444045b0945e4ea25919073e4c729f8696c",
+  "reviewed_at": "2026-11-10T04:12:05.632801+00:00",
+  "source_sha256": "a7c506ea3ffe348c81f732e3f0e240b2a8a32a392a4a3b7a7e11ceed24f245aa",
   "user_review": {
-    "method": "Maintainer instruction walkthroughs of the changed first-use and failure routes; simulated behavior, not an independent user trial. Package audits executed.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Turn a local rollback-conflict test into a developer update; no customer data.",
-        "expected": "Draft exact local behavior with a reproducible next step.",
-        "observed": "Worked fictional draft describes refused rollback and preserved edit, with a five-part shot plan marked unrecorded; no invented customer, deployment or video.",
+        "request": "I do not know what to post about a real project change.",
+        "expected": "The opening asks for the change, its affected reader and supporting evidence, then offers a draft and demo plan.",
+        "observed": "The opening asks for the change, its affected reader and supporting evidence, then offers a draft and demo plan.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Say users love it and post it everywhere; no evidence or destination given.",
-        "expected": "Remove unsupported satisfaction claim, keep draft.",
-        "observed": "Worked boundary removes claim, preserves unknown adoption and requires actual destination/account authority before publication.",
+        "request": "Can it invent a customer success or treat a draft as permission to publish?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The opening preserves evidence and publication state, consistent with existing instructions.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -24,25 +24,18 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Concrete first useful result and explicit setup requirements help a stranger assess a repository.",
+      "learned": "Separate search intent and map the task to a relevant page.",
       "decision": "adapt",
-      "reason": "Applied to the changed onboarding route; reject star forecasts and the claim that a visual alone establishes growth."
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
       "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Tie content to one reader and a concrete information gain.",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
       "decision": "adapt",
-      "reason": "Use one source-backed example; no mandatory calendar, topic volume or invented demand."
-    },
-    {
-      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/launch/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "Check completeness of a bounded first experience before expansion.",
-      "decision": "adapt",
-      "reason": "Keep useful review or preview independently accessible while actual public release and media retain authority requirements."
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
@@ -61,63 +54,22 @@
   "previous_review": {
     "schema_version": 1,
     "skill": "build-in-public-content",
-    "reviewed_at": "2026-10-23",
+    "reviewed_at": "2026-11-10",
+    "source_sha256": "b6197956e54d008c23c54360726c7444045b0945e4ea25919073e4c729f8696c",
     "user_review": {
-      "method": "Author self-review from public description using fictional isolated inputs; all behavioral cases are simulated walkthroughs, no fresh agent or real user research.",
+      "method": "Maintainer instruction walkthroughs of the changed first-use and failure routes; simulated behavior, not an independent user trial. Package audits executed.",
       "scenarios": [
         {
-          "request": "Fictional input: revision demo-r12 implements topic discussion navigation; local acceptance only; staging untested. Prepare an English progress draft, review held.",
-          "expected": "Concrete post with private/local stage, no launch claim, no submission.",
-          "observed": "Draft: “In our private prototype, project cards now open their topic discussions. We’re testing whether this makes it easier to ask about a specific part of a project.” Event demo-nav-02 keeps revision demo-r12, local acceptance, staging untested and review hold; no public URL. The declared next test is explicitly not a finding.",
+          "request": "Turn a local rollback-conflict test into a developer update; no customer data.",
+          "expected": "Draft exact local behavior with a reproducible next step.",
+          "observed": "Worked fictional draft describes refused rollback and preserved edit, with a five-part shot plan marked unrecorded; no invented customer, deployment or video.",
           "kind": "simulated",
           "result": "pass"
         },
         {
-          "request": "Same notes, ask for a 25-second demo; no footage supplied and no capture permission.",
-          "expected": "Shot plan with missing recording explicit; no claimed capture/playback.",
-          "observed": "Plan: show project card, click topic discussion, show resulting thread; labels “private prototype” and staged data if used. Timing remains illustrative. No recording started, no video delivered, no playback claimed. Recover by obtaining authorized project capture and checking actual export.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Background approved; proposed replacement logo and metallic lettering conflict with supplied understated brand samples.",
-          "expected": "Preserve official logo and brand direction; background approval does not approve full image.",
-          "observed": "Rejected replacement logo/unsupported effect. Proposed refinement of typography using supplied references, with whole composition still held. No raster produced; export/thumbnail checks remain incomplete.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "A progress event already has a verified published receipt. User asks to cover the same update on the next slot.",
-          "expected": "Reuse receipt; no duplicate post or invented progress.",
-          "observed": "Existing event ID and receipt retained; no new draft framed as a new implementation. Distinct follow-up requires a new supported angle, otherwise record no publishable new event.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Submission timed out; scheduler would retry.",
-          "expected": "Read-only reconciliation; no resend.",
-          "observed": "Retained submitted-unknown state, original asset/copy version, account and submission time. Next action is inspect actual platform result; no success claim or retry.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Project paused. New code diff exists and first post remains preview-held.",
-          "expected": "Preserve evidence and cursor pending; no business work or automatic resume.",
-          "observed": "Recorded pending change and source version without drafting/publishing/recording. Existing hold remains. Skill adaptation itself does not reactivate project operations.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Draft says “Users asked for this, so it is now live”; source contains only an internal decision and private implementation.",
-          "expected": "Remove unsupported audience and availability claims while preserving supported change.",
-          "observed": "Rewritten as “We chose to open discussions from project cards. This is implemented in the private prototype.” No customer request or public launch inferred.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Routing probes: prepare a source-backed build update; plan generic marketing calendar; fix application bug; rewrite unrelated essay.",
-          "expected": "Activate only first; route other requests to their actual work.",
-          "observed": "Description selects source-backed progress communication. Calendar, implementation and unrelated editing are excluded. This is an author reasoning check, not harness trigger telemetry.",
+          "request": "Say users love it and post it everywhere; no evidence or destination given.",
+          "expected": "Remove unsupported satisfaction claim, keep draft.",
+          "observed": "Worked boundary removes claim, preserves unknown adoption and requires actual destination/account authority before publication.",
           "kind": "simulated",
           "result": "pass"
         }
@@ -125,43 +77,145 @@
     },
     "similar_skills": [
       {
-        "url": "https://github.com/pbakaus/impeccable/blob/5cb95eea9c96479f57afe0732a45470d30183326/.agents/skills/impeccable/SKILL.md",
-        "checked_at": "2026-10-23",
-        "learned": "Incumbent visual evidence and user brief constrain refinement; inspect real delivery sizes.",
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Concrete first useful result and explicit setup requirements help a stranger assess a repository.",
         "decision": "adapt",
-        "reason": "Apply to public communication assets, without frontend runtime or hooks."
+        "reason": "Applied to the changed onboarding route; reject star forecasts and the claim that a visual alone establishes growth."
       },
       {
-        "url": "https://github.com/blader/humanizer/blob/8c307f367c91bd974002f10f2be2965d642c13df/SKILL.md",
-        "checked_at": "2026-10-23",
-        "learned": "Edit for a concrete reader and compare facts before and after rewriting.",
+        "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Tie content to one reader and a concrete information gain.",
         "decision": "adapt",
-        "reason": "Retain facts and uncertainty in progress narratives; reject rigid punctuation bans and intermediate rewrite boilerplate."
+        "reason": "Use one source-backed example; no mandatory calendar, topic volume or invented demand."
+      },
+      {
+        "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/launch/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Check completeness of a bounded first experience before expansion.",
+        "decision": "adapt",
+        "reason": "Keep useful review or preview independently accessible while actual public release and media retain authority requirements."
       }
     ],
     "validation": [
       {
-        "command": "python3 <skill-creator>/scripts/quick_validate.py <owner>/package/build-in-public-content",
-        "result": "pass",
-        "observed": "Skill is valid!; final exit code 0."
-      },
-      {
-        "command": "python3 <publish-skill-product>/scripts/audit_product_page.py <owner>/package/build-in-public-content --product-manifest <process-substitution wrapping product-entry.json in products array> --json",
-        "result": "pass",
-        "observed": "Final verdict PASS; errors=[]; warnings=[]; exit 0. Initial missing manifest/README sections fixed, then H1 aligned with product title. No shared registry file written."
-      },
-      {
-        "command": "quick_validate.py <registry>/build-in-public-content",
-        "result": "pass",
-        "observed": "Skill is valid!"
-      },
-      {
-        "command": "audit_product_page.py <registry>/build-in-public-content --product-manifest <registry>/products.json --json",
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py build-in-public-content --product-manifest products.json --json",
         "result": "pass",
         "observed": "{\n  \"skill\": \"build-in-public-content\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
+      },
+      {
+        "command": "python3 <skill-creator>/scripts/quick_validate.py build-in-public-content",
+        "result": "pass",
+        "observed": "Skill is valid!"
       }
     ],
     "unresolved_blockers": [],
-    "source_sha256": "2e2925fb492682a18b575ec85c9d866ca7e206391fe081692f5aa7d54e69c132"
+    "previous_review": {
+      "schema_version": 1,
+      "skill": "build-in-public-content",
+      "reviewed_at": "2026-10-23",
+      "user_review": {
+        "method": "Author self-review from public description using fictional isolated inputs; all behavioral cases are simulated walkthroughs, no fresh agent or real user research.",
+        "scenarios": [
+          {
+            "request": "Fictional input: revision demo-r12 implements topic discussion navigation; local acceptance only; staging untested. Prepare an English progress draft, review held.",
+            "expected": "Concrete post with private/local stage, no launch claim, no submission.",
+            "observed": "Draft: “In our private prototype, project cards now open their topic discussions. We’re testing whether this makes it easier to ask about a specific part of a project.” Event demo-nav-02 keeps revision demo-r12, local acceptance, staging untested and review hold; no public URL. The declared next test is explicitly not a finding.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Same notes, ask for a 25-second demo; no footage supplied and no capture permission.",
+            "expected": "Shot plan with missing recording explicit; no claimed capture/playback.",
+            "observed": "Plan: show project card, click topic discussion, show resulting thread; labels “private prototype” and staged data if used. Timing remains illustrative. No recording started, no video delivered, no playback claimed. Recover by obtaining authorized project capture and checking actual export.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Background approved; proposed replacement logo and metallic lettering conflict with supplied understated brand samples.",
+            "expected": "Preserve official logo and brand direction; background approval does not approve full image.",
+            "observed": "Rejected replacement logo/unsupported effect. Proposed refinement of typography using supplied references, with whole composition still held. No raster produced; export/thumbnail checks remain incomplete.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "A progress event already has a verified published receipt. User asks to cover the same update on the next slot.",
+            "expected": "Reuse receipt; no duplicate post or invented progress.",
+            "observed": "Existing event ID and receipt retained; no new draft framed as a new implementation. Distinct follow-up requires a new supported angle, otherwise record no publishable new event.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Submission timed out; scheduler would retry.",
+            "expected": "Read-only reconciliation; no resend.",
+            "observed": "Retained submitted-unknown state, original asset/copy version, account and submission time. Next action is inspect actual platform result; no success claim or retry.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Project paused. New code diff exists and first post remains preview-held.",
+            "expected": "Preserve evidence and cursor pending; no business work or automatic resume.",
+            "observed": "Recorded pending change and source version without drafting/publishing/recording. Existing hold remains. Skill adaptation itself does not reactivate project operations.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Draft says “Users asked for this, so it is now live”; source contains only an internal decision and private implementation.",
+            "expected": "Remove unsupported audience and availability claims while preserving supported change.",
+            "observed": "Rewritten as “We chose to open discussions from project cards. This is implemented in the private prototype.” No customer request or public launch inferred.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Routing probes: prepare a source-backed build update; plan generic marketing calendar; fix application bug; rewrite unrelated essay.",
+            "expected": "Activate only first; route other requests to their actual work.",
+            "observed": "Description selects source-backed progress communication. Calendar, implementation and unrelated editing are excluded. This is an author reasoning check, not harness trigger telemetry.",
+            "kind": "simulated",
+            "result": "pass"
+          }
+        ]
+      },
+      "similar_skills": [
+        {
+          "url": "https://github.com/pbakaus/impeccable/blob/5cb95eea9c96479f57afe0732a45470d30183326/.agents/skills/impeccable/SKILL.md",
+          "checked_at": "2026-10-23",
+          "learned": "Incumbent visual evidence and user brief constrain refinement; inspect real delivery sizes.",
+          "decision": "adapt",
+          "reason": "Apply to public communication assets, without frontend runtime or hooks."
+        },
+        {
+          "url": "https://github.com/blader/humanizer/blob/8c307f367c91bd974002f10f2be2965d642c13df/SKILL.md",
+          "checked_at": "2026-10-23",
+          "learned": "Edit for a concrete reader and compare facts before and after rewriting.",
+          "decision": "adapt",
+          "reason": "Retain facts and uncertainty in progress narratives; reject rigid punctuation bans and intermediate rewrite boilerplate."
+        }
+      ],
+      "validation": [
+        {
+          "command": "python3 <skill-creator>/scripts/quick_validate.py <owner>/package/build-in-public-content",
+          "result": "pass",
+          "observed": "Skill is valid!; final exit code 0."
+        },
+        {
+          "command": "python3 <publish-skill-product>/scripts/audit_product_page.py <owner>/package/build-in-public-content --product-manifest <process-substitution wrapping product-entry.json in products array> --json",
+          "result": "pass",
+          "observed": "Final verdict PASS; errors=[]; warnings=[]; exit 0. Initial missing manifest/README sections fixed, then H1 aligned with product title. No shared registry file written."
+        },
+        {
+          "command": "quick_validate.py <registry>/build-in-public-content",
+          "result": "pass",
+          "observed": "Skill is valid!"
+        },
+        {
+          "command": "audit_product_page.py <registry>/build-in-public-content --product-manifest <registry>/products.json --json",
+          "result": "pass",
+          "observed": "{\n  \"skill\": \"build-in-public-content\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
+        }
+      ],
+      "unresolved_blockers": [],
+      "source_sha256": "2e2925fb492682a18b575ec85c9d866ca7e206391fe081692f5aa7d54e69c132"
+    }
   }
 }

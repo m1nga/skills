@@ -30,6 +30,9 @@ completed skills; explicit draft/private restrictions override it. The agent say
   Focus on products the owner uses or has selected, then improve a concrete example
   or discovery obstacle. Read [SEO/GEO criteria](references/seo-geo-criteria.md)
   when an external search claim or public-page change needs it.
+  Use [search intent](references/search-intent.md) to test function, problem and
+  pain-point queries, inspect the original sources and connect findings to actual
+  capability. Name-only search does not establish unknown-user discovery.
 - **Read-only audit:** inspect only the requested surfaces. Do not run the entire
   release sequence merely to give feedback.
 

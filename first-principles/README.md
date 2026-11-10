@@ -1,9 +1,10 @@
 # First Principles — A Codex Skill for Simpler, Complete Workflows
 
-First Principles is an AI workflow skill for Codex. It helps an agent identify the
-actual outcome, reuse existing work, remove unnecessary steps and verify a complete
-result. Use it when repeated plans, handoffs or partial fixes are getting in the way
-of finishing a task.
+When a coding agent overengineers a small task, First Principles brings the work
+back to the requested outcome: reuse the existing implementation, remove needless
+steps and check the result where the user will use it. It is an optional workflow
+instruction, not a new tool or a guarantee of faster work. The published comparison
+below did not establish an advantage over the baseline.
 
 Built for personal workflows. Install the instructions into your agent; no website,
 account or separate service is required. This repository is the source and install entry.

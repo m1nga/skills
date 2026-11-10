@@ -1,7 +1,10 @@
 # Project Lessons Log — Reuse Lessons Without Carrying Old Decisions
 
-Record project lessons while they are fresh, then distill only what another
-project can safely reuse.
+Keep useful project lessons without bringing rejected plans into the next build.
+Start with one incident: what failed, what changed and what it cost. Experience Pack
+produces a dated project record and, when requested, a reusable lesson with its
+conditions. A past product choice stays historical; it does not become a rule for
+every future project.
 
 ## Quick answers
 

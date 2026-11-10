@@ -1,11 +1,14 @@
 # GitHub Skill Publisher — Publish Skills and Track Discovery
 
-Turn one finished agent skill into one independent GitHub product: its own repository, problem-led
-page, real origin story, direct install command, SEO/GEO metadata, and verified release evidence.
+Make an agent skill understandable, installable and ready for public release.
+Review its first-use experience, fix useful findings, publish the complete package
+and verify the remote result. For discovery work, test what people search for by
+function, problem and pain point, then connect relevant evidence to the product
+page. A successful release does not establish search visibility or real usage.
 
 ## What it does
 
-`publish-skill-product` takes over after skill development is genuinely finished. It audits the
+`publish-skill-product` coordinates review through release for a selected skill. It audits the
 skill and its public story, writes or repairs the individual product metadata, uses the repository's
 confirmed publisher, and verifies that the remote repository contains both a human product page and
 a complete installable package. Its monitor mode also repairs committed products that drift out of
@@ -59,6 +62,11 @@ explains source, target and permission boundaries.
 > reports search/index evidence separately from release success.
 
 ## Measure one discovery experiment
+
+Start with the [function, problem and pain-point search workflow](skills/publish-skill-product/references/search-intent.md).
+It shows how to repair ambiguous queries, distinguish user reports from marketing
+copy, and connect a finding to a truthful page change. Keep exact-name visibility,
+unknown-user discovery and actual use as separate observations.
 
 Use the bundled `scripts/discovery_snapshot.py` with an owner/repository, up to
 three fixed GitHub queries, and a new output file. It records timestamps, metadata,

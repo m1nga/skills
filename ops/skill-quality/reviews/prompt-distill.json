@@ -1,101 +1,155 @@
 {
   "schema_version": 1,
   "skill": "prompt-distill",
-  "reviewed_at": "2026-11-10",
-  "source_sha256": "4fa4b51e956df7a218c24165e29ca378c1009bf94ebb13d000235a7c9a8a7f61",
+  "reviewed_at": "2026-11-10T04:12:05.018649+00:00",
+  "source_sha256": "aa84fc0772a8bccc094fd91e40a8195c51b284aa82a96e754bd144d965d810de",
   "user_review": {
-    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Make this reusable: move all the PNGs to exports, actually only this week’s.",
-        "expected": "Keep the correction and calendar qualifier without inventing a file timestamp or parent directory.",
-        "observed": "Before, the README introduced modification time and ./exports. The current walkthrough keeps exports and asks which date determines eligibility before moving.",
-        "kind": "simulated",
-        "result": "fixed"
-      },
-      {
-        "request": "Move this week’s PNGs to exports. Use the creation date.",
-        "expected": "Treat a direct operation as execution and honor its supplied date attribute.",
-        "observed": "The direct route remains distinct from distillation. A provided date field stays explicit and no rewritten prompt is inserted. No file operation was run in this simulation.",
+        "request": "Clean a self-correcting voice-note transcript into a prompt.",
+        "expected": "The opening preserves corrections, examples, scope and ambiguous dates.",
+        "observed": "The opening preserves corrections, examples, scope and ambiguous dates.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Turn this into a prompt: copy the PNGs from the last seven days, keep originals.",
-        "expected": "Preserve copy and a rolling time window.",
-        "observed": "Walkthrough keeps both the copy constraint and rolling time window rather than changing it to calendar week.",
+        "request": "Can I use this package to record and transcribe an audio file?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The page asks for already-transcribed text and discloses the audio boundary.",
         "kind": "simulated",
         "result": "pass"
       }
-    ],
-    "previous_review": {
-      "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description gains Chinese phrases and a guard against firing on ordinary requests that merely contain instructions; README no longer routes to prompt-craft or write-judge-prompt. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
-      "scenarios": [
-        {
-          "request": "把我刚才说的这一堆整理成一个 prompt",
-          "expected": "fires and preserves corrections",
-          "observed": "Chinese phrases now in the description.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "先检查 exports 目录，把本周的 PNG 移进去再数一下",
-          "expected": "does not fire; the request is a task",
-          "observed": "Guard sentence added.",
-          "kind": "simulated",
-          "result": "pass"
-        }
-      ]
-    }
+    ]
   },
   "similar_skills": [
     {
-      "url": "https://code.claude.com/docs/en/skills",
-      "checked_at": "2026-09-19T04:08:10+00:00",
-      "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
-      "decision": "adopt",
-      "reason": "Applied to the description only."
-    },
-    {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "learned": "Separate search intent and map the task to a relevant page.",
       "decision": "adapt",
-      "reason": "Corrected the immediate before-and-after demo so a visitor can inspect a real ambiguity without performing a file operation. No star-impact estimate or audit ceremony was added."
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
       "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
       "decision": "adapt",
-      "reason": "Focused the example on what the recipient of the prompt must know before acting. No external user research or distribution result is inferred."
-    },
-    {
-      "url": "https://github.com/msimchowitz/writing-skills/blob/main/for-agents/prompt-improving/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "Keep the user’s prompting style and ask for details that materially change the resulting instruction.",
-      "decision": "adapt",
-      "reason": "Preserve the file-date ambiguity as an open point without forcing quotation marks or a multi-question prerequisite for a useful draft."
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 skill-creator/scripts/quick_validate.py prompt-distill",
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py prompt-distill --product-manifest products.json --json",
       "result": "pass",
-      "observed": "Local frontmatter validator reported Skill is valid!"
+      "observed": "{\n  \"skill\": \"prompt-distill\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py prompt-distill --product-manifest products.json",
+      "command": "python3 <skill-creator>/scripts/quick_validate.py prompt-distill",
       "result": "pass",
-      "observed": "Product audit reported VERDICT: PASS."
+      "observed": "Skill is valid!"
     }
   ],
   "unresolved_blockers": [],
-  "previous_validation": [
-    {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py prompt-distill --product-manifest products.json",
-      "result": "pass",
-      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
-    }
-  ]
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "prompt-distill",
+    "reviewed_at": "2026-11-10",
+    "source_sha256": "4fa4b51e956df7a218c24165e29ca378c1009bf94ebb13d000235a7c9a8a7f61",
+    "user_review": {
+      "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+      "scenarios": [
+        {
+          "request": "Make this reusable: move all the PNGs to exports, actually only this week’s.",
+          "expected": "Keep the correction and calendar qualifier without inventing a file timestamp or parent directory.",
+          "observed": "Before, the README introduced modification time and ./exports. The current walkthrough keeps exports and asks which date determines eligibility before moving.",
+          "kind": "simulated",
+          "result": "fixed"
+        },
+        {
+          "request": "Move this week’s PNGs to exports. Use the creation date.",
+          "expected": "Treat a direct operation as execution and honor its supplied date attribute.",
+          "observed": "The direct route remains distinct from distillation. A provided date field stays explicit and no rewritten prompt is inserted. No file operation was run in this simulation.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Turn this into a prompt: copy the PNGs from the last seven days, keep originals.",
+          "expected": "Preserve copy and a rolling time window.",
+          "observed": "Walkthrough keeps both the copy constraint and rolling time window rather than changing it to calendar week.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ],
+      "previous_review": {
+        "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description gains Chinese phrases and a guard against firing on ordinary requests that merely contain instructions; README no longer routes to prompt-craft or write-judge-prompt. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+        "scenarios": [
+          {
+            "request": "把我刚才说的这一堆整理成一个 prompt",
+            "expected": "fires and preserves corrections",
+            "observed": "Chinese phrases now in the description.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "先检查 exports 目录，把本周的 PNG 移进去再数一下",
+            "expected": "does not fire; the request is a task",
+            "observed": "Guard sentence added.",
+            "kind": "simulated",
+            "result": "pass"
+          }
+        ]
+      }
+    },
+    "similar_skills": [
+      {
+        "url": "https://code.claude.com/docs/en/skills",
+        "checked_at": "2026-09-19T04:08:10+00:00",
+        "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
+        "decision": "adopt",
+        "reason": "Applied to the description only."
+      },
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+        "decision": "adapt",
+        "reason": "Corrected the immediate before-and-after demo so a visitor can inspect a real ambiguity without performing a file operation. No star-impact estimate or audit ceremony was added."
+      },
+      {
+        "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+        "decision": "adapt",
+        "reason": "Focused the example on what the recipient of the prompt must know before acting. No external user research or distribution result is inferred."
+      },
+      {
+        "url": "https://github.com/msimchowitz/writing-skills/blob/main/for-agents/prompt-improving/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Keep the user’s prompting style and ask for details that materially change the resulting instruction.",
+        "decision": "adapt",
+        "reason": "Preserve the file-date ambiguity as an open point without forcing quotation marks or a multi-question prerequisite for a useful draft."
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 skill-creator/scripts/quick_validate.py prompt-distill",
+        "result": "pass",
+        "observed": "Local frontmatter validator reported Skill is valid!"
+      },
+      {
+        "command": "python3 -B publish-skill-product/scripts/audit_product_page.py prompt-distill --product-manifest products.json",
+        "result": "pass",
+        "observed": "Product audit reported VERDICT: PASS."
+      }
+    ],
+    "unresolved_blockers": [],
+    "previous_validation": [
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py prompt-distill --product-manifest products.json",
+        "result": "pass",
+        "observed": "VERDICT: PASS on 2026-09-19 after the edit."
+      }
+    ]
+  }
 }

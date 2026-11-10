@@ -28,7 +28,7 @@ Choose one concrete result to try:
 |---|---|---|
 | An agent keeps rereading the same source library | [Context Budget](https://github.com/m1nga/context-budget) | A reproducible source-difference example; bytes and provider tokens kept separate |
 | A playlist recommendation is hard to get into a music service | [Mixtape](https://github.com/m1nga/mixtape) | Selection, catalog matching and actual destination import reported separately |
-| You need to find where a new user gets stuck | [First-Time User Tester](https://github.com/m1nga/product-experience-officer) | A fictional recovery case and an executable report generator |
+| You need to find where a new user gets stuck | [First-Time User Tester](https://github.com/m1nga/product-experience-officer) | A maintainer-run CLI failure and recovery, with an executable report generator |
 | An instruction might miss a trigger or collide with another skill | [Scenario Probe](https://github.com/m1nga/scenario-probe) | A before/after illustration and an actual-run evidence protocol |
 | You need to organize files without losing later edits | [TaskDock](https://github.com/m1nga/taskdock) | [Run the move-and-recover demonstration](docs/try-taskdock.md) |
 
@@ -72,6 +72,7 @@ to find the full catalog again.
 | You need to… | Use | You get |
 |---|---|---|
 | turn visual references into a scoped design and usable interface | [Design Agent](https://github.com/m1nga/design-agent) | reference analysis, design decisions and checked implementation |
+| simplify cluttered layouts and repetitive UI copy | [Clear Interface](https://github.com/m1nga/clear-interface) | focused hierarchy and wording with important consequences preserved |
 | map an entire product system | [Product System Mapper](https://github.com/m1nga/map-product-system) | journeys, capabilities, ownership, gaps, and delivery slices |
 | experience a product as a new user | [First-Time User Tester](https://github.com/m1nga/product-experience-officer) | a severity-ranked report of confusion and fixes |
 | think through an ambiguous decision, or get grilled before building | [Decision Thinking Partner](https://github.com/m1nga/thinking-partner) | a better frame, real alternatives, and on request a locked, scoped plan |
@@ -99,7 +100,7 @@ to find the full catalog again.
 
 | You need to… | Use | You get |
 |---|---|---|
-| build a playlist that imports correctly | [Playlist Builder](https://github.com/m1nga/mixtape) | a verified playlist for your streaming service |
+| build a playlist and check its import | [Playlist Builder](https://github.com/m1nga/mixtape) | catalog-checked recordings, an import link and a separate destination status |
 | review a US stock portfolio with sources | [Stock Portfolio Brief](https://github.com/m1nga/daily-brief) | a hold, buy, trim, switch or wait brief with explicit data gaps; never trades |
 
 ## Standalone applications

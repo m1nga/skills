@@ -1,8 +1,10 @@
 # Task Execution Coordinator — Turn Intent into Verified Outcomes
 
-Major Tom helps an agent carry a human request through existing owners to an observable result.
-It keeps intent, rules, references, skills and learned experience distinct, so a reference example
-does not silently become a command and completed activity does not masquerade as a useful outcome.
+When several agents or owners repeat the same work, or a task is called “done”
+without a usable result, Major Tom clarifies the existing responsibility and checks
+the outcome. It carries the human request, current evidence and unresolved
+dependencies through the existing workflow. It supplies coordination instructions
+and handoff tools; it does not start agents or send messages by itself.
 
 ## What it does
 

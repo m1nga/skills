@@ -1,6 +1,10 @@
 # Stock Portfolio Brief — Decide What Changed and What to Do
 
-Turn recorded US stock holdings and fresh sources into a plain-language decision: hold, buy, trim, switch or wait. It compares the proposed action with doing nothing and an appropriate index, and makes missing evidence visible.
+Which new filing changes the reason you hold a stock, and which headline is just
+noise? Daily Brief compares recorded US stock holdings and the previous thesis with
+fresh sources. It produces a research brief covering hold, buy, trim, switch or wait,
+the strongest counterargument and missing evidence. Proposed actions are compared
+with doing nothing and an appropriate index; the skill does not place trades.
 
 ## When it fires
 

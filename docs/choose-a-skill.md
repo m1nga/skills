@@ -15,6 +15,7 @@ need no skill. Installing several does not prove they improve a model's judgment
 | Reuse a lesson without reviving an old strategy | [Experience Pack](https://github.com/m1nga/experience-pack) | A scoped incident and candidate lesson |
 | Coordinate existing responsible owners | [Major Tom](https://github.com/m1nga/major-tom) | One scoped action and independently checked outcome |
 | Turn visual references into an implementation brief | [Design Agent](https://github.com/m1nga/design-agent) | Specific design decisions and acceptance checks |
+| Simplify a cluttered interface or repetitive UI copy | [Clear Interface](https://github.com/m1nga/clear-interface) | Focused hierarchy and copy changes that preserve necessary consequences and behavior |
 | Preserve corrections in dictated instructions | [Prompt Distill](https://github.com/m1nga/prompt-distill) | Reusable prompt with ambiguity left explicit |
 | Review and release an owned skill | [Publish Skill Product](https://github.com/m1nga/publish-skill-product) | First-use review, owner-specific release and verified package |
 | Describe a real build event | [Build-in-Public Content](https://github.com/m1nga/build-in-public-content) | Source-backed draft or honest demo plan |
@@ -35,6 +36,12 @@ capable model. Ming has retired these from his own routine workflow; this catalo
 does not re-enable them or remove their public sources.
 
 ## More work to explore
+
+For a work already on SideCourt, the [SideCourt plugin](https://github.com/m1nga/sidecourt-plugin)
+has two narrower entry points: `sidecourt` reads a public Work and its stated Need,
+or helps with permitted private drafts; `sidecourt-setup` checks the connection and
+permissions. A successful empty list is valid. Setup does not create a draft, and
+the connector does not publish on your behalf.
 
 [Browse SideCourt](https://sidecourt.space/drops/) for projects, tools and ideas
 people have shared. If you share something of your own, explain what feedback would

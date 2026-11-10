@@ -1,57 +1,22 @@
 {
   "schema_version": 1,
   "skill": "context-budget",
-  "reviewed_at": "2026-11-10",
-  "source_sha256": "3886082b4562d1065693945f06e9b7291f66fb5fd50850096ea549be26b03a33",
+  "reviewed_at": "2026-11-10T04:12:04.234628+00:00",
+  "source_sha256": "0012a7522c584e435d00026d2651bc567abe977b8c1cf91f494654067c04338b",
   "user_review": {
-    "method": "2026-11-10 first-visitor walkthrough and actual package CLI runs from outside the repository. Historical evidence follows the new scenarios. Maintainer review of actual paired research outputs and source anchors, executed comparator tests, and a fresh-agent natural-entry test on a synthetic local fixture. Private inputs and raw usage receipts remain outside the public package. The paired baseline reconstructs ordinary full-index review rather than claiming to reproduce a historical agent trace.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Show exactly what the agent can reuse after the next saved-research scan.",
-        "expected": "Reproduce a bounded comparison from public fixtures and recover the new and changed source passages while reusing matching reviewed evidence.",
-        "observed": "The actual comparator processed 40 records per snapshot and two result pages. Full and delta paths returned the same reused passage and both new passages; compact full manifests were 5,091 bytes and all CLI delta pages were 829 bytes. Provider usage was not measured.",
-        "kind": "executed",
+        "request": "An agent repeatedly opens unchanged research files.",
+        "expected": "The page offers source-version comparison and the runnable snapshot demo.",
+        "observed": "The page offers source-version comparison and the runnable snapshot demo.",
+        "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "The second scan is partial and one unchanged saved card has never been read.",
-        "expected": "Leave missing and unread evidence unresolved and stop on invalid scope or duplicate conflicts.",
-        "observed": "The demo kept note-40 unresolved and note-03 unread. Existing scope mismatch, duplicate conflict and out-of-range CLI tests passed.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Review a historical saved-library increment through full-index and delta-first paths with the same research output.",
-        "expected": "Cover all changed candidates, retain common body/comment evidence and uncertainty, produce supported findings and a concrete trial, and measure provider usage.",
-        "observed": "Both completed outputs classified exactly the same 35 candidates and selected the same five core sources from eight shared evidence packets. Both rejected an unsupported 95% claim, kept partial scan and comment limitations, and proposed a bounded same-quality trial. Two peripheral title-only categories differed; core recommendations did not. Materials: 71,483 vs 40,948 bytes. Actual input: 50,532 vs 39,527; output: 1,720 vs 1,561; cached input: zero for both. One pair only; shared selection, audit and release overhead is outside this model-stage comparison.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Do a small saved-library increment without naming the skill, through an existing host entry rule.",
-        "expected": "Select the installed workflow and comparator, distinguish partial absence from deletion and unread bodies from reviewed evidence, and preserve fixture inputs.",
-        "observed": "A fresh agent selected Context Budget from the local rule, ran the installed source_delta.py once, recovered 1 addition, 1 not-seen item and 2 unchanged items, and read the relevant originals. It retained the unchanged title-only item as unread. Independent checksum recheck preserved all seven fixture input files. Synthetic fixture; not proof of every future session.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Compare a partial scan with conflicting duplicate versions and recover complete pagination.",
-        "expected": "Reject conflicts and scope mismatches; preserve every relevant delta and input file.",
-        "observed": "Six current CLI tests passed, including duplicate conflict, scope mismatch, changed version/reference, full paging and read-only behavior.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Use an existing reader and source comparator rather than recreate the research pipeline.",
-        "expected": "Check real installed interfaces and verify a representative slice.",
-        "observed": "The paired input preparation invoked all four pages of the installed comparator and selected eight source packets through the existing RedBot reader. Independent sets matched the entire 200-versus-200 snapshot scope; no parser, source fetcher or model provider was replaced.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Answer a trivial wording question or infer subscription savings from a shorter payload.",
-        "expected": "Keep tiny work direct and keep bytes, model tokens, time and official quota separate.",
-        "observed": "Instruction walkthrough retains the direct route, disallows conversion of bytes into actual tokens or account quota, and requires wider task overhead and active-turn cutoffs to be disclosed.",
+        "request": "Does a smaller metadata payload prove lower subscription use?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The opening separates bytes, tokens and subscription usage; the existing demo is synthetic.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -59,78 +24,167 @@
   },
   "similar_skills": [
     {
-      "url": "https://github.com/kpab/github-star-growth/blob/95927c607254e4145b4fc6e1f75c6cbb9c8d75/SKILL.md",
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "The author checks whether a first-time visitor can try the value proposition from the first screen.",
+      "learned": "Separate search intent and map the task to a relevant page.",
       "decision": "adapt",
-      "reason": "Put the working demo before the feature inventory. Use an exact command and outcome instead of treating a screenshot or benchmark as adoption evidence."
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
-      "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/9ff0c99108b36d3b886defd825d8ac1f47dba374/skills/context-optimization/SKILL.md",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "It separates retrieving preserved evidence from context reduction and calls for measuring the effect.",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
       "decision": "adapt",
-      "reason": "Reuse the comparator and recover source text from exact references. Keep the full/delta coverage check explicit and do not apply its compaction percentages to the fixture."
-    },
-    {
-      "url": "https://github.com/mksglu/context-mode/blob/3a3ef7d53c9a30ef05d8f1b009afbcf8d9c6d0a2/README.md",
-      "checked_at": "2026-11-10",
-      "learned": "Its Try It and Benchmarks routes expose an ordinary user run and measurements separately.",
-      "decision": "adapt",
-      "reason": "Expose a local demo distinct from historical model timing and tokens, without adding the other product's plugin, runtime or storage."
-    },
-    {
-      "url": "https://github.com/DietrichGebert/ponytail/blob/main/skills/ponytail/SKILL.md",
-      "checked_at": "2026-11-07",
-      "learned": "Reuse existing components and platforms first, inspect affected callers and preserve error handling. Current body was fetched and inspected, SHA256 9badd22a32e19cb884e46dfa8d3aae82bb81dfa5484105b8b4f0262df823a509.",
-      "decision": "adapt",
-      "reason": "Added an observable reuse decision and real entry-point check to the existing task. Excluded whole-session persona, ultra pushback and mandatory endings."
-    },
-    {
-      "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md",
-      "checked_at": "2026-11-07",
-      "learned": "Keep compacted observations retrievable and measure actual outcomes. Current body was fetched and inspected, SHA256 96fbd47c16d163857b92d477ba5c7ec3ae947127772e327b8236d05d64d5b123.",
-      "decision": "adapt",
-      "reason": "Added same-input acceptance, shared setup separation and material-change remeasurement. Rejected fixed reduction targets, tolerated quality loss and automatic agent-partition thresholds."
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 context-budget/examples/snapshot_demo.py",
-      "result": "pass",
-      "observed": "Run from /tmp using an absolute script path. Two pages, all four expected findings equal. Synthetic metadata bytes 5,091 and 829; no provider usage."
-    },
-    {
-      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s context-budget/tests -v",
-      "result": "pass",
-      "observed": "Six tests passed, including normal pagination and invalid scope/duplicate cases."
-    },
-    {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py context-budget --product-manifest products.json --json",
       "result": "pass",
-      "observed": "PASS with zero errors or warnings."
+      "observed": "{\n  \"skill\": \"context-budget\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python3 -B -m unittest discover -s context-budget/tests -v",
+      "command": "python3 <skill-creator>/scripts/quick_validate.py context-budget",
       "result": "pass",
-      "observed": "6 tests passed in 0.160 seconds; code unchanged in this workflow-only update."
-    },
-    {
-      "command": "python3 quick_validate.py context-budget",
-      "result": "pass",
-      "observed": "Installed skill-creator validator reported Skill is valid."
-    },
-    {
-      "command": "Private paired-benchmark/freeze.py, run.py and verify.py",
-      "result": "pass",
-      "observed": "Real ephemeral subscription-account model runs completed; all candidate sets, counts and source URLs checked. Model-stage total tokens 52,252 vs 41,088, elapsed 47.761 vs 48.096 seconds, no tools or retries. Sol 6.1/medium returned by configuration; explicit Default turn request accepted, service did not separately return execution tier."
-    },
-    {
-      "command": "Fresh-agent synthetic entry test and independent SHA256 input recheck",
-      "result": "pass",
-      "observed": "Natural entry selected installed skill, real comparator produced exact fixture delta, and seven inputs remained byte-identical."
+      "observed": "Skill is valid!"
     }
   ],
   "unresolved_blockers": [],
-  "current_review_scope": "Reproducible public snapshot demonstration and discovery copy. Historical model measurements retain their previous scope. The comparator, permissions, workflow and provider settings are unchanged."
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "context-budget",
+    "reviewed_at": "2026-11-10",
+    "source_sha256": "3886082b4562d1065693945f06e9b7291f66fb5fd50850096ea549be26b03a33",
+    "user_review": {
+      "method": "2026-11-10 first-visitor walkthrough and actual package CLI runs from outside the repository. Historical evidence follows the new scenarios. Maintainer review of actual paired research outputs and source anchors, executed comparator tests, and a fresh-agent natural-entry test on a synthetic local fixture. Private inputs and raw usage receipts remain outside the public package. The paired baseline reconstructs ordinary full-index review rather than claiming to reproduce a historical agent trace.",
+      "scenarios": [
+        {
+          "request": "Show exactly what the agent can reuse after the next saved-research scan.",
+          "expected": "Reproduce a bounded comparison from public fixtures and recover the new and changed source passages while reusing matching reviewed evidence.",
+          "observed": "The actual comparator processed 40 records per snapshot and two result pages. Full and delta paths returned the same reused passage and both new passages; compact full manifests were 5,091 bytes and all CLI delta pages were 829 bytes. Provider usage was not measured.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "The second scan is partial and one unchanged saved card has never been read.",
+          "expected": "Leave missing and unread evidence unresolved and stop on invalid scope or duplicate conflicts.",
+          "observed": "The demo kept note-40 unresolved and note-03 unread. Existing scope mismatch, duplicate conflict and out-of-range CLI tests passed.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Review a historical saved-library increment through full-index and delta-first paths with the same research output.",
+          "expected": "Cover all changed candidates, retain common body/comment evidence and uncertainty, produce supported findings and a concrete trial, and measure provider usage.",
+          "observed": "Both completed outputs classified exactly the same 35 candidates and selected the same five core sources from eight shared evidence packets. Both rejected an unsupported 95% claim, kept partial scan and comment limitations, and proposed a bounded same-quality trial. Two peripheral title-only categories differed; core recommendations did not. Materials: 71,483 vs 40,948 bytes. Actual input: 50,532 vs 39,527; output: 1,720 vs 1,561; cached input: zero for both. One pair only; shared selection, audit and release overhead is outside this model-stage comparison.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Do a small saved-library increment without naming the skill, through an existing host entry rule.",
+          "expected": "Select the installed workflow and comparator, distinguish partial absence from deletion and unread bodies from reviewed evidence, and preserve fixture inputs.",
+          "observed": "A fresh agent selected Context Budget from the local rule, ran the installed source_delta.py once, recovered 1 addition, 1 not-seen item and 2 unchanged items, and read the relevant originals. It retained the unchanged title-only item as unread. Independent checksum recheck preserved all seven fixture input files. Synthetic fixture; not proof of every future session.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Compare a partial scan with conflicting duplicate versions and recover complete pagination.",
+          "expected": "Reject conflicts and scope mismatches; preserve every relevant delta and input file.",
+          "observed": "Six current CLI tests passed, including duplicate conflict, scope mismatch, changed version/reference, full paging and read-only behavior.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Use an existing reader and source comparator rather than recreate the research pipeline.",
+          "expected": "Check real installed interfaces and verify a representative slice.",
+          "observed": "The paired input preparation invoked all four pages of the installed comparator and selected eight source packets through the existing RedBot reader. Independent sets matched the entire 200-versus-200 snapshot scope; no parser, source fetcher or model provider was replaced.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Answer a trivial wording question or infer subscription savings from a shorter payload.",
+          "expected": "Keep tiny work direct and keep bytes, model tokens, time and official quota separate.",
+          "observed": "Instruction walkthrough retains the direct route, disallows conversion of bytes into actual tokens or account quota, and requires wider task overhead and active-turn cutoffs to be disclosed.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ]
+    },
+    "similar_skills": [
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/95927c607254e4145b4fc6e1f75c6cbb9c8d75/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "The author checks whether a first-time visitor can try the value proposition from the first screen.",
+        "decision": "adapt",
+        "reason": "Put the working demo before the feature inventory. Use an exact command and outcome instead of treating a screenshot or benchmark as adoption evidence."
+      },
+      {
+        "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/9ff0c99108b36d3b886defd825d8ac1f47dba374/skills/context-optimization/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "It separates retrieving preserved evidence from context reduction and calls for measuring the effect.",
+        "decision": "adapt",
+        "reason": "Reuse the comparator and recover source text from exact references. Keep the full/delta coverage check explicit and do not apply its compaction percentages to the fixture."
+      },
+      {
+        "url": "https://github.com/mksglu/context-mode/blob/3a3ef7d53c9a30ef05d8f1b009afbcf8d9c6d0a2/README.md",
+        "checked_at": "2026-11-10",
+        "learned": "Its Try It and Benchmarks routes expose an ordinary user run and measurements separately.",
+        "decision": "adapt",
+        "reason": "Expose a local demo distinct from historical model timing and tokens, without adding the other product's plugin, runtime or storage."
+      },
+      {
+        "url": "https://github.com/DietrichGebert/ponytail/blob/main/skills/ponytail/SKILL.md",
+        "checked_at": "2026-11-07",
+        "learned": "Reuse existing components and platforms first, inspect affected callers and preserve error handling. Current body was fetched and inspected, SHA256 9badd22a32e19cb884e46dfa8d3aae82bb81dfa5484105b8b4f0262df823a509.",
+        "decision": "adapt",
+        "reason": "Added an observable reuse decision and real entry-point check to the existing task. Excluded whole-session persona, ultra pushback and mandatory endings."
+      },
+      {
+        "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md",
+        "checked_at": "2026-11-07",
+        "learned": "Keep compacted observations retrievable and measure actual outcomes. Current body was fetched and inspected, SHA256 96fbd47c16d163857b92d477ba5c7ec3ae947127772e327b8236d05d64d5b123.",
+        "decision": "adapt",
+        "reason": "Added same-input acceptance, shared setup separation and material-change remeasurement. Rejected fixed reduction targets, tolerated quality loss and automatic agent-partition thresholds."
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 context-budget/examples/snapshot_demo.py",
+        "result": "pass",
+        "observed": "Run from /tmp using an absolute script path. Two pages, all four expected findings equal. Synthetic metadata bytes 5,091 and 829; no provider usage."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s context-budget/tests -v",
+        "result": "pass",
+        "observed": "Six tests passed, including normal pagination and invalid scope/duplicate cases."
+      },
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py context-budget --product-manifest products.json --json",
+        "result": "pass",
+        "observed": "PASS with zero errors or warnings."
+      },
+      {
+        "command": "python3 -B -m unittest discover -s context-budget/tests -v",
+        "result": "pass",
+        "observed": "6 tests passed in 0.160 seconds; code unchanged in this workflow-only update."
+      },
+      {
+        "command": "python3 quick_validate.py context-budget",
+        "result": "pass",
+        "observed": "Installed skill-creator validator reported Skill is valid."
+      },
+      {
+        "command": "Private paired-benchmark/freeze.py, run.py and verify.py",
+        "result": "pass",
+        "observed": "Real ephemeral subscription-account model runs completed; all candidate sets, counts and source URLs checked. Model-stage total tokens 52,252 vs 41,088, elapsed 47.761 vs 48.096 seconds, no tools or retries. Sol 6.1/medium returned by configuration; explicit Default turn request accepted, service did not separately return execution tier."
+      },
+      {
+        "command": "Fresh-agent synthetic entry test and independent SHA256 input recheck",
+        "result": "pass",
+        "observed": "Natural entry selected installed skill, real comparator produced exact fixture delta, and seven inputs remained byte-identical."
+      }
+    ],
+    "unresolved_blockers": [],
+    "current_review_scope": "Reproducible public snapshot demonstration and discovery copy. Historical model measurements retain their previous scope. The comparator, permissions, workflow and provider settings are unchanged."
+  }
 }

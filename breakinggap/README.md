@@ -2,7 +2,7 @@
 
 <img src="skills/breakinggap/assets/wordmark.svg" alt="BreakingGap" width="460">
 
-**Stay sharp. Feel refreshed.**
+**One question while your agent works.**
 
 Your agent is working. Your hand is reaching for your phone. Try a three-minute thinking break: one unexpected question, a little room to think, and a fresh angle to take back to your work. You don’t need to know what to ask.
 

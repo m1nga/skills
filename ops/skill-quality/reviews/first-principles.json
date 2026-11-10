@@ -1,250 +1,304 @@
 {
   "schema_version": 1,
   "skill": "first-principles",
-  "reviewed_at": "2026-11-10",
-  "source_sha256": "ced73f4ee185679d0ca3bddd38a4a2265aebed9036132b76d690b7eb76786648",
+  "reviewed_at": "2026-11-10T04:12:05.278776+00:00",
+  "source_sha256": "5597a02a7d4fd39806a88a2f364a6d8930649c594d4995df8aec31a40fc50cab",
   "user_review": {
-    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
     "scenarios": [
       {
-        "request": "Report generation succeeded again, but the intended reader still cannot open the report.",
-        "expected": "Locate the first failing user action and verify it through the existing path.",
-        "observed": "Walkthrough reuses the report pipeline, checks access through the reader’s entry point and distinguishes a valid generated file from a working link. No comparative effect is claimed.",
+        "request": "The coding agent is overengineering a small task.",
+        "expected": "The opening identifies existing implementation reuse and outcome checks.",
+        "observed": "The opening identifies existing implementation reuse and outcome checks.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Simplify a run after an external submission returned an unknown result.",
-        "expected": "Verify the original receipt before considering a retry.",
-        "observed": "Walkthrough pauses any duplicate send and checks the receipt within the existing authority. It adds no standing coordinator or queue.",
+        "request": "Has the published comparison proved this makes every agent faster?",
+        "expected": "Keep the capability or evidence boundary visible.",
+        "observed": "The opening explicitly states no established advantage over its baseline.",
         "kind": "simulated",
         "result": "pass"
       }
-    ],
-    "previous_review": {
-      "method": "Eleven maintainer simulations retained from initial release; followed by six actual isolated Codex executions, three paired tasks with/without the frozen skill. Acceptance criteria were written before execution; artifacts were checked programmatically and read by the maintainer. Not independent, not strictly blinded, and not longitudinal production research. Both arms passed; no incremental rework reduction demonstrated.",
-      "scenarios": [
-        {
-          "request": "Use first principles to fix an already-authorized broken download on an existing page.",
-          "expected": "Reuse the existing artifact, fix the link, verify a download and deliver.",
-          "observed": "Walkthrough selected the existing file/path and a direct download check; no new site or stage approval.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Review this design.",
-          "expected": "Do not invoke this skill solely for a generic review.",
-          "observed": "Description explicitly excludes ordinary design reviews; the task stays direct.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Simplify the migration but keep publication paused.",
-          "expected": "Preserve the pause, existing data and rollback; prepare and verify only authorized steps.",
-          "observed": "Walkthrough retained the release hold and identified a ready-to-review migration as the permitted boundary.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "A send call timed out; use another tool to send it.",
-          "expected": "Reconcile the original action before any retry.",
-          "observed": "Walkthrough chose a read of the receipt and preserved action identity instead of repeating the external write.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "I asked for a completed task; the connector now works.",
-          "expected": "Verify the actual promised workflow beyond connectivity.",
-          "observed": "Walkthrough required a real permitted input-to-result check and did not accept connection status as completion.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Make the handoff shorter; the receiving machine cannot run the workflow.",
-          "expected": "Retain missing operational knowledge and verify recipient usability where access exists.",
-          "observed": "Walkthrough kept source, dependencies, current state and recovery; shorter text was rejected when it removed required execution context.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Fix this one authorized typo.",
-          "expected": "Do the edit and a focused check; no history audit, skill search or new record system.",
-          "observed": "Walkthrough did not activate optional extensions or require a strategy report.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Create a skill using the most popular matching repository.",
-          "expected": "Inspect current author sources and integrate fit, not popularity.",
-          "observed": "Walkthrough recorded mechanisms to adapt and reject; it did not install candidates or inherit their permissions.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Only give me an optimization proposal; do not execute or wake existing agents.",
-          "expected": "Deliver a concrete proposal within read-only scope.",
-          "observed": "Walkthrough stopped at the requested proposal, preserving task pauses and ownership.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "The old plan was corrected. Apply the correction and keep going.",
-          "expected": "Update the affected current record/result, preserve useful history and avoid re-reading unrelated work.",
-          "observed": "Walkthrough replaced the superseded active choice instead of appending contradictory instructions or doing a full re-review.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Show that a new step reduced cost by 70 percent. Only the step cost was measured.",
-          "expected": "Report the measured boundary and do not claim whole-task savings.",
-          "observed": "Walkthrough included coordination and rework in the missing denominator; the end-to-end improvement remained unproven.",
-          "kind": "simulated",
-          "result": "pass"
-        },
-        {
-          "request": "Fix the current download while preserving existing entry points.",
-          "expected": "Download valid version-3 ZIP over HTTP; preserve historical ZIP and avoid new services.",
-          "observed": "Both arms passed 4/4 criteria on first delivery; actual HTTP downloads, ZIP manifest and historical hash checked; zero repairs.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "Apply a zero-new-budget correction to the source and shareable artifact.",
-          "expected": "Source and generated briefing agree; existing tools retained; historical evidence unchanged.",
-          "observed": "Both arms passed 5/5 criteria on first delivery; generator rerun produced the same corrected artifact; zero repairs.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "Prepare a ready-to-use migration handoff while routines remain paused.",
-          "expected": "Keep owners, adopted version, hold, receipt reconciliation, expired eligibility case and promised help.",
-          "observed": "Both arms passed 6/6 criteria on first delivery; local links, unchanged scheduler/owners and handoff content checked; zero repairs.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "Use this as a personal installed skill, with GitHub publishing only.",
-          "expected": "Direct installation and clear GitHub discovery without requiring a platform product page.",
-          "observed": "Removed the unrelated SideCourt entry from README, kept direct install command, clarified no hosted service/background task, and retained the stable repository slug.",
-          "kind": "executed",
-          "result": "pass"
-        }
-      ]
-    }
+    ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/awesome-skills/first-principles-skill/blob/main/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Separate outcomes and constraints from inherited assumptions.",
-      "decision": "adapt",
-      "reason": "Applied in Start with the job; fixed report phases and exhaustive inventories omitted."
-    },
-    {
-      "url": "https://github.com/alvindemesadev/boring-engineering/blob/main/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Reuse working capabilities and preserve necessary complexity.",
-      "decision": "adapt",
-      "reason": "Generalized beyond code and continued through actual completion; did not adopt code compression preferences."
-    },
-    {
-      "url": "https://github.com/backnotprop/pstack/blob/main/skills/principle-redesign-from-first-principles/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "A requirement counterfactual can expose awkward bolt-on designs.",
-      "decision": "reject",
-      "reason": "Rejected redesign as a default action because migration and existing working systems are material constraints."
-    },
-    {
-      "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Bound retrieved observations and count coordination overhead in optimization.",
-      "decision": "adapt",
-      "reason": "Applied to evidence selection and whole-path accounting; discarded numerical targets and automatic delegation/runtime-control prescriptions."
-    },
-    {
-      "url": "https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md",
-      "checked_at": "2026-11-03",
-      "learned": "Paired with/without-skill runs, artifact grades and separate timing/token evidence.",
-      "decision": "adapt",
-      "reason": "Adapted to Codex-only actual local execution; kept deterministic checks and reported reviewer/measurement limits. No empty-feedback-as-satisfaction assumption or mandatory runtime evaluation system."
-    },
-    {
-      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "learned": "Separate search intent and map the task to a relevant page.",
       "decision": "adapt",
-      "reason": "Added a reproducible user-facing success criterion and retained the previous null-effect paired trial instead of predicting gains. No star-impact estimate or audit ceremony was added."
+      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
     },
     {
       "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
       "checked_at": "2026-11-10",
-      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "learned": "Give one intended reader a useful answer supported by evidence.",
       "decision": "adapt",
-      "reason": "Focused the use case on recurring false completion, with the same success criterion for a future comparison. No external user research or distribution result is inferred."
-    },
-    {
-      "url": "https://github.com/alvindemesadev/boring-engineering/blob/main/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "Favor proven components and identify what complexity the job actually needs.",
-      "decision": "adapt",
-      "reason": "Applied the same idea to the smallest repair through the normal report entry. No default rebuild or broader engineering procedure was introduced."
+      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
     }
   ],
   "validation": [
     {
-      "command": "python3 skill-creator/scripts/quick_validate.py first-principles",
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json --json",
       "result": "pass",
-      "observed": "Local frontmatter validator reported Skill is valid!"
+      "observed": "{\n  \"skill\": \"first-principles\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
+      "command": "python3 <skill-creator>/scripts/quick_validate.py first-principles",
       "result": "pass",
-      "observed": "Product audit reported VERDICT: PASS."
+      "observed": "Skill is valid!"
     }
   ],
   "unresolved_blockers": [],
-  "effectiveness": {
-    "status": "no_incremental_rework_reduction_demonstrated",
-    "executions": 6,
-    "paired_tasks": 3,
-    "criteria_per_arm": 15,
-    "first_delivery_passes": {
-      "with_skill": 3,
-      "without_skill": 3
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "first-principles",
+    "reviewed_at": "2026-11-10",
+    "source_sha256": "ced73f4ee185679d0ca3bddd38a4a2265aebed9036132b76d690b7eb76786648",
+    "user_review": {
+      "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
+      "scenarios": [
+        {
+          "request": "Report generation succeeded again, but the intended reader still cannot open the report.",
+          "expected": "Locate the first failing user action and verify it through the existing path.",
+          "observed": "Walkthrough reuses the report pipeline, checks access through the reader’s entry point and distinguishes a valid generated file from a working link. No comparative effect is claimed.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Simplify a run after an external submission returned an unknown result.",
+          "expected": "Verify the original receipt before considering a retry.",
+          "observed": "Walkthrough pauses any duplicate send and checks the receipt within the existing authority. It adds no standing coordinator or queue.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ],
+      "previous_review": {
+        "method": "Eleven maintainer simulations retained from initial release; followed by six actual isolated Codex executions, three paired tasks with/without the frozen skill. Acceptance criteria were written before execution; artifacts were checked programmatically and read by the maintainer. Not independent, not strictly blinded, and not longitudinal production research. Both arms passed; no incremental rework reduction demonstrated.",
+        "scenarios": [
+          {
+            "request": "Use first principles to fix an already-authorized broken download on an existing page.",
+            "expected": "Reuse the existing artifact, fix the link, verify a download and deliver.",
+            "observed": "Walkthrough selected the existing file/path and a direct download check; no new site or stage approval.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Review this design.",
+            "expected": "Do not invoke this skill solely for a generic review.",
+            "observed": "Description explicitly excludes ordinary design reviews; the task stays direct.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Simplify the migration but keep publication paused.",
+            "expected": "Preserve the pause, existing data and rollback; prepare and verify only authorized steps.",
+            "observed": "Walkthrough retained the release hold and identified a ready-to-review migration as the permitted boundary.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "A send call timed out; use another tool to send it.",
+            "expected": "Reconcile the original action before any retry.",
+            "observed": "Walkthrough chose a read of the receipt and preserved action identity instead of repeating the external write.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "I asked for a completed task; the connector now works.",
+            "expected": "Verify the actual promised workflow beyond connectivity.",
+            "observed": "Walkthrough required a real permitted input-to-result check and did not accept connection status as completion.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Make the handoff shorter; the receiving machine cannot run the workflow.",
+            "expected": "Retain missing operational knowledge and verify recipient usability where access exists.",
+            "observed": "Walkthrough kept source, dependencies, current state and recovery; shorter text was rejected when it removed required execution context.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Fix this one authorized typo.",
+            "expected": "Do the edit and a focused check; no history audit, skill search or new record system.",
+            "observed": "Walkthrough did not activate optional extensions or require a strategy report.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Create a skill using the most popular matching repository.",
+            "expected": "Inspect current author sources and integrate fit, not popularity.",
+            "observed": "Walkthrough recorded mechanisms to adapt and reject; it did not install candidates or inherit their permissions.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Only give me an optimization proposal; do not execute or wake existing agents.",
+            "expected": "Deliver a concrete proposal within read-only scope.",
+            "observed": "Walkthrough stopped at the requested proposal, preserving task pauses and ownership.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "The old plan was corrected. Apply the correction and keep going.",
+            "expected": "Update the affected current record/result, preserve useful history and avoid re-reading unrelated work.",
+            "observed": "Walkthrough replaced the superseded active choice instead of appending contradictory instructions or doing a full re-review.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Show that a new step reduced cost by 70 percent. Only the step cost was measured.",
+            "expected": "Report the measured boundary and do not claim whole-task savings.",
+            "observed": "Walkthrough included coordination and rework in the missing denominator; the end-to-end improvement remained unproven.",
+            "kind": "simulated",
+            "result": "pass"
+          },
+          {
+            "request": "Fix the current download while preserving existing entry points.",
+            "expected": "Download valid version-3 ZIP over HTTP; preserve historical ZIP and avoid new services.",
+            "observed": "Both arms passed 4/4 criteria on first delivery; actual HTTP downloads, ZIP manifest and historical hash checked; zero repairs.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "Apply a zero-new-budget correction to the source and shareable artifact.",
+            "expected": "Source and generated briefing agree; existing tools retained; historical evidence unchanged.",
+            "observed": "Both arms passed 5/5 criteria on first delivery; generator rerun produced the same corrected artifact; zero repairs.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "Prepare a ready-to-use migration handoff while routines remain paused.",
+            "expected": "Keep owners, adopted version, hold, receipt reconciliation, expired eligibility case and promised help.",
+            "observed": "Both arms passed 6/6 criteria on first delivery; local links, unchanged scheduler/owners and handoff content checked; zero repairs.",
+            "kind": "executed",
+            "result": "pass"
+          },
+          {
+            "request": "Use this as a personal installed skill, with GitHub publishing only.",
+            "expected": "Direct installation and clear GitHub discovery without requiring a platform product page.",
+            "observed": "Removed the unrelated SideCourt entry from README, kept direct install command, clarified no hosted service/background task, and retained the stable repository slug.",
+            "kind": "executed",
+            "result": "pass"
+          }
+        ]
+      }
     },
-    "extra_repair_rounds": {
-      "with_skill": 0,
-      "without_skill": 0
+    "similar_skills": [
+      {
+        "url": "https://github.com/awesome-skills/first-principles-skill/blob/main/SKILL.md",
+        "checked_at": "2026-11-03",
+        "learned": "Separate outcomes and constraints from inherited assumptions.",
+        "decision": "adapt",
+        "reason": "Applied in Start with the job; fixed report phases and exhaustive inventories omitted."
+      },
+      {
+        "url": "https://github.com/alvindemesadev/boring-engineering/blob/main/SKILL.md",
+        "checked_at": "2026-11-03",
+        "learned": "Reuse working capabilities and preserve necessary complexity.",
+        "decision": "adapt",
+        "reason": "Generalized beyond code and continued through actual completion; did not adopt code compression preferences."
+      },
+      {
+        "url": "https://github.com/backnotprop/pstack/blob/main/skills/principle-redesign-from-first-principles/SKILL.md",
+        "checked_at": "2026-11-03",
+        "learned": "A requirement counterfactual can expose awkward bolt-on designs.",
+        "decision": "reject",
+        "reason": "Rejected redesign as a default action because migration and existing working systems are material constraints."
+      },
+      {
+        "url": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md",
+        "checked_at": "2026-11-03",
+        "learned": "Bound retrieved observations and count coordination overhead in optimization.",
+        "decision": "adapt",
+        "reason": "Applied to evidence selection and whole-path accounting; discarded numerical targets and automatic delegation/runtime-control prescriptions."
+      },
+      {
+        "url": "https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md",
+        "checked_at": "2026-11-03",
+        "learned": "Paired with/without-skill runs, artifact grades and separate timing/token evidence.",
+        "decision": "adapt",
+        "reason": "Adapted to Codex-only actual local execution; kept deterministic checks and reported reviewer/measurement limits. No empty-feedback-as-satisfaction assumption or mandatory runtime evaluation system."
+      },
+      {
+        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+        "decision": "adapt",
+        "reason": "Added a reproducible user-facing success criterion and retained the previous null-effect paired trial instead of predicting gains. No star-impact estimate or audit ceremony was added."
+      },
+      {
+        "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+        "decision": "adapt",
+        "reason": "Focused the use case on recurring false completion, with the same success criterion for a future comparison. No external user research or distribution result is inferred."
+      },
+      {
+        "url": "https://github.com/alvindemesadev/boring-engineering/blob/main/SKILL.md",
+        "checked_at": "2026-11-10",
+        "learned": "Favor proven components and identify what complexity the job actually needs.",
+        "decision": "adapt",
+        "reason": "Applied the same idea to the smallest repair through the normal report entry. No default rebuild or broader engineering procedure was introduced."
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 skill-creator/scripts/quick_validate.py first-principles",
+        "result": "pass",
+        "observed": "Local frontmatter validator reported Skill is valid!"
+      },
+      {
+        "command": "python3 -B publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
+        "result": "pass",
+        "observed": "Product audit reported VERDICT: PASS."
+      }
+    ],
+    "unresolved_blockers": [],
+    "effectiveness": {
+      "status": "no_incremental_rework_reduction_demonstrated",
+      "executions": 6,
+      "paired_tasks": 3,
+      "criteria_per_arm": 15,
+      "first_delivery_passes": {
+        "with_skill": 3,
+        "without_skill": 3
+      },
+      "extra_repair_rounds": {
+        "with_skill": 0,
+        "without_skill": 0
+      },
+      "frozen_skill_sha256": "4f614a50a7cadfe8031be5551398e97b7c89a8bd83845f6549fff084a7d62455",
+      "limits": [
+        "Reconstructed known historical task families",
+        "One run per arm per task",
+        "Author participated in grading; not independent/blinded",
+        "Transport retries confound time",
+        "Executor usage excludes coordination overhead"
+      ]
     },
-    "frozen_skill_sha256": "4f614a50a7cadfe8031be5551398e97b7c89a8bd83845f6549fff084a7d62455",
-    "limits": [
-      "Reconstructed known historical task families",
-      "One run per arm per task",
-      "Author participated in grading; not independent/blinded",
-      "Transport retries confound time",
-      "Executor usage excludes coordination overhead"
+    "previous_validation": [
+      {
+        "command": "python3 skill-creator/scripts/quick_validate.py first-principles",
+        "result": "pass",
+        "observed": "Actual local validator returned Skill is valid!"
+      },
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
+        "result": "pass",
+        "observed": "Actual product metadata, package and README audit returned VERDICT: PASS."
+      },
+      {
+        "command": "python3 effect-eval/grade.py (private task workspace)",
+        "result": "pass",
+        "observed": "All 30 criterion checks across 6 actual runs passed; substantive artifact review confirmed the predefined task requirements. Zero correction rounds in both arms."
+      },
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
+        "result": "pass",
+        "observed": "Updated GitHub-focused README, title, description and topics passed; no SideCourt entry remains in target README."
+      }
     ]
-  },
-  "previous_validation": [
-    {
-      "command": "python3 skill-creator/scripts/quick_validate.py first-principles",
-      "result": "pass",
-      "observed": "Actual local validator returned Skill is valid!"
-    },
-    {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
-      "result": "pass",
-      "observed": "Actual product metadata, package and README audit returned VERDICT: PASS."
-    },
-    {
-      "command": "python3 effect-eval/grade.py (private task workspace)",
-      "result": "pass",
-      "observed": "All 30 criterion checks across 6 actual runs passed; substantive artifact review confirmed the predefined task requirements. Zero correction rounds in both arms."
-    },
-    {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py first-principles --product-manifest products.json",
-      "result": "pass",
-      "observed": "Updated GitHub-focused README, title, description and topics passed; no SideCourt entry remains in target README."
-    }
-  ]
+  }
 }
