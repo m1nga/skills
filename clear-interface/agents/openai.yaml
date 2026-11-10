@@ -1,0 +1,5 @@
+interface:
+  display_name: "Clear Interface Design"
+  short_description: "Design focused interfaces with clear, concise UI copy"
+  default_prompt: "Use $clear-interface to design or simplify this interface while preserving its necessary information and behavior."
+

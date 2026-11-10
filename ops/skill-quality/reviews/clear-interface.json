@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "skill": "clear-interface",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "70cd16b763727f0cb946ded872a412c18911992c72c03304f569080b13798ae3",
+  "user_review": {
+    "method": "Author-run static scenario/trigger walkthrough. Not blind: the author had written/read the body. Judgments are simulated, not independent user research, live model-routing tests, or measured usability gains. Trigger comparisons use names/descriptions exposed in the host catalog.",
+    "scenarios": [
+      {
+        "request": "Make this notification settings section less wordy without changing layout.",
+        "expected": "Remove restated heading/help text; keep toggle label and actual behavior.",
+        "observed": "Simulated result retains Notifications and Email notifications, removes two restatements, adds no fabricated event list. Lines 14, 23, 42–43 constrain the copy-only scope.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Delete all helper text from the account deletion screen.",
+        "expected": "Keep irreversible consequences and required confirmation information.",
+        "observed": "Lines 27 and 46 retain known deletion scope and irreversibility near the action; shorten wording without hiding the consequence. No feature removal.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Payment timed out; shorten the status and make the next action obvious. Charge outcome is unknown.",
+        "expected": "Do not call it a failed payment or encourage a potentially duplicate charge.",
+        "observed": "Initial state guidance did not explicitly distinguish unknown outcomes. Revised line 44 now describes an unconfirmed outcome and prioritizes a supported status check before a consequential retry. Rewalk yields Payment status not confirmed plus Check payment status only if supported; otherwise flag the missing recovery path.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "呃这个页面字太多了，只改文字，布局先别动。",
+        "expected": "Intended trigger; obey the user's narrowed scope.",
+        "observed": "Metadata phrase removing redundant labels and explanations predicts activation; line 14 restricts changes to words. No layout rewrite or new design-system setup.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Simplify this dense analytics dashboard while preserving cross-metric comparison.",
+        "expected": "Preserve necessary simultaneous data, controls and comparisons.",
+        "observed": "Lines 23 and 31 preserve meaningful repeated labels and multiple tasks; remove filler/container noise without forced single-column layout or hiding necessary comparison data.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Here is a screenshot. Improve the upload error; I don't know the file-size limit.",
+        "expected": "Provide a limited proposal without invented limits or claiming browser checks.",
+        "observed": "Lines 14, 45–46 and 52 leave the unknown limit outside production copy, propose only supported information, and report that interactions and responsiveness were not tested.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Optimize a database query; no interface changes.",
+        "expected": "Do not activate this skill.",
+        "observed": "Description explicitly excludes backend-only changes; predicted sleep. Metadata prediction only, not a live host routing test.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Use this visual reference to redesign our homepage.",
+        "expected": "Handle explicit skill choice or avoid stacking overlapping design workflows.",
+        "observed": "Compared installed design-agent and frontend-design descriptions with this entry: all can overlap for general design requests. Use a named invocation for deterministic intent; clear-interface does not call sibling skills. Broad reference-led collaboration remains design-agent's remit. Actual automatic host selection remains unverified.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "A stranger installs only clear-interface and asks for a playful gallery, with no repo or browser tools.",
+        "expected": "Self-contained proposal preserving expressive direction and honestly limited verification.",
+        "observed": "Lines 12, 18, 35 and 48 allow playful expression; line 14 supports text-only proposals; line 52 states limits. No private path, required sibling, launcher or account dependency in the skill.",
+        "kind": "simulated",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/pbakaus/impeccable/blob/main/.vibe/skills/impeccable/reference/distill.md",
+      "checked_at": "2026-11-10",
+      "learned": "Task-driven simplification across information, layout, interaction and copy; blob 2729124ccfe53c93170046760571d67140bf52ce.",
+      "decision": "adapt",
+      "reason": "Collapse into keep/merge/defer/remove and verify the journey; do not impose font/color counts, single-column layouts, remove capabilities, or require a follow-on polish command."
+    },
+    {
+      "url": "https://github.com/pbakaus/impeccable/blob/main/.vibe/skills/impeccable/reference/clarify.md",
+      "checked_at": "2026-11-10",
+      "learned": "Read the whole interaction; distinguish states, retain persistent labels, consequences and recovery; blob 3047a9d82b9cfa31b392e35c643d82bcdb50250a.",
+      "decision": "adopt",
+      "reason": "Integrated action/state/field guidance into one workflow without a separate clarify command or repeating simplification rules."
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Subject-specific visual choices and structure that communicates; each written element has a purpose; blob a5333457c414d20d625f307df945842c0952ecc3.",
+      "decision": "adapt",
+      "reason": "Preserve intentional visual direction and information-bearing structure; avoid importing aesthetic blacklists or requiring a full design exploration for small copy edits."
+    },
+    {
+      "url": "https://github.com/content-designer/ux-writing-skill/blob/main/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Purposeful, concise, conversational, clear; content patterns and context-sensitive help; blob 8bf410a5d7f8ca0c14eda9e70c165166ed99f5c9.",
+      "decision": "adapt",
+      "reason": "Integrate concrete actions, stable labels and recovery; omit repeated editing rubrics and templates from the entry. Do not treat word-count targets, active-voice percentages, or universal comprehension percentages as acceptance criteria."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 /Users/m1nga/.codex/skills/.system/skill-creator/scripts/quick_validate.py clear-interface",
+      "result": "pass",
+      "observed": "Skill is valid! Naming/frontmatter/scaffold validation passed."
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py clear-interface --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS. Product title, description, UI metadata, required sections and install command passed."
+    }
+  ],
+  "unresolved_blockers": []
+}

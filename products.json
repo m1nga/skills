@@ -308,6 +308,20 @@
         "technical-writing",
         "codex"
       ]
+    },
+    {
+      "name": "clear-interface",
+      "title": "Clear Interface — Design Focused Web and Product UI",
+      "description": "Design or simplify web and product interfaces with clear information hierarchy, concise UI copy, and visible consequences and recovery paths.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "web-design",
+        "product-design",
+        "ux-writing",
+        "user-interface",
+        "codex"
+      ]
     }
   ]
 }
