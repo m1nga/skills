@@ -4,9 +4,7 @@ Design Agent helps a coding assistant carry visual references and feedback into 
 specific design and a usable implementation. It keeps track of which choices are
 accepted, what an interaction actually does, and what remains a prototype.
 
-**参考驱动的设计协作者：理解你喜欢的具体部分，做出可看的设计，并诚实验证实现。**
-
-## New: an output you can use
+## Try the brief renderer
 
 Turn a research/reference pile into a page a builder can act on:
 
@@ -62,6 +60,22 @@ and verify a maintained entry after restarting the required services. If the agr
 deliverable is only a prototype, submission is labeled simulated.
 
 These examples describe intended behavior; they are not claims of a deployed app.
+
+## Evidence from reference to result
+
+For an authorized build, a handoff for the sample capture flow would include:
+
+| Evidence | What a reviewer can verify |
+|---|---|
+| Reference crop or timestamp and the chosen relationship | Which part of the reference informed the capture flow |
+| The same content on desktop and mobile, with viewport sizes | Whether the input and recovery message remain visible and readable |
+| Valid paste, invalid paste and repeated-link checks | Whether save, recovery and deduplication actually occurred |
+| Entry point, result location and status | How to reproduce the check and which behavior is simulated |
+
+The downloadable brief above is a real renderer output you can create locally.
+Its included sample marks the reference as unseen. The capture flow and
+evidence list describe a proposed build. There are no screenshots or live
+save results attached to that example.
 
 ## Design notes
 

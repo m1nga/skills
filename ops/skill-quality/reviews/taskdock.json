@@ -1,105 +1,68 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-  "source_sha256": "c444e173328ec92c06e7183fb292d51311c8cdfbfc1bd3d1b090bf747fe78900",
+  "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
+  "source_sha256": "c5f2fa768470934dec3bb5a6787e5ee4f33e9a3da46bd4e33cd312411c5ef53a",
   "user_review": {
-    "method": "Author context-aware CLI execution, deterministic failure/recovery tests, and explicitly labeled instruction simulations. No independent agent or human usability study. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
+    "method": "Maintainer first-use demo from outside the source directory, real filesystem operations on disposable fixtures, and existing recovery tests. No cross-session productivity trial.",
     "scenarios": [
       {
-        "request": "Create a readable handoff for an existing task from another working directory.",
-        "expected": "Correct task identity, bounded notes, usable continuation instruction, no task mutation.",
-        "observed": "Executed handoff on the current private TaskDock and test fixture. The first run exposed a truthy recovery-summary dictionary bug; fixed to inspect operations, warnings and completeness. Verified current task returns ok true and pending_recovery false.",
+        "request": "Organize the sample folder and keep its entry and active files useful.",
+        "expected": "Move the sample artifact, repair its relative link, and retain runtime and history files.",
+        "observed": "All three demo domains applied and reconciled successfully with the entry link repaired.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Undo after a collaborator has edited the moved file.",
+        "expected": "Refuse the undo, name the conflicting file and preserve visible files.",
+        "observed": "The demo changed the real disposable postimage, reported conflict in all three domains, and compared the visible files byte for byte. It then removed only its fixture edit, verified normal undo restored the before snapshot, and reapplied a fresh plan.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Export very long notes containing HTML; repeat with an existing destination or a missing task.",
-        "expected": "Escape text, mark truncation, preserve existing report and do not initialize a missing task.",
-        "observed": "test_handoff exercises bounded state, escaping, output refusal and absent-task behavior; source STATE bytes stayed unchanged.",
+        "request": "Run the demo again on an existing folder.",
+        "expected": "Refuse to overwrite it.",
+        "observed": "The CLI returned exit 1 and told the user to choose a new folder.",
         "kind": "executed",
         "result": "pass"
-      },
-      {
-        "request": "A report exists: can the next agent assume external deployment is finished?",
-        "expected": "No; read relevant current evidence and pending recovery before consequential work.",
-        "observed": "Instruction walkthrough: the page and SKILL distinguish local recorded context from current runtime, authorization and independent takeover evidence. This was a simulation, not a fresh independent agent.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "Find a portable task handoff skill, then install the individual product.",
-        "expected": "The repository classification and README identify TaskDock and its direct install path.",
-        "observed": "Walked through the current product metadata, source README and SKILL: portable task folder, identity and handoff are consistent; m1nga-skill now joins the existing focused topics. Direct remote discovery is separately verified by the publisher.",
-        "kind": "simulated",
-        "result": "pass",
-        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-        "scope": "2026-11-05 metadata discovery pass"
-      },
-      {
-        "request": "Resume a moved folder and decide whether an old deployment note proves the current site is live.",
-        "expected": "Find by task identity, read current state and reconcile live evidence; do not treat an old note as a fresh receipt.",
-        "observed": "Instruction walkthrough retained UUID lookup and current-state reconciliation. No new persistence daemon, automatic scheduling or claim of independent takeover was added.",
-        "kind": "simulated",
-        "result": "pass",
-        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-        "scope": "2026-11-05 metadata discovery pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/OthmanAdi/planning-with-files/blob/b6580cd24af1d8a95ab268794456e05608a1afd3/skills/planning-with-files/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "Keep a goal, current step and evidence visible at resume; use a single selected task identity.",
-      "decision": "adapt",
-      "reason": "Adopt the clear restart surface in a readable handoff. Keep existing TASK/STATE/PLAN and reversible operations; do not add lifecycle hooks, transcript replay or a fixed two-action logging rule.",
-      "repository_stars_at_check": 27804
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "A short reproducible demo can expose the most valuable operation and its output.",
+      "reason": "Bring the conflict path into the existing runnable organizer demo.",
+      "decision": "adapt"
     },
     {
-      "url": "https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/writing-plans/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "Plans name concrete files, operations and verification, with an explicit execution handoff.",
-      "decision": "adapt",
-      "reason": "Provide a next-session instruction tied to the existing task. Do not impose worktrees, task granularity or subagent execution on every user.",
-      "repository_stars_at_check": 310381
+      "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "Recovery selects the owned plan and stops on ambiguity before reading or changing another workspace.",
+      "reason": "Retain TaskDock's explicit target and operation receipt; demonstrate from a separate working directory.",
+      "decision": "adapt"
     },
     {
-      "url": "https://github.com/jumpifequal/handoff-skill/blob/main/SKILL.md",
-      "learned": "The author separates manual handoff from optional hooks, and records actionable continuation context.",
-      "decision": "adapt",
-      "reason": "Retain TaskDock's portable, explicit handoff positioning and complete its repository classification; a short discovery entry should describe the real output.",
-      "effect": "Added m1nga-skill to the existing TaskDock topics; kept the existing direct install and handoff explanation.",
-      "rejected": "Do not import hooks, automatic session transfer or zero-loss guarantees; a saved prior receipt is not a current verification.",
-      "checked_at": "2026-11-04T19:45:55.891848+00:00"
+      "url": "https://restic.readthedocs.io/en/stable/050_restore.html",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "Recovery policies should make existing-file handling and dry-run behavior visible.",
+      "reason": "Show TaskDock's scoped preimage restore refusing newer work and keep this operation distinct from restoring a whole backup.",
+      "decision": "adapt"
     }
   ],
   "validation": [
     {
-      "command": "cd taskdock && python3 -m unittest discover -s scripts -p test_*.py",
-      "result": "pass",
-      "observed": "65 tests ran: 64 passed, one existing platform/permission test skipped.",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00"
+      "command": "python3 -B taskdock/scripts/demo.py --domain DOMAIN --output NEW_DIRECTORY",
+      "observed": "Ran design, release, and research from a separate directory. All returned rollback_conflict with the expected path and byte-preservation proof, ordinary rollback and final reconciliation.",
+      "result": "pass"
     },
     {
-      "command": "python3 -m unittest discover -s taskdock/scripts -p test_*.py",
-      "result": "pass",
-      "observed": "65 tests ran: 64 passed, one existing platform/permission test skipped.",
-      "checked_at": "2026-11-04T19:45:55.891848+00:00"
-    },
-    {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py taskdock --product-manifest products.json --json",
-      "result": "pass",
-      "observed": "PASS, no errors or warnings. Checked the current source README, license, install entry, referral and manifest metadata.",
-      "checked_at": "2026-11-04T19:45:55.891848+00:00"
+      "command": "python3 -B -m unittest discover -s taskdock/scripts -p 'test_*.py'",
+      "observed": "65 tests run, 64 passed and one platform-specific case skipped.",
+      "result": "pass"
     }
   ],
-  "unresolved_blockers": [],
-  "metadata_discovery_review": {
-    "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-    "prior_reviewed_at": "2026-11-01T13:55:36.220420+00:00",
-    "scope": "Only add the missing m1nga-skill repository topic. Skill behavior, product README and package files are unchanged.",
-    "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
-    "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
-  }
+  "unresolved_blockers": []
 }

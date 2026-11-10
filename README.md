@@ -4,9 +4,10 @@
 [![skills.sh](https://skills.sh/b/m1nga/skills)](https://skills.sh/m1nga/skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Installable agent skills for turning ambiguous work into concrete, checkable results: keep a
-task resumable across sessions and agents, map a product, decide with real alternatives, recover a
-confused project, stress-test AI instructions, close an iteration, or make a playlist that imports.
+Try one skill on the task you have now: compare changed research sources, make an
+importable playlist, find a product's first-use obstacle, test AI instructions,
+or organize a task with a recovery path. Each standalone repository shows its
+requirements, an example, and the limits of its evidence.
 
 Built from real solo-builder workflows for Codex, Claude Code, Cursor, and other tools that support
 the open Agent Skills format.
@@ -17,8 +18,6 @@ We follow advances in AI and adapt our skills when they improve real work, and w
 when the hosts do the job natively. Changes are checked against concrete tasks, with the scope and
 limits of validation made public. A newer model is a reason to evaluate, not an automatic replacement.
 
-我们持续跟进 AI 的进展，把经过具体任务验证的改进带进产品与技能；宿主自带的能力，我们就退役对应的技能。
-
 [See the latest verified adaptations](docs/ai-adaptation.md).
 
 ## Start here
@@ -27,11 +26,17 @@ Choose one concrete result to try:
 
 | Your current problem | First skill to try | See the result before installing |
 |---|---|---|
-| A task's files moved and the next action is buried in an old chat | [TaskDock](https://github.com/m1nga/taskdock) | [Run the move-and-recover demonstration](docs/try-taskdock.md) |
-| A product feature is missing retries, ownership or a complete user path | [Product System Mapper](https://github.com/m1nga/map-product-system) | [Read a complete import-and-retry example](https://github.com/m1nga/map-product-system/blob/main/skills/map-product-system/examples/import-retry.md) |
+| An agent keeps rereading the same source library | [Context Budget](https://github.com/m1nga/context-budget) | A reproducible source-difference example; bytes and provider tokens kept separate |
+| A playlist recommendation is hard to get into a music service | [Mixtape](https://github.com/m1nga/mixtape) | Selection, catalog matching and actual destination import reported separately |
+| You need to find where a new user gets stuck | [First-Time User Tester](https://github.com/m1nga/product-experience-officer) | A fictional recovery case and an executable report generator |
+| An instruction might miss a trigger or collide with another skill | [Scenario Probe](https://github.com/m1nga/scenario-probe) | A before/after illustration and an actual-run evidence protocol |
+| You need to organize files without losing later edits | [TaskDock](https://github.com/m1nga/taskdock) | [Run the move-and-recover demonstration](docs/try-taskdock.md) |
 
-The first demonstration executes real code with fictional inputs. The product map is an authored
-example. Neither is a customer testimonial or a time-saving claim.
+Examples label executable fixtures, authored illustrations and live platform checks
+separately. They are not customer testimonials or universal time-saving claims.
+
+[Choose among the full portfolio by task](docs/choose-a-skill.md), including memory,
+handoff, publishing, saved posts and optional reasoning workflows.
 
 See every available skill:
 

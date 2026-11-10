@@ -1,72 +1,98 @@
 {
   "schema_version": 1,
   "skill": "breakinggap",
-  "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-  "source_sha256": "741c2a12e9611a1dca56f98fdb26587c0d68c55e0ba46dff0fa5d0fbe37f87ae",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "d82690360868b421d95457640cde21ec87462217d8cd80b8abdf5bd5ea5df5b2",
   "user_review": {
-    "method": "Independent static review and four actual model-generated replies in a simulated host; executed Node interaction harness; actual desktop browser interaction. After the independent review, root refined example context, starter isolation and first-screen spacing and verified those changes with the harness and browser. No real-user outcome, installed-host routing or automatic invitation test is claimed. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
+    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
     "scenarios": [
       {
-        "request": "Start a thinking break with no mood or project supplied.",
-        "expected": "One short mood invitation, no setup form.",
-        "observed": "Generated response offered Restless, Foggy, Stuck, Curious and Not sure with free text; it waited for the answer.",
+        "request": "I am restless while the build runs. Give me one question.",
+        "expected": "Start directly with one light angle and avoid setup or a required outcome.",
+        "observed": "Walkthrough skips the mood recheck, offers one brief question and requires no timer or goal.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "Foggy after the welcome, with a reading-app project already visible.",
-        "expected": "One light contextual question; no repeated mood check.",
-        "observed": "Generated response asked about a sentence the person would enjoy encountering again, with no invented progress or extra forms.",
+        "request": "My agent is back, and I was trying this across a few waits.",
+        "expected": "End the break immediately and avoid turning feedback into a gate.",
+        "observed": "Walkthrough returns to the primary work. A voluntary private note belongs only to a separately requested trial. No chat is created and no telemetry is added.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "I feel stuck; just give me a surprising question.",
-        "expected": "Skip onboarding and honor the direct request.",
-        "observed": "Generated response gave one imaginative postcard question.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "No update for five minutes: open a new window every time.",
-        "expected": "Explain current package limits without claiming activation.",
-        "observed": "Generated response distinguished a skill from an activity integration and created no timer, listener or chat.",
-        "kind": "simulated",
-        "result": "pass"
-      },
-      {
-        "request": "Explore waiting moments, change mood and copy an editable starter.",
-        "expected": "A matching first question, fictional context kept separate from the real starter, optional reply collapsed.",
-        "observed": "Browser verified Foggy changes, Refresh me focus, old-note source/status and expanded continuation. Root removed fictional project text from the copied starter; harness checks all five moods and three moments. Final browser reload verified the Not sure starter reads I feel unsure.",
-        "kind": "executed",
-        "result": "fixed"
-      },
-      {
-        "request": "Clipboard fails; legacy stored data is malformed or empty.",
-        "expected": "Manual-copy fallback and byte-exact legacy export.",
-        "observed": "Executed Node harness covers clipboard rejection and legacy values. Browser displayed Copied but bridge clipboard readback was empty; real clipboard contents were not verified.",
+        "request": "Try the offline walkthrough and copy a starter when clipboard access is unavailable.",
+        "expected": "Preserve the supported offline interaction and expose a manual copy path.",
+        "observed": "Node VM companion checks passed for mood-specific questions, copy/fallback and non-mutating export of v1 data.",
         "kind": "executed",
         "result": "pass"
-      },
-      {
-        "request": "I have three minutes while the AI works and feel stuck; give me a thinking break.",
-        "expected": "One light question, using the supplied mood without asking it again; no mandatory planning process.",
-        "observed": "Simulated the current instruction path: go directly to one open question and allow skipping. README discovery language and the added agent-skill classification describe this bounded reflection use.",
-        "kind": "simulated",
-        "result": "pass",
-        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-        "scope": "2026-11-05 metadata discovery pass"
-      },
-      {
-        "request": "Fix this build error; do not start a reflection exercise.",
-        "expected": "Continue normal technical work and do not invoke BreakingGap from the word stuck alone.",
-        "observed": "Instruction walkthrough kept explicit thinking-break intent, immediate exit, and no timer/listener or new-chat creation without consent. Metadata does not advertise automatic monitoring.",
-        "kind": "simulated",
-        "result": "pass",
-        "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-        "scope": "2026-11-05 metadata discovery pass"
       }
-    ]
+    ],
+    "previous_review": {
+      "method": "Independent static review and four actual model-generated replies in a simulated host; executed Node interaction harness; actual desktop browser interaction. After the independent review, root refined example context, starter isolation and first-screen spacing and verified those changes with the harness and browser. No real-user outcome, installed-host routing or automatic invitation test is claimed. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
+      "scenarios": [
+        {
+          "request": "Start a thinking break with no mood or project supplied.",
+          "expected": "One short mood invitation, no setup form.",
+          "observed": "Generated response offered Restless, Foggy, Stuck, Curious and Not sure with free text; it waited for the answer.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Foggy after the welcome, with a reading-app project already visible.",
+          "expected": "One light contextual question; no repeated mood check.",
+          "observed": "Generated response asked about a sentence the person would enjoy encountering again, with no invented progress or extra forms.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "I feel stuck; just give me a surprising question.",
+          "expected": "Skip onboarding and honor the direct request.",
+          "observed": "Generated response gave one imaginative postcard question.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "No update for five minutes: open a new window every time.",
+          "expected": "Explain current package limits without claiming activation.",
+          "observed": "Generated response distinguished a skill from an activity integration and created no timer, listener or chat.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "Explore waiting moments, change mood and copy an editable starter.",
+          "expected": "A matching first question, fictional context kept separate from the real starter, optional reply collapsed.",
+          "observed": "Browser verified Foggy changes, Refresh me focus, old-note source/status and expanded continuation. Root removed fictional project text from the copied starter; harness checks all five moods and three moments. Final browser reload verified the Not sure starter reads I feel unsure.",
+          "kind": "executed",
+          "result": "fixed"
+        },
+        {
+          "request": "Clipboard fails; legacy stored data is malformed or empty.",
+          "expected": "Manual-copy fallback and byte-exact legacy export.",
+          "observed": "Executed Node harness covers clipboard rejection and legacy values. Browser displayed Copied but bridge clipboard readback was empty; real clipboard contents were not verified.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "I have three minutes while the AI works and feel stuck; give me a thinking break.",
+          "expected": "One light question, using the supplied mood without asking it again; no mandatory planning process.",
+          "observed": "Simulated the current instruction path: go directly to one open question and allow skipping. README discovery language and the added agent-skill classification describe this bounded reflection use.",
+          "kind": "simulated",
+          "result": "pass",
+          "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+          "scope": "2026-11-05 metadata discovery pass"
+        },
+        {
+          "request": "Fix this build error; do not start a reflection exercise.",
+          "expected": "Continue normal technical work and do not invoke BreakingGap from the word stuck alone.",
+          "observed": "Instruction walkthrough kept explicit thinking-break intent, immediate exit, and no timer/listener or new-chat creation without consent. Metadata does not advertise automatic monitoring.",
+          "kind": "simulated",
+          "result": "pass",
+          "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+          "scope": "2026-11-05 metadata discovery pass"
+        }
+      ]
+    }
   },
   "similar_skills": [
     {
@@ -98,9 +124,60 @@
       "effect": "Completed focused agent-skill/m1nga-skill classification while preserving the existing short reflection description and explicit invocation boundary.",
       "rejected": "No multi-phase planning interview, generic auto-invocation or claim that the archived source remains actively maintained.",
       "checked_at": "2026-11-04T19:45:55.891848+00:00"
+    },
+    {
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "decision": "adapt",
+      "reason": "Added a one-line real waiting scenario without asking the reader to start a timer or open the companion. No star-impact estimate or audit ceremony was added."
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "decision": "adapt",
+      "reason": "Used the user’s actual situation and preference as the entry, with optional first-person feedback rather than inferred retention. No external user research or distribution result is inferred."
+    },
+    {
+      "url": "https://github.com/Shuboya1030/socratic-learning-coach/blob/cebfc0b479fd6983e54aef331d3c2a85f6dda821/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "A brief invitation can begin with the learner’s current understanding and allow their reflection to drive the response.",
+      "decision": "adapt",
+      "reason": "Retained the actual words and one-question entry while rejecting a mandatory tutoring or feedback loop."
     }
   ],
   "validation": [
+    {
+      "command": "python3 skill-creator/scripts/quick_validate.py breakinggap",
+      "result": "pass",
+      "observed": "Local frontmatter validator reported Skill is valid!"
+    },
+    {
+      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py breakinggap --product-manifest products.json",
+      "result": "pass",
+      "observed": "Product audit reported VERDICT: PASS."
+    },
+    {
+      "command": "node breakinggap/tests/companion-check.mjs",
+      "result": "pass",
+      "observed": "Passed: three waiting moments, distinct moods, keyboard navigation, editable starter, clipboard fallback, untouched legacy export and offline/accessibility structure."
+    },
+    {
+      "command": "python3 -B -m unittest discover -s breakinggap/tests -p test_gap.py",
+      "result": "pass",
+      "observed": "15 legacy helper tests passed; the helper is not the mood-first entry."
+    }
+  ],
+  "unresolved_blockers": [],
+  "metadata_discovery_review": {
+    "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
+    "prior_reviewed_at": "2026-11-04T03:57:49.257914+00:00",
+    "scope": "Only add missing m1nga-skill and agent-skill repository topics. Reflection behavior, companion and package files are unchanged.",
+    "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
+    "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
+  },
+  "previous_validation": [
     {
       "command": "node breakinggap/tests/companion-check.mjs",
       "result": "pass",
@@ -143,13 +220,5 @@
       "observed": "PASS, no errors or warnings. Checked the current source README, license, install entry, referral and manifest metadata.",
       "checked_at": "2026-11-04T19:45:55.891848+00:00"
     }
-  ],
-  "unresolved_blockers": [],
-  "metadata_discovery_review": {
-    "reviewed_at": "2026-11-04T19:45:55.891848+00:00",
-    "prior_reviewed_at": "2026-11-04T03:57:49.257914+00:00",
-    "scope": "Only add missing m1nga-skill and agent-skill repository topics. Reflection behavior, companion and package files are unchanged.",
-    "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
-    "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
-  }
+  ]
 }

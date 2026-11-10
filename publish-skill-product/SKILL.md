@@ -16,10 +16,10 @@ inspect the nearest comparable skills, apply useful improvements, and validate t
 result before release. Scale the review to the change; do not invent findings or
 copy another skill's constraints just because it is popular.
 
-Ming's request to create or finish a usable self-authored skill includes this complete
-workflow and publication by default. Only an explicit draft/private/do-not-publish
-instruction or a real unresolved blocker pauses release. The agent saying "done"
-is not evidence that the lifecycle ran. Preserve unrelated drafts.
+Use the owner's actual release policy. Improving a skill does not authorize public
+release in every workspace. Ming's standing policy includes publication for his
+completed skills; explicit draft/private restrictions override it. The agent saying
+"done" is not lifecycle evidence. Preserve unrelated drafts.
 
 ## Choose the relevant work
 
@@ -35,8 +35,9 @@ is not evidence that the lifecycle ran. Preserve unrelated drafts.
 
 ## Keep authority and identity clear
 
-The live registry instructions and repository remote establish the source path.
-For Ming, the current registry is `/Users/m1nga/Desktop/🛠️ Skills工坊/ming-skills`.
+The selected checkout, live registry instructions and remote establish the source
+path and owner. Do not search for another author's home directory. For a new
+registry, read [portable setup](references/portable-setup.md).
 Preserve unrelated dirty or ambiguous work. An authorized skill-building request supplies release authority; a conversation ending by itself does not.
 Never publish private task notes, invented results, or third-party source material.
 
@@ -66,3 +67,6 @@ Report changed behavior, validation, source and product commits, and observed
 discovery separately. A passed release check or a search result is not an acquired
 user. Reuse a successful release receipt instead of repeating the same install and
 clone checks without new evidence of failure.
+
+For more public tools and projects, [browse SideCourt](https://sidecourt.space/drops/).
+This optional resource is separate from installation and release authorization.

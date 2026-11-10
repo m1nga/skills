@@ -1,57 +1,65 @@
 {
   "schema_version": 1,
   "skill": "product-experience-officer",
-  "reviewed_at": "2026-11-01T13:55:36.220420+00:00",
-  "source_sha256": "49cf6de6fdb7ae3789e84f166564ea982a9373be0b62f91c8a41c80e2eea3cd8",
+  "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
+  "source_sha256": "0db5b06f08043b8c48dbf1500ca33d98065f7af28bf3ab8bb5849f584d51c6d3",
   "user_review": {
-    "method": "Author context-aware CLI execution, deterministic failure/recovery tests, and explicitly labeled instruction simulations. No independent agent or human usability study.",
+    "method": "Maintainer, context-aware execution of a small public CLI first-use case and local report renderer; this is not a customer project or human study.",
     "scenarios": [
       {
-        "request": "Create a client-readable first-use report.",
-        "expected": "Truthful reviewer/mode label, raw experience log, tested task outcomes, prioritized fixes, retests and unknowns.",
-        "observed": "Executed report.py with the original simulated example; HTML clearly says simulation/context-aware and no real product was tested. Zero findings are accepted without invented severity.",
+        "request": "Validate two exported bookmarks with the default JSON command.",
+        "expected": "Record the real failure and a bounded diagnosis before proposing the first-use copy.",
+        "observed": "Python 3.9.6 returned exit 1 and Extra data: line 2 column 1 (char 34). Report keeps the error and identifies the missing input mode.",
         "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "The report has an unknown evidence mode or findings with no observation/evidence; remaining checks are missing.",
-        "expected": "Fail without pretending a completed UX test.",
-        "observed": "Three tests passed: truthful simulation and escaping, invalid-mode/missing-evidence rejection, missing-to_verify rejection.",
+        "request": "Recover without modifying the exported input.",
+        "expected": "Same input should validate with the proposed example command.",
+        "observed": "The same two lines passed with --json-lines --compact. The rendered HTML has one finding and separates the successful command retest from the outstanding documentation-discovery retest.",
         "kind": "executed",
-        "result": "pass"
+        "result": "fixed"
       },
       {
-        "request": "The product author already knows the implementation but asks for a zero-context review.",
-        "expected": "Disclose context-aware walkthrough; do not claim recruited users or independent cold review.",
-        "observed": "Simulated instruction walkthrough preserves existing contamination disclosure. New export contract labels actual reviewer type and explicitly says the renderer does not authenticate independence or perform tests.",
-        "kind": "simulated",
+        "request": "Render the report to the same filename again.",
+        "expected": "Refuse the overwrite and leave the existing report intact.",
+        "observed": "The renderer exited 2 and the old and new SHA-256 values were identical.",
+        "kind": "executed",
         "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/garrytan/gstack/blob/cd0c912a0e7b97da7aeaf8c4e91538b794c8e040/design-review/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "Design review connects browser evidence, findings, changes and verification; rendered evidence matters.",
-      "decision": "adapt",
-      "reason": "Add a portable client report with exact task outcomes, limits and retests. Retain review-only scope and existing tool policy instead of auto-fixing or installing the browser stack.",
-      "repository_stars_at_check": 138535
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "A short runnable example can demonstrate the expected output sooner than a long feature description.",
+      "reason": "Put executable before/recovery commands and the render step near the top.",
+      "decision": "adapt"
     },
     {
-      "url": "https://github.com/wondelai/skills/blob/c172996495bed0fcd26896a9416b2093fd7073f0/ux-heuristics/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "Usability checks emphasize understandable actions, feedback, recovery and task-focused help.",
-      "decision": "adapt",
-      "reason": "Add a novice first-session task and recovery coverage. Keep evidence-led severity and permit zero findings; reject an aggregate ten-point score that could imply unsupported measurement.",
-      "repository_stars_at_check": 2551
+      "url": "https://github.com/vercel-labs/agent-browser/blob/c0e2b80f8cc991fbd699e0a0a201f0ec2623720e/skills/dogfood/SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "Evidence should match the issue and be specific enough for another person to reproduce.",
+      "reason": "Use exact commands, input, exit status, and stderr for a CLI issue, with a separate retest for the proposed reader-facing change.",
+      "decision": "adapt"
     }
   ],
   "validation": [
     {
-      "command": "cd product-experience-officer && python3 -m unittest discover -s scripts -p test_*.py",
-      "result": "pass",
-      "observed": "3 tests passed."
+      "command": "printf SAMPLE | python3 -m json.tool; printf SAMPLE | python3 -m json.tool --json-lines --compact",
+      "observed": "Observed the documented failure and recovery without changing the sample.",
+      "result": "pass"
+    },
+    {
+      "command": "python3 -B product-experience-officer/scripts/report.py --input product-experience-officer/examples/cli-recovery.json --out NEW_REPORT.html",
+      "observed": "Rendered one finding; repeated output path was refused with identical report hash.",
+      "result": "pass"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s product-experience-officer/scripts -p 'test_*.py'",
+      "observed": "All 3 tests passed.",
+      "result": "pass"
     }
   ],
   "unresolved_blockers": []

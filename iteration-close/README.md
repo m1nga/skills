@@ -32,6 +32,23 @@ those aren't iteration closes.
 npx skills add m1nga/iteration-close
 ```
 
+## Try a read-only takeover preview
+
+Ask: `Use $iteration-close to check whether a new person could take over this
+repository. Read the existing files only. Show the evidence and the smallest
+fix for each gap.`
+
+An illustrative result for a local repository:
+
+| What the next reader needs | What the preview found | Smallest fix |
+|---|---|---|
+| Where to begin | `README.md` names the product but links to a removed setup guide | Point to the maintained setup entry |
+| What to do next | `STATUS.md` describes the last release but names no next task | Add the next task and its acceptance check |
+| How to run checks | CI calls `make check` but the local entry guide omits it | Add the command and its prerequisite to the guide |
+
+The preview is evidence from existing files. A genuinely fresh reader and a
+bootstrap rehearsal are separate checks available during a full close.
+
 ## Try a scoped cleanup
 
 After installing, ask: `Use $iteration-close in shed-only mode. List the

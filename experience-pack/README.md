@@ -54,7 +54,10 @@ npx skills add m1nga/experience-pack
 After installing, ask: `Use $experience-pack to record this incident in this
 project, then show which lesson can travel to another project.`
 
-Illustrative input, not a measured incident:
+For a first look without opening a project, ask: `Run the boundary test on
+this incident in chat. Show what travels and what stays local.`
+
+Illustrative input:
 
 > The migration took the whole afternoon because staging used the old bucket.
 > We corrected the endpoint and reran the migration successfully. Record it.
@@ -71,9 +74,11 @@ Portable? not yet
 
 On a later distillation pass, the portable lesson can be: *Verify each
 environment's external endpoints before migrating; stale endpoints can survive
-configuration changes.* The bucket identity and this project's endpoint choice
-stay in the private ledger. This example illustrates the boundary, not a claim
-that the check prevents every migration failure.
+configuration changes.* A receiving project can check this with a read-only request against the intended
+target before migrating. The concrete incident stays in the private ledger and
+the chosen endpoint stays in the source project's decision record. “Always use
+the endpoint we chose” is still a project decision even with the bucket name
+removed.
 
 If no project is open, the agent asks where the incident belongs and can return
 a copyable entry. It does not create a ledger at the Desktop root. In a public

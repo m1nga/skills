@@ -2,15 +2,32 @@
 
 A reviewer that experiences your unreleased product as a total stranger first — and only afterwards puts the expert hat on to tell you what broke, why it hurt, and what to fix first.
 
-## New: an output you can use
+## Run a first-use report
 
-Produce a self-contained client report with explicit evidence limits:
+The [CLI recovery sample](https://github.com/m1nga/product-experience-officer/blob/main/skills/product-experience-officer/examples/cli-recovery.json)
+shows one observed failure, one recovery, and a remaining documentation retest.
+It is a maintainer-run exercise on disposable data. No customer app is involved.
 
 ```sh
-python3 SKILL_DIR/scripts/report.py --input SKILL_DIR/examples/report.json --out first-use-report.html
+printf '%s\n' '{"url":"https://example.org/one"}' '{"url":"https://example.org/two"}' |
+  python3 -m json.tool
+# Observed: exit 1, Extra data: line 2 column 1 (char 34)
+
+printf '%s\n' '{"url":"https://example.org/one"}' '{"url":"https://example.org/two"}' |
+  python3 -m json.tool --json-lines --compact
+# Observed: exit 0, two records printed
+
+python3 SKILL_DIR/scripts/report.py --input SKILL_DIR/examples/cli-recovery.json --out first-use-report.html
 ```
 
-The included fixture is labeled simulation and makes no claim that a real product was tested. Replace it with the actual experience log, tested tasks, recovery evidence, severity-ranked findings and retests. Live, screenshot, text-only and simulated runs remain distinct; prior product context is explicit. Missing evidence or an unknown severity fails before creating a report. A generated report validates structure, not the truth or independence of a test. No account, server or paid API is required.
+Open the generated HTML to see the verdict, the two attempts, and what remains
+to verify. Replace `SKILL_DIR` with the installed skill directory and choose a
+new output path. The renderer requires no account, server, or paid API.
+
+For a real review, supply your public entry point, one task a newcomer should
+complete, and a disposable profile if that task writes data. The separate
+`examples/report.json` fixture shows how to label a simulation and missing
+coverage. The renderer checks the evidence fields and preserves the review mode.
 
 ## What it does
 

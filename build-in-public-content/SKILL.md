@@ -17,6 +17,11 @@ Use the compact [event card](references/event-card.md) when a durable record is 
 
 ## Make the update understandable
 
+Identify one intended reader and the task this event helps them do. Prefer a
+demonstration with original input, changed behavior and observable result. A
+structural test is not a customer outcome. Give one next step appropriate to the
+stage, such as trying a fixture or commenting on a private preview; holds remain.
+
 Lead with the actual action or problem and its practical consequence. A useful shape is a concrete change plus the reason it affects someone, followed by a question only if the answer can influence a real decision. Use the supplied voice and language. Distinguish translated summaries from original quotations. Keep real uncertainty, creator attribution, and verified participation boundaries.
 
 Edit out broad significance, invented audience requests, generic enthusiasm, and conclusions that repeat the opening. Compare the final copy against the source: every new number, actor, causal claim, and availability claim needs support. Do not manufacture a personal reaction to make the writing feel human. Preserve user-approved wording; if a necessary factual correction conflicts with it, flag that conflict instead of silently treating the old approval as current.
@@ -32,6 +37,11 @@ Make the caption state what is happening. Image text may carry a shorter phrase 
 Render and inspect the composition at export size and its intended feed thumbnail size. Check legibility, cropping, contrast, recognizable identity, and alt text. Report exactly which sizes were viewed. If rendering or viewing is unavailable, mark visual verification incomplete. For video, check the exported playback and captions; label staged data and later recordings accurately. Limit capture to the authorized project surface and remove private information.
 
 ## Deliver with a recoverable state
+
+For an authorized discovery experiment, carry the event ID into its existing
+observation record. Visits, installs, completed tasks, later reuse and feedback
+need separate receipts. A post URL or star is not task completion. See the
+[worked example](references/first-update.md). A single post needs no new calendar.
 
 Return the finished copy, the actual visual or clearly labeled shot plan, source/version pointers, current stage, and unresolved checks. Keep rejected alternatives with their reason in the existing private task record, outside public deliverables.
 

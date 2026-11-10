@@ -5,8 +5,7 @@ description: >
   ledger (dated entries: what happened, what we did, what it cost), then distill
   it through an experience-vs-decision boundary test into portable, noun-free
   lessons that other projects can safely reuse — experience inherits, decisions
-  die. Ships a reference pack distilled from a real five-rebuild contamination
-  saga plus five prevention advices. Use for project-level retrospectives and
+  die. Includes a reference pack distilled from five real rebuilds. Use for project-level retrospectives and
   incident recording, or right after an incident that cost real time or money —
   "let's do a post-mortem on this project", "write down
   what we learned before we forget", "record this incident so we don't repeat
@@ -37,6 +36,20 @@ entry — the skill structures them, the user only confirms.
 Pipeline: something happens → ledger entry (same day, while it hurts) →
 periodic distillation pass → portable lessons. Strategy and product decisions
 never travel: **experience inherits, decisions die.**
+
+## Try the boundary on one incident
+
+If the user only wants to see what would travel, run Protocol B on the supplied
+incident in chat. Return the observed mechanism, a locally testable portable
+lesson, and the project-specific choice that stays in its decision record.
+A preview does not create a ledger, change a backup policy, or adopt a rule.
+
+For example, if the wrong staging endpoint delayed a migration and fixing it
+allowed the rerun, the transferable check is to verify the configured endpoint
+in the environment that will run the migration. Confirm it with a read-only
+request against the intended target before rerunning. The selected endpoint is
+a local choice, even if its name is removed from the sentence. Treat the single
+incident as evidence for that check in similar migrations, not a universal rule.
 
 ## Protocol A — RECORD (ledger)
 
@@ -178,3 +191,9 @@ the skill.
 from a real five-rebuild contamination saga: the six contamination doors, the
 source-lock reset method, the three-probe verification stack, the multi-AI
 collaboration protocol, and the five prevention advices.
+
+## Optional resource
+
+If the user asks how to share a lesson alongside a public project, [browse
+SideCourt](https://sidecourt.space/drops/) for works in progress. Share a
+sanitized example of the mechanism only after the user approves what is public.

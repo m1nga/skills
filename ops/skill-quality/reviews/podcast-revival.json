@@ -1,109 +1,171 @@
 {
   "schema_version": 1,
   "skill": "podcast-revival",
-  "reviewed_at": "2026-10-23T16:19:33.864736+00:00",
-  "source_sha256": "365efcc1f4e56d32cc749c8897b9f8add951cc9e7bffd6d765d553e6a72fdf14",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "69719271bed22e2cc61a34df0386f2c1e9d163653e7b75c548ab3f27bfcdac5b",
   "user_review": {
-    "method": "First-user walkthrough plus actual final-wheel installation, offline CLI and fake-provider/real-FFmpeg execution. Synthetic fixtures and structural review signatures are test inputs, not participant approvals. This is not independent user research.",
+    "method": "Maintainer instruction walkthroughs of the changed first-use and failure routes; simulated behavior, not an independent user trial. Package audits executed.",
     "scenarios": [
       {
-        "request": "Continue permitted footage using a lower-cost source-video route.",
-        "expected": "Install the exact runtime and produce an audio-complete labeled export.",
-        "observed": "Installed wheel passed seven new tests with fake provider and real FFmpeg. Normal execution produced playable labeled MP4 and verified full waveform coverage; repeat reused jobs/uploads. These are local pipeline checks, not paid model or human-quality review.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Try a two-second clip under a $0.10 cap.",
-        "expected": "Count the 40-second video minimum before uploading or submitting.",
-        "observed": "Video blocked after fixture TTS; zero video uploads or POSTs. Formula returned $0.20 for two seconds and $0.31 for sixty seconds at the fake $0.005/sec quote.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Retry an uncertain video submission without a request ID.",
-        "expected": "Keep reservation and do not submit again.",
-        "observed": "Fake SubmissionUnknown followed by execute made no second video POST; pending reservation stayed held.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Reuse one uncropped shot for two speakers or omit source review.",
-        "expected": "Block ambiguous source mapping before spending.",
-        "observed": "Offline validation rejected equal source hashes for distinct speakers, absent single-speaker review and absent motion-reuse acknowledgement. Docs require exactly one visible face throughout the shot; the CLI does not claim automatic face detection.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Receive a shortened protection tail or alter the cached driver.",
-        "expected": "Require complete original speech and immutable paid specs.",
-        "observed": "Local waveform tests accepted 2.24 seconds for complete two-second speech and rejected 1.5 seconds. Changed padded-driver hash blocked without another fake POST. New route requires raw correlation >0.90, <=80ms offset, every sample and quiet tail.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Install outside the checkout and use default production.",
-        "expected": "Use the bound wheel, preserve offline default and stale-review protection.",
-        "observed": "Full dependency installation succeeded in a fresh external directory. Installed module origin, CLI brief, offline produce and stale-review rejection passed with zero paid calls; no ledger was created.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "Open the new input contract from the standalone root README.",
-        "expected": "A published README link must resolve to the nested skill resource.",
-        "observed": "Pre-release packaging walkthrough found a root-relative references link would break after publication. Replaced it with the exact standalone nested resource URL; remote presence is verified by the publisher.",
+        "request": "Make a 45-second script preview from one two-second load observation; no media.",
+        "expected": "Produce editorial result without account or paid bootstrap.",
+        "observed": "Instruction now explicitly supports script-only preview. Example preserves single observation, proposes repeat trials and does not generalize performance.",
         "kind": "simulated",
-        "result": "fixed"
+        "result": "pass"
+      },
+      {
+        "request": "Generate media after preview, without provider access or budget.",
+        "expected": "Keep preview useful, block paid media until actual requirements exist.",
+        "observed": "Existing generation contract still requires permissions, exact script, provider access and budget. No media request or spend occurred.",
+        "kind": "simulated",
+        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/fal-ai-community/skills/blob/main/skills/genmedia/SKILL.md",
-      "checked_at": "2026-10-23T16:19:33.864736+00:00",
-      "learned": "Exact endpoint schema/pricing checks, structured results and async identity matter. Smart routing can defeat reproducible comparisons.",
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Concrete first useful result and explicit setup requirements help a stranger assess a repository.",
       "decision": "adapt",
-      "reason": "Keep current-quote checks and original-ID GET recovery in the existing runtime; reject an extra CLI and automatic route switching around unknown jobs. No third-party code copied."
+      "reason": "Applied to the changed onboarding route; reject star forecasts and the claim that a visual alone establishes growth."
     },
     {
-      "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-recipes/SKILL.md",
-      "checked_at": "2026-10-23T16:19:33.864736+00:00",
-      "learned": "Recipes connect task-specific inputs, endpoint sequences and explicit quality checks; animated portraits differ from existing-video lip sync.",
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Tie content to one reader and a concrete information gain.",
       "decision": "adapt",
-      "reason": "Added focused source-video contract with one-face shots, explicit motion reuse, audio verification, cost formula and perceptual limits, preserving existing avatar default. No third-party code copied."
+      "reason": "Use one source-backed example; no mandatory calendar, topic volume or invented demand."
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/launch/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Check completeness of a bounded first experience before expansion.",
+      "decision": "adapt",
+      "reason": "Keep useful review or preview independently accessible while actual public release and media retain authority requirements."
     }
   ],
   "validation": [
     {
-      "command": "python -m unittest discover -s tests -q (runtime 0.3.0)",
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py podcast-revival --product-manifest products.json --json",
       "result": "pass",
-      "observed": "116 tests passed on macOS, including seven new route tests. Existing audio/avatar suite passed."
+      "observed": "{\n  \"skill\": \"podcast-revival\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
     },
     {
-      "command": "python verify_final_skill.py (private driver; sanitized receipt)",
+      "command": "python3 <skill-creator>/scripts/quick_validate.py podcast-revival",
       "result": "pass",
-      "observed": "Exact wheel 0a4f99d0a00b8b166cff257d6daca5d7cd8d5e96f1ea69b26d65ba097e4e2e66 installed with dependencies outside both repositories; installed CLI checks and seven fake-provider/real-FFmpeg tests passed. Zero paid calls."
-    },
-    {
-      "command": "python -m unittest discover -s podcast-revival/tests -q",
-      "result": "pass",
-      "observed": "Four bootstrap tests passed: installation/reuse, missing/modified wheels and preserving unowned directory."
-    },
-    {
-      "command": "python official-skill-creator/scripts/quick_validate.py podcast-revival",
-      "result": "pass",
-      "observed": "Skill is valid; tool path sanitized."
-    },
-    {
-      "command": "python publish-skill-product/scripts/audit_product_page.py podcast-revival --product-manifest products.json",
-      "result": "pass",
-      "observed": "VERDICT PASS."
-    },
-    {
-      "command": "Inspect exact bundled wheel archive",
-      "result": "pass",
-      "observed": "71,574 bytes, 26 package/dist-info members. No private absolute paths, live keys, project media, ledger or participant proof."
+      "observed": "Skill is valid!"
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "podcast-revival",
+    "reviewed_at": "2026-10-23T16:19:33.864736+00:00",
+    "source_sha256": "365efcc1f4e56d32cc749c8897b9f8add951cc9e7bffd6d765d553e6a72fdf14",
+    "user_review": {
+      "method": "First-user walkthrough plus actual final-wheel installation, offline CLI and fake-provider/real-FFmpeg execution. Synthetic fixtures and structural review signatures are test inputs, not participant approvals. This is not independent user research.",
+      "scenarios": [
+        {
+          "request": "Continue permitted footage using a lower-cost source-video route.",
+          "expected": "Install the exact runtime and produce an audio-complete labeled export.",
+          "observed": "Installed wheel passed seven new tests with fake provider and real FFmpeg. Normal execution produced playable labeled MP4 and verified full waveform coverage; repeat reused jobs/uploads. These are local pipeline checks, not paid model or human-quality review.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Try a two-second clip under a $0.10 cap.",
+          "expected": "Count the 40-second video minimum before uploading or submitting.",
+          "observed": "Video blocked after fixture TTS; zero video uploads or POSTs. Formula returned $0.20 for two seconds and $0.31 for sixty seconds at the fake $0.005/sec quote.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Retry an uncertain video submission without a request ID.",
+          "expected": "Keep reservation and do not submit again.",
+          "observed": "Fake SubmissionUnknown followed by execute made no second video POST; pending reservation stayed held.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Reuse one uncropped shot for two speakers or omit source review.",
+          "expected": "Block ambiguous source mapping before spending.",
+          "observed": "Offline validation rejected equal source hashes for distinct speakers, absent single-speaker review and absent motion-reuse acknowledgement. Docs require exactly one visible face throughout the shot; the CLI does not claim automatic face detection.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Receive a shortened protection tail or alter the cached driver.",
+          "expected": "Require complete original speech and immutable paid specs.",
+          "observed": "Local waveform tests accepted 2.24 seconds for complete two-second speech and rejected 1.5 seconds. Changed padded-driver hash blocked without another fake POST. New route requires raw correlation >0.90, <=80ms offset, every sample and quiet tail.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Install outside the checkout and use default production.",
+          "expected": "Use the bound wheel, preserve offline default and stale-review protection.",
+          "observed": "Full dependency installation succeeded in a fresh external directory. Installed module origin, CLI brief, offline produce and stale-review rejection passed with zero paid calls; no ledger was created.",
+          "kind": "executed",
+          "result": "pass"
+        },
+        {
+          "request": "Open the new input contract from the standalone root README.",
+          "expected": "A published README link must resolve to the nested skill resource.",
+          "observed": "Pre-release packaging walkthrough found a root-relative references link would break after publication. Replaced it with the exact standalone nested resource URL; remote presence is verified by the publisher.",
+          "kind": "simulated",
+          "result": "fixed"
+        }
+      ]
+    },
+    "similar_skills": [
+      {
+        "url": "https://github.com/fal-ai-community/skills/blob/main/skills/genmedia/SKILL.md",
+        "checked_at": "2026-10-23T16:19:33.864736+00:00",
+        "learned": "Exact endpoint schema/pricing checks, structured results and async identity matter. Smart routing can defeat reproducible comparisons.",
+        "decision": "adapt",
+        "reason": "Keep current-quote checks and original-ID GET recovery in the existing runtime; reject an extra CLI and automatic route switching around unknown jobs. No third-party code copied."
+      },
+      {
+        "url": "https://github.com/fal-ai-community/skills/blob/main/skills/fal-recipes/SKILL.md",
+        "checked_at": "2026-10-23T16:19:33.864736+00:00",
+        "learned": "Recipes connect task-specific inputs, endpoint sequences and explicit quality checks; animated portraits differ from existing-video lip sync.",
+        "decision": "adapt",
+        "reason": "Added focused source-video contract with one-face shots, explicit motion reuse, audio verification, cost formula and perceptual limits, preserving existing avatar default. No third-party code copied."
+      }
+    ],
+    "validation": [
+      {
+        "command": "python -m unittest discover -s tests -q (runtime 0.3.0)",
+        "result": "pass",
+        "observed": "116 tests passed on macOS, including seven new route tests. Existing audio/avatar suite passed."
+      },
+      {
+        "command": "python verify_final_skill.py (private driver; sanitized receipt)",
+        "result": "pass",
+        "observed": "Exact wheel 0a4f99d0a00b8b166cff257d6daca5d7cd8d5e96f1ea69b26d65ba097e4e2e66 installed with dependencies outside both repositories; installed CLI checks and seven fake-provider/real-FFmpeg tests passed. Zero paid calls."
+      },
+      {
+        "command": "python -m unittest discover -s podcast-revival/tests -q",
+        "result": "pass",
+        "observed": "Four bootstrap tests passed: installation/reuse, missing/modified wheels and preserving unowned directory."
+      },
+      {
+        "command": "python official-skill-creator/scripts/quick_validate.py podcast-revival",
+        "result": "pass",
+        "observed": "Skill is valid; tool path sanitized."
+      },
+      {
+        "command": "python publish-skill-product/scripts/audit_product_page.py podcast-revival --product-manifest products.json",
+        "result": "pass",
+        "observed": "VERDICT PASS."
+      },
+      {
+        "command": "Inspect exact bundled wheel archive",
+        "result": "pass",
+        "observed": "71,574 bytes, 26 package/dist-info members. No private absolute paths, live keys, project media, ledger or participant proof."
+      }
+    ],
+    "unresolved_blockers": []
+  },
+  "validation_limits": "Current host Python 3.9.6 skipped all 4 bootstrap tests, which require Python 3.10+. Runtime code and wheel unchanged; no paid calls or media playback. Existing historical runtime evidence retained separately."
 }

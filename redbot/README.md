@@ -4,23 +4,39 @@ You saved something useful, but cannot find it when you need it. RedBot helps yo
 
 **[Try RedBot on SideCourt](https://sidecourt.space/drops/redbot/) · [Open the app](https://sidecourt.space/drops/redbot/app/) · [User test](https://sidecourt.space/drops/redbot/test/)**
 
-**Version 1.9.7 is an invitation-only account test.** Connect your own Xiaohongshu account, see saved cards arrive during a scan and read selected post text. Chinese-first interface with an English switch. The small test host must be online; full collection coverage and same-phone QR sign-in are not yet verified.
+**Start with one saved post.** Share its text with the companion skill, point it to a RedBot JSON backup, or open one of your Xiaohongshu saves in the invitation beta. The web account connection needs your own Xiaohongshu account, the test host online, and confirmation in the Xiaohongshu app.
 
 ## Who it's for
 
 People who collect design references, methods or tools and then struggle to decide what to use. Use the web app for your own saves. Use the companion skill inside an authorized AI assistant for a selected post, supplied notes or a RedBot backup.
 
-## Start with your account
+## Try one save without an invitation
 
-1. Open the invitation link you received from Ming. Its code is filled into the visible invitation field; you can also choose **连接小红书 / Connect Xiaohongshu** and enter the code yourself. An existing connected session does not need the invitation again.
-2. Review how the test stores your data. Scan the login code with Xiaohongshu and confirm in that app.
-3. RedBot shows the observed count and adds saved cards as batches arrive. You can browse and search the cards already received while scanning continues, or stop and keep them. You do not need to upload files or copy cookies.
-4. Describe what you want to do in **现在想做 / For now**, or browse **我的收藏 / My saves**.
-5. Open a relevant save. With your account connected, RedBot starts one read of that selected item: post text for a text save, or speech and sampled on-screen text for a video. Choose **Read all content** to process the entire library. Pause/continue and retry keep progress, with no item-count cutoff; opening a save moves it next in the queue.
-6. Read the persistent status inside the detail view. A failed, cancelled or empty read stays distinct from success; retry or cancel there. Timestamped speech and sampled OCR remain separate evidence. Source-dependent prompts become available after useful source arrives. If the matching job disappears after another job or a service restart, RedBot checks the selected item’s outcome for this read instead of leaving it running forever. An older successful result cannot stand in for the new attempt. This check is read-only and never resubmits the read automatically.
-7. Inspect the goal requirements and actual supporting passages, check cost/promotion cues, then save a supported plan or create an editable prompt for your project. A title-only source must be read before it can be kept as a supported plan.
+Use a note you already have. Ask an assistant with the skill installed:
 
-An invitation opens a test slot; a separate random session credential protects each visitor's data. The former three-account quota is removed by default; invitations, isolated sessions and seven-day expiry still apply. Host processing capacity remains limited. No invitation? Original example notes let you try the interface without signing in. Manual JSON backup is a recovery option.
+> Use $redbot with the note below. I want a clearer first task in my app. Show me one useful passage and one small change I can test.
+
+Or try the [sample backup](skills/redbot/examples/first-save.json) with Python 3. It contains two fictional notes. No account or model is involved.
+
+```sh
+git clone https://github.com/m1nga/redbot.git
+cd redbot
+python3 skills/redbot/scripts/read_library.py skills/redbot/examples/first-save.json --query "first task"
+python3 skills/redbot/scripts/read_library.py skills/redbot/examples/first-save.json --id first-task
+```
+
+The first command distinguishes a save with text from a title-only match. The second opens the actual passage: “Show one primary action on the setup screen and move optional choices below it.” Try that in one section and ask a new visitor what they would click first. The title-only result needs a source read before you can use its method. If your own backup is missing, paste the selected note or export JSON from **Settings and my data**.
+
+## Try one save from your Xiaohongshu account
+
+1. Open your invitation or use **Connect Xiaohongshu** in the [web app](https://sidecourt.space/drops/redbot/app/). If already connected, use that session.
+2. Read the test storage details. Open the QR code on a second screen, then scan and confirm in Xiaohongshu. Same-phone sign-in remains unverified.
+3. Open **My saves** and choose one card as soon as it arrives. RedBot reads that post on demand. The detail view shows reading status, then any available text, speech transcript or sampled on-screen text.
+4. Use the passage for one next action. If the read fails, use **Retry** in the detail view or work from text already saved on your device. A title without body text, partial video or failed refresh stays visible as a coverage limit.
+
+If the host is temporarily offline, use your saved device content, a JSON backup or pasted text. The [product page](https://sidecourt.space/drops/redbot/) explains the invitation test and includes original example notes.
+
+In the invitation-only web account test (version 1.9.7 in this repository), an invitation opens a test slot; a separate random session credential protects each visitor's data. The former three-account quota is removed by default; invitations, isolated sessions and seven-day expiry still apply. Host processing capacity remains limited. No invitation? Original example notes let you try the interface without signing in. Manual JSON backup is a recovery option.
 
 Saved device content now appears before the connection-address check completes. The header keeps a visible **Xiaohongshu account** button during scans, video reads and temporary outages. This is device-first browsing, not fully local account synchronization: the test host still retains isolated login sessions and fetched source content.
 

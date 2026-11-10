@@ -25,3 +25,5 @@ The result contains total counts and one page of added, changed and not-seen ref
 Duplicate copies of the same record are counted and collapsed. Conflicting copies of an ID or differing scope names stop comparison and identify the conflict. A changed reference is included because the previous pointer may be stale. `not_seen` only says the ID was absent from the current snapshot. Reconcile availability or deletion using the source's real state.
 
 Use a previous reviewed version when skipping semantic review. For a metadata-only or first-seen record, inspect the body if the task requires it. Do not advance an accepted baseline until the intended work and coverage are recorded in the owning task.
+
+For a reproducible walkthrough, run [the snapshot demo](../examples/snapshot_demo.py) from any directory. It follows every delta page, checks the same findings as a full manifest read and separates measured metadata bytes from provider usage.

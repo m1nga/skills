@@ -241,7 +241,7 @@
     {
       "name": "redbot",
       "title": "RedBot — Find the Good Thing You Saved",
-      "description": "Find and read your saved Xiaohongshu posts, search a resumable library, and turn useful source material into an editable coding prompt. Invitation beta.",
+      "description": "Find one useful Xiaohongshu save and turn its evidence into a next step. Try it with a note or JSON backup, or connect your account in the invitation beta.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
@@ -285,7 +285,7 @@
     {
       "name": "context-budget",
       "title": "Context Budget — Cut Repeated Reading in Agent Workflows",
-      "description": "Reduce repeated reading in incremental research. Compare source changes, reuse working implementations, and verify tokens and quality against the same completed task.",
+      "description": "Reduce repeated reading in agent workflows. Compare versioned source snapshots, recover the relevant evidence, and check the same outcome in a reproducible demo.",
       "topics": [
         "m1nga-skill",
         "agent-skill",

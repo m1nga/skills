@@ -40,6 +40,16 @@ npx skills add m1nga/publish-skill-product
 
 ## Example
 
+New author? Start with your own folder and explicit target:
+
+> Use $publish-skill-product to review ./my-skill for YOUR_OWNER/my-skill.
+> Show the first-use and packaging gaps. Do not publish yet.
+
+Diagnostics need Python; live release additionally needs Git, authenticated `gh`
+and the Skills CLI. Installation does not require Ming's filesystem or install his
+registry publisher. [Portable setup](https://github.com/m1nga/publish-skill-product/blob/main/skills/publish-skill-product/references/portable-setup.md)
+explains source, target and permission boundaries.
+
 > **User:** `map-product-system` is ready. Publish it, and make sure someone searching for a way to
 > understand their whole product can find the skill rather than a Ming skills collection page.
 >
@@ -84,9 +94,9 @@ shell script and one global instruction. That meant it could publish code withou
 checking the product story, install package, discovery state, or future drift. This skill makes that
 last mile an explicit, testable product contract.
 
-## Field-tested
+## Evidence
 
-The release workflow has published 25 standalone skill repositories. In the latest live audit, all
+An earlier release audit recorded 25 standalone skill repositories. In that audit, all
 25 public repositories passed direct Skills CLI discovery; the deterministic monitor verified 24
 and correctly blocked one product with ambiguous local source changes instead of republishing it.
 Publication now triggers the named product's remote verification directly, with no daily polling

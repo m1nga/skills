@@ -20,7 +20,13 @@ Provide a portfolio CSV with `ticker,shares,avg_cost` and your investment constr
 
 A lead decision, dated evidence, strongest counterargument, a feasible conditional plan when supported, and the next event to review. Numerical snapshots and briefs are saved separately so old beliefs can be compared with new evidence.
 
-Fictional example: two shares at $80 cost, a verified $100 quote and $50 cash produce $250 net assets, $40 unrealized gain and an 80% holding weight. Without a cash balance, net assets and weight stay unknown. A missing quote never becomes a 100% loss or a clean bill of health.
+## Try an offline brief
+
+The [fictional example](skills/daily-brief/examples/offline-brief.md) supplies
+positions, prior thesis, dated evidence, the command to calculate the snapshot,
+and the resulting decision with a review condition. Try the same example without
+cash or with an empty quote fixture to see which figures become unknown.
+The fixture uses invented securities and statements.
 
 ## Design notes
 

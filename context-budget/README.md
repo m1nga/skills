@@ -2,6 +2,20 @@
 
 Context Budget is an agent skill for workflows that repeatedly load large sources, logs and old context. It helps the agent find what changed, open the relevant evidence and finish the requested job. It includes a small local comparison tool for repeated source lists.
 
+## Reproduce a saved-source update
+
+Two scans of a research library contain 40 cards each. The second adds a note about explaining access, updates the retry guidance and omits an older note from a partial scan. Keep the earlier reviewed guidance whose source version still matches. The unseen note stays unresolved, and an unchanged note with no reviewed body stays unread.
+
+Run the bundled demo with Python 3:
+
+```sh
+git clone https://github.com/m1nga/context-budget.git
+cd context-budget
+python3 skills/context-budget/examples/snapshot_demo.py
+```
+
+The [demo source](skills/context-budget/examples/snapshot_demo.py) contains all fixture inputs and expected findings. It generates the two snapshots, runs the real comparator through both output pages, and checks that the full-scan and delta paths produce the same four findings. It prints the exact metadata bytes for each path. This synthetic fixture runs locally without an AI model or account. See [Validation](#validation) for the separate historical model run and its scope.
+
 ## Who it's for
 
 Use it for incremental saved-library research, including RedBot updates, or when an agent rereads the same archive, loads whole build logs, takes a long detour through old chat history, or rebuilds something already available. It also helps when a token-saving claim needs a comparison with a clear baseline. Keep everyday small edits direct.
@@ -27,9 +41,7 @@ Then ask:
 
 Implicit invocation is enabled. A host can also route repeated research and implementation work through this skill in its existing instructions, so the user need not name it each time. That is a natural-entry rule, not a background job or proof that a running session has adopted it. The [incremental workflow](skills/context-budget/references/workflow.md) explains source coverage, RedBot reader reuse and the acceptance check before saving a reviewed baseline.
 
-## Example
-
-You have an earlier index of saved research and a partial new scan. Compare stable IDs and revisions, review the changed sources, and keep unresolved absences separate. Existing reviewed notes remain useful when their source versions still match. If an old note had only a title, open its body before treating it as learned.
+## Reuse a working implementation
 
 For a code-driven video, inspect the existing project, license and output target. Adapt one verified scene with real product material and check the render before expanding the change. The same method works for a reusable component, script or report.
 
@@ -74,3 +86,5 @@ installation alone does not prove automatic adoption in other sessions.
 ## Author
 
 Built by [Ming](https://github.com/m1nga).
+
+Working on a tool or workflow of your own? [Browse SideCourt Works](https://sidecourt.space/drops/) for projects you can try or give feedback on.

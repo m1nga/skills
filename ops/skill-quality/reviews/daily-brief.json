@@ -1,26 +1,52 @@
 {
   "schema_version": 1,
   "skill": "daily-brief",
-  "reviewed_at": "2026-09-19T04:08:10+00:00",
-  "source_sha256": "67fbb916ddef10216a17f18e5939f05b33590bf6e61c8b7d0eab1086a1ab3e59",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "f3319342b3e10508fa8323d673050e30e1a67b1b31c595fe21ebc889ffbfb058",
   "user_review": {
-    "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description gains Chinese phrases and explicit exclusions (news, crypto, alerts); body unchanged; never executes trades. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
     "scenarios": [
       {
-        "request": "财报出了，帮我看看这只该不该卖",
-        "expected": "fires as a thesis check with sources",
-        "observed": "Chinese phrases now in the description.",
-        "kind": "simulated",
+        "request": "Try the stock portfolio brief with fictional data and no market connection.",
+        "expected": "Run the documented offline command and distinguish arithmetic from thesis research.",
+        "observed": "The bundled CLI returned $200 securities, $250 NAV, $40 unrealized gain, 80% position weight and an unreviewed thesis from the documented synthetic fixture.",
+        "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "比特币今天怎么样",
-        "expected": "does not fire; crypto excluded",
-        "observed": "Exclusion added.",
+        "request": "Repeat the demo without cash or with an absent quote; rerun once against the existing output.",
+        "expected": "Leave incomplete values unknown and preserve the first output.",
+        "observed": "Without cash the gain remains $40 and NAV and weight are null. A missing quote produces null holding value, gain, NAV and weight. Attempted output reuse failed with status 2 and the original values persisted.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Two quarters appear below the threshold, but one uses an adjusted figure.",
+        "expected": "Leave the thesis trigger unknown and specify the missing comparable metric.",
+        "observed": "Walkthrough uses the synthetic evidence, retains the prior hold under review, defers adding and identifies the June reported margin as the next check.",
         "kind": "simulated",
         "result": "pass"
       }
-    ]
+    ],
+    "previous_review": {
+      "method": "Maintainer routing review on 2026-09-19 (Claude Code): Trigger description gains Chinese phrases and explicit exclusions (news, crypto, alerts); body unchanged; never executes trades. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+      "scenarios": [
+        {
+          "request": "财报出了，帮我看看这只该不该卖",
+          "expected": "fires as a thesis check with sources",
+          "observed": "Chinese phrases now in the description.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "比特币今天怎么样",
+          "expected": "does not fire; crypto excluded",
+          "observed": "Exclusion added.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ]
+    }
   },
   "similar_skills": [
     {
@@ -29,14 +55,57 @@
       "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
       "decision": "adopt",
       "reason": "Applied to the description only."
+    },
+    {
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "decision": "adapt",
+      "reason": "Replaced a one-line arithmetic claim with a repeatable offline input, output and incomplete-data example. No star-impact estimate or audit ceremony was added."
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "decision": "adapt",
+      "reason": "Shows a plausible question about an apparent thesis break and makes the evidence boundary visible. No external user research or distribution result is inferred."
+    },
+    {
+      "url": "https://github.com/bestagentkits/agency-skills/blob/main/skills/finance/finance-investment-researcher/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "An investment thesis needs explicit assumptions, source evidence, catalysts and downside factors.",
+      "decision": "adapt",
+      "reason": "Used a compact same-period comparison and named disconfirming evidence in the fictional brief. Avoided a large live research workflow for a first use."
     }
   ],
   "validation": [
+    {
+      "command": "python3 skill-creator/scripts/quick_validate.py daily-brief",
+      "result": "pass",
+      "observed": "Local frontmatter validator reported Skill is valid!"
+    },
+    {
+      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py daily-brief --product-manifest products.json",
+      "result": "pass",
+      "observed": "Product audit reported VERDICT: PASS."
+    },
+    {
+      "command": "python3 -B -m unittest discover -s daily-brief/tests",
+      "result": "pass",
+      "observed": "9 portfolio snapshot tests passed."
+    },
+    {
+      "command": "Execute the shell block in daily-brief/examples/offline-brief.md in a scratch directory; rerun the collector with missing cash and missing quotes.",
+      "result": "pass",
+      "observed": "CLI output, known amounts, null values and exclusive output creation matched the documented example."
+    }
+  ],
+  "unresolved_blockers": [],
+  "previous_validation": [
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py daily-brief --product-manifest products.json",
       "result": "pass",
       "observed": "VERDICT: PASS on 2026-09-19 after the edit."
     }
-  ],
-  "unresolved_blockers": []
+  ]
 }

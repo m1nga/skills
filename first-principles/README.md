@@ -52,6 +52,18 @@ pause. A handoff must retain enough state for the recipient to execute correctly
 
 These examples are authored scenarios, not customer testimonials.
 
+## Try it on a recurring false completion
+
+> Use $first-principles. The second report still cannot be opened by a reader,
+> even though generation says it succeeded. Reuse the current report pipeline
+> and verify the link through the reader's entry point.
+
+A useful comparison holds the report and acceptance check fixed. Record
+whether the intended reader can open the correct file, how many follow-up
+corrections it takes, and any manual steps still needed. This is a candidate
+test for the repeated “generated but unusable” failure. The documented paired
+trial below establishes its own results.
+
 ## Design notes
 
 Ming repeatedly asked for complete outcomes with fewer detours. Historical reviews

@@ -1,11 +1,32 @@
 {
   "schema_version": 1,
   "skill": "redbot",
-  "reviewed_at": "2026-11-04T19:52:00.535923+00:00",
-  "source_sha256": "de0e46beadbd98546926421e2707bce3075c97443488bd64f4022f4d9ce5e02f",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "3d84433d1e47d3e03ec1c1b65c8ccc1e6d04c88b0e275108aaf72d85e521f40a",
   "user_review": {
-    "method": "Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
+    "method": "2026-11-10 first-visitor walkthrough and actual package CLI runs from outside the repository. Historical evidence follows the new scenarios. Executed public-bundle and companion-reader synthetic fixtures, plus sanitized receipts of root-owned actual Chrome and single authorized real-source trials; no independent user trial. Browser API responses were synthetic; real media processing was a separate bounded trial. Metadata discovery follow-up: root-agent static walkthrough with explicitly simulated scenarios; no new independent model or human trial.",
     "scenarios": [
+      {
+        "request": "I have a note and want to make the first task in my app clearer. I do not have an invitation.",
+        "expected": "Search a sample backup, open one exact source and identify a concrete next action without connecting an account.",
+        "observed": "The actual CLI shortlist returned first-task as saved_text and unread-task as needs_reading. Exact source retrieval recovered the expected primary-action passage and visitor test. Fixture SHA-256 stayed identical.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "My candidate has only a title, or my JSON backup cannot be found.",
+        "expected": "Leave the title-only method unknown. Report the missing file and a clear way to provide evidence.",
+        "observed": "Exact ID for unread-task returned no description or research. A nonexistent backup returned status 2 and explicit JSON stderr with export guidance.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "I arrive with a Xiaohongshu invitation and want to read one save.",
+        "expected": "Read the invitation, account and host prerequisites before signing in, and locate a selected-item retry or offline fallback.",
+        "observed": "Public landing, application and invitation-test HTML returned HTTP 200. The revised route specifies a second screen, one selected post and saved-text recovery. No QR, account connection, private source access or user study was performed.",
+        "kind": "simulated",
+        "result": "pass"
+      },
       {
         "request": "Find home cooking suitable for weight loss among dessert and meal saves.",
         "expected": "Reject dessert; require cooking and weight-loss claim evidence.",
@@ -217,6 +238,27 @@
   },
   "similar_skills": [
     {
+      "url": "https://github.com/readwiseio/readwise-skills/blob/2d1ce9627c611d24f510dfc2e05a123fa509d2f6/skills/readwise-mcp/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "It separates OAuth setup, bounded search and document retrieval.",
+      "decision": "adapt",
+      "reason": "Separate invitation setup from the offline route. Show one search and an exact selected-ID read with RedBot's existing bounded reader."
+    },
+    {
+      "url": "https://github.com/intellectronica/agent-skills/blob/9b0e00ad1b941165e2506545bbfddafa34cf2cb8/skills/raindrop-api/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "It documents provider-side credentials, exact bookmark routes and HTTP failure classes.",
+      "decision": "adapt",
+      "reason": "Make credential ownership and recovery concrete. Avoid manual token entry and account-changing actions for a read-only first try."
+    },
+    {
+      "url": "https://github.com/kpab/github-star-growth/blob/95927c607254e4145b4fc6e1f75c6cbb9c8d75/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "It asks how quickly a stranger can try one meaningful result.",
+      "decision": "adapt",
+      "reason": "Place the no-invitation fixture and expected passage before the more involved account workflow. Treat actual uptake as unmeasured."
+    },
+    {
       "url": "https://raw.githubusercontent.com/alexwbend/ytscribe/main/SKILL.md",
       "checked_at": "2026-11-04T11:01:07.024416+00:00",
       "source_sha256": "874509499810331b005aef27551c92ca03868eefe0bbce69dc1ef6b81c0dbe93",
@@ -287,6 +329,31 @@
   ],
   "validation": [
     {
+      "command": "python3 redbot/scripts/read_library.py redbot/examples/first-save.json --query 'first task'; python3 redbot/scripts/read_library.py redbot/examples/first-save.json --id first-task",
+      "result": "pass",
+      "observed": "The two stages ran from /tmp with absolute paths and returned the expected shortlist and exact passage."
+    },
+    {
+      "command": "python3 redbot/scripts/read_library.py <nonexistent backup> --id first-task",
+      "result": "pass",
+      "observed": "Exit 2 with explicit missing-file and export-recovery message. An exact title-only fixture returned no source body."
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 redbot/scripts/test_reader.py",
+      "result": "pass",
+      "observed": "Nine tests passed, including missing evidence, video/comment boundaries and read-only behavior."
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py redbot --product-manifest products.json --json",
+      "result": "pass",
+      "observed": "PASS with zero errors or warnings."
+    },
+    {
+      "command": "gh api 'repos/m1nga/redbot/git/trees/main?recursive=1' plus tracked overlay blob comparison",
+      "result": "pass",
+      "observed": "All 84 bundled app blobs matched the published Git blob IDs; no app paths existed only in the public distribution."
+    },
+    {
       "command": "node --test core.test.cjs semantic.test.cjs check.test.cjs tests/*.test.cjs (public source)",
       "result": "pass",
       "observed": "104 passed in final 1.9.7 public bundle."
@@ -342,5 +409,6 @@
     "method": "Root-agent source/README walkthrough and explicitly simulated new-user scenarios, plus actual existing CLI regression suites. No new independent agent, host-model execution or real-user study.",
     "source_basis": "0a7633170c3bbbb11390e2b99b611daafd160fd9"
   },
-  "concurrent_metadata_preserved": "Retained the independently committed 2026-11-05 discovery metadata and historical review while verifying the changed 1.9.7 application sources. No other products changed by this repair."
+  "concurrent_metadata_preserved": "Retained the independently committed 2026-11-05 discovery metadata and historical review while verifying the changed 1.9.7 application sources. No other products changed by this repair.",
+  "current_review_scope": "First saved-post onboarding, offline fixture, recovery guidance and discovery copy. Public hosted app assets observed at 1.14.0; bundled 1.9.7 overlay and connector behavior were not updated. No new live account, QR or post read."
 }

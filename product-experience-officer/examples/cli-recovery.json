@@ -1,0 +1,44 @@
+{
+  "product": "Python json.tool, JSON Lines first use",
+  "persona": "A command-line user validating two exported bookmarks",
+  "mode": "live",
+  "review_type": "context_aware",
+  "limits": "Maintainer-run CLI exercise using Python 3.9.6 and disposable sample input. The retest changes the invocation only. No product copy was shipped and no human participant was recruited.",
+  "verdict": "A first-use example for line-delimited exports should show the JSON Lines flag. The default validator rejects the valid sample, while the explicit invocation accepts both records.",
+  "experience_log": [
+    "I feed the two exported bookmarks to python3 -m json.tool. It stops on the second line with Extra data.",
+    "I try python3 -m json.tool --json-lines --compact on the same input. It prints two normalized bookmark records and exits successfully."
+  ],
+  "tasks": [
+    {
+      "goal": "Validate the sample bookmark export using the default command",
+      "result": "failed",
+      "evidence": "Exit 1. Stderr: Extra data: line 2 column 1 (char 34)."
+    },
+    {
+      "goal": "Recover by explicitly selecting JSON Lines",
+      "result": "passed",
+      "evidence": "Exit 0. Stdout contains both input URLs, one JSON object per line."
+    }
+  ],
+  "findings": [
+    {
+      "title": "A valid line-delimited export looks invalid on the first attempt",
+      "severity": "minor",
+      "observed": "The default command handles one JSON value and stops at the second record. The error identifies the location without naming the input format.",
+      "evidence": "Pipe the two bookmark records from the README into python3 -m json.tool. It reports Extra data on line 2. Repeat with --json-lines --compact and both records print.",
+      "impact": "Someone following a generic JSON validation example may discard or rewrite a valid export.",
+      "fix": "In the first-run example for line-delimited exports, show --json-lines and explain that each line is its own record.",
+      "effort": "S",
+      "retest": "The command-level recovery passed on the same input. After adding the example, ask a new reader to validate the file without being told the flag and check that both records survive."
+    }
+  ],
+  "strengths": [
+    "The failure identifies the line and column where the parser stopped.",
+    "Explicit input mode accepts the unchanged file."
+  ],
+  "to_verify": [
+    "Whether a new reader can discover the right mode from the proposed first-run example.",
+    "Other Python versions and malformed lines."
+  ]
+}

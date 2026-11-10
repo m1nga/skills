@@ -1,62 +1,80 @@
 {
   "schema_version": 1,
   "skill": "mixtape",
-  "reviewed_at": "2026-09-06T21:47:42.982841+00:00",
-  "source_sha256": "851be6c396b4413f4d1dc94abed3d7cf8534ef63ed9b7925ae85611966ef7f1f",
+  "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
+  "source_sha256": "28ce797ab3bc9dc599bbacdd0f9b782cdc76ad8e5eb075963e0b56547cce0b96",
   "user_review": {
-    "method": "Maintainer public-entry reading and explicitly simulated normal/boundary walkthroughs; existing body knowledge disclosed. Not independent agent runs or human research. Actual offline executions individually marked.",
+    "method": "Maintainer new-user walkthrough, live read-only Apple catalog verification, local poster dry run, and offline failure tests. No Soundiiz post or destination-library write.",
     "scenarios": [
       {
-        "request": "Canonicalize a normal track and reject a same-title wrong artist; build exact-ID reconciliation plan.",
-        "expected": "Correct matches pass; wrong recording and stale library identity fail.",
-        "observed": "Actual bundled offline suite: 15 tests PASS, including canonical artist matching and reconciliation valid/stale/collision controls. No live Soundiiz request or Music library mutation.",
-        "result": "pass",
-        "kind": "executed"
+        "request": "Make five after-hours electronic tracks for YouTube Music with a named opener and the US storefront.",
+        "expected": "Return a coherent ordered list, a catalog receipt and a separately qualified handoff status.",
+        "observed": "Confirmed all five catalog entries with zero unconfirmed. Poster dry run accepted ytmusic and plural artists. README shows the five songs and records destination import as untested.",
+        "kind": "executed",
+        "result": "fixed"
       },
       {
-        "request": "Apple catalog confirms a song; does that guarantee all Spotify imports or a signed trusted payload?",
-        "expected": "Separate catalog identity, fingerprint integrity and destination matching.",
-        "observed": "Before README called it a signed handoff and implied destination verification. After walkthrough: catalog identity only, unkeyed edit detection only, destination matching and library read-back remain unverified.",
-        "result": "fixed",
-        "kind": "simulated"
+        "request": "A song title changes after catalog verification.",
+        "expected": "Reject before posting and tell the user how to recover.",
+        "observed": "The real poster dry run refused the edited canonical sample with the rerun-canonicalize message. No request was sent.",
+        "kind": "executed",
+        "result": "pass"
       },
       {
-        "request": "User asks what the helper sends outside the machine.",
-        "expected": "Describe actual request fields and distinguish local taste files from agent conversation processing.",
-        "observed": "Inspected poster sends non-internal playlist metadata and title/artists; README now identifies Apple lookups, Soundiiz fields and agent-provider processing. No packet capture performed.",
-        "result": "fixed",
-        "kind": "simulated"
+        "request": "The import link is unavailable or a destination receipt has not arrived.",
+        "expected": "Supply an ordered copyable fallback and keep the destination pending.",
+        "observed": "Instruction walkthrough yields Artist - Title lines and manual import steps. Catalog success remains visible, while the link stays unavailable and the destination awaits proof.",
+        "kind": "simulated",
+        "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/rachel-howell/spotify-playlist-curator/blob/HEAD/skills/spotify-playlist-curator/SKILL.md",
-      "checked_at": "2026-09-06T21:44:21.953676+00:00",
-      "learned": "Ground selection in taste data and explicitly describe platform/API fallbacks.",
-      "decision": "adapt",
-      "reason": "Keep honest destination coverage; reject versioned playlist copies because this product intentionally maintains one stable identity."
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "An outcome visible on the first screen gives a visitor a concrete reason to continue.",
+      "reason": "Show a five-song result, order, and independent verification stages near the top.",
+      "decision": "adapt"
     },
     {
-      "url": "https://github.com/epheterson/applemusic-mcp/blob/HEAD/SKILL.md",
-      "checked_at": "2026-09-06T21:43:37.278290+00:00",
-      "learned": "Catalog identities and library identities serve different operations.",
-      "decision": "adapt",
-      "reason": "Retain exact platform-ID preflight and read-back; no direct Apple integration is added and third-party API claims are not treated as verified by reading alone."
+      "url": "https://github.com/Electro-Dig/music-to-spotify-playlist/blob/main/SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "The workflow makes intermediate matching and playlist publication distinct.",
+      "reason": "Translate that separation to catalog, link, and destination receipts while keeping Mixtape's existing user confirmation.",
+      "decision": "adapt"
+    },
+    {
+      "url": "https://github.com/scottrogers/apple-music-claude/blob/main/apple-music-curator-SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "Catalog lookup prefers a matching title and artist but can fall back to its first result.",
+      "reason": "Keep strict recording identity and avoid browser-session credentials or a weak fallback that could silently substitute a different track.",
+      "decision": "reject"
+    },
+    {
+      "url": "https://support.soundiiz.com/hc/en-us/articles/37958924057234-How-to-Import-a-Playlist-from-a-URL-CSV-File-or-Plain-Text",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "Plain-text input accepts Artist - Title lines; the destination match is a later step.",
+      "reason": "Make the copyable fallback actionable and distinguish import preparation from a destination receipt.",
+      "decision": "adapt"
     }
   ],
   "validation": [
     {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py mixtape --product-manifest products.json",
-      "result": "pass",
-      "observed": "Actual product page/package/metadata audit PASS."
+      "command": "python3 -B mixtape/scripts/canonicalize.py SAMPLE.json --country us; bash mixtape/scripts/post_playlist.sh SAMPLE.canonical.json --dry-run",
+      "observed": "Live Apple lookup confirmed all five tracks; dry run printed sanitized destination payload and did not contact Soundiiz.",
+      "result": "pass"
     },
     {
-      "command": "python3 -m unittest discover -s mixtape/tests -v",
-      "result": "pass",
-      "observed": "15 actual offline tests passed; no live playlist operation."
+      "command": "bash mixtape/scripts/post_playlist.sh SAMPLE_CHANGED.json --dry-run",
+      "observed": "Rejected the altered title before posting.",
+      "result": "pass"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s mixtape/tests -v",
+      "observed": "All 15 tests passed.",
+      "result": "pass"
     }
   ],
-  "unresolved_blockers": [],
-  "decision": "Clarify catalog-versus-destination verification, fingerprint-versus-signature and actual data transmission. Retain tested code, title and metadata; no new live import claim."
+  "unresolved_blockers": []
 }

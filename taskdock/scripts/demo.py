@@ -8,6 +8,11 @@ import taskdock as td
 import workspace_ops as ops
 
 
+def visible_files(root):
+    return {path.relative_to(root).as_posix(): path.read_bytes()
+            for path in root.rglob('*') if path.is_file() and '.taskdock' not in path.parts}
+
+
 def run(output, domain='design'):
     output = Path(output).expanduser().absolute()
     if output.exists() or output.is_symlink():
@@ -24,7 +29,7 @@ def run(output, domain='design'):
     (output / 'history/rejected.txt').write_text('Previous direction was rejected. Preserve its reason, not its status as current.')
     (output / 'README.md').write_text('# '+domain.title()+' handoff\n\n[Current result]('+old+')\n\n[State](STATE.md)\n')
     (output / 'STATE.md').write_text('# Current state\n\nThe result linked from README is approved for this sample. Runtime use is recorded separately.\n\nNext: open the current result and continue the handoff.\n')
-    before = {str(p.relative_to(output)): p.read_bytes() for p in output.rglob('*') if p.is_file()}
+    before = visible_files(output)
     ops.record(output, task['id'], {'items': [
         {'id':'current-result','path':old,'role':'working','decision':'approved','used_in':['sample-v1'],'evidence':'Explicit sample decision; no production release claimed'},
         {'id':'runtime','path':'runtime-copy.txt','role':'runtime','decision':'approved','used_in':['sample-v1'],'evidence':'Necessary runtime copy, not a redundant download'},
@@ -39,6 +44,16 @@ def run(output, domain='design'):
     assert current in (output/'README.md').read_text()
     assert (output/'runtime-copy.txt').read_text() == content
     assert td.check(output)['status'] == 'pass'
+    # Exercise a collaborator edit in this disposable workspace.
+    moved = output / current
+    applied_bytes = moved.read_bytes()
+    moved.write_bytes(applied_bytes + b'\nSample collaborator edit.')
+    visible = visible_files(output)
+    conflict = ops.transfer(output, task['id'], identity, True)
+    assert conflict['status'] == 'conflict' and current in conflict['paths']
+    assert visible == visible_files(output)
+    # Remove only our intentional fixture edit, then exercise ordinary rollback.
+    moved.write_bytes(applied_bytes)
     rolled = ops.transfer(output,task['id'],identity,True)
     assert rolled['status'] == 'rolled_back'
     restored = {str(p.relative_to(output)):p.read_bytes() for p in output.rglob('*') if p.is_file() and '.taskdock' not in p.parts}
@@ -51,6 +66,8 @@ def run(output, domain='design'):
                'before':['README → '+old, old, 'download-copy.txt', 'runtime-copy.txt', 'history/rejected.txt'],
                'after':['README → '+current,current,'runtime-copy.txt','history/rejected.txt'],
                'verified':['Relative entry repaired','Necessary runtime copy retained','Rejected history preserved','Original visible file bytes restored by rollback','Final artifact paths reconciled'],
+               'rollback_conflict': {'status': conflict['status'], 'paths': conflict['paths'],
+                                     'visible_files_unchanged': True},
                'final_operation':final['operation_id'],'workspace':str(output)}
     print(json.dumps(receipt,ensure_ascii=False,indent=2))
     return receipt

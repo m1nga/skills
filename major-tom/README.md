@@ -38,6 +38,26 @@ python3 SCRIPT_DIR/validate_packet.py CASE_PACKET --registry OWNER_MAP --observa
 The packet validator never reserves, sends or grants authority. A real dispatch still requires
 an authorized supported task tool and a fresh check of the original outcome and owner.
 
+## Try a handoff without dispatching
+
+Ask: `Use $major-tom to review one existing handoff. Identify who owns the
+next action, the result to verify, and anything that blocks it. Keep it
+read-only.`
+
+Fictional case: the docs owner prepared a corrected setup guide. The release
+owner submitted the previous version, but the receipt is missing. A useful
+result separates the exact corrected version from the unresolved previous
+submission, leaves the release owner in place, and asks that owner to
+reconcile the original receipt through the existing case before any new
+submission. The check can be tried offline with the bundled validator tests:
+
+```sh
+python3 -B -m unittest discover -s SCRIPT_DIR -p 'test_packet.py'
+```
+
+The tests cover a valid packet, active or stale owner evidence, and a prior
+unknown result. The validator's output is structural evidence only.
+
 ## Example
 
 Request: “Compare two ways to help visitors understand this page, then implement the selected one.”

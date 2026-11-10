@@ -1,26 +1,52 @@
 {
   "schema_version": 1,
   "skill": "experience-pack",
-  "reviewed_at": "2026-09-19T04:08:10+00:00",
-  "source_sha256": "470edab07c724419558ac9eaf30eea43700dd2a0a22b28f9fe59478c8fd3625e",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "01674cf2155cf71261f18c2c55600f6b85b6fece3cc1c8d3609bdbe4e704ac46",
   "user_review": {
-    "method": "Maintainer routing review on 2026-09-19 (Claude Code): References to the retired conclude-rounds skill replaced by the host's own recap; no method change. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
     "scenarios": [
       {
-        "request": "复盘一下刚才这几轮对话",
-        "expected": "stays quiet; plain recap",
-        "observed": "Exclusion text now points at the host recap instead of a retired skill.",
+        "request": "Show which part of a stale-endpoint incident can travel; preview only.",
+        "expected": "Separate observed mechanism, transferable local check and old endpoint choice.",
+        "observed": "Walkthrough yields a read-only environment target check, keeps the chosen endpoint local and skips creating a ledger or adopting a new rule.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "记录一下这次事故的教训",
-        "expected": "fires; ledger entry",
-        "observed": "Unchanged path re-read.",
+        "request": "Make “always use the endpoint we chose” portable by removing its name.",
+        "expected": "Reject an old decision even after proper nouns have been removed.",
+        "observed": "Walkthrough classifies the statement as a local choice and leaves it in the decision record. Only the mechanism from the observed incident is reusable.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "Record this incident; no project is open.",
+        "expected": "Keep the entry copyable without writing to the Desktop or inventing a backup.",
+        "observed": "The existing root adjudication and copyable fallback remain in the record route.",
         "kind": "simulated",
         "result": "pass"
       }
-    ]
+    ],
+    "previous_review": {
+      "method": "Maintainer routing review on 2026-09-19 (Claude Code): References to the retired conclude-rounds skill replaced by the host's own recap; no method change. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+      "scenarios": [
+        {
+          "request": "复盘一下刚才这几轮对话",
+          "expected": "stays quiet; plain recap",
+          "observed": "Exclusion text now points at the host recap instead of a retired skill.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "记录一下这次事故的教训",
+          "expected": "fires; ledger entry",
+          "observed": "Unchanged path re-read.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ]
+    }
   },
   "similar_skills": [
     {
@@ -29,14 +55,47 @@
       "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
       "decision": "adopt",
       "reason": "Only the routing text changed."
+    },
+    {
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "decision": "adapt",
+      "reason": "Added a low-friction, in-chat boundary test with one incident and a concrete output. No star-impact estimate or audit ceremony was added."
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "decision": "adapt",
+      "reason": "Answers the adopter question of exactly what can be taken to another project. No external user research or distribution result is inferred."
+    },
+    {
+      "url": "https://github.com/thananon/9arm-skills/blob/main/skills/engineering/post-mortem/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Distinguishes the observed symptom, causal mechanism, chosen fix and validation evidence.",
+      "decision": "adapt",
+      "reason": "The worked example separates those pieces while retaining its own private ledger and test for transfer. No full mandatory incident format was imported."
     }
   ],
   "validation": [
+    {
+      "command": "python3 skill-creator/scripts/quick_validate.py experience-pack",
+      "result": "pass",
+      "observed": "Local frontmatter validator reported Skill is valid!"
+    },
+    {
+      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py experience-pack --product-manifest products.json",
+      "result": "pass",
+      "observed": "Product audit reported VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "previous_validation": [
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py experience-pack --product-manifest products.json",
       "result": "pass",
       "observed": "VERDICT: PASS on 2026-09-19 after the edit."
     }
-  ],
-  "unresolved_blockers": []
+  ]
 }

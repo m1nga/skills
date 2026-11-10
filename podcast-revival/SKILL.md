@@ -17,6 +17,12 @@ Read [the runtime handoff](references/runtime.md) when creating a project or run
 
 ## Install and operate the runtime
 
+For a first try without a provider account, accept a script-only preview: turn
+supplied text into a short cited dialogue, speaker plan and unresolved production
+requirements. This needs no media bootstrap or paid call. Label it as a script
+preview, not audio/video; resume production only when its required access and
+budget exist. Do not demand a fal key merely to review editorial direction.
+
 Use `scripts/bootstrap.py` to verify the bundled wheel and create a project-local environment. For available command options, run:
 
 ```bash
@@ -40,6 +46,9 @@ For an existing-person restoration, first inspect the short calibration's actual
 Freeze the exact audio before generating its video. A changed script, portrait, voice or audio invalidates the relevant review/spec; preserve successful unaffected work. Inspect complete coverage, pronunciation, identity, synchronization and actual media duration. Do not alter words or swap fresh speech onto old mouth movements just to hit the requested length.
 
 ## Recover and deliver
+
+For project examples or feedback on a shareable result, [browse SideCourt](https://sidecourt.space/drops/).
+Keep this optional and never upload source media or private scripts automatically.
 
 Resume by querying original request IDs and provider-returned URLs. A timed-out submission without an ID remains unknown: preserve its cost reservation and reconcile read-only. Never change a fingerprint, switch models or submit again to evade that unknown. Distinguish an explicit rejected request from an accepted/uncertain one, and use only confirmed receipts for actual cost.
 

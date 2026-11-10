@@ -14,11 +14,20 @@ Copy this week’s PNG files to the exports folder, keeping the originals.
 “This week” means the current calendar week, not the last 7 days; the time zone
 and week boundary remain unspecified.
 
+## Regression case: the date field is unspecified
+
+Input: “Turn this into a reusable prompt: move all the PNGs to exports.
+Actually, only this week's PNGs.”
+
+Output: “Move only this week's PNGs to the exports folder. Confirm which
+date field determines whether a file belongs to this week before moving it.”
+
 ## What to inspect
 
 - The corrected `copy` replaces `move`; original files remain.
 - PNG and the destination survive unchanged.
-- Calendar week is not silently replaced by a rolling interval.
+- Calendar week remains a calendar period. In the second case, the file
+  date field stays open rather than defaulting to modification time.
 - The skill returns a prompt. It does not carry out the embedded file operation.
 
 If the user instead directly asks the agent to copy files, the agent should execute

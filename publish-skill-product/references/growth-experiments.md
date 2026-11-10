@@ -58,6 +58,24 @@ after result without accounting for other changes and the small sample.
 
 ## Distribution and learning
 
+Retain the event ID, exact skill version, intended reader, one concrete task, demo
+artifact and evidence type, destination, publication state and actual URL. In the
+existing private record, track visits, installs, first completed task, repeat use,
+feedback, stars and SideCourt visits separately. Give each a dated source and
+observation window; unavailable values stay unknown. Do not sum these into users.
+A referral link alone proves neither a visit nor a contribution.
+
+Prioritize a demonstrated first-use obstacle over cosmetic work. The first screen
+should let a specific reader recognize a task, see its result and find one next
+step. Label fictional inputs, offline checks and missing platform verification.
+
+Research applied on 2026-11-10: adapt [kpab's outsider audit](https://github.com/kpab/github-star-growth/blob/main/SKILL.md)
+to first-use evidence, [content-strategy](https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md)
+to one audience and information gain, and [launch](https://github.com/coreyhaines31/marketingskills/blob/main/skills/launch/SKILL.md)
+to readiness and feedback. Reject fixed star forecasts, mandatory calendar ratios
+and launching every skill on every channel. These are design influences, not
+evidence that this portfolio has gained users.
+
 A stronger page is a useful asset, but it may receive no audience on its own. Prepare
 one specific demonstration for a channel where the target user already asks that
 question. External posting or outreach requires the user's authorization identifying

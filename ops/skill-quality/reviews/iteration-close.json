@@ -1,26 +1,52 @@
 {
   "schema_version": 1,
   "skill": "iteration-close",
-  "reviewed_at": "2026-09-19T04:08:10+00:00",
-  "source_sha256": "4d00a690e53d8711e16180cb2c0ddf2357ec9eb3bd8803b75dd807498f94df09",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "ff01d5a08ca2e68821fb058119dd82fd1217f9509338ee49558ba2a74601c53e",
   "user_review": {
-    "method": "Maintainer routing review on 2026-09-19 (Claude Code): README no longer recommends the retired conclude-rounds skill; SKILL.md unchanged. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+    "method": "Current maintainer review from the published entry point; instruction scenarios are simulated, and actual local tool checks are labeled executed. Earlier evidence is listed separately.",
     "scenarios": [
       {
-        "request": "这个迭代做完了，收口",
-        "expected": "fires",
-        "observed": "Unchanged.",
+        "request": "Could a fresh machine take over this repo? Just check the existing files.",
+        "expected": "Provide evidence-based readiness gaps without changing the repo.",
+        "observed": "Walkthrough finds an obsolete setup link, missing next task and undocumented check; preview explicitly excludes bootstrap execution, cleanup, upload and tags.",
+        "kind": "simulated",
+        "result": "fixed"
+      },
+      {
+        "request": "The branch has local work and tests are already failing. Is it ready to hand off?",
+        "expected": "Report the checked revision and missing proof without beginning the close.",
+        "observed": "Read-only preview can report the dirty checkout and failed suite; full close and shed-only still fail closed. No independent reader or bootstrapped takeover is claimed.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "总结一下前面几轮",
-        "expected": "stays quiet; host recap",
-        "observed": "Unchanged exclusion.",
+        "request": "Clean up the superseded tracked and untracked paths.",
+        "expected": "Show complete inventory and await exact approval, then treat the two types differently.",
+        "observed": "Reviewed the preserved shed-only route: tracked files use Git recovery and untracked files go to quarantine after approval. No deletion was executed.",
         "kind": "simulated",
         "result": "pass"
       }
-    ]
+    ],
+    "previous_review": {
+      "method": "Maintainer routing review on 2026-09-19 (Claude Code): README no longer recommends the retired conclude-rounds skill; SKILL.md unchanged. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+      "scenarios": [
+        {
+          "request": "这个迭代做完了，收口",
+          "expected": "fires",
+          "observed": "Unchanged.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "总结一下前面几轮",
+          "expected": "stays quiet; host recap",
+          "observed": "Unchanged exclusion.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ]
+    }
   },
   "similar_skills": [
     {
@@ -29,14 +55,47 @@
       "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
       "decision": "adopt",
       "reason": "README-only change."
+    },
+    {
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Check a first-time visitor can identify the task and try a tangible demo quickly, then verify numbers against actual evidence.",
+      "decision": "adapt",
+      "reason": "Placed a low-cost read-only takeover example ahead of the destructive cleanup example. No star-impact estimate or audit ceremony was added."
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Start from the audience question, answer the concrete intent and use examples the reader can evaluate.",
+      "decision": "adapt",
+      "reason": "Answered the concrete question of whether another person can pick up the current checkout. No external user research or distribution result is inferred."
+    },
+    {
+      "url": "https://github.com/entireio/skills/blob/main/skills/session-handoff/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Scope a handoff to the actual worktree and keep evidence gathering separate from destructive or external execution.",
+      "decision": "adapt",
+      "reason": "The preview uses the existing repo entry point and files, with no transcript dependency or new CLI."
     }
   ],
   "validation": [
+    {
+      "command": "python3 skill-creator/scripts/quick_validate.py iteration-close",
+      "result": "pass",
+      "observed": "Local frontmatter validator reported Skill is valid!"
+    },
+    {
+      "command": "python3 -B publish-skill-product/scripts/audit_product_page.py iteration-close --product-manifest products.json",
+      "result": "pass",
+      "observed": "Product audit reported VERDICT: PASS."
+    }
+  ],
+  "unresolved_blockers": [],
+  "previous_validation": [
     {
       "command": "python3 publish-skill-product/scripts/audit_product_page.py iteration-close --product-manifest products.json",
       "result": "pass",
       "observed": "VERDICT: PASS on 2026-09-19 after the edit."
     }
-  ],
-  "unresolved_blockers": []
+  ]
 }

@@ -143,13 +143,20 @@ products that don't have production traffic yet.
 
 ## Mode B — live fire (optional, after the static run)
 
-Static prediction cannot prove real trigger selection. When the harness allows: install
-the artifact, replay the highest-stakes utterances in fresh sessions, record which skill
-actually fired and what it did. Every divergence from Phase 1 predictions is a finding
-about the simulation, not just the artifact. If no actionable findings emerge, check whether the scenarios covered a meaningful
-boundary or recovery case. Recast once only if a concrete coverage gap exists. If
-that check is also clean, report zero findings and the limits of the simulation;
-a clean result is not evidence of auditor failure.
+If a live check is authorized and the harness exposes skill-use evidence, compare
+the original and revised versions in separate fresh sessions. Replay the same
+unhinted user request against each version. Include one near-miss that should
+stay quiet. Keep the harness, model, settings and sibling skill set fixed, and
+record the artifact version, exact utterance, predicted outcome, observed skill
+load, evidence reference and separate behavior result. Test implicit selection
+without naming the skill. An explicit invocation checks behavior after selection.
+
+Use the loader or tool trace for the observed load. If the harness gives no
+reliable load evidence, report selection as unknown and label any final-answer
+inference as a proxy. Keep live records separate from `synthetic:true` traces.
+A divergence is evidence about the prediction and may also identify an artifact
+issue. Recast once only if a concrete coverage gap could change the verdict.
+Report zero findings when the tested cases support it.
 
 ## Boundaries
 

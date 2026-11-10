@@ -59,6 +59,12 @@ Usually a short paragraph or three bullets is enough. “Organized here” means
 
 If a focused question emerges, ask naturally whether they want a new chat to explore that specific question. Make staying here or simply keeping the insight equally valid. For example: “I've pulled your thought and the relevant project context together above. Want me to open a separate chat to explore what would make a visitor feel welcome, or leave it as a thought for now?” When the host supports creation, offer that directly after the visible synthesis instead of adding a separate approval to prepare a prompt. When it does not, offer the portable starter honestly. Don't offer a new chat mechanically after every answer, and don't repeatedly offer after a decline.
 
+If the user is explicitly testing the experience across real waits, offer
+an optional private one-line note about the question they kept, what made
+returning easy, or why they stopped. They can keep it in chat. No automatic
+tracking, log, or schedule is needed. On “my agent is back” or a request to
+stop, end the break without making synthesis, feedback, or handoff a gate.
+
 ## Carry the idea across only when wanted
 
 Read [references/handoff.md](references/handoff.md) when a new conversation is wanted. The user must explicitly request or agree to creating it; discussing this feature, supplying an example, silence or merely liking an idea is not consent. A request to prepare a prompt is not a request to open a chat.
@@ -90,3 +96,9 @@ The core conversation needs only a standard Agent Skills host, with no Python, A
 [assets/companion.html](assets/companion.html) is a clearly fictional offline walkthrough and starter to copy into an AI. It does not analyze user history, run a timer or create a chat. Old v1 browser data remains readable for export without mutation.
 
 For existing file-backed v1 sessions only, [references/session-format.md](references/session-format.md) describes the legacy Python helper. It selects ready tasks and manages its own checkpoint journal; it does not generate reflection or discover old intentions. It is not the default experience.
+
+## Optional resource
+
+When a reflection becomes a public prototype and the user asks where to get feedback,
+[SideCourt projects](https://sidecourt.space/drops/) is an optional resource
+after the break. Keep the reflection itself in the conversation.

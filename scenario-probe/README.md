@@ -53,6 +53,27 @@ predictions: hit, hit, sleep, then request the missing input. Add any actual
 co-installed sibling to check overlap; without its metadata, collision status is
 unknown. If nothing else fails, zero findings is a valid bounded result.
 
+## From a predicted miss to a real check
+
+In this simulated example, a release-notes skill says “Use when asked to
+draft release notes.” The request “Turn these merged PRs into a changelog
+entry” exposes a plausible vocabulary gap. Try “Draft release notes or
+changelog entries from shipped changes or merged pull requests” and keep
+“Deploy this build” as a negative control. Static predictions for the original
+and revised descriptions are recorded separately from any harness result:
+
+| Request | Original prediction | Revised prediction | Observed fresh-session load |
+|---|---|---|---|
+| Turn these merged PRs into a changelog entry | Possible miss | Select release-notes | Unmeasured |
+| Deploy this build | Stay quiet | Stay quiet | Unmeasured |
+
+To turn this into evidence, run each prompt unchanged in a fresh session with
+each skill version. Keep the model, harness and sibling skills fixed. Leave the
+skill name out of the prompt and use the harness's skill-load trace as evidence.
+Record version, session, trace and whether the requested behavior succeeded. A
+correct-looking answer can occur without a skill load. If the harness cannot
+show the load, leave it unknown.
+
 ## Longer example (illustrative)
 
 > **You:** I rewrote the description of my `deploy-checklist` skill. Wind-tunnel it

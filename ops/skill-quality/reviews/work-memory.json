@@ -1,57 +1,67 @@
 {
   "schema_version": 1,
   "skill": "work-memory",
-  "reviewed_at": "2026-11-01T13:55:36.220420+00:00",
-  "source_sha256": "3a5331e73cdef79f37859ccfb40f093678667e7dc76941785b6a34e32a6b2682",
+  "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
+  "source_sha256": "3ae895b71d71a9251eb36fd998563925ac2759dc8576c8efefc6861c99afd282",
   "user_review": {
-    "method": "Author context-aware CLI execution, deterministic failure/recovery tests, and explicitly labeled instruction simulations. No independent agent or human usability study.",
+    "method": "Maintainer first-use replay using genuine local CLI processes and fictional instructions in a new isolated project. No independent fresh agent session or maintenance-cost study.",
     "scenarios": [
       {
-        "request": "Check whether remembered context for an unfamiliar project is usable.",
-        "expected": "Read-only status, bounded current brief, staleness and pending work, without silent initialization.",
-        "observed": "Executed doctor on this task before initialization: exit 1 and not_initialized, with no database created. Explicitly initialized later for authorized ongoing work, captured the actual language correction, then doctor returned that sourced preference and the missing-checkpoint issue.",
-        "kind": "executed",
-        "result": "pass"
-      },
-      {
-        "request": "An evidence file changed after capture.",
-        "expected": "Flag stale source, exclude it from execute context and leave source/store unmodified.",
-        "observed": "test_doctor changes a real fixture source and confirms stale status, empty current brief and untouched changed source. Fixed the macOS /var alias in the test fixture by resolving the selected root; did not weaken engine path checks.",
+        "request": "After three launch-day changes, what is current and why?",
+        "expected": "Retrieve Thursday with the latest original wording while leaving the first three revisions audit-only.",
+        "observed": "The demo created four revisions, retrieved only Thursday in a new local brief process, and read all four exact source excerpts with only revision 4 eligible for execution.",
         "kind": "executed",
         "result": "fixed"
       },
       {
-        "request": "Treat doctor ok as proof all chats were remembered or pending lessons worked.",
-        "expected": "Reject that inference.",
-        "observed": "Simulated instruction walkthrough keeps diagnostics success separate from capture coverage, semantic recall, authenticated review and lesson efficacy.",
-        "kind": "simulated",
+        "request": "A delayed writer still thinks revision 2 is current.",
+        "expected": "Reject the stale update and leave revision 4 authoritative.",
+        "observed": "The live capture CLI returned exit 2 with expected_revision must be 4. A later brief still returned Thursday only.",
+        "kind": "executed",
+        "result": "pass"
+      },
+      {
+        "request": "Point the sample at an existing folder.",
+        "expected": "Refuse without writing sample data.",
+        "observed": "The demo exited 1 at exclusive directory creation.",
+        "kind": "executed",
         "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "A visible short example reduces uncertainty about the result.",
+      "reason": "Expose a one-command replay and the exact distinction between a CLI check and a fresh-host handoff.",
+      "decision": "adapt"
+    },
+    {
       "url": "https://github.com/thedotmack/claude-mem/blob/b80b29bc49d08a71312f44b8feacb2e7585edff4/plugin/skills/mem-search/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "Search compact records first and load exact evidence only for selected IDs.",
-      "decision": "adapt",
-      "reason": "Retain bounded briefs and paged evidence. Add a read-only readiness report exposing staleness and pending outcomes instead of making capture completeness claims.",
-      "repository_stars_at_check": 108586
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "Index lookup precedes full observation retrieval.",
+      "reason": "Demonstrate the existing brief and exact revision reader instead of inventing a new retrieval engine.",
+      "decision": "adapt"
     },
     {
       "url": "https://github.com/mem0ai/mem0/blob/753496cf1435d76c3a711f3af51303f7fdcb6420/integrations/codex-plugin/skills/remember/SKILL.md",
-      "checked_at": "2026-11-01T13:55:36.220420+00:00",
-      "learned": "The Codex remember skill relies on background extraction after a session and warns against inventing a stored memory ID.",
-      "decision": "reject",
-      "reason": "Keep explicit capture receipts and project-local source checks; do not claim background extraction, install a daemon or require cloud/model credentials. The no-fabricated-receipt principle is retained.",
-      "repository_stars_at_check": 68217
+      "checked_at": "2026-11-10T01:55:06.996623+00:00",
+      "learned": "Background extraction is distinct from an actual storage receipt.",
+      "reason": "Keep explicit CLI captures and observed receipts; do not infer capture or fresh-host retrieval from a conversational acknowledgment.",
+      "decision": "reject"
     }
   ],
   "validation": [
     {
-      "command": "cd work-memory && python3 -m unittest discover -s scripts -p test_*.py",
-      "result": "pass",
-      "observed": "75 tests passed."
+      "command": "python3 -B work-memory/scripts/demo.py --output NEW_DIRECTORY",
+      "observed": "Four revisions, one current decision with exact evidence, three readable historical revisions, and one stale writer rejected.",
+      "result": "pass"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s work-memory/scripts -p 'test_*.py'",
+      "observed": "All 75 tests passed.",
+      "result": "pass"
     }
   ],
   "unresolved_blockers": []

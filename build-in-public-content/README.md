@@ -18,6 +18,13 @@ Ask: “Use $build-in-public-content to turn these private-preview notes into a 
 
 You receive copy, a visual or shot plan if useful, and an event record connecting claims to their evidence and publication state. It does not install a scheduler, operate an account, or grant permission to publish. Existing project permissions and holds continue to apply.
 
+## Try one update before planning a campaign
+
+Give it a single observed change, the intended reader and the exact evidence:
+`Turn this local rollback-conflict test into a developer update. No customer use
+is known; keep it a draft.` You should get a concrete draft and an honest demo
+plan, with no invented popularity or publication. [See the fictional worked example](https://github.com/m1nga/build-in-public-content/blob/main/skills/build-in-public-content/references/first-update.md).
+
 ## Design notes
 
 This workflow handles the gap between engineering records and public communication: a private implementation must not become a launch claim, and a brand reference must shape the finished asset rather than merely appear in its prompt. It borrows evidence-led visual review and fact-preserving editing ideas from the fixed sources in [research notes](https://github.com/m1nga/build-in-public-content/blob/main/skills/build-in-public-content/references/sources.md). It includes no third-party source text, runtime, or assets.

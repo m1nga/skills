@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
   "skill": "publish-skill-product",
-  "reviewed_at": "2026-09-19T04:08:10+00:00",
-  "source_sha256": "92305107fd9e6f436f42500ef6d503ce6a588637cdbd3fd298546260e7afe160",
+  "reviewed_at": "2026-11-10",
+  "source_sha256": "0f463d638528cefc8990757a0ad3bb5ce02d56a470a254d8be43ab3b8c4ba6c5",
   "user_review": {
-    "method": "Maintainer routing review on 2026-09-19 (Claude Code): README no longer references the retired loop-system-architect for the monitor contract; SKILL.md unchanged. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+    "method": "Maintainer instruction walkthroughs of the changed first-use and failure routes; simulated behavior, not an independent user trial. Package audits executed.",
     "scenarios": [
       {
-        "request": "把 taskdock 发布出去",
-        "expected": "fires; full release contract",
-        "observed": "Unchanged.",
+        "request": "Review ./my-skill for acme/my-skill; do not publish. No Ming checkout exists.",
+        "expected": "Review the selected folder without publishing or requiring Ming paths.",
+        "observed": "Selected-root portable setup resolves source and target independently; local auditor works without a publisher. No mutation was made.",
         "kind": "simulated",
         "result": "pass"
       },
       {
-        "request": "帮我写个 skill 草稿先别发",
-        "expected": "stays quiet on publication; draft stays private",
-        "observed": "Unchanged exclusion.",
+        "request": "Publish a skill, but source remote and intended owner disagree.",
+        "expected": "Stop at the identity boundary and retain completed review.",
+        "observed": "Portable setup explicitly stops release on mismatched remote; no initialization or overwrite is prescribed.",
         "kind": "simulated",
         "result": "pass"
       }
@@ -24,19 +24,85 @@
   },
   "similar_skills": [
     {
-      "url": "https://code.claude.com/docs/en/skills",
-      "checked_at": "2026-09-19T04:08:10+00:00",
-      "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
-      "decision": "adopt",
-      "reason": "README-only change."
+      "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Concrete first useful result and explicit setup requirements help a stranger assess a repository.",
+      "decision": "adapt",
+      "reason": "Applied to the changed onboarding route; reject star forecasts and the claim that a visual alone establishes growth."
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Tie content to one reader and a concrete information gain.",
+      "decision": "adapt",
+      "reason": "Use one source-backed example; no mandatory calendar, topic volume or invented demand."
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/launch/SKILL.md",
+      "checked_at": "2026-11-10",
+      "learned": "Check completeness of a bounded first experience before expansion.",
+      "decision": "adapt",
+      "reason": "Keep useful review or preview independently accessible while actual public release and media retain authority requirements."
     }
   ],
   "validation": [
     {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py publish-skill-product --product-manifest products.json",
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py publish-skill-product --product-manifest products.json --json",
       "result": "pass",
-      "observed": "VERDICT: PASS on 2026-09-19 after the edit."
+      "observed": "{\n  \"skill\": \"publish-skill-product\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
+    },
+    {
+      "command": "python3 <skill-creator>/scripts/quick_validate.py publish-skill-product",
+      "result": "pass",
+      "observed": "Skill is valid!"
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/test_release_tools.py",
+      "result": "pass",
+      "observed": "21 tests passed, including dirty target/stale receipt/unrelated work and API gaps."
     }
   ],
-  "unresolved_blockers": []
+  "unresolved_blockers": [],
+  "previous_review": {
+    "schema_version": 1,
+    "skill": "publish-skill-product",
+    "reviewed_at": "2026-09-19T04:08:10+00:00",
+    "source_sha256": "92305107fd9e6f436f42500ef6d503ce6a588637cdbd3fd298546260e7afe160",
+    "user_review": {
+      "method": "Maintainer routing review on 2026-09-19 (Claude Code): README no longer references the retired loop-system-architect for the monitor contract; SKILL.md unchanged. Scenarios are walkthroughs of the description and body, labelled simulated; not an independent user study.",
+      "scenarios": [
+        {
+          "request": "把 taskdock 发布出去",
+          "expected": "fires; full release contract",
+          "observed": "Unchanged.",
+          "kind": "simulated",
+          "result": "pass"
+        },
+        {
+          "request": "帮我写个 skill 草稿先别发",
+          "expected": "stays quiet on publication; draft stays private",
+          "observed": "Unchanged exclusion.",
+          "kind": "simulated",
+          "result": "pass"
+        }
+      ]
+    },
+    "similar_skills": [
+      {
+        "url": "https://code.claude.com/docs/en/skills",
+        "checked_at": "2026-09-19T04:08:10+00:00",
+        "learned": "Skill routing happens on the description; name the job, the triggers and what it is not for.",
+        "decision": "adopt",
+        "reason": "README-only change."
+      }
+    ],
+    "validation": [
+      {
+        "command": "python3 publish-skill-product/scripts/audit_product_page.py publish-skill-product --product-manifest products.json",
+        "result": "pass",
+        "observed": "VERDICT: PASS on 2026-09-19 after the edit."
+      }
+    ],
+    "unresolved_blockers": []
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "id": "first-task",
+      "title": "A calmer first task",
+      "url": "https://example.org/redbot-demo/first-task",
+      "description": "Show one primary action on the setup screen and move optional choices below it.",
+      "research": {
+        "points": [
+          ["First task", "Show one primary action on the setup screen and move optional choices below it."],
+          ["Check", "Ask a new visitor what they would click first before explaining the screen."]
+        ]
+      }
+    },
+    {
+      "id": "unread-task",
+      "title": "Another first task redesign",
+      "url": "https://example.org/redbot-demo/unread-task"
+    }
+  ],
+  "annotations": {},
+  "guides": []
+}

@@ -73,12 +73,20 @@ runtime-copy.txt                  history/rejected.txt  (kept)
 history/rejected.txt
 
 Checked: entry repaired · runtime copy kept · history kept
-Checked: rollback restored every original visible file byte
+Checked: undo refused the simulated collaborator edit and preserved all visible files
+Checked: ordinary rollback restored every original visible file byte
 ```
 
-It performs the change, verifies rollback, and leaves an organized sample ready to
-inspect. `--domain release` and `--domain research` exercise two more sample contexts.
-The printed receipt includes the operation ID and verified results.
+The demo applies the change, edits the moved file as a collaborator would, and
+shows a `rollback_conflict` receipt naming that file. It checks that the refused
+undo touched no visible file. It then removes its own sample edit, verifies
+byte-for-byte rollback, and reapplies a fresh plan so you can inspect the
+organized result. `--domain release` and `--domain research` use other sample files.
+
+In a real workspace, preserve the later edit when undo reports a conflict.
+Review the named paths and decide how to incorporate those changes before
+replanning. The operation receipt is local filesystem evidence. Cross-session
+time savings require a separate comparison.
 
 ## What it does
 
@@ -165,7 +173,7 @@ has to understand the work; the scripts cannot approve a design or prove a deplo
 
 ## Validation
 
-63 executable tests (including platform-specific cases) cover task identity, bounded recovery, reference repairs, identical
+65 executable tests (including platform-specific cases) cover task identity, bounded recovery, reference repairs, identical
 copy consolidation, retained runtime copies, changed sources, occupied destinations,
 symlinks, partial operations, interrupted rollback, byte restoration and file mode bits.
 The three demo contexts also execute apply and rollback. These are maintainer-run

@@ -8,9 +8,9 @@ explicit draft/private restrictions still take precedence.
 ## Start from the live release contract
 
 1. Read repository instructions, status, remote, default branch, product manifest, and documented
-   release commands.
+   release commands. For a new owner, start with [portable setup](portable-setup.md).
 2. Prefer the repository's existing publisher over reimplementing GitHub operations. For Ming's
-   registry, use `/Users/m1nga/Desktop/🛠️ Skills工坊/ming-skills`, `products.json`,
+   registry, resolve the actual current checkout and use `products.json`,
    `scripts/verify-products`, and `scripts/publish-skill`.
    Outside Ming's registry, if no publisher exists, first confirm the repository owner, public
    target, and standing release policy; then build the smallest equivalent committed-source

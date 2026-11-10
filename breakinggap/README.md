@@ -65,6 +65,17 @@ An **illustrative, fictional** exchange:
 
 If you agree and the host supports it, the skill passes the relevant context and the question to a new chat. It does not treat the reflection as permission to change the product. If creation is unavailable, it gives you the prepared prompt and says the chat has not been opened. You can stop at any point.
 
+## Try it during your next wait
+
+Start with one real situation and how you feel: “I'm waiting for a build and
+feel restless. Give me one question.” You can answer with one line, say “not
+for me,” or return to your agent as soon as it is ready.
+
+If you're trying it across a few real waits, you may want to keep a private
+line about which question you kept, whether returning felt easy, or why you
+stopped. Notice whether you reach for another break voluntarily. There's no
+survey, tracker, or daily commitment.
+
 ## What about an automatic five-minute invitation?
 
 This package does not watch agent progress or open windows in the background. No update for five minutes is not proof that a person is idle. A future host integration would need a real waiting signal, an explicit preference, an activity check, and at most one invitation per waiting period. It should never steal focus or repeatedly reopen a dismissed chat.

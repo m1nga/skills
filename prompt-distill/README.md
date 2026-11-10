@@ -34,9 +34,12 @@ npx skills add m1nga/prompt-distill
 
 **Input (dictated):** "ok so I want a script that, no wait, first check if the folder exists, 就是那个 exports 文件夹, if not create it, then move all the PNGs — actually only ones from this week — move them in and print how many. Make this reusable."
 
-**Output:** "Check whether ./exports exists; create it if not. Move PNG files modified this week into it. Print the count of files moved."
+**Output:** "Create the exports folder if needed. Move only this week's PNGs
+into it and print the count of files moved. Before moving anything, confirm
+which date determines whether a PNG belongs to this week."
 
-“This week” stays a calendar period; it is not silently changed to a rolling seven-day window. The corrected thought ("only ones from this week") replaced the earlier one; the code-switched folder reference resolved to its referent.
+The correction narrows the move to the current calendar week. The input
+leaves the date field and the folder's parent unspecified.
 
 ## Works well with
 

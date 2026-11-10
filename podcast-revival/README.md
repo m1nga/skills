@@ -22,6 +22,19 @@ The skill needs a capable local agent, Python 3.10+, FFmpeg with H.264/AAC and d
 
 ## What you receive
 
+### Try the editorial result without spending
+
+Ask: `Use $podcast-revival with these notes for a 45-second script preview only.
+Compare the two explanations; flag missing evidence. Do not generate media.`
+You receive a dialogue, source notes and speaker plan using your existing agent;
+no fal account, FFmpeg setup or generation credit is needed for this preview.
+The full media route still needs the dependencies and explicit budget above.
+
+Example notes: "The demo loaded in two seconds once. We do not have repeat trials."
+An honest script can discuss that one observation and propose repeat trials. It
+cannot say the product is consistently fast. This is an authored illustration,
+not a measured runtime result or a finished clip.
+
 A finished run produces the actual video, its matching audio track, the script and source references, and an honest status/cost report. Existing-video work keeps source timestamps and speaker attribution. New text or mixed-material work starts from the requested editorial direction and an explicit speaker/voice plan.
 
 The host agent performs material analysis, research, writing and review. The bundled runtime handles supported media steps, current prices, budget reservations and recovery. It does not independently turn arbitrary material into a complete episode without an agent, and it does not impersonate a person's endorsement.
