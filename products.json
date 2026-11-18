@@ -172,10 +172,11 @@
     {
       "name": "taskdock",
       "title": "TaskDock — Keep Agent Work Ready to Continue",
-      "description": "Keep agent work ready to continue: portable task identity, safe file organization, bounded resume and a readable private handoff page.",
+      "description": "Resume AI agent work from a portable task folder. Find the current deliverable and next step, export a private HTML handoff, and undo recorded file moves.",
       "topics": [
         "agent-skill",
         "task-management",
+        "agent-handoff",
         "file-organization",
         "context-management",
         "workflow",

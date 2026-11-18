@@ -1,3 +1,6 @@
+import json
+import subprocess
+import sys
 import tempfile,unittest
 from pathlib import Path
 import taskdock,handoff
@@ -15,4 +18,20 @@ class HandoffTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp:
    with self.assertRaises(OSError):handoff.build(tmp)
    self.assertEqual(list(Path(tmp).iterdir()),[])
+
+ def test_release_demo_handoff_uses_final_task_records(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   folder = Path(tmp) / 'sample task'
+   demo = Path(__file__).with_name('demo.py').resolve()
+   run = subprocess.run(
+       [sys.executable, str(demo), '--output', str(folder), '--domain', 'release', '--handoff'],
+       check=True, capture_output=True, text=True)
+   receipt = json.loads(run.stdout)
+   self.assertEqual(Path(receipt['handoff_html']), (folder / 'handoff.html').resolve())
+   page = Path(receipt['handoff_html']).read_text(encoding='utf-8')
+   self.assertIn(receipt['task_id'], page)
+   self.assertIn('[Current result](delivery/release-notes.txt)', page)
+   self.assertIn('then record the check in STATE.md', page)
+   self.assertEqual((folder / 'delivery' / 'release-notes.txt').read_bytes(),
+                    (folder / 'runtime-copy.txt').read_bytes())
 if __name__=='__main__':unittest.main()

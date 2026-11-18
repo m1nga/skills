@@ -1,5 +1,13 @@
 # Changes
 
+## 2026-11-18 — Try a complete handoff (plugin 2026.11.18)
+
+- The release demo can generate a real private `handoff.html` using the same
+  exporter as a working task. The sample records name the current file, the
+  check to perform and where to record it.
+- The first-use guide starts from a project-scope install and follows the sample
+  through a browser-readable handoff. Existing demo calls still work.
+
 ## 2026-09-19 — Transaction notes and selected-path recovery (plugin 2026.9.21)
 
 - Optional `notes` in the organization spec journals this operation's control-file

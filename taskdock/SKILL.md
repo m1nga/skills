@@ -185,3 +185,8 @@ content is a preflight stop, not permission to silently convert source files.
 ## A handoff a client can open
 
 When the user needs a handoff, `python3 <skill-dir>/scripts/handoff.py --path TASK_FOLDER --out NEW_FILE.html` produces a private, self-contained page with selected task identity, bounded control records, pending recovery and a next-session instruction. Run from any directory. The helper never initializes, reorganizes or repairs the task. It refuses to overwrite an existing report. Read truncation flags and the source records before a consequential continuation. It reports pending recovery with a nonzero exit; a generated file is not proof the task is ready. Review private notes and local paths before sharing.
+
+To try the same report on disposable data, run `python3 <skill-dir>/scripts/demo.py
+--output NEW_SAMPLE_FOLDER --domain release --handoff`. Open `handoff.html` inside
+the sample folder and use its README.md and STATE.md sections to find the current
+result and next action.

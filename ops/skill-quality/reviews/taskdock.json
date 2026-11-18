@@ -1,122 +1,78 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-11-10T04:12:04.587735+00:00",
-  "source_sha256": "523574e677e335992daf1a39bdaa048880ee09d3d3fadcd301c834714be6a0e1",
+  "reviewed_at": "2026-11-18T07:34:10.430152+00:00",
+  "source_sha256": "afd27c42ffeb07be0dbdbfa600bb08ecc9bbffa41c633ecd5fbab4b09070c5f1",
   "user_review": {
-    "method": "Same-session maintainer walkthrough of changed public copy against the existing capability and examples. Simulated reader cases; no independent user trial or live market-performance claim. Prior runtime evidence is preserved separately.",
+    "method": "Maintainer executed a clean, telemetry-disabled project installation from the previous standalone GitHub version and its release demo, then executed the changed walkthrough in a separate disposable folder. Read the generated HTML as the receiving operator and opened the parsed handoff in headless Chrome. No customer or new agent session was measured.",
     "scenarios": [
       {
-        "request": "Resume a scattered project and organize its files.",
-        "expected": "The opening identifies the portable folder, stable task identity and previewed moves.",
-        "observed": "The opening identifies the portable folder, stable task identity and previewed moves.",
-        "kind": "simulated",
+        "request": "Install TaskDock and resume from a sample browser handoff.",
+        "expected": "One demo command generates the HTML. The page identifies the approved result and what to verify next.",
+        "observed": "The old demo generated no HTML and its separately exported page led to a generic next step. The changed demo exported the page, identified delivery/release-notes.txt and directed the user to compare runtime-copy.txt and record the check. The comparison and follow-up note were performed on the sample.",
+        "kind": "executed",
+        "result": "fixed"
+      },
+      {
+        "request": "Retry the demo in an occupied directory and resume after a sample folder move.",
+        "expected": "Preserve earlier files, support a fresh output folder, and recover the same task by UUID with the updated state.",
+        "observed": "The occupied demo returned exit 1 and retained all previous file hashes. A fresh output completed. The moved folder was found by its UUID and its regenerated page included the updated state. Reusing an existing report name returned exit 2 and preserved the previous report and source.",
+        "kind": "executed",
         "result": "pass"
       },
       {
-        "request": "Can it undo any unrelated change another tool made?",
-        "expected": "Keep the capability or evidence boundary visible.",
-        "observed": "Undo is explicitly scoped to its own recorded changes and protects later edits.",
-        "kind": "simulated",
+        "request": "Export a handoff with a pending file move.",
+        "expected": "Return nonzero, show the specific operation and preserve all task files.",
+        "observed": "A real planned move produced a handoff with the operation ID and pending recovery warning, returned exit 1 and preserved every task file hash.",
+        "kind": "executed",
         "result": "pass"
       }
     ]
   },
   "similar_skills": [
     {
-      "url": "https://github.com/WesleySmits/agent-skills/blob/main/.agent/skills/seo-keyword-research/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "Separate search intent and map the task to a relevant page.",
+      "url": "https://github.com/klittle32/handoff-skill/blob/57089b6e1ce61498ec70852e46d41b2f8f12fa00/README.md#L38-L91",
+      "checked_at": "2026-11-18T07:34:10.430152+00:00",
+      "learned": "The author's README shows a completed handoff and paste-ready first message. The source workflow specifies a reading order and a concrete next action.",
       "decision": "adapt",
-      "reason": "Use function/problem/pain observations to clarify this page; reject invented volume and keyword stuffing."
+      "reason": "The TaskDock public guide follows a generated release handoff, with the current file and the next check visible in the report backed by the existing task records."
     },
     {
-      "url": "https://github.com/coreyhaines31/marketingskills/blob/main/skills/content-strategy/SKILL.md",
-      "checked_at": "2026-11-10",
-      "learned": "Give one intended reader a useful answer supported by evidence.",
+      "url": "https://github.com/Jettlin927/agentcarry/blob/7569460fd6a748c05fd0dfe631ffbf033fa67b76/README.md#L90-L104",
+      "checked_at": "2026-11-18T07:34:10.430152+00:00",
+      "learned": "The author provides a runnable dry-run against synthetic data and verifies the source hash afterwards.",
       "decision": "adapt",
-      "reason": "Lead with a concrete task and honest outcome; keep existing examples and evidence limits."
+      "reason": "Reuse the disposable TaskDock demo, compare actual artifact bytes, and prove a retry and HTML export preserve earlier files. The walkthrough only needs local task records."
+    },
+    {
+      "url": "https://github.com/jensvanbellen/agent-handoff/blob/aa92e695606ccfc186f3c529b72636234ebebc2e/skills/handoff/SKILL.md#L176-L195",
+      "checked_at": "2026-11-18T07:34:10.430152+00:00",
+      "learned": "A selected path can resume after an identity or branch match is ambiguous, and stale source state is surfaced.",
+      "decision": "reject",
+      "reason": "TaskDock identifies movable folders by UUID and already supports explicit paths. The first-use fix leaves branch identity and automatic Git mutations out."
     }
   ],
   "validation": [
     {
-      "command": "python3 publish-skill-product/scripts/audit_product_page.py taskdock --product-manifest products.json --json",
+      "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v",
       "result": "pass",
-      "observed": "{\n  \"skill\": \"taskdock\",\n  \"verdict\": \"PASS\",\n  \"errors\": [],\n  \"warnings\": []\n}"
+      "observed": "66 tests: 65 passed, one platform-specific skip. The new regression executes the release demo and checks the generated report against final task records."
     },
     {
-      "command": "python3 <skill-creator>/scripts/quick_validate.py taskdock",
+      "command": "python3 taskdock/scripts/demo.py --output taskdock-demo --domain release --handoff",
       "result": "pass",
-      "observed": "Skill is valid!"
+      "observed": "Generated a real private handoff and a matched sample deliverable, verified rollback conflict handling and unchanged files, opened the refreshed HTML in headless Chrome, and completed the written next step."
+    },
+    {
+      "command": "python3 taskdock/scripts/handoff.py --path TASK_FOLDER --out NEW_FILE.html",
+      "result": "pass",
+      "observed": "Verified normal export after a move and exit 1 with a visible pending operation. Compared source file hashes before and after exports."
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py taskdock --product-manifest products.json",
+      "result": "pass",
+      "observed": "TaskDock package, product page and manifest passed the targeted audit."
     }
   ],
-  "unresolved_blockers": [],
-  "previous_review": {
-    "schema_version": 1,
-    "skill": "taskdock",
-    "reviewed_at": "2026-11-10T01:55:06.996623+00:00",
-    "source_sha256": "c5f2fa768470934dec3bb5a6787e5ee4f33e9a3da46bd4e33cd312411c5ef53a",
-    "user_review": {
-      "method": "Maintainer first-use demo from outside the source directory, real filesystem operations on disposable fixtures, and existing recovery tests. No cross-session productivity trial.",
-      "scenarios": [
-        {
-          "request": "Organize the sample folder and keep its entry and active files useful.",
-          "expected": "Move the sample artifact, repair its relative link, and retain runtime and history files.",
-          "observed": "All three demo domains applied and reconciled successfully with the entry link repaired.",
-          "kind": "executed",
-          "result": "pass"
-        },
-        {
-          "request": "Undo after a collaborator has edited the moved file.",
-          "expected": "Refuse the undo, name the conflicting file and preserve visible files.",
-          "observed": "The demo changed the real disposable postimage, reported conflict in all three domains, and compared the visible files byte for byte. It then removed only its fixture edit, verified normal undo restored the before snapshot, and reapplied a fresh plan.",
-          "kind": "executed",
-          "result": "fixed"
-        },
-        {
-          "request": "Run the demo again on an existing folder.",
-          "expected": "Refuse to overwrite it.",
-          "observed": "The CLI returned exit 1 and told the user to choose a new folder.",
-          "kind": "executed",
-          "result": "pass"
-        }
-      ]
-    },
-    "similar_skills": [
-      {
-        "url": "https://github.com/kpab/github-star-growth/blob/main/SKILL.md",
-        "checked_at": "2026-11-10T01:55:06.996623+00:00",
-        "learned": "A short reproducible demo can expose the most valuable operation and its output.",
-        "reason": "Bring the conflict path into the existing runnable organizer demo.",
-        "decision": "adapt"
-      },
-      {
-        "url": "https://github.com/OthmanAdi/planning-with-files/blob/master/skills/planning-with-files/SKILL.md",
-        "checked_at": "2026-11-10T01:55:06.996623+00:00",
-        "learned": "Recovery selects the owned plan and stops on ambiguity before reading or changing another workspace.",
-        "reason": "Retain TaskDock's explicit target and operation receipt; demonstrate from a separate working directory.",
-        "decision": "adapt"
-      },
-      {
-        "url": "https://restic.readthedocs.io/en/stable/050_restore.html",
-        "checked_at": "2026-11-10T01:55:06.996623+00:00",
-        "learned": "Recovery policies should make existing-file handling and dry-run behavior visible.",
-        "reason": "Show TaskDock's scoped preimage restore refusing newer work and keep this operation distinct from restoring a whole backup.",
-        "decision": "adapt"
-      }
-    ],
-    "validation": [
-      {
-        "command": "python3 -B taskdock/scripts/demo.py --domain DOMAIN --output NEW_DIRECTORY",
-        "observed": "Ran design, release, and research from a separate directory. All returned rollback_conflict with the expected path and byte-preservation proof, ordinary rollback and final reconciliation.",
-        "result": "pass"
-      },
-      {
-        "command": "python3 -B -m unittest discover -s taskdock/scripts -p 'test_*.py'",
-        "observed": "65 tests run, 64 passed and one platform-specific case skipped.",
-        "result": "pass"
-      }
-    ],
-    "unresolved_blockers": []
-  }
+  "unresolved_blockers": []
 }

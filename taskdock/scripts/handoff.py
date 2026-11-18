@@ -28,9 +28,16 @@ def build(root,limit=6000):
     body+='<p class="muted">Contains task notes and local paths. Review before sharing. Moving the folder does not move external repositories; locate by task ID if the path changes.</p>'
     return {'task_id':task['id'],'pending_recovery':pending,'body':body}
 
+def write_handoff(root, out, limit=6000):
+    result = build(root, limit)
+    output = save_page(out, 'Task handoff', result.pop('body'))
+    return {'ok': not result['pending_recovery'], 'output': output, **result}
+
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--path',required=True);p.add_argument('--out',required=True);p.add_argument('--max-chars',type=int,default=6000);a=p.parse_args()
     try:
-        result=build(a.path,a.max_chars);out=save_page(a.out,'Task handoff',result.pop('body'));print(json.dumps({'ok':not result['pending_recovery'],'output':out,**result}));return 1 if result['pending_recovery'] else 0
+        result = write_handoff(a.path, a.out, a.max_chars)
+        print(json.dumps(result))
+        return 0 if result['ok'] else 1
     except (OSError,ValueError,KeyError,TypeError) as e:print(json.dumps({'ok':False,'error':str(e)}),file=sys.stderr);return 2
 if __name__=='__main__':sys.exit(main())

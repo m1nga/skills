@@ -11,16 +11,6 @@ preview and an undo path.
 
 ![TaskDock: continue from current work, preserve history, and verify reversible organization](https://raw.githubusercontent.com/m1nga/taskdock/main/skills/taskdock/assets/workflow.svg)
 
-## New: an output you can use
-
-Generate a readable handoff from an existing task:
-
-```sh
-python3 SKILL_DIR/scripts/handoff.py --path TASK_FOLDER --out handoff.html
-```
-
-Open the resulting self-contained page in a browser. It contains the task ID, selected folder, bounded current records and a prompt for the next session. No hosting, account or API is needed. Reports may contain private task notes and local paths; review before sharing. The output must be new. A pending recovery returns a nonzero exit and remains visible in the page. This is a local retrieval aid, not an independent takeover test or a claim that external repositories are current.
-
 ## Install
 
 ```bash
@@ -55,21 +45,36 @@ other interpreters on the machine and otherwise writes the control files by hand
 skills and run local Python. Filesystem acceptance checks run in the repository CI on Linux, macOS and Windows.
 Windows shell checks target PowerShell; POSIX permission bits are tested only on POSIX systems.
 
-## See the result before using your own files
+## Resume an AI agent task from a sample handoff
 
-From the installed skill directory, run:
+Install TaskDock for Codex at project scope using the command above. For a
+non-interactive install, add `--agent codex --yes`. From the same project folder,
+run:
 
 ```bash
-python3 scripts/demo.py --output /tmp/taskdock-demo
+python3 .agents/skills/taskdock/scripts/demo.py --output taskdock-demo --domain release --handoff
 ```
 
-Choose a new output folder. The demo refuses to overwrite an existing one and uses
-sample files. From another directory, use the absolute path to `scripts/demo.py`.
+On Windows, replace `python3` with `py -3` if you use the Python Launcher. If you installed
+TaskDock somewhere else, use the path to `scripts/demo.py` in that installation.
+The demo uses sample files. If `taskdock-demo` already exists, choose a fresh
+name such as `taskdock-demo-2` and keep the earlier run.
+
+1. Open `taskdock-demo/handoff.html` in a browser. The page contains the task ID,
+   the folder path and a message you can paste into a new agent session.
+2. In the page's README.md section, find **Current result**. Open
+   `delivery/release-notes.txt` inside the sample folder. It starts with
+   “Release 1.0: a sample delivery”.
+3. Follow the next step in the page's STATE.md section. Compare that file with
+   `runtime-copy.txt` and record the check in the sample's `STATE.md`.
+
+The report is a snapshot. The sample folder holds the files and their latest
+state. Review the page for task notes and local paths before sharing it.
 
 ```text
 Before                           After
-README → cover.svg               README → assets/cover.svg
-cover.svg                        assets/cover.svg
+README → release-notes.txt       README → delivery/release-notes.txt
+release-notes.txt                delivery/release-notes.txt
 download-copy.txt                runtime-copy.txt  (needed)
 runtime-copy.txt                  history/rejected.txt  (kept)
 history/rejected.txt
@@ -83,12 +88,23 @@ The demo applies the change, edits the moved file as a collaborator would, and
 shows a `rollback_conflict` receipt naming that file. It checks that the refused
 undo touched no visible file. It then removes its own sample edit, verifies
 byte-for-byte rollback, and reapplies a fresh plan so you can inspect the
-organized result. `--domain release` and `--domain research` use other sample files.
+organized result. The design and research variants use other sample files.
 
 In a real workspace, preserve the later edit when undo reports a conflict.
 Review the named paths and decide how to incorporate those changes before
 replanning. The operation receipt is local filesystem evidence. Cross-session
 time savings require a separate comparison.
+
+## Create a handoff for your own task
+
+```sh
+python3 SKILL_DIR/scripts/handoff.py --path TASK_FOLDER --out handoff.html
+```
+
+Use a new filename for the page. It opens locally in a browser and includes the
+task ID, selected folder, bounded records and a prompt for the next session.
+Pending recovery is shown in the report and returns a nonzero exit. Verify the
+live task files before continuing, and review private notes and paths before sharing.
 
 ## What it does
 
@@ -175,7 +191,7 @@ has to understand the work; the scripts cannot approve a design or prove a deplo
 
 ## Validation
 
-65 executable tests (including platform-specific cases) cover task identity, bounded recovery, reference repairs, identical
+66 executable tests (including platform-specific cases) cover task identity, bounded recovery, reference repairs, identical
 copy consolidation, retained runtime copies, changed sources, occupied destinations,
 symlinks, partial operations, interrupted rollback, byte restoration and file mode bits.
 The three demo contexts also execute apply and rollback. These are maintainer-run

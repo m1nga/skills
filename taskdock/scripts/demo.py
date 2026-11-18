@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import sys
+from handoff import write_handoff
 import taskdock as td
 import workspace_ops as ops
 
@@ -13,7 +14,7 @@ def visible_files(root):
             for path in root.rglob('*') if path.is_file() and '.taskdock' not in path.parts}
 
 
-def run(output, domain='design'):
+def run(output, domain='design', *, handoff=False):
     output = Path(output).expanduser().absolute()
     if output.exists() or output.is_symlink():
         raise ValueError('Choose a new output folder; existing files are never replaced')
@@ -28,7 +29,15 @@ def run(output, domain='design'):
     (output / 'history').mkdir()
     (output / 'history/rejected.txt').write_text('Previous direction was rejected. Preserve its reason, not its status as current.')
     (output / 'README.md').write_text('# '+domain.title()+' handoff\n\n[Current result]('+old+')\n\n[State](STATE.md)\n')
-    (output / 'STATE.md').write_text('# Current state\n\nThe result linked from README is approved for this sample. Runtime use is recorded separately.\n\nNext: open the current result and continue the handoff.\n')
+    (output / 'STATE.md').write_text(
+        '# Current state\n\nThe file linked as Current result in README.md is approved for this sample. '
+        'runtime-copy.txt is a separate runtime copy.\n\n'
+        'Next: compare the current result with runtime-copy.txt, then record the check in STATE.md.\n',
+        encoding='utf-8')
+    (output / 'PLAN.md').write_text(
+        '# Task plan\n\nConfirm the approved result still matches the retained runtime copy after the move. '
+        'Keep history/rejected.txt for context.\n',
+        encoding='utf-8')
     before = visible_files(output)
     ops.record(output, task['id'], {'items': [
         {'id':'current-result','path':old,'role':'working','decision':'approved','used_in':['sample-v1'],'evidence':'Explicit sample decision; no production release claimed'},
@@ -69,6 +78,11 @@ def run(output, domain='design'):
                'rollback_conflict': {'status': conflict['status'], 'paths': conflict['paths'],
                                      'visible_files_unchanged': True},
                'final_operation':final['operation_id'],'workspace':str(output)}
+    if handoff:
+        page = write_handoff(output, output / 'handoff.html')
+        if not page['ok']:
+            raise ValueError(f"Resolve pending recovery before continuing. See {page['output']}")
+        receipt['handoff_html'] = page['output']
     print(json.dumps(receipt,ensure_ascii=False,indent=2))
     return receipt
 
@@ -77,8 +91,9 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--domain',choices=('design','release','research'),default='design')
+    p.add_argument('--handoff', action='store_true', help='Generate handoff.html in the sample folder')
     a=p.parse_args()
     try:
-        run(a.output,a.domain)
+        run(a.output, a.domain, handoff=a.handoff)
     except (OSError,ValueError,AssertionError) as e:
         print(json.dumps({'status':'error','message':str(e)}),file=sys.stderr);sys.exit(1)
