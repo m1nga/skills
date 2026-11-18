@@ -80,8 +80,8 @@
     },
     {
       "name": "mixtape",
-      "title": "Playlist Builder — Get a Verified Playlist You Can Actually Import",
-      "description": "Build a playlist from a mood or seed songs, check recordings in an Apple Music storefront and prepare a Soundiiz import link. Verify the destination separately.",
+      "title": "Mixtape Playlist Builder — Build a Mood Playlist for Apple Music or Spotify",
+      "description": "Build an AI playlist from a mood or seed songs, check the recordings in Apple Music, and get a Soundiiz link to choose Apple Music, Spotify or another service.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
