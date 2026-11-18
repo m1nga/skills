@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "skill": "taskdock",
-  "reviewed_at": "2026-11-18T07:34:10.430152+00:00",
-  "source_sha256": "afd27c42ffeb07be0dbdbfa600bb08ecc9bbffa41c633ecd5fbab4b09070c5f1",
+  "reviewed_at": "2026-11-18T07:36:23.970442+00:00",
+  "source_sha256": "16582d1544e191784d36024991cde1e58d06a9060d6e6e6d7dff4b599ce370bc",
   "user_review": {
     "method": "Maintainer executed a clean, telemetry-disabled project installation from the previous standalone GitHub version and its release demo, then executed the changed walkthrough in a separate disposable folder. Read the generated HTML as the receiving operator and opened the parsed handoff in headless Chrome. No customer or new agent session was measured.",
     "scenarios": [
@@ -56,7 +56,7 @@
     {
       "command": "python3 -m unittest discover -s taskdock/scripts -p 'test_*.py' -v",
       "result": "pass",
-      "observed": "66 tests: 65 passed, one platform-specific skip. The new regression executes the release demo and checks the generated report against final task records."
+      "observed": "66 tests: 65 passed, one platform-specific skip. The new regression executes the release demo and checks the generated report against final task records. Reran after using a single path format in the demo rollback assertion and improving error reporting in its subprocess regression."
     },
     {
       "command": "python3 taskdock/scripts/demo.py --output taskdock-demo --domain release --handoff",

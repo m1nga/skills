@@ -65,8 +65,7 @@ def run(output, domain='design', *, handoff=False):
     moved.write_bytes(applied_bytes)
     rolled = ops.transfer(output,task['id'],identity,True)
     assert rolled['status'] == 'rolled_back'
-    restored = {str(p.relative_to(output)):p.read_bytes() for p in output.rglob('*') if p.is_file() and '.taskdock' not in p.parts}
-    assert restored == before
+    assert visible_files(output) == before, 'Rollback did not restore the original visible files'
     # Leave a useful organized result after proving rollback, with a fresh operation.
     final = ops.plan(output,task['id'],spec)
     assert ops.transfer(output,task['id'],final['operation_id'])['status'] == 'applied'

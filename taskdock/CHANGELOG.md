@@ -1,5 +1,10 @@
 # Changes
 
+## 2026-11-18 — Windows demo recovery (plugin 2026.11.19)
+
+- The demo now compares rollback paths with the same path format on Windows,
+  macOS and Linux. The release demo test reports the command's error on failure.
+
 ## 2026-11-18 — Try a complete handoff (plugin 2026.11.18)
 
 - The release demo can generate a real private `handoff.html` using the same

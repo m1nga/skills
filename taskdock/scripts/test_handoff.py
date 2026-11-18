@@ -25,7 +25,8 @@ class HandoffTests(unittest.TestCase):
    demo = Path(__file__).with_name('demo.py').resolve()
    run = subprocess.run(
        [sys.executable, str(demo), '--output', str(folder), '--domain', 'release', '--handoff'],
-       check=True, capture_output=True, text=True)
+       capture_output=True, text=True)
+   self.assertEqual(run.returncode, 0, run.stderr or run.stdout)
    receipt = json.loads(run.stdout)
    self.assertEqual(Path(receipt['handoff_html']), (folder / 'handoff.html').resolve())
    page = Path(receipt['handoff_html']).read_text(encoding='utf-8')
