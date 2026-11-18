@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "skill": "study-evidence-packet",
+  "reviewed_at": "2026-11-18T12:43:04.965874+00:00",
+  "source_sha256": "39a58bdd6ba716d8b629563659a6e204d2d778d03db9ba21a02e93df06435c10",
+  "user_review": {
+    "method": "Maintainer instruction walkthrough using wholly fictional records. Separate local byte-comparison exercise. No independent applicant or authority review.",
+    "scenarios": [
+      {
+        "request": "Answer a grade request with a transfer summary.",
+        "expected": "Document accepted credits and flag original grades.",
+        "observed": "The summary supports six credits. An open action requests the original transcript from its issuer.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "An issued-in-April policy describes available online teaching, while a learner recalls attending in March.",
+        "expected": "Distinguish issue date, possible policy scope and individual recollection.",
+        "observed": "The timeline labels the recollection and its date as self-reported. The policy establishes availability. The applicant can seek a record connecting their course and period.",
+        "kind": "simulated",
+        "result": "pass"
+      },
+      {
+        "request": "A second folder contains a renamed duplicate, a revised notice and a new source.",
+        "expected": "Reuse the duplicate content while retaining its location and reassess the changed and new material.",
+        "observed": "A temporary two-directory SHA-256 exercise returned copy of credit.txt, changed notice.txt and new record.txt. The maintainer walkthrough kept both notice versions and revisited the added grading-scale request.",
+        "kind": "executed",
+        "result": "pass"
+      }
+    ]
+  },
+  "similar_skills": [
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md",
+      "checked_at": "2026-11-18",
+      "learned": "Use OCR on scans when ordinary extraction cannot expose their contents.",
+      "decision": "adapt",
+      "reason": "Use OCR for finding evidence, then inspect the original page before asserting grades or dates."
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/docx/SKILL.md",
+      "checked_at": "2026-11-18",
+      "learned": "Render generated documents and inspect their pages.",
+      "decision": "adapt",
+      "reason": "Inspect applicant-facing drafts and indexes visually. Preserve signed source files as separate originals."
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 <skill-creator>/scripts/quick_validate.py study-evidence-packet",
+      "result": "pass",
+      "observed": "Skill is valid!"
+    },
+    {
+      "command": "python3 publish-skill-product/scripts/audit_product_page.py study-evidence-packet --product-manifest products.json",
+      "result": "pass",
+      "observed": "VERDICT: PASS"
+    },
+    {
+      "command": "Local temporary two-folder SHA-256 comparison with expected classifications asserted",
+      "result": "pass",
+      "observed": "All three expected classifications matched."
+    }
+  ],
+  "unresolved_blockers": []
+}

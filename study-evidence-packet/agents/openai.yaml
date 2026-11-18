@@ -1,0 +1,4 @@
+interface:
+  display_name: "Study Evidence Packet"
+  short_description: "Match study records to a request for more evidence"
+  default_prompt: "Use $study-evidence-packet to organize my records against this supplement notice and show what still needs my action."

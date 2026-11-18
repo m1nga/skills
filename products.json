@@ -325,6 +325,19 @@
         "user-interface",
         "codex"
       ]
+    },
+    {
+      "name": "study-evidence-packet",
+      "title": "Prepare a Study Abroad Evidence Packet for a Supplement Notice",
+      "description": "Match study abroad records to a supplement notice, reconstruct a source-linked timeline, draft missing document requests and reconcile evidence from another device.",
+      "topics": [
+        "m1nga-skill",
+        "agent-skill",
+        "study-abroad",
+        "document-preparation",
+        "academic-records",
+        "codex"
+      ]
     }
   ]
 }
