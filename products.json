@@ -81,7 +81,7 @@
     {
       "name": "mixtape",
       "title": "Mixtape Playlist Builder — Make a Mood Playlist and Check Every Track",
-      "description": "Build a playlist from a mood or seed songs. Save and verify it in YouTube or YouTube Music, or get a catalog-checked Soundiiz link for Apple Music or Spotify.",
+      "description": "Build a playlist from a mood or seed songs. Pin exact YouTube recordings and durations before saving, or get a catalog-checked Soundiiz link for other services.",
       "topics": [
         "m1nga-skill",
         "agent-skill",
